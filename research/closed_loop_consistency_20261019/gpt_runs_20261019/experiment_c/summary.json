@@ -1,0 +1,47 @@
+{
+  "n_fits": 120,
+  "max_P8_ct_zoh_frequency_change_hz": 0.0007175962581591477,
+  "max_P8_ct_zoh_damping_change_pp": 0.0059130603510757496,
+  "original_files_changed": [],
+  "by_method": {
+    "M1": {
+      "n": 16,
+      "status_counts": {
+        "收敛/score通过": 11,
+        "步长收敛/score未过": 1,
+        "迭代上限": 4
+      }
+    },
+    "M2": {
+      "n": 16,
+      "status_counts": {
+        "收敛/score通过": 9,
+        "步长收敛/score未过": 3,
+        "迭代上限": 4
+      }
+    },
+    "M3": {
+      "n": 16,
+      "status_counts": {
+        "收敛/score通过": 6,
+        "步长收敛/score未过": 1,
+        "迭代上限": 9
+      }
+    },
+    "M5": {
+      "n": 12,
+      "status_counts": {
+        "未收敛": 1,
+        "秩不足": 8,
+        "终止/score未过": 3
+      }
+    },
+    "M5_reg": {
+      "n": 8,
+      "status_counts": {
+        "终止/score未过": 5,
+        "终止/score通过": 3
+      }
+    }
+  }
+}

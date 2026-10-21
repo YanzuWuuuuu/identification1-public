@@ -1,0 +1,12 @@
+{
+  "sml_jacobian_relative_errors": [
+    1.1077539998997092e-09,
+    1.5179208733942194e-09,
+    1.889131338276309e-09
+  ],
+  "mean_covariance_residual_identity_relative": 1.991141243436878e-16,
+  "whitened_cost_vs_quadratic_relative": 1.2741232948980483e-16,
+  "FRF_vecF_operator_relative": 1.2899721956448876e-16,
+  "FRF_linearization_finite_difference_relative": 9.141993635657535e-08,
+  "fast_vs_dlsim_relative": 4.199387778398101e-11
+}

@@ -1,0 +1,12 @@
+{
+  "figure_id": "closed_loop_lowband",
+  "surface_class": "appendix",
+  "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\matlab\\research_experiments\\closed_loop_validation\\outputs_structured\\distinct_N32\\summary.json",
+  "script": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\matlab\\research_experiments\\closed_loop_validation\\figures\\plot_closed_loop.py",
+  "exports": [
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\matlab\\research_experiments\\closed_loop_validation\\figures\\closed_loop_lowband.png",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\matlab\\research_experiments\\closed_loop_validation\\figures\\closed_loop_lowband.svg"
+  ],
+  "claim": "At the specified synthetic mismatch, heldout output-only dynamic calibration lowers rigid leakage beneath output noise.",
+  "review": "Rendered and inspected twice. Quoted hex colors in a local copy of bundled style; logarithmic units and three distinct line styles are legible; legend does not cover curves. No confidence interval claimed."
+}

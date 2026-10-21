@@ -1,0 +1,24 @@
+{
+  "zoh_max_absolute_vs_cl2": 0.0,
+  "noiseless_DFT_identity_relative": 3.831824387205255e-12,
+  "modal_jac_relative_error": [
+    2.957466390428388e-05,
+    2.1727990647941528e-05,
+    1.7734624990114583e-05,
+    1.6625934614034593e-05,
+    6.915272591114815e-06,
+    5.126069520019539e-06
+  ],
+  "original_SHA256": {
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\real_data\\load.py": "345b429985d239c3583534857a96803e1eb6cc934d90d7b17302d9b03b23d67a",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\real_data\\realfit.py": "9646263636035391bda454f40cb8e6464a23f327aaf9e3d779a345880661948f",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\real_data\\run_real.py": "87768402f69184496bf73f9ec52d0fb7fe55a3ea8042aeab316745fc675c10bb",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\real_data\\xval.py": "c03ea4fbae61f04763f103731cee5c379d29f5b095774d26cc33696e9ebd8ec8",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z-0.5.mat": "3dfb54740f49d10e9b2c67e13433f3a68fc6019986bf51c08e0839f5eeba858f",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z-1.mat": "6e091e19b9a611003c15353a723dca16a513a47be95c6cd2aa863d9493f17dce",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z0.5.mat": "ba1c65b7a17d24dded84c6d91fa4ad8199217bf26801a5998fe3ae4bec53d98d",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z0.mat": "117ae27a37b185521d13ddc595c693a4eb7104ce90eb9ad1a08a11f0fbacb299",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z1.mat": "2a8d08005ebafc9c821e12cbea840cc0430306da8d966bffbae7c1cd76a30fbc",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\delay_identification_20261016\\effective_delay_matrix_us.csv": "59542d9e4940639969c2f291b0b6afbbc3660a6fd29097deca9c1b06f429e61f"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "D_count": true,
+    "E_count": true,
+    "exp_minus_one_error_formula": true,
+    "task0_long_40": true,
+    "real_180_contexts": true,
+    "real_140_unique": true,
+    "original_1219_unchanged": true,
+    "scale_gate": true,
+    "matrix_gate": true,
+    "moment_derivative_gate": true,
+    "report_exists": true
+  },
+  "all_passed": true,
+  "formal_counts": {
+    "D": 1600,
+    "E": 360
+  },
+  "retained_numerical_failures": {
+    "D": 2,
+    "E": 69
+  },
+  "max_percentage_error_discrepancy": 0.0
+}

@@ -1,0 +1,15 @@
+{
+  "inversion_relative_error": 1.9394565351059594e-15,
+  "fit_relative_error": 7.68604532666026e-12,
+  "pole_relative_error": 2.6192381596990996e-12,
+  "solver": {
+    "success": true,
+    "status": "pole_step_tolerance",
+    "iterations": 21,
+    "cost": 1.2598770065444112e-26,
+    "normalized_score": 0.8835299320862519,
+    "seconds": 1.4176495000137947,
+    "shrink": null,
+    "scaled_condition": 19.33512772210795
+  }
+}

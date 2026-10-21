@@ -1,0 +1,129 @@
+model,output_channel,input_channel,fmin_hz,fmax_hz,frequency_count,relative_complex_difference_to_validation_LRM_percent
+Old model (below 25 Hz: extrapolation),1,1,3,25,220,206.732909807919
+Old model (below 25 Hz: extrapolation),1,2,3,25,220,176.260803444282
+Old model (below 25 Hz: extrapolation),1,3,3,25,220,204.521988528616
+Old model (below 25 Hz: extrapolation),1,4,3,25,220,111.547340143268
+Old model (below 25 Hz: extrapolation),2,1,3,25,220,189.899819738913
+Old model (below 25 Hz: extrapolation),2,2,3,25,220,161.433361231589
+Old model (below 25 Hz: extrapolation),2,3,3,25,220,222.875946937691
+Old model (below 25 Hz: extrapolation),2,4,3,25,220,116.132292797208
+Old model (below 25 Hz: extrapolation),3,1,3,25,220,165.846411379046
+Old model (below 25 Hz: extrapolation),3,2,3,25,220,175.381622358457
+Old model (below 25 Hz: extrapolation),3,3,3,25,220,213.570563731011
+Old model (below 25 Hz: extrapolation),3,4,3,25,220,123.627513260279
+Old model (below 25 Hz: extrapolation),4,1,3,25,220,164.778448307216
+Old model (below 25 Hz: extrapolation),4,2,3,25,220,224.119590797986
+Old model (below 25 Hz: extrapolation),4,3,3,25,220,214.99292970337
+Old model (below 25 Hz: extrapolation),4,4,3,25,220,103.029868807508
+Old model (below 25 Hz: extrapolation),1,1,25,800,1550,2.74384906155752
+Old model (below 25 Hz: extrapolation),1,2,25,800,1550,3.32532155785542
+Old model (below 25 Hz: extrapolation),1,3,25,800,1550,5.01815248524576
+Old model (below 25 Hz: extrapolation),1,4,25,800,1550,9.84334185703205
+Old model (below 25 Hz: extrapolation),2,1,25,800,1550,2.53197976158129
+Old model (below 25 Hz: extrapolation),2,2,25,800,1550,1.83638244977171
+Old model (below 25 Hz: extrapolation),2,3,25,800,1550,3.31733929980145
+Old model (below 25 Hz: extrapolation),2,4,25,800,1550,7.63942118662628
+Old model (below 25 Hz: extrapolation),3,1,25,800,1550,2.0735686866945
+Old model (below 25 Hz: extrapolation),3,2,25,800,1550,6.31662952901684
+Old model (below 25 Hz: extrapolation),3,3,25,800,1550,1.57312631496963
+Old model (below 25 Hz: extrapolation),3,4,25,800,1550,5.11748929858226
+Old model (below 25 Hz: extrapolation),4,1,25,800,1550,11.9379041335514
+Old model (below 25 Hz: extrapolation),4,2,25,800,1550,4.51492141943062
+Old model (below 25 Hz: extrapolation),4,3,25,800,1550,2.40498845274478
+Old model (below 25 Hz: extrapolation),4,4,25,800,1550,11.2939179150575
+Old model (below 25 Hz: extrapolation),1,1,3,800,1770,206.477591830763
+Old model (below 25 Hz: extrapolation),1,2,3,800,1770,176.188356307061
+Old model (below 25 Hz: extrapolation),1,3,3,800,1770,204.4713661182
+Old model (below 25 Hz: extrapolation),1,4,3,800,1770,111.488613131411
+Old model (below 25 Hz: extrapolation),2,1,3,800,1770,189.818150984341
+Old model (below 25 Hz: extrapolation),2,2,3,800,1770,161.275718091078
+Old model (below 25 Hz: extrapolation),2,3,3,800,1770,222.809805365504
+Old model (below 25 Hz: extrapolation),2,4,3,800,1770,116.05394267604
+Old model (below 25 Hz: extrapolation),3,1,3,800,1770,165.783926441011
+Old model (below 25 Hz: extrapolation),3,2,3,800,1770,175.376204385788
+Old model (below 25 Hz: extrapolation),3,3,3,800,1770,213.319897913545
+Old model (below 25 Hz: extrapolation),3,4,3,800,1770,123.53718786772
+Old model (below 25 Hz: extrapolation),4,1,3,800,1770,164.774052812155
+Old model (below 25 Hz: extrapolation),4,2,3,800,1770,223.991350217208
+Old model (below 25 Hz: extrapolation),4,3,3,800,1770,214.748146688713
+Old model (below 25 Hz: extrapolation),4,4,3,800,1770,102.972933803344
+Old model (below 25 Hz: extrapolation),1,1,100,150,100,8.15985881099513
+Old model (below 25 Hz: extrapolation),1,2,100,150,100,6.51343216894126
+Old model (below 25 Hz: extrapolation),1,3,100,150,100,8.79694291003374
+Old model (below 25 Hz: extrapolation),1,4,100,150,100,13.8484803534774
+Old model (below 25 Hz: extrapolation),2,1,100,150,100,5.40593669185598
+Old model (below 25 Hz: extrapolation),2,2,100,150,100,6.69645608811998
+Old model (below 25 Hz: extrapolation),2,3,100,150,100,7.0070057904712
+Old model (below 25 Hz: extrapolation),2,4,100,150,100,12.9224885839703
+Old model (below 25 Hz: extrapolation),3,1,100,150,100,4.87210891077769
+Old model (below 25 Hz: extrapolation),3,2,100,150,100,13.3172387119965
+Old model (below 25 Hz: extrapolation),3,3,100,150,100,2.81830055385112
+Old model (below 25 Hz: extrapolation),3,4,100,150,100,11.6736543382684
+Old model (below 25 Hz: extrapolation),4,1,100,150,100,10.1724705418601
+Old model (below 25 Hz: extrapolation),4,2,100,150,100,16.2042054074973
+Old model (below 25 Hz: extrapolation),4,3,100,150,100,7.19021894020271
+Old model (below 25 Hz: extrapolation),4,4,100,150,100,20.3404463487988
+Joint low-frequency model,1,1,3,25,220,43.5380129552061
+Joint low-frequency model,1,2,3,25,220,51.2874746612108
+Joint low-frequency model,1,3,3,25,220,17.8326334640583
+Joint low-frequency model,1,4,3,25,220,24.088829607173
+Joint low-frequency model,2,1,3,25,220,50.2027142572916
+Joint low-frequency model,2,2,3,25,220,44.3353439219739
+Joint low-frequency model,2,3,3,25,220,18.9773854066905
+Joint low-frequency model,2,4,3,25,220,34.4479757435025
+Joint low-frequency model,3,1,3,25,220,44.4286667519543
+Joint low-frequency model,3,2,3,25,220,49.3163242894788
+Joint low-frequency model,3,3,3,25,220,19.5644547416877
+Joint low-frequency model,3,4,3,25,220,37.4520838759351
+Joint low-frequency model,4,1,3,25,220,46.2402873915212
+Joint low-frequency model,4,2,3,25,220,64.206852264824
+Joint low-frequency model,4,3,3,25,220,20.3023058190336
+Joint low-frequency model,4,4,3,25,220,30.1471156783995
+Joint low-frequency model,1,1,25,800,1550,6.29048372428885
+Joint low-frequency model,1,2,25,800,1550,3.72697190035156
+Joint low-frequency model,1,3,25,800,1550,4.90101063259823
+Joint low-frequency model,1,4,25,800,1550,10.0097800109715
+Joint low-frequency model,2,1,25,800,1550,4.35615037006991
+Joint low-frequency model,2,2,25,800,1550,3.78028708208803
+Joint low-frequency model,2,3,25,800,1550,3.71904057016196
+Joint low-frequency model,2,4,25,800,1550,7.94784069600469
+Joint low-frequency model,3,1,25,800,1550,2.26004482573809
+Joint low-frequency model,3,2,25,800,1550,7.15309582715558
+Joint low-frequency model,3,3,25,800,1550,3.34526591367731
+Joint low-frequency model,3,4,25,800,1550,7.77468253585362
+Joint low-frequency model,4,1,25,800,1550,12.449586332833
+Joint low-frequency model,4,2,25,800,1550,6.49228713594378
+Joint low-frequency model,4,3,25,800,1550,3.94431781311514
+Joint low-frequency model,4,4,25,800,1550,12.5195691253504
+Joint low-frequency model,1,1,3,800,1770,43.4853567715404
+Joint low-frequency model,1,2,3,800,1770,51.2664982341545
+Joint low-frequency model,1,3,3,800,1770,17.8285505812281
+Joint low-frequency model,1,4,3,800,1770,24.0782553699793
+Joint low-frequency model,2,1,3,800,1770,50.1812827446657
+Joint low-frequency model,2,2,3,800,1770,44.2923588564354
+Joint low-frequency model,2,3,3,800,1770,18.9719687214837
+Joint low-frequency model,2,4,3,800,1770,34.4258768643668
+Joint low-frequency model,3,1,3,800,1770,44.4119683473972
+Joint low-frequency model,3,2,3,800,1770,49.3148309009639
+Joint low-frequency model,3,3,3,800,1770,19.5421626401406
+Joint low-frequency model,3,4,3,800,1770,37.4258550793683
+Joint low-frequency model,4,1,3,800,1770,46.2391373001308
+Joint low-frequency model,4,2,3,800,1770,64.1704742585027
+Joint low-frequency model,4,3,3,800,1770,20.2800605363558
+Joint low-frequency model,4,4,3,800,1770,30.1331622206541
+Joint low-frequency model,1,1,100,150,100,7.71226925203835
+Joint low-frequency model,1,2,100,150,100,7.33274108577284
+Joint low-frequency model,1,3,100,150,100,10.4951483828064
+Joint low-frequency model,1,4,100,150,100,13.7547219939198
+Joint low-frequency model,2,1,100,150,100,5.80617557989455
+Joint low-frequency model,2,2,100,150,100,6.5697408009125
+Joint low-frequency model,2,3,100,150,100,9.12392358754235
+Joint low-frequency model,2,4,100,150,100,12.7460383054962
+Joint low-frequency model,3,1,100,150,100,5.48756495580551
+Joint low-frequency model,3,2,100,150,100,13.8507833532313
+Joint low-frequency model,3,3,100,150,100,3.38539485339047
+Joint low-frequency model,3,4,100,150,100,12.217096481575
+Joint low-frequency model,4,1,100,150,100,12.1006856406449
+Joint low-frequency model,4,2,100,150,100,16.205983606936
+Joint low-frequency model,4,3,100,150,100,7.65184266151663
+Joint low-frequency model,4,4,100,150,100,20.428159278922

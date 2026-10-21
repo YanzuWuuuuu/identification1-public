@@ -1,0 +1,35 @@
+[
+  {
+    "case": "common_noise1",
+    "rank3_chart_reciprocal_condition": 0.44758611122716591,
+    "active_bound_indices": [],
+    "max_normalized_residual_gradient": 1.1158639163510756E-7,
+    "output_compensator_global_max_gain": 2.0673617230336312,
+    "input_compensator_global_max_gain": 2.1736033784024849,
+    "max_unprojected_rigid_to_flexible_frobenius_ratio": 32410.297049809007,
+    "frequency_of_max_unprojected_ratio_hz": 2.07,
+    "joint_vs_static_rigid_reduction_db": -0.68166016414798491
+  },
+  {
+    "case": "repeated_noise1",
+    "rank3_chart_reciprocal_condition": 0.44758739045770773,
+    "active_bound_indices": [],
+    "max_normalized_residual_gradient": 2.0664013594888639E-8,
+    "output_compensator_global_max_gain": 2.3220027654774844,
+    "input_compensator_global_max_gain": 2.1870407344566503,
+    "max_unprojected_rigid_to_flexible_frobenius_ratio": 32410.297594931184,
+    "frequency_of_max_unprojected_ratio_hz": 2.07,
+    "joint_vs_static_rigid_reduction_db": 41.932061087902376
+  },
+  {
+    "case": "distinct_noise1",
+    "rank3_chart_reciprocal_condition": 0.44758647270296725,
+    "active_bound_indices": 132,
+    "max_normalized_residual_gradient": 3.1713501893729382E-5,
+    "output_compensator_global_max_gain": 2.4875085799567116,
+    "input_compensator_global_max_gain": 2.4104004305716211,
+    "max_unprojected_rigid_to_flexible_frobenius_ratio": 32410.297107452705,
+    "frequency_of_max_unprojected_ratio_hz": 2.07,
+    "joint_vs_static_rigid_reduction_db": 56.879163285472941
+  }
+]

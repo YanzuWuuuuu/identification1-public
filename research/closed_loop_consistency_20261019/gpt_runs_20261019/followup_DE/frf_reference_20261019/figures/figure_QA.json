@@ -1,0 +1,10 @@
+{
+  "phase_complex_identity_max_error": 2.0807427796300308e-15,
+  "pdf_pages": 1,
+  "pdf_text_chars": 910,
+  "pdf_has_reference_label": true,
+  "svg_has_text_tag": true,
+  "source_nfrequency": 133,
+  "figure_axes": 16,
+  "visual_review": "z0 full main magnitude and phase: all labels and legends readable; broad uncertainty preserved; no clipping or frequency selection"
+}

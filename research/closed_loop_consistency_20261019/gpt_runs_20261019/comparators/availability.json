@@ -1,0 +1,50 @@
+[
+  {
+    "method": "M5",
+    "P": 1,
+    "n": 40,
+    "status": "unavailable",
+    "reason": "No sample covariance at P=1; residual covariance rank <= P-1 < 4 at P=2,4",
+    "rank_upper_bound": 0
+  },
+  {
+    "method": "M5",
+    "P": 2,
+    "n": 40,
+    "status": "unavailable",
+    "reason": "No sample covariance at P=1; residual covariance rank <= P-1 < 4 at P=2,4",
+    "rank_upper_bound": 1
+  },
+  {
+    "method": "M5",
+    "P": 4,
+    "n": 40,
+    "status": "unavailable",
+    "reason": "No sample covariance at P=1; residual covariance rank <= P-1 < 4 at P=2,4",
+    "rank_upper_bound": 3
+  },
+  {
+    "method": "M6",
+    "P": 4,
+    "n": 40,
+    "status": "unavailable",
+    "reason": "Full 16x16 FRF sample covariance rank <= P-4 < 16",
+    "rank_upper_bound": 0
+  },
+  {
+    "method": "M6",
+    "P": 8,
+    "n": 40,
+    "status": "unavailable",
+    "reason": "Full 16x16 FRF sample covariance rank <= P-4 < 16",
+    "rank_upper_bound": 4
+  },
+  {
+    "method": "M6",
+    "P": 16,
+    "n": 20,
+    "status": "unavailable",
+    "reason": "Full 16x16 FRF sample covariance rank <= P-4 < 16",
+    "rank_upper_bound": 12
+  }
+]

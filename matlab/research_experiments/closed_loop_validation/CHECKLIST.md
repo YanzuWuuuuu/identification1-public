@@ -1,0 +1,14 @@
+- [x] Source fidelity: stage-0 five modes and D=0
+- [x] Exact sampled model matches independent c2d
+- [x] Analytic Jacobian checked in tested directions including fractional delays / repeated filters
+- [x] Controller stable and sample d/u/y identity verified
+- [x] Pilot/training/test separation and truth-free fit
+- [x] Noiseless fit: finite optimization error retained, not exact parameter recovery
+- [x] Main noisy fit, all starts and failures saved
+- [x] Additional repeat/filter control: five noisy cases, 56 starts
+- [x] Independent calibration and sample-domain noise metrics
+- [x] Saved Chinese report, summary, reviewed PNG/SVG and manuscript update
+- [x] Built-in LaTeX compilation attempted: infrastructure failed before compilation
+- [ ] Successful LaTeX compilation (Windows sandbox helper unavailable)
+- [ ] Statistical score tolerance / covariance coverage (not claimed by this run)
+- [ ] Hardware validation (outside this simulation request)

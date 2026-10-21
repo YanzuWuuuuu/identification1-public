@@ -1,0 +1,188 @@
+[
+  {
+    "controller_design_hz": 15,
+    "closed_radius": 0.99623820900002735,
+    "stable": true,
+    "first_downcross_hz": [
+      26.785613769121653,
+      26.785613769121653,
+      26.268113459246415
+    ],
+    "rigid_excitation_20_100_relative": 1.386645159941164,
+    "null_excitation_20_100_relative": 1.0000000000000002,
+    "rigid_excitation_20hz_relative": 0.72457835097682921,
+    "rigid_excitation_40hz_relative": 1.4396613130583547,
+    "total_applied_input_energy_relative": 1.0802534762938454,
+    "full_covariance_cancellation_relative_error": 3.590718694466476E-16,
+    "complex": {
+      "profile_delay_min_eigenvalue": 2.4949124541559836E-5,
+      "profile_delay_trace": 0.0018819195211033026,
+      "delay_residual_energy_fraction": 8.4250572425244842E-7,
+      "delay_target_rms_bound_us": 184.15362436683859,
+      "relative_response_rms_bound_percent": 1.0840551421470568,
+      "unit_column_condition": 12155.265470008773,
+      "nuisance_rank": 118,
+      "nuisance_dimension": 118,
+      "minimum_relative_unit_column_singular_value": 8.2268873721215257E-5
+    },
+    "proportional": {
+      "profile_delay_min_eigenvalue": 0.00011583309439039922,
+      "profile_delay_trace": 0.0081235611955616759,
+      "delay_residual_energy_fraction": 3.636790379092989E-6,
+      "delay_target_rms_bound_us": 94.278552412379824,
+      "relative_response_rms_bound_percent": 0.92141476036298642,
+      "unit_column_condition": 4853.4787556125339,
+      "nuisance_rank": 83,
+      "nuisance_dimension": 83,
+      "minimum_relative_unit_column_singular_value": 0.00020603778245523502
+    },
+    "shaped_d_energy_factor": 0.95070491146484426,
+    "shaped_d_peak_gain": 1.3004581091568868,
+    "shaped_mean_information_relative_error": 1.8385974291365636E-16
+  },
+  {
+    "controller_design_hz": 30,
+    "closed_radius": 0.99646342526824228,
+    "stable": true,
+    "first_downcross_hz": [
+      53.540586142275977,
+      53.540586142275977,
+      52.506177516871631
+    ],
+    "rigid_excitation_20_100_relative": 1.613062180848583,
+    "null_excitation_20_100_relative": 1.0000000000000004,
+    "rigid_excitation_20hz_relative": 0.12196747177600857,
+    "rigid_excitation_40hz_relative": 0.93015977547717987,
+    "total_applied_input_energy_relative": 1.1937417894973437,
+    "full_covariance_cancellation_relative_error": 3.5425375617159477E-16,
+    "complex": {
+      "profile_delay_min_eigenvalue": 2.7552762624640521E-5,
+      "profile_delay_trace": 0.00203596286266043,
+      "delay_residual_energy_fraction": 9.1084890672726872E-7,
+      "delay_target_rms_bound_us": 179.33922482103648,
+      "relative_response_rms_bound_percent": 1.0621249986258514,
+      "unit_column_condition": 12027.987489500312,
+      "nuisance_rank": 118,
+      "nuisance_dimension": 118,
+      "minimum_relative_unit_column_singular_value": 8.3139428010956787E-5
+    },
+    "proportional": {
+      "profile_delay_min_eigenvalue": 0.00011023352025353943,
+      "profile_delay_trace": 0.0077804919244183557,
+      "delay_residual_energy_fraction": 3.480835870403E-6,
+      "delay_target_rms_bound_us": 94.927289252045625,
+      "relative_response_rms_bound_percent": 0.89955712692021939,
+      "unit_column_condition": 5170.7345797131047,
+      "nuisance_rank": 83,
+      "nuisance_dimension": 83,
+      "minimum_relative_unit_column_singular_value": 0.00019339611898150927
+    },
+    "shaped_d_energy_factor": 0.98395892918368011,
+    "shaped_d_peak_gain": 2.6358226304268442,
+    "shaped_mean_information_relative_error": 2.228835127704294E-16
+  },
+  {
+    "controller_design_hz": 60,
+    "closed_radius": 0.99859661452895809,
+    "stable": true,
+    "first_downcross_hz": [
+      101.92549829580588,
+      100.93609153472524,
+      98.985997760617778
+    ],
+    "rigid_excitation_20_100_relative": 1.2179047646657966,
+    "null_excitation_20_100_relative": 1.0000000000000004,
+    "rigid_excitation_20hz_relative": 0.0099519562068953269,
+    "rigid_excitation_40hz_relative": 0.11751669256235472,
+    "total_applied_input_energy_relative": 1.8704380409751749,
+    "full_covariance_cancellation_relative_error": 3.2326846934109082E-16,
+    "complex": {
+      "profile_delay_min_eigenvalue": 3.6089109612607544E-5,
+      "profile_delay_trace": 0.0025826710641945459,
+      "delay_residual_energy_fraction": 7.3973164712490423E-7,
+      "delay_target_rms_bound_us": 167.54729165877296,
+      "relative_response_rms_bound_percent": 1.0289375790037536,
+      "unit_column_condition": 15403.97273841945,
+      "nuisance_rank": 118,
+      "nuisance_dimension": 118,
+      "minimum_relative_unit_column_singular_value": 6.4918317954813958E-5
+    },
+    "proportional": {
+      "profile_delay_min_eigenvalue": 0.00011364866666252029,
+      "profile_delay_trace": 0.0085788062870474913,
+      "delay_residual_energy_fraction": 2.4571516648258295E-6,
+      "delay_target_rms_bound_us": 90.471469609279964,
+      "relative_response_rms_bound_percent": 0.82930829160990283,
+      "unit_column_condition": 7216.5054674897146,
+      "nuisance_rank": 83,
+      "nuisance_dimension": 83,
+      "minimum_relative_unit_column_singular_value": 0.00013857122460517629
+    },
+    "shaped_d_energy_factor": 1.8824150011662246,
+    "shaped_d_peak_gain": 9.3035651685134688,
+    "shaped_mean_information_relative_error": 2.7585653190426313E-16
+  },
+  {
+    "controller_design_hz": 100,
+    "closed_radius": 1.005930927023424,
+    "stable": false,
+    "first_downcross_hz": [
+      161.20991025979995,
+      158.09532124072811,
+      150.5695735091461
+    ],
+    "rigid_excitation_20_100_relative": null,
+    "null_excitation_20_100_relative": null,
+    "rigid_excitation_20hz_relative": null,
+    "rigid_excitation_40hz_relative": null,
+    "total_applied_input_energy_relative": null,
+    "full_covariance_cancellation_relative_error": null,
+    "complex": {},
+    "proportional": {},
+    "shaped_d_energy_factor": null,
+    "shaped_d_peak_gain": null,
+    "shaped_mean_information_relative_error": null
+  },
+  {
+    "controller_design_hz": 150,
+    "closed_radius": 1.0426998005849946,
+    "stable": false,
+    "first_downcross_hz": [
+      null,
+      null,
+      205.73146648174438
+    ],
+    "rigid_excitation_20_100_relative": null,
+    "null_excitation_20_100_relative": null,
+    "rigid_excitation_20hz_relative": null,
+    "rigid_excitation_40hz_relative": null,
+    "total_applied_input_energy_relative": null,
+    "full_covariance_cancellation_relative_error": null,
+    "complex": {},
+    "proportional": {},
+    "shaped_d_energy_factor": null,
+    "shaped_d_peak_gain": null,
+    "shaped_mean_information_relative_error": null
+  },
+  {
+    "controller_design_hz": 200,
+    "closed_radius": 1.085217151663658,
+    "stable": false,
+    "first_downcross_hz": [
+      null,
+      null,
+      254.97677814190416
+    ],
+    "rigid_excitation_20_100_relative": null,
+    "null_excitation_20_100_relative": null,
+    "rigid_excitation_20hz_relative": null,
+    "rigid_excitation_40hz_relative": null,
+    "total_applied_input_energy_relative": null,
+    "full_covariance_cancellation_relative_error": null,
+    "complex": {},
+    "proportional": {},
+    "shaped_d_energy_factor": null,
+    "shaped_d_peak_gain": null,
+    "shaped_mean_information_relative_error": null
+  }
+]

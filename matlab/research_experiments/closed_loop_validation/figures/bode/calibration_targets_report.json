@@ -1,0 +1,11 @@
+{
+  "source_case": "distinct_N32",
+  "source": "Existing selected estimate and same simulated truth; no optimization rerun",
+  "nominal_output_null_angle_deg": 0.74827423294364892,
+  "estimated_output_null_angle_deg": 0.001489444429803279,
+  "nominal_input_null_angle_deg": 0.19140168211296585,
+  "estimated_input_null_angle_deg": 0.0010828823448855152,
+  "max_relative_output_error_percent": 1.0803882389478965,
+  "max_relative_input_error_percent": 0.41218503331938733,
+  "display_convention": "Unit null vectors sign-aligned only for display; all three non-reference channel ratios shown; true solid and estimated dashed"
+}

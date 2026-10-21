@@ -1,0 +1,40 @@
+{
+  "status": "completed",
+  "route": "write",
+  "parent": "closed_loop_validation/outputs_structured",
+  "S1": {
+    "claim_links": [
+      "C1",
+      "C2"
+    ],
+    "section_id": "4.6",
+    "paper_role": "supporting",
+    "takeaway": "eta plus column scaling reduces coordinate conditioning; target information unchanged.",
+    "comparability": "identical fit, data, weights and model; no refit"
+  },
+  "S2": {
+    "claim_links": [
+      "C1",
+      "C2"
+    ],
+    "section_id": "4.6 and supplementary implementation",
+    "paper_role": "auxiliary",
+    "takeaway": "low-frequency controlled directions are suppressed; full-band information not monotone; high-gain variants unstable",
+    "comparability": "fixed injected d, different actual force energy; full spectral covariance approximation differs from fit weights"
+  },
+  "S3": {
+    "claim_links": [
+      "C3"
+    ],
+    "section_id": "6.6",
+    "paper_role": "supporting",
+    "takeaway": "first resonance retained; SNR gain is noise-limited at about 0.40 dB",
+    "comparability": "same saved heldout records, no fit or selection changes"
+  },
+  "deferred": [
+    "reparameterized optimizer benchmark",
+    "new high-bandwidth controller",
+    "hardware validation",
+    "covariance coverage"
+  ]
+}

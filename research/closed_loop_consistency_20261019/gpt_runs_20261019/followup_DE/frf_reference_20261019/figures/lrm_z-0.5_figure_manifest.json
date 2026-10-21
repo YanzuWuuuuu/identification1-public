@@ -1,0 +1,883 @@
+{
+  "z_mm": "-0.5",
+  "backend": "matplotlib",
+  "reference": "LRM q=1, window=31, diagnostic, data-only front-half CV selection",
+  "reference_is_truth": false,
+  "filtered_frequencies": false,
+  "sources": [
+    {
+      "name": "z-0.5_full_lrm.npz",
+      "sha256": "0417543f6d9b7e7c41cfc903a6f1165be40464f7f7e4a5ce66d00480da2b44cd"
+    },
+    {
+      "name": "z-0.5_full_M1_model.npz",
+      "sha256": "1bbffc0837915017ab65db7e2bd2ca296a509c2861d83ed003c0287775fbe43b"
+    },
+    {
+      "name": "z-0.5_full_M2_model.npz",
+      "sha256": "f62ff06ca13864056372e41a30c841fe69ac6072b9ac58b29d3bb8a424ad1e53"
+    },
+    {
+      "name": "z-0.5_full_M3_model.npz",
+      "sha256": "709f8a5e0c6ce99856a8f7a4cc786fc0a5e1d5b6a36668c007ff04eb7294e4e3"
+    },
+    {
+      "name": "z-0.5_full_M3w_model.npz",
+      "sha256": "94943bc6ba61ba43c463f0f047d1656fc125b9d7f9c6a42f4ee63ec7d8f0eaf0"
+    },
+    {
+      "name": "z-0.5_full_M5_model.npz",
+      "sha256": "8a1fa1752eb9d4c27515905eed1286193441956de8277c4e0c82f527b991c073"
+    },
+    {
+      "name": "z-0.5_full_M5n_model.npz",
+      "sha256": "7473ff6c50f3702be4c7d4c9094c6c388a74ce4d012797d650204880b5ffce0a"
+    },
+    {
+      "name": "z-0.5_back_lrm.npz",
+      "sha256": "cd7bf617fb57214de2a2048a98beef2c011fc0c7f3928a65594d4d1c0d4639e9"
+    },
+    {
+      "name": "z-0.5_front_M1_model.npz",
+      "sha256": "c9ae61513d0e475fd23b830327e4c0903cb4b6f9f1a845da996fd8e5d789bcdc"
+    },
+    {
+      "name": "z-0.5_front_M2_model.npz",
+      "sha256": "441afc5b520078476b65394a970f050d11a1c9248ab71da9058d5d042cc91413"
+    },
+    {
+      "name": "z-0.5_front_M3_model.npz",
+      "sha256": "bf1404fdb392632e6024ccce2b192dd7cc8a11803cc085816396ad15680464c8"
+    },
+    {
+      "name": "z-0.5_front_M3w_model.npz",
+      "sha256": "a090f98f776958f40629bf6d190e423f7403cb250c11d905b34dc1631e309851"
+    },
+    {
+      "name": "z-0.5_front_M5_model.npz",
+      "sha256": "4b46d051d9a639cec1e1c8f91ea3ab2ee8d74daf2dd9b461194a81039fd817b1"
+    },
+    {
+      "name": "z-0.5_front_M5n_model.npz",
+      "sha256": "0554569a6bae59c11dd93bc702d72ff410bf40744beb6c96fac83a6b0e52e129"
+    }
+  ],
+  "figures": [
+    {
+      "stem": "lrm_z-0.5_full_vs_full_main_magnitude",
+      "quantity": "magnitude",
+      "n_axes": 16,
+      "n_frequency": 133,
+      "methods": [
+        "M1",
+        "M3",
+        "M5n"
+      ],
+      "missing": [],
+      "failed": [
+        "M1"
+      ],
+      "files": [
+        {
+          "name": "lrm_z-0.5_full_vs_full_main_magnitude.png",
+          "bytes": 639942
+        },
+        {
+          "name": "lrm_z-0.5_full_vs_full_main_magnitude.pdf",
+          "bytes": 129334
+        },
+        {
+          "name": "lrm_z-0.5_full_vs_full_main_magnitude.svg",
+          "bytes": 374417
+        }
+      ],
+      "reference_phase_shift_deg": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "model_phase_shift_deg": {
+        "M1": [
+          [
+            0.0,
+            0.0,
+            360.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ],
+        "M3": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -360.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ],
+        "M5n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -360.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ]
+      }
+    },
+    {
+      "stem": "lrm_z-0.5_full_vs_full_main_phase",
+      "quantity": "phase",
+      "n_axes": 16,
+      "n_frequency": 133,
+      "methods": [
+        "M1",
+        "M3",
+        "M5n"
+      ],
+      "missing": [],
+      "failed": [
+        "M1"
+      ],
+      "files": [
+        {
+          "name": "lrm_z-0.5_full_vs_full_main_phase.png",
+          "bytes": 533419
+        },
+        {
+          "name": "lrm_z-0.5_full_vs_full_main_phase.pdf",
+          "bytes": 126802
+        },
+        {
+          "name": "lrm_z-0.5_full_vs_full_main_phase.svg",
+          "bytes": 369483
+        }
+      ],
+      "reference_phase_shift_deg": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "model_phase_shift_deg": {
+        "M1": [
+          [
+            0.0,
+            0.0,
+            360.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ],
+        "M3": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -360.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ],
+        "M5n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -360.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ]
+      }
+    },
+    {
+      "stem": "lrm_z-0.5_full_vs_full_main_complex_difference",
+      "quantity": "complex_difference",
+      "n_axes": 16,
+      "n_frequency": 133,
+      "methods": [
+        "M1",
+        "M3",
+        "M5n"
+      ],
+      "missing": [],
+      "failed": [
+        "M1"
+      ],
+      "files": [
+        {
+          "name": "lrm_z-0.5_full_vs_full_main_complex_difference.png",
+          "bytes": 1051699
+        },
+        {
+          "name": "lrm_z-0.5_full_vs_full_main_complex_difference.pdf",
+          "bytes": 134158
+        },
+        {
+          "name": "lrm_z-0.5_full_vs_full_main_complex_difference.svg",
+          "bytes": 571131
+        }
+      ],
+      "reference_phase_shift_deg": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "model_phase_shift_deg": {
+        "M1": [
+          [
+            0.0,
+            0.0,
+            360.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ],
+        "M3": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -360.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ],
+        "M5n": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -360.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ]
+      }
+    },
+    {
+      "stem": "lrm_z-0.5_front_vs_back_main_magnitude",
+      "quantity": "magnitude",
+      "n_axes": 16,
+      "n_frequency": 133,
+      "methods": [
+        "M1",
+        "M3",
+        "M5n"
+      ],
+      "missing": [],
+      "failed": [],
+      "files": [
+        {
+          "name": "lrm_z-0.5_front_vs_back_main_magnitude.png",
+          "bytes": 614351
+        },
+        {
+          "name": "lrm_z-0.5_front_vs_back_main_magnitude.pdf",
+          "bytes": 128996
+        },
+        {
+          "name": "lrm_z-0.5_front_vs_back_main_magnitude.svg",
+          "bytes": 371176
+        }
+      ],
+      "reference_phase_shift_deg": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "model_phase_shift_deg": {
+        "M1": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          [
+            360.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "M3": [
+          [
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "M5n": [
+          [
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ]
+      }
+    },
+    {
+      "stem": "lrm_z-0.5_front_vs_back_main_phase",
+      "quantity": "phase",
+      "n_axes": 16,
+      "n_frequency": 133,
+      "methods": [
+        "M1",
+        "M3",
+        "M5n"
+      ],
+      "missing": [],
+      "failed": [],
+      "files": [
+        {
+          "name": "lrm_z-0.5_front_vs_back_main_phase.png",
+          "bytes": 531812
+        },
+        {
+          "name": "lrm_z-0.5_front_vs_back_main_phase.pdf",
+          "bytes": 126042
+        },
+        {
+          "name": "lrm_z-0.5_front_vs_back_main_phase.svg",
+          "bytes": 368331
+        }
+      ],
+      "reference_phase_shift_deg": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "model_phase_shift_deg": {
+        "M1": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          [
+            360.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "M3": [
+          [
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "M5n": [
+          [
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ]
+      }
+    },
+    {
+      "stem": "lrm_z-0.5_front_vs_back_main_complex_difference",
+      "quantity": "complex_difference",
+      "n_axes": 16,
+      "n_frequency": 133,
+      "methods": [
+        "M1",
+        "M3",
+        "M5n"
+      ],
+      "missing": [],
+      "failed": [],
+      "files": [
+        {
+          "name": "lrm_z-0.5_front_vs_back_main_complex_difference.png",
+          "bytes": 1049761
+        },
+        {
+          "name": "lrm_z-0.5_front_vs_back_main_complex_difference.pdf",
+          "bytes": 133512
+        },
+        {
+          "name": "lrm_z-0.5_front_vs_back_main_complex_difference.svg",
+          "bytes": 560379
+        }
+      ],
+      "reference_phase_shift_deg": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "model_phase_shift_deg": {
+        "M1": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          [
+            360.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "M3": [
+          [
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            0.0
+          ]
+        ],
+        "M5n": [
+          [
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            360.0,
+            -0.0,
+            -0.0
+          ]
+        ]
+      }
+    }
+  ],
+  "source_tables": [
+    "lrm_z-0.5_full_vs_full_source.csv",
+    "lrm_z-0.5_front_vs_back_source.csv"
+  ],
+  "qa": {
+    "same_frequency_grid": true,
+    "all_frequencies_retained": true,
+    "outputs_nonempty": true,
+    "no_interpolation": true,
+    "no_refit": true,
+    "uncertainty_includes_smoothing_bias": false
+  }
+}

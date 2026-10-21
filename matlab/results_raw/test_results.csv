@@ -1,0 +1,16 @@
+Test,Passed,Failed,DurationSeconds
+test_identification/testAllRigidDirectionsAreReconstructed,1,0,0.1513161
+test_identification/testNormalizedJacobianMatchesFiniteDifferences,1,0,0.0065547
+test_identification/testProjectionStopsAtAnExactSolution,1,0,0.0047552
+test_identification/testProjectionReducesResidualAndReportsConvergence,1,0,0.0078648
+test_identification/testFourModeRivRecovery,1,0,0.1908651
+test_identification/testProjectionUsesTheSuppliedMetric,1,0,0.0093121
+test_identification/testRigidRivPreservesComplexPhase,1,0,0.0407645
+test_identification/testNumericalEntriesRejectInvalidFrequencyData,1,0,0.0315702
+test_identification/testProjectionIsInvariantToOverallMetricScale,1,0,0.0018944
+test_identification/testLrmSeparatesTheCommonTransient,1,0,0.1486669
+test_identification/testRefinementHonorsFrequencyBound,1,0,0.0885239
+test_identification/testFrequencySelectionUsesActualPositiveBins,1,0,0.0096632
+test_identification/testPipelineHasConsistentDataAndFourModes,1,0,1.8957205
+test_raw_identification/testRawInputResponseMatchesIndependentSimulation,1,0,0.1854976
+test_raw_identification/testRawFitRecoversPolesWithoutAnyFrf,1,0,1.1428691

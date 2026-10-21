@@ -1,0 +1,36 @@
+"""Write independent review artifacts, without editing experiment code."""
+import json, hashlib
+from pathlib import Path
+HERE=Path(__file__).resolve().parent
+ROOT=HERE.parent
+d=json.loads((HERE/'numeric_audit.json').read_text(encoding='utf-8'))
+files=['weighted_core.py','sml_core_copy.py','sim_d_run.py','iv_lm.py','sim_d_validate.py','PROTOCOL.md']
+hashes={x:hashlib.sha256((ROOT/x).read_bytes()).hexdigest() for x in files}
+warnings=[
+ {'id':'W1','severity':'important interpretation','title':'Same neighboring bins do not imply the same local covariance estimator','detail':'M3w forms residuals with G_j before local averaging; M5n forms local joint covariance and projects with central G_k. Their unshrunk covariances differ if G varies across the neighborhood. Frozen-center algebra check passes; the initially invalid identity was corrected in sim_d_validate.py before this final audit.'},
+ {'id':'W2','severity':'important interpretation','title':'Different shrinkage maps substantially change directional precision','detail':'M3w shrinks residual 4x4 covariance; M5n shrinks joint 8x8 covariance before projection. These operations do not commute. A small Frobenius gap does not imply close inverse weights; generalized eigenratios are reported. Keep frozen comparison but do not interpret it as a universal intrinsic efficiency ordering.'},
+ {'id':'W3','severity':'theory scope','title':'Nonexcited-bin weights are not proven finite-sample independent','detail':'Beta0 uses excited data; finite-window colored DFT ordinates can be correlated; windows overlap; fixed nl gives noisy local covariance. Separate-bin construction alone is not a proof of exact finite-sample exogeneity or exact unbiasedness. Two-stage feasible IV requires its usual asymptotic regularity conditions.'},
+ {'id':'W4','severity':'theory scope','title':'Oracle sandwich is a first-order conditional/asymptotic benchmark','detail':'Covariance includes all residue and transient nuisance columns and correct proper-complex factor 1/2. It approximates independent DFT bins and stationary output-equivalent noise; finite-window boundary effects and nonlinear solution selection remain. Comparison should report both all-finite and converged-only MC SD, especially at small P.'},
+ {'id':'W5','severity':'stopping interpretation','title':'Small damped step is not sufficient evidence of an IV root','detail':'E3 retains original pole-step stopping rule for comparability; strong LM damping can produce tiny accepted steps with material moment score. Report score distributions separately and call this the prescribed numerical stopping rule, not certified score convergence.'},
+ {'id':'W6','severity':'algorithm description','title':'SML includes covariance derivatives','detail':'sml_core_copy differentiates the Cholesky-whitened residual including dCe/dbeta. This is the inherited profile-SML objective, not an iteration which freezes Ce inside every GN derivative. State this correctly in the report; no estimator was altered by this audit.'}
+]
+summary={'audit_type':'independent read-only algebra and implementation review','source_hashes':hashes,'new_files_only':str(HERE),'unresolved_blocking_implementation_bugs':[], 'numeric_checks':d,'warnings':warnings,'protocol_changed':False}
+(ROOT/'audit_math.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='utf-8')
+rows=d['rows'];oc=d['oracle_sandwich'];sj=d['sml_derivative']
+text=['# 加权参考 IV / SML / LM 独立数学与实现审计','','本次审计只读实验实现，未改动实验代码、种子、权重配置、失败规则或预设 A/B 判定。小型数值核查位于 `audit/numeric_audit.py`，未另跑蒙特卡洛。结论是：**复数满矩阵白化、SML 协方差导数、oracle sandwich 和 LM 的 IV 矩阵代数未发现阻断性错误；低周期协方差平滑及两种收缩方式的差异必须显式进入结果解释。**','','## 1. 已核对的代数','','- `precision` 用 C=RRᴴ 得到 W=R⁻ᴴR⁻¹；`whitener` 对 W 作 Cholesky 后返回 L，使 W=LᴴL，J、Z、E 同时左乘 L。没有把 L 和 Lᴴ 搞反。独立逐指标求和与白化求和的相对差均 <8×10⁻¹⁶。',
+'- `iv_lm.moments` 的复数权重收缩与 `weighted_core.iv_matrices` 一致，相对差 <4×10⁻¹⁶。LM 方程仍是参考 IV 矩方程，不是替换成输出误差最小二乘。其矩雅可比包含随参数变化的工具输入导数，以及固定工具输入下模型 Hessian 与残差的收缩。',
+f'- SML 使用 Cₑ=Cᵧ−CᵧᵤGᴴ−GCᵧᵤᴴ+GCᵤGᴴ，且包含 dCₑ/dβ 与 Cholesky 导数。独立随机复数满协方差例子的残差雅可比相对中央差分误差为 {sj["residual_jacobian_central_diff_relative"]:.3g}，没有漏掉模型相关权的导数。',
+'- 全长 DFT 的激励线为 P 倍周期 DFT 均值，因此二者的协方差换算是 P²，瞬态系数换算是 P。`sim_d_run.gate` 检查了残差、雅可比、参数估计的这种等价换算。不能把这里的 P² 与“单周期方差到周期均值方差除以 P”的另一种换算混为一谈。',
+'- Oracle 输出等效噪声谱采用 N[sv²I+SW²G₀G₀ᴴ]，含输入扰动经真实对象传递的贡献。只使用正频、非 DC/Nyquist 点，实参数矩方程噪声协方差的 1/2 系数正确。',
+f'- Oracle Q=0.5A 的数值相对差 {oc["Q_equals_half_A_relative"]:.3g}；完整逆矩阵的六维模态协方差块与剖除 nuisance 参数后的 Schur 结果相差 {oc["full_inverse_vs_nuisance_Schur_modal_covariance_relative"]:.3g}。保留了全部 {oc["n_nuisance_parameters"]} 个 nuisance 参数（96 个留数和 24 个瞬态），没有只对六个极点参数计算一个过度乐观的协方差。',
+f'- P=16、r=0 的缩放信息矩阵条件数约 {oc["condition_scaled"]:.3g}，最小特征值 {oc["minimum_scaled_information_eigenvalue"]:.3g}。数值代数检查通过，但该协方差仍应称为一阶渐近预测，不能直接当成小样本区间覆盖率证明。','','## 2. 需要重点披露的局部平滑差异','','设邻域数据为 j，目标激励线为 k。M3w 实际计算的未收缩协方差是：','','    mean_j (Y_j − T_j − G_j U_j)(Y_j − T_j − G_j U_j)ᴴ。','','M5n 的联合协方差在候选参数处投影，得到：','','    mean_j (Y_j − T_j − G_k U_j)(Y_j − T_j − G_k U_j)ᴴ。','','两式在 G_j≈G_k 时才接近。不能声称它们是代数恒等式。原 `sim_d_validate.py` 的这一诊断已改成正确的“冻结中心 G_k”恒等式，误差 <1.8×10⁻¹⁶。下面保留二者真实的平滑差异，避免将它误诊为 DFT 归一化错误。这里只看各 P 的 r=0，是实现诊断而非 MC 总体结论。','','| P | n_l | 邻域半宽中位数 Hz | G_j/G_k 原始协方差差异 | 收缩后 M5n/M3w 总差异 | 广义特征值范围 |','|---:|---:|---:|---:|---:|---:|']
+for r in rows:
+    text.append(f"| {r['P']} | {r['nl']} | {r['median_halfspan_Hz']:.5f} | {100*r['raw_local_Gj_vs_center_Gk_global_relative']:.2f}% | {100*r['total_M5n_Ce_vs_M3w_Cv_relative']:.2f}% | {r['M5n_Ce_vs_M3w_Cv_generalized_eigenratio_global_min']:.4g}–{r['M5n_Ce_vs_M3w_Cv_generalized_eigenratio_global_max']:.4g} |")
+text+=['','协方差差异使用整体 Frobenius 范数、以 M3w 协方差范数归一化；广义特征值是 Cᵥ⁻¹ᐟ²CₑCᵥ⁻ᴴᐟ² 的特征值，跨全部频点取极值。后者说明：整体范数相差几个百分点，某些弱噪声方向的逆权仍可能相差很大。','','主设定 n_l=16 时，P=2 的典型半宽达到 1.25 Hz，已超过前两支承模态的阻尼半宽约 0.318 和 0.468 Hz；局部“谱近似平坦”的条件较弱。这是用户给定少周期非参数估计方案本身的限制，不应在看到结果后换窗口或改主判定。n_l=8 的结果可以作为已经预设的敏感性检查。所有邻域都未包含激励谱线。','','## 3. 收缩顺序与公平比较的范围','','M3w 对 4×4 残差协方差向其对角矩阵收缩；M5n 对 8×8 输入输出联合协方差向对角收缩，然后再由 G 投影。收缩与投影不交换。即使冻结 G_j=G_k，两种收缩结果仍不相同。本审计在各 P 的 r=0 上分离出的这种收缩映射差异约为 5.3%–6.3%（整体 Frobenius 比）。','','因此，“同等信息”只能解释为来自相同未激励频点、相同记录预算，而不是完全相同的估计协方差或等价的有限样本权。预设 A/B 规则可以按原样执行，但得到的是**这些已冻结实现的比较**；不能据此宣称参考 IV 或 SML 在所有同等最优权条件下具有内在效率优势。没有根据这些诊断改变主设定或新增挑选获胜方法的规则。','','## 4. 有限样本和停止判据的边界','','1. 未激励频点权重仍使用由激励数据估计的初始模型。有限窗口有色噪声 DFT 频点之间可能相关，邻域之间也重叠。仅“避开激励线”不足以证明严格有限样本独立；应使用两阶段可行 IV 的渐近条件来表述一致性，避免把“参考 IV 一致”写成“任意 P 下精确无偏”。',
+'2. n_l 固定为 8/16 时，单条线的协方差估计本身仍有明显随机误差；固定 α=.1 也不会自动随样本增加消失。oracle 矩阵权是性能参照，M3w 不等于已经实现最优权。',
+'3. M5n 的联合协方差在初始 M3 估计处去掉瞬态后构造并冻结，SML 迭代包含的是 G 引起的 Cₑ 导数，不包含重估联合协方差的导数。这是预先定义的两阶段实现。',
+'4. E3 的 LM 采用真实 IV 矩范数下降，但很大的阻尼也能导致很小的极点步。按原 A 的极点步阈值计“收敛”是为了可比性，不代表完整矩方程已经满足严格 score 条件。报告应继续并列给出完整 score，并保留小步但 score 大的终点。',
+'5. Oracle sandwich 假设正确模型、真值附近线性化和近似独立的 proper-complex 频域噪声，未精确建模每条短记录的边界相关性、非线性伪根和失败选择。理论 SD 应与全部有限终点以及收敛子集分别对照，不应用删除失败后的 SD 单独宣称定理得到验证。',
+'6. 原始 SML 的联合样本协方差会在少周期时奇异；P<5 的收缩版本和 M5n 是明示的正则化变体。它们的表现不能替代对未经正则化经典 SML 的所有统计性质的证明。','','## 5. 审计结论与可采取动作','','无需因白化、复共轭、DFT 尺度或 SML 协方差导数错误重跑本轮实验；本审计未发现这类错误。应在总报告中补充局部频率变化、收缩顺序、有限样本独立性和停止判据的说明，并按原先冻结的规则呈现全部结果。无需修改原始理论文档。','','复现：运行 `audit/numeric_audit.py` 后运行 `audit/build_audit.py`。具体数值见 `audit/numeric_audit.json`；本审计对应源文件 SHA-256 和结构化警告见 `audit_math.json`。']
+(ROOT/'audit_math.md').write_text('\n'.join(text)+'\n',encoding='utf-8')
+print('audit_math.md/json written')

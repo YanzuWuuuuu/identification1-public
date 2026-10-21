@@ -1,0 +1,1176 @@
+
+PAGE 1
+Automatica 43 (2007) 621–630
+www.elsevier.com/locate/automatica
+Brief paper
+Frequency domain maximum likelihood estimation of linear dynamic
+errors-in-variables models
+R. Pintelon∗, J. Schoukens
+Department ELEC, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussels, Belgium
+Received 26 January 2006; received in revised form 10 May 2006; accepted 2 October 2006
+Available online 18 January 2007
+Abstract
+This paper studies the linear dynamic errors-in-variables problem for ﬁltered white noise excitations. First, a frequency domain Gaussian
+maximum likelihood (ML) estimator is constructed that can handle discrete-time as well as continuous-time models on (a) part(s) of the unit
+circle or imaginary axis. Next, the ML estimates are calculated via a computationally simple and numerically stable Gauss–Newton minimization
+scheme. Finally, the Cramér–Rao lower bound is derived.
+ 2007 Elsevier Ltd. All rights reserved.
+Keywords: Errors-in-variables; Maximum likelihood; Continuous-time; Discrete-time; Frequency domain
+1. Introduction
+Linear dynamic errors-in-variables (EIV) modelling is im-
+portant in those applications where one is looking for a bet-
+ter understanding of the underlying input–output relation of a
+process rather than making output predictions from noisy obser-
+vations. One can distinguish between two cases: either the exci-
+tation of the process can be freely chosen, or one has to live with
+the operational (natural) perturbations. If the excitation can be
+freely chosen, then it is strongly recommended to use periodic
+excitation signals because it signiﬁcantly simpliﬁes the identi-
+ﬁcation problem: (i) non-parametric estimates of the disturbing
+noise (co-)variances are obtained in a preprocessing step, and
+(ii) since mutually correlated, coloured input/output errors are
+allowed, identiﬁcation in feedback is just a special case of the
+general framework (see Pintelon & Schoukens, 2001). In the
+second case the excitation is often random and parts of it may
+even be unmeasurable. This paper handles the second case, as-
+suming that the excitation is a stochastic process with rational
+power spectrum. As will be shown in the sequel of the pa-
+per, the second case is much more complicated than the ﬁrst:
+ This paper was not presented at any IFAC meeting. This paper was
+recommended for publication in revised form by Associate Editor Michel
+Verhaegen under the direction of Editor T. Söderström.
+∗Corresponding author. Tel.: +32 2 629 29 44; fax: +32 2 629 28 50.
+E-mail address: Rik.Pintelon@vub.ac.be (R. Pintelon).
+0005-1098/$ - see front matter  2007 Elsevier Ltd. All rights reserved.
+doi:10.1016/j.automatica.2006.10.004
+besides the plant model one should also identify simultaneously
+the signal model, and the input/output noise models.
+Identiﬁability is a ﬁrst key issue in EIV modelling: under
+which conditions on the excitation, the input/output errors, and
+the process is the EIV problem uniquely solvable? This ques-
+tion has been studied in detail in econometrics and an extensive
+literature is available (see Söderström, 2006a for an exhaustive
+overview). For example, Anderson and Deistler (1984) han-
+dles the identiﬁability of scalar EIV problems with coloured
+input/output errors, while Nowak (1993) covers the multivari-
+able case. The results of Anderson and Deistler (1984) have
+been generalized in Castaldi and Soverini (1996) and Agüero
+and Goodwin (2006).
+A second key issue is the numerical calculation of the EIV
+estimates. Several algorithms have been proposed, each of
+them having their speciﬁc advantages and disadvantages (see
+Söderström, 2006a for an exhaustive overview). For example,
+the statistically efﬁcient time domain maximum likelihood
+(ML) method has high computational complexity, while the
+computationally simpler instrumental variable methods have
+low statistical accuracy (Söderström, 2006a). This paper
+presents the frequency domain version of the time domain
+Gaussian ML estimator (Söderström & Stoica, 1989). Besides
+the slightly different handling of the transient effects (in the
+frequency domain the transient depends on the initial AND
+the ﬁnal conditions), the spectral factorization is also carried
+
+
+PAGE 2
+622
+R. Pintelon, J. Schoukens / Automatica 43 (2007) 621–630
+out differently in the frequency domain (no Riccati equation
+must be solved in each iteration step). The advantages of the
+frequency domain approach are that it is equally simple to iden-
+tify continuous-time (CT) models as discrete-time (DT) ones,
+that ﬁltering of the input/output signals reduces to the selec-
+tion of the appropriate frequencies in the input/output spectra,
+that time domain signals as well as frequency domain spectra
+can be handled, and that improper systems (order numerator
+> order denominator) can be identiﬁed. The latter is important
+in, for example, the modelling of electrical machines (Kamwa,
+Viarouge, Le-Huy, & Dickinson, 1992).
+A third issue is the identiﬁcation of CT models. Except for
+Mahata and Garnier (2005) and Söderström, Larsson, Mahata,
+and Mossberg (2006), all methods handle the DT case and no
+algorithms for direct CT EIV modelling are available. The time
+domain methods in Mahata and Garnier (2005) and Söderström
+et al. (2006) identify CT models in the presence of white in-
+put/output errors, and Mahata and Garnier (2005) also handle
+the nonuniformly sampled data case. The approach presented
+in this paper identiﬁes DT as well as CT models from measured
+frequency domain spectra or uniformly sampled time domain
+signals disturbed by coloured input/output errors.
+A fourth issue is ﬁltering of the measured input/output sig-
+nals: often one is only interested in the plant characteristics
+on a part of the unit circle (or imaginary axis); or one would
+like to remove the effect of trends (low-frequency range), dis-
+turbances (mains, high-frequency noise, . . .), and errors that
+cannot be written as ﬁltered white noise (e.g. sinewave with
+time-varying frequency); or for reasons of generating easily
+high-quality starting values, a high (inﬁnite)-dimensional sys-
+tem is approximated in each frequency band by a low-order
+model. The preﬁltering does not affect the input/output rela-
+tionship, and is equivalent to dividing the input/output noise
+models by the preﬁlter characteristics. To preserve the efﬁ-
+ciency and/or consistency of the identiﬁed plant model, the
+input/output noise models should be ﬂexible enough to fol-
+low the input/output error spectra accurately and, as such, they
+will try to cancel the effect of the preﬁlter. Hence, through
+the preﬁlter and input/output noise model selection a com-
+promise must be made between suppression of the undesired
+frequency bands and the loss in consistency and/or efﬁciency
+of the plant estimates (see Ljung, 1999 for the generalized
+output error case). These conﬂicting demands which are inher-
+ent to all time domain methods are avoided by the frequency
+domain approach presented in this paper: the plant, signal,
+and input/output noise models are identiﬁed in the frequency
+band(s) of interest only. Note that if the model structure (plant,
+signal, and noise models) is valid in a larger frequency band
+than the one used for identiﬁcation, then some information is
+lost through the ﬁltering, and the variability of the estimates will
+increase. This is valid for both the time and frequency domain
+approaches.
+Summarized the contributions of this paper are:
+1. a (computationally simple) frequency domain Gaussian ML
+estimator is developed for the general case of coloured and
+mutually independent input/output errors,
+G (Ω)
+U0 (k)
+U (k)
+Y0 (k)
+NU (k)
+Y (k)
+NY (k)
+Fig. 1. Open-loop errors-in-variables set up where  = z−1 for discrete-time
+systems and  = s for continuous-time systems.
+2. the ML estimator can handle DT as well as CT modelling
+on (a) part(s) of the unit circle or imaginary axis,
+3. a numerically stable Gauss–Newton minimization scheme
+of the ML cost function is derived,
+4. easy to implement and numerical stable calculation of the
+Cramér–Rao (CR) lower bound.
+2. Open-loop EIV identiﬁcation
+2.1. EIV stochastic framework
+Consider the open-loop setup of Fig. 1
+Y(k) = G(k)U0(k) + NY (k),
+U(k) = U0(k) + NU(k)
+(1)
+with U0(k) and Y0(k) = G(k)U0(k) the true unknown input
+and output spectra; G() the plant transfer function; NU(k) and
+NY (k) the input and output measurement errors; k = z−1
+k
+=
+exp(−j2fk/fs), with fs the sampling frequency, for DT sys-
+tems; k = sk = j2fk for CT systems; and k the frequency
+index. The input measurement noise NU(k), the output mea-
+surement noise NY (k), and the excitation U0(k) are modelled
+as ARMA stochastic processes
+U0(k) = L(k)EL(k),
+NU(k) = HU(k)EU(k),
+NY (k) = HY (k)EY (k),
+(2)
+where L(), HU(), and HY () are the signal, the input noise,
+and the output noise transfer functions, respectively; and where
+EL(k), EU(k), and EY (k) are the signal, the input, and the
+output driving white noise sources, respectively.
+Assumption 1 (class of EIV systems).
+(1) the input/output data are generated by (1) and (2),
+(2) G(), L(), HU(), and HY () are rational functions
+of  with real coefﬁcients,
+(3) EL(k), EU(k), and EY (k) are independent (mutually, and
+over the frequency index k), circular complex (E{E2(k)}=
+0, with E{ } the expected value, and E=EL, EU, and EY )
+normally distributed noise, with zero mean (E{E(k)}=0),
+and variances L, U, and Y , respectively,
+
+
+PAGE 3
+R. Pintelon, J. Schoukens / Automatica 43 (2007) 621–630
+623
+(4) the frequency domain data U(k), Y(k) are available at
+frequencies fk, k ∈K={1, 2, . . . , F}, that cover the fre-
+quency band(s) of interest (part(s) unit circle or imaginary
+axis).
+2.1.1. Discussion
+• If the raw data are time domain signals, then Assumption
+1(1) is asymptotically (for the number of time domain
+samples N going to inﬁnity) valid after a discrete Fourier
+transform (DFT)
+X(k) =
+1
+√
+N
+N−1
+
+t=0
+x(t)z−t
+k
+(3)
+with x=u, y, . . . and X=U, Y, . . . (Pintelon & Schoukens,
+2001), and the frequency domain data in Assumption 1(4)
+is available at the DFT frequencies fk = kf s/N, k ∈K,
+where K ⊆{0, 1, 2, . . . , N/2} with ord(K)=F, and where
+the number of frequencies F increases with the number of
+time domain samples: F =O(N). For ﬁnite N Eq. (1) is ex-
+tended with transient terms that take into account the initial
+and ﬁnal conditions of the experiment (see Section 2.2).
+These transient terms vanish as O(N−1/2) w.r.t. the main
+contributions (Pintelon & Schoukens, 2001).
+• Assumption 1(3) is valid after a DFT for normally dis-
+tributed white noise e(t). It is asymptotically (N →∞)
+valid after a DFT for independent non-Gaussian distributed
+e(t) (see Brillinger, 1981; Pintelon & Schoukens, 2001).
+• By discarding data outside the frequency band(s) of
+interest (Assumption 1(4)), one should realize that some
+information is lost. Assuming that a ﬁnite-dimensional
+model structure is available this will lead to an increased
+uncertainty of the parameter estimates. However, throw-
+ing away frequency bands contaminated by errors that
+cannot be described by ﬁltered white noise (e.g. trends,
+sinewaves with varying frequency), avoids a bias in the
+plant estimates. Moreover, by selecting the frequency band
+of interest one can reduce the identiﬁcation of a complex,
+high-order (inﬁnite-dimensional) system, to a low-order
+problem.
+• The DT case ( = z−1) assumes that the driving noise
+sources e(t), (e = eL, eU and eY ) are either piecewise
+constant or Wiener stochastic processes, and that the mea-
+surement setup contains no anti-alias ﬁlters (Middleton &
+Goodwin, 1990; ˚Aström, 1970), while the CT case (=s)
+assumes CT band limited white driving noise sources e(t)
+and a measurement setup with anti-alias ﬁlters (Pintelon,
+Schoukens, & Guillaume, 2006). In all other cases (1) and
+(2) are approximations.
+• In the DT case the identiﬁed plant model G(z−1) depends
+on the CT plant G(s) and signal L(s) models. For example,
+if eL(t) is piecewise constant, then
+G(z−1) = Z{L−1{(G(s)L(s))/s}}
+Z{L−1{(L(s))/s}}
+with Z{ } and L−1{ }, respectively, the Z- and inverse
+Laplace transforms (see Section 10.2.3, p. 356 of Pintelon
+& Schoukens, 2001). As a practical consequence, the
+identiﬁed DT model cannot be used in another setup with
+a different signal model. The CT models do not suffer
+from this drawback.
+• The output measurement noise also includes the process
+noise.
+2.2. Gaussian ML cost function
+Under Assumption 1 the vector Z(k) = [Y(k) U(k)]T, with
+superscript T the transpose operator, is an independent (over
+k), circular complex normally distributed random variable. To
+construct the Gaussian likelihood function one needs the mean
+value and the covariance of Z(k) given the model parameters
+ and the variances L, U, and Y of the driving white noise
+sources EL(k), EU(k), and EY (k). Using (1) and (2) we ﬁnd
+E{Z(k)|, } = 0,
+Cov(Z(k)|, ) =
+
+SYY (k, )
+SYU(k, )
+SYU(k, )
+SUU(k, )
+
+≡CZ(k)(),
+(4)
+with  = [L, U, Y ]T, ¯x the complex conjugate of x, and
+SYY (, ) = G(, )L(, )G(∗, )L(∗, )L
++ HY (, )HY (∗, )Y ,
+SUU(, ) = L(, )L(∗, )L + HU(, )HU(∗, )U,
+SYU(k, ) = G(, )L(, )L(∗, )L,
+(5)
+where
+∗=
+
+−
+if  = s,
+−1
+if  = z−1.
+(6)
+Hence, within a -independent additive constant, the negative
+Gaussian log-likelihood function is given by (see Pintelon &
+Schoukens, 2001, p. 437, Eq. (14-14))
+V (, , Z) =
+
+k∈K
+log det(CZ(k)())
++
+
+k∈K
+ZH(k)C−1
+Z(k)()Z(k)
+(7)
+with Z the vector containing the input/output data, superscript
+H the complex conjugate transpose operator, and where
+det(CZ(k)()) = (|HY |2Y + |GH U|2U)|L|2L
++ |HUHY |2UY ,
+ZH(k)C−1
+Z(k)()Z(k)
+= |Y −GU|2|L|2L + |Y|2|HU|2U + |U|2|HY |2Y
+det(CZ(k)())
+(8)
+with Y = Y(k), U = U(k), G = G(k, ), HU = HU(k, ),
+HY =HY (k, ), and L=L(k, ). At DC (f =0) and Nyquist
+(f = fs/2) the sums in (7) are multiplied by 1
+2.
+
+
+PAGE 4
+624
+R. Pintelon, J. Schoukens / Automatica 43 (2007) 621–630
+Theorem 1 (ML cost function). Under Assumption 1, the Gaus-
+sian ML cost function is given by (7) and (8), where at DC
+(f = 0) and Nyquist (f = fs/2) the sums are multiplied by 1
+2.
+If the raw data are time domain signals, then (1) and (2)
+are asymptotically (number of time domain samples N →∞)
+valid. To improve the ﬁnite sample behaviour of the estimates,
+the plant (TG), signal (TL), and noise (TU, TY ) transient terms
+are added, giving the following exact relations:
+Y(k) = G(k, )U0(k) + TG(k, ) + NY (k),
+U(k) = U0(k) + NU(k),
+U0(k) = L(k, )EL(k) + TL(k, ),
+NU(k) = HU(k, )EU(k) + TU(k, ),
+NY (k) = HY (k, )EY (k) + TY (k, )
+(9)
+with
+G = B
+A,
+TG = IG
+A ,
+L = P
+Q,
+TL = IL
+Q ,
+HU = CU
+DU
+,
+TU = IU
+DU
+,
+HY = CY
+DY
+,
+TY = IY
+DY
+(10)
+and where A, B, CU, CY , DU, DY , IG, IL, IU, IY , P, and Q
+are polynomials of the form
+X(, ) =
+nx
+
+r=0
+xrr
+(11)
+(see Pintelon & Schoukens, 2001). Rewriting the ﬁrst two equa-
+tions of (9) as
+U = LEL + HUEU + TL + TU,
+Y = GLEL + HY EY + TG + TY + GT L,
+it can easily be veriﬁed that U, Y, and (Y −GU) in (7) and
+(8) should be replaced by
+U −(TL + TU),
+Y −(TG + TY + GT L),
+(Y −GU) −(TG + TY −GT U),
+(12)
+respectively. Note that the numerator coefﬁcients of the tran-
+sient polynomials TG, TL, TU, and TY decrease as an O(N−1/2)
+w.r.t. the main contributions and, hence, for N sufﬁciently large
+the transients terms can be neglected in (12).
+2.3. Identiﬁability conditions
+The identiﬁability of the EIV problem requires the following
+assumptions:
+Assumption 2 (identiﬁability conditions).
+(1) The transfer functions G=B/A, L=P/Q, HU =CU/DU,
+and HY =CY /DY cannot be simpliﬁed: A(), B() have
+no common roots, and similarly for P(), Q(), and
+CU(), DU(), and CY (), DY ().
+(2) The coefﬁcients of the polynomials A, CU, DU, CY , DY ,
+P, and Q are constrained as
+X() =
+nx
+
+r=0
+xrr
+with
+
+x0 = 1
+if  = z−1,
+xnx = 1
+if  = s.
+(13)
+(3) The plant transfer function G() has no (quadrant) sym-
+metric poles nor zeroes
+if
+A(0) = 0 with ∗
+0̸ = 0
+then A(∗
+0)̸ = 0,
+if
+B(0) = 0 with ∗
+0̸ = 0
+then B(∗
+0)̸ = 0,
+(14)
+where ∗is deﬁned in (6). Only simple poles and zeroes
+are allowed on the stability border ∗=  (imaginary
+axis or unit circle). If the plant poles and/or zeros on the
+stability border have a multiplicity larger than one, then
+Q() and/or P() may not have roots on the stability
+border.
+(4) No pole or zero of G() is, respectively, a zero or pole of
+L()L(∗).
+(5) One of the following conditions is fulﬁlled:
+lim
+→0
+HU()HU(∗)
+L()L(∗)
+= 0
+(15)
+for 0 = ∞or a pole of L()L(∗) that is not a pole of
+HU()HU(∗); or
+lim
+→0
+HY ()HY (∗)
+G()L()G(∗)L(∗) = 0
+(16)
+for 0 = ∞or a pole of G()L()G(∗)L(∗) that is
+not a pole of HY ()HY (∗).
+Theorem 2 (identiﬁability EIV problem). Under Assumption 2
+the class of EIV systems deﬁned in Assumption 1 is identiﬁable.
+Proof. See Agüero and Goodwin (2006).
+□
+2.3.1. Discussion
+• Assumptions 2(1) and 2(2) are classical in system identi-
+ﬁcation and are not specially linked to the EIV prob-
+lem: the parametric transfer function models G(, ),
+L(, ), HU(, ), and HY (, ), where  contains
+all the numerator and denominator polynomial coefﬁ-
+cients, are overparametrized. Indeed, since, for example,
+G(, ) = G(, ) for ̸ = 0, one should, for example,
+impose a constraint on the coefﬁcients of each denomi-
+nator polynomial. Further, the fact that the driving white
+
+
+PAGE 5
+R. Pintelon, J. Schoukens / Automatica 43 (2007) 621–630
+625
+noise sources EL, EU, and EY are not observed, and that,
+for example, HU(k, )EU(k)=(HU(k, ))(EU(k)/),
+constrains the numerator coefﬁcients of HU, HY , and L.
+Finally, common pole-zero pairs are not identiﬁable.
+• If Assumptions 2(3) and 2(4) are not satisﬁed, then a ﬁnite
+number of solutions exist for G, HU, HY , L, L, U,
+and Y , with different model order structure but the same
+total number of parameters. If Assumption 2(5) is not ful-
+ﬁlled, then L cannot uniquely be determined. An inﬁnite
+number of solutions with the same model order structure
+exist for G, HU, HY , L, L, U, and Y depending on the
+parameter L satisfying
+SYU()SYU(∗)
+SYY ()L()L(∗) ⩽L⩽
+SUU()
+L()L(∗)
+(17)
+(see Agüero, Goodwin, & Salgado, 2005).
+• Two special cases of Theorem 2 are worth mentioning:
+(i) If the excitation signal and the input and output mea-
+surement errors are white noise processes (L(), HU(),
+and HY () are independent of ), then the plant transfer
+function should be frequency dependent. (ii) If G(, ) is
+frequency independent (static plant), then the EIV prob-
+lem is identiﬁable if one or more transfer functions L(),
+HU(), and HY () depend on  and satisfy (15) or (16).
+• As long as Assumption 2(5) is satisﬁed, the output error
+transfer function HY () may have the same poles as the
+plant transfer function G() (DY = A), and the EIV gen-
+eralization of ARX and ARMAX model structures can be
+identiﬁed.
+• For CT systems the frequencies k = jk are scaled by
+the median of the frequency set {k|k ∈K} (see Pintelon
+& Kollár, 2005), and constraints (13) are imposed on the
+normalized model parameters.
+2.4. ML estimator
+Instead of constraining the numerator polynomials of the
+signal and noise transfer functions one can also normalize the
+variances of the driving white noise sources. This leads to the
+following assumption:
+Assumption 3 (constraints).
+1. The variances are normalized: L = 1, U = 1, and Y = 1.
+2. All conditions of Assumption 2 are fulﬁlled except con-
+straint (13) on CU, CY and P.
+Theorem 3 (ML estimator). The ML estimator ˆ(Z) of the
+EIV system deﬁned by Assumption 1, where G(, ), L(, ),
+HU(, ), and HY (, ) are parametrized as in (10) and (11),
+and with  a vector containing the plant, signal, and noise
+transfer function coefﬁcients, minimizes (7) subject to the con-
+straints in Assumption 3.
+2.4.1. Discussion
+• It can easily be veriﬁed that the cost function (7) con-
+tains exactly the same parameter ambiguities as the plant
+and noise models in (10) and (11). Using the results of
+Pintelon, Schoukens, Vandersteen, and Rolain (1999), it
+follows that the estimated models G(, ˆ), L(, ˆ)ˆ1/2
+L ,
+HU(, ˆ)ˆ1/2
+U , HY (, ˆ)ˆ1/2
+Y , with ˆ the minimizer of (7),
+are independent of the particular parameter constraint(s)
+chosen.
+• Under some additional standard assumptions on the true
+model, the model set and the cost function (see Pintelon
+& Schoukens, 2006, Assumptions 9–11) it can be shown
+that the ML estimator in Theorem 3 is strongly consis-
+tent, asymptotically normally distributed, and asymptoti-
+cally efﬁcient (see Caines, 1988).
+• The expected value of the scaled ML cost function VF ()=
+E{V (, , Z)/F} (7), is given by
+VF () = 1
+F
+
+k∈K
+log det(CZ(k)())
++ 1
+F
+
+k∈K
+trace(C−1
+Z(k)()CZ(k)(0)).
+(18)
+The key observation in order to prove the robustness of
+the ML estimator in Theorem 3 is that (18) only depends
+on the second order properties of the stochastic processes.
+The rest of the proof follows exactly the same lines of
+Pintelon and Schoukens (2006). Hence, the estimate ˆ(Z)
+remains strongly consistent and asymptotically normally
+distributed for non-Gaussian, mixing errors NU(k), NY (k)
+and excitations U0(k) (the mixing condition allows for a
+correlation over the frequency). With deﬁnition (18) for
+VF (), the general expressions for the convergence rate and
+the asymptotic covariance matrix of ˆ(Z) also remain valid
+(see Pintelon & Schoukens, 2006, Theorem 3, Properties
+1–5).
+3. Minimization of the ML cost function
+3.1. Gauss–Newton algorithm
+Under Assumption 3(1) (normalized variances) the ML cost
+function (7) can be written as
+V (, Z) =
+
+k∈K
+log(2
+2(k, )) +
+
+k∈K
+H
+1 (k, )1(k, ),
+(19)
+where
+1(k, ) =
+L(k, )(Y(k) −G(k, )U(k))
+HU(k, )Y(k)
+HY (k, )U(k)
+
+	
+det(CZ(k)()),
+(20)
+2(k, ) =
+	
+det(CZ(k)()).
+The derivative of V (, Z) (19) w.r.t.  equals
+V (, Z)
+
+= 2 Re(H()J()),
+(21)
+
+
+PAGE 6
+626
+R. Pintelon, J. Schoukens / Automatica 43 (2007) 621–630
+where Re(x) is the real part of x, and
+() =
+
+1()
+R()2()
+
+,
+J() =
+⎡
+⎢⎣
+1()
+
+R()2()
+
+⎤
+⎥⎦
+(22)
+with
+i() = [T
+i (1, ), . . . , T
+i (k, ), . . . , T
+i (F, )]T,
+i = 1, 2,
+R() = diag(−1
+2 (1, ), . . . , −1
+2 (k, ), . . . , −1
+2 (F, )).
+(23)
+From (21) and (22) it follows that the Hessian of V (, Z) can
+be written as
+2V (, Z)
+2
+= 2 Re(J H()J()) + O().
+(24)
+Neglecting the (not necessarily small) O() terms in (24), the
+Newton–Raphson algorithm for ﬁnding the minimizer of (19)
+2V (, Z)
+2
+ = −
+V (, Z)
+
+T
+(25)
+reduces to the Gauss–Newton method (Flectcher, 1991)
+Re(J H()J()) = −Re(J H()()).
+(26)
+A numerical stable implementation consists in solving
+(J())re = −(())re,
+(27)
+via a QR-factorization or an SVD decomposition (Golub &
+Van Loan, 1996), where ( )re puts the real and imaginary parts
+on top of each other. At the price of reducing the convergence
+rate (superlinear instead of quadratic), neglecting O() in (24)
+increases the convergence region and the numerical stability of
+the iteration algorithm (Flectcher, 1991).
+The iterative Newton–Gauss algorithm is implemented as
+follows. First we calculate (J())re w.r.t. all model parameters
+(the constraints of Assumption 3(2) are not imposed), next we
+solve (27) using the pseudo-inverse of (J())re (the dimension
+of the null space of (J())re equals four), and ﬁnally impose the
+following constraints on the updated model parameters +:
+∥a∥2
+2 + ∥b∥2
+2 = 1,
+∥cU∥2
+2 + ∥dU∥2
+2 = 1,
+∥cY ∥2
+2 + ∥dY ∥2
+2 = 1,
+∥p∥2
+2 + ∥q∥2
+2 = 1,
+(28)
+where the vectors a, b, cU, dU, cY , dY , p, and q contain all (fre-
+quency normalized) numerator and denominator coefﬁcients.
+Note that constraints (13) result in an ill-conditioned set of
+equations (27) if, for example, in the z-domain the true value
+of a0 is zero. This is not the case for constraints (28).
+3.1.1. Discussion
+• The spectral factorization of the time domain ML and
+prediction error methods (Söderström, 2006a; Söderström
+& Stoica, 1989), boils down in (19) and (20) to cal-
+culating numerically the square root of F real numbers
+
+det(CZ(k)()), k ∈K.
+• Since the ML cost function (19) only depends on the
+magnitude of L, HU, and HY , no distinction can be made
+between signal and noise models which only differ in poles
+and/or zeros 0 that are mirrored w.r.t. the stability bor-
+der (0 →∗
+0). Hence, V (, Z) (19) contains at least as
+many global minima as possible mirrored pole/zero pat-
+terns (proof: follow the lines of Appendix B in Pintelon,
+Rolain, & Schoukens, 2006). As a practical consequence,
+stabilization of the poles (and zeroes) of the signal and
+noise models in each step of the Newton–Gauss minimiza-
+tion is not required. This is not true for the time domain
+ML and prediction error methods.
+3.2. Starting values
+The generation of good starting values for the general
+case of coloured input/output errors is still an open problem
+(Söderström, 2006a). The most promising method seems to be
+the bias eliminated least-squares (BELS) algorithm (Zheng,
+2002) that can handle white input measurement errors and
+coloured output errors. This algorithm has been improved in
+Söderström, Hong, and Zheng (2005) for the case of white
+input/output noise. Since these time domain methods handle
+DT models only, a frequency domain version of the BELS al-
+gorithm (Zheng, 2002) for white input/output errors has been
+developed in Pintelon (2006). The frequency domain algorithm
+can identify DT as well as CT models on (a) part(s) of the unit
+circle or imaginary axis.
+3.2.1. Discussion
+• The BELS algorithms rely on the assumption that the
+true model order structure is known. The sensitivity of
+these methods to model errors, such as unmodelled dy-
+namics is still an open problem. Note, however, that
+the same is true for the other consistent starting value
+algorithms such as, for example, the instrumental variable
+methods.
+• In engineering applications the input noise stems from
+the measurement noise of the input data acquisition chan-
+nel. Hence, the input noise power spectrum can easily
+be measured by removing the input from the data acqui-
+sition unit. Starting values for successively HU, L, G,
+and HY are then readily obtained. Note that the same
+procedure cannot be used for the output noise power
+spectrum. Indeed, the latter is dominated by the pro-
+cess noise which possibly varies with the operating point
+and, in case of non-linear behaviour of the plant, also
+depends on the excitation power spectrum (Pintelon &
+Schoukens, 2001).
+• Since the noise generated by (well-designed) data acqui-
+sition channels is mostly broadband and white, the white
+input noise assumption is not a real limitation in engi-
+neering applications. This is not in contradiction with the
+observation that the input disturbances are often coloured
+in experiments with periodic excitation signals (Pintelon &
+Schoukens, 2001). Indeed, within the periodic framework
+
+
+PAGE 7
+R. Pintelon, J. Schoukens / Automatica 43 (2007) 621–630
+627
+any deviation from the periodic behaviour is considered as
+noise, and hence also the often coloured random part of
+the input (e.g. generator noise) that excites the system.
+4. Calculation of the CR lower bound
+For the time domain approach asymptotic (N
+→∞)
+expressions for the CR lower bound are available in Karlsson,
+Söderström, and Stoica (2000) and Söderström, (2006b). In this
+section the CR-bound is derived for a ﬁnite set of frequency
+domain data on part(s) of the unit circle or imaginary axis.
+It is also valid for improper (numerator order > denominator
+order) plant, signal, and input/output noise models.
+Under Assumptions 1 and 3 the CR lower bound CR(0)
+on the estimated model parameters is for a ﬁnite number of
+frequencies exactly given by
+(CR−1(0))[n,m] =
+
+2V ()
+2
+0
+
+[n,m]
+=
+
+k∈K
+trace
+
+C−1
+Z(k)(0)CZ(k)()
+(0)[n]
+C−1
+Z(k)(0)CZ(k)()
+(0)[m]
+
+,
+(29)
+where V () is deﬁned in (18), and where CZ(k)() is
+given by (4) and (5) with U = Y = L = 1. Using
+C−1 = C−1/2C−H/2, with C1/2 a square root of C, and
+trace(AB)=vecH(AH)vec(B), where vec( ) stacks the columns
+on top of each other, (29) can be written as
+CR−1(0) = (J1)T
+re(J1)re,
+(30)
+where
+J1 =
+
+0
+⎡
+⎢⎣
+vec(V1)
+vec(V2)
+. . .
+vec(VF )
+⎤
+⎥⎦
+and
+Vk = C−H/2
+Z(k) (0)CZ(k)()C−1/2
+Z(k) (0).
+(31)
+A numerically stable implementation consists in calculating
+(30) using the singular value decomposition (J1)re = U1	1V T
+1 :
+CR(0) = K1KT
+1
+with K1 = V1	−1
+1 .
+(32)
+Finally, the CR lower bound on any model parameter related
+quantity f () is obtained via
+CR(f (0)) = f ′(0)CR(0)f ′H(0)
+= (f ′(0)K1)(f ′(0)K1)H,
+(33)
+where ′ denotes the derivative w.r.t.  (see Caines, 1988;
+Pintelon & Schoukens, 2001). Note that (33) avoids the ex-
+plicit calculation of K1KT
+1 and hence guarantees the positive
+(semi-) deﬁniteness of CR(f (0)).
+5. Simulation examples
+5.1. Second order DT systems
+The true plant, signal, and noise models are
+G0(z−1) = 0.1 + z−1 + 0.5z−2
+1 −1.5z−1 + 0.7z−2 ,
+L0(z−1) = 1 + 0.5z−1
+1 −0.5z−1 ,
+HU0(z−1) = 1,
+and
+HY0(z−1) = 1,
+(34)
+where the driving noise sources eL(t), eU(t), and eY (t) are in-
+dependent, zero mean, normally distributed random variables
+with variances L = U = Y = 0.01. N = 1024 × 6 time
+domain samples are generated and frequencies fk = kf s/N,
+k = 1, 2, . . . , N/2 −1 (F = 6143), of the input/output DFT
+spectra are used for the identiﬁcation. The starting values for
+the plant and noise models are generated with the variable pro-
+jection BELS method (Söderström et al., 2005), while initial
+estimates for the signal model are obtained by modelling the
+noisy input data as an ARMA process (Pintelon, Rolain, et al.,
+2006; Pintelon & Schoukens, 2006), and next subtracting the
+BELS estimate ˆU from the modelled input power spectrum.
+The ML estimates are obtained by minimizing the cost function
+(7) that includes the plant and signal transient terms in (9)–(12)
+with nig = 1 and nil = 0.
+Fig. 2 shows the result of a Monte-Carlo simulation with 100
+runs. Within the 95% uncertainty bounds of the Monte-Carlo
+simulation (−2.5 dB, 2.3 dB), the sample variances of the ML
+estimates (grey ‘+’) coincide with the CR lower bounds (thin
+black lines), and are much larger than the magnitude of the
+complex difference (grey lines) between the true (bold black
+lines) and the mean estimated models.
+5.2. Fifth order CT system
+The true plant, signal, and noise models are
+G0(s) =
+1
+1 + 5
+m=1amsm ,
+L0(s) =
+1
+1 + 
+s ,
+HU0(s) = 1,
+and
+HY0(s) = 1,
+(35)
+where the coefﬁcients are given in Table 1. The driving noise
+sources eL(t), eU(t), and eY (t) are band-limited white CT
+stochastic processes (Pintelon et al., 2006), and at the sampling
+instances t =nT s, with fs =1/Ts =1300 Hz, eL, eU, and eY are
+independent, zero mean, normally distributed random variables
+with variances L = 1, U = (0.2)2, and Y = (0.01)2, respec-
+tively. Since exact time domain integration of the (stochastic)
+differential equations is impossible from samples of arbitrary
+band-limited inputs, the time domain signals are obtained
+via frequency domain calculations. First 2N, independent,
+zero mean, normally distributed samples eL(nT s), eU(nT s),
+and eY (nT s) are generated. Next, using the DFT spectra
+EL(k), EU(k), and EY (k) the noisy input/output DFT spectra
+U(k)=U0(k)+HU0(jk)EU(k) and Y(k)=G(0)(jk)U0(k)+
+HY0(jk)EY (k) with U0(k) = L0(jk)EL(k) are calculated at
+the DFT frequencies fk=kf s/(2N), k=−N +1, . . . , 0, . . . , N
+and N =20 480. Further, from the 2N input/output samples ob-
+
+
+PAGE 8
+628
+R. Pintelon, J. Schoukens / Automatica 43 (2007) 621–630
+0
+0.1
+0.2
+0.3
+0.4
+-60
+-40
+-20
+0
+20
+40
+Amplitude (dB)
+f/fs
+Plant model
+0
+0.1
+0.2
+0.3
+0.4
+-100
+-80
+-60
+-40
+-20
+0
+Amplitude (dB)
+f/fs
+0
+0.1
+0.2
+0.3
+0.4
+f/fs
+0
+0.1
+0.2
+0.3
+0.4
+f/fs
+Signal model
+-80
+-60
+-40
+-20
+0
+Amplitude (dB)
+Input noise model
+-100
+-120
+-80
+-60
+-40
+-20
+0
+Amplitude (dB)
+Output noise model
+Fig. 2. Results Monte-Carlo simulation second order discrete-time system: true model (bold black line), Cramér–Rao lower bound (black line), sample standard
+deviation ML estimate (grey +), and magnitude of the complex difference between the true model and the mean estimated model (grey line).
+Table 1
+True plant and signal model coefﬁcients
+Coefﬁcient
+True value
+a1
+6.2096E −3
+a2
+1.4689E −6
+a3
+3.8475E −9
+a4
+2.5514E −13
+a5
+4.7868E −16
+
+5.3052E −4
+tained via the inverse discrete Fourier transform, only the ﬁrst
+N =20 480 samples are used for identiﬁcation. From the result-
+ing input/output DFT spectra, DFT lines k =1, 2, . . . , N/2−1
+(F = 10 239) are used to estimate the plant, signal and in-
+put/output noise model parameters. The starting values for
+the plant and noise models are generated with the frequency
+domain BELS method (Pintelon, 2006), while those for the
+signal model parameters are generated as in Section 5.1. The
+ML estimates are obtained by minimizing the cost function (7)
+that includes the plant and signal transient terms in (9)–(12)
+with nig = 8 and nil = 2.
+Fig. 3 shows the result of a Monte-Carlo simulation with 100
+runs. Within the 95% uncertainty bounds of the Monte-Carlo
+simulation (−2.5 dB, 2.3 dB), the sample variances of the ML
+estimates (grey ‘+’) coincide with the CR lower bounds (thin
+black lines), and are much larger than the magnitude of the
+complex difference (grey lines) between the true (bold black
+lines) and the mean estimated models. If the plant transient
+is not estimated, then the standard deviation of the estimated
+output noise model is signiﬁcantly larger than the CR lower
+bound. This is due to the fact that the plant transient term in
+this simulation example is of the same order of magnitude of
+the output noise.
+6. Conclusion
+A frequency domain maximum likelihood (ML) estimator
+for the linear dynamic EIV problems with ﬁltered white noise
+excitations has been developed. Its main advantages w.r.t. the
+time domain approach are: (i) it can handle time domain as
+well as frequency domain data, (ii) DT as well as CT mod-
+elling, and (iii) identiﬁcation on (a) part(s) of the unit circle or
+imaginary axis. In addition, an numerical stable Gauss–Newton
+minimization of ML cost function has been presented.
+Since the main motivation for EIV modelling is a better
+understanding of the physical input–output relation and/or
+obtaining a model that is independent of the experimental
+setup (e.g. the actuator characteristic represented by the sig-
+nal model), a CT representation of the plant, signal, and
+input/output noise models is the natural choice.
+Key issues that still need to be solved are (i) genera-
+tion of high-quality starting values for the general coloured
+input/output noise case, (ii) a performance analysis of the
+
+
+PAGE 9
+R. Pintelon, J. Schoukens / Automatica 43 (2007) 621–630
+629
+0
+200
+400
+600
+-120
+-100
+-80
+-60
+-40
+-20
+0
+Plant model
+0
+200
+400
+600
+-80
+-60
+-40
+-20
+0
+Signal model
+0
+200
+400
+600
+-80
+-60
+-40
+-20
+0
+Input noise model
+0
+200
+400
+600
+-100
+-80
+-60
+-40
+-20
+Output noise model
+Fig. 3. Results Monte-Carlo simulation ﬁfth order continuous-time system: true model (bold black line), Cramér–Rao lower bound (black line), sample standard
+deviation ML estimate (grey +), and magnitude of the complex difference between the true model and the mean estimated model (grey line).
+estimators in the presence of modelling errors, and (iii) vali-
+dation of the identiﬁed parametric models.
+Acknowledgements
+The authors gratefully acknowledge Mei Hong and Torsten
+Söderström for providing the software of the variable projection
+BELS algorithm (Söderström et al., 2005). This work is spon-
+sored by the Fund for Scientiﬁc Research (FWO-Vlaanderen),
+the Flemish Government (GOA-Ilinois) and the Belgian Pro-
+gram on Interuniversity Poles of Attraction initiated by the Bel-
+gian State, Prime Minister’s Ofﬁce, Science Policy program-
+ming (IUAP V/22).
+References
+Agüero, J. C., Goodwin, G. C., & Salgado, M. E. (2005). On the optimal
+estimation of errors in variables models for robust control. Preprints of
+the 16th IFAC world congress. Prague (Czech Republic), July 3–8.
+Agüero, J. C., & Goodwin, G. C. (2006). Identiﬁability of errors in variables
+dynamic systems. In 14th IFAC symposium on system identiﬁcation (Sysid
+06) (pp. 196–201). Newcastle (Australia), March 29–31.
+Anderson, B. D. O., & Deistler, M. (1984). Identiﬁability in dynamic errors-
+in-variables models. Journal of Times Series Analysis, 5(1), 1–13.
+˚Aström, K. J. (1970). Introduction to stochastic control theory. New York:
+Academic Press.
+Brillinger, D. R. (1981). Time series: Data analysis and theory. New York:
+McGraw-Hill.
+Caines, P. E. (1988). Linear stochastic systems. New York: Wiley.
+Castaldi, P., & Soverini, U. (1996). Identiﬁcation of dynamic errors-in-
+variables models. Automatica, 32(4), 631–636.
+Flectcher, R. (1991). Practical optimization. New York: Wiley.
+Golub, G. H., & Van Loan, C. F. (1996). Matrix computations. (3rd ed.),
+Baltimore: John Hopkins University Press.
+Kamwa, I., Viarouge, P., Le-Huy, H., & Dickinson, E. J. (1992). A
+frequency-domain maximum likelihood estimation of synchronous machine
+high-order models using SSFR test data. IEEE Transactions on Energy
+Conversion, 7(3), 525–536.
+Karlsson, E., Söderström, T., & Stoica, P. (2000). Computing the Cramér–Rao
+lower bound for noisy input output systems. Signal Processing, 80(11),
+2421–2447.
+Ljung, L. (1999). System identiﬁcation: Theory for the User. Upper Saddle
+River: Prentice Hall.
+Mahata, K., & Garnier, H. (2005). Direct identiﬁcation of continuous-time
+errors-in-variables models. Preprints of the 16th world congress of the
+international federation of automatic control. Prague (Czech Republic),
+July 3–8.
+Middleton, R. H., & Goodwin, G. C. (1990). Digital control and estimation.
+London: Prentice-Hall.
+Nowak, E. (1993). The identiﬁcation of multivariate linear dynamic errors-
+in-variables models. Journal of Econometrics, 59(3), 213–227.
+Pintelon, R. (2006). A frequency domain bias compensated least squares
+algorithm for linear dynamic errors-in-variables models. Internal Report
+No. RP1.01.06. Department ELEC, Vrije Universiteit Brussel, Pleinlaan
+2, 1050 Brussel (Belgium).
+Pintelon, R., & Kollár, I. (2005). On the frequency scaling in continuous-
+time modeling. IEEE Transactions on Instrumentation and Measurement,
+53(5), 318–321.
+
+
+PAGE 10
+630
+R. Pintelon, J. Schoukens / Automatica 43 (2007) 621–630
+Pintelon, R., Rolain, Y., & Schoukens, J. (2006). Box–Jenkins identiﬁcation
+revisited—Part II: Applications. Automatica, 42(1), 77–84.
+Pintelon, R., & Schoukens, J. (2001). System identiﬁcation: A frequency
+domain approach. New York (USA): IEEE Press.
+Pintelon,
+R.,
+&
+Schoukens,
+J.
+(2006).
+Box–Jenkins
+identiﬁcation
+revisited—Part I: Theory. Automatica, 42(1), 63–75.
+Pintelon, R., Schoukens, J., & Guillaume, P. (2006). Continuous-time noise
+modelling from sampled data. IEEE Transactions on Instrumentation and
+Measurement, 55(5), 2253–2258.
+Pintelon,
+R.,
+Schoukens,
+J.,
+Vandersteen,
+G.,
+&
+Rolain,
+Y.
+(1999).
+Identiﬁcation of invariants of (over) parametrized models: Finite sample
+results IEEE Transaction of Automatic Control, 44(5), 1073–1077.
+Söderström, T. (2006a). Errors-in-variables methods in system identiﬁcation.
+In 14th IFAC symposium on system identiﬁcation (Sysid 06) (pp. 1–19).
+Newcastle (Australia), March 29–31.
+Söderström, T. (2006b). On computing the Cramér–Rao bound and covariance
+matrices for PEM estimates in linear state space models. In 14th IFAC
+symposium on system identiﬁcation (Sysid 06) (pp. 600–605). Newcastle
+(Australia), March 29–31.
+Söderström, T., Hong, M., & Zheng, W. X. (2005). Convergence properties
+of
+bias-eliminating
+algorithms
+for
+errors-in-variables
+identiﬁcation.
+International Journal of Adaptive Control and Signal Processing, 19(9),
+703–722.
+Söderström, T., Larsson, E., Mahata, K., & Mossberg, M. (2006). Using
+continuous-time modeling for errors-in-variables identiﬁcation. In 14th
+IFAC symposium on system identiﬁcation (Sysid 06) (pp. 428–433).
+Newcastle (Australia), March 29–31.
+Söderström, T., & Stoica, P. (1989). System identiﬁcation. Englewood Cliffs,
+NJ: Prentice-Hall.
+Zheng, W. X. (2002). A bias corrected method for identiﬁcation of linear
+dynamic errors-in-variables models. IEEE Transactions on Automatic
+Control, 47(7), 1142–1147.
+Rik Pintelon was born in Gent, Belgium, on
+December 4, 1959. He received the degree of
+electrical engineer (burgerlijk ingenieur) in July
+1982, the degree of doctor in applied sciences in
+January 1988, and the qualiﬁcation to teach at
+university level (geaggregeerde voor het hoger
+onderwijs) in April 1994, all from the Vrije
+Universiteit Brussel (VUB), Brussels, Belgium.
+From October 1982 till September 2000 he
+was a researcher of the Fund for Scientiﬁc
+Research—Flanders at the VUB. Since October
+2000 he is professor at the VUB in the Electri-
+cal Measurement Department (ELEC). His main
+research interests are in the ﬁeld of parame-
+ter estimation/system identiﬁcation, and signal
+processing.
+Johan Schoukens was born in Belgium in 1957.
+He received the degree of engineer in 1980 and
+the degree of doctor in applied sciences in 1985,
+both from the Vrije Universiteit Brussel, Brus-
+sels, Belgium. He is presently professor at the
+Vrije Universiteit Brussel. The prime factors of
+his interest are in the ﬁeld of system identi-
+ﬁcation for linear and nonlinear systems, and
+growing tomatoes in his green house.

@@ -1,0 +1,7 @@
+{
+  "identical_original_training_Y": true,
+  "identical_original_training_D": true,
+  "starts_checked": 56,
+  "worst_a_bound_violation_seconds": -2.3405959844392488E-6,
+  "a_bound_failures": 0
+}

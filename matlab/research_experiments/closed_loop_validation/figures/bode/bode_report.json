@@ -1,0 +1,49 @@
+{
+  "case": "distinct_N32",
+  "training_groups": 32,
+  "validation_groups": 8,
+  "frequency_hz": [
+    22,
+    798
+  ],
+  "validation_frequency_count": 195,
+  "dense_frequency_count": 2694,
+  "closed_truth_relative_error": 0.00023462112755672637,
+  "closed_measured_relative_error": 0.0035392624806000065,
+  "nonparametric_noise_relative_error": 0.003533580365812629,
+  "per_channel_truth_relative_error": [
+    [
+      0.00017477501235505988,
+      0.00020218740234435656,
+      0.00030568416943349943,
+      0.00033032004189698528
+    ],
+    [
+      0.00031078836280974627,
+      0.00018724880909474722,
+      0.00043948666172105035,
+      0.00032672265003071192
+    ],
+    [
+      0.00017507995968721993,
+      0.00084317166828224268,
+      0.00017861985082438811,
+      0.0002789385221021643
+    ],
+    [
+      0.00065529877339375042,
+      0.00022172435519497973,
+      0.00017536428085375094,
+      0.00028005765866926014
+    ]
+  ],
+  "plant_truth_relative_error": 0.00022010699439993517,
+  "max_excitation_matrix_condition": 1.0000000000000009,
+  "phase_definition": "Unwrapped independently along increasing frequency for each measured and modeled channel, starting at its principal phase. No model-guided branch shifts, smoothing, or point removal.",
+  "phase_complex_invariant_error": 3.219646771412954E-15,
+  "phase_max_dense_model_step_deg": 20.369647123067907,
+  "phase_branch_disagreement_count": 0,
+  "noise_definition": "Complex standard deviation of the mean, estimated from 8 validation repetitions; not a 95% confidence interval.",
+  "measurement_definition": "Mean(Y_n / D), where D is known deterministic external excitation; not Y/U and not LRM.",
+  "scope": "Existing synthetic held-out records, new plots only, no re-estimation or hardware data. Plant G includes channel dynamics and exact hold/sampling."
+}

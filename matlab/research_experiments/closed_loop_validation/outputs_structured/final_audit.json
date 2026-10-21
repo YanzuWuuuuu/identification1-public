@@ -1,0 +1,47 @@
+[
+  {
+    "case": "distinct_N32",
+    "nonlinear_max": -0.019145702374596112,
+    "linear_max": -1.6916803482769632E-5,
+    "nonlinear_active_count": 0,
+    "score_pass": false,
+    "J_condition": 1.7182282611863892E+9,
+    "spectral_radius": 0.99640762292574758
+  },
+  {
+    "case": "distinct_N8",
+    "nonlinear_max": -0.0032525395406905978,
+    "linear_max": -1.4180794005848905E-5,
+    "nonlinear_active_count": 0,
+    "score_pass": false,
+    "J_condition": 7.827827494922539E+8,
+    "spectral_radius": 0.99641099656888876
+  },
+  {
+    "case": "common_N32",
+    "nonlinear_max": -0.011985334771997692,
+    "linear_max": -1.4094095162465452E-5,
+    "nonlinear_active_count": 0,
+    "score_pass": false,
+    "J_condition": 2.076168775144666E+9,
+    "spectral_radius": 0.996409921660221
+  },
+  {
+    "case": "distinct_repeat2_N32",
+    "nonlinear_max": -0.01827071352177911,
+    "linear_max": -1.1073627111719147E-5,
+    "nonlinear_active_count": 0,
+    "score_pass": false,
+    "J_condition": 6.1946750774426126E+8,
+    "spectral_radius": 0.99640380215936353
+  },
+  {
+    "case": "distinct_repeat3_N32",
+    "nonlinear_max": -0.0041910058225299186,
+    "linear_max": -2.3954001054967495E-6,
+    "nonlinear_active_count": 0,
+    "score_pass": false,
+    "J_condition": 7.0435287592133534E+8,
+    "spectral_radius": 0.99640718246423454
+  }
+]

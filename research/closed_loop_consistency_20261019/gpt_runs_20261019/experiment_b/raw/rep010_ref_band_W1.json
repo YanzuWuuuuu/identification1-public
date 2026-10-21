@@ -1,0 +1,16 @@
+{
+  "rep": 10,
+  "seed": 52061029,
+  "method": "ref_band_W1",
+  "status": "exception",
+  "iterations": 0,
+  "duration_seconds": 0.6532648000284098,
+  "simulation_seconds": 2.143083499977365,
+  "nbeta": 336,
+  "nfreq": 47821,
+  "score_relative": NaN,
+  "objective": NaN,
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_b\\run_b.py\", line 162, in run\n    err=''; beta=np.full(c.NB,np.nan); b0=initial.copy(); status='exception'; hist=np.empty((0,6)); sc=np.nan; obj=np.nan\n                                ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_b\\run_b.py\", line 118, in solve\n    t0=time.perf_counter(); ub=Uh(beta) if callable(Uh) else Uh\n                               ^^^^^^^^\n  File \"C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_b\\run_b.py\", line 159, in instr\n    if outfile.exists(): continue\n                       ^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\numpy\\linalg\\_linalg.py\", line 451, in solve\n    r = gufunc(a, b, signature=signature)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: solve: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (m,m),(m,n)->(m,n) (size 47821 is different from 4)\n",
+  "pole_step_tolerance": 1e-05,
+  "max_iterations": 80
+}

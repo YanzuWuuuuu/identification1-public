@@ -1,0 +1,60 @@
+function [tf_magitude_tr_LRM,Tr,theta_store,P_LRM,tf_magitude_y_LRM,tf_phase_y_LRM] = LRM_MISO(Y,U,B,R)
+%MISO_LRM多输入单输出，要求频域输入矩阵为[U1(1),...U1(N);
+%                                    U2(1),...U2(N);
+%                                          ...
+%                                    Unu(1),...Unu(N);]
+%要求频域输出矩阵输入为[Y1(1),...Y1(N)]
+%输入参数为Y为系统输出量，U为上述系统输入量，B为窗宽度+1,即计算起始位置
+%R为拟合多项式阶数，只能选2，4
+
+%对于输出，P_LRM为复数量输出，几位传递函数s = jw的复量，其形式为[G1(1),...G1(N);
+%                                                               G2(1),...G2(N);
+%                                                                      ...
+%                                                              Gnu(1),...Gnu(N);]
+%其单位转换后的幅值与相位也写成上述形式
+%n为序列长度
+nu = length(U(:,1));
+%输入个数
+n = length(U(1,:));
+%窗宽度
+nw = B-1;
+%结束位置
+E = n-nw;
+
+j = 0;
+P_LRM = zeros(nu,n);
+Tr = zeros(1,n);
+if R ==1
+K_temp = zeros(2*nw+1,(R+1)*(nu*2)+R+1);
+end
+
+if R ==2
+K_temp = zeros(2*nw+1,(R+1)*(nu*2)+R+1);
+end
+lamda = 1e-11;
+
+for k = B:E
+    j = j+1;
+    Y_temp = Y(k-nw:k+nw);
+    for r = -nw:nw
+       if R == 1
+          K_temp(r+nw+1,:) = [U(:,k+r).',r*U(:,k+r).',...
+                              ones(1,nu),r*ones(1,nu),-r*Y(k+r)];
+       end
+       if R == 2 
+        K_temp(r+nw+1,:) = [U(:,k+r).',r*U(:,k+r).',r^2*U(:,k+r).',...
+                              ones(1,nu),r*ones(1,nu),r^2*ones(1,nu),-r*Y(k+r),-r^2*Y(k+r)];
+       end
+    end
+    thetak =inv(K_temp'*K_temp+lamda*eye(size(K_temp'*K_temp)))*K_temp'*Y_temp;
+    % thetak = K_temp\Y_temp;
+    theta_store(j,:) = [j,thetak'];
+    P_LRM(:,k) = thetak(1:nu)';
+    Tr(:,k) = thetak(7);
+
+end
+
+tf_magitude_y_LRM=20*log10(abs(P_LRM)); 
+tf_phase_y_LRM=rad2deg(angle(P_LRM));
+tf_magitude_tr_LRM = 20*log10(abs(Tr)); 
+end

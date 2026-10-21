@@ -1,0 +1,160 @@
+[
+  {
+    "point": "initial",
+    "score": 0.15338092079495538,
+    "condition_scaled_jacobian": 213883527.59781832,
+    "condition_normal": 4.320900510152367e+16,
+    "last_damping": 2.0296487103556126e-09,
+    "steps": [
+      {
+        "damping": 0.001,
+        "condition_damped_normal": 34384.43356569399,
+        "relative_step_difference": 9.309834621072121e-13,
+        "max_modal_normal_step": 0.10253880729994422,
+        "max_modal_augmented_step": 0.10253880729995873,
+        "max_modal_step_difference": 1.4516166046973922e-14,
+        "predicted_normal_merit": 29.77333202021418,
+        "predicted_augmented_merit": 29.773332020210013,
+        "normal_actual_merit": 74.83202610505042,
+        "normal_score": 0.03745871857719186,
+        "augmented_actual_merit": 74.83202610478918,
+        "augmented_score": 0.03745871857719578
+      },
+      {
+        "damping": 1e-06,
+        "condition_damped_normal": 34259761.46351377,
+        "relative_step_difference": 8.291100759234746e-10,
+        "max_modal_normal_step": 0.19517532563400034,
+        "max_modal_augmented_step": 0.1951753256338254,
+        "max_modal_step_difference": 9.119371924271036e-13,
+        "predicted_normal_merit": 0.2339973664907542,
+        "predicted_augmented_merit": 0.23399736649907266,
+        "normal_actual_merit": 708.5496537413162,
+        "normal_score": 0.22699296676129574,
+        "augmented_actual_merit": 708.5495945193536,
+        "augmented_score": 0.22699296262528187
+      },
+      {
+        "damping": 1e-09,
+        "condition_damped_normal": 34165884244.04098,
+        "relative_step_difference": 6.994523438149135e-07,
+        "max_modal_normal_step": 0.1962644868942564,
+        "max_modal_augmented_step": 0.1962644875421685,
+        "max_modal_step_difference": 7.819221055360703e-09,
+        "predicted_normal_merit": 0.00448396656330415,
+        "predicted_augmented_merit": 0.0044839659988132816,
+        "normal_actual_merit": 762.7978926187019,
+        "normal_score": 0.23805712532308865,
+        "augmented_actual_merit": 762.7977039980095,
+        "augmented_score": 0.23805701476995578
+      },
+      {
+        "damping": 1e-12,
+        "condition_damped_normal": 33627067204496.863,
+        "relative_step_difference": 0.0005062260212120075,
+        "max_modal_normal_step": 0.1948496716190071,
+        "max_modal_augmented_step": 0.19484954127637,
+        "max_modal_step_difference": 1.2153693063954307e-05,
+        "predicted_normal_merit": 5.9391138456772036e-05,
+        "predicted_augmented_merit": 5.937532387878418e-05,
+        "normal_actual_merit": 563.3814388032032,
+        "normal_score": 0.14576522734784444,
+        "augmented_actual_merit": 563.3811523835298,
+        "augmented_score": 0.14576667493169032
+      },
+      {
+        "damping": 2.0296487103556126e-09,
+        "condition_damped_normal": 16841741845.057484,
+        "relative_step_difference": 3.5689879807397626e-07,
+        "max_modal_normal_step": 0.1961088488398117,
+        "max_modal_augmented_step": 0.19610884776854,
+        "max_modal_step_difference": 4.367382740178005e-09,
+        "predicted_normal_merit": 0.005909015653232202,
+        "predicted_augmented_merit": 0.005909015284982816,
+        "normal_actual_merit": 749.9179823461939,
+        "normal_score": 0.23738749440800164,
+        "augmented_actual_merit": 749.9180892604567,
+        "augmented_score": 0.2373875066785107
+      }
+    ]
+  },
+  {
+    "point": "final",
+    "score": 3.334608868710899e-05,
+    "condition_scaled_jacobian": 3157182381.391651,
+    "condition_normal": 5.439651330917188e+18,
+    "last_damping": 2.0296487103556126e-09,
+    "steps": [
+      {
+        "damping": 0.001,
+        "condition_damped_normal": 34842.500922894724,
+        "relative_step_difference": 2.5533116491770875e-11,
+        "max_modal_normal_step": 2.1210092345277406e-08,
+        "max_modal_augmented_step": 2.1210092345295915e-08,
+        "max_modal_step_difference": 2.9941921921676504e-20,
+        "predicted_normal_merit": 2.8217444770954653e-05,
+        "predicted_augmented_merit": 2.8217444770954653e-05,
+        "normal_actual_merit": 2.8217735417045963e-05,
+        "normal_score": 3.334703788877707e-05,
+        "augmented_actual_merit": 2.8217735417045963e-05,
+        "augmented_score": 3.334703788877707e-05
+      },
+      {
+        "damping": 1e-06,
+        "condition_damped_normal": 34728387.98571087,
+        "relative_step_difference": 7.220946903722806e-10,
+        "max_modal_normal_step": 3.528873268146601e-08,
+        "max_modal_augmented_step": 3.5288732691168303e-08,
+        "max_modal_step_difference": 1.7830572935295056e-17,
+        "predicted_normal_merit": 2.8215923184422222e-05,
+        "predicted_augmented_merit": 2.821592318442166e-05,
+        "normal_actual_merit": 2.8216168735860322e-05,
+        "normal_score": 3.334542710881031e-05,
+        "augmented_actual_merit": 2.8216168735942782e-05,
+        "augmented_score": 3.3345427111042606e-05
+      },
+      {
+        "damping": 1e-09,
+        "condition_damped_normal": 34617457813.16977,
+        "relative_step_difference": 4.315636075132475e-07,
+        "max_modal_normal_step": 3.15686524559889e-05,
+        "max_modal_augmented_step": 3.156862716647525e-05,
+        "max_modal_step_difference": 2.5289513654058477e-11,
+        "predicted_normal_merit": 2.6804482865378706e-05,
+        "predicted_augmented_merit": 2.680448309855561e-05,
+        "normal_actual_merit": 2.682705737448396e-05,
+        "normal_score": 3.187417164180642e-05,
+        "augmented_actual_merit": 2.682700966758959e-05,
+        "augmented_score": 3.187417148937868e-05
+      },
+      {
+        "damping": 1e-12,
+        "condition_damped_normal": 34301354207779.934,
+        "relative_step_difference": 0.000425054695302692,
+        "max_modal_normal_step": 0.01258055664892164,
+        "max_modal_augmented_step": 0.012579865664797242,
+        "max_modal_step_difference": 3.1758850495781227e-06,
+        "predicted_normal_merit": 5.2630124658938316e-06,
+        "predicted_augmented_merit": 5.263310147039215e-06,
+        "normal_actual_merit": 0.04320782119833193,
+        "normal_score": 0.001307003494063446,
+        "augmented_actual_merit": 0.04329783766760458,
+        "augmented_score": 0.001306929262485369
+      },
+      {
+        "damping": 2.0296487103556126e-09,
+        "condition_damped_normal": 17059635609.7862,
+        "relative_step_difference": 2.2908099226443554e-07,
+        "max_modal_normal_step": 1.5694206571333863e-05,
+        "max_modal_augmented_step": 1.5694196871308182e-05,
+        "max_modal_step_difference": 9.70002568122675e-12,
+        "predicted_normal_merit": 2.7495129910709333e-05,
+        "predicted_augmented_merit": 2.749512992459272e-05,
+        "normal_actual_merit": 2.7496667505646967e-05,
+        "normal_score": 3.260249290907481e-05,
+        "augmented_actual_merit": 2.749667879813201e-05,
+        "augmented_score": 3.2602492726353226e-05
+      }
+    ]
+  }
+]

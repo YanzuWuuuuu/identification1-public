@@ -1,0 +1,8 @@
+{
+  "status": "completed_scoped_validation",
+  "evaluation_summary": "Five noisy closed-loop cases plus a noiseless gate; all chosen fits feasible and stable.",
+  "claim_update": "Relative-dynamic calibration improves heldout low-band output SNR in the specified synthetic mismatch; no hardware or coverage claim.",
+  "baseline_relation": "B1 disables dynamics in the same jointly estimated calibration; not an independently fitted state-of-the-art static method.",
+  "failure_mode": "Unstructured 32-coefficient family adds origin pole; 23-coefficient repair. Fourteen of 56 structured starts fail strict convergence; all fail the separate raw-score gate.",
+  "next_action": "Real channel-response measurements and independent hardware validation; conditional statistical coverage only if claimed."
+}

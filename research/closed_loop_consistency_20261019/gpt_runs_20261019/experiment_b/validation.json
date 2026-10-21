@@ -1,0 +1,24 @@
+{
+  "nm": 8,
+  "nb": 336,
+  "closed_loop_spectral_radius": 0.9964659131758957,
+  "output_relerr": 0.0,
+  "jacobian_relerr": 0.0,
+  "scaled_normal_matrix_relerr": 5.776608211683059e-16,
+  "scaled_gradient_relerr": 1.47395962309608e-15,
+  "pole_step_relerr": 1.3158196900848693e-12,
+  "original_sha256": "bebfbd5c672c6326e76adfd658f586ba01c25eb764b43bef1183df3a74fc3ecf",
+  "environment": {
+    "NOFLEX": "0",
+    "FC": "60",
+    "AL": "30",
+    "AH": "100",
+    "FHI": "800",
+    "FLO": "3",
+    "SW": "0.03",
+    "FSPR": "0.01",
+    "ZSPR": "0.4",
+    "NN": "300000",
+    "NPER": "10"
+  }
+}

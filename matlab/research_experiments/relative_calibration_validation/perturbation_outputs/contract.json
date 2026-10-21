@@ -1,0 +1,22 @@
+{
+  "source": "matlab/0/Multiple_main_Control.m",
+  "modes": [
+    286.43,
+    344.58,
+    488.27,
+    705.67,
+    738.83
+  ],
+  "D": 0,
+  "seeds": 80,
+  "seed": 20261014,
+  "input_rms_mN": 1,
+  "noise_sample_rms_nm": 100,
+  "fs_hz": 5000,
+  "noise_location": "independent additive measured-output noise before output compensation",
+  "channel_base_bandwidth_hz": 2000,
+  "channel_base_delay_us": 100,
+  "note": "Synthetic exact frequency-response propagation; no estimator rerun, no closed-loop trajectory claim. B4 residual is prescribed 0.1% geometry and 10% channel-departure error, not measured estimation accuracy.",
+  "geometry": "Every C column and B row perturbed by specified relative Euclidean norm; true plant unchanged.",
+  "normalization": "Equal total actual command RMS 1mN and flat PSD per evaluation band for every method; continuous frequency quadrature."
+}

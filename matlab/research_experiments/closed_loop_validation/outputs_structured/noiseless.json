@@ -1,0 +1,9 @@
+{
+  "cost": 8.0747444753337829E-7,
+  "solver_pass": true,
+  "exitflag": 1,
+  "first_order_optimality": 2.560000000000187E-7,
+  "iterations": 250,
+  "heldout_frf_relative_error": 6.6064495822480719E-6,
+  "closed_spectral_radius": 0.99640706245590871
+}

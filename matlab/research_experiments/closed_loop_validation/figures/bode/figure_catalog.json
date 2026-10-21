@@ -1,0 +1,52 @@
+{
+  "source_data": [
+    "outputs_structured/test_distinct.mat",
+    "outputs_structured/distinct_N32/selected.mat",
+    "outputs/data_distinct.mat"
+  ],
+  "source_root": "matlab/research_experiments/closed_loop_validation",
+  "generator": "matlab/research_experiments/closed_loop_validation/make_bode_validation.m",
+  "exports": [
+    {
+      "id": "closed_loop_magnitude",
+      "surface_class": "paper_main",
+      "png": "closed_loop_magnitude.png",
+      "vector": "closed_loop_magnitude.pdf",
+      "claim": "4x4 independent held-out closed-loop magnitude, complex residual and mean-noise scale"
+    },
+    {
+      "id": "closed_loop_phase",
+      "surface_class": "paper_main",
+      "png": "closed_loop_phase.png",
+      "vector": "closed_loop_phase.pdf",
+      "claim": "4x4 independently unwrapped held-out and model phase; no model-guided branch alignment"
+    },
+    {
+      "id": "sampled_plant_magnitude",
+      "surface_class": "appendix",
+      "png": "sampled_plant_magnitude.png",
+      "vector": "sampled_plant_magnitude.pdf",
+      "claim": "4x4 true versus identified sampled plant; simulation-only truth"
+    },
+    {
+      "id": "calibration_targets",
+      "surface_class": "paper_main",
+      "png": "calibration_targets.png",
+      "vector": "calibration_targets.pdf",
+      "claim": "Direct recovery of left/right null directions and all six non-reference channel frequency responses",
+      "source": "outputs_structured/distinct_N32/selected.mat; outputs/data_distinct.mat; bode_source.mat",
+      "generator": "matlab/research_experiments/closed_loop_validation/make_calibration_target_figure.m",
+      "review": "Replaced overlapping absolute null-vector curves with sign-aligned component errors, moved dynamics legend above panels; all data remain inside axes."
+    }
+  ],
+  "review_fixes": [
+    "Corrected MATLAB sprintf backslash interpretation in channel arrows.",
+    "Separated adjacent frequency ticks and added export padding.",
+    "Unwrapped each measured and modeled channel independently along frequency; retained all data and removed artificial 360-degree jumps.",
+    "Removed forced near-empty manuscript page; kept reference list together after appendix figures.",
+    "Main text now follows prediction -> target recovery -> calibration. Full continuous phase retained in appendix."
+  ],
+  "data_integrity": "No re-identification, no smoothing, no added noise realization. All 195 held-out points and 8 validation repetitions retained.",
+  "units": "m/N, dB relative to 1 m/N, Hz, degrees",
+  "status": "Accepted after final figure and 18-page revised manuscript visual review."
+}

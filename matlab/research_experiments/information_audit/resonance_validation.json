@@ -1,0 +1,477 @@
+[
+  {
+    "case": "distinct_N32",
+    "calibration": {
+      "static": {
+        "all": {
+          "rigid_rms_m": 2.6944638247508729E-8,
+          "flexible_rms_m": 7.3553087578675329E-7,
+          "noise_rms_m": 2.8967635582072605E-8,
+          "flexible_to_rigid_noise_db": 25.38649335293632,
+          "rigid_to_noise_ratio": 0.93016353271801511
+        },
+        "low": {
+          "rigid_rms_m": 2.4524104472037553E-8,
+          "flexible_rms_m": 5.5177238968141753E-8,
+          "noise_rms_m": 9.0547077898206477E-9,
+          "flexible_to_rigid_noise_db": 6.4883260578559607,
+          "rigid_to_noise_ratio": 2.7084368751918961
+        },
+        "modal": {
+          "rigid_rms_m": 6.857263285233128E-9,
+          "flexible_rms_m": 7.2918403282976336E-7,
+          "noise_rms_m": 2.5664821387338109E-8,
+          "flexible_to_rigid_noise_db": 28.770510341793756,
+          "rigid_to_noise_ratio": 0.26718531104277232
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.8862469529143723E-9,
+          "flexible_rms_m": 7.0699431941979451E-7,
+          "noise_rms_m": 9.6184329147594163E-9,
+          "flexible_to_rigid_noise_db": 36.951788856912827,
+          "rigid_to_noise_ratio": 0.30007455252772486
+        }
+      },
+      "joint": {
+        "all": {
+          "rigid_rms_m": 2.5595715382329888E-10,
+          "flexible_rms_m": 7.3638559417586532E-7,
+          "noise_rms_m": 2.9009497983091765E-8,
+          "flexible_to_rigid_noise_db": 28.09096332990503,
+          "rigid_to_noise_ratio": 0.00882321900132446
+        },
+        "low": {
+          "rigid_rms_m": 1.7257112926487735E-10,
+          "flexible_rms_m": 5.5180917353569042E-8,
+          "noise_rms_m": 9.0566818376657312E-9,
+          "flexible_to_rigid_noise_db": 15.694819563801762,
+          "rigid_to_noise_ratio": 0.019054564614070159
+        },
+        "modal": {
+          "rigid_rms_m": 1.7234569343417544E-10,
+          "flexible_rms_m": 7.3004253458348926E-7,
+          "noise_rms_m": 2.5710016421225648E-8,
+          "flexible_to_rigid_noise_db": 29.064721052923549,
+          "rigid_to_noise_ratio": 0.0067034454825120405
+        },
+        "first_resonance": {
+          "rigid_rms_m": 4.5388435099127734E-11,
+          "flexible_rms_m": 7.078512359700925E-7,
+          "noise_rms_m": 9.5982221008196556E-9,
+          "flexible_to_rigid_noise_db": 37.35492687497365,
+          "rigid_to_noise_ratio": 0.0047288377599901251
+        }
+      },
+      "oracle": {
+        "all": {
+          "rigid_rms_m": 1.4208048539756847E-10,
+          "flexible_rms_m": 7.3652152807354386E-7,
+          "noise_rms_m": 2.9016344796552027E-8,
+          "flexible_to_rigid_noise_db": 28.090750718623951,
+          "rigid_to_noise_ratio": 0.0048965673103819642
+        },
+        "low": {
+          "rigid_rms_m": 7.8000693138842584E-12,
+          "flexible_rms_m": 5.518137616730838E-8,
+          "noise_rms_m": 9.0572931606807509E-9,
+          "flexible_to_rigid_noise_db": 15.695878823118068,
+          "rigid_to_noise_ratio": 0.00086119209961599621
+        },
+        "modal": {
+          "rigid_rms_m": 1.4059431861246262E-10,
+          "flexible_rms_m": 7.3017917734012584E-7,
+          "noise_rms_m": 2.5717370269089311E-8,
+          "flexible_to_rigid_noise_db": 29.063927928543372,
+          "rigid_to_noise_ratio": 0.0054669010533105831
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.3841901203386478E-11,
+          "flexible_rms_m": 7.0799648068210777E-7,
+          "noise_rms_m": 9.5997218075601055E-9,
+          "flexible_to_rigid_noise_db": 37.35542223538986,
+          "rigid_to_noise_ratio": 0.002483603346152195
+        }
+      }
+    }
+  },
+  {
+    "case": "distinct_N8",
+    "calibration": {
+      "static": {
+        "all": {
+          "rigid_rms_m": 2.6956775082903908E-8,
+          "flexible_rms_m": 7.3554217059014931E-7,
+          "noise_rms_m": 2.8967616882070308E-8,
+          "flexible_to_rigid_noise_db": 25.384814862348705,
+          "rigid_to_noise_ratio": 0.930583112606304
+        },
+        "low": {
+          "rigid_rms_m": 2.4537038208086636E-8,
+          "flexible_rms_m": 5.5177717771799996E-8,
+          "noise_rms_m": 9.0547154127998781E-9,
+          "flexible_to_rigid_noise_db": 6.4843700703310709,
+          "rigid_to_noise_ratio": 2.7098629928667575
+        },
+        "modal": {
+          "rigid_rms_m": 6.8575400889148938E-9,
+          "flexible_rms_m": 7.2919530337974885E-7,
+          "noise_rms_m": 2.5664776200790259E-8,
+          "flexible_to_rigid_noise_db": 28.770635504308466,
+          "rigid_to_noise_ratio": 0.26719656681454873
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.8863863148351055E-9,
+          "flexible_rms_m": 7.0700466443908848E-7,
+          "noise_rms_m": 9.61842464126691E-9,
+          "flexible_to_rigid_noise_db": 36.951888159883516,
+          "rigid_to_noise_ratio": 0.3000892997020892
+        }
+      },
+      "joint": {
+        "all": {
+          "rigid_rms_m": 7.3587406259586942E-10,
+          "flexible_rms_m": 7.3589544956787791E-7,
+          "noise_rms_m": 2.8968981802546393E-8,
+          "flexible_to_rigid_noise_db": 28.094856267980532,
+          "rigid_to_noise_ratio": 0.025402137624705386
+        },
+        "low": {
+          "rigid_rms_m": 6.7232578369923919E-10,
+          "flexible_rms_m": 5.5179565004400844E-8,
+          "noise_rms_m": 9.0563735278249265E-9,
+          "flexible_to_rigid_noise_db": 15.672609536247373,
+          "rigid_to_noise_ratio": 0.074237859296944431
+        },
+        "modal": {
+          "rigid_rms_m": 2.5795652086115635E-10,
+          "flexible_rms_m": 7.295498549790845E-7,
+          "noise_rms_m": 2.5665356959396516E-8,
+          "flexible_to_rigid_noise_db": 29.073714638200215,
+          "rigid_to_noise_ratio": 0.010050766925597509
+        },
+        "first_resonance": {
+          "rigid_rms_m": 7.4043652325327768E-11,
+          "flexible_rms_m": 7.0736079166636618E-7,
+          "noise_rms_m": 9.5927292944629754E-9,
+          "flexible_to_rigid_noise_db": 37.353717154672211,
+          "rigid_to_noise_ratio": 0.0077187263449690537
+        }
+      },
+      "oracle": {
+        "all": {
+          "rigid_rms_m": 1.4208048539756847E-10,
+          "flexible_rms_m": 7.3652152807354386E-7,
+          "noise_rms_m": 2.9016344796552027E-8,
+          "flexible_to_rigid_noise_db": 28.090750718623951,
+          "rigid_to_noise_ratio": 0.0048965673103819642
+        },
+        "low": {
+          "rigid_rms_m": 7.8000693138842584E-12,
+          "flexible_rms_m": 5.518137616730838E-8,
+          "noise_rms_m": 9.0572931606807509E-9,
+          "flexible_to_rigid_noise_db": 15.695878823118068,
+          "rigid_to_noise_ratio": 0.00086119209961599621
+        },
+        "modal": {
+          "rigid_rms_m": 1.4059431861246262E-10,
+          "flexible_rms_m": 7.3017917734012584E-7,
+          "noise_rms_m": 2.5717370269089311E-8,
+          "flexible_to_rigid_noise_db": 29.063927928543372,
+          "rigid_to_noise_ratio": 0.0054669010533105831
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.3841901203386478E-11,
+          "flexible_rms_m": 7.0799648068210777E-7,
+          "noise_rms_m": 9.5997218075601055E-9,
+          "flexible_to_rigid_noise_db": 37.35542223538986,
+          "rigid_to_noise_ratio": 0.002483603346152195
+        }
+      }
+    }
+  },
+  {
+    "case": "common_N32",
+    "calibration": {
+      "static": {
+        "all": {
+          "rigid_rms_m": 2.7033328450326969E-8,
+          "flexible_rms_m": 7.2777154236394342E-7,
+          "noise_rms_m": 2.877479808332267E-8,
+          "flexible_to_rigid_noise_db": 25.312025694744591,
+          "rigid_to_noise_ratio": 0.9394793448088512
+        },
+        "low": {
+          "rigid_rms_m": 2.4610091725599881E-8,
+          "flexible_rms_m": 5.5230681802705636E-8,
+          "noise_rms_m": 9.0271382465664053E-9,
+          "flexible_to_rigid_noise_db": 6.4731188753162279,
+          "rigid_to_noise_ratio": 2.7262340570623991
+        },
+        "modal": {
+          "rigid_rms_m": 6.87110213375644E-9,
+          "flexible_rms_m": 7.2135035670959752E-7,
+          "noise_rms_m": 2.5427565211365592E-8,
+          "flexible_to_rigid_noise_db": 28.750750343449329,
+          "rigid_to_noise_ratio": 0.27022257446360615
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.8804602478658735E-9,
+          "flexible_rms_m": 6.9898160067289606E-7,
+          "noise_rms_m": 9.6407559371009712E-9,
+          "flexible_to_rigid_noise_db": 36.835740909982555,
+          "rigid_to_noise_ratio": 0.29877950097054773
+        }
+      },
+      "joint": {
+        "all": {
+          "rigid_rms_m": 3.3928915498443658E-10,
+          "flexible_rms_m": 7.2871197440670481E-7,
+          "noise_rms_m": 2.8752827491216224E-8,
+          "flexible_to_rigid_noise_db": 28.076902256329848,
+          "rigid_to_noise_ratio": 0.011800201391953084
+        },
+        "low": {
+          "rigid_rms_m": 3.200868908495123E-10,
+          "flexible_rms_m": 5.5234378260799318E-8,
+          "noise_rms_m": 9.0323371570109465E-9,
+          "flexible_to_rigid_noise_db": 15.722735949646275,
+          "rigid_to_noise_ratio": 0.035437881169112381
+        },
+        "modal": {
+          "rigid_rms_m": 1.034337095863591E-10,
+          "flexible_rms_m": 7.2229549144929381E-7,
+          "noise_rms_m": 2.539877275763777E-8,
+          "flexible_to_rigid_noise_db": 29.077971406541408,
+          "rigid_to_noise_ratio": 0.0040723900549586639
+        },
+        "first_resonance": {
+          "rigid_rms_m": 1.2612432155651059E-11,
+          "flexible_rms_m": 6.9987440486625474E-7,
+          "noise_rms_m": 9.6070187691215138E-9,
+          "flexible_to_rigid_noise_db": 37.24862195528484,
+          "rigid_to_noise_ratio": 0.001312835173819939
+        }
+      },
+      "oracle": {
+        "all": {
+          "rigid_rms_m": 1.4207176127206581E-10,
+          "flexible_rms_m": 7.2886519161423585E-7,
+          "noise_rms_m": 2.8766153252357032E-8,
+          "flexible_to_rigid_noise_db": 28.075202473126041,
+          "rigid_to_noise_ratio": 0.0049388515741299122
+        },
+        "low": {
+          "rigid_rms_m": 7.8472078143490984E-12,
+          "flexible_rms_m": 5.52355710893959E-8,
+          "noise_rms_m": 9.0317042258990575E-9,
+          "flexible_to_rigid_noise_db": 15.72897955987796,
+          "rigid_to_noise_ratio": 0.00086885128410723071
+        },
+        "modal": {
+          "rigid_rms_m": 1.405646816591051E-10,
+          "flexible_rms_m": 7.224493545729558E-7,
+          "noise_rms_m": 2.5413851613503165E-8,
+          "flexible_to_rigid_noise_db": 29.074605493191829,
+          "rigid_to_noise_ratio": 0.0055310263000205263
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.411334383820522E-11,
+          "flexible_rms_m": 7.0002729336058571E-7,
+          "noise_rms_m": 9.6088502702639559E-9,
+          "flexible_to_rigid_noise_db": 37.248843590137319,
+          "rigid_to_noise_ratio": 0.00250949314017595
+        }
+      }
+    }
+  },
+  {
+    "case": "distinct_repeat2_N32",
+    "calibration": {
+      "static": {
+        "all": {
+          "rigid_rms_m": 2.6946418338192505E-8,
+          "flexible_rms_m": 7.3554371667779742E-7,
+          "noise_rms_m": 2.8967653010256656E-8,
+          "flexible_to_rigid_noise_db": 25.386376007047893,
+          "rigid_to_noise_ratio": 0.93022442407230965
+        },
+        "low": {
+          "rigid_rms_m": 2.4526065553909673E-8,
+          "flexible_rms_m": 5.5177777350578564E-8,
+          "noise_rms_m": 9.0547091936151788E-9,
+          "flexible_to_rigid_noise_db": 6.4877994197992628,
+          "rigid_to_noise_ratio": 2.7086530367208193
+        },
+        "modal": {
+          "rigid_rms_m": 6.8572388923939186E-9,
+          "flexible_rms_m": 7.291968437404649E-7,
+          "noise_rms_m": 2.5664817326108776E-8,
+          "flexible_to_rigid_noise_db": 28.770666283009017,
+          "rigid_to_noise_ratio": 0.26718440288363404
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.8862249051344704E-9,
+          "flexible_rms_m": 7.0700703309744411E-7,
+          "noise_rms_m": 9.618477150447271E-9,
+          "flexible_to_rigid_noise_db": 36.951913885393481,
+          "rigid_to_noise_ratio": 0.30007088024326778
+        }
+      },
+      "joint": {
+        "all": {
+          "rigid_rms_m": 4.101261923124353E-10,
+          "flexible_rms_m": 7.3568416476879659E-7,
+          "noise_rms_m": 2.891622403447092E-8,
+          "flexible_to_rigid_noise_db": 28.110122986478714,
+          "rigid_to_noise_ratio": 0.014183255456297663
+        },
+        "low": {
+          "rigid_rms_m": 3.0797016486748792E-10,
+          "flexible_rms_m": 5.5178362407360911E-8,
+          "noise_rms_m": 9.0554559212732246E-9,
+          "flexible_to_rigid_noise_db": 15.692149424030816,
+          "rigid_to_noise_ratio": 0.034009349451306965
+        },
+        "modal": {
+          "rigid_rms_m": 2.56202299673641E-10,
+          "flexible_rms_m": 7.2933782650444491E-7,
+          "noise_rms_m": 2.5606409655045011E-8,
+          "flexible_to_rigid_noise_db": 29.091166245472941,
+          "rigid_to_noise_ratio": 0.010005397208162046
+        },
+        "first_resonance": {
+          "rigid_rms_m": 5.7399980205011769E-11,
+          "flexible_rms_m": 7.07167104617775E-7,
+          "noise_rms_m": 9.5890172005022289E-9,
+          "flexible_to_rigid_noise_db": 37.354803438666309,
+          "rigid_to_noise_ratio": 0.0059860128524960223
+        }
+      },
+      "oracle": {
+        "all": {
+          "rigid_rms_m": 1.4208048539756847E-10,
+          "flexible_rms_m": 7.3652152807354386E-7,
+          "noise_rms_m": 2.9016344796552027E-8,
+          "flexible_to_rigid_noise_db": 28.090750718623951,
+          "rigid_to_noise_ratio": 0.0048965673103819642
+        },
+        "low": {
+          "rigid_rms_m": 7.8000693138842584E-12,
+          "flexible_rms_m": 5.518137616730838E-8,
+          "noise_rms_m": 9.0572931606807509E-9,
+          "flexible_to_rigid_noise_db": 15.695878823118068,
+          "rigid_to_noise_ratio": 0.00086119209961599621
+        },
+        "modal": {
+          "rigid_rms_m": 1.4059431861246262E-10,
+          "flexible_rms_m": 7.3017917734012584E-7,
+          "noise_rms_m": 2.5717370269089311E-8,
+          "flexible_to_rigid_noise_db": 29.063927928543372,
+          "rigid_to_noise_ratio": 0.0054669010533105831
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.3841901203386478E-11,
+          "flexible_rms_m": 7.0799648068210777E-7,
+          "noise_rms_m": 9.5997218075601055E-9,
+          "flexible_to_rigid_noise_db": 37.35542223538986,
+          "rigid_to_noise_ratio": 0.002483603346152195
+        }
+      }
+    }
+  },
+  {
+    "case": "distinct_repeat3_N32",
+    "calibration": {
+      "static": {
+        "all": {
+          "rigid_rms_m": 2.6944179241257142E-8,
+          "flexible_rms_m": 7.3552960381886731E-7,
+          "noise_rms_m": 2.8967635480843903E-8,
+          "flexible_to_rigid_noise_db": 25.386546984605761,
+          "rigid_to_noise_ratio": 0.93014769048288881
+        },
+        "low": {
+          "rigid_rms_m": 2.4523637700047305E-8,
+          "flexible_rms_m": 5.5177187970949574E-8,
+          "noise_rms_m": 9.0547102549121129E-9,
+          "flexible_to_rigid_noise_db": 6.4884632345838344,
+          "rigid_to_noise_ratio": 2.708384587650766
+        },
+        "modal": {
+          "rigid_rms_m": 6.8572255684865931E-9,
+          "flexible_rms_m": 7.2918276317465638E-7,
+          "noise_rms_m": 2.566482358541656E-8,
+          "flexible_to_rigid_noise_db": 28.770497706851721,
+          "rigid_to_noise_ratio": 0.267183818570374
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.8862326789756293E-9,
+          "flexible_rms_m": 7.0699313429026955E-7,
+          "noise_rms_m": 9.6184157667797573E-9,
+          "flexible_to_rigid_noise_db": 36.951792051493385,
+          "rigid_to_noise_ratio": 0.30007360348719248
+        }
+      },
+      "joint": {
+        "all": {
+          "rigid_rms_m": 2.9688106397217841E-10,
+          "flexible_rms_m": 7.3565119921242581E-7,
+          "noise_rms_m": 2.8916651383968229E-8,
+          "flexible_to_rigid_noise_db": 28.11002120887327,
+          "rigid_to_noise_ratio": 0.010266785736358574
+        },
+        "low": {
+          "rigid_rms_m": 1.4227270641601461E-10,
+          "flexible_rms_m": 5.5177737540878975E-8,
+          "noise_rms_m": 9.0555492717341354E-9,
+          "flexible_to_rigid_noise_db": 15.695909947517709,
+          "rigid_to_noise_ratio": 0.015711107316273197
+        },
+        "modal": {
+          "rigid_rms_m": 2.5145394385785258E-10,
+          "flexible_rms_m": 7.2930477276139717E-7,
+          "noise_rms_m": 2.5606760366698826E-8,
+          "flexible_to_rigid_noise_db": 29.090669603000613,
+          "rigid_to_noise_ratio": 0.0098198264933530722
+        },
+        "first_resonance": {
+          "rigid_rms_m": 5.5440710261700443E-11,
+          "flexible_rms_m": 7.0713597862380677E-7,
+          "noise_rms_m": 9.5885701323035347E-9,
+          "flexible_to_rigid_noise_db": 37.35483651997874,
+          "rigid_to_noise_ratio": 0.005781958049711996
+        }
+      },
+      "oracle": {
+        "all": {
+          "rigid_rms_m": 1.4208048539756847E-10,
+          "flexible_rms_m": 7.3652152807354386E-7,
+          "noise_rms_m": 2.9016344796552027E-8,
+          "flexible_to_rigid_noise_db": 28.090750718623951,
+          "rigid_to_noise_ratio": 0.0048965673103819642
+        },
+        "low": {
+          "rigid_rms_m": 7.8000693138842584E-12,
+          "flexible_rms_m": 5.518137616730838E-8,
+          "noise_rms_m": 9.0572931606807509E-9,
+          "flexible_to_rigid_noise_db": 15.695878823118068,
+          "rigid_to_noise_ratio": 0.00086119209961599621
+        },
+        "modal": {
+          "rigid_rms_m": 1.4059431861246262E-10,
+          "flexible_rms_m": 7.3017917734012584E-7,
+          "noise_rms_m": 2.5717370269089311E-8,
+          "flexible_to_rigid_noise_db": 29.063927928543372,
+          "rigid_to_noise_ratio": 0.0054669010533105831
+        },
+        "first_resonance": {
+          "rigid_rms_m": 2.3841901203386478E-11,
+          "flexible_rms_m": 7.0799648068210777E-7,
+          "noise_rms_m": 9.5997218075601055E-9,
+          "flexible_to_rigid_noise_db": 37.35542223538986,
+          "rigid_to_noise_ratio": 0.002483603346152195
+        }
+      }
+    }
+  }
+]

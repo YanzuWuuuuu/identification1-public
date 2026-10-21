@@ -1,0 +1,282 @@
+{
+  "rigid": {
+    "relative_matrix_error": 6.9404726305398868E-5,
+    "error_over_true_gap": 0.00015230185576293808,
+    "sigma3_truth": 0.70064308423708788,
+    "sigma3_estimate": 0.70065788318940581,
+    "estimate_sigma4_over_sigma3": 1.6312632549145746E-17,
+    "output_null_angle_deg": 0.0031764719364174021,
+    "input_null_angle_deg": 0.0023968853876167283,
+    "nominal_output_null_angle_deg": 0.84723291257734656,
+    "nominal_input_null_angle_deg": 0.4864253691181486
+  },
+  "delay": {
+    "output_relative_error_us": [
+      0,
+      2.5937944377693163,
+      -13.839005135427474,
+      -4.4210667222979554
+    ],
+    "input_relative_error_us": [
+      0,
+      -20.544007422517577,
+      12.484388786397506,
+      -13.344478544360488
+    ],
+    "output_max_abs_error_us": 13.839005135427474,
+    "input_max_abs_error_us": 20.544007422517577
+  },
+  "compensation": {
+    "padding_output_us": 20.593794437769319,
+    "padding_input_us": 28.484388786397506,
+    "output_max_gain": 1.0098280303538933,
+    "input_max_gain": 1.0090194955380596
+  },
+  "relative": {
+    "output_max_error_per_channel": [
+      1.3689204296362826E-17,
+      0.00054072955059927005,
+      0.0084782706774169433,
+      0.0071235417688763356
+    ],
+    "input_max_error_per_channel": [
+      1.3689204296362826E-17,
+      0.0041128727991602268,
+      0.0079969924404078626,
+      0.0031574974969468253
+    ],
+    "output_max_error": 0.0084782706774169433,
+    "input_max_error": 0.0079969924404078626
+  },
+  "denominator": {
+    "max_relative_separability_residual": 0.0010542690244332721
+  },
+  "fit": {
+    "truth_relative_frf_l2_error": 6.1960097553663535E-5,
+    "note": "Truth FRF error; held-out noise-level residual is evaluated by the runner."
+  },
+  "baseline": {
+    "nominal": {
+      "rigid_energy": 2.3925155868884248E-13,
+      "target_flexible_energy": 5.3264471549078291E-12,
+      "rigid_l2": 4.8913347737488027E-7,
+      "target_flexible_l2": 2.3079096938372242E-6,
+      "leak_to_flex_energy_ratio": 0.04491766307460579,
+      "leak_to_flex_amplitude_ratio": 0.21193787550743681,
+      "leak_to_flex_db": -13.475828468051539,
+      "rigid_reduction_vs_nominal_db": 0,
+      "flex_energy_over_ideal": 1.3957557208457367
+    },
+    "static_only": {
+      "rigid_energy": 7.36059314821216E-18,
+      "target_flexible_energy": 4.2270785065653872E-12,
+      "rigid_l2": 2.71304130971354E-9,
+      "target_flexible_l2": 2.0559860180860634E-6,
+      "leak_to_flex_energy_ratio": 1.7412955867225746E-6,
+      "leak_to_flex_amplitude_ratio": 0.0013195815953257967,
+      "leak_to_flex_db": -57.5912750068835,
+      "rigid_reduction_vs_nominal_db": 45.11941962760514,
+      "flex_energy_over_ideal": 1.1076743721312274
+    },
+    "joint": {
+      "rigid_energy": 5.113338035125462E-24,
+      "target_flexible_energy": 3.8325806942901982E-12,
+      "rigid_l2": 2.2612691204554718E-12,
+      "target_flexible_l2": 1.9576978046394696E-6,
+      "leak_to_flex_energy_ratio": 1.3341762230194771E-12,
+      "leak_to_flex_amplitude_ratio": 1.1550654626554623E-6,
+      "leak_to_flex_db": -118.74786803380221,
+      "rigid_reduction_vs_nominal_db": 106.70150271589134,
+      "flex_energy_over_ideal": 1.0042991649188786
+    },
+    "oracle": {
+      "rigid_energy": 4.5512499617532043E-38,
+      "target_flexible_energy": 3.816174331479975E-12,
+      "rigid_l2": 2.1333658762043618E-19,
+      "target_flexible_l2": 1.9535030922627113E-6,
+      "leak_to_flex_energy_ratio": 1.192621082378109E-26,
+      "leak_to_flex_amplitude_ratio": 1.0920719217973279E-13,
+      "leak_to_flex_db": -259.2349751774766,
+      "rigid_reduction_vs_nominal_db": 247.2072408753063,
+      "flex_energy_over_ideal": 1.0000000000000002
+    }
+  },
+  "mode": [
+    {
+      "frequency_hz": 286.41567814194462,
+      "ideal_projected_residue_abs": 8.9083168617943881E-6,
+      "ideal_projection_fraction": 0.035151498226228914,
+      "nominal": {
+        "actual_residue_abs": 1.0983732593110832E-5,
+        "common_factor_removed_abs": 1.0987883205807526E-5,
+        "retention_amplitude_ratio": 1.2334409941042728,
+        "relative_complex_residue_error": 0.26997326163280122
+      },
+      "static_only": {
+        "actual_residue_abs": 8.9765468498647837E-6,
+        "common_factor_removed_abs": 8.9799389726255725E-6,
+        "retention_amplitude_ratio": 1.00803991505268,
+        "relative_complex_residue_error": 0.14521578874782892
+      },
+      "joint": {
+        "actual_residue_abs": 8.9481549956796767E-6,
+        "common_factor_removed_abs": 8.94363337740186E-6,
+        "retention_amplitude_ratio": 1.0039644431327914,
+        "relative_complex_residue_error": 0.0039694728238179669
+      },
+      "oracle": {
+        "actual_residue_abs": 8.9142518296958054E-6,
+        "common_factor_removed_abs": 8.9083168617944034E-6,
+        "retention_amplitude_ratio": 1.0000000000000018,
+        "relative_complex_residue_error": 1.7273949968049358E-15
+      }
+    },
+    {
+      "frequency_hz": 344.56277056925347,
+      "ideal_projected_residue_abs": 2.168398319163683E-6,
+      "ideal_projection_fraction": 0.013431168425045319,
+      "nominal": {
+        "actual_residue_abs": 2.580718323011026E-6,
+        "common_factor_removed_abs": 2.5825947069179869E-6,
+        "retention_amplitude_ratio": 1.1910148998427803,
+        "relative_complex_residue_error": 0.698117343996546
+      },
+      "static_only": {
+        "actual_residue_abs": 2.5258530364890897E-6,
+        "common_factor_removed_abs": 2.5276895290449639E-6,
+        "retention_amplitude_ratio": 1.1656942853653631,
+        "relative_complex_residue_error": 0.70127186793250984
+      },
+      "joint": {
+        "actual_residue_abs": 2.1650926455270926E-6,
+        "common_factor_removed_abs": 2.1643658200461507E-6,
+        "retention_amplitude_ratio": 0.99814033285218207,
+        "relative_complex_residue_error": 0.0024342939673033057
+      },
+      "oracle": {
+        "actual_residue_abs": 2.1695455335861291E-6,
+        "common_factor_removed_abs": 2.1683983191636893E-6,
+        "retention_amplitude_ratio": 1.0000000000000029,
+        "relative_complex_residue_error": 2.9514447371320666E-15
+      }
+    },
+    {
+      "frequency_hz": 488.24558588963197,
+      "ideal_projected_residue_abs": 9.46758937659361E-6,
+      "ideal_projection_fraction": 0.051339106695000934,
+      "nominal": {
+        "actual_residue_abs": 1.0023012003886709E-5,
+        "common_factor_removed_abs": 1.0042900061484792E-5,
+        "retention_amplitude_ratio": 1.0607663325907968,
+        "relative_complex_residue_error": 0.206628701302157
+      },
+      "static_only": {
+        "actual_residue_abs": 1.0111990649264684E-5,
+        "common_factor_removed_abs": 1.0132055261816867E-5,
+        "retention_amplitude_ratio": 1.0701832175850372,
+        "relative_complex_residue_error": 0.20976712866668085
+      },
+      "joint": {
+        "actual_residue_abs": 9.4672092686132865E-6,
+        "common_factor_removed_abs": 9.4717224965671425E-6,
+        "retention_amplitude_ratio": 1.000436554629603,
+        "relative_complex_residue_error": 0.00043696122039250886
+      },
+      "oracle": {
+        "actual_residue_abs": 9.4656686268517951E-6,
+        "common_factor_removed_abs": 9.46758937659361E-6,
+        "retention_amplitude_ratio": 1,
+        "relative_complex_residue_error": 4.2695520001555645E-16
+      }
+    },
+    {
+      "frequency_hz": 705.63471561786844,
+      "ideal_projected_residue_abs": 2.2110306803443972E-6,
+      "ideal_projection_fraction": 0.053340263766682341,
+      "nominal": {
+        "actual_residue_abs": 2.0634755407778816E-6,
+        "common_factor_removed_abs": 2.07369659382778E-6,
+        "retention_amplitude_ratio": 0.93788684718964377,
+        "relative_complex_residue_error": 0.15086375080094497
+      },
+      "static_only": {
+        "actual_residue_abs": 2.2495268776990768E-6,
+        "common_factor_removed_abs": 2.2606695024114911E-6,
+        "retention_amplitude_ratio": 1.0224505351772695,
+        "relative_complex_residue_error": 0.1313226108368212
+      },
+      "joint": {
+        "actual_residue_abs": 2.1686870863751204E-6,
+        "common_factor_removed_abs": 2.1746918826473044E-6,
+        "retention_amplitude_ratio": 0.98356477003230336,
+        "relative_complex_residue_error": 0.016595476627242273
+      },
+      "oracle": {
+        "actual_residue_abs": 2.2057979427506271E-6,
+        "common_factor_removed_abs": 2.2110306803443964E-6,
+        "retention_amplitude_ratio": 0.99999999999999967,
+        "relative_complex_residue_error": 4.046681158429116E-16
+      }
+    }
+  ],
+  "bound": {
+    "valid_gap_condition": true,
+    "oracle_errors_used": true,
+    "is_confidence_certificate": false,
+    "rigid_l2_upper": 9.6355836541628214E-11,
+    "max_absolute_excess": 0,
+    "max_actual_over_bound_with_roundoff_floor": 0.062802853253351554
+  },
+  "frequency_min_hz": 2.1,
+  "frequency_max_hz": 799.10000000000014,
+  "frequency_count": 645,
+  "baseline_order": [
+    "nominal",
+    "static_only",
+    "joint",
+    "oracle"
+  ],
+  "validation_relative_frf_error": 6.1955560838260882E-5,
+  "frequency_relative_error": [
+    -1.9509430530238834E-6,
+    4.3626320068566378E-7,
+    1.4335223009575793E-7,
+    5.7289146693953076E-7
+  ],
+  "damping_relative_error": [
+    6.4224273354542E-5,
+    0.00013622368721030731,
+    -3.0430463857089585E-5,
+    -0.00017042493909782963
+  ],
+  "scenario": "distinct",
+  "seed": 4,
+  "noise_level": 0.003,
+  "independent_records": 8,
+  "method": "expanded",
+  "extra_output_pole_seconds": 0,
+  "solver": {
+    "method": "expanded",
+    "cost": 6857.7180513143685,
+    "mean_whitened_residual": 1.1552759520408302,
+    "exitflag": 3,
+    "iterations": 194,
+    "elapsed_seconds": 14.2373682,
+    "first_order_optimality": 0.59184389452252617,
+    "active_bounds": 130,
+    "normalized_gradient": 1.9933208991254367E-5,
+    "jacobian_check": 6.4766422594329857E-9,
+    "chart_rcond": 0.45564650672874724,
+    "start_index": 1,
+    "initial_cost": 2.1733303298174972E+6
+  },
+  "initialization_seconds": 0.1150574,
+  "initial_frequency_hz": [
+    286.43175002530432,
+    344.57751664220871,
+    488.23759998794316,
+    705.69518761939344
+  ],
+  "candidate_costs": 6857.7180513143685,
+  "task_pass": true
+}

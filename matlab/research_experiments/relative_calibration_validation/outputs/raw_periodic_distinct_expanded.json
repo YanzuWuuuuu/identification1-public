@@ -1,0 +1,1142 @@
+{
+  "description": "Periodic sample-domain sensor-noise simulation, full 4x4 FRF, data-derived initialization, one expanded-model fit.",
+  "scope": "Exact periodic steady state. No transient, noncoherent leakage, input noise, aliasing, quantization, or digital filter startup is tested.",
+  "generation_model": "Four physical modal pairs plus a real constant D, with distinct first-order channel filters and pure delays.",
+  "sampling_Hz": 5000,
+  "samples_per_period": 2500,
+  "frequency_spacing_Hz": 2,
+  "frequency_lines": 391,
+  "frequency_intervals_Hz": [
+    [
+      2,
+      180
+    ],
+    [
+      200,
+      800
+    ]
+  ],
+  "input_channel_count": 4,
+  "periods_per_input": 8,
+  "training_duration_seconds": 16,
+  "independent_test_periods": 8,
+  "force_peak_per_frequency_line_N": 0.1,
+  "sensor_white_noise_sample_std_m": 2.5000000000000002E-8,
+  "designed_per_record_complex_frf_std_m_per_N": 1E-8,
+  "realized_mean_per_record_complex_frf_std_m_per_N": 1.0006975586624389E-8,
+  "estimated_mean_frf_std_m_per_N": 3.5380001482351672E-9,
+  "data_mean_truth_relative_error": 2.1931855370137128E-5,
+  "initialization_seconds": 0.1461914,
+  "initial_frequency_hz": [
+    286.43069129857878,
+    344.5802358064517,
+    488.26501946522933,
+    705.70983656222393
+  ],
+  "frequency_relative_error": [
+    1.7239338248055857E-6,
+    1.6386165354451779E-6,
+    -1.3280312994557952E-6,
+    4.310645312594666E-5
+  ],
+  "damping_relative_error": [
+    0.00022231804888781653,
+    -8.6211401395183684E-5,
+    0.00013202017614122319,
+    0.00035446316662239574
+  ],
+  "solver": {
+    "method": "expanded",
+    "cost": 7148.5805551253106,
+    "mean_whitened_residual": 1.1426759199369103,
+    "exitflag": 3,
+    "iterations": 71,
+    "elapsed_seconds": 5.4952283,
+    "first_order_optimality": 214.95018317957155,
+    "active_bounds": [
+      125,
+      126
+    ],
+    "normalized_gradient": 0.0005185948330296954,
+    "jacobian_check": 5.6332611082137173E-10,
+    "chart_rcond": 0.4557049978221212,
+    "start_index": 1,
+    "initial_cost": 1.5429438966392505E+6,
+    "iteration_budget": 200
+  },
+  "identification_metrics": {
+    "rigid": {
+      "relative_matrix_error": 7.1614055186449744E-7,
+      "error_over_true_gap": 1.5715001101815919E-6,
+      "sigma3_truth": 0.70064308423708788,
+      "sigma3_estimate": 0.70064334586794486,
+      "estimate_sigma4_over_sigma3": 6.9917162340768713E-17,
+      "output_null_angle_deg": 4.1397018143441221E-5,
+      "input_null_angle_deg": 3.8533482418693844E-5,
+      "nominal_output_null_angle_deg": 0.84723291257734656,
+      "nominal_input_null_angle_deg": 0.4864253691181486
+    },
+    "delay": {
+      "output_relative_error_us": [
+        0,
+        14.557419816646501,
+        -13.755556337620046,
+        -4.8928796953893858
+      ],
+      "input_relative_error_us": [
+        0,
+        -17.855630910877888,
+        -7.8583301407136306,
+        -9.0669403607728416
+      ],
+      "output_max_abs_error_us": 14.557419816646501,
+      "input_max_abs_error_us": 17.855630910877888
+    },
+    "compensation": {
+      "padding_output_us": 32.5574198166465,
+      "padding_input_us": 21.93305963922716,
+      "output_max_gain": 1.0155796858647523,
+      "input_max_gain": 1.0807259592505412
+    },
+    "relative": {
+      "output_max_error_per_channel": [
+        1.4040863549537481E-17,
+        0.014938457389379906,
+        0.0089628190698168072,
+        0.012759468963553481
+      ],
+      "input_max_error_per_channel": [
+        1.4040863549537481E-17,
+        0.064059753446531989,
+        0.0598878267439053,
+        0.069589440708687847
+      ],
+      "output_max_error": 0.014938457389379906,
+      "input_max_error": 0.069589440708687847
+    },
+    "denominator": {
+      "max_relative_separability_residual": 0.010492823090680295
+    },
+    "fit": {
+      "truth_relative_frf_l2_error": 3.4993540591898326E-6,
+      "note": "Truth FRF error; held-out noise-level residual is evaluated by the runner."
+    },
+    "baseline": {
+      "nominal": {
+        "rigid_energy": 4.8237888865797922E-13,
+        "target_flexible_energy": 5.3266423357390441E-12,
+        "rigid_l2": 6.945350161496389E-7,
+        "target_flexible_l2": 2.3079519786466625E-6,
+        "leak_to_flex_energy_ratio": 0.090559654328856237,
+        "leak_to_flex_amplitude_ratio": 0.30093131164579107,
+        "leak_to_flex_db": -10.430652438783834,
+        "rigid_reduction_vs_nominal_db": 0,
+        "flex_energy_over_ideal": 1.3957607997597135
+      },
+      "static_only": {
+        "rigid_energy": 7.3717589226278579E-18,
+        "target_flexible_energy": 4.2222203629006636E-12,
+        "rigid_l2": 2.7150983265119254E-9,
+        "target_flexible_l2": 2.0548042152235972E-6,
+        "leak_to_flex_energy_ratio": 1.7459436715812395E-6,
+        "leak_to_flex_amplitude_ratio": 0.0013213416180463096,
+        "leak_to_flex_db": -57.579697718080311,
+        "rigid_reduction_vs_nominal_db": 48.158171685019809,
+        "flex_energy_over_ideal": 1.1063648165268309
+      },
+      "joint": {
+        "rigid_energy": 1.012933279052712E-22,
+        "target_flexible_energy": 4.16974246664982E-12,
+        "rigid_l2": 1.0064458649389504E-11,
+        "target_flexible_l2": 2.041994727380514E-6,
+        "leak_to_flex_energy_ratio": 2.4292466193159245E-11,
+        "leak_to_flex_amplitude_ratio": 4.9287388035033105E-6,
+        "leak_to_flex_db": -106.14528392987734,
+        "rigid_reduction_vs_nominal_db": 96.778074528832263,
+        "flex_energy_over_ideal": 1.0926138293525398
+      },
+      "oracle": {
+        "rigid_energy": 1.3616308042930186E-38,
+        "target_flexible_energy": 3.8163002834411491E-12,
+        "rigid_l2": 1.1668893710600927E-19,
+        "target_flexible_l2": 1.9535353294581467E-6,
+        "leak_to_flex_energy_ratio": 3.5679341329640841E-27,
+        "leak_to_flex_amplitude_ratio": 5.9732186741857063E-14,
+        "leak_to_flex_db": -264.47583171659784,
+        "rigid_reduction_vs_nominal_db": 255.49328924689252,
+        "flex_energy_over_ideal": 0.99999999999999911
+      }
+    },
+    "mode": [
+      {
+        "frequency_hz": 286.41567814194462,
+        "ideal_projected_residue_abs": 8.9083168617943881E-6,
+        "ideal_projection_fraction": 0.035151498226228914,
+        "nominal": {
+          "actual_residue_abs": 1.0983732593110832E-5,
+          "common_factor_removed_abs": 1.0987883205807526E-5,
+          "retention_amplitude_ratio": 1.2334409941042728,
+          "relative_complex_residue_error": 0.26997326163280122
+        },
+        "static_only": {
+          "actual_residue_abs": 8.96733003764154E-6,
+          "common_factor_removed_abs": 8.9707186774863428E-6,
+          "retention_amplitude_ratio": 1.0070048940400382,
+          "relative_complex_residue_error": 0.14521486823094437
+        },
+        "joint": {
+          "actual_residue_abs": 9.3640881260314412E-6,
+          "common_factor_removed_abs": 9.3584447304376444E-6,
+          "retention_amplitude_ratio": 1.050528946783847,
+          "relative_complex_residue_error": 0.050551069595908424
+        },
+        "oracle": {
+          "actual_residue_abs": 8.9142518296958054E-6,
+          "common_factor_removed_abs": 8.9083168617944034E-6,
+          "retention_amplitude_ratio": 1.0000000000000018,
+          "relative_complex_residue_error": 1.7273949968049358E-15
+        }
+      },
+      {
+        "frequency_hz": 344.56277056925347,
+        "ideal_projected_residue_abs": 2.168398319163683E-6,
+        "ideal_projection_fraction": 0.013431168425045319,
+        "nominal": {
+          "actual_residue_abs": 2.580718323011026E-6,
+          "common_factor_removed_abs": 2.5825947069179869E-6,
+          "retention_amplitude_ratio": 1.1910148998427803,
+          "relative_complex_residue_error": 0.698117343996546
+        },
+        "static_only": {
+          "actual_residue_abs": 2.5269480420217424E-6,
+          "common_factor_removed_abs": 2.528785330732214E-6,
+          "retention_amplitude_ratio": 1.1661996361016949,
+          "relative_complex_residue_error": 0.70125584659092355
+        },
+        "joint": {
+          "actual_residue_abs": 2.12105570475072E-6,
+          "common_factor_removed_abs": 2.1200952163800987E-6,
+          "retention_amplitude_ratio": 0.97772406372173626,
+          "relative_complex_residue_error": 0.022475640954316048
+        },
+        "oracle": {
+          "actual_residue_abs": 2.1695455335861291E-6,
+          "common_factor_removed_abs": 2.1683983191636893E-6,
+          "retention_amplitude_ratio": 1.0000000000000029,
+          "relative_complex_residue_error": 2.9514447371320666E-15
+        }
+      },
+      {
+        "frequency_hz": 488.24558588963197,
+        "ideal_projected_residue_abs": 9.46758937659361E-6,
+        "ideal_projection_fraction": 0.051339106695000934,
+        "nominal": {
+          "actual_residue_abs": 1.0023012003886709E-5,
+          "common_factor_removed_abs": 1.0042900061484792E-5,
+          "retention_amplitude_ratio": 1.0607663325907968,
+          "relative_complex_residue_error": 0.206628701302157
+        },
+        "static_only": {
+          "actual_residue_abs": 1.011062149048579E-5,
+          "common_factor_removed_abs": 1.0130683386298867E-5,
+          "retention_amplitude_ratio": 1.0700383152806141,
+          "relative_complex_residue_error": 0.20975904571648102
+        },
+        "joint": {
+          "actual_residue_abs": 9.8792356478527627E-6,
+          "common_factor_removed_abs": 9.8823042708154452E-6,
+          "retention_amplitude_ratio": 1.0438036418485914,
+          "relative_complex_residue_error": 0.044105815725034879
+        },
+        "oracle": {
+          "actual_residue_abs": 9.4656686268517951E-6,
+          "common_factor_removed_abs": 9.46758937659361E-6,
+          "retention_amplitude_ratio": 1,
+          "relative_complex_residue_error": 4.2695520001555645E-16
+        }
+      },
+      {
+        "frequency_hz": 705.63471561786844,
+        "ideal_projected_residue_abs": 2.2110306803443972E-6,
+        "ideal_projection_fraction": 0.053340263766682341,
+        "nominal": {
+          "actual_residue_abs": 2.0634755407778816E-6,
+          "common_factor_removed_abs": 2.07369659382778E-6,
+          "retention_amplitude_ratio": 0.93788684718964377,
+          "relative_complex_residue_error": 0.15086375080094497
+        },
+        "static_only": {
+          "actual_residue_abs": 2.2498175542780085E-6,
+          "common_factor_removed_abs": 2.2609616188043073E-6,
+          "retention_amplitude_ratio": 1.0225826529246227,
+          "relative_complex_residue_error": 0.131328742776404
+        },
+        "joint": {
+          "actual_residue_abs": 2.2442945255640496E-6,
+          "common_factor_removed_abs": 2.2499686710432038E-6,
+          "retention_amplitude_ratio": 1.0176107871523254,
+          "relative_complex_residue_error": 0.018856375347197842
+        },
+        "oracle": {
+          "actual_residue_abs": 2.2057979427506271E-6,
+          "common_factor_removed_abs": 2.2110306803443964E-6,
+          "retention_amplitude_ratio": 0.99999999999999967,
+          "relative_complex_residue_error": 4.046681158429116E-16
+        }
+      }
+    ],
+    "bound": {
+      "valid_gap_condition": true,
+      "oracle_errors_used": true,
+      "is_confidence_certificate": false,
+      "rigid_l2_upper": 7.86196239814393E-10,
+      "max_absolute_excess": 0,
+      "max_actual_over_bound_with_roundoff_floor": 0.02933917050118039
+    },
+    "frequency_min_hz": 2,
+    "frequency_max_hz": 800,
+    "frequency_count": 391,
+    "baseline_order": [
+      "nominal",
+      "static_only",
+      "joint",
+      "oracle"
+    ]
+  },
+  "independent_test": {
+    "nominal": {
+      "all_excited": {
+        "frequency_line_count": 391,
+        "rigid_rms_m": 4.7346058483273925E-8,
+        "flexible_rms_m": 1.1532875004375827E-7,
+        "D_background_rms_m": 7.3173404209501907E-9,
+        "noise_rms_m": 1.4029605923282043E-8,
+        "noise_rms_per_period_m": [
+          1.367391442601258E-8,
+          1.395554799964388E-8,
+          1.4130148935273492E-8,
+          1.4655019641350392E-8,
+          1.3528100787259911E-8,
+          1.4387040762429686E-8,
+          1.4094750534046368E-8,
+          1.3777384662990049E-8
+        ],
+        "coherently_averaged_noise_rms_m": 4.9867195685728064E-9,
+        "rigid_to_flexible_rms_ratio": 0.41053127225700259,
+        "flexible_to_noise_db": 18.297842255062832,
+        "flexible_to_rigid_and_noise_db": 7.3675613318832243,
+        "flexible_to_averaged_noise_db": 27.282452780216524
+      },
+      "low_frequency": {
+        "frequency_line_count": 90,
+        "rigid_rms_m": 4.7345957680185326E-8,
+        "flexible_rms_m": 7.6532239411911289E-9,
+        "D_background_rms_m": 3.5373976803761006E-9,
+        "noise_rms_m": 6.7252881404157269E-9,
+        "noise_rms_per_period_m": [
+          6.3208965372311257E-9,
+          6.5549675740823273E-9,
+          6.7797395786403758E-9,
+          7.4459548755700575E-9,
+          6.7503923086904813E-9,
+          6.8412830273130711E-9,
+          6.6713364796254144E-9,
+          6.3741570950723843E-9
+        ],
+        "coherently_averaged_noise_rms_m": 2.5214937398693169E-9,
+        "rigid_to_flexible_rms_ratio": 6.1864069369981767,
+        "flexible_to_noise_db": 1.1226705058370865,
+        "flexible_to_rigid_and_noise_db": -15.915524842826347,
+        "flexible_to_averaged_noise_db": 9.6437305429483811
+      },
+      "flexible_band": {
+        "frequency_line_count": 301,
+        "rigid_rms_m": 9.7699783502887407E-11,
+        "flexible_rms_m": 1.1507453562783408E-7,
+        "D_background_rms_m": 6.405488934261091E-9,
+        "noise_rms_m": 1.2312609057018506E-8,
+        "noise_rms_per_period_m": [
+          1.2125271242142771E-8,
+          1.2320297077306759E-8,
+          1.2397428772887851E-8,
+          1.2622494075234906E-8,
+          1.1723553837852863E-8,
+          1.2656373431596097E-8,
+          1.2415927762057075E-8,
+          1.2214190496276525E-8
+        ],
+        "coherently_averaged_noise_rms_m": 4.3022600311216436E-9,
+        "rigid_to_flexible_rms_ratio": 0.000849013058969546,
+        "flexible_to_noise_db": 19.412582815953105,
+        "flexible_to_rigid_and_noise_db": 19.412309378713182,
+        "flexible_to_averaged_noise_db": 28.54565150316008
+      },
+      "max_output_compensation_gain": 1,
+      "max_input_compensation_gain": 1,
+      "command_virtual_rms_N": 1.3982131454109568,
+      "applied_input_rms_N": [
+        0.37067004570385853,
+        0.37995896755005309,
+        0.54906598989801825,
+        1.1712221987878808
+      ],
+      "sample_fft_decomposition_relative_error": 9.1511374933278629E-14,
+      "mode_window": [
+        {
+          "frequency_hz": 286.43,
+          "band_hz": [
+            276,
+            298
+          ],
+          "metrics": {
+            "frequency_line_count": 12,
+            "rigid_rms_m": 1.6518412579825155E-11,
+            "flexible_rms_m": 8.4949324439304135E-8,
+            "D_background_rms_m": 1.2882551124159756E-9,
+            "noise_rms_m": 2.4422314349912481E-9,
+            "noise_rms_per_period_m": [
+              2.1686774941916209E-9,
+              2.3451390238360755E-9,
+              2.1283983863942815E-9,
+              2.7268907831772173E-9,
+              2.0536028863804445E-9,
+              2.8028845979109404E-9,
+              2.4119079595852626E-9,
+              2.7670121100734938E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.0486243699048824E-9,
+            "rigid_to_flexible_rms_ratio": 0.00019445019355777783,
+            "flexible_to_noise_db": 30.827462251125954,
+            "flexible_to_rigid_and_noise_db": 30.827263578806395,
+            "flexible_to_averaged_noise_db": 38.170799660781
+          },
+          "single_mode_rms_m": 8.4265662823501564E-8,
+          "other_modes_rms_m": 1.377276595717668E-9,
+          "single_mode_to_noise_db": 30.757276486245829
+        },
+        {
+          "frequency_hz": 344.58,
+          "band_hz": [
+            332,
+            358
+          ],
+          "metrics": {
+            "frequency_line_count": 14,
+            "rigid_rms_m": 1.9780348725866936E-11,
+            "flexible_rms_m": 2.307478097885549E-8,
+            "D_background_rms_m": 1.3895863342583195E-9,
+            "noise_rms_m": 2.4887456029839531E-9,
+            "noise_rms_per_period_m": [
+              2.8236437138117663E-9,
+              2.0797389037126552E-9,
+              2.6157343799339563E-9,
+              2.3851873051354988E-9,
+              2.2713013770720178E-9,
+              2.1989078548253994E-9,
+              2.9801300478961196E-9,
+              2.4178904135604693E-9
+            ],
+            "coherently_averaged_noise_rms_m": 8.1127754276014911E-10,
+            "rigid_to_flexible_rms_ratio": 0.00085722801633491565,
+            "flexible_to_noise_db": 19.343141634805214,
+            "flexible_to_rigid_and_noise_db": 19.342867302172767,
+            "flexible_to_averaged_noise_db": 29.079362663722392
+          },
+          "single_mode_rms_m": 1.7928004000330814E-8,
+          "other_modes_rms_m": 1.0332749797791688E-8,
+          "single_mode_to_noise_db": 17.15102869380868
+        },
+        {
+          "frequency_hz": 488.27,
+          "band_hz": [
+            470,
+            506
+          ],
+          "metrics": {
+            "frequency_line_count": 19,
+            "rigid_rms_m": 2.5626920660072098E-11,
+            "flexible_rms_m": 5.9602779264825705E-8,
+            "D_background_rms_m": 1.6117140508163678E-9,
+            "noise_rms_m": 2.99215758783055E-9,
+            "noise_rms_per_period_m": [
+              3.4428184707502668E-9,
+              2.6859572083754763E-9,
+              3.1033157358902959E-9,
+              2.8479868786400877E-9,
+              3.2291395271258845E-9,
+              2.7860912664946839E-9,
+              2.8137170634152855E-9,
+              2.9510071050681323E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.1233132920383049E-9,
+            "rigid_to_flexible_rms_ratio": 0.00042996184030625738,
+            "flexible_to_noise_db": 25.985640970162191,
+            "flexible_to_rigid_and_noise_db": 25.985322409382,
+            "flexible_to_averaged_noise_db": 34.495312267992226
+          },
+          "single_mode_rms_m": 5.8657916955879071E-8,
+          "other_modes_rms_m": 2.2223964073755474E-9,
+          "single_mode_to_noise_db": 25.846843472139483
+        },
+        {
+          "frequency_hz": 705.67,
+          "band_hz": [
+            678,
+            732
+          ],
+          "metrics": {
+            "frequency_line_count": 28,
+            "rigid_rms_m": 3.2454048646418067E-11,
+            "flexible_rms_m": 9.6975097875341841E-9,
+            "D_background_rms_m": 1.9380719198409162E-9,
+            "noise_rms_m": 3.9433961292292333E-9,
+            "noise_rms_per_period_m": [
+              4.0475894031195991E-9,
+              4.089926028250822E-9,
+              3.72610583357919E-9,
+              3.3712589759242133E-9,
+              4.1022415302955621E-9,
+              4.31558846054771E-9,
+              4.036249748214878E-9,
+              3.7814357371122713E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.3769602528993742E-9,
+            "rigid_to_flexible_rms_ratio": 0.003346637369537552,
+            "flexible_to_noise_db": 7.8157964158295705,
+            "flexible_to_rigid_and_noise_db": 7.8155022673839358,
+            "flexible_to_averaged_noise_db": 16.954776448626117
+          },
+          "single_mode_rms_m": 1.0054852558230824E-8,
+          "other_modes_rms_m": 1.7760609364185619E-9,
+          "single_mode_to_noise_db": 8.13010601580003
+        }
+      ]
+    },
+    "static_only": {
+      "all_excited": {
+        "frequency_line_count": 391,
+        "rigid_rms_m": 1.3435666612105082E-10,
+        "flexible_rms_m": 1.0269247055983018E-7,
+        "D_background_rms_m": 7.3082353095453116E-9,
+        "noise_rms_m": 1.402961976305008E-8,
+        "noise_rms_per_period_m": [
+          1.3692423078566694E-8,
+          1.395652387070852E-8,
+          1.4131818081838876E-8,
+          1.4653014528594373E-8,
+          1.3528884537412417E-8,
+          1.4392065705626345E-8,
+          1.4080097256985247E-8,
+          1.3767509190436312E-8
+        ],
+        "coherently_averaged_noise_rms_m": 4.9899530243261926E-9,
+        "rigid_to_flexible_rms_ratio": 0.0013083399921007121,
+        "flexible_to_noise_db": 17.289854028534844,
+        "flexible_to_rigid_and_noise_db": 17.289455746210212,
+        "flexible_to_averaged_noise_db": 26.268842900033675
+      },
+      "low_frequency": {
+        "frequency_line_count": 90,
+        "rigid_rms_m": 6.51545406146874E-11,
+        "flexible_rms_m": 5.8409044593910371E-9,
+        "D_background_rms_m": 3.5330416992572246E-9,
+        "noise_rms_m": 6.7261021996190466E-9,
+        "noise_rms_per_period_m": [
+          6.3237314695047812E-9,
+          6.5560580721049663E-9,
+          6.7796284150571943E-9,
+          7.4409154728535616E-9,
+          6.7621286096705264E-9,
+          6.8502852182340725E-9,
+          6.6627439436460122E-9,
+          6.3699762142937893E-9
+        ],
+        "coherently_averaged_noise_rms_m": 2.5257620090290151E-9,
+        "rigid_to_flexible_rms_ratio": 0.011154871829812519,
+        "flexible_to_noise_db": -1.225667188674219,
+        "flexible_to_rigid_and_noise_db": -1.2260746875233077,
+        "flexible_to_averaged_noise_db": 7.2817535180738657
+      },
+      "flexible_band": {
+        "frequency_line_count": 301,
+        "rigid_rms_m": 1.1750148751591435E-10,
+        "flexible_rms_m": 1.0252622759459089E-7,
+        "D_background_rms_m": 6.3974932349315132E-9,
+        "noise_rms_m": 1.2312180143908113E-8,
+        "noise_rms_per_period_m": [
+          1.2144664263126445E-8,
+          1.2320822257822078E-8,
+          1.2399391954928167E-8,
+          1.262313794985408E-8,
+          1.1717693181377991E-8,
+          1.2657217218010822E-8,
+          1.2403909944351086E-8,
+          1.220523298991378E-8
+        ],
+        "coherently_averaged_noise_rms_m": 4.3035052525502784E-9,
+        "rigid_to_flexible_rms_ratio": 0.0011460627224141966,
+        "flexible_to_noise_db": 18.410000336288114,
+        "flexible_to_rigid_and_noise_db": 18.409604804546639,
+        "flexible_to_averaged_noise_db": 27.540252812627124
+      },
+      "max_output_compensation_gain": 1,
+      "max_input_compensation_gain": 1,
+      "command_virtual_rms_N": 1.3982131454109568,
+      "applied_input_rms_N": [
+        0.38058190223706084,
+        0.37385983629075126,
+        0.546728077076947,
+        1.17109976015454
+      ],
+      "sample_fft_decomposition_relative_error": 4.413590158335455E-14,
+      "mode_window": [
+        {
+          "frequency_hz": 286.43,
+          "band_hz": [
+            276,
+            298
+          ],
+          "metrics": {
+            "frequency_line_count": 12,
+            "rigid_rms_m": 2.370207705582417E-11,
+            "flexible_rms_m": 6.94766616977098E-8,
+            "D_background_rms_m": 1.2866629424284332E-9,
+            "noise_rms_m": 2.4392481386937216E-9,
+            "noise_rms_per_period_m": [
+              2.1780764964720554E-9,
+              2.3367547479060978E-9,
+              2.1331938134600042E-9,
+              2.7398370701505823E-9,
+              2.0377224624554841E-9,
+              2.7962185021350276E-9,
+              2.3995143233108081E-9,
+              2.758435993532136E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.0436041866315037E-9,
+            "rigid_to_flexible_rms_ratio": 0.00034115163965348495,
+            "flexible_to_noise_db": 29.091659209605538,
+            "flexible_to_rigid_and_noise_db": 29.091249171086716,
+            "flexible_to_averaged_noise_db": 36.466062601089291
+          },
+          "single_mode_rms_m": 6.8781016220128025E-8,
+          "other_modes_rms_m": 1.3958232878033169E-9,
+          "single_mode_to_noise_db": 29.004252116900172
+        },
+        {
+          "frequency_hz": 344.58,
+          "band_hz": [
+            332,
+            358
+          ],
+          "metrics": {
+            "frequency_line_count": 14,
+            "rigid_rms_m": 2.5552065676169827E-11,
+            "flexible_rms_m": 2.1901361160140054E-8,
+            "D_background_rms_m": 1.3878657140275401E-9,
+            "noise_rms_m": 2.4871760690462014E-9,
+            "noise_rms_per_period_m": [
+              2.8251811030902495E-9,
+              2.0751163151351394E-9,
+              2.6138090295322109E-9,
+              2.3916269195316481E-9,
+              2.2772197897090279E-9,
+              2.1952503520396714E-9,
+              2.9718761183499496E-9,
+              2.4107724268803526E-9
+            ],
+            "coherently_averaged_noise_rms_m": 8.1152660741475865E-10,
+            "rigid_to_flexible_rms_ratio": 0.0011666884760876857,
+            "flexible_to_noise_db": 18.895291530109009,
+            "flexible_to_rigid_and_noise_db": 18.894833176808703,
+            "flexible_to_averaged_noise_db": 28.623366866848762
+          },
+          "single_mode_rms_m": 1.755311389036821E-8,
+          "other_modes_rms_m": 8.9752391876726575E-9,
+          "single_mode_to_noise_db": 16.972952805935492
+        },
+        {
+          "frequency_hz": 488.27,
+          "band_hz": [
+            470,
+            506
+          ],
+          "metrics": {
+            "frequency_line_count": 19,
+            "rigid_rms_m": 2.9582632906987034E-11,
+            "flexible_rms_m": 6.0032354284407053E-8,
+            "D_background_rms_m": 1.6097062666986092E-9,
+            "noise_rms_m": 2.9969932721798363E-9,
+            "noise_rms_per_period_m": [
+              3.4473785671768807E-9,
+              2.6853204135745373E-9,
+              3.1130683364113463E-9,
+              2.8532553830724832E-9,
+              3.2277163638657624E-9,
+              2.7970060149971385E-9,
+              2.8115069328882766E-9,
+              2.9634704526220828E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.1240858576990771E-9,
+            "rigid_to_flexible_rms_ratio": 0.00049277815703907676,
+            "flexible_to_noise_db": 26.033992147331805,
+            "flexible_to_rigid_and_noise_db": 26.033569025662171,
+            "flexible_to_averaged_noise_db": 34.551717829276441
+          },
+          "single_mode_rms_m": 5.9170521625260369E-8,
+          "other_modes_rms_m": 1.8398581427154057E-9,
+          "single_mode_to_noise_db": 25.908392597084781
+        },
+        {
+          "frequency_hz": 705.67,
+          "band_hz": [
+            678,
+            732
+          ],
+          "metrics": {
+            "frequency_line_count": 28,
+            "rigid_rms_m": 3.54328054725702E-11,
+            "flexible_rms_m": 1.0629361418248416E-8,
+            "D_background_rms_m": 1.9356258565331235E-9,
+            "noise_rms_m": 3.9457492255752422E-9,
+            "noise_rms_per_period_m": [
+              4.0587161529559852E-9,
+              4.100368368324271E-9,
+              3.7244270039556856E-9,
+              3.3820628325029408E-9,
+              4.1042673791055707E-9,
+              4.311043447913261E-9,
+              4.0432779453848395E-9,
+              3.7652874603922852E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.3756097825034224E-9,
+            "rigid_to_flexible_rms_ratio": 0.0033334839298755424,
+            "flexible_to_noise_db": 8.6075538836221011,
+            "flexible_to_rigid_and_noise_db": 8.6072036813809571,
+            "flexible_to_averaged_noise_db": 17.760238370631974
+          },
+          "single_mode_rms_m": 1.0961503809436531E-8,
+          "other_modes_rms_m": 1.9170117545595456E-9,
+          "single_mode_to_noise_db": 8.874813183476407
+        }
+      ]
+    },
+    "joint": {
+      "all_excited": {
+        "frequency_line_count": 391,
+        "rigid_rms_m": 5.0467512044319442E-13,
+        "flexible_rms_m": 1.0205123617523141E-7,
+        "D_background_rms_m": 7.5033817100603446E-9,
+        "noise_rms_m": 1.403453214686399E-8,
+        "noise_rms_per_period_m": [
+          1.3695597391342299E-8,
+          1.3981825512922262E-8,
+          1.4118344157067491E-8,
+          1.465933590067182E-8,
+          1.351943419853359E-8,
+          1.4392858403805133E-8,
+          1.4101104810996409E-8,
+          1.3772781357228724E-8
+        ],
+        "coherently_averaged_noise_rms_m": 4.9892848666040269E-9,
+        "rigid_to_flexible_rms_ratio": 4.9453111922781663E-6,
+        "flexible_to_noise_db": 17.232406603621911,
+        "flexible_to_rigid_and_noise_db": 17.2324065980061,
+        "flexible_to_averaged_noise_db": 26.215599376592188
+      },
+      "low_frequency": {
+        "frequency_line_count": 90,
+        "rigid_rms_m": 1.25730652790677E-14,
+        "flexible_rms_m": 5.8370573100206277E-9,
+        "D_background_rms_m": 3.5377051886843308E-9,
+        "noise_rms_m": 6.7253540979614384E-9,
+        "noise_rms_per_period_m": [
+          6.323208260395833E-9,
+          6.5567570084183162E-9,
+          6.77441997557463E-9,
+          7.4413264126356794E-9,
+          6.7580835057841764E-9,
+          6.8508425627104166E-9,
+          6.667729457474071E-9,
+          6.3669945326531143E-9
+        ],
+        "coherently_averaged_noise_rms_m": 2.5259721505819947E-9,
+        "rigid_to_flexible_rms_ratio": 2.1540075094831074E-6,
+        "flexible_to_noise_db": -1.230423960685372,
+        "flexible_to_rigid_and_noise_db": -1.2304239607005514,
+        "flexible_to_averaged_noise_db": 7.2753079863493486
+      },
+      "flexible_band": {
+        "frequency_line_count": 301,
+        "rigid_rms_m": 5.0451847857520646E-13,
+        "flexible_rms_m": 1.018841674003002E-7,
+        "D_background_rms_m": 6.6170521446354093E-9,
+        "noise_rms_m": 1.2318185939430859E-8,
+        "noise_rms_per_period_m": [
+          1.2148515349679719E-8,
+          1.2349104510302002E-8,
+          1.2386883212977236E-8,
+          1.2630233183490169E-8,
+          1.1709116464418976E-8,
+          1.2657816921291744E-8,
+          1.2425077093227174E-8,
+          1.2212734621500318E-8
+        ],
+        "coherently_averaged_noise_rms_m": 4.3026071369122377E-9,
+        "rigid_to_flexible_rms_ratio": 4.9518830201847428E-6,
+        "flexible_to_noise_db": 18.3511989077371,
+        "flexible_to_rigid_and_noise_db": 18.351198900451841,
+        "flexible_to_averaged_noise_db": 27.48750014942372
+      },
+      "max_output_compensation_gain": 1.0155796858647521,
+      "max_input_compensation_gain": 1.0807259592505412,
+      "command_virtual_rms_N": 1.3982131454109568,
+      "applied_input_rms_N": [
+        0.38058190223706084,
+        0.38162929993139633,
+        0.55832902414465946,
+        1.2034749262227036
+      ],
+      "sample_fft_decomposition_relative_error": 1.8647483462178041E-13,
+      "mode_window": [
+        {
+          "frequency_hz": 286.43,
+          "band_hz": [
+            276,
+            298
+          ],
+          "metrics": {
+            "frequency_line_count": 12,
+            "rigid_rms_m": 2.553106401231528E-14,
+            "flexible_rms_m": 7.18260518098521E-8,
+            "D_background_rms_m": 1.2994549684701689E-9,
+            "noise_rms_m": 2.4383851960420351E-9,
+            "noise_rms_per_period_m": [
+              2.1772322827726719E-9,
+              2.3364284221741615E-9,
+              2.1236969806855613E-9,
+              2.7381764179228828E-9,
+              2.03910524879794E-9,
+              2.7907463563332163E-9,
+              2.4050475051701606E-9,
+              2.7619509091392777E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.0408978641769814E-9,
+            "rigid_to_flexible_rms_ratio": 3.5545687628640172E-7,
+            "flexible_to_noise_db": 29.383593629609951,
+            "flexible_to_rigid_and_noise_db": 29.383593629133831,
+            "flexible_to_averaged_noise_db": 36.777477540940311
+          },
+          "single_mode_rms_m": 7.1852891828101182E-8,
+          "other_modes_rms_m": 4.7485368192924381E-10,
+          "single_mode_to_noise_db": 29.386838773723689
+        },
+        {
+          "frequency_hz": 344.58,
+          "band_hz": [
+            332,
+            358
+          ],
+          "metrics": {
+            "frequency_line_count": 14,
+            "rigid_rms_m": 3.9761374125035013E-14,
+            "flexible_rms_m": 1.7289746705999215E-8,
+            "D_background_rms_m": 1.4078432978131752E-9,
+            "noise_rms_m": 2.4819634329308487E-9,
+            "noise_rms_per_period_m": [
+              2.8195458110489126E-9,
+              2.080511002601171E-9,
+              2.6023688850760633E-9,
+              2.3731227650324321E-9,
+              2.2830802866708708E-9,
+              2.1945336426609883E-9,
+              2.9677348784214382E-9,
+              2.4005949183518442E-9
+            ],
+            "coherently_averaged_noise_rms_m": 8.081545329159266E-10,
+            "rigid_to_flexible_rms_ratio": 2.2997083069608285E-6,
+            "flexible_to_noise_db": 16.859865044595065,
+            "flexible_to_rigid_and_noise_db": 16.859865043480475,
+            "flexible_to_averaged_noise_db": 26.605884354128353
+          },
+          "single_mode_rms_m": 1.4797083945636848E-8,
+          "other_modes_rms_m": 9.3616785788277066E-9,
+          "single_mode_to_noise_db": 15.507615178433392
+        },
+        {
+          "frequency_hz": 488.27,
+          "band_hz": [
+            470,
+            506
+          ],
+          "metrics": {
+            "frequency_line_count": 19,
+            "rigid_rms_m": 9.2179281483126718E-14,
+            "flexible_rms_m": 5.7741378684917732E-8,
+            "D_background_rms_m": 1.6563645916812078E-9,
+            "noise_rms_m": 2.9935782060897382E-9,
+            "noise_rms_per_period_m": [
+              3.457864166192788E-9,
+              2.701332934550528E-9,
+              3.0963104419852272E-9,
+              2.8461041759737012E-9,
+              3.2225373486825142E-9,
+              2.7800073598039479E-9,
+              2.81653757511052E-9,
+              2.9503458208839056E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.1167330126182962E-9,
+            "rigid_to_flexible_rms_ratio": 1.5964163582953086E-6,
+            "flexible_to_noise_db": 25.705930817302534,
+            "flexible_to_rigid_and_noise_db": 25.70593081318469,
+            "flexible_to_averaged_noise_db": 34.270755888520966
+          },
+          "single_mode_rms_m": 5.7623592097759351E-8,
+          "other_modes_rms_m": 1.8460028416862177E-9,
+          "single_mode_to_noise_db": 25.688194382309213
+        },
+        {
+          "frequency_hz": 705.67,
+          "band_hz": [
+            678,
+            732
+          ],
+          "metrics": {
+            "frequency_line_count": 28,
+            "rigid_rms_m": 2.3116549074597974E-13,
+            "flexible_rms_m": 1.1014483808535264E-8,
+            "D_background_rms_m": 2.054388606421633E-9,
+            "noise_rms_m": 3.95671955514287E-9,
+            "noise_rms_per_period_m": [
+              4.07991670976868E-9,
+              4.1060925158300294E-9,
+              3.7418236508941555E-9,
+              3.3793654354491844E-9,
+              4.1067748568714764E-9,
+              4.33300510274608E-9,
+              4.0517177785093446E-9,
+              3.7763760557380048E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.3700216195385941E-9,
+            "rigid_to_flexible_rms_ratio": 2.09874102830717E-5,
+            "flexible_to_noise_db": 8.892577589305608,
+            "flexible_to_rigid_and_noise_db": 8.8925775744818019,
+            "flexible_to_averaged_noise_db": 18.104734565548828
+          },
+          "single_mode_rms_m": 1.0893377236867461E-8,
+          "other_modes_rms_m": 1.1658359329912092E-9,
+          "single_mode_to_noise_db": 8.7965454820115809
+        }
+      ]
+    },
+    "oracle": {
+      "all_excited": {
+        "frequency_line_count": 391,
+        "rigid_rms_m": 1.7172575251695846E-20,
+        "flexible_rms_m": 9.7628361472551E-8,
+        "D_background_rms_m": 7.3453149550799561E-9,
+        "noise_rms_m": 1.4039049656709835E-8,
+        "noise_rms_per_period_m": [
+          1.3700690410990711E-8,
+          1.3986178380106188E-8,
+          1.4123087770062815E-8,
+          1.4666452550347967E-8,
+          1.3524103601758138E-8,
+          1.439667177944809E-8,
+          1.4101138512859773E-8,
+          1.3779083286015295E-8
+        ],
+        "coherently_averaged_noise_rms_m": 4.9904644415131024E-9,
+        "rigid_to_flexible_rms_ratio": 1.7589740309760348E-13,
+        "flexible_to_noise_db": 16.844765806283458,
+        "flexible_to_rigid_and_noise_db": 16.844765806283458,
+        "flexible_to_averaged_noise_db": 25.828700700168071
+      },
+      "low_frequency": {
+        "frequency_line_count": 90,
+        "rigid_rms_m": 1.7172570941360467E-20,
+        "flexible_rms_m": 5.7801723359792678E-9,
+        "D_background_rms_m": 3.5339554505955244E-9,
+        "noise_rms_m": 6.7255305303277427E-9,
+        "noise_rms_per_period_m": [
+          6.3232566470717191E-9,
+          6.5568588166548474E-9,
+          6.7745755798031775E-9,
+          7.44148855770478E-9,
+          6.7584235655316728E-9,
+          6.8510263283897449E-9,
+          6.6678895667403845E-9,
+          6.3672511172481781E-9
+        ],
+        "coherently_averaged_noise_rms_m": 2.5260542393046098E-9,
+        "rigid_to_flexible_rms_ratio": 2.9709444534150067E-12,
+        "flexible_to_noise_db": -1.3157152276551889,
+        "flexible_to_rigid_and_noise_db": -1.3157152276551889,
+        "flexible_to_averaged_noise_db": 7.1899623129258785
+      },
+      "flexible_band": {
+        "frequency_line_count": 301,
+        "rigid_rms_m": 1.2167131904093185E-23,
+        "flexible_rms_m": 9.7457101186016515E-8,
+        "D_background_rms_m": 6.4393175618637909E-9,
+        "noise_rms_m": 1.2323236358570503E-8,
+        "noise_rms_per_period_m": [
+          1.215423149002339E-8,
+          1.2353978635994373E-8,
+          1.2392204560708006E-8,
+          1.2638396989221277E-8,
+          1.1714311296015386E-8,
+          1.2662053410599229E-8,
+          1.2425029419869068E-8,
+          1.2219707419281688E-8
+        ],
+        "coherently_averaged_noise_rms_m": 4.3039267328914753E-9,
+        "rigid_to_flexible_rms_ratio": 1.2484602718553842E-16,
+        "flexible_to_noise_db": 17.961774221387635,
+        "flexible_to_rigid_and_noise_db": 17.961774221387635,
+        "flexible_to_averaged_noise_db": 27.09897239541953
+      },
+      "max_output_compensation_gain": 1.006991813188171,
+      "max_input_compensation_gain": 1.0116707560602805,
+      "command_virtual_rms_N": 1.3982131454109568,
+      "applied_input_rms_N": [
+        0.38058148256792529,
+        0.37359105377737967,
+        0.54729094506889986,
+        1.1757912862705562
+      ],
+      "sample_fft_decomposition_relative_error": 3.40092012559671E-13,
+      "mode_window": [
+        {
+          "frequency_hz": 286.43,
+          "band_hz": [
+            276,
+            298
+          ],
+          "metrics": {
+            "frequency_line_count": 12,
+            "rigid_rms_m": 4.7157973193142724E-24,
+            "flexible_rms_m": 6.8374241756050824E-8,
+            "D_background_rms_m": 1.2891657655566215E-9,
+            "noise_rms_m": 2.4387896586706551E-9,
+            "noise_rms_per_period_m": [
+              2.1778450781793117E-9,
+              2.3368739558961695E-9,
+              2.124841278378538E-9,
+              2.7393023116797011E-9,
+              2.0390179618250163E-9,
+              2.7908839290722397E-9,
+              2.4050972365434782E-9,
+              2.7618333112468741E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.0408180751853264E-9,
+            "rigid_to_flexible_rms_ratio": 6.8970378291572721E-17,
+            "flexible_to_noise_db": 28.954363568363945,
+            "flexible_to_rigid_and_noise_db": 28.954363568363945,
+            "flexible_to_averaged_noise_db": 36.3503539498346
+          },
+          "single_mode_rms_m": 6.840054007729585E-8,
+          "other_modes_rms_m": 4.2167244392788866E-10,
+          "single_mode_to_noise_db": 28.957703720923558
+        },
+        {
+          "frequency_hz": 344.58,
+          "band_hz": [
+            332,
+            358
+          ],
+          "metrics": {
+            "frequency_line_count": 14,
+            "rigid_rms_m": 2.9859643063663795E-24,
+            "flexible_rms_m": 1.7354889320721336E-8,
+            "D_background_rms_m": 1.3917648127244592E-9,
+            "noise_rms_m": 2.4829352590827726E-9,
+            "noise_rms_per_period_m": [
+              2.8214529735709658E-9,
+              2.0804112940215789E-9,
+              2.6021914345760372E-9,
+              2.373429932953321E-9,
+              2.2851674991293303E-9,
+              2.1960935573304435E-9,
+              2.9686901002695592E-9,
+              2.4017751227213243E-9
+            ],
+            "coherently_averaged_noise_rms_m": 8.0816820634051471E-10,
+            "rigid_to_flexible_rms_ratio": 1.7205320363531259E-16,
+            "flexible_to_noise_db": 16.88912905169132,
+            "flexible_to_rigid_and_noise_db": 16.88912905169132,
+            "flexible_to_averaged_noise_db": 26.638401744336736
+          },
+          "single_mode_rms_m": 1.5133543836655819E-8,
+          "other_modes_rms_m": 8.859762708516559E-9,
+          "single_mode_to_noise_db": 15.699504866724411
+        },
+        {
+          "frequency_hz": 488.27,
+          "band_hz": [
+            470,
+            506
+          ],
+          "metrics": {
+            "frequency_line_count": 19,
+            "rigid_rms_m": 1.8065734139647562E-24,
+            "flexible_rms_m": 5.5320936799952119E-8,
+            "D_background_rms_m": 1.6187377283133564E-9,
+            "noise_rms_m": 2.9940194012168222E-9,
+            "noise_rms_per_period_m": [
+              3.45584096251922E-9,
+              2.7009092477756097E-9,
+              3.1015926800940614E-9,
+              2.84913868991293E-9,
+              3.2207483264514319E-9,
+              2.7826867407523844E-9,
+              2.8157823855137587E-9,
+              2.9483564449225111E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.1173854799792189E-9,
+            "rigid_to_flexible_rms_ratio": 3.2656233217770089E-17,
+            "flexible_to_noise_db": 25.332698311289587,
+            "flexible_to_rigid_and_noise_db": 25.332698311289587,
+            "flexible_to_averaged_noise_db": 33.89373004487642
+          },
+          "single_mode_rms_m": 5.5213872018772149E-8,
+          "other_modes_rms_m": 1.6440880582284479E-9,
+          "single_mode_to_noise_db": 25.315871880335969
+        },
+        {
+          "frequency_hz": 705.67,
+          "band_hz": [
+            678,
+            732
+          ],
+          "metrics": {
+            "frequency_line_count": 28,
+            "rigid_rms_m": 8.7271071780642611E-25,
+            "flexible_rms_m": 1.0831640622274111E-8,
+            "D_background_rms_m": 1.9581981536747589E-9,
+            "noise_rms_m": 3.9577822005260164E-9,
+            "noise_rms_per_period_m": [
+              4.0790675317845156E-9,
+              4.1138137256704053E-9,
+              3.7351374796206537E-9,
+              3.3857023543652587E-9,
+              4.1077486500967218E-9,
+              4.329114666588493E-9,
+              4.0551200425761433E-9,
+              3.7784918318641954E-9
+            ],
+            "coherently_averaged_noise_rms_m": 1.3706459086237292E-9,
+            "rigid_to_flexible_rms_ratio": 8.0570501574045008E-17,
+            "flexible_to_noise_db": 8.7448470266183591,
+            "flexible_to_rigid_and_noise_db": 8.7448470266183591,
+            "flexible_to_averaged_noise_db": 17.955379365686429
+          },
+          "single_mode_rms_m": 1.0706766282811456E-8,
+          "other_modes_rms_m": 1.1727913085089301E-9,
+          "single_mode_to_noise_db": 8.64412863186613
+        }
+      ]
+    }
+  },
+  "noise_metric_note": "Noise RMS is measured from fresh time-domain white noise after the output compensator and projection, restricted to excited frequency lines; it is not inferred from training fit residuals.",
+  "statistical_certificate": false
+}

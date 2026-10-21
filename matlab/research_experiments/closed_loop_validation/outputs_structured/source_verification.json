@@ -1,0 +1,17 @@
+{
+  "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\论文大纲_相对通道动态辨识与刚柔解耦自校准.tex",
+  "sha256": "63ed0f5d033aced32ba08b6006ead5b661bc56960fd3708ba452e54f33c695f6",
+  "labels": 99,
+  "duplicate_labels": [],
+  "missing_refs": [],
+  "unclosed_environments": [],
+  "environment_errors": [],
+  "brace_balance": 0,
+  "negative_brace_positions": [],
+  "max_curve_vs_band_relative_error": 2.220446049250313e-16,
+  "noisy_cases": 5,
+  "start_files": 56,
+  "latex_compile_success": false,
+  "latex_compile_error": "windows sandbox: helper_unknown_error: setup refresh had errors",
+  "scope": "Static source and saved-numeric integrity checks; not a successful TeX compilation."
+}

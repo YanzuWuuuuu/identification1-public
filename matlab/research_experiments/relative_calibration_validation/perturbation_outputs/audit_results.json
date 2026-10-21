@@ -1,0 +1,891 @@
+{
+  "matlab_frf_relative_error": 3.803488269938811e-16,
+  "geometry_relative_norm_max_error": 6.938893903907228e-17,
+  "static_analytic_integral_max_relative_error": 3.6479825631839474e-05,
+  "flex_quadrature": [
+    {
+      "band_low": 2,
+      "relative_error": 7.227021247979463e-08,
+      "old_nm": 0.06941928818114386,
+      "fine_nm": 0.06941928316419751
+    },
+    {
+      "band_low": 20,
+      "relative_error": 7.227925116568211e-08,
+      "old_nm": 0.07020963678970424,
+      "fine_nm": 0.07020963171500463
+    }
+  ],
+  "saved_input_data": {
+    "hz": [
+      2,
+      20,
+      100,
+      286.43,
+      344.58,
+      488.27,
+      705.67,
+      738.83,
+      800
+    ],
+    "saved_input_channel_rms": [
+      1.0050902981588923,
+      1.010101832356826,
+      1.0199253581142738,
+      0.9978547356345143
+    ],
+    "saved_input_total_rms": 2.016550031300118,
+    "saved_input_null_energy_fraction": 0.24686419039328802,
+    "saved_input_sample_count": 20000,
+    "saved_input_band_2_800_rms": 1.1612144772558548,
+    "saved_input_band_20_800_rms": 1.1432830758326344,
+    "provenance": "Existing stage-0 saved simulation inputs; generation history not verified, not hardware data."
+  },
+  "rigid_motion_tests": [
+    {
+      "hz": 20,
+      "delay_spread_us": 0,
+      "axis": "rx",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 1.4464497250136232,
+      "leak_nm_p50": 8.047110012896233,
+      "leak_nm_p90": 16.412145867525744
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 0,
+      "axis": "rx",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.1370394981379623,
+      "leak_nm_p50": 0.8078729133215341,
+      "leak_nm_p90": 1.6429395179515804
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 0,
+      "axis": "rx",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.13703949813795954,
+      "leak_nm_p50": 0.8078729133216083,
+      "leak_nm_p90": 1.642939517951699
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 0,
+      "axis": "ry",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 0.7938781871088845,
+      "leak_nm_p50": 5.545268307015876,
+      "leak_nm_p90": 15.183877991915718
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 0,
+      "axis": "ry",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.08276072737964796,
+      "leak_nm_p50": 0.5465641918828471,
+      "leak_nm_p90": 1.5258067776764206
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 0,
+      "axis": "ry",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.08276072737976278,
+      "leak_nm_p50": 0.5465641918828774,
+      "leak_nm_p90": 1.525806777676471
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 0,
+      "axis": "z",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 2.3450807859054286,
+      "leak_nm_p50": 7.388128936246475,
+      "leak_nm_p90": 13.84474425814465
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 0,
+      "axis": "z",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.2339830733449046,
+      "leak_nm_p50": 0.74041346120059,
+      "leak_nm_p90": 1.375088618665189
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 0,
+      "axis": "z",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.23398307334495028,
+      "leak_nm_p50": 0.7404134612004332,
+      "leak_nm_p90": 1.3750886186652016
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 10,
+      "axis": "rx",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 1.447456295901457,
+      "leak_nm_p50": 8.04749407872519,
+      "leak_nm_p90": 16.412357214089653
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 10,
+      "axis": "rx",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.14881674968556802,
+      "leak_nm_p50": 0.81015305338984,
+      "leak_nm_p90": 1.6441041249003223
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 10,
+      "axis": "rx",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.13716227868109843,
+      "leak_nm_p50": 0.8078957464277823,
+      "leak_nm_p90": 1.6429511680576845
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 10,
+      "axis": "ry",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 1.163615805937313,
+      "leak_nm_p50": 5.610710120691576,
+      "leak_nm_p90": 15.20776231301308
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 10,
+      "axis": "ry",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.8554068031767218,
+      "leak_nm_p50": 1.0118316249685182,
+      "leak_nm_p90": 1.7472182528643923
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 10,
+      "axis": "ry",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.11874745197673169,
+      "leak_nm_p50": 0.5531817693334042,
+      "leak_nm_p90": 1.5281798740402266
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 10,
+      "axis": "z",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 2.374390463252835,
+      "leak_nm_p50": 7.3976229386170775,
+      "leak_nm_p90": 13.849720791730379
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 10,
+      "axis": "z",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.4417623476075011,
+      "leak_nm_p50": 0.8296418912101877,
+      "leak_nm_p90": 1.4252123150027227
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 10,
+      "axis": "z",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.23696537273294452,
+      "leak_nm_p50": 0.7413589074194264,
+      "leak_nm_p90": 1.3755989005299314
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 100,
+      "axis": "rx",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 1.5439460536522505,
+      "leak_nm_p50": 8.085441577373018,
+      "leak_nm_p90": 16.43327227428203
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 100,
+      "axis": "rx",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.601542297268796,
+      "leak_nm_p50": 1.013167610827785,
+      "leak_nm_p90": 1.750354961761326
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 100,
+      "axis": "rx",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.14881674968545877,
+      "leak_nm_p50": 0.8101530533900432,
+      "leak_nm_p90": 1.64410412490046
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 100,
+      "axis": "ry",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 8.566777033211274,
+      "leak_nm_p50": 10.172599886145914,
+      "leak_nm_p90": 17.41063783739168
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 100,
+      "axis": "ry",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 8.511298510743377,
+      "leak_nm_p50": 8.528100193735671,
+      "leak_nm_p90": 8.647420222367728
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 100,
+      "axis": "ry",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.8554068031767155,
+      "leak_nm_p50": 1.0118316249685484,
+      "leak_nm_p90": 1.747218252864393
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 100,
+      "axis": "z",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 4.396676268822171,
+      "leak_nm_p50": 8.281566680394395,
+      "leak_nm_p90": 14.333832337851632
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 100,
+      "axis": "z",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 3.758384133897178,
+      "leak_nm_p50": 3.819970181872537,
+      "leak_nm_p90": 3.990657885693385
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 100,
+      "axis": "z",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.4417623476075354,
+      "leak_nm_p50": 0.8296418912101551,
+      "leak_nm_p90": 1.4252123150026106
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 1000,
+      "axis": "rx",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 6.083553391314523,
+      "leak_nm_p50": 10.82019158455004,
+      "leak_nm_p90": 18.161083492550482
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 1000,
+      "axis": "rx",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 5.895796481776232,
+      "leak_nm_p50": 6.144184956496749,
+      "leak_nm_p90": 6.6374316319259155
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 1000,
+      "axis": "rx",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.6015422972687978,
+      "leak_nm_p50": 1.0131676108277583,
+      "leak_nm_p90": 1.7503549617611294
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 1000,
+      "axis": "ry",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 84.88978607830113,
+      "leak_nm_p50": 85.31175575346036,
+      "leak_nm_p90": 86.49772106219274
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 1000,
+      "axis": "ry",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 85.04007006318213,
+      "leak_nm_p50": 85.06938171872787,
+      "leak_nm_p90": 85.10343313636537
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 1000,
+      "axis": "ry",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 8.511298510743357,
+      "leak_nm_p50": 8.52810019373564,
+      "leak_nm_p90": 8.64742022236773
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 1000,
+      "axis": "z",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 37.357275624071114,
+      "leak_nm_p50": 38.31723815391499,
+      "leak_nm_p90": 39.9577001138816
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 1000,
+      "axis": "z",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 37.411678221746236,
+      "leak_nm_p50": 37.46267954437995,
+      "leak_nm_p90": 37.53293934506333
+    },
+    {
+      "hz": 20,
+      "delay_spread_us": 1000,
+      "axis": "z",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 3.7583841338971578,
+      "leak_nm_p50": 3.8199701818725265,
+      "leak_nm_p90": 3.990657885693341
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 0,
+      "axis": "rx",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 1.444717276373204,
+      "leak_nm_p50": 8.037471790038897,
+      "leak_nm_p90": 16.39248863416061
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 0,
+      "axis": "rx",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.13687536253873378,
+      "leak_nm_p50": 0.8069053039353566,
+      "leak_nm_p90": 1.6409717286222831
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 0,
+      "axis": "rx",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.1368753625387369,
+      "leak_nm_p50": 0.8069053039355571,
+      "leak_nm_p90": 1.6409717286224201
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 0,
+      "axis": "ry",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 0.792927339552701,
+      "leak_nm_p50": 5.538626601899206,
+      "leak_nm_p90": 15.16569188538913
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 0,
+      "axis": "ry",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.08266160280780424,
+      "leak_nm_p50": 0.5459095584209561,
+      "leak_nm_p90": 1.5239792811296142
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 0,
+      "axis": "ry",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.08266160280786419,
+      "leak_nm_p50": 0.5459095584210292,
+      "leak_nm_p90": 1.5239792811294879
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 0,
+      "axis": "z",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 2.342272024598863,
+      "leak_nm_p50": 7.379279991336858,
+      "leak_nm_p90": 13.82816206523953
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 0,
+      "axis": "z",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.23370282602607337,
+      "leak_nm_p50": 0.7395266496701627,
+      "leak_nm_p90": 1.3734416409881973
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 0,
+      "axis": "z",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.23370282602606846,
+      "leak_nm_p50": 0.7395266496701707,
+      "leak_nm_p90": 1.373441640988359
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 10,
+      "axis": "rx",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 1.4696504500542324,
+      "leak_nm_p50": 8.047057378068837,
+      "leak_nm_p90": 16.39776546989626
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 10,
+      "axis": "rx",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 0.32071965230937893,
+      "leak_nm_p50": 0.8620459462003621,
+      "leak_nm_p90": 1.6698119660815747
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 10,
+      "axis": "rx",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.13990893979354493,
+      "leak_nm_p50": 0.8074752555667586,
+      "leak_nm_p90": 1.6412626079870427
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 10,
+      "axis": "ry",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 4.33275797431378,
+      "leak_nm_p50": 6.989218246099909,
+      "leak_nm_p90": 15.75123067425028
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 10,
+      "axis": "ry",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 4.251421549548432,
+      "leak_nm_p50": 4.285286433872459,
+      "leak_nm_p90": 4.515779015545281
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 10,
+      "axis": "ry",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.43316186426931375,
+      "leak_nm_p50": 0.692224350793964,
+      "leak_nm_p90": 1.5821694534173525
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 10,
+      "axis": "z",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 2.9893088953409572,
+      "leak_nm_p50": 7.612796135949985,
+      "leak_nm_p90": 13.951894183427584
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 10,
+      "axis": "z",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 1.8857196247024157,
+      "leak_nm_p50": 2.0101833193362237,
+      "leak_nm_p90": 2.3209298558105083
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 10,
+      "axis": "z",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.2993988247910263,
+      "leak_nm_p50": 0.7627838612358464,
+      "leak_nm_p90": 1.3861271617962636
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 100,
+      "axis": "rx",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 3.1962970976786855,
+      "leak_nm_p50": 8.953994658120283,
+      "leak_nm_p90": 16.97715932534711
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 100,
+      "axis": "rx",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 2.9452169069146454,
+      "leak_nm_p50": 3.077779947238179,
+      "leak_nm_p90": 3.460003240788232
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 100,
+      "axis": "rx",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 0.3207196523094243,
+      "leak_nm_p50": 0.8620459462003692,
+      "leak_nm_p90": 1.669811966081576
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 100,
+      "axis": "ry",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 42.46925592043798,
+      "leak_nm_p50": 42.875747922415954,
+      "leak_nm_p90": 45.238494860633644
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 100,
+      "axis": "ry",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 42.48942336855369,
+      "leak_nm_p50": 42.50644924672669,
+      "leak_nm_p90": 42.52941658162511
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 100,
+      "axis": "ry",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 4.251421549548377,
+      "leak_nm_p50": 4.285286433872399,
+      "leak_nm_p90": 4.515779015545288
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 100,
+      "axis": "z",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 18.83118728443032,
+      "leak_nm_p50": 20.160467937737835,
+      "leak_nm_p90": 23.188661437923614
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 100,
+      "axis": "z",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 18.706518052565272,
+      "leak_nm_p50": 18.743833524786968,
+      "leak_nm_p90": 18.777006767491613
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 100,
+      "axis": "z",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 1.8857196247024075,
+      "leak_nm_p50": 2.0101833193362797,
+      "leak_nm_p90": 2.3209298558105744
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 1000,
+      "axis": "rx",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 39.66790811624497,
+      "leak_nm_p50": 50.506826383282586,
+      "leak_nm_p90": 61.59206342590883
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 1000,
+      "axis": "rx",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 48.71355941744193,
+      "leak_nm_p50": 49.85015993978955,
+      "leak_nm_p90": 50.89289204789225
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 1000,
+      "axis": "rx",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 2.9452169069146166,
+      "leak_nm_p50": 3.0777799472381044,
+      "leak_nm_p90": 3.4600032407883097
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 1000,
+      "axis": "ry",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 418.25620045513244,
+      "leak_nm_p50": 419.80803484820177,
+      "leak_nm_p90": 421.36705624251726
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 1000,
+      "axis": "ry",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 419.55669561356774,
+      "leak_nm_p50": 419.7245770045986,
+      "leak_nm_p90": 419.883042634161
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 1000,
+      "axis": "ry",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 42.48942336855377,
+      "leak_nm_p50": 42.50644924672677,
+      "leak_nm_p90": 42.52941658162519
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 1000,
+      "axis": "z",
+      "method": "nominal_1pct",
+      "leak_nm_p10": 179.74339894530678,
+      "leak_nm_p50": 182.4930212426704,
+      "leak_nm_p90": 185.66598922221695
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 1000,
+      "axis": "z",
+      "method": "static_0p1pct",
+      "leak_nm_p10": 182.29005269388904,
+      "leak_nm_p50": 182.57344764500186,
+      "leak_nm_p90": 182.8824500836721
+    },
+    {
+      "hz": 100,
+      "delay_spread_us": 1000,
+      "axis": "z",
+      "method": "dynamic_prescribed",
+      "leak_nm_p10": 18.706518052565364,
+      "leak_nm_p50": 18.743833524787092,
+      "leak_nm_p90": 18.77700676749173
+    }
+  ],
+  "modal_projection_checks": [
+    {
+      "delay_spread_us": 10,
+      "method": "static",
+      "modes": [
+        {
+          "mode": 1,
+          "complex_relative_error_p50": 0.047842161229581744,
+          "amplitude_ratio_p50": 0.9986092198226011
+        },
+        {
+          "mode": 2,
+          "complex_relative_error_p50": 0.1366316665125657,
+          "amplitude_ratio_p50": 1.0170172771365924
+        },
+        {
+          "mode": 3,
+          "complex_relative_error_p50": 0.10473907847708035,
+          "amplitude_ratio_p50": 1.001774551109987
+        },
+        {
+          "mode": 4,
+          "complex_relative_error_p50": 0.13180013726398432,
+          "amplitude_ratio_p50": 1.0088840406710968
+        },
+        {
+          "mode": 5,
+          "complex_relative_error_p50": 0.11171945425852572,
+          "amplitude_ratio_p50": 1.0076138611464307
+        }
+      ]
+    },
+    {
+      "delay_spread_us": 10,
+      "method": "dynamic_prescribed",
+      "modes": [
+        {
+          "mode": 1,
+          "complex_relative_error_p50": 0.013969245776736281,
+          "amplitude_ratio_p50": 0.997436382785026
+        },
+        {
+          "mode": 2,
+          "complex_relative_error_p50": 0.020672464929759285,
+          "amplitude_ratio_p50": 1.0068832275675033
+        },
+        {
+          "mode": 3,
+          "complex_relative_error_p50": 0.012365638369289734,
+          "amplitude_ratio_p50": 0.997712392956361
+        },
+        {
+          "mode": 4,
+          "complex_relative_error_p50": 0.013441017835897184,
+          "amplitude_ratio_p50": 1.0006321626888188
+        },
+        {
+          "mode": 5,
+          "complex_relative_error_p50": 0.011694556177078465,
+          "amplitude_ratio_p50": 0.9996334772206306
+        }
+      ]
+    },
+    {
+      "delay_spread_us": 100,
+      "method": "static",
+      "modes": [
+        {
+          "mode": 1,
+          "complex_relative_error_p50": 0.458724293556775,
+          "amplitude_ratio_p50": 1.1089713849809024
+        },
+        {
+          "mode": 2,
+          "complex_relative_error_p50": 1.3520594031510615,
+          "amplitude_ratio_p50": 1.752525923522906
+        },
+        {
+          "mode": 3,
+          "complex_relative_error_p50": 1.035982758287732,
+          "amplitude_ratio_p50": 1.341479456297777
+        },
+        {
+          "mode": 4,
+          "complex_relative_error_p50": 1.2973818052016148,
+          "amplitude_ratio_p50": 1.6184763439821088
+        },
+        {
+          "mode": 5,
+          "complex_relative_error_p50": 1.0855749720070436,
+          "amplitude_ratio_p50": 1.5971638334431164
+        }
+      ]
+    },
+    {
+      "delay_spread_us": 100,
+      "method": "dynamic_prescribed",
+      "modes": [
+        {
+          "mode": 1,
+          "complex_relative_error_p50": 0.047842161229581695,
+          "amplitude_ratio_p50": 0.9986092198226011
+        },
+        {
+          "mode": 2,
+          "complex_relative_error_p50": 0.13663166651256542,
+          "amplitude_ratio_p50": 1.0170172771365924
+        },
+        {
+          "mode": 3,
+          "complex_relative_error_p50": 0.10473907847708017,
+          "amplitude_ratio_p50": 1.001774551109987
+        },
+        {
+          "mode": 4,
+          "complex_relative_error_p50": 0.13180013726398426,
+          "amplitude_ratio_p50": 1.0088840406710968
+        },
+        {
+          "mode": 5,
+          "complex_relative_error_p50": 0.11171945425852578,
+          "amplitude_ratio_p50": 1.0076138611464307
+        }
+      ]
+    },
+    {
+      "delay_spread_us": 1000,
+      "method": "static",
+      "modes": [
+        {
+          "mode": 1,
+          "complex_relative_error_p50": 3.21715839622603,
+          "amplitude_ratio_p50": 3.615061131671583
+        },
+        {
+          "mode": 2,
+          "complex_relative_error_p50": 8.810387696948897,
+          "amplitude_ratio_p50": 9.638118742427311
+        },
+        {
+          "mode": 3,
+          "complex_relative_error_p50": 4.490389555199812,
+          "amplitude_ratio_p50": 3.4923584917818857
+        },
+        {
+          "mode": 4,
+          "complex_relative_error_p50": 2.7972120006980976,
+          "amplitude_ratio_p50": 1.970697338102064
+        },
+        {
+          "mode": 5,
+          "complex_relative_error_p50": 7.823730569351499,
+          "amplitude_ratio_p50": 7.799919232924957
+        }
+      ]
+    },
+    {
+      "delay_spread_us": 1000,
+      "method": "dynamic_prescribed",
+      "modes": [
+        {
+          "mode": 1,
+          "complex_relative_error_p50": 0.458724293556775,
+          "amplitude_ratio_p50": 1.1089713849809024
+        },
+        {
+          "mode": 2,
+          "complex_relative_error_p50": 1.3520594031510613,
+          "amplitude_ratio_p50": 1.752525923522906
+        },
+        {
+          "mode": 3,
+          "complex_relative_error_p50": 1.035982758287732,
+          "amplitude_ratio_p50": 1.3414794562977768
+        },
+        {
+          "mode": 4,
+          "complex_relative_error_p50": 1.2973818052016148,
+          "amplitude_ratio_p50": 1.6184763439821088
+        },
+        {
+          "mode": 5,
+          "complex_relative_error_p50": 1.0855749720070436,
+          "amplitude_ratio_p50": 1.5971638334431162
+        }
+      ]
+    }
+  ],
+  "noise_line": {
+    "N": 20000,
+    "fs": 5000,
+    "sample_noise_nm": 100,
+    "complex_peak_phasor_noise_rms_nm": 1.414213562373095,
+    "equivalent_sinusoidal_rms_noise_nm": 1.0,
+    "assumptions": "Exact excited frequency, rectangular 4s record, independent white output noise, unit output vector, magnitude-one delay compensator. Not valid automatically for closed-loop colored noise."
+  },
+  "scope": "Audits existing exact frequency sensitivity. Added rigid motion and modal projection checks are synthetic and do not rerun identification."
+}

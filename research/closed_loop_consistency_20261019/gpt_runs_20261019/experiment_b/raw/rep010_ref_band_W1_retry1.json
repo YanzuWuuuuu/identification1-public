@@ -1,0 +1,16 @@
+{
+  "rep": 10,
+  "seed": 52061029,
+  "method": "ref_band_W1",
+  "status": "pole_step_converged",
+  "iterations": 22,
+  "duration_seconds": 54.678043799998704,
+  "simulation_seconds": 2.3182973999646492,
+  "nbeta": 336,
+  "nfreq": 47821,
+  "score_relative": 5.61158299580014e-07,
+  "objective": 0.5271287770076556,
+  "error": "",
+  "pole_step_tolerance": 1e-05,
+  "max_iterations": 80
+}

@@ -1,0 +1,13 @@
+{
+  "missing_refs": [],
+  "duplicate_labels": [],
+  "source_sha256": "cf73b464bc2fbd5a12854f2c1a3a568b9c1ff28cd9b6d8d2d2fe6156378f8f78",
+  "local_compile": "success",
+  "builtin_compile": "Windows error 5; unavailable",
+  "visual_review_pages": [
+    18,
+    30,
+    40
+  ],
+  "diagnostic_gates": "coordinate invariance, full covariance cancellation, nuisance full rank, profile versus full covariance, fixed-input shaping all passed; original low-band metric reproduction passed on five cases"
+}

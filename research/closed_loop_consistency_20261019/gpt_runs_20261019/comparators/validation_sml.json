@@ -1,0 +1,17 @@
+{
+  "gradient_direction_relative_error": 1.7481430100382007e-05,
+  "zero_noise_mean_response_relative_error": 3.5312429491245718e-12,
+  "zero_noise_mean_pole_relative_error": 5.577760475718342e-13,
+  "solver": {
+    "success": true,
+    "status": "`xtol` termination condition is satisfied.",
+    "nfev": 5,
+    "njev": 5,
+    "cost": 2.62768838832004e-13,
+    "optimality": 6239.007033794231,
+    "normalized_score": 0.8875652762190844,
+    "seconds": 0.46728779998375103,
+    "shrink": 0.0
+  },
+  "note": "Mean U,Y exactly noiseless; zero-mean replicate deviations supply nonsingular covariance. Raw zero covariance has no inverse."
+}

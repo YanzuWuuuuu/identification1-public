@@ -1,0 +1,326 @@
+{
+  "rigid": {
+    "relative_matrix_error": 5.6180530549119341E-5,
+    "error_over_true_gap": 0.00012328265690043824,
+    "sigma3_truth": 0.70064308423708788,
+    "sigma3_estimate": 0.70063092159041962,
+    "estimate_sigma4_over_sigma3": 7.6787597974680829E-17,
+    "output_null_angle_deg": 0.001054251438765744,
+    "input_null_angle_deg": 0.0056331475368571792,
+    "nominal_output_null_angle_deg": 0.84723291257734656,
+    "nominal_input_null_angle_deg": 0.4864253691181486
+  },
+  "delay": {
+    "output_relative_error_us": [
+      0,
+      28.909519449409412,
+      1.4322378052474474,
+      30.473385783067748
+    ],
+    "input_relative_error_us": [
+      0,
+      -16.014147985714402,
+      -6.0467190374915933,
+      -0.11729862313858931
+    ],
+    "output_max_abs_error_us": 30.473385783067748,
+    "input_max_abs_error_us": 16.014147985714402
+  },
+  "compensation": {
+    "padding_output_us": 46.909519449409409,
+    "padding_input_us": 30.882701376861409,
+    "output_max_gain": 1,
+    "input_max_gain": 1.0140096093241382
+  },
+  "relative": {
+    "output_max_error_per_channel": [
+      2.6576668212188883E-17,
+      0.014092533180917617,
+      0.0049323974303244643,
+      0.0083283321784886118
+    ],
+    "input_max_error_per_channel": [
+      2.6576668212188883E-17,
+      0.010663182865292501,
+      0.0030665579199405124,
+      0.0025461459780568387
+    ],
+    "output_max_error": 0.014092533180917617,
+    "input_max_error": 0.010663182865292501
+  },
+  "denominator": {
+    "max_relative_separability_residual": 0.00060065471190212628
+  },
+  "baseline": {
+    "nominal": {
+      "rigid_energy": 2.3925155868884248E-13,
+      "target_flexible_energy": 5.3264471549078291E-12,
+      "rigid_l2": 4.8913347737488027E-7,
+      "target_flexible_l2": 2.3079096938372242E-6,
+      "leak_to_flex_energy_ratio": 0.04491766307460579,
+      "leak_to_flex_amplitude_ratio": 0.21193787550743681,
+      "leak_to_flex_db": -13.475828468051539,
+      "rigid_reduction_vs_nominal_db": 0,
+      "flex_energy_over_ideal": 1.3957557208457372
+    },
+    "static_only": {
+      "rigid_energy": 7.3583365296745871E-18,
+      "target_flexible_energy": 4.2336708467512471E-12,
+      "rigid_l2": 2.7126253942766568E-9,
+      "target_flexible_l2": 2.0575885999760126E-6,
+      "leak_to_flex_energy_ratio": 1.7380511608079041E-6,
+      "leak_to_flex_amplitude_ratio": 0.0013183516832802635,
+      "leak_to_flex_db": -57.599374439232875,
+      "rigid_reduction_vs_nominal_db": 45.120751296425837,
+      "flex_energy_over_ideal": 1.1094018456723287
+    },
+    "joint": {
+      "rigid_energy": 4.8811469527297804E-23,
+      "target_flexible_energy": 3.93867166057543E-12,
+      "rigid_l2": 6.9865205594271177E-12,
+      "target_flexible_l2": 1.9846086920537838E-6,
+      "leak_to_flex_energy_ratio": 1.2392876008396843E-11,
+      "leak_to_flex_amplitude_ratio": 3.5203516881693569E-6,
+      "leak_to_flex_db": -109.068278954291,
+      "rigid_reduction_vs_nominal_db": 96.903328930181644,
+      "flex_energy_over_ideal": 1.0320995107809843
+    },
+    "oracle": {
+      "rigid_energy": 4.5512499617532043E-38,
+      "target_flexible_energy": 3.816174331479975E-12,
+      "rigid_l2": 2.1333658762043618E-19,
+      "target_flexible_l2": 1.9535030922627113E-6,
+      "leak_to_flex_energy_ratio": 1.192621082378109E-26,
+      "leak_to_flex_amplitude_ratio": 1.0920719217973279E-13,
+      "leak_to_flex_db": -259.2349751774766,
+      "rigid_reduction_vs_nominal_db": 247.2072408753063,
+      "flex_energy_over_ideal": 1.0000000000000004
+    }
+  },
+  "mode": [
+    {
+      "frequency_hz": 286.41567814194462,
+      "ideal_projected_residue_abs": 8.9083168617943881E-6,
+      "ideal_projection_fraction": 0.035151498226228914,
+      "nominal": {
+        "actual_residue_abs": 1.0983732593110832E-5,
+        "common_factor_removed_abs": 1.0987883205807526E-5,
+        "retention_amplitude_ratio": 1.2334409941042728,
+        "relative_complex_residue_error": 0.26997326163280122
+      },
+      "static_only": {
+        "actual_residue_abs": 8.9905777467409127E-6,
+        "common_factor_removed_abs": 8.9939751715989857E-6,
+        "retention_amplitude_ratio": 1.0096155436693059,
+        "relative_complex_residue_error": 0.14523290128637939
+      },
+      "joint": {
+        "actual_residue_abs": 9.00071855338431E-6,
+        "common_factor_removed_abs": 8.991522673941155E-6,
+        "retention_amplitude_ratio": 1.0093402394007354,
+        "relative_complex_residue_error": 0.009354940014502159
+      },
+      "oracle": {
+        "actual_residue_abs": 8.9142518296958054E-6,
+        "common_factor_removed_abs": 8.9083168617944034E-6,
+        "retention_amplitude_ratio": 1.0000000000000018,
+        "relative_complex_residue_error": 1.7273949968049358E-15
+      }
+    },
+    {
+      "frequency_hz": 344.56277056925347,
+      "ideal_projected_residue_abs": 2.168398319163683E-6,
+      "ideal_projection_fraction": 0.013431168425045319,
+      "nominal": {
+        "actual_residue_abs": 2.580718323011026E-6,
+        "common_factor_removed_abs": 2.5825947069179869E-6,
+        "retention_amplitude_ratio": 1.1910148998427803,
+        "relative_complex_residue_error": 0.698117343996546
+      },
+      "static_only": {
+        "actual_residue_abs": 2.5271409583488641E-6,
+        "common_factor_removed_abs": 2.5289783873245821E-6,
+        "retention_amplitude_ratio": 1.1662886679878857,
+        "relative_complex_residue_error": 0.70122570756142844
+      },
+      "joint": {
+        "actual_residue_abs": 2.0783793015419356E-6,
+        "common_factor_removed_abs": 2.0763903422256475E-6,
+        "retention_amplitude_ratio": 0.95756869200418793,
+        "relative_complex_residue_error": 0.042431308661544868
+      },
+      "oracle": {
+        "actual_residue_abs": 2.1695455335861291E-6,
+        "common_factor_removed_abs": 2.1683983191636893E-6,
+        "retention_amplitude_ratio": 1.0000000000000029,
+        "relative_complex_residue_error": 2.9514447371320666E-15
+      }
+    },
+    {
+      "frequency_hz": 488.24558588963197,
+      "ideal_projected_residue_abs": 9.46758937659361E-6,
+      "ideal_projection_fraction": 0.051339106695000934,
+      "nominal": {
+        "actual_residue_abs": 1.0023012003886709E-5,
+        "common_factor_removed_abs": 1.0042900061484792E-5,
+        "retention_amplitude_ratio": 1.0607663325907968,
+        "relative_complex_residue_error": 0.206628701302157
+      },
+      "static_only": {
+        "actual_residue_abs": 1.0109939263733103E-5,
+        "common_factor_removed_abs": 1.0129999805844823E-5,
+        "retention_amplitude_ratio": 1.0699661131152209,
+        "relative_complex_residue_error": 0.20974874455207662
+      },
+      "joint": {
+        "actual_residue_abs": 9.7547251935071756E-6,
+        "common_factor_removed_abs": 9.7507820886310651E-6,
+        "retention_amplitude_ratio": 1.0299118076178486,
+        "relative_complex_residue_error": 0.02991681830811381
+      },
+      "oracle": {
+        "actual_residue_abs": 9.4656686268517951E-6,
+        "common_factor_removed_abs": 9.46758937659361E-6,
+        "retention_amplitude_ratio": 1,
+        "relative_complex_residue_error": 4.2695520001555645E-16
+      }
+    },
+    {
+      "frequency_hz": 705.63471561786844,
+      "ideal_projected_residue_abs": 2.2110306803443972E-6,
+      "ideal_projection_fraction": 0.053340263766682341,
+      "nominal": {
+        "actual_residue_abs": 2.0634755407778816E-6,
+        "common_factor_removed_abs": 2.07369659382778E-6,
+        "retention_amplitude_ratio": 0.93788684718964377,
+        "relative_complex_residue_error": 0.15086375080094497
+      },
+      "static_only": {
+        "actual_residue_abs": 2.2494468353373006E-6,
+        "common_factor_removed_abs": 2.2605890635743458E-6,
+        "retention_amplitude_ratio": 1.022414154480312,
+        "relative_complex_residue_error": 0.13130877436445873
+      },
+      "joint": {
+        "actual_residue_abs": 2.2613659387529835E-6,
+        "common_factor_removed_abs": 2.2647421824305113E-6,
+        "retention_amplitude_ratio": 1.0242925177672106,
+        "relative_complex_residue_error": 0.024299303999160155
+      },
+      "oracle": {
+        "actual_residue_abs": 2.2057979427506271E-6,
+        "common_factor_removed_abs": 2.2110306803443964E-6,
+        "retention_amplitude_ratio": 0.99999999999999967,
+        "relative_complex_residue_error": 4.046681158429116E-16
+      }
+    }
+  ],
+  "bound": {
+    "valid_gap_condition": true,
+    "oracle_errors_used": true,
+    "is_confidence_certificate": false,
+    "rigid_l2_upper": 1.2867226945964939E-10,
+    "max_absolute_excess": 0,
+    "max_actual_over_bound_with_roundoff_floor": 0.1162967305798443
+  },
+  "frequency_min_hz": 2.1,
+  "frequency_max_hz": 799.10000000000014,
+  "frequency_count": 645,
+  "baseline_order": [
+    "nominal",
+    "static_only",
+    "joint",
+    "oracle"
+  ],
+  "validation_relative_frf_error": 5.7542075308859042E-5,
+  "full_five_mode_frf_l2_error": 5.7545888059517469E-5,
+  "frequency_relative_error": [
+    6.1482777653632155E-7,
+    1.83324582884044E-6,
+    -9.6063477397415861E-7,
+    -1.92893400830982E-6,
+    1.2287088057997057E-6
+  ],
+  "damping_relative_error": [
+    -6.149393109809026E-5,
+    -3.43054375965407E-6,
+    -1.7820603691494352E-5,
+    -4.5550510859894422E-5,
+    1.3936664136800225E-5
+  ],
+  "reference_frequencies_hz": [
+    286.43,
+    344.58,
+    488.27,
+    705.67,
+    738.83
+  ],
+  "estimated_frequencies_hz": [
+    286.43017610512004,
+    344.58063169984769,
+    488.26953095085889,
+    705.66863880913832,
+    738.830907806927
+  ],
+  "estimated_damping": [
+    0.00999938506068902,
+    0.0099999656945624037,
+    0.0099998217939630853,
+    0.0099995444948914013,
+    0.010000139366641368
+  ],
+  "scenario": "full_five_mode_same_data_control",
+  "method": "expanded",
+  "seed": 1,
+  "noise_level": 0.003,
+  "independent_records": 8,
+  "fitted_mode_count": 5,
+  "target_mode_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "source_data_file": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\matlab\\research_experiments\\relative_calibration_validation\\outputs\\distinct_seed01_noise0.003_N8_expanded_s1_extra-1.mat",
+  "initial_frequency_hz": [
+    286.43232679155295,
+    344.58171183463554,
+    488.23620036637078,
+    705.62887331605748,
+    738.86056530183646
+  ],
+  "initialization_seconds": 0.1926922,
+  "solver": {
+    "method": "expanded",
+    "cost": 6747.0091263368558,
+    "mean_whitened_residual": 1.1366255266739986,
+    "exitflag": 3,
+    "iterations": 199,
+    "elapsed_seconds": 22.2859722,
+    "first_order_optimality": 1.1012876605832624,
+    "active_bounds": 142,
+    "normalized_gradient": 5.1479445857362321E-5,
+    "jacobian_check": 7.3242954201317387E-9,
+    "chart_rcond": 0.45562314496607159,
+    "start_index": 1,
+    "initial_cost": 2.0416115418334941E+6,
+    "iteration_budget": 200,
+    "num_modes": 5
+  },
+  "task_pass": true,
+  "task_pass_definition": "All five frequency errors <1%, composite dynamics <5%, rigid/target-first-four L2 <1%, first-four residue amplitude deviations <10%; solver status is separate.",
+  "scope": "Identical noisy full-five-mode data and estimated weights as the saved four-mode experiment. The fifth mode is fitted explicitly. Calibration targets remain the first four modes; D and mode five are excluded from the target-flexibility metric.",
+  "four_mode_comparison": {
+    "file": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\matlab\\research_experiments\\relative_calibration_validation\\outputs\\distinct_seed01_noise0.003_N8_expanded_s1_extra-1.mat",
+    "available": true,
+    "identical_data_and_weights": true,
+    "fitted_mode_count": 4,
+    "mean_whitened_residual": 21506.130566208732,
+    "exitflag": 3,
+    "iterations": 171,
+    "relative_dynamic_max_error": 1.3943294857298227,
+    "actual_rigid_to_target_four_l2": 0.16713874284309943,
+    "validation_relative_frf_error": 0.019012144679148482,
+    "note": "Four-mode fitting of the same five-mode object is misspecified; no matched-model task pass is claimed."
+  }
+}
