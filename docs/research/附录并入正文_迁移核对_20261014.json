@@ -1,0 +1,30 @@
+{
+  "equations_retained": 61,
+  "figures_retained": 6,
+  "tables_retained": 4,
+  "appendices_remaining": 0,
+  "label_map": {
+    "app:regularity": "sec:regularity",
+    "app:statistics": "sec:statistics",
+    "app:certificate": "sec:certificate",
+    "app:sampling": "sec:sampling",
+    "app:initializer_detail": "sec:initializer_detail",
+    "app:sampled_jacobian": "sec:sampled_jacobian",
+    "app:solver_detail": "sec:solver_detail",
+    "app:profile_information": "sec:profile_information",
+    "app:bandwidth": "sec:bandwidth",
+    "app:implementation": "sec:implementation",
+    "app:weak": "sec:weak",
+    "app:plant_bode": "sec:plant_bode"
+  },
+  "section_titles": [
+    "引言",
+    "问题描述",
+    "结构保持的联合辨识",
+    "解耦更新与误差传播",
+    "数值验证",
+    "结论"
+  ],
+  "source": "论文初稿_相对通道动态辨识与刚柔解耦自校准.tex",
+  "scope": "Reorganization and duplicate prose removal only; all numbered equation bodies and all figure/table blocks unchanged."
+}

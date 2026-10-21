@@ -1,0 +1,14 @@
+{
+  "original_tex_unchanged": true,
+  "original_sha256": "cf73b464bc2fbd5a12854f2c1a3a568b9c1ff28cd9b6d8d2d2fe6156378f8f78",
+  "new_tex": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\论文梗概_面向刚柔解耦自校准的辨识.tex",
+  "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\output\\pdf\\论文梗概_面向刚柔解耦自校准的辨识.pdf",
+  "pdf_pages": 5,
+  "pdf_bytes": 366390,
+  "missing_citations": [],
+  "local_compile": "success",
+  "builtin_preview": "Windows CreateProcessAsUserW error 5",
+  "visual_review": "all five pages inspected; no clipping or overlap",
+  "research_scope": "three field-leading paper full texts for architecture; closest prior works separately labeled by read depth",
+  "new_experiments": false
+}

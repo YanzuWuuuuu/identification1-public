@@ -1,0 +1,9 @@
+curve,output_channel,input_channel,minimum_hz,minimum_db,evaluation_grid
+Validation LRM,1,1,224.499999992547,-148.804283866217,original bins
+Validation Welch,1,1,223.999999992564,-151.647200930302,original bins
+Before,1,1,219.979996666111,-144.479579613284,dense model evaluation
+Revised,1,1,222.513752292049,-145.667537926414,dense model evaluation
+Validation LRM,2,2,218.99999999273,-157.413199221238,original bins
+Validation Welch,2,2,218.499999992747,-162.989822905653,original bins
+Before,2,2,216.566094349058,-151.399564294503,dense model evaluation
+Revised,2,2,218.166361060177,-154.672484917626,dense model evaluation

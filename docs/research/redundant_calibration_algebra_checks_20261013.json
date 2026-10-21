@@ -1,0 +1,73 @@
+{
+  "status": "deterministic algebra only; artificial channel filters and delays; no noise, fitting or measured platform evidence",
+  "geometry_source": "matlab/3/model.m C1, B1",
+  "left_null_vector": [
+    0.5644724168028805,
+    -0.564180526755439,
+    0.4246416668139924,
+    -0.4274934838147888
+  ],
+  "right_null_vector": [
+    -0.27219132062734774,
+    -0.2673845023232649,
+    -0.39101940813780045,
+    0.8375686451581414
+  ],
+  "rank_rigid_matrix": 3,
+  "sensor_relative_lag_rank": 3,
+  "actuator_relative_lag_rank": 3,
+  "strict_free_body_full_slope_rank_without_nuisance": 7,
+  "effective_lag_ranks_with_arbitrary_3x3_rigid_slope_nuisance": {
+    "4_sensors_4_actuators": 6,
+    "4_sensors_3_actuators": 3,
+    "3_sensors_4_actuators": 3,
+    "3_sensors_3_actuators": 0
+  },
+  "slope_recovery_max_abs_error_seconds": {
+    "sensor": 1.0164395367051604e-20,
+    "actuator": 6.776263578034403e-20
+  },
+  "rigid_only_complex_response_ratio_error": {
+    "sensor": 3.663787957916089e-15,
+    "actuator": 8.437695792389709e-15
+  },
+  "four_mode_plus_D_pollution": [
+    {
+      "frequency_hz": 1.0,
+      "relative_output_response_max_error": 3.3043726703053516e-05,
+      "relative_input_response_max_error": 1.7662165538717023e-05,
+      "sigma4_over_sigma3": 8.222166319118096e-08
+    },
+    {
+      "frequency_hz": 2.0,
+      "relative_output_response_max_error": 0.00013218705016685513,
+      "relative_input_response_max_error": 7.065153358936478e-05,
+      "sigma4_over_sigma3": 3.2906850293171394e-07
+    },
+    {
+      "frequency_hz": 5.0,
+      "relative_output_response_max_error": 0.0008267007271680622,
+      "relative_input_response_max_error": 0.000441697761239442,
+      "sigma4_over_sigma3": 2.0646362815921805e-06
+    },
+    {
+      "frequency_hz": 10.0,
+      "relative_output_response_max_error": 0.0033144205438285384,
+      "relative_input_response_max_error": 0.0017685893713572684,
+      "sigma4_over_sigma3": 8.372356310052222e-06
+    },
+    {
+      "frequency_hz": 20.0,
+      "relative_output_response_max_error": 0.013380984059417728,
+      "relative_input_response_max_error": 0.007103316348190477,
+      "sigma4_over_sigma3": 3.531807191187338e-05
+    },
+    {
+      "frequency_hz": 40.0,
+      "relative_output_response_max_error": 0.05559223217839157,
+      "relative_input_response_max_error": 0.02888880311300684,
+      "sigma4_over_sigma3": 0.00017100779528059023
+    }
+  ],
+  "caveat": "D=1e-8*I and filter parameters are chosen checks, not estimates. An arbitrary rigid slope is a mathematical robustness class, not an established physical feature of this platform."
+}

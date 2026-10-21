@@ -1,0 +1,42 @@
+{
+  "sections": [
+    "引言",
+    "问题定义与校准目标"
+  ],
+  "subsections": [
+    "冗余柔性平台与机械端口模型",
+    "通道动态失配与相对校准目标",
+    "已知反馈下的数据采集边界",
+    "有限频率观测与重复试验",
+    "辨识任务与解耦评价"
+  ],
+  "undefined_refs": [],
+  "duplicate_labels": [],
+  "undefined_citations": [],
+  "pdf_pages": 6,
+  "pdf_bytes": 329015,
+  "page_text_lengths": [
+    182,
+    679,
+    696,
+    664,
+    610,
+    1147
+  ],
+  "originals": {
+    "论文大纲_相对通道动态辨识与刚柔解耦自校准.tex": {
+      "sha256": "cf73b464bc2fbd5a12854f2c1a3a568b9c1ff28cd9b6d8d2d2fe6156378f8f78",
+      "unchanged": true
+    },
+    "论文梗概_面向刚柔解耦自校准的辨识.tex": {
+      "sha256": "f32caeb42b164337a9bf82ad20974600151ddb48694d9403d6b22aab3ea6db47",
+      "unchanged": true
+    }
+  },
+  "compile_warning_lines": [],
+  "source_sha256": "9a196966df0357b04321a249fdce5d4401cc23feaf41f63e8baa15605afa8869",
+  "pdf_sha256": "0ba0fa6cdf115248d8abada46ca622c535a933585338069156a6be424b178697",
+  "compilation": "Local Tectonic passed; built-in preview blocked by CreateProcessAsUserW error 5.",
+  "visual_review": "All six pages reviewed; diagram label and bibliography pagination corrected.",
+  "checks_passed": true
+}

@@ -1,0 +1,35 @@
+{
+  "scope": "Source/reference checks and algebra sanity checks only; not stage validation or LaTeX compilation.",
+  "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\论文大纲_相对通道动态辨识与刚柔解耦自校准.tex",
+  "source_checks": {
+    "duplicate_labels": [],
+    "unresolved_references": [],
+    "unresolved_citations": [],
+    "environment_mismatches": [],
+    "unclosed_environments": [],
+    "brace_balance": 0,
+    "brace_min_depth": 0,
+    "inline_math_dollars": 1130,
+    "lines": 1480
+  },
+  "feedback_identity_1000_cases": {
+    "max_relative_recovery_error": 5.242422389403886e-16,
+    "max_relative_derivative_error": 7.285723921273159e-11
+  },
+  "rank3_block_bounds": {
+    "cases": 2999,
+    "max_observed_to_bound_fr_rf_ff": [
+      0.8388814268410586,
+      0.8288167820066182,
+      0.4234596153133658
+    ],
+    "violations": 0
+  },
+  "quadratic_filter_region_10000_cases": {
+    "mismatches": 0
+  },
+  "builtin_latex_compile": {
+    "success": false,
+    "diagnostic": "windows sandbox: helper_unknown_error: setup refresh had errors"
+  }
+}

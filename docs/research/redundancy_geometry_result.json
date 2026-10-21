@@ -1,0 +1,72 @@
+{
+  "scope": "Nominal spatial algebra only; no noise Monte Carlo or fitted modal performance.",
+  "rigid_input_rank": 3,
+  "rigid_output_rank": 3,
+  "flexible_input_rank": 4,
+  "input_null_vector": [
+    -0.27219132062734774,
+    -0.2673845023232649,
+    -0.39101940813780045,
+    0.8375686451581414
+  ],
+  "output_null_vector": [
+    0.5644724168028813,
+    -0.5641805267554396,
+    0.4246416668139914,
+    -0.4274934838147877
+  ],
+  "rigid_annihilation_norm": 1.035491705554946e-15,
+  "modes": [
+    {
+      "mode": 1,
+      "input_null_amplitude_fraction": 0.03591671811258135,
+      "output_null_amplitude_fraction": 0.9786946044470054,
+      "double_null_amplitude_fraction": 0.035151498226227394,
+      "cross_amplitude_fraction": 0.9787223873939483,
+      "cross_energy_fraction": 0.9578975115861099,
+      "normalized_factor_jacobian_condition": 39.384489328179924,
+      "exact_rank1_recovery_relative_error": 1.3563797314764189e-15
+    },
+    {
+      "mode": 2,
+      "input_null_amplitude_fraction": 0.6029710407311933,
+      "output_null_amplitude_fraction": 0.02227498091576339,
+      "double_null_amplitude_fraction": 0.01343116842504532,
+      "cross_amplitude_fraction": 0.6032328360177305,
+      "cross_energy_fraction": 0.3638898544499941,
+      "normalized_factor_jacobian_condition": 71.79987845046382,
+      "exact_rank1_recovery_relative_error": 3.2516161687604435e-16
+    },
+    {
+      "mode": 3,
+      "input_null_amplitude_fraction": 0.9414927183460496,
+      "output_null_amplitude_fraction": 0.05452947823663459,
+      "double_null_amplitude_fraction": 0.05133910669500086,
+      "cross_amplitude_fraction": 0.9416720760536292,
+      "cross_energy_fraction": 0.8867462988191521,
+      "normalized_factor_jacobian_condition": 25.984461952308227,
+      "exact_rank1_recovery_relative_error": 2.912220298201785e-16
+    },
+    {
+      "mode": 4,
+      "input_null_amplitude_fraction": 0.46669928014024314,
+      "output_null_amplitude_fraction": 0.11429257776153753,
+      "double_null_amplitude_fraction": 0.05334026376668233,
+      "cross_amplitude_fraction": 0.47752049974435523,
+      "cross_energy_fraction": 0.22802582767609877,
+      "normalized_factor_jacobian_condition": 16.255560485904873,
+      "exact_rank1_recovery_relative_error": 4.511032097711458e-16
+    },
+    {
+      "mode": 5,
+      "input_null_amplitude_fraction": 0.18553295458095972,
+      "output_null_amplitude_fraction": 0.12180729827383097,
+      "double_null_amplitude_fraction": 0.022599267938268094,
+      "cross_amplitude_fraction": 0.22079123224658365,
+      "cross_energy_fraction": 0.04874876823696484,
+      "normalized_factor_jacobian_condition": 32.799712723554386,
+      "exact_rank1_recovery_relative_error": 2.9320190423078367e-16
+    }
+  ],
+  "profile_gls_relative_discrepancy": 2.3964009730329117e-15
+}

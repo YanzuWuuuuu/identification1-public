@@ -1,0 +1,13 @@
+model,channel,region,lrm_validation_complex_error_percent
+before,1,180_260,31.0673361228025
+before,1,center_pm5,57.6473159102565
+before,1,flanks,30.9491547151705
+repair,1,180_260,29.7679723245349
+repair,1,center_pm5,84.002532753217
+repair,1,flanks,29.4440789598918
+before,6,180_260,25.584162857338
+before,6,center_pm5,64.4610130319007
+before,6,flanks,25.5181224140761
+repair,6,180_260,25.3266857427379
+repair,6,center_pm5,104.692301191278
+repair,6,flanks,25.1295236925476

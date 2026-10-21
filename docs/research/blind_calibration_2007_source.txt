@@ -1,0 +1,1425 @@
+Blind Calibration of Sensor Networks
+∗
+Laura Balzano
+University of California, Los Angeles
+sunbeam@ee.ucla.edu
+Robert Nowak
+University of Wisconsin, Madison
+nowak@ece.wisc.edu
+ABSTRACT
+This paper considers the problem of blindly calibrating sen-
+sor response using routine sensor network measurements.
+We show that as long as the sensors slightly oversample
+the signals of interest, then unknown sensor gains can be
+perfectly recovered. Remarkably, neither a controlled stim-
+ulus nor a dense deployment is required. We also character-
+ize necessary and suﬃcient conditions for the identiﬁcation
+of unknown sensor oﬀsets. Our results exploit incoherence
+conditions between the basis for the signals and the canon-
+ical or natural basis for the sensor measurements. Practical
+algorithms for gain and oﬀset identiﬁcation are proposed
+based on the singular value decomposition and standard
+least squares techniques. We investigate the robustness of
+the proposed algorithms to model mismatch and noise on
+both simulated data and on data from current sensor net-
+work deployments.
+Categories and Subject Descriptors
+G.1.3 [Numerical Analysis]: Numerical Linear Algebra;
+I.5.4 [Pattern Recognition]: Signal Processing
+General Terms
+Algorithms, Theory
+Keywords
+Calibration, Sensor Networks, Sampling
+∗This material is supported in part by the Center for
+Embedded Networked Sensing, by the U.S ARL and the
+U.K. MOD under Agreement Number W911NF-06-3-0002,
+and by the NSF under awards CNS-0519824, ECS-0529381,
+CNS-0520006, and CNS-0331481.
+Any opinions, ﬁndings
+and conclusions or recommendations expressed in this mate-
+rial are those of the authors and do not necessarily reﬂect the
+views of the listed funding agencies. The U.S. and U.K. Gov-
+ernments are authorized to reproduce and distribute reprints
+for Government purposes notwithstanding any copyright no-
+tation herein.
+Permission to make digital or hard copies of all or part of this work for
+personal or classroom use is granted without fee provided that copies are
+not made or distributed for proﬁt or commercial advantage and that copies
+bear this notice and the full citation on the ﬁrst page. To copy otherwise, to
+republish, to post on servers or to redistribute to lists, requires prior speciﬁc
+permission and/or a fee.
+IPSN’07, April 25-27, 2007, Cambridge, Massachusetts, USA.
+Copyright 2007 ACM 978-1-59593-638-7/07/0004 ...$5.00.
+1.
+INTRODUCTION
+Sensors are notoriously prone to calibration errors, and
+arguably these errors are one of the major obstacles to the
+practical use of sensor networks [3]. Calibrating every sen-
+sor by hand is infeasible if sensor networks are to scale even
+into the tens of devices; yet it may be that applications
+need more accurate measurements than uncalibrated, low-
+cost sensors provide. Consequently, automatic methods for
+jointly calibrating sensor networks in the ﬁeld, without de-
+pendence on controlled stimuli or high-ﬁdelity groundtruth
+data, is of signiﬁcant interest. We call this problem blind
+calibration.
+One approach to blind sensor network calibration is to be-
+gin by assuming that the deployment is very dense, so that
+neighboring nodes should (in principle) have nearly identical
+readings [4]. Unfortunately, many existing and envisioned
+sensor network deployments may not meet the density re-
+quirements of such procedures.
+This paper takes a very diﬀerent approach to sensor net-
+work calibration. In particular, our approach leverages cor-
+relation in the collection of sensors without requiring a dense
+deployment, making it much more suitable for practical ap-
+plications.
+We assume a linear model for the sensor cali-
+bration functions. This means that the sensor readings are
+calibrated up to an unknown gain and oﬀset (bias) for each
+sensor, possibly after applying a suitable and ﬁxed transfor-
+mation to the raw sensor readings, e.g., taking the logarithm
+or applying the original factory calibration transformation.
+The paper makes three main contributions. First, we pro-
+pose a novel automatic sensor calibration procedure that
+requires solving a linear system of constraints involving rou-
+tine sensor measurements. By “routine” we mean that ac-
+tual signal measured by the sensor network is uncontrolled
+and unknown. This is why we refer to the problem as blind
+calibration. The constraint equations are based on mild as-
+sumptions that guarantee that the sensor measurements are
+at least slightly correlated over space, i.e., the network over-
+samples the underlying signals of interest. Second, we prove
+the rather surprising fact that these assumptions, which are
+commonly met in practice, suﬃce to perfectly recover un-
+known sensor gains. That is, it is possible to blindly calibrate
+the gains using only the routine readings made by the sen-
+sors. Third, we prove that the sensor oﬀsets (biases) can
+also be partially recovered from routine readings; they can
+be completely recovered with some additional overhead.
+To give a preview of our approach, suppose we are mea-
+suring a temperature ﬁeld with an array of n sensors. Tem-
+perature ﬁelds tend to vary smoothly, and so they may be
+
+considered to be bandlimited. The Nyquist theorem dictates
+a minimum spacing between sensors in order to adequately
+sample a bandlimited signal.
+If sensors are spaced more
+closely than the minimum requirement, then we are “over-
+sampling” the signal. In this case, the underlying bandlim-
+ited signal will lie in a lower dimensional (low frequency)
+subspace of the n dimensional measurement space.
+This
+condition provides a useful constraint for blind calibration.
+Correctly calibrated signals must lie in the lower dimen-
+sional subspace, and this leads to a system of linear equa-
+tions which can be used to solve for the gain and oﬀset
+calibration parameters.
+2.
+PROBLEM FORMULATION
+Consider a network of n sensors. At a given time instant,
+each sensor makes a measurement, and we denote the vector
+of n measurements by x = [x(1), . . . , x(n)]′, where ′ denotes
+the vector transpose operator (so that x is an n × 1 col-
+umn vector). We will refer to x as a “snapshot.” When
+necessary, we will distinguish between snapshots taken at
+diﬀerent times using a subscript (e.g., xs and xt are snap-
+shots at times s and t).
+Each sensor has an unknown gain and oﬀset associated
+with its response, so that instead of measuring x the sensors
+report
+y(j)
+=
+x(j) −β(j)
+α(j)
+, j = 1, . . . , n
+where α = [α(1), . . . , α(n)]′ are the sensors’ gain calibration
+factors and β = [β(1), . . . , β(n)]′ are the sensors’ calibration
+oﬀsets. It is assumed that α(j)̸ = 0, j = 1, . . . , n. With this
+notation, the sensor measurement y(j) can be calibrated by
+the linear transformation x(j) = α(j)y(j) + β(j). We can
+summarize this for all n sensors using the vector notation
+x
+=
+Y α + β ,
+(1)
+where Y = diag(y) and the diag operator is deﬁned as
+diag(y) =
+2
+64
+y(1)
+...
+y(n)
+3
+75 .
+The blind calibration problem entails the recovery of α and
+β from routine uncalibrated sensor readings such as y.
+In general, without further assumptions, blind calibration
+appears to be an impossible task. However, it turns out that
+under mild assumptions that may often hold in practice,
+quite a bit can be learned from raw (uncalibrated) sensor
+readings like y. Assume that the sensor network is slightly
+“oversampling” the phenomenon being sensed. Mathemat-
+ically, this means that the calibrated snapshot x lies in
+a lower dimensional subspace of n-dimensional Euclidean
+space. Let S denote this “signal subspace” and assume that
+it is r-dimensional, for some integer 0 < r < n. For exam-
+ple, if the signal being measured is bandlimited and the sen-
+sors are spaced closer than required by the Shannon-Nyquist
+sampling rate, then x will lie in a lower dimensional subspace
+spanned by frequency basis vectors. If we oversample (rela-
+tive to Shannon-Nyquist) by a factor of 2, then r = n/2. Ba-
+sis vectors that correspond to smoothness assumptions, such
+as low-order polynomials, are another potentially relevant
+example. In general, the signal subspace may be spanned
+by an arbitrary set of r basis vectors. The calibration co-
+eﬃcients α and β and the signal subspace S may change
+over time, but here we assume they do not change over the
+course of blind calibration. As we will see, this is a reason-
+able assumption, since the network may be calibrated from
+very few snapshots.
+Let P denote the orthogonal projection matrix onto the
+orthogonal complement to the signal subspace S. Then ev-
+ery x ∈S must satisfy the constraint
+P x
+=
+P (Y α + β) = 0
+(2)
+This is the key idea behind our blind calibration method.
+Because the projection matrix P has rank n −r, the con-
+straint above gives us n−r linearly independent equations in
+2n unknown values (α and β). If we take snapshots from the
+sensor network at k distinct times, y1, . . . , yk, then we will
+have k(n−r) equations in 2n unknowns. For k ≥2n/(n−r)
+we will have more equations than unknowns, which is a
+hopeful sign. This observation leads to several basic ques-
+tions which we address in this paper.
+1. Is it possible to blindly recover α and β from a suﬃcient
+number of uncalibrated sensor snapshots? Mathemat-
+ically, this question boils down to determining whether
+or not the constraints provide 2n linearly independent
+equations.
+2. If perfect blind calibration is not possible, then can we
+achieve a partial calibration from the raw data? Can
+we improve this partial calibration with a small amount
+of additional overhead?
+3. How is the recovery aﬀected by sensor noise? Certainly,
+we cannot expect the constraint (2) to hold perfectly in
+the presence of noise, so robust versions of the problem
+need to be developed.
+4. How is the recovery aﬀected by mismodeling in P ? Again,
+robust versions of the problem are necessary to cope
+with cases where the signals are not perfectly lying in
+the subspace.
+The paper is organized as follows. We ﬁrst describe the
+related work, and then in Section 4 we give initial observa-
+tions which come out of the problem formulation we have
+just described. In Section 5 we describe results for oﬀset cal-
+ibration, and in Section 6 we give identiﬁability conditions
+for gain calibration. In Section 7 we evaluate our theory in
+both simulation and on real sensor data.
+3.
+RELATED WORK
+The most straightforward approach to calibration is to ap-
+ply a known stimulus x to the sensor network and measure
+the response y. Then using the groundtruth input x we can
+adjust the calibration parameters so that (1) is achieved.
+We call this non-blind calibration, since the true signal x
+is known. This problem is called inverse linear regression;
+mathematical details can be found at [8]. Non-blind calibra-
+tion is used routinely in sensor networks [10, 13], but may
+be diﬃcult or impossible in many applications.
+As for blind calibration in sensor networks, the problem
+of relating measurements such as received signal strength
+or time delay to distance for localization purposes has been
+studied extensively [9, 12].
+This problem is quite diﬀer-
+ent from the blind calibration problem considered in this
+
+paper, which assumes that the measurements arise from ex-
+ternal signals (e.g., temperature) and not from range mea-
+surements between sensors.
+In [14], the problem of cal-
+ibrating sensor range measurements by enforcing geomet-
+ric constraints in a system-wide optimization is considered.
+Calibration using geometric and physical constraints on the
+behavior of a point light source is considered in [6].
+The
+constraint that proximal sensors in dense deployments make
+very similar measurements is leveraged in [4]. In this paper,
+our constraint is simply that the phenomenon of interest lies
+in a subspace. This is a much more general constraint and
+hopefully therefore it can be widely applicable.
+Blind equalization and blind deconvolution [11] are related
+problems in signal processing. In these problems, the obser-
+vation model is of the form y = h∗x, where ∗is the convolu-
+tion operator, and both h and x must be recovered from y.
+Due to the diﬀerence between the calibration and convolu-
+tion models, results from blind deconvolution do not readily
+apply to blind calibration. Most similar to our problem is
+work in multi-channel blind deconvolution [7]. This prob-
+lem involves observing one unknown signal through multi-
+ple unknown channels. Blind calibration involves observing
+multiple unknown signals through one unknown calibration
+function. This connection merits further study which is be-
+yond the scope of this paper.
+4.
+BLIND CALIBRATION
+Given k snapshots at diﬀerent time instants y1, . . . , yk,
+the subspace constraint (2) results in the following system
+of k(n −r) equations:
+P (Y i α + β) = 0 , i = 1, . . . , k
+(3)
+The true gains and oﬀsets must satisfy this equation, but
+in general the equation may be satisﬁed by other vectors as
+well. Establishing conditions that guarantee that the true
+gains and/or oﬀsets are the only solutions is the main theo-
+retical contribution of the paper.
+It is easy to verify that the solutions for β satisfy
+P β = −P ¯Y α
+(4)
+where ¯Y = 1
+k
+Pk
+i=1 Y i, the time-average of the snapshots.
+One immediate observation is that the constraints only de-
+termine the components of β (in terms of the data and α)
+in the signal “nullspace” (the orthogonal complement to S).
+The component of the oﬀset β that lies in the signal sub-
+space is unidentiﬁable. This is intuitively very easy to un-
+derstand. Our only assumption is that the signals measured
+by the network lie in a lower dimensional subspace.
+The
+component of the oﬀset in the signal subspace is indistin-
+guishable from the mean or average signal. Recovery of this
+component of the oﬀset requires extra assumptions, such as
+assuming that the signals have zero mean, or additional cal-
+ibration resources, such as the non-blind calibration of some
+of the sensor oﬀsets. We discuss this further in Section 5.
+Given this characterization of the β solutions, we can re-
+write the constraints (3) in terms of α alone:
+P (Y i −¯Y )α = 0 , i = 1, . . . , k
+(5)
+If bα is a solution to this system of equations, then every
+vector β satisfying P β = −P ¯Y bα is a solution for β in the
+original system of equations (3). In other words, for a given
+bα, the value of the component of the oﬀset in the nullspace
+is P ¯Y bα.
+Another simple but very important observation is that
+there is one degree of ambiguity in α that can never be
+resolved blindly using routine sensor measurements alone.
+The gain vector α can be multiplied by a scalar c, and it
+cannot be distinguished whether this scalar multiple is part
+of the gains or part of the true signal. We call this scalar
+multiple the global gain factor. A constraint is needed to
+avoid this ambiguity, and without loss of generality we will
+assume that α(1) = 1. This constraint can be interpreted
+physically to mean that we will calibrate all other sensors
+to the gain characteristics of sensor 1. The choice of sensor
+1 is arbitrary and is taken here simply for convenience.
+If noise, mismodeling eﬀects, or other errors are present
+in the uncalibrated sensor snapshots, then a solution to (3)
+or (5) may not exist. Robust solutions are discussed in Sec-
+tion 7.1.
+5.
+OFFSET CALIBRATION
+The component of the oﬀset in the signal subspace is gen-
+erally unidentiﬁable, but in special cases it can be deter-
+mined. For example, if it is known that the phenomenon of
+interest ﬂuctuates symmetrically about zero (or some other
+known value), then the average of many measurements will
+tend to zero (or the known mean value). In this situation,
+the average
+1
+k
+k
+X
+i=1
+yi
+=
+ 
+1
+k
+k
+X
+i=1
+xi −β
+!
+/α ≈−β/α
+where the the division operation is taken element-by-element.
+This follows since
+1
+k
+Pk
+i=1 xi ≈0 for large enough k. Thus
+we can identify the oﬀset simply by calculating the aver-
+age of our measurements. More precisely, we can identify
+eβ = β/α, which suﬃces since we can equivalently express
+the basic relationship (1) between calibrated and uncali-
+brated snapshots as x = (Y + eβ) α.
+Another situation in which we can determine (or partially
+determine) the component of the oﬀset in the signal sub-
+space is when we have knowledge of the correct oﬀsets for
+a subset of the sensors. We call this partially blind oﬀset
+calibration. Suppose that we are able to directly measure
+the oﬀsets at m < n sensors, indexed by m distinct integers
+1 ≤ℓ1, . . . , ℓm ≤n. Let βm denote an m × 1 vector these
+oﬀsets. Let T be an m × n “selection” matrix that when
+applied to an arbitrary n × 1 vector produces an m × 1 vec-
+tor of the elements at locations ℓ1, . . . , ℓm from the original
+vector. With this notation, we can write βm = T β. Also
+note that
+βm = T β = T (P β + (I −P )β) = T P β + T (I −P )β,
+where (I −P )β is the oﬀset component in the signal sub-
+space and P β is the oﬀset component in the orthogonal
+complement to the signal subspace.
+As pointed out in Section 4, we can determine the compo-
+nent of the oﬀset in the nullspace using P β = −P ¯Y bα. Let
+us assume that this component is known (from the estimated
+calibration gains), and deﬁne β∆= T (I −P )β, the signal
+subspace component of the oﬀset at sensors ℓ1, . . . , ℓm. This
+component satisﬁes the relation
+β∆= βm −T P β = βm + T P ¯Y bα.
+(6)
+The projection matrix corresponding to the signal subspace,
+(I −P ), can be written in terms of a set of orthonor-
+
+mal column vectors, φ1, . . . , φr, that span the signal sub-
+space. Let Φ = [φ1 · · · φr] denote an n × r matrix whose
+columns are the basis vectors. Then (I −P ) = ΦΦ′ and
+so we can also write β∆
+=
+T ΦΦ′β. Note that the oﬀ-
+set component in the signal subspace is completely deter-
+mined by the r parameters θ = Φ′β. Deﬁning ΦT = T Φ,
+we can write β∆
+=
+ΦT θ. If ΦT is invertible, then us-
+ing (6) the parameters θ can be uniquely determined by
+θ = Φ−1
+T (βm + T P ¯Y bα). Thus, if ΦT is invertible, then
+the complete oﬀset vector β can be determined from the
+subset of oﬀsets βm and the estimated gains bα. If ΦT has
+rank q < r, then we can determine the signal subspace oﬀset
+component up to a remaining unidentiﬁable component in a
+smaller r −q dimensional subspace of the signal subspace.
+The rank of ΦT cannot be greater than m, the number of
+known sensor oﬀsets, which shows that to completely deter-
+mine the oﬀset component in the signal subspace we require
+at least m = r known oﬀsets. In general, knowing the oﬀsets
+for an arbitrary subset of m sensors may not be suﬃcient
+(i.e., ΦT may not be invertible), but there are important
+special cases when it is. First note the Φ, by construction,
+has full rank r. Also note that the selection matrix T selects
+the m rows corresponding to the known calibration oﬀsets
+and eliminates the remaining n −m rows. So, we require
+that the elimination of any subset of n −m rows of Φ does
+not lead to a linearly dependent set of (m × 1) columns.
+This requirement is known as an incoherence condition, and
+it is satisﬁed as long as the signal basis vectors all have
+small inner products with the natural or canonical sensor
+basis (n × 1 vectors that are all zero except for a single non-
+zero entry). For example, frequency vectors (e.g., Discrete
+Fourier Transform vectors) are known to satisfy this type of
+incoherence condition [5]. This implies that for subspaces of
+bandlimited signals, ΦT is invertible provided m ≥r.
+6.
+GAIN CALIBRATION
+The possibilities for oﬀset calibration are fairly straight-
+forward, as described above, but conditions that guaran-
+tee that the gains can be blindly calibrated are less obvi-
+ous. This section theoretically characterizes the existence of
+unique solutions to the gain calibration problem. As pointed
+out in Section 4, the gain calibration problem can be solved
+independently of the oﬀset calibration task, as shown in (5),
+which corresponds to simply removing the mean snapshot
+from each individual snapshot. Therefore, it suﬃces to con-
+sider the case in which the snapshots are zero-mean and
+to assume that ¯Y = 0, in which case the gain calibration
+equations may be written as
+P Y i α = 0 , i = 1, . . . , k
+(7)
+The results we present also hold for the general case in which
+¯Y̸ = 0. We ﬁrst consider general conditions guaranteeing
+the uniqueness of the solution to (7) and then look more
+closely at the special case of bandlimited subspaces.
+6.1
+General Conditions
+The following conditions are suﬃcient to guarantee that
+a unique solution to (7) exists.
+A1. Oversampling:
+Each signal x lies in a known r-
+dimensional subspace S, r < n.
+Let φ1, . . . , φr de-
+note a basis for S. Then x = Pr
+i=1 θiφi, for certain
+coeﬃcients θ1, . . . , θr.
+A2. Randomness: Each signal is randomly drawn from S
+and has mean zero. This means that the signal coeﬃ-
+cients are zero-mean random variables. The joint dis-
+tribution of these random variables is absolutely con-
+tinuous with respect to Lebesgue measure (i.e., a joint
+r-dimensional density function exists). For any collec-
+tion of signals x1, . . . , xk, k > 1, the joint distribution
+of the corresponding kr coeﬃcients is also absolutely
+continuous with respect to Lebesgue measure (i.e., a
+joint kr-dimensional density function exists).
+A3. Incoherence: Deﬁne the nr × n matrix
+MΦ
+=
+2
+64
+P diag(φ1)
+...
+P diag(φr)
+3
+75
+(8)
+and assume that rank(MΦ) = n −1. Note that MΦ
+is a function of the basis of the signal subspace. The
+matrix P , the orthogonal projection matrix onto the
+orthogonal complement to the signal subspace S, can
+be written as P = I−ΦΦ′, where I is the n×n identity
+matrix and Φ = [φ1, . . . , φr].
+Assumption A1 guarantees that the calibrated or true sen-
+sor measurements are correlated to some degree. This as-
+sumption is crucial since it implies that measurements must
+satisfy the constraints in (3) and that, in principle, we can
+solve for the gain vector α. Assumption A2 guarantees the
+signals are not too temporally correlated (e.g., diﬀerent sig-
+nal realizations are non-identical with probability 1). Also,
+the zero-mean assumption can be removed, as long as one
+subtracts the average from each sensor reading. Assump-
+tion A3 essentially guarantees that the basis vectors are suf-
+ﬁciently incoherent with the canonical sensor basis, i.e., the
+basis that forms the columns of the identity matrix. It is
+easy to verify that if the signal subspace basis is coherent
+with the canonical basis, then rank(MΦ) < n −1.
+Also,
+note that MΦ1 = 0, where 1 = [1, . . . , 1]′, which implies
+that rank(MΦ) is at most n −1.
+In general, assumption
+A3 only depends on the assumed signal subspace and can
+be easily checked for a given basis. In our experience, the
+condition is satisﬁed by most signal subspaces of practical in-
+terest, such as lowpass, bandpass or smoothness subspaces.
+Theorem 1 Under assumptions A1, A2 and A3, the gains
+α can be perfectly recovered from any k ≥r signal measure-
+ments by solving the linear system of equations (5).
+The theorem is proved in the Appendix.
+The theorem
+demonstrates that the gains are identiﬁable from routine
+sensor measurements; that is, in the absence of noise or
+other errors, the gains are perfectly recovered. In fact, the
+proof shows that under A1 and A2, the condition A3 is both
+necessary and suﬃcient. When noise and errors are present,
+the estimated gains may not be exactly equal to the true
+gains.
+However, as the noise/errors in the measurements
+tend to zero, the estimated gains tend to the true gains.
+6.2
+Bandlimited Subspaces
+In the special case in which the signal subspace corre-
+sponds to a frequency domain subspace, a slightly more pre-
+cise characterization is possible which shows that even fewer
+snapshots suﬃce for blind calibration.
+As stated above,
+
+assumption A3 is often met in practice and can be easily
+checked given a signal basis Φ. One case where A3 is auto-
+matically met is when the signal subspace is spanned by a
+subset of the Discrete Fourier Transform (DFT) vectors:
+φm = [1, e
+−i2πm
+n
+, . . . , e
+−i2(n−1)πm
+n
+]′/√n,
+m = 0, . . . , n −1
+In this case we show that only ⌈n−1
+n−r⌉+ 1 snapshots are re-
+quired. This can be signiﬁcantly less than r, meaning that
+the time over which we must assume that the subspace and
+calibration coeﬃcients are unchanging is greatly reduced.
+The following assumptions and theorem summarize this re-
+sult.
+B1. Oversampling: Assume that each signal x lies in a
+bandlimited r-dimensional subspace S, r < n, spanned
+by φm1, . . . , φmr, where m1, . . . , mr are distinct in-
+tegers from the set {0, . . . , n −1}. Furthermore, as-
+sume that these integers are aperiodic in the following
+sense. Let s denote the vector with one at locations
+m1, . . . , mr and zero otherwise. This vector indicates
+the support set of the signal subspace in the DFT do-
+main. The integers m1, . . . , mr are called aperiodic if
+every circular (mod n) shift of s is distinct. It is easy
+to check this condition and, in fact, most bandlimited
+subspaces have aperiodic support sets.
+B2. Randomness: Note that each signal x ∈S can be
+written as x = Pr
+j=1 θjφmj, for certain coeﬃcients
+θ1, . . . , θr. Each signal is randomly drawn from S and
+has mean zero. This means that the signal coeﬃcients
+are zero-mean random variables. The joint distribu-
+tion of these random variables is absolutely contin-
+uous with respect to Lebesgue measure (i.e., a joint
+r-dimensional density function exists).
+Also assume
+that multiple signal observations are statistically un-
+correlated.
+Assumption B1 guarantees that the calibrated or true sen-
+sor measurements are spatially correlated to some degree.
+As before, this assumption is crucial since it implies that
+measurements must satisfy the constraints in (3) and that,
+in principle, we can solve for the gain vector α. The ra-
+tionale behind the assumption that the frequency support
+set is aperiodic is less obvious, but its necessity is due to
+the 2π-periodicity of the DFT (see [2] for further details).
+Assumption B2 guarantees the signals are not temporally
+correlated (analogous to A2, above). The following theorem
+characterizes the identiﬁability of the sensor gains in this
+situation.
+Theorem 2 It is necessary to make at least k ≥⌈n−1
+n−r ⌉sig-
+nal measurements in order to determine the gains, where
+⌈z⌉denotes the smallest integer greater than or equal to z.
+Moreover, under assumptions B1 and B2, the gains α can
+be perfectly recovered from any k = ⌈n−1
+n−r⌉+ 1 signal mea-
+surements by solving the linear system of equations (5).
+Due to space limitations, the proof of Theorem 2 is not
+included in this paper. It can be found in a longer technical
+report [2]. The proof takes advantage of the special structure
+of the DFT basis. Alternatively, one could apply Theorem 1
+in this case to obtain a slightly weaker result; namely that
+under B1 and B2
+k ≥r observations suﬃce to perfectly
+recover the gains.
+7.
+EVALUATION
+In order to evaluate whether this theory of blind cali-
+bration is possible in practice, we explore its performance
+in simulation under both measurement noise and the mis-
+characterization of the projection matrix P . Additionally,
+we show the performance of the algorithm on two temper-
+ature sensor datasets, one dataset from a controlled exper-
+iment where the sensors are measuring all the same phe-
+nomenon and thus lie in a 1-dimensional subspace, and the
+other from a deployment in a valley at a nature preserve
+called the James Reserve1, where the true dimension of the
+spatial signal is unknown. First, we discuss the technical
+tools for implementation of robust blind calibration.
+7.1
+Robust Estimation
+Blind calibration is simply a problem of solving the lin-
+ear system of equations in (5).
+If noise, mismodeling ef-
+fects, or other errors are present in the uncalibrated sensor
+snapshots, then a solution to (5) may not exist. There are
+many methods for ﬁnding the best possible solution, and
+we employ singular value decomposition and standard least
+squares techniques.
+First, note that the constraints can be expressed as
+C α
+=
+0
+(9)
+where the matrix C is given by
+C
+=
+2
+64
+P (Y 1 −¯Y )
+...
+P (Y k −¯Y )
+3
+75
+(10)
+In the ideal case, there is always at least one solution to the
+constraint Cα = 0, since the true gains must satisfy this
+equation. On the other hand, if the sensor measurements
+contain noise or if the assumed calibration model or signal
+subspace is inaccurate, then a solution may not exist. That
+is, the matrix C may have full column rank and thus will
+not have a right nullspace. A reasonable robust solution in
+such cases is to ﬁnd the right singular vector of C associated
+with the smallest singular value. This vector is the solution
+to the following optimization.
+bα
+=
+arg min
+α ∥Cα∥2
+2
+(11)
+In other words, we ﬁnd the vector of gains such that Cbα is
+as close to zero as possible. This vector can be eﬃciently
+computed in numerical computing environments, such as
+Matlab, using the economy size singular value decomposi-
+tion (svd)2. Note that in the ideal case (no noise or error)
+the svd solution satisﬁes (5). Thus, this is a general-purpose
+solution method.
+Blind calibration of the gains can also be implemented
+by solving a system of equations in a least squared sense
+as follows. Recall that we have one constraint on our gain
+vector, α(1) = 1. This can be interpreted as knowing the
+gain coeﬃcient for the ﬁrst sensor. We can use this knowl-
+edge as an additional constraint on the solution. If we let
+c1, . . . , cn be the columns of C, let ˜α be the gain vector
+with α(1) removed, and let ˜C be the matrix C with the ﬁrst
+column removed, we can rewrite the system of equations as
+1http://www.jamesreserve.edu
+2The Matlab command is svd(C, 0).
+
+Example Simulated Field
+Measured Field
+Figure 1: Two example simulated square ﬁelds. On
+the left, a 256 × 256 ﬁeld generated with a basic
+smoothing kernel, which represents a true continu-
+ous ﬁeld. On the right, an 8×8 grid of measurements
+of the same ﬁeld. The ﬁelds can be quite dynamic
+and still meet the assumptions for blind calibration.
+The ﬁelds are shown in pseudocolor, with red denot-
+ing the maximum valued regions and blue denoting
+the minimum valued regions.
+˜C ˜α = −c1.
+The robust solution is the value of ˜α that
+minimizes the LS criterion ∥˜C ˜α + c1∥2
+2.
+More generally, we may know several of the gain coeﬃ-
+cients for what we call partially blind calibration. Let h be
+the sum of the α(i)ci corresponding to the known gains, let
+˜α be the gain vector with the known gains α(i) removed,
+and let ˜C be the matrix C with those columns ci removed.
+Now we have ˜C ˜α = −h and the robust solution is the min-
+imizer of
+∥˜C ˜α + h∥2
+2
+(12)
+We can solve this optimization in a numerically robust man-
+ner by avoiding the squaring of the matrix ˜C that is implicit
+in the conventional LS solution, ˜α = ( ˜C′ ˜C)−1 ˜C′(−h). This
+“squaring” eﬀectively worsens the condition number of the
+problem and can be avoided by using QR decomposition
+techniques3.
+7.2
+Simulations
+To test the blind calibration methods on simulated data,
+we simulated both a ﬁeld and snapshots of that ﬁeld. We
+generated gain and oﬀset coeﬃcients, measurement noise,
+and most importantly, a projection matrix P .
+We simulated a smooth ﬁeld by generating an 256 × 256
+array of pseudorandom Gaussian noises (i.e., a white noise
+ﬁeld) and then convolving it with the smooth impulse re-
+sponse function h(i, j) = e(−s((i−l/2)2+(j−l/2)2), s > 0. Fig-
+ure 1 shows an example ﬁeld with the smoothing parameter
+s = 1, which could represent a smoothly varying tempera-
+ture ﬁeld, for example. We simulated sensor measurements
+by sampling the ﬁeld on a uniform 8 × 8 grid of n = 64
+sensors. For gains, we drew uniformly from α ∈[0.5, 1.5]
+and for oﬀsets from β ∈[−.5, .5]. After applying α and β
+to the measurements, we then added Gaussian noise, with
+mean zero and variance σ.
+Separately, we created P to be a low-pass DFT matrix.
+We kept 3 frequencies in 2d, which means with symmetries
+we have an r = 49-dimensional subspace4. With this setup,
+3We used α = ˜C\−h in Matlab.
+4If the 2-dimensional signal has p frequencies, then the sub-
+space is of rank r = (2p + 1)2.
+10
+−3
+10
+−2
+10
+−1
+0
+2
+4
+6
+8x 10
+−4 Gain Error in Noise
+average error per sensor
+noise variance on logscale
+mean
+median
+10
+−3
+10
+−2
+10
+−1
+2.38
+2.4
+2.42
+2.44
+2.46x 10
+−3 Offset Error in Noise
+average error per sensor
+noise variance on logscale
+mean
+median
+Figure 2: Gain and oﬀset error performance with
+exact knowledge of P and increasing measurement
+noise. The results show the mean and median error
+over 100 simulation runs.
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0
+0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04 Gain Error v. Modeling Error
+average error per sensor
+amount of signal outside of the subspace
+mean
+median
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+3
+4
+5
+6
+7
+8x 10
+−3 Offset Error v. Modeling Error
+average error per sensor
+amount of signal outside of the subspace
+mean
+median
+Figure 3: Gain and oﬀset error performance for mis-
+modeled P and zero measurement noise. The results
+show the mean and median error for 100 simulation
+runs.
+we can adjust the parameters of the smoothing kernel, while
+keeping P constant, to test robustness of blind calibration
+to an assumed subspace model that may over- or under-
+estimate the dimension of the subspace of the true ﬁeld.
+The smoothing kernel and projection P both characterize
+lowpass eﬀects, but the smoothing operator is only approx-
+imately described by the projection operator, even in the
+best case.
+We can also create our ﬁeld by projecting the
+random ﬁeld onto the r-dimensional subspace using P ; this
+represents the case where the true subspace is known ex-
+actly.
+Estimates of the gains and oﬀsets were calculated using
+the methods discussed above and described in more detail
+below. For all the results, we calculated the average error
+per sensor in the estimate ˆα, and similarly the estimate ˆβ,
+as follows.
+errα
+=
+∥α −ˆα∥2
+2
+n
+(13)
+In order to interpret the error results, keep in mind the
+range of α and β. For gain, a 1% error will be approximately
+10−2, and 1% error in oﬀset would be approximately of 10−3.
+7.2.1
+Error Results using SVD
+We simulated blind calibration with the described sim-
+ulation set-up.
+We ﬁrst generated mean-zero ﬁelds using
+our smoothing kernel and took snapshot measurements of
+each ﬁeld. We used k = 3r snapshots (slightly more than
+the theoretical minimum of k = r) for added robustness to
+noise and modeling errors. Then we constructed the matrix
+C from equation (10) and took the minimum right singu-
+
+10
+−3
+10
+−2
+10
+−1
+10
+−8
+10
+−6
+10
+−4
+10
+−2
+10
+0
+average error per sensor on logscale
+noise variance on logscale
+Mean Gain Error
+LS
+Partial Blind
+SVD
+Figure 4: Gain error performance for SVD, blind
+LS, and partially blind LS. Results show mean error
+over 50 simulation runs.
+lar vector as the estimate of the gains α as described in
+Section 7.1. We then estimated β = −¯Y α.
+Results from totally blind calibration in simulation are
+shown in the Figures 2 and 3. Figure 2 shows error in gain
+and oﬀset estimates under the burden of increasing noise
+variance using exact knowledge of the subspace deﬁned by
+P . That is, the ﬁelds in these simulations were created by
+projecting random signals into the space deﬁned by projec-
+tion matrix P . The maximum value in the signals was 1, and
+therefore the noise variance can be taken as a percentage;
+i.e., variance of 10−2 represents 1% noise in the signal. The
+blind calibration performed very well in this scenario; at 1%
+noise the gain estimation error was less than 1×10−4 and the
+oﬀset estimation error was less than 2.4 × 10−3. The ﬁgure
+shows mean and median error over 100 simulation runs.
+Knowing the true subspace exactly is possible in prac-
+tice only when performing blind calibration in a very well-
+known environment, such as an indoor factory.
+Even in
+this case, there will be some component of the true sig-
+nals which is outside of the subspace deﬁned by the cho-
+sen P .
+Figure 3 shows how gain and oﬀset error are af-
+fected by out-of-subspace components in the true signals.
+We used a basic smoothing kernel to control smoothness of
+the true ﬁeld and kept P constant as described above with
+r = 49. The smoothing kernel and the projection operator
+are both low-pass operators, but even in the best case, some
+of the smoothed ﬁeld will be outside of the space deﬁned
+by the projection matrix P . We deﬁned the error in P as
+∥x −P x∥2/∥x∥2. The x-axis value in the ﬁgure is the aver-
+age error in P over 100 random ﬁelds smoothed with a given
+smoothness parameter. The ﬁgure shows mean and median
+error in gain and oﬀset estimates over these 100 simulation
+runs. Again the results are compelling. The gain estimation
+error was around 10−2 even when 10% of the signal was out-
+side of the subspace. The oﬀset estimation as well was still
+very accurate, below 7 × 10−3 even when 20% of the signal
+was outside of the subspace.
+7.2.2
+Comparison of Techniques
+Here we compare the SVD technique to the LS technique
+and the totally blind calibration to partially blind calibra-
+tion, where we know some of the calibration coeﬃcients
+ahead of time. To be completely explicit, here we have a
+description of the approaches.
+Totally blind SVD or SVD performs gain estimation using
+10
+−2
+10
+−1
+10
+0
+10
+−6
+10
+−4
+10
+−2
+10
+0
+10
+2
+10
+4 Offset Error for 0−Mean Signals
+average error per sensor on logscale
+noise variance on logscale
+LS
+Partial Blind
+SVD
+10
+−2
+10
+−1
+10
+0
+10
+−6
+10
+−4
+10
+−2
+10
+0
+10
+2Offset Error for Non−0−Mean Signals
+average error per sensor on logscale
+noise variance on logscale
+LS
+Partial Blind
+SVD
+Figure 5: Oﬀset error performance for SVD, blind
+LS, and partially blind LS. The top graph shows
+oﬀset error for zero-mean signals, and the bottom
+graph is for non-zero-mean signals.
+Results show
+mean error over 50 simulation runs.
+the minimum right singular vector of the svd and normal-
+izes assuming α(1) = 1. Oﬀsets are then estimated using
+β = −¯Y α. Totally blind LS or LS performs gain estimation
+by solving equation (12) in a least-squares sense and assum-
+ing knowledge only of α(1) = 1. Oﬀsets are estimated as in
+SVD. Partially blind LS or partial blind performs gain esti-
+mation by again solving equation (12) in the least-squared
+sense but now assuming we know at least r of the true gain
+values. Oﬀsets are then estimated as described in Section 5
+for non-zero mean signals, i.e. using β∆= T ΦΦ′β to solve
+for θ = Φ′β and thus β.
+For partially blind LS we use enough of the true oﬀsets
+such that we can solve for the complete component of β
+in the signal subspace. The ﬁelds we simulated are nearly
+bandlimited subspaces, and so the theory would imply that
+r true oﬀsets are enough to estimate β. In order to be robust
+to noise, we used knowledge of the oﬀsets of r + 5 sensors,
+again slightly more than the bare minimum suggested by
+the theory.
+A comparison of the techniques is quite interesting. First,
+as we expect, the partially blind estimation does better than
+the other two methods in all cases; this follows from the fact
+that it is using more information. In Figure 4 you can see in
+the gain estimation, the SVD method out-performs totally
+blind LS, but partially blind LS has the lowest error of all
+the methods.
+In the case of oﬀset error, the SVD and totally blind LS
+techniques out-perform one another depending on the noise
+variance and whether or not the signals are zero-mean. Fig-
+ure 5 shows oﬀset error for all three techniques. The par-
+
+0
+2
+4
+6
+8
+10
+0.98
+1
+1.02
+1.04Optimal and Estimated Parameters
+gain value
+0
+2
+4
+6
+8
+10
+−0.5
+0
+0.5
+1
+sensor id
+offset value
+optimal
+estimated
+optimal
+estimated
+1
+1.5
+2
+2.5
+x 10
+5
+21
+22
+23
+24
+True Temperature (dashed), 
+Uncalibrated Data (solid)
+1
+1.5
+2
+2.5
+x 10
+5
+21
+22
+23
+24
+True Temperature (dashed), 
+Calibrated Data (solid)
+time index
+temperature in degrees C
+Figure 6: Results of blind calibration on the calibra-
+tion dataset.
+tially blind LS method is unaﬀected by non-zero mean sig-
+nals, which follows because method for estimating the oﬀsets
+does not change with a zero-mean assumption. The other
+methods, on the other hand, capture the mean signal as
+part of their oﬀset estimates, and as we can see, estimation
+error using the non-zero-mean signals is higher than using
+zero-mean signals.
+The most intriguing part of these results is that totally
+blind LS performs slightly better than SVD for the oﬀset
+estimate in non-zero-mean signals, despite the fact that it is
+using a gain estimate with more error from the ﬁrst step in
+order to estimate the oﬀsets. This implies that if calibration
+oﬀset is the most important for calibration of your system,
+and you have non-zero-mean signals, you might prefer the
+totally blind LS method over the SVD.
+7.3
+Evaluation on Sensor Datasets
+We evaluate blind calibration on two sensor network
+datasets, which we call the calibration dataset and the cold
+air drainage transect dataset.
+7.3.1
+Calibration Dataset
+The
+calibration
+dataset
+was
+collected
+in
+September
+2005 [1] along with data from a reference-caliber instru-
+ment in order to characterize the calibration of the ther-
+mistors used for environmental temperature measurement
+at the James Reserve. From the experiment, the conclusion
+was drawn that after the factory-supplied calibration was
+applied to the raw sensor measurements, the sensors dif-
+fered from the reference thermocouple linearly, i.e. by only
+a gain and oﬀset. Thus these sensors are suitable for evalu-
+ating the work we have done thus far on blind calibration.
+−150
+−100
+−50
+0
+0
+200
+400
+1600
+1610
+1620
+1630
+1640
+1650
+Sensor Locations for Cold Air Drainage
+altitude
+Figure 7: The mica2 motes in the cold air drainage
+transect run down the side of a hill and across a
+valley. The mote locations pictured are those that
+we used in this paper.
+The data is available in the NESL CVS repository5.
+The setup of this experiment consisted of nine6 tempera-
+ture sensors. These sensors were placed in a styrofoam box
+along with a thermocouple attached to a datalogger, pro-
+viding ground truth temperature readings.
+Therefore, all
+sensors were sensing the same phenomenon, and so the sub-
+space spanned by the nine measurements is rank one. Thus,
+for P we used a lowpass dct matrix which kept only the dc
+frequency space. To illustrate, we used the following com-
+mands in Matlab:
+r = 1; n = 9;
+I = eye(n);
+U = dct(I);
+U(r+1:n,:) = 0;
+P = idct(U);
+We calibrated these data using snapshots from the dataset
+and the SVD method. Figure 6 shows the calibration coeﬃ-
+cient estimates and reconstructed signals for the sensors in
+the experiment. The gains and oﬀsets were recovered with
+very little error. The uppermost plot shows the true and
+estimated gains and oﬀsets. The lower plot shows the data
+before and after calibration, along with the ground truth
+measurement in blue. This clearly demonstrates the utility
+of blind calibration.
+7.3.2
+Cold Air Drainage Dataset
+The cold air drainage transect dataset consists of data
+from an ongoing deployment at the James Reserve. The de-
+ployment measures air temperature and humidity in a valley
+in order to characterize the predawn cold air drainage. The
+sensors used are the same as the sensors in the calibration
+dataset, and thus again the factory calibration brings them
+within an oﬀset and gain of one another. The data we used
+for evaluation is from November 2, 2006, and it is available in
+the sensor data repository called SensorBase7. On this same
+day, we visited the James Reserve with a reference-caliber
+sensor and took measurements over the course of the day in
+5This
+data
+is
+available
+at
+http://www.ee.ucla.edu/
+∼sunbeam/bc/
+6The experiment had ten sensors, one of which was faulty. In
+this analysis we used data from the nine functional sensors.
+7http://sensorbase.org
+
+2
+4
+6
+8
+10
+0.8
+1
+1.2Optimal and Estimated Parameters
+gain value
+2
+4
+6
+8
+10
+−4
+−2
+0
+2
+sensor id
+offset value
+optimal
+estimated
+optimal
+estimated
+Figure 8: True and estimated gains and oﬀsets for
+the cold air drainage transect dataset.
+order to get the true calibration parameters for comparison.
+The deployment consists of 26 mica2 motes which run
+from one side of a valley to the other (Figure 7) across
+a streambed and in various regions of tree and mountain
+shade. Each mote has one temperature and one humidity
+sensor.
+For our purposes, we collected calibration coeﬃ-
+cients from 10 of the temperature sensors.
+The signal subspace in this application does not corre-
+spond to a simple lowpass or smooth subspace, since sen-
+sors at similar elevations may have similar readings, but can
+be quite distant from each other. In principle, the signal
+subspace could be constructed based on the geographic po-
+sitions and elevations of the sensor deployment. However,
+since we have the calibrated sensor data in this experiment,
+we can use these data directly to infer an approximate sig-
+nal subspace. We constructed the projection P using the
+subspace associated with the four largest singular values of
+the calibrated signal data matrix.
+We performed totally blind calibration using SVD. We
+constructed C using 64 snapshots taken over the course of
+the morning along with P as described. Figure 8 shows the
+results. The gain error was very small, only .0053 average
+per sensor, whereas if we were to assume the gain was 1 and
+not calibrate the sensors at all, the error would be .0180
+average per sensor. On the other hand, the oﬀset error was
+only slightly better with blind calibration than it would have
+been without: we saw .3953 average error per sensor as com-
+pared to 0.4610 error if the oﬀsets were assumed to be zero.
+We believe that the oﬀset estimation did not perform well
+due primarily to the fact that the mean signal is not zero
+in this case (e.g., the average sensor readings depend on el-
+evation).
+Better oﬀset estimates could be obtained using
+knowledge of one or more of the true sensor oﬀset values.
+8.
+EXTENSIONS AND FUTURE WORK
+There are many issues in blind calibration that could be
+explored further.
+The two main areas ripe for study are
+the choice of the subspace P and the implementation of
+blind calibration. There are many possible choices for a suit-
+able subspace, including frequency subspaces and smooth-
+ness subspaces. How to choose the subspace when faced with
+a sensor deployment where the true signals are unknown
+is an extremely important question for blind calibration.
+Methodologies for creating a P would be extremely useful to
+the more general application of blind calibration, especially
+ones which could incorporate trusted measurements or the
+users’ knowledge of the physical space where the sensors are
+deployed. At the same time, implementations of blind cali-
+bration that are robust to model error in the subspace would
+allow users to be more liberal in the choice of P .
+The theoretical analysis in this paper is done under noise-
+less conditions and with a perfect model. Future work in-
+cludes both noisy analysis to ﬁnd analytical bounds that
+can be compared to simulation results and sensitivity anal-
+ysis for our system of linear equations. Our experience is
+that solutions are robust to noise and mismodeling in some
+cases, and sensitive in others; we do not have a good un-
+derstanding of the robustness of the methodology at this
+time.
+Extending the formulation to handle non-linear calibra-
+tion functions would be useful in cases where a raw non-
+linear sensor response must be calibrated. We believe that
+many of the techniques developed in this paper can be ex-
+tended to more general polynomial-form calibration func-
+tions. Other interesting topics include distributed blind cal-
+ibration and blind calibration in the presence of faulty sen-
+sors.
+9.
+CONCLUSIONS
+The problem of sensor calibration is central to the prac-
+tical use of sensor networks. The blind calibration formula-
+tion and methods developed in this paper use only routine
+sensor measurements, and thus give an extremely promis-
+ing formulation for the mass calibration of sensors.
+We
+have shown that calibration gains are identiﬁable. We have
+proved how many measurements are necessary and suﬃcient
+to estimate the gain factors, and we have shown necessary
+and suﬃcient conditions to estimate the oﬀsets. We have
+demonstrated a working implementation on simulated and
+real data, which uncovered interesting relationships between
+implementation and blind calibration performance. Over-
+all, the paper demonstrates that blind calibration has great
+potential to be possible in practice, and we feel that the
+proposed formulation merits further investigation.
+10.
+ACKNOWLEDGMENTS
+The authors would like to extend many thanks to the
+reviewers for their insightful comments. Laura would like
+to thank Professor Mani Srivastava for his support, Nithya
+Ramanathan and John Hicks for their help on the cold air
+drainage transect, and Rui Castro and Nabil Hajj Chehade
+for helpful feedback and suggestions.
+11.
+REFERENCES
+[1] L. Balzano and N. R. et al. An investigation of sensor
+integrity. Technical Report UCLA-NESL-200510-01,
+Networked and Embedded Systems Laboratory, 2005.
+[2] L. Balzano and R. Nowak. Blind calibration. Technical
+Report TR-UCLA-NESL-200702-01, Networked and
+Embedded Systems Laboratory, February 2007.
+[3] P. Buonadonna, D. Gay, J. Hellerstein, W. Hong, and
+S. Madden. Task: Sensor network in a box. Technical
+Report IRB-TR-04-021, Intel Research Berkeley,
+January 2005.
+[4] V. Bychkovskiy, S. Megerian, D. Estrin, and
+M. Potkonjak. A collaborative approach to in-place
+
+sensor calibration. Lecture Notes in Computer Science,
+2634:301–316, 2003.
+[5] E. Candes and J. Romberg. Quantitative robust
+uncertainty principles and optimally sparse
+decompositions. Foundations of Computational
+Mathematics, 2006.
+[6] J. Feng, S. Megerian, and M. Potkonjak. Model-based
+calibration for sensor networks. Sensors, pages 737 –
+742, October 2003.
+[7] G. Harikumar and Y. Bresler. Perfect blind
+restoration of images blurred by multiple ﬁlters:
+Theory and eﬃcient algorithms. IEEE Transactions
+on Image Processing, 8(2):202 – 219, February 1999.
+[8] B. Hoadley. A bayesian look at inverse linear
+regression. Journal of the American Statistical
+Association, 65(329):356 – 369, March 1970.
+[9] A. Ihler, J. Fisher, R. Moses, and A. Willsky.
+Nonparametric belief propagation for self-calibration
+in sensor networks. In Proceedings of the Third
+International Symposium on Information Processing
+in Sensor Networks, 2004.
+[10] N. Ramanathan and L. B. et al. Rapid deployment
+with conﬁdence: Calibration and fault detection in
+environmental sensor networks. Technical Report
+CENS TR 62, Center for Embedded Networked
+Sensing, 2006.
+[11] O. Shalvi and E. Weinstein. New criteria for blind
+deconvolution of nonmimimum phase systems
+(channels). IEEE Trans. on Information Theory,
+IT-36(2):312 – 321, March 1990.
+[12] C. Taylor, A. Rahimi, J. Bachrach, H. Shrobe, and
+A. Grue. Simultaneous localization, calibration, and
+tracking in an ad hoc sensor network. In IPSN ’06:
+Proceedings of the Fifth International Conference on
+Information Processing in Sensor Networks, pages
+27–33, 2006.
+[13] G. Tolle and J. P. et al. A macroscope in the
+redwoods. In Proceedings of Sensys, 2005.
+[14] K. Whitehouse and D. Culler. Calibration as
+parameter estimation in sensor networks. In
+Proceedings of the 1st ACM International Workshop
+on Wireless Sensor Networks and Applications, pages
+59–67, 2002.
+APPENDIX
+Theorem 1:
+Proof. First note that the case where the signal sub-
+space is one-dimensional (r = 1) is trivial. In this case there
+is one degree of freedom in the signal, and hence one mea-
+surement coupled with the constraint that α(1) = 1 suﬃces
+to calibrate the system. For the rest of the proof we assume
+that 1 < r < n and thus 2 ≤k < n.
+Given k signal observations y1, . . . , yk, and letting bα rep-
+resent our estimated gain vector, we need to show that the
+system of equations
+2
+64
+P Y 1
+...
+P Y k
+3
+75 bα = 0
+(14)
+has rank n−1, and hence may be solved for the n−1 degrees
+of freedom in bα. Note each subsystem of equations, P Y j,
+has rank less than or equal to n −r (since P is rank n −r).
+Therefore, if k < n−1
+n−r , then the system of equations certainly
+has rank less than n−1. This implies that it is necessary that
+k ≥n−1
+n−r. Next note that Y j = XjA, where Xj = diag(xj)
+and A = diag([1, 1/α(2), . . . , 1/α(n)]′). Then write
+2
+64
+P X1
+...
+P Xk
+3
+75 d = 0
+(15)
+where d = Abα. The key observation is that satisfaction of
+these equations requires that Xjd ∈S, for j = 1, . . . , k.
+Any d that satisﬁes this relationship will imply a particular
+solution for bα, and thus d must not be any vector other than
+the all-ones vector for blind calibration to be possible.
+Recall that by deﬁnition Xj = diag(xj). Also note that
+diag(xj)d = diag(d)xj. So we can equivalently state the
+requirement as
+diag(d)xj ∈S, j = 1, . . . , k .
+(16)
+The proof proceeds in two steps. First, A2 implies that
+k ≥r signal observations will span the signal subspace with
+probability 1. This allows us to re-cast the question in terms
+of a basis for the signal subspace, rather than particular re-
+alizations of signals. Second, it is shown that A3 (in terms of
+the basis) suﬃces to guarantee that the system of equations
+has rank n −1.
+Step 1: We will show that all solutions to (16) are con-
+tained in the set
+D = {d : diag(d)φi ∈S, i = 1, . . . , r}.
+We proceed by contradiction. Suppose that there exists a
+vector ed that satisﬁes (16) but does not belong to D. Since
+ed satisﬁes (16), we know that there exists an x ∈S such
+that diag(ed)x ∈S.
+We can write x in terms of the ba-
+sis, as x = Pr
+i=1 θiφi, and diag(ed)x = Pr
+i=1 θi diag(ed)φi.
+Since by assumption ed does not satisfy diag(ed)φi ∈S,
+i = 1, . . . , r, it follows that the coeﬃcients θ1, . . . , θr must
+weight the components outside of the signal subspace so that
+they cancel out. In other words, the set of signals x ∈S that
+satisfy diag(ed)x ∈S is a proper subspace (of dimension less
+than r) of the signal subspace S. However, if we make k ≥r
+signal observations, then with probability 1 they collectively
+span the entire signal subspace (since they are jointly con-
+tinuously distributed). In other words, the probability that
+all k measurements lie in a lower dimensional subspace of S
+is zero. Thus, ed cannot be a solution to (16).
+Step 2: Now we characterize the set D.
+First, observe
+that the vectors d ∝1, the constant vector, are contained
+in D, and those correspond to the global gain factor am-
+biguity discussed earlier.
+Second, note that every d ∈D
+must satisfy P diag(d)φi = P diag(φi)d = 0, i = 1, . . . , r,
+where P denote the projection matrix onto the orthogonal
+complement to the signal subspace S. Using the deﬁnition
+of MΦ given in (8), we have the following equivalent con-
+dition: every d ∈D must satisfy MΦd = 0.
+We know
+that the vectors d ∝1 satisfy this condition. The condi-
+tion rank(MΦ) = n −1 guarantees that these are the only
+solutions. This completes the proof.

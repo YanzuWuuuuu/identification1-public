@@ -1,0 +1,230 @@
+{
+  "scope": "Deterministic four-mode Jacobian and Fisher geometry checks; not fitting or Monte Carlo.",
+  "created_utc": "2026-10-13T01:47:12.847652+00:00",
+  "runtime": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "model": {
+    "frequencies_Hz": [
+      286.43,
+      344.58,
+      488.27,
+      705.67
+    ],
+    "damping": 0.01,
+    "B0": "Ri / wi^2 using only the first four columns/rows of matlab/3/model.m",
+    "D_demo": "1e-8 I_4, arbitrary illustrative value, NOT measured/estimated or derived from mode 5",
+    "noise": "Proper complex Gaussian, covariance I for tables (sigma^2=1); all parameters real",
+    "weights_stress": "Non-diagonal complex per-frequency whitening, fixed and nonsingular",
+    "constraints": "Free M,D,B0 matrices; free B1 only in general model; four shared pole pairs",
+    "grid": "5:1:800 Hz, subsetted by each lower cutoff; positive frequencies only",
+    "tau_seconds": 1e-05
+  },
+  "algebra_checks": {
+    "delay_jacobian_relative": 1.0059660033400629e-10,
+    "nuisance_directional_jacobian_relative": 1.0823225667827883e-07,
+    "nonzero_B1_weighted_identity_relative": 2.0277084124569226e-16,
+    "nonzero_B1_weighted_flexible_residual_relative": 2.4863584888140998e-15,
+    "nonzero_B1_weighted_reduced_residual_relative": 1.7532852365521215e-15,
+    "M_D_zero_information_fraction": 5.115918873997487e-30
+  },
+  "nuisance_space_comparisons": {
+    "general_D_known": 0.04110427882934819,
+    "general_D_unknown": 0.04110423390035868,
+    "real_numerator_D_unknown": 0.05439832987296178
+  },
+  "D_quadratic": {
+    "coefficients_c0_c1_c2": [
+      0.0411792463547039,
+      -7.973896850937033e-05,
+      4.72651416414713e-06
+    ],
+    "checks": [
+      {
+        "alpha": -1.0,
+        "information": 0.04126371183737744,
+        "quadratic_relative_error": 5.044791363840794e-16
+      },
+      {
+        "alpha": 0.0,
+        "information": 0.0411792463547039,
+        "quadratic_relative_error": 0.0
+      },
+      {
+        "alpha": 1.0,
+        "information": 0.04110423390035869,
+        "quadratic_relative_error": 3.3762429051605207e-16
+      },
+      {
+        "alpha": 2.0,
+        "information": 0.04103867447434178,
+        "quadratic_relative_error": 6.763272930021721e-16
+      }
+    ]
+  },
+  "pure_real_D_check": {
+    "projected_information": 5.4002296887041695e-06,
+    "closed_form_information": 5.400229688704172e-06,
+    "relative_error": 4.705538446037205e-16,
+    "tangent_orthogonality_relative": 6.560949463480527e-18
+  },
+  "frequency_band_examples": [
+    {
+      "D_truth": "zero",
+      "general_numerator": false,
+      "fmin_Hz": 5,
+      "fmax_Hz": 800,
+      "N_frequency": 796,
+      "information_for_sigma2_1": 0.05448820935688355,
+      "nuisance_rank": 104,
+      "condition_after_column_scaling": 2.5235932072333838,
+      "information_fraction_of_5Hz": 1.0
+    },
+    {
+      "D_truth": "zero",
+      "general_numerator": false,
+      "fmin_Hz": 20,
+      "fmax_Hz": 800,
+      "N_frequency": 781,
+      "information_for_sigma2_1": 0.02258604735739566,
+      "nuisance_rank": 104,
+      "condition_after_column_scaling": 2.527709792297335,
+      "information_fraction_of_5Hz": 0.4145125638000497
+    },
+    {
+      "D_truth": "zero",
+      "general_numerator": false,
+      "fmin_Hz": 200,
+      "fmax_Hz": 800,
+      "N_frequency": 601,
+      "information_for_sigma2_1": 0.013552297261446026,
+      "nuisance_rank": 104,
+      "condition_after_column_scaling": 3.077001427440243,
+      "information_fraction_of_5Hz": 0.24871981335782234
+    },
+    {
+      "D_truth": "zero",
+      "general_numerator": true,
+      "fmin_Hz": 5,
+      "fmax_Hz": 800,
+      "N_frequency": 796,
+      "information_for_sigma2_1": 0.041179246354703894,
+      "nuisance_rank": 168,
+      "condition_after_column_scaling": 2.6913098921066303,
+      "identity_relative": 1.6079870974561891e-16,
+      "flexible_residual_relative": 2.729406650444812e-15,
+      "reduced_residual_relative": 1.7565243314084484e-15,
+      "information_fraction_of_5Hz": 1.0
+    },
+    {
+      "D_truth": "zero",
+      "general_numerator": true,
+      "fmin_Hz": 20,
+      "fmax_Hz": 800,
+      "N_frequency": 781,
+      "information_for_sigma2_1": 0.009305412589111326,
+      "nuisance_rank": 168,
+      "condition_after_column_scaling": 2.7092722348028406,
+      "identity_relative": 1.607987004719233e-16,
+      "flexible_residual_relative": 2.2824091643601925e-15,
+      "reduced_residual_relative": 2.0654496161235656e-15,
+      "information_fraction_of_5Hz": 0.22597335825327391
+    },
+    {
+      "D_truth": "zero",
+      "general_numerator": true,
+      "fmin_Hz": 200,
+      "fmax_Hz": 800,
+      "N_frequency": 601,
+      "information_for_sigma2_1": 0.0006357983503702854,
+      "nuisance_rank": 168,
+      "condition_after_column_scaling": 3.443022902222296,
+      "identity_relative": 1.607870364517905e-16,
+      "flexible_residual_relative": 5.265900979351422e-15,
+      "reduced_residual_relative": 5.1107562111621224e-15,
+      "information_fraction_of_5Hz": 0.015439776262385588
+    },
+    {
+      "D_truth": "illustrative_1e-8_I4",
+      "general_numerator": false,
+      "fmin_Hz": 5,
+      "fmax_Hz": 800,
+      "N_frequency": 796,
+      "information_for_sigma2_1": 0.05439832987296178,
+      "nuisance_rank": 104,
+      "condition_after_column_scaling": 2.5235932072333838,
+      "information_fraction_of_5Hz": 1.0
+    },
+    {
+      "D_truth": "illustrative_1e-8_I4",
+      "general_numerator": false,
+      "fmin_Hz": 20,
+      "fmax_Hz": 800,
+      "N_frequency": 781,
+      "information_for_sigma2_1": 0.022497828431246474,
+      "nuisance_rank": 104,
+      "condition_after_column_scaling": 2.527709792297335,
+      "information_fraction_of_5Hz": 0.41357571976541185
+    },
+    {
+      "D_truth": "illustrative_1e-8_I4",
+      "general_numerator": false,
+      "fmin_Hz": 200,
+      "fmax_Hz": 800,
+      "N_frequency": 601,
+      "information_for_sigma2_1": 0.013480917065840774,
+      "nuisance_rank": 104,
+      "condition_after_column_scaling": 3.077001427440243,
+      "information_fraction_of_5Hz": 0.2478185837198165
+    },
+    {
+      "D_truth": "illustrative_1e-8_I4",
+      "general_numerator": true,
+      "fmin_Hz": 5,
+      "fmax_Hz": 800,
+      "N_frequency": 796,
+      "information_for_sigma2_1": 0.04110423390035868,
+      "nuisance_rank": 168,
+      "condition_after_column_scaling": 2.6913098921066303,
+      "identity_relative": 1.6079870974561891e-16,
+      "flexible_residual_relative": 2.729406650444812e-15,
+      "reduced_residual_relative": 1.7424665128023362e-15,
+      "information_fraction_of_5Hz": 1.0
+    },
+    {
+      "D_truth": "illustrative_1e-8_I4",
+      "general_numerator": true,
+      "fmin_Hz": 20,
+      "fmax_Hz": 800,
+      "N_frequency": 781,
+      "information_for_sigma2_1": 0.009232099312280757,
+      "nuisance_rank": 168,
+      "condition_after_column_scaling": 2.7092722348028406,
+      "identity_relative": 1.607987004719233e-16,
+      "flexible_residual_relative": 2.2824091643601925e-15,
+      "reduced_residual_relative": 2.0684861629680313e-15,
+      "information_fraction_of_5Hz": 0.22460215010114074
+    },
+    {
+      "D_truth": "illustrative_1e-8_I4",
+      "general_numerator": true,
+      "fmin_Hz": 200,
+      "fmax_Hz": 800,
+      "N_frequency": 601,
+      "information_for_sigma2_1": 0.0005834268218692702,
+      "nuisance_rank": 168,
+      "condition_after_column_scaling": 3.443022902222296,
+      "identity_relative": 1.607870364517905e-16,
+      "flexible_residual_relative": 5.265900979351422e-15,
+      "reduced_residual_relative": 5.005686211993956e-15,
+      "information_fraction_of_5Hz": 0.014193837629563002
+    }
+  ],
+  "all_assertions_passed": true,
+  "source_sha256": {
+    "matlab\\3\\model.m": "16363969524cc81999c8b4589f9a69b39c02ff4df66f0e4b9d2c2238ed4564f1",
+    "docs\\research\\check_delay_information_with_D.py": "9fd737373c82d313de0ca78bae2bec844c25462b3f04189c274602ce6863bae8"
+  }
+}

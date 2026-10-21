@@ -1,0 +1,36 @@
+{
+  "analysis_date": "2026-10-15",
+  "inputs": [
+    {
+      "file": "auto_identify_motor1234_z-0.5.mat",
+      "bytes": 36353064,
+      "sha256": "7491C9461892A24487A7C03B3C6C2F06DA67FE70A4633339783A47A69FD1399D"
+    },
+    {
+      "file": "auto_identify_motor1234_z-1.mat",
+      "bytes": 32935402,
+      "sha256": "E70DAC44E9367702C6CD35049C48E2B3742FEFBFC267B16C1E1665ABAA4E5CB1"
+    },
+    {
+      "file": "auto_identify_motor1234_z0.5.mat",
+      "bytes": 36716639,
+      "sha256": "B91FA0D9882E1D25D5892E72D82B15A77506BFFED68A2AF252AE154B5E2E77F2"
+    },
+    {
+      "file": "auto_identify_motor1234_z0.mat",
+      "bytes": 37986646,
+      "sha256": "D548878C5C8EAA130FCE4B5E8FE44186DEEA2D3A1265E4DB0DBA9DD0A0510FCA"
+    },
+    {
+      "file": "auto_identify_motor1234_z1.mat",
+      "bytes": 35812627,
+      "sha256": "EC66C2AD06DC23C6D337CE2B983D9DD13CBD44AA76A3FF8AA7387A769FC940E9"
+    }
+  ],
+  "primary_models": "raw_local_models.mat",
+  "report": "初步辨识与位置比较.md",
+  "cross_position_validation": "cross_position_prediction.csv",
+  "excluded_position_mm": -1,
+  "rejected_check": "resolution_4s",
+  "scope": "Preliminary local modal identification; not full relative-delay and decoupling calibration"
+}

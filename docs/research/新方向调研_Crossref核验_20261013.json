@@ -1,0 +1,575 @@
+[
+  {
+    "DOI": "10.1016/j.jprocont.2025.103387",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "DOI": "10.1016/j.jfranklin.2026.108526",
+    "title": [
+      "Expectation maximization estimation for multirate state-space models with time-varying delays"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-2337-5043",
+        "authenticated-orcid": false,
+        "given": "Ya",
+        "family": "Gu",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0008-5249-0829",
+        "authenticated-orcid": false,
+        "given": "Lujia",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0930-6623",
+        "authenticated-orcid": false,
+        "given": "Yonghong",
+        "family": "Tan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-0167-3341",
+        "authenticated-orcid": false,
+        "given": "Shiyi",
+        "family": "Yin",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Journal of the Franklin Institute"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          4
+        ]
+      ]
+    },
+    "published-online": null,
+    "published-print": {
+      "date-parts": [
+        [
+          2026,
+          4
+        ]
+      ]
+    },
+    "volume": "363",
+    "issue": "6",
+    "page": "108526",
+    "article-number": "108526",
+    "URL": "https://doi.org/10.1016/j.jfranklin.2026.108526"
+  },
+  {
+    "DOI": "10.1016/j.jprocont.2025.103514",
+    "title": [
+      "Robust online identification for hybrid multirate systems based on recursive EM algorithm"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-9545-0092",
+        "authenticated-orcid": false,
+        "given": "Fan",
+        "family": "Guo",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Biao",
+        "family": "Huang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Journal of Process Control"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          9
+        ]
+      ]
+    },
+    "published-online": null,
+    "published-print": {
+      "date-parts": [
+        [
+          2025,
+          9
+        ]
+      ]
+    },
+    "volume": "153",
+    "issue": null,
+    "page": "103514",
+    "article-number": "103514",
+    "URL": "https://doi.org/10.1016/j.jprocont.2025.103514"
+  },
+  {
+    "DOI": "10.1016/j.engstruct.2024.119183",
+    "title": [
+      "Robust and efficient synchronization for structural health monitoring data with arbitrary time lags"
+    ],
+    "author": [
+      {
+        "given": "Shenghui",
+        "family": "Fu",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jie",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Qilin",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Bo",
+        "family": "Xie",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Engineering Structures"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          1
+        ]
+      ]
+    },
+    "published-online": null,
+    "published-print": {
+      "date-parts": [
+        [
+          2025,
+          1
+        ]
+      ]
+    },
+    "volume": "322",
+    "issue": null,
+    "page": "119183",
+    "article-number": "119183",
+    "URL": "https://doi.org/10.1016/j.engstruct.2024.119183"
+  },
+  {
+    "DOI": "10.2514/1.g006771",
+    "title": [
+      "Null-Space-Excitation-Based Adaptive Control for an Overactuated Hexacopter Model"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-3321-2248",
+        "authenticated-orcid": false,
+        "given": "Hangxu",
+        "family": "Li",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Technical University of Munich, 85748 Garching, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Stephan",
+        "family": "Myschik",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Universität der Bundeswehr München, 85577 Neubiberg, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Florian",
+        "family": "Holzapfel",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Technical University of Munich, 85748 Garching, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Journal of Guidance, Control, and Dynamics"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          3
+        ]
+      ]
+    },
+    "published-online": null,
+    "published-print": {
+      "date-parts": [
+        [
+          2023,
+          3
+        ]
+      ]
+    },
+    "volume": "46",
+    "issue": "3",
+    "page": "483-498",
+    "article-number": null,
+    "URL": "https://doi.org/10.2514/1.g006771"
+  },
+  {
+    "DOI": "10.1109/tit.2016.2637933",
+    "title": [
+      "Identifiability in Bilinear Inverse Problems With Applications to Subspace or Sparsity-Constrained Blind Gain and Phase Calibration"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-8979-6337",
+        "authenticated-orcid": false,
+        "given": "Yanjun",
+        "family": "Li",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1909-6041",
+        "authenticated-orcid": false,
+        "given": "Kiryung",
+        "family": "Lee",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yoram",
+        "family": "Bresler",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "IEEE Transactions on Information Theory"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2017,
+          2
+        ]
+      ]
+    },
+    "published-online": null,
+    "published-print": {
+      "date-parts": [
+        [
+          2017,
+          2
+        ]
+      ]
+    },
+    "volume": "63",
+    "issue": "2",
+    "page": "822-842",
+    "article-number": null,
+    "URL": "https://doi.org/10.1109/tit.2016.2637933"
+  },
+  {
+    "DOI": "10.1145/1236360.1236372",
+    "title": [
+      "Blind calibration of sensor networks"
+    ],
+    "author": [
+      {
+        "given": "Laura",
+        "family": "Balzano",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Robert",
+        "family": "Nowak",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Proceedings of the 6th international conference on Information processing in sensor networks  - IPSN '07"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "published-online": null,
+    "published-print": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "volume": null,
+    "issue": null,
+    "page": "79",
+    "article-number": null,
+    "URL": "https://doi.org/10.1145/1236360.1236372"
+  },
+  {
+    "DOI": "10.1016/j.ymssp.2026.113948",
+    "title": [
+      "Structured identification of multivariable modal systems"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0001-5974-4704",
+        "authenticated-orcid": false,
+        "given": "M.",
+        "family": "van der Hulst",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5106-2784",
+        "authenticated-orcid": false,
+        "given": "R.A.",
+        "family": "González",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7519-4354",
+        "authenticated-orcid": false,
+        "given": "K.",
+        "family": "Classens",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "P.",
+        "family": "Tacx",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6088-9409",
+        "authenticated-orcid": false,
+        "given": "N.",
+        "family": "Dirkx",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6617-5028",
+        "authenticated-orcid": false,
+        "given": "J.",
+        "family": "van de Wijdeven",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7721-4566",
+        "authenticated-orcid": false,
+        "given": "T.",
+        "family": "Oomen",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Mechanical Systems and Signal Processing"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          3
+        ]
+      ]
+    },
+    "published-online": null,
+    "published-print": {
+      "date-parts": [
+        [
+          2026,
+          3
+        ]
+      ]
+    },
+    "volume": "247",
+    "issue": null,
+    "page": "113948",
+    "article-number": "113948",
+    "URL": "https://doi.org/10.1016/j.ymssp.2026.113948"
+  }
+]

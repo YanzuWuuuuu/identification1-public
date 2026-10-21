@@ -1,0 +1,33 @@
+{
+  "parameter_count": 125,
+  "directions": 6,
+  "modal_real_map_error": 1.2274875027029284E-14,
+  "residue_kronecker_map_error": 0,
+  "continuous_jacobian_errors": [
+    1.2917045308110655E-8,
+    1.1123227757049859E-8,
+    7.1942225011258081E-9,
+    9.5526132142921477E-9,
+    1.1898922388749738E-8,
+    1.549234273972549E-8
+  ],
+  "sampled_closed_jacobian_errors": [
+    1.558572126333249E-8,
+    1.040706489894317E-8,
+    6.7700117025029948E-9,
+    8.4308997869389942E-9,
+    1.147900147746426E-8,
+    1.5378738677558613E-8
+  ],
+  "calibration_target_jacobian_errors": [
+    1.1805124806733676E-10,
+    1.1889160784855002E-10,
+    1.9024331583215901E-10,
+    1.1710812932709104E-10,
+    1.2010367729425081E-10,
+    1.0049911297492481E-10
+  ],
+  "integer_delay_boundary_error": 1.0299908869680069E-10,
+  "profile_projection_identity_error": 0,
+  "scope": "Equation checks at saved estimate, no new fitting, no confidence-interval or convergence validation."
+}

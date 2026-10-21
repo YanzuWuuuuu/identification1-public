@@ -1,0 +1,41 @@
+{
+  "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\论文初稿_相对通道动态辨识与刚柔解耦自校准.tex",
+  "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\output\\pdf\\论文初稿_相对通道动态辨识与刚柔解耦自校准.pdf",
+  "source_sha256": "506d064bd57d69764a5b2de02d24ab7f74b76819ede5f64c0f26cf410a01369b",
+  "pdf_sha256": "5f81fdb0005cbe45fa00935d43bb63871531d394aaabd1cd0854edecf7d10031",
+  "pdf_bytes": 3952375,
+  "pages": 24,
+  "sections": [
+    "引言",
+    "问题描述",
+    "结构保持的联合辨识",
+    "解耦更新与误差传播",
+    "数值验证",
+    "结论"
+  ],
+  "numbered_equations": 62,
+  "figures": 6,
+  "tables": 4,
+  "references": 6,
+  "han_characters": 14117,
+  "missing_refs": [],
+  "missing_citations": [],
+  "duplicate_labels": [],
+  "layout_log_warnings": [],
+  "local_compile": "success",
+  "builtin_compile": "startup failed: CreateProcessAsUserW error 5; before TeX execution",
+  "preserved_documents": {
+    "论文大纲_相对通道动态辨识与刚柔解耦自校准.tex": {
+      "sha256": "cf73b464bc2fbd5a12854f2c1a3a568b9c1ff28cd9b6d8d2d2fe6156378f8f78",
+      "unchanged": true
+    },
+    "论文梗概_面向刚柔解耦自校准的辨识.tex": {
+      "sha256": "f32caeb42b164337a9bf82ad20974600151ddb48694d9403d6b22aab3ea6db47",
+      "unchanged": true
+    }
+  },
+  "numerical_scope": "Existing synthetic closed-loop evidence; no new experiments run; no hardware experiment claimed.",
+  "visual_review": "Passed: final generalized-model manuscript, all 24 pages rendered and reviewed as contact sheets; detailed inspection of pages 2, 8, 9 and 14 confirmed readable model definitions, parameter maps, Jacobian formulas and matrix leakage bounds. No clipping or overlapping content found.",
+  "generalization_algebra_audit": "一般加性模态化_数学核对_20261014.json",
+  "generalization_scope_record": "一般加性模态化_范围与修改记录_20261014.md"
+}

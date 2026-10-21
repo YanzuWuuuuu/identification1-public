@@ -1,0 +1,29 @@
+# Large data files (kept locally only)
+*.mat
+*.npz
+*.npy
+*.h5
+*.pkl
+*.rar
+*.zip
+*.7z
+
+# Scratch
+tmp/
+
+# Python
+__pycache__/
+*.pyc
+
+# LaTeX intermediates
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Not for the public repo
+*.tex
+article/

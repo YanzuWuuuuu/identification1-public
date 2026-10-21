@@ -1,0 +1,234 @@
+{
+  "sample_rate_hz": 4999.999999834017,
+  "signal_names": [
+    "u_z",
+    "u_Rx",
+    "u_Ry",
+    "d_z",
+    "d_Rx",
+    "d_Ry",
+    "y_0__0_",
+    "y_0__1_",
+    "y_0__2_",
+    "u_Motor1",
+    "u_Motor2",
+    "u_Motor3",
+    "u_Motor4",
+    "pre_y_0__0_",
+    "pre_y_1__0_",
+    "pre_y_2__0_",
+    "pre_y_3__0_"
+  ],
+  "allocation_Q_motor_by_z_Rx_Ry": [
+    [
+      0.29411764705882515,
+      1.9607843137254808,
+      4.714757190004698
+    ],
+    [
+      0.2941176470588256,
+      1.9607843137254997,
+      -4.714757190004687
+    ],
+    [
+      0.4117647058823498,
+      -3.9215686274509567,
+      4.263256414560601e-14
+    ],
+    [
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "logical_output_P_z_Rx_Ry_by_sensor": [
+    [
+      0.24999999999999567,
+      0.24999999999999947,
+      0.2500000000000009,
+      0.24999999999999953
+    ],
+    [
+      1.3812154696132415,
+      1.3812154696132466,
+      -1.3812154696132626,
+      -1.3812154696132546
+    ],
+    [
+      2.570694087403603,
+      -2.570694087403572,
+      -2.5706940874035835,
+      2.570694087403615
+    ]
+  ],
+  "logical_output_max_error": [
+    1.2387856853594142e-18,
+    6.681395887941921e-18,
+    1.1867778623980002e-17
+  ],
+  "quiet_train_count": 5000,
+  "quiet_check_count": 10001,
+  "quiet_train_max_abs_residual": [
+    2.3869795029440866e-15,
+    8.881784197001252e-16,
+    3.552713678800501e-15,
+    0.0
+  ],
+  "quiet_check_max_abs_residual": [
+    2.3869795029440866e-15,
+    8.881784197001252e-16,
+    3.552713678800501e-15,
+    0.0
+  ],
+  "active_D_std": [
+    0.29935570886066515,
+    0.30068806850214175,
+    0.29794915868030275,
+    0.1506668071822048
+  ],
+  "active_D_correlation": [
+    [
+      1.0,
+      -0.00807016626974284,
+      -0.0013635068997157843,
+      -0.006216889340867317
+    ],
+    [
+      -0.00807016626974284,
+      1.0,
+      -0.0017672841909329513,
+      -0.002142450706491247
+    ],
+    [
+      -0.0013635068997157843,
+      -0.0017672841909329511,
+      0.9999999999999998,
+      0.0019931337059581893
+    ],
+    [
+      -0.006216889340867317,
+      -0.002142450706491247,
+      0.001993133705958189,
+      0.9999999999999998
+    ]
+  ],
+  "V_not_U_projection_relative_rms": [
+    0.9690730042740933,
+    0.974037771897045,
+    0.980037714627876
+  ],
+  "d_fields_nonzero_counts": {
+    "d_z": 0,
+    "d_Rx": 0,
+    "d_Ry": 0
+  },
+  "periodic_input_audit": [
+    {
+      "lag_samples": 30000,
+      "lag_s": 6.0,
+      "D_difference_rms_relative": [
+        1.0923929160083873e-15,
+        2.083786873584709e-15,
+        2.080115783331836e-15,
+        0.0
+      ],
+      "D_max_abs_difference": [
+        1.1102230246251565e-15,
+        2.6645352591003757e-15,
+        2.6645352591003757e-15,
+        0.0
+      ],
+      "V_difference_rms": [
+        0.012991681587207315,
+        0.0005585587429496029,
+        0.0002850411522167452
+      ]
+    },
+    {
+      "lag_samples": 150000,
+      "lag_s": 30.0,
+      "D_difference_rms_relative": [
+        1.0904241654621807e-15,
+        2.0836906158761776e-15,
+        2.0822821500718577e-15,
+        0.0
+      ],
+      "D_max_abs_difference": [
+        1.1102230246251565e-15,
+        2.6645352591003757e-15,
+        3.552713678800501e-15,
+        0.0
+      ],
+      "V_difference_rms": [
+        0.012651667137339144,
+        0.0005371992024380674,
+        0.000316905453798427
+      ]
+    }
+  ],
+  "cross_position_fixed_allocation_check": [
+    {
+      "filename": "auto_identify_motor1234_z-0.5.mat",
+      "sha256": "7491c9461892a24487a7c03b3c6c2f06da67fe70a4633339783a47a69fd1399d",
+      "quiet_max_abs_residual": [
+        1.509903313490213e-14,
+        1.9984014443252818e-14,
+        3.197442310920451e-14,
+        0.0
+      ],
+      "alignment_roll_samples": 20985,
+      "aligned_period_max_abs_difference": [
+        1.765254609153999e-14,
+        2.1316282072803006e-14,
+        3.597122599785507e-14,
+        0.0
+      ],
+      "aligned_samples_different_above_1e_10": 0,
+      "aligned_mismatch_sample_indices_0_based": [],
+      "other_samples_max_abs_difference": 3.597122599785507e-14
+    },
+    {
+      "filename": "auto_identify_motor1234_z0.5.mat",
+      "sha256": "b91fa0d9882e1d25d5892e72d82b15a77506bffed68a2af252ae154b5e2e77f2",
+      "quiet_max_abs_residual": [
+        2.1760371282653068e-14,
+        1.9539925233402755e-14,
+        4.2299497238218464e-14,
+        0.0
+      ],
+      "alignment_roll_samples": 20164,
+      "aligned_period_max_abs_difference": [
+        2.098321516541546e-14,
+        2.1316282072803006e-14,
+        4.0967229608668276e-14,
+        0.0
+      ],
+      "aligned_samples_different_above_1e_10": 0,
+      "aligned_mismatch_sample_indices_0_based": [],
+      "other_samples_max_abs_difference": 4.0967229608668276e-14
+    },
+    {
+      "filename": "auto_identify_motor1234_z1.mat",
+      "sha256": "ec66c2ad06dc23c6d337ce2b983d9dd13cbd44aa76a3ff8aa7387a769fc940e9",
+      "quiet_max_abs_residual": [
+        4.1744385725905886e-14,
+        3.907985046680551e-14,
+        7.993605777301127e-14,
+        0.0
+      ],
+      "alignment_roll_samples": 24775,
+      "aligned_period_max_abs_difference": [
+        0.09914071566925997,
+        0.6216555942697761,
+        0.02562452075549526,
+        0.10832337451611194
+      ],
+      "aligned_samples_different_above_1e_10": 1,
+      "aligned_mismatch_sample_indices_0_based": [
+        24775
+      ],
+      "other_samples_max_abs_difference": 7.904787935331115e-14
+    }
+  ],
+  "caveat": "Strong algebraic evidence for archived pre-allocation feedback commands and additive repeatable excitation; recording block locations still need hardware provenance confirmation. Exact one-frequency repeated-period DFT remains rank 1; Welch local averaging rank must not be confused with independent spectral realizations."
+}

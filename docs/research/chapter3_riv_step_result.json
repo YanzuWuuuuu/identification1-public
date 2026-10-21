@@ -1,0 +1,38 @@
+{
+  "initial_a1_a2_b": [
+    0.0025,
+    1.5625,
+    0.01
+  ],
+  "updated_a1_a2_b": [
+    0.18979444648353955,
+    0.45663092031834784,
+    2.0104249643449927
+  ],
+  "initial_poles_real_imag": [
+    [
+      -0.0008000000000000004,
+      0.7999995999999001
+    ],
+    [
+      -0.0008000000000000004,
+      -0.7999995999999001
+    ]
+  ],
+  "updated_poles_real_imag": [
+    [
+      -0.2078204059760355,
+      1.465183648200398
+    ],
+    [
+      -0.2078204059760355,
+      -1.465183648200398
+    ]
+  ],
+  "unweighted_complex_cost_before": 525.5034359350593,
+  "unweighted_complex_cost_after": 1339.5044374953272,
+  "cost_ratio": 2.5489927294421353,
+  "gradient_dot_riv_direction": -380.51952230820325,
+  "complex_real_solution_discrepancy": 2.7606770756730188e-11,
+  "scope": "A deterministic underfit example; not a Monte Carlo study or a proof about all RIV iterations."
+}

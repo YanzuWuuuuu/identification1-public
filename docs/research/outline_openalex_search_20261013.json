@@ -1,0 +1,128 @@
+[
+  {
+    "title": "14Telepresence, time delay and adaptation",
+    "doi": "10.1201/9781482295177-25",
+    "authors": [
+      "Richard M. Held",
+      "N. I. Durlach"
+    ],
+    "year": 1991,
+    "publication_date": "1991-06-04",
+    "cited_by_count": 68,
+    "journal": "CRC Press eBooks",
+    "abstract": "Displays, which are the subject of this conference, are now being used extensively throughout our society. More and more of our time is spent watching television, movies, computer screens, etc. Furthermore, in an increasing number of cases, the observer interacts with the display and plays the role of operator as well as observer. To a large extent, our normal behavior in our normal environment can also be thought of in these same terms. Taking liberties with Shakespeare, we might say that “all ",
+    "openalex_id": "https://openalex.org/W2275866166",
+    "relevance_score": 34.178066
+  },
+  {
+    "title": "Telepresence, time delay and adaptation",
+    "doi": null,
+    "authors": [
+      "Richard M. Held",
+      "N. I. Durlach"
+    ],
+    "year": 1989,
+    "publication_date": "1989-07-01",
+    "cited_by_count": 35,
+    "journal": "NASA Technical Reports Server (NASA)",
+    "abstract": "Displays are now being used extensively throughout the society. More and more time is spent watching television, movies, computer screens, etc. Furthermore, in an increasing number of cases, the observer interacts with the display and plays the role of operator as well as observer. To a large extent, the normal behavior in the normal environment can also be thought of in these same terms. Taking liberties with Shakespeare, it might be said, all the world's a display and all the individuals in it",
+    "openalex_id": "https://openalex.org/W1872496329",
+    "relevance_score": 32.08648
+  },
+  {
+    "title": "Modal Identification Techniques for Concrete Dams: A Comprehensive Review and Application",
+    "doi": "10.3390/sci6030040",
+    "authors": [
+      "Hasan Mostafaei"
+    ],
+    "year": 2024,
+    "publication_date": "2024-07-15",
+    "cited_by_count": 19,
+    "journal": "Sci",
+    "abstract": "Throughout history, the implementation of structural health monitoring systems has played a crucial role in evaluating the responses of dams to environmental and human-induced threats. By continuously monitoring structural integrity and analyzing dynamic characteristics, these systems offer a robust alternative to traditional visual inspection methods, ensuring the long-term safety of dams. This paper delves into the intricate process of operational modal analysis applied to dams, encompassing d",
+    "openalex_id": "https://openalex.org/W4400641794",
+    "relevance_score": 30.9985
+  },
+  {
+    "title": "Joint Extremum Compression and Detection of a Time-Delayed Signal for Distributed Sensing",
+    "doi": null,
+    "authors": [
+      "Amir Weiss"
+    ],
+    "year": 2026,
+    "publication_date": "2026-07-12",
+    "cited_by_count": 0,
+    "journal": "arXiv (Cornell University)",
+    "abstract": "We study the problem of joint compression and detection in distributed sensing systems, motivated by applications such as device-to-device connectivity in IoT networks and distributed radar. In such systems, spatially separated sensors must collaboratively decide whether their observations stem from a common underlying signal, while communicating over highly bandwidth-limited links. We consider a fundamental, insightful model in which one sensor (the encoder) observes a continuous-time realizati",
+    "openalex_id": "https://openalex.org/W7168433695",
+    "relevance_score": 25.0491
+  },
+  {
+    "title": "A Biometric Identification for Multi-Modal Biomedical Signals in Geriatric Care",
+    "doi": "10.3390/s24206558",
+    "authors": [
+      "Yue Che",
+      "Lingyan Du",
+      "Guozhi Tang",
+      "Shihai Ling"
+    ],
+    "year": 2024,
+    "publication_date": "2024-10-11",
+    "cited_by_count": 3,
+    "journal": "Sensors",
+    "abstract": "With the acceleration of global population aging, the elderly have an increasing demand for home care and nursing institutions, and the significance of health prevention and management of the elderly has become increasingly prominent. In this context, we propose a biometric recognition method for multi-modal biomedical signals. This article focuses on three key signals that can be picked up by wearable devices: ECG, PPG, and breath (RESP). The RESP signal is introduced into the existing two-mode",
+    "openalex_id": "https://openalex.org/W4403336754",
+    "relevance_score": 24.749578
+  },
+  {
+    "title": "Just give it time: Differential effects of disruption and delay on perceptual learning",
+    "doi": "10.3758/s13414-022-02463-w",
+    "authors": [
+      "Melissa M. Baese‐Berk",
+      "Arthur G. Samuel"
+    ],
+    "year": 2022,
+    "publication_date": "2022-03-11",
+    "cited_by_count": 9,
+    "journal": "Attention Perception & Psychophysics",
+    "abstract": "",
+    "openalex_id": "https://openalex.org/W4220666711",
+    "relevance_score": 24.179728
+  },
+  {
+    "title": "Impact of transport modality on time to endovascular thrombectomy",
+    "doi": "10.1186/s13049-026-01587-4",
+    "authors": [
+      "Knut Taxbro",
+      "Avan Sabir Rashid",
+      "Gabriel Skallsjö",
+      "Per Arnell",
+      "Karl Chevalley"
+    ],
+    "year": 2026,
+    "publication_date": "2026-02-26",
+    "cited_by_count": 2,
+    "journal": "Scandinavian Journal of Trauma Resuscitation and Emergency Medicine",
+    "abstract": "BACKGROUND AND PURPOSE: Endovascular thrombectomy (EVT) is a time-critical treatment for acute ischemic stroke; however, timely access to comprehensive stroke centers (CSCs) is often limited by distance. Regional variations in prehospital transport strategies, particularly Helicopter Emergency Medical Services (HEMS) use, exist in Sweden, which may contribute to inequities in care. This study analyzed how transport modality affected the time to EVT for rural patients across two large Swedish reg",
+    "openalex_id": "https://openalex.org/W7131675420",
+    "relevance_score": 23.33761
+  },
+  {
+    "title": "End-to-end neural system identification with neural information flow",
+    "doi": "10.1371/journal.pcbi.1008558",
+    "authors": [
+      "Katja Seeliger",
+      "Luca Ambrogioni",
+      "Yağmur Güçlütürk",
+      "Leonieke M. van den Bulk",
+      "U. Güçlü"
+    ],
+    "year": 2021,
+    "publication_date": "2021-02-04",
+    "cited_by_count": 39,
+    "journal": "PLoS Computational Biology",
+    "abstract": "Neural information flow (NIF) provides a novel approach for system identification in neuroscience. It models the neural computations in multiple brain regions and can be trained end-to-end via stochastic gradient descent from noninvasive data. NIF models represent neural information processing via a network of coupled tensors, each encoding the representation of the sensory input contained in a brain region. The elements of these tensors can be interpreted as cortical columns whose activity enco",
+    "openalex_id": "https://openalex.org/W3127176114",
+    "relevance_score": 21.886358
+  }
+]

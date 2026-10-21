@@ -1,0 +1,26 @@
+{
+  "scope": "Editorial restructuring and algebra checks only; no new identification experiments.",
+  "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\论文初稿_相对通道动态辨识与刚柔解耦自校准.tex",
+  "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\output\\pdf\\论文初稿_相对通道动态辨识与刚柔解耦自校准.pdf",
+  "pages": 25,
+  "equations": 67,
+  "figures": 6,
+  "tables": 4,
+  "new_algebra_cases": 40,
+  "max_errors": {
+    "additive_coefficient_map": 1.432837792890195E-15,
+    "rectangular_closed_kronecker": 3.494133511002465E-16,
+    "closed_mean_directional_derivative": 2.1518921898165464E-11,
+    "gauss_newton_gradient": 7.458043080873439E-09
+  },
+  "original_figures_tables_preserved": true,
+  "outlines_unchanged": true,
+  "references_resolved": true,
+  "log_warnings": [],
+  "source_sha256": "73be54087932f59e47fa9d3d060094037613058778ebd128f5ead75a76238041",
+  "pdf_sha256": "172015d99e465442793f233a3ff8fd021b61357aeb6e00e7e690ff416670774f",
+  "builtin_compile": "Could not start compiler: CreateProcessAsUserW error 5",
+  "local_compile": "success",
+  "visual_review": "Reviewed all-page contact sheets; inspected final pages 4, 6, 9, 10 and 25 at full rendering size. No clipped equations, overlapping text or unresolved references observed.",
+  "all_automated_checks_passed": true
+}

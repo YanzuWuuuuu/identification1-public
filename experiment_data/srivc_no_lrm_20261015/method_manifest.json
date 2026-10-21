@@ -1,0 +1,186 @@
+{
+  "primary_result": "srivc_z0_mid_fixed_full.mat",
+  "input_data": "auto_identify_motor1234_z0.mat",
+  "identification_input": "Raw input and output DFT coefficients; no LRM; no FRF target",
+  "algorithm": "Additive frequency-domain SRIVC with X from measured partial output and Z from model partial output",
+  "nonlinear_OE_refinement": false,
+  "sampling_model": "Continuous-frequency approximation to sampled DFT",
+  "closed_loop_correction": false,
+  "band_hz": [
+    25,
+    800
+  ],
+  "training_error_percent": 7.5904810854330886,
+  "conditional_validation_error_percent": 7.5897946557078528,
+  "validation_boundary_terms_refitted": true,
+  "same_record_split": true,
+  "iterations": 26,
+  "score": 8.2056403066899889E-7,
+  "converged": true,
+  "fixed_background": {
+    "frequency_hz": 15,
+    "damping": 0.15,
+    "estimated": false
+  },
+  "different_start_max_frequency_difference_hz": 1.610370418347884E-6,
+  "background_10_to_20_max_target_frequency_difference_hz": 0.0044403648487900682,
+  "synthetic_verification": {
+    "schur_denominator_relative_error": 6.9316728869985593E-16,
+    "initial_regressor_instrument_gap": 0.86376074961982308,
+    "instrument_derivative_relative_error": 2.2074078602367909E-10
+  },
+  "cases": [
+    {
+      "variant": "base",
+      "converged": false,
+      "reason": "no_descent",
+      "iterations": 16,
+      "training_error_percent": 11.071099294282069,
+      "conditional_validation_error_percent": 11.271938011326558,
+      "score": 0.23556546813805235,
+      "components": 8,
+      "fixed_components": 0,
+      "training_step_hz": 0.099999999996680342
+    },
+    {
+      "variant": "extended",
+      "converged": false,
+      "reason": "no_descent",
+      "iterations": 12,
+      "training_error_percent": 28.618450850455073,
+      "conditional_validation_error_percent": 31.429288982653691,
+      "score": 0.52341275776957619,
+      "components": 11,
+      "fixed_components": 0,
+      "training_step_hz": 0.099999999996680342
+    },
+    {
+      "variant": "extended_fixed",
+      "converged": false,
+      "reason": "no_descent",
+      "iterations": 21,
+      "training_error_percent": 7.62380738547703,
+      "conditional_validation_error_percent": 7.7071241509932928,
+      "score": 0.039800227392057692,
+      "components": 11,
+      "fixed_components": 1,
+      "training_step_hz": 0.099999999996680342
+    },
+    {
+      "variant": "fixed",
+      "converged": true,
+      "reason": "instrument_correlation",
+      "iterations": 8,
+      "training_error_percent": 8.51215505675361,
+      "conditional_validation_error_percent": 8.1937722122628731,
+      "score": 3.0164769128325395E-7,
+      "components": 8,
+      "fixed_components": 1,
+      "training_step_hz": 0.099999999996680342
+    },
+    {
+      "variant": "fixed_low10",
+      "converged": true,
+      "reason": "instrument_correlation",
+      "iterations": 8,
+      "training_error_percent": 8.4959494524543064,
+      "conditional_validation_error_percent": 8.1829696540000345,
+      "score": 3.2386599685703115E-7,
+      "components": 8,
+      "fixed_components": 1,
+      "training_step_hz": 0.099999999996680342
+    },
+    {
+      "variant": "fixed_low20",
+      "converged": true,
+      "reason": "instrument_correlation",
+      "iterations": 8,
+      "training_error_percent": 8.5695955890293281,
+      "conditional_validation_error_percent": 8.2378623674200213,
+      "score": 2.6520374003125089E-7,
+      "components": 8,
+      "fixed_components": 1,
+      "training_step_hz": 0.099999999996680342
+    },
+    {
+      "variant": "mid_fixed",
+      "converged": true,
+      "reason": "instrument_correlation",
+      "iterations": 28,
+      "training_error_percent": 7.8231676251681561,
+      "conditional_validation_error_percent": 7.8437740395991478,
+      "score": 7.3504716301380382E-7,
+      "components": 10,
+      "fixed_components": 1,
+      "training_step_hz": 0.099999999996680342
+    },
+    {
+      "variant": "mid_fixed_full",
+      "converged": true,
+      "reason": "instrument_correlation",
+      "iterations": 26,
+      "training_error_percent": 7.5904810854330886,
+      "conditional_validation_error_percent": 7.5897946557078528,
+      "score": 8.2056403066899889E-7,
+      "components": 10,
+      "fixed_components": 1,
+      "training_step_hz": 0.033333333332226781
+    },
+    {
+      "variant": "mid_fixed_full_low10",
+      "converged": true,
+      "reason": "instrument_correlation",
+      "iterations": 26,
+      "training_error_percent": 7.5803255509246688,
+      "conditional_validation_error_percent": 7.579731145177254,
+      "score": 7.2619993865111022E-7,
+      "components": 10,
+      "fixed_components": 1,
+      "training_step_hz": 0.033333333332226781
+    },
+    {
+      "variant": "mid_fixed_full_low20",
+      "converged": true,
+      "reason": "instrument_correlation",
+      "iterations": 28,
+      "training_error_percent": 7.6325762550558647,
+      "conditional_validation_error_percent": 7.6316196434132,
+      "score": 5.1486302318319983E-7,
+      "components": 10,
+      "fixed_components": 1,
+      "training_step_hz": 0.033333333332226781
+    },
+    {
+      "variant": "mid_fixed_full_shifted",
+      "converged": true,
+      "reason": "instrument_correlation",
+      "iterations": 34,
+      "training_error_percent": 7.5904810854466707,
+      "conditional_validation_error_percent": 7.5897946742631621,
+      "score": 8.5822079278625794E-7,
+      "components": 10,
+      "fixed_components": 1,
+      "training_step_hz": 0.033333333332226781
+    }
+  ],
+  "frf_plot_reference": "Second-half Welch H1 FRF; not LRM; display and diagnostics only, not unbiased truth",
+  "frf_reference_comparison": [
+    {
+      "fmin_hz": 25,
+      "fmax_hz": 800,
+      "matrix_complex_difference_percent": 24.3849919448096,
+      "minimum_channel_percent": 16.5865582802478,
+      "median_channel_percent": 22.6234816631906,
+      "maximum_channel_percent": 93.3468133683166
+    },
+    {
+      "fmin_hz": 200,
+      "fmax_hz": 735,
+      "matrix_complex_difference_percent": 17.2561830825558,
+      "minimum_channel_percent": 12.6493737092435,
+      "median_channel_percent": 17.1204733195022,
+      "maximum_channel_percent": 22.6830719506257
+    }
+  ],
+  "frf_error_definition": "Unweighted Frobenius relative complex difference at the same frequencies; not raw-output prediction error or true-plant error"
+}

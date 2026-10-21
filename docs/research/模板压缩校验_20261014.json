@@ -1,0 +1,24 @@
+{
+  "before": {
+    "body_han_characters": 4515,
+    "numbered_equations": 23,
+    "subsections": 5
+  },
+  "after": {
+    "body_han_characters": 1669,
+    "numbered_equations": 10,
+    "subsections": 3
+  },
+  "pdf_pages": 3,
+  "text_reduction_percent": 63.0,
+  "source_sha256": "2aa1272a9bf2d4d89c8617cbd2b51cc51f3263e0a20c7bfe40e3bac752b66fad",
+  "pdf_sha256": "fbb5b19c74bd9a260a05cbd7b5396ec9fba5f571427a2d63f375eb94703cb287",
+  "preserved_outlines": {
+    "论文大纲_相对通道动态辨识与刚柔解耦自校准.tex": true,
+    "论文梗概_面向刚柔解耦自校准的辨识.tex": true
+  },
+  "tex_warnings": [],
+  "visual_review": "All three rendered pages reviewed; headings, equations, acquisition diagram and references are legible without overlap.",
+  "compilation": "Local Tectonic success; built-in preview blocked before compilation by Windows CreateProcessAsUserW error 5.",
+  "checks_passed": true
+}

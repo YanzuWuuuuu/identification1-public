@@ -1,0 +1,166 @@
+{
+  "scope": "Independent deterministic audit, not a MATLAB rerun or Monte Carlo.",
+  "joint_fixed_point_algebra": {
+    "joint_rhs_identity_relative": 1.9405530063443468e-16,
+    "joint_update_identity_relative": 1.1392072020366927e-15,
+    "note": "Identity checked off a solution, with nonzero residual and non-diagonal whitening."
+  },
+  "information": [
+    {
+      "fmin": 5,
+      "general_numerator": false,
+      "N": 398,
+      "profiled_norm_squared": 0.014967993077459838,
+      "removed_fraction": 0.2109834551457499,
+      "flexible_residual_relative": 0.6856673088253561,
+      "full_vs_rigid_residual_relative": 0.43244532434225486,
+      "information_relative_to_5Hz": 1.0
+    },
+    {
+      "fmin": 10,
+      "general_numerator": false,
+      "N": 395,
+      "profiled_norm_squared": 0.008149319580601404,
+      "removed_fraction": 0.32937657009182497,
+      "flexible_residual_relative": 0.6856593119553253,
+      "full_vs_rigid_residual_relative": 0.5403106619166929,
+      "information_relative_to_5Hz": 0.5444497160326316
+    },
+    {
+      "fmin": 20,
+      "general_numerator": false,
+      "N": 390,
+      "profiled_norm_squared": 0.005819495007728798,
+      "removed_fraction": 0.407514296406394,
+      "flexible_residual_relative": 0.68564674407162,
+      "full_vs_rigid_residual_relative": 0.6009703078554693,
+      "information_relative_to_5Hz": 0.3887959446274946
+    },
+    {
+      "fmin": 50,
+      "general_numerator": false,
+      "N": 375,
+      "profiled_norm_squared": 0.004413686990635657,
+      "removed_fraction": 0.4756637937154543,
+      "flexible_residual_relative": 0.6855202564577868,
+      "full_vs_rigid_residual_relative": 0.6490497099920829,
+      "information_relative_to_5Hz": 0.29487500213252954
+    },
+    {
+      "fmin": 100,
+      "general_numerator": false,
+      "N": 350,
+      "profiled_norm_squared": 0.003931899953186075,
+      "removed_fraction": 0.5052718968418721,
+      "flexible_residual_relative": 0.6843550170504218,
+      "full_vs_rigid_residual_relative": 0.6667969713379986,
+      "information_relative_to_5Hz": 0.26268718410266284
+    },
+    {
+      "fmin": 200,
+      "general_numerator": false,
+      "N": 300,
+      "profiled_norm_squared": 0.003576560307085941,
+      "removed_fraction": 0.5354809212241347,
+      "flexible_residual_relative": 0.6732673730984104,
+      "full_vs_rigid_residual_relative": 0.6659679487928442,
+      "information_relative_to_5Hz": 0.23894721814588826
+    },
+    {
+      "fmin": 5,
+      "general_numerator": true,
+      "N": 398,
+      "profiled_norm_squared": 0.011407993163296508,
+      "removed_fraction": 0.398643805963554,
+      "flexible_residual_relative": 2.368075350425607e-15,
+      "full_vs_rigid_residual_relative": 1.55149285690617e-15,
+      "exact_flexible_tangent_identity_relative": 1.4925059578633818e-16,
+      "information_relative_to_5Hz": 1.0
+    },
+    {
+      "fmin": 10,
+      "general_numerator": true,
+      "N": 395,
+      "profiled_norm_squared": 0.00458960071306535,
+      "removed_fraction": 0.6223127904528996,
+      "flexible_residual_relative": 2.757790453407885e-15,
+      "full_vs_rigid_residual_relative": 2.2551069645650764e-15,
+      "exact_flexible_tangent_identity_relative": 1.4925059635033625e-16,
+      "information_relative_to_5Hz": 0.4023144691067747
+    },
+    {
+      "fmin": 20,
+      "general_numerator": true,
+      "N": 390,
+      "profiled_norm_squared": 0.002260235669727606,
+      "removed_fraction": 0.7698842735860401,
+      "flexible_residual_relative": 3.0041897047740987e-15,
+      "full_vs_rigid_residual_relative": 2.4419438872795687e-15,
+      "exact_flexible_tangent_identity_relative": 1.4925059878193218e-16,
+      "information_relative_to_5Hz": 0.1981273688872441
+    },
+    {
+      "fmin": 50,
+      "general_numerator": true,
+      "N": 375,
+      "profiled_norm_squared": 0.000856751386459499,
+      "removed_fraction": 0.8982198391824561,
+      "flexible_residual_relative": 1.805213604149161e-15,
+      "full_vs_rigid_residual_relative": 1.8192433407625517e-15,
+      "exact_flexible_tangent_identity_relative": 1.4925072014543477e-16,
+      "information_relative_to_5Hz": 0.07510097299286318
+    },
+    {
+      "fmin": 100,
+      "general_numerator": true,
+      "N": 350,
+      "profiled_norm_squared": 0.00038897525025731813,
+      "removed_fraction": 0.9510575065422693,
+      "flexible_residual_relative": 1.9701823248816144e-15,
+      "full_vs_rigid_residual_relative": 1.8784204692143586e-15,
+      "exact_flexible_tangent_identity_relative": 1.4925103242269091e-16,
+      "information_relative_to_5Hz": 0.034096728906604465
+    },
+    {
+      "fmin": 200,
+      "general_numerator": true,
+      "N": 300,
+      "profiled_norm_squared": 0.00015539181784372016,
+      "removed_fraction": 0.97981790942234,
+      "flexible_residual_relative": 1.7281938346201014e-15,
+      "full_vs_rigid_residual_relative": 1.6563361864463993e-15,
+      "exact_flexible_tangent_identity_relative": 1.4924006188761154e-16,
+      "information_relative_to_5Hz": 0.013621310568774692
+    }
+  ],
+  "parameter_identifiability_counterexample": {
+    "relative_transfer_discrepancy": 1.4813747153792433e-16,
+    "first_natural_frequencies": [
+      1.4142135623730951,
+      3.4641016151377544
+    ],
+    "second_natural_frequencies": [
+      1.7320508075688772,
+      2.8284271247461903
+    ],
+    "poles": [
+      -1,
+      -2,
+      -3,
+      -4
+    ],
+    "note": "Both have positive denominator coefficients and distinct poles, but different overdamped pairings."
+  },
+  "data_weight_counterexample": {
+    "weight": "1+Y^2; Y=mu+N(0,1)",
+    "pseudo_true_when_mu_1": 1.6666666666666667,
+    "pseudo_true_when_mu_0": 0,
+    "note": "Data dependence can cause bias, but dependence alone does not imply bias."
+  },
+  "source_sha256": {
+    "数学推导_时延增广频域模态辨识.md": "213ed2adc35907f7275201e4899089360a7c81d26e7c3d930ef483065517d8de",
+    "matlab\\research_experiments\\theory_check.m": "703f67c3a008cfc37bc1e05c938354142618565268bc93c907f40f130d697760",
+    "matlab\\research_experiments\\theory_check2.m": "36851a8a629a157de4faa46045160cca8a1cb87d86aa79f3d6aeaf9fb52fda4b",
+    "matlab\\research_experiments\\joint_srivc2.m": "1854890b736e5709023230957a623aff1c692f9ff05712350239e12546e31cc5"
+  }
+}
