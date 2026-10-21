@@ -1,0 +1,12 @@
+[
+  {
+    "selection": "all",
+    "feedback_noise_to_observed_input_percent": 0.025263514420236798,
+    "feedback_noise_fraction_predicted_total_percent": 0.025285819476811758
+  },
+  {
+    "selection": "lines",
+    "feedback_noise_to_observed_input_percent": 0.00361309962102801,
+    "feedback_noise_fraction_predicted_total_percent": 0.0036167458871930154
+  }
+]

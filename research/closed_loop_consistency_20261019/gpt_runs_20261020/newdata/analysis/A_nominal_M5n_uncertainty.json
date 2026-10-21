@@ -1,0 +1,26 @@
+{
+  "id": "A_nominal",
+  "method": "M5n",
+  "frequency_u_hz": [
+    0.0012427134718437452,
+    0.011153172937406568,
+    0.0008740769537558444
+  ],
+  "damping_u_percentage_points": [
+    0.018833133096124575,
+    0.052016614723596664,
+    0.00949105555513249
+  ],
+  "log_parameter_sd": [
+    0.00011982847210243704,
+    0.0009712527890530132,
+    5.681800614169075e-05,
+    0.0038635657509747457,
+    0.021854475791485535,
+    0.0026531952403496917
+  ],
+  "n_bootstrap": 99,
+  "failed_bootstraps": 0,
+  "locally_valid_numerics": true,
+  "interpretation": "conditional paired-period bootstrap; nonlinear SML refit; original joint noise covariance frozen; not theorem 2; no independent known-noise coverage guarantee"
+}

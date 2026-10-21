@@ -1,0 +1,331 @@
+===== PDF PAGE 1 =====
+Copyright © IFAC System Identification
+ Santa Barbara, California, USA, 2000
+
+
+
+            BOX-JENKINS CONTINUOUS-TIME MODELING
+
+                                   R. PINTELON, J. SCHOUKENS and Y. ROLAIN
+
+
+                        Vrije Universiteit Brussel, Departmelll ELEC: Pleinlaan 2, 10.50. Brussel, Belgium
+
+            Abstract. This paper treats the identification of continuous-time models using arbitrary band-
+             limited  excitation  signals. A modeling approach  is presented  that  has  the two follOWing
+            advantages: 1) asymptotically (the amount of data tends to infinity) there is no approximation
+             error over the complete frequency band from DC to Nyquist, 2)  it allows to identify general
+            parametric noise models. The key idea  is to combine a continuous-time plant model with a
+             discrete-time noise model (= hybrid Box-jenkins model structure). Copyright @20001FAC
+
+         Key Words. system identification, continuous-time systems and models, frequency domain
+
+
+
+                             1. INTRODUCTION                    model parameters, and the identification can be done
+                                                              using standard time domain methods (see Liung, 1999  This  paper  treats  the  identification  of  linear,  time
+                                                      and the references therein). A parametric noise model  invariant, continuous-time systems (see Fig. 1)
+                                                                                            is  identified  Simultaneously  with  the  plant  model
+                                                                   (LJung, 1999).       "no   a  y(n)(t) = "ni,   b  u(m)(t)         (1)                £...n = 0  n             £...m =0 m
+  from N samples u(rT s> and y(rT s) ' r =  0,  I,  ... , N -  I ,        If the illput u(t)  is non-periodiC and ha7ld-limited, then
+  of the input u(t) and output yet) signals (Ts stands for       differential equation (I)  is transformed to a discrete-
+  the sampling period). The basic problem of parametric      time equation by explicit or impliCit approximation of
+  continuous-time modeling is the correct reconstruction      the time-derivatives using  digital  filters. According to
+  of the time-derivatives in differential equation (1) from       the digital filters used these methods are known as the
+  the   observed   samples   u(rT)   and    y(rTs)'      Poisson moment  functional  approach,  the  integrated
+   r =  0,  I, ... , N -  I . In practise the output observations      sampling   approach,   the   instantaneous  sampling
+  are always disturbed by noise and, besides a  plant      approach, the Laguerre approach  .. , (see Chou  et al.,
+  model, one should also identify a noise model for  vet)       1999; Sinha and Rao, 1991, and the references therein).
+  (see  Fig.  2),  which  complicates  the  problem. The     These  modeling  approaches  work  reasonably  well
+  solutions proposed  in the  literature can be classified       (small systematic errors) for frequencies below  f / 4,
+  according to the input signal used.                           but  in  the neighbourhood of the Nyquist frequency
+                                                           (f > f / 4) they either introduce large errors or require
+   If the input u(t)  is periodic, then differential equation       (very)  high order  digital  filters (Van hamme  et  al.,
+  (I) can be transformed without systematic errors to a       1991). Weighted Cnon-)linear least squares (Sinha and
+   set of linear algebraic equations, and the identification      Rao,  1991), maximum likelihood (Van hamme  et aI.,
+  can be done in the frequency domain (see Schoukens       1991), instrumental variable (Sinha and Rao, 1991) and
+  and  Pintelon,  1991;  Pintelon  et  al.,  1994, and  the      subspace   identiflGltion  (Johansson   et   al.,   1999)
+  references therein). A non-parametric noise model  is     methods have been developed.  All  these  methods,
+  obtained independently of the plant model  in a pre-      except  the ARMAX-modeling  in Johansson  (1994),
+  processing step CSchoukens et al .. 1997).                       either do not identify a noise model or assume that  it is
+                                                     known. Also the systematic approximation errors are
+   If the illput u(t)  is non-periodiC and piecewise constant,      mostly  not  taken  into  account  in  the  consistency
+  then  differential  equation  (1)  can  be  transformed       proofs.
+  without  systematic  errors  to  a  difference  equation
+  which  is parametrized in the original continuous-time    We conclude from this brief overview that the existing
+                                                             continuous·time modeling approaches for non-periodic
+                                                               band-limited  signals   firstly  do  not  allow  accurate
+   This work   is supponed  by  the  Belgium  National  Fund  for      modeling near  to the Nyquist frequency and hence
+    Scientific Research;  the  Belgian Government  as  a pan  of the      always suffer from  a  (small)  bias, and secondly are
+    Belgian Programme on lnteruniversity Poles of Attraction (IUAP41      unable  to  identify a general parametric noise model.    2) initiated by the Belgian State, Prime Minister'S Offlce, Science
+    Policy Programming; and the Flemmish Community (GOA-IMMlJ.      The contribution of this paper is to  fill these two gaps:
+
+
+                                                          193
+
+===== PDF PAGE 2 =====
+                                                          without  any  restriction  on  the  bandwidth  of  the
+       u(t)                                               y(t)                                                                excitation  signal  U(/).  In  this section the asymptotic                          G(s)
+                                                        behaviour (N ~ (0) of the alias term  &,sk)  is studied        >1                               [          l                                                                                                      "-                         for band-limited excitations Signals with finite power.                                    "
+                    Ts                   Ts
+                                                              Definition  1: A deterministic (random)  Signal  X(/)   is                I                     I
+                                                           band-limited if its amplitude (power) spectrum IX(jw)1              u(rTs)              y(rT)
+                                                        (S xx(jw»   satisfies: IX(jw)1 = 0 (S xx(jw) = 0) for any
+                                                                            Iwl > wB with wR < ws/2. Figure 1: Identific3tion of a continuous-time system: prnh'el11
+ statement.
+                                                              Definitirm 2: A band-limited signal  x(r) has finite non-
+                                                           zero power if,
+•   It  is shown that the approximation (alias) errors of
+the direct approach (Pintelon and Schoukens, 1997) in                             I  f+NT sl2                                                                                                                                             .  E{x2(r)}dl=O(No»0          (6)the complete frequency band from DC (f = 0)  to         NT s  - NT,I2
+Nyquist  (f = f/2)  converge  to  zero  at  the  rate
+                                                                                         00 included (E{)  is the expected value).O(N-1/2) as N ~ 00.                                              for any N,
+• A  consistenl  estimator  for  a  hybrid  Box-Jenkins       Defillition 3: A normalised periodic signal has the form
+model structure is developed:  it combines a parametric
+continuous-time   plant  model  with   a   parametric
+discrete-time noise model.
+
+Note  that the same hybrid modeling  idea has been     where A k > 0  and where F  increases with N. The
+used in Johansson (994) for continuous-time ARMAX     peak   value   of    X(I)      is   uniformly   bounded
+models.                                                          (maxlx(t)1 ~ C < 00  for any N, 00 included) .
+                                                                                                                                                                                        (
+Because of lack of space the proofs of the theorems                                                         For  stationary random  signals  (6)  implies  that  x(l)
+have been omitted. The reader  is referred to Pintelon                                                        should have a finite non-zero variance.
+and Schoukens (2000) and Pintelon  et at. (2000)  for
+more details.                                                      2.2. Results
+                                                 The convergence  rate  to zero of the  plant  transient
+    2. CONTINUOUS-TIME MODEL FOR ARBITRARY        term T(s k' e) and the alias term &.s k)  is established in
+                  SIGNALS                              the following two lemmas.
+
+2. ]. Introduction                               Lemma 1  -  crJr//.'erRence rate T(s k' e) : For hounded
+Consider the set up shown in Fig.  1. The relationship       excitations   u(t)   with   finite   left   (n b -  I) th  order
+between the scaled discrete Fourier transforms (OFT)       derivative applied to stable plants G(s, e)  or unstable
+ U(k), Y(k)   of   the   input  and   output   samples       plants captured in a stabilizing feedback loop, the plant
+u(rT s)' y(rT s)                                                    transient term T(sk' e) tends to zero as O(N-1I2).
+                                                      Proof See Pintelon et al. (2000).
+           X(k) = WIl2L~ ~ ~ x(rTs)Zk'             (2)
+                                          Lemma 2  -  conllerp,cnce rate  &,sk): Consider band-
+(zk = exp(j21tk/ N), X = U, Y and x = u, y), and the       limited Signals with finite non-zero power. The residual
+plant transfer function                                                                       alias  error   &.s k)  tends  to  zero  as  O(N- I12 )   in
+                                                                probability  for random excitations with  differentiable
+                       8(s, e)                             power  spectrum  Su/jw),   dSuu(jw)/ dw < 00    for          G(s, e)                                         (3)
+                       A(s, e)   ~nu   a  sn                         Iwl ~ wB  ' and as O(N-1/2)  for (normalised) periodic
+                   Ln =   n                        excitations.                   °
+is given by (Pintelon and Schoukens, 1997)                Proof See Pintelon and Schoukens (2000) and Pintelon
+                                                                       et at. (2000).
+         Y(k) = G(sk' ()U(k) + T(Sk' e) + &,sk)         (4)
+where  &,sk)  is the alias error,  sk = j21tk/(NTs)' and     Lemmas  1 and  2 allow  to  calculate how  fast  the
+                                                      extended transfer function model (4) converges to T(s, e) the plant transient term
+                                                                                     Y(k) = G(s k' e) U(k)                   (H)
+                              /(s, e)
+            T(s, e)                                        (S)       as N ~ 00.  This   is  summarized  in  the  follOWing
+                       A(s, e)   ~na   a  sI!                                                         theorem.
+                   Ln =   n                   °
+                                        -  I. The  parameter  vector    ()with  ni = max(na, nb)                                                    Theorem  1   -  COllllerp,ence  rate  extended  transfer
+contains the plant model parameters and the equivalent                                                                functioll model: Under the assumptions of Lemmas 1
+ initial conditions of the plant model: eT = [a Tb TiT]      and 2 the rebtive convergence  rate of (4)  to  (8)  is
+with   aT = [aOa, ... an  ] ,   bT =                                     [bOb] ... bn ]   and      O(N-1/2)  in  probability  for random excitations with
+ iT =  [ioi, ... in ]. Transter function model (4/is made       differentiable   power   spectrum,    O(N-1/2)     for
+identifiable by'constraining e, for example, an = I or      normalised  periodic  signals  (see  Definition   .:D, and
+ Ilalli + Ilblli + Ililli =  1.  Formula  (4)   is  exactly  true      O(N-')  at the excited DFT frequencies  for  periodic
+
+
+                                                     194
+
+===== PDF PAGE 3 =====
+
+
+===== PDF PAGE 4 =====
+theorem.                                                            R        c
+Theorem  2   -  c(}/wergence  rate  hyhrid  Box~/ellkills
+model: Under the assumptions of Lemmas 1 to 3 the
+relative convergence rate of (12) to (3) is O(N- 1I2)  in
+probability  for random  excitations with differentiable
+power  spectrum,  O(N-I/2)   for  normalised  periodic
+signals, and O(N- I )  at the excited OFf frequencies for        Figure 4: Block diagram of rhe electrical circuit with R = 16 n ,
+                                                                                                                                                               (l  -  1000 y -2 .  The  inductance   isperiodic signals with a fixed number of frequencies.         C = 9.4 IlF,  L =  I Hand
+Proof  Follows  immediately  from  Theorem  1 and        consrructed  using  a  capacitive  loaded  gyrator  (Temes  and
+                                                                              LaPatra, )977). The circuit basically acts as a second order planr
+Lemma 3.                                                             with nn top some disturbances due to the non-linear feedback .
+                                                                        For broad band random excitarions and breadboard  periodic
+3.2. The estimator                                                        excitations with random phases  u(r)  these disturbances  act as
+                                                                         noise                                                                       (Schoukens                                                                                     The                                                                                                 rms                                                                                                and                                                                                                        peak value of the                                                                                                                 et ai.,                                                                                                                                ) 9'-)H).The frequency domain estimate eSJ of the hybrid 13ox-                                                                             mY                                                                             input signal                                                                               used equal                                                                                                            16                                                                       mY and                                                                                                         60                                                                                                                           respectively.
+Jenkins model parameters minimizes
+       V(IJ, z) =  .!..Ni'\Y(k) - G(St' 8)U(k) - T(St, 8) - T H(Z,I, 8)\2     Cl 4)
+           N,=o               H(Zk l , 8)                           consistency  of  the   noise  model   parameters    is
+w.r.t. 0, where z stands for the vector of the observed      maintained  if the summation in (14) is replaced by the
+input  and  output  OFf  spectra.  Some  additional      union  of  disjoint  sets  of  indices  k  such  that  the
+assumptions are required to prove the consistency of      corresponding  zk  values of each set cover uniformly
+                                                              the unit circle (see Pintelon and Schoukens, 1999). This eBJ ·                                                           allows  filtering of the input and output spectra  (for
+Assumption 1  - disturhillg noise: The noise sequence      example, removal of every second Off line) without
+e(rT s)   is independently distributed with  zero mean,       affecting   the   consistency   of   the   noise  model
+variance  0 2 and bounded moments of order 4. The      parameters.
+noise e(t)  is independent of the excitation u(t).                                                        With some  additional  effort  the  presented method
+                                                           allows    also   hybrid  ARMAX   modeling.   TheAssumption 2 - existence oj a true model: The data  is
+                                                       denominators of the  plant and the noise model  are
+generated according  to  y(l) = G(s, ( 0)u(l) + H c(s)e(t)                                                           then parametrized  in  their  poles, and  the  poles ofwith   u(t)   band-limited,   e(t)   piecewise  constant,
+                                                            H(Z- I, 8) are related to those of G(s, 8) by the impulse G(s, (    stable, and H(z-I, (0) = (l-z - I)Z{s- IHc(s)}       0)                                                                  invariant transformation  z = exp(sT s)'  Starting valuesa stable        and inversely stable monic  filter.  G(s, (0) and
+                                                                are obtained via the hybrid 13ox-Jenkins model. H(z-I, (0) have no cancelling poles and zeros.
+                                                  The approach  is not consistent in feedback. The basicAssumption 3 - identifiahili~v conditioll: There exists an
+                                                           reason for this is that the observed input signal, which NO  such  that  for  any  N ~ NO'   00  included,  the
+                                                                                         is a mixture of a band-limited Signal (originating fromexpected value of the cost function (14), E ( V(O, z)}  ,
+                                                               the  reference  signal) and  a  filtered  zero-order-hold has a unique global minimum 8 •.
+                                                                   signal   (originating  from   the  process   noise),    is
+Assumption  4  -  regulari~y  cOIldilion  cost junctio1/.·      multiplied  in the hybrid Box-Jenkins model structure
+There  exists an NO  such  that  for any N ~ No ,  00      by a continuous-time plant model.
+ included,  the   cost  function   (14),  V(8, z),    is  a
+                                                                  In practise the continuous-time noise  e(t)  will mostly continuous function  of   fJ  in  a closed and hounded
+                                                            not be piecewise constant (Lowen and Teich,  1990; neighbourhood of 8 • .
+                                                                        Pyati, 1992) and the discrete-time noise model will be
+ Theorem  3   -  consistency  plant and  noise  model     an approximation. This only influences the uncertainty,
+ parameters: Under the conditions of Lemmas 1 to 3 and      but not the consistency, of the estimated plant model
+Assumptions 1 to 4 the estimates of the plant and noise      parameters.
+ model parameters are consistent:
+                                                        Although the equivalent  initial conditions of the plant
+                                                    and noise model are not conSistently estimated, they
+              SJ                         SJ                                                                                                            to improve the finite     plim [G    ] = [GO] and plim [C    ]             (15)       are added in the cost function (14)
+   N --+"" hSJ    bo     N --+"" dBJ                    sample behaviour of the estimates of the  plant and
+                                                              noise model parameters. Proof See Pintelon et ai, (2000).
+                                                        Although the influence of the alias term  8,sk)  in the 3.3. Discussion
+                                                                   cost function (14) is hidden in the observed output (see Although  the  input  signal  u(t)   is  band-limited,  the                                                                         Cl 2) with                                                           =  ( 0 ),   it  is present and causes a (small)                              ° summation  in the cost function (14)  is taken over all                                                                  bias in the estimated model parameters. This bias term the OFf frequencies. Otherwise  the estimate of the                                                            tends to zero as N tends to infinity (see Theorem 3). To noise model parameters would not be consistent. The                                                          suppress  its influence for finite values of N, the order estimate of the plant model parameters  is consistent                                                            of  the  numerator  polynomial   /(s, 8)   in  the  plant even  if the summation  is only taken over a subset of
+                                                                     transient term T(s, 8)  is increased nj ~ max(nll                                                                                                                                                                                                                                                                                                                       , nb ) - 1 . the OFf frequenCies,  for example, the bandwidth of
+ the  excitation  (see  the  proof of Theorem  3). The
+
+
+                                                     196
+
+===== PDF PAGE 5 =====
+                                                                    30
+                                                                                                                                                I
+          Ol...-__-r                                                                    0 i;
+      iD
+         :£.           Q)                                                                                                     Ql     j
+    ~ -30                                   ~ -30 ~
+      c.                                                           c.     E                                          E       ,
+       co-60                                                           co-60 ..,
+                                                                                                                                                                                                                   I
+
+         -90 1 ~~~-'-~~~'1~' --,--,--,- ~ ~          -90~·~ '~~'I-
+        o      50      100     150     200                o       50      100     150     200
+                         frequency (Hz)                                                  frequency (Hz)
+ Figure 5:  Validation  of  identified  plant  model  with random        Figure 7: C ross-v~l id~ti()n of the identifie d pl3nr model with the
+ excit;Jtio n  Illeasurelllents.  I)of.s:  frequcn('Y  reSr{)no:.e  fUn(1i()n         periodic excitation measurements. Bo ld line: fre4uency response
+ (FI{F)  G,(s,)  obtained from the random excitation experiment.         function  (FRf )  Gp(s,)  oiJtained  frolll  the  periodic  excitation
+ solid    line:   difference  berween   FHF  and   plant   model        expe,iment. ",lid  line: variance measured FRF  var(Gp(s,)), and
+  G,(s,) - G(s,. OSI) ,   dashes:   variance   of   the   plant   model         dashes: difference hetween the plant mode! G(S,. OOE) identified
+  var(G(.".OSI»                                                         from rhe periodic excitation measure-tuenls and rhe plant mouei
+                                                                                        G(sk" &al)  identified from the randoll1 excitation rneaSUfemen[s
+
+
+                                                                            -30
+
+
+                                                                  iD      iD  -70                                                                                 :£.         :£.
+           Q)                                                                                                 Ql
+        '0                                      ~ -60
+      c..~                                                            C.     E -110                                          E           co                                                                                                 co
+        -150                               I                             '             ..,.-- -y-----r-  ~--y-  T   1                       -90 !~~T-'         o         100        200        300                o       50      100     150     200
+                          frequency (Hz)                                                 frequency (Hz)
+ Figure 6:  Validation of the  identified  noise model  with  the        Figure 8: cross-v;tlidalion of the ide ntified noise model with the
+  r:u1oolll  t.:xciration measurements.  l)ols: noise  residu:ds   \/0:) ,           lx...'riotiic  excil:Hioll  1llt'<iSUfc'lllenrs.  Dots:  no n -pJ.cJllletric  noise
+ solid line: Jloise llllHJd  al-f(z.i.  I , ORJ) , and Jashes: varianct' o f (ht.~        mode!  var(Gp(.,,»IU(k)12  obtained  from  the  periodic exciUtion
+ noise modt'l v"r(aU(z;: l. eSI»                                                           c.:xperilllenr, and solid line: parametric noise Illodel  aH(:.i l.8BJ)
+                                                                      ohtained from the random excit ation experiment.
+
+
+                  4. EX1'ERIMENTAL RESULTS
+                                                                                                                                                                                       ,                         I     '
+                                                                                   Y(k) - T(sk' 8SJ ) - T H( Z-;' ,8BJ )The  hybrid modeling approach  is  illustrated on  real                                                            (16)
+                                                                                        U(k)measurements of an eleclrical  circuil which acts  :tS a
+second order plant (see Fig. 4). Two experimenls have      while  figure 6 comp:tres the estimaled noise model
+heen performed, lhe  first with a hand-limited random         H(z-;, J, 8sJ ) to the noise residuais
+signal and  the second  with  a  hand-limited  periodic                V(k) ~  Y(k) - C(.". ORI)U(k) - rIsk' OSI) - rH(li l , Osl)      (17)
+signal with random phases. Both signals have the same
+                                                        Note  thal the  plant model  is only shown within thepower and the same bandwidth (200 Hz).  For both
+                                                      bandwidth  of the  excitation  signal  while  the  noiseexperiments  the  sampling  frequency   I s   is  ahout
+600 Hz (20 MHz/ 2 IS ). The hybrid 13ox-Jmkins model      model    is  shown  from  DC  (I = 0)   to  Nyquist
+                                                     (j = 1/2)is estimated using the random excitation experimenl
+and   is  cross-validaled  using  lhe  periodic  excitation                                                   The  estimated  Box-Jenkins model  is  cross-validated
+experiment.                                                              with the periodiC measurements  in Figures 7 and  B.
+                                                             Figure  7  compares   the   estim:.Ited   planl  modelN =  10400  inpul/oulpUl  samples  of  the  random
+                                                                G(sk, 8 SJ )  to the frequency response function Gp(sk)excilation experimenls are used  to  identify the  13ox-
+                                                          obtained  from  lhe  periodic  excitalion  experiment,Jenkins model (12).  It lurns out that a model SlrUClure
+                                                            while  Figure B compares lhe estimated noise modelwith  second  order  plant  model  (nil = 2 ,  n" = 0 ,
+                                                                                                                             )   10                                                                                     the  non-parametric   noise  modeln i = 2) and an  eighth order noise model (n c = 8 ,         H(z-;, I, 8SJ                                                                                     2                                                                         var( Gp(s k»1 U(k)1     obtained   from   lhe   periodicnd = 8,  n j = 7)  explains  very  well  the  data  (see                                                        measuremenls.    It  follows  lhat  the  estimated  13ox-Figures 5 and 6). Figure 5 compares the estimated plant
+                                                          Jenkins  model  explains  very   well   lhe   periodicmodel G(sk,8SJ )  10 lhe frequency response funclion                                                                 excitation experiment. Note that lhe cross-validation ofGr(sk)   ohtained   from   the   random   excitation
+                                                                 lhe noise model  is only possible within the bandwidthexperiment
+                                                            of the excitation signal.
+
+
+                                                       197
+
+===== PDF PAGE 6 =====
+                      5. CONCLUSION                            Estimated  from  a  Small Numher  of  Data  Sets,
+                                                           Automatica, Vo!. 33, no 6, pp. 107.)-1086.The   simplicity  of  the  presented  continuous-time                                                    Schoukens j., T Dobrowiecki and  R.  i'inte!on (998).
+modeling  is very appealing: the method merely boils                                                                Parametric Identification of Linear Systems  in the
+down to a classical processing of the input and output                                                             Presence  of Nonlinear  Distortions. A Frequency
+OFT spectra and does not require the design of any        Domain Approach, IEEE Trans. Autom. Contr., Vo!.
+digital  filter. The proposed hybrid Box-Jenkins model          AC-43, no 2, pp. 176-190.
+structure    contains    asymptotically    no     plant      Sinha, N. K. and G.  1'. Rao, eds. (1991). Identification of
+approximation  errors and allows  general  parametric           COlltilluuus-time   Systems.   K1uwer   Academic
+noise models. A disadvantage of the method is that  it is           Publishers, Dordrecht (The Netherlands).
+not consistent in feedback.                                       Siiderstriim, T  (1974). Convergence properties of the
+                                                                generalized  least  squares  identification  method,
+                                                           Automatica, Vo!. 10, pp. 617-626.
+                            6. REFERENCES                                                 Temes G. C. and j. W. LaPatra (977). Circuit Synthesis
+                                                and Design. McGraw-Hill, New York (USA).llrillinger, D. R., Time Series: Data Analysis and 77Jeory.
+   New York: McGraw-Hill, 198J.                       Van hamme, H.,  R. Pintelon and J. Schoukens (991).
+                                                                  Discrete-time  mode!ing  and   identification   ofChou, C T , M. Verhaegen and  R. Johansson (999).
+                                                             continuous-time  systems:  a  general  framework.    Continuous-Time  Identification  of SISO  Systems
+    Using  Laguerre  Functions.  IEEE  Trans.  Signal         Chapter  2  q[  'Identification  of Continuuus-time
+                                                                        Systems',   edited  hy  Sinha  and  Rao,  Kluwer    Processing, Vo!. 47, no 2, pp. 349-362.
+                                                      Academic Publishers, Dordrecht (The Netherlands),Johansson, R. (994). Identification of Continuous-Time
+                                                             pp. 17-77.    Models. IEEE Tram. Signal Processing, Vo!. 42, no
+    4, pp. 887-897.
+Johansson,  R., M. Verhaegen and C T Chou (1999).
+    Stochastic Theory of Continuous-Time State-Space
+     Identification. IEEE Trans. Signal Prucessing, Vo!.
+     47, no 1, pp. 41-51.
+Kailath,  T   (980).  Linear  Systems.  I'rentice-Hall,
+   Englewood Cliffs, NJ (USA).
+Ljung, L  (1999). System Identification, Theory for the
+     User. Prentice-Hall, Upper Saddle River, NJ (USA).
+Lowen, S.  13. and M. C Teich (990). Power-Law Shot
+    Noise, IEEE Trans. Inform. Theory, Vo!. IT-36, n' 6,
+    pp. 1302-1318.
+Lukacs,  E. (975). Stochastic Convergence. Academic
+    Press, New York (USA).
+Middleton,  R.  H. and G. C Goodwin (1990).  Digital
+    Control and Estimation. Prentice-Hall, London.
+Pintelon, R..  P. Guillaume, Y. Rolain, J. Schoukens and
+    H. Van hamme (994). Parametric Identification of
+    Transfer Functions in the Frequency Domain  - A
+    Survey. Il:Eh' Tram. Automat. Contr., Vo!. .39, no 11,
+    pp. 2245-2260.
+Pinte!on, R. and J. Schoukens (1997). Identification of
+    Continuous-Time Systems Using Arbitrary Signals.
+    Automatica, Vo!. 33, no 5, pp. 991-994.
+Pinte!on,  R. and  J.  Schoukens (999). Time  Series
+    Analysis  in  the Frequency Domain,  IEEE  TrailS.
+    Sign . Proc., Vo!. 47, no 1, pp. 206-210.
+Pintelon,  R.  and  J.  Schoukens  (2000).  Box-Jenkins
+    Continuous-time modeling, Internal Note 2000/ 01.
+Pinte!on, R.,  j. Schoukens and Y. Rolain (2000). Box-
+   Jenkins  Continuous-time  modeling,  Automatica,
+    Vo!. 36, no 7.
+Pintelon,  R., J. Schoukens and G. Vandersteen (1997).
+    Frequency  Domain  System  Identification  Using
+    Arbitrary Signals, IEEE Tram. Autom. Contr., Vo!.
+    AC-42, no 12, pp. 1717-1720.
+Pyati  V.  P. (992). An Exact Expression for the Noise
+    Voltage Across a Resistor Shunted hy a Capacitor,
+     IEEt: Trans. Circuits and SystemS-I, Vo!. CAS-39, n°
+     12, pp. 1027-1029.
+Schoukens, j. and R. Pintelon 099]). Identification of
+    Linear Systems: A Practical Guideline to Accurate
+    Modeling. Pergamon, London (GB).
+Schoukens,  j.,  G.  Vandersteen,  R.  Pintelon and   P.
+   Guillaume  (997).  Frequency  Domain  System
+    Identification Using Non-parametric Noise Models
+
+
+                                                     198

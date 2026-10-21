@@ -1,0 +1,38 @@
+{
+  "all_unchanged": true,
+  "count": 8,
+  "files": [
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z-0.5.mat",
+      "same": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z0.mat",
+      "same": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z0.5.mat",
+      "same": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z1.mat",
+      "same": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\delay_identification_20261016\\effective_delay_matrix_us.csv",
+      "same": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\realfit_original_copy.py",
+      "same": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\realfit_extended.py",
+      "same": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\run_c.py",
+      "same": true
+    }
+  ]
+}

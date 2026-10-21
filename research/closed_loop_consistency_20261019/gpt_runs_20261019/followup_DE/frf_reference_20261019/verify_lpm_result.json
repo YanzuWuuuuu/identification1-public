@@ -1,0 +1,170 @@
+{
+  "noiseless_polynomial_test": {
+    "TU_relative_error": 1.0576374951683836e-15,
+    "TY_relative_error": 1.0902144175276995e-15,
+    "G_relative_error": 4.0032328070619397e-16
+  },
+  "saved_LPM": {
+    "edge_count": 20,
+    "methods": {
+      "M1": {
+        "relative_G_percent": 57.368271851044774,
+        "interior_relative_G_percent": 57.55076123369588,
+        "inverse_free_relative_percent": 46.98341155162504,
+        "error_energy_edge_fraction": 0.000950351707792165
+      },
+      "M2": {
+        "relative_G_percent": 55.20444792821536,
+        "interior_relative_G_percent": 55.38578721450102,
+        "inverse_free_relative_percent": 47.89683019163658,
+        "error_energy_edge_fraction": 0.0007434934812177297
+      },
+      "M3": {
+        "relative_G_percent": 55.289819413849514,
+        "interior_relative_G_percent": 55.471410660566065,
+        "inverse_free_relative_percent": 48.03960496747388,
+        "error_energy_edge_fraction": 0.0007445193206249211
+      },
+      "M3w": {
+        "relative_G_percent": 50.21061105253067,
+        "interior_relative_G_percent": 50.371566047801075,
+        "inverse_free_relative_percent": 46.09174281129904,
+        "error_energy_edge_fraction": 0.0009013908516688697
+      },
+      "M5": {
+        "relative_G_percent": 372.28495261691216,
+        "interior_relative_G_percent": 373.6019848856544,
+        "inverse_free_relative_percent": 291.2210367076757,
+        "error_energy_edge_fraction": 0.00023979608620241705
+      },
+      "M5n": {
+        "relative_G_percent": 50.40668247043979,
+        "interior_relative_G_percent": 50.56853991536951,
+        "inverse_free_relative_percent": 46.32636634738978,
+        "error_energy_edge_fraction": 0.0008905667709743332
+      }
+    },
+    "halves_TU_relative_percent": 20.778192610190434,
+    "halves_TY_relative_percent": 4.94183292402997
+  },
+  "saved_M5": {
+    "0": {
+      "gmodel_resp_relative_error": 3.29911185697924e-16,
+      "period_to_full_prediction_scaling_relative_error": 0.0,
+      "model_FRF_unchanged_after_transient_scaling": 0.0,
+      "SML_cost_initial": 219500.0021640192,
+      "SML_cost_final": 153646.1191313926,
+      "raw_output_initial_relative_percent": 6.543203723673423,
+      "raw_output_relative_percent": 271.783362738879,
+      "covariance_initial": {
+        "median_trace": 1.2598159450466406e-07,
+        "median_condition": 382320.83301245497
+      },
+      "covariance_final": {
+        "median_trace": 2.7242626400978674e-07,
+        "median_condition": 871034.0701963041
+      },
+      "status": "converged",
+      "converged": true,
+      "iterations": 160,
+      "frequency_hz": [
+        10.718413315519491,
+        10.915731508749284,
+        16.121458892830567
+      ],
+      "damping_percent": [
+        1.1471186440462813,
+        2.8665439972703055,
+        3.329932570351106
+      ],
+      "LRM_keys": [
+        "f",
+        "G",
+        "TU",
+        "TY",
+        "coefficients",
+        "design_condition",
+        "design_rank",
+        "denominator_min",
+        "failed_output",
+        "tud_condition",
+        "edge",
+        "bounds",
+        "prediction",
+        "zero_channels",
+        "nperiod",
+        "window",
+        "order",
+        "n_coefficients",
+        "sk_updates",
+        "se_complex",
+        "se_db",
+        "se_phase_deg",
+        "jackknife_G",
+        "jackknife_failed_output",
+        "jackknife_valid"
+      ],
+      "LRM_FRF_difference_percent": 385.45954615894146,
+      "LRM_inverse_free_relative_percent": 298.50176733604803
+    },
+    "1": {
+      "gmodel_resp_relative_error": 1.2663581081079426e-16,
+      "period_to_full_prediction_scaling_relative_error": 0.0,
+      "model_FRF_unchanged_after_transient_scaling": 0.0,
+      "SML_cost_initial": 728744.5610898058,
+      "SML_cost_final": 209811.16471822848,
+      "raw_output_initial_relative_percent": 32.317484114872556,
+      "raw_output_relative_percent": 332.20860902071126,
+      "covariance_initial": {
+        "median_trace": 3.267143548506543e-08,
+        "median_condition": 209353.98235173663
+      },
+      "covariance_final": {
+        "median_trace": 2.770205739370589e-08,
+        "median_condition": 115485.16920628214
+      },
+      "status": "converged",
+      "converged": true,
+      "iterations": 84,
+      "frequency_hz": [
+        11.913088711400974,
+        11.990236850884417,
+        16.921811838983118
+      ],
+      "damping_percent": [
+        5.586020384087767,
+        0.23574246551121866,
+        2.3202293229248827
+      ],
+      "LRM_keys": [
+        "f",
+        "G",
+        "TU",
+        "TY",
+        "coefficients",
+        "design_condition",
+        "design_rank",
+        "denominator_min",
+        "failed_output",
+        "tud_condition",
+        "edge",
+        "bounds",
+        "prediction",
+        "zero_channels",
+        "nperiod",
+        "window",
+        "order",
+        "n_coefficients",
+        "sk_updates",
+        "se_complex",
+        "se_db",
+        "se_phase_deg",
+        "jackknife_G",
+        "jackknife_failed_output",
+        "jackknife_valid"
+      ],
+      "LRM_FRF_difference_percent": 432.4829133762816,
+      "LRM_inverse_free_relative_percent": 276.8627768123038
+    }
+  }
+}

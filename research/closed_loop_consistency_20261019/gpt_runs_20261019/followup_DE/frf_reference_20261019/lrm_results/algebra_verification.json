@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "seed": 418217,
+  "rows": [
+    {
+      "sk_updates": 0,
+      "frf_max_absolute_error": 4.087442190270352e-17,
+      "heldout_prediction_max_absolute_error": 2.63883316167868e-16,
+      "failed_outputs": 0
+    },
+    {
+      "sk_updates": 3,
+      "frf_max_absolute_error": 2.835577350216271e-17,
+      "heldout_prediction_max_absolute_error": 1.4136665957203515e-16,
+      "failed_outputs": 0
+    }
+  ]
+}

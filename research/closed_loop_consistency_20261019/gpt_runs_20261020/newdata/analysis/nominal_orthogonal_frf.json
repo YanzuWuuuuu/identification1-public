@@ -1,0 +1,19 @@
+{
+  "controller": "nominal",
+  "P_common": 6,
+  "P_each": [
+    6,
+    8,
+    8,
+    7
+  ],
+  "n_draws": 1000,
+  "bootstrap_failed": 0,
+  "D_condition_max": 79.4897951176364,
+  "U_condition_max": 166.40452099096458,
+  "G_halves_difference_percent": 61.31454209002934,
+  "random_se_relative_percent": 59.51197138391893,
+  "bootstrap_mean_shift_percent": 29.29136082306657,
+  "instantaneous_gated_reference": true,
+  "interval": "pointwise paired-period bootstrap percentile; not simultaneous, excludes systematic/model error"
+}

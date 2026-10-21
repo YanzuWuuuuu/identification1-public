@@ -1,0 +1,42 @@
+{
+  "id": "A_highgain",
+  "method": "M3",
+  "frequency_u_hz": [
+    0.005523718580690694,
+    0.018202595450510974,
+    0.0007068556752782912
+  ],
+  "damping_u_percentage_points": [
+    0.05808087617839952,
+    0.15579941102064163,
+    0.004818459162859299
+  ],
+  "log_parameter_sd": [
+    0.0005314179127901548,
+    0.0015917351019960192,
+    4.58472246623174e-05,
+    0.011345455329134552,
+    0.06194498961746433,
+    0.0013887391418208747
+  ],
+  "relative_u_percent": [
+    0.053141802534647356,
+    0.15917381266387806,
+    0.004584722473459445,
+    1.1346550670704938,
+    6.2123536078599715,
+    0.13887411505604214
+  ],
+  "locally_valid_numerics": true,
+  "solver_converged": true,
+  "strict_score_pass": true,
+  "covariance_conditions": {
+    "scaled_condition": 354002.4858915369,
+    "scaled_rank": 158,
+    "dimension": 158,
+    "min_variance": 1.187927136897055e-15
+  },
+  "interpretation": "B-noise spectrum plug-in; fixed reference design; complete transient nuisance block retained",
+  "theta_order": "f1 f2 f3 zeta1 zeta2 zeta3",
+  "noise_borrowed_from_z0": false
+}

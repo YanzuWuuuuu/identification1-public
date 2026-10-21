@@ -1,0 +1,734 @@
+===== PDF PAGE 1 =====
+                                                            Automatica 133 (2021) 109859
+
+
+                                            Contents lists available at ScienceDirect
+
+                              Automatica
+
+
+                                         journal homepage: www.elsevier.com/locate/automatica
+
+
+
+Consistent identification of continuous-time systems under multisine
+input signal excitation✩
+Rodrigo A. González a,∗, Cristian R. Rojas a, Siqi Pan b, James S. Welsh b
+a Division of Decision and Control Systems, KTH Royal Institute of Technology, 10044 Stockholm, Sweden
+b School of Electrical Engineering and Computing, University of Newcastle, Callaghan, 2308 NSW, Australia
+
+
+a r t i c l e    i n f o             a b s t r a c t
+
+
+Article history:                                For many years, the Simplified Refined Instrumental Variable method for Continuous-time systems
+Received 10 May 2020                         (SRIVC) has been widely used for identification. The intersample behaviour of the input plays an
+Received in revised form 3 March 2021           important role in this method, and  it has been shown recently that the SRIVC estimator  is not
+Accepted 29 June 2021                          consistent if an incorrect assumption on the intersample behaviour is considered. In this paper, we
+Available online 14 August 2021
+                                            present an extension of the SRIVC algorithm that is able to deal with continuous-time multisine
+Keywords:                                          signals, which cannot be interpolated exactly through hold reconstructions. The proposed estimator is
+System identification                             generically consistent for any input reconstructed through zero or first-order-hold devices, and we
+Continuous-time systems                  show that  it is generically consistent for continuous-time multisine inputs as well. The statistical
+Instrumental variable method                  performance of the proposed estimator is compared to the standard SRIVC estimator through extensive
+Consistency                                    simulations.
+                             © 2021 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY license
+                                                                                                       (http://creativecommons.org/licenses/by/4.0/).
+
+
+
+1. Introduction                                               forward shift operator, irregular and fast sampling can be easily
+                                                                 handled, since the associated parameters remain invariant with
+   System identification involves using measured input and out-     respect to the varying sampling period and the model poles do
+put data for building mathematical models that characterise a    not become statistically ill-defined as the sampling period decays
+system’s behaviour. Different approaches to system identifica-     to zero.
+tion have been developed depending on whether a discrete-time      One of the main difficulties in CT system identification  is
+(DT) or continuous-time (CT) model is needed. Continuous-time    the treatment of time derivatives. Since the goal is to obtain an
+system identification has applications in many areas of science    estimate of a CT system, knowledge of the derivatives of the input
+and engineering such as economics, biology, physics and control,                                                         and output are, either explicitly or implicitly, required. However,
+with comprehensive literature written on the subject (Garnier &                                                                  these derivatives are not exactly computable when only sampled
+Wang, 2008; Rao & Unbehauen, 2006; Young, 2012). Although                                                               input–output data is obtained. To overcome this problem, many
+the system identification community has focused mainly in DT
+                                                                 algorithms have been suggested (see, e.g., Rao and Unbehauen
+setups, as it has been investigated during a predominantly digital
+                                                                (2006) and Sinha and Rao (1991) and the references therein). One
+era, there are many reasons why CT system identification has
+                                                                        of the most popular algorithms is the Simplified Refined Instru-
+had a renewed interest during the last decades (Garnier, 2015).
+                                                            mental Variable method for Continuous-time systems (SRIVC),
+For example, model coefficients are directly linked to physical
+                                                         which was first presented in Young and Jakeman (1980). This
+parameters, and more parsimonious models can be obtained as
+                                                      method has been suggested for general use due to its robustnessknowledge of the relative degree of the CT system can be ac-
+                                                         and accuracy in practical applications (Garnier & Young, 2014).commodated. Also, contrary to DT system identification using the
+                                                  Many further extensions of this method also exist in the litera-
+                                                                            ture, for example, to handle non-uniformly sampled data (Husel-
+ ✩This work was partially supported by the Swedish Research Council under                                                                        stein & Garnier, 2002) or multi-input systems (Garnier, Gilson,
+contract number 2016-06079 (NewLEADS) and by the Australian government
+Research Training Program (RTP) scholarship. The material in this paper was    Young, & Huselstein, 2007). Extensions to output error (OE) and
+not presented at any conference. This paper was recommended for publication    Box–Jenkins (BJ) models (Chen, Garnier, & Gilson, 2013), unifi-
+in revised form by Associate Editor Er-Wei Bai under the direction of Editor     cation of DT and CT transfer function estimation (Young, 2015),
+Torsten Söderström.
+  ∗Corresponding author.                                       and comprehensive consistency (Pan, González, Welsh and Rojas,
+     E-mail addresses:  grodrigo@kth.se (R.A. González), crro@kth.se (C.R. Rojas),    2020) and asymptotic efficiency (Pan, Welsh, González and Rojas,
+siqi.pan@uon.edu.au (S. Pan), james.welsh@newcastle.edu.au (J.S. Welsh).         2020) analyses have also been presented.
+
+
+https://doi.org/10.1016/j.automatica.2021.109859
+0005-1098/© 2021 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+
+===== PDF PAGE 2 =====
+R.A. González, C.R. Rojas, S. Pan et al.                                                                                            Automatica 133 (2021) 109859
+
+   The SRIVC algorithm uses interpolation of the input and output    where it is assumed that the sampled noise sequence {v(tk)} can
+data in order to compute filtered regressor and instrument vec-    be described as a zero-mean and finite variance random process.
+tors in an iterative estimation procedure. This reconstruction of    Due to the nature of the sampled signals and the difficulty of
+the CT input and output signals is usually implemented through    computing the time-derivative of CT white noise, which does not
+simple interpolation schemes like zero-order hold (ZOH) or first-    have finite variance (Åström, 1970), we only consider DT noise in
+order hold (FOH) devices, independently of the nature of the     this paper.
+true signals (Garnier & Young, 2004). For inputs that can be      To identify the system, we propose the model structure
+described exactly with these reconstruction schemes, the SRIVC
+estimator has recently been shown to be generically consistent           bmpm + bm−1pm−1 + · · · + b0                                                                  G(p) =and asymptotically efficient (Pan, González et  al., 2020; Pan,            anpn + an−1pn−1 + · · · + a1p + 1,
+Welsh et al., 2020). However, when the intersample behaviour
+                                                       where the parameter vector
+assumption on the model input does not match that of the sys-
+tem input, continuous-time estimation methods can deliver large    θ := [a1,   a2,    . . . ,   an,   b0,   b1,    . . . ,  bm ]⊤
+estimation errors  if the sampling period  is large (Schoukens,
+Pintelon and Van Hamme, 1994), and in particular, the SRIVC    needs to be estimated. The goal is to obtain an accurate model
+estimator is known to be generically inconsistent in this case.     of the CT system G∗(p)  :=  B∗(p)/A∗(p) given the knowledge
+Important input signals for identification that cannot be described     of N samples of the output measurements and the CT input
+by holds are band-limited signals such as multisines. These sig-     signal. Note that in this framework the input signal is not lim-
+nals are advantageous due to their flexibility regarding power     ited to hold reconstructions. Hence, the description includes
+spectrum design, time domain averaging possibilities, simplifi-    the standard framework where u(t) is assumed to be obtained
+cation of the model validation step and finite sample estima-    through a ZOH or FOH and extends to more general inputs, such
+tion performance (Schoukens, Pintelon and Guillaume, 1994). For    as continuous-time multisines (Schoukens, Pintelon, Guillaume,
+these input signals, the complete CT input signal is known to the                                                                   1994).
+practitioner, but the SRIVC procedure only performs simple inter-                                                            The identification of the system G∗(p) can be done by obtaining
+polations of the input, which impact its consistency regardless of                                                                 the data points {u(tk), y(tk)} and applying a method for CT system
+the sampling period.
+                                                                            identification, such as in Chen et al. (2013), or as in González,
+   In summary, in this paper,
+                                                                        Rojas, and Welsh (2018), Maruta and Sugie (2013) and Young
+  • we present a refinement of the SRIVC method that is shown    and Jakeman (1980) for regular sampling schemes. In most of
+     to yield generic consistency of the estimated model param-    these algorithms, however, the hold reconstructions of the input
+     eters for CT multisine input signal excitations;              and output are assumed, and they are independent of the exact
+  • we prove that, given knowledge of the CT multisine input    nature of the signals. In this work, we show that the knowledge of
+     signal and measured output samples, the exact computation    the exact intersample behaviour of the input can provide further
+     of the input regressors  is necessary and sufficient for a     insights for a better design of the identification procedure.
+     generically consistent estimate of the CT system;
+  • we propose a computationally efficient algorithm for com-     3. The simplified refined instrumental variable method for
+     puting the regressors under the multisine case; and           continuous-time systems (SRIVC)
+  • we exemplify the consistency of the proposed estimator
+     through extensive Monte Carlo simulations.
+                                                            The SRIVC estimator is an adaptive instrumental variable al-
+   The remainder of this paper is organised as follows. The iden-    gorithm where parameter-dependent CT filters are updated it-
+tification problem is formulated in Section 2. Section 3 provides a     eratively. In each step, the instruments are computed using the
+description of the SRIVC estimator and its consistency properties.    parameter estimate obtained in the previous iteration until the
+The proposed SRIVC-type method is presented and analysed in    model parameters have converged. The iterative procedure of the
+Section 4, and Section 5 illustrates this method with extensive    SRIVC algorithm is designed so that the sum of squares of the
+numerical examples. Finally, conclusions are drawn in Section 6.     residuals (also called the generalised equation errors or GEEs)
+                                                                                     ε(tk), is minimised. The residuals are written as
+2. Problem formulation
+                                                                               ε(tk) : = y(tk) −B(p) u(tk)
+   Consider a  linear and time-invariant  (LTI),  causal,  stable,                     A(p)
+proper, single-input single-output, CT system                = A(p)yf (tk) −B(p)uf (tk),                                 (2)
+       B∗(p)
+x(t) =       u(t),                                          where
+       A∗(p)
+                                                                1                  1
+where p is the Heaviside operator, i.e., pg(t) := dg(t)/dt, and the      yf (tk) =       y(tk), and uf (tk) =      u(tk).                      (3)                                                                             A(p)                   A(p)
+numerator and denominator polynomials are coprime and given
+by                                                         Note that in (2) and (3) we have adopted a mixed notation of
+                                                        CT operators and DT data. Since this dichotomy is repeatedly en-
+B∗(p) = b∗m∗pm∗+ b∗m∗−1pm∗−1 + · · · + b∗0,                         countered in this paper, we formalise it in the following remark.
+A∗(p) = a∗n∗pn∗+ a∗n∗−1pn∗−1 + · · · + a∗1p + 1.
+Suppose that the CT input u(t) is known from t = t1 to t = tN,                                                   Remark 1.  In this paper, G(p)x(tk) means that the DT signal x(tk)
+where the sampling is regular in time unless explicitly stated
+                                                                                       is interpolated in some manner, e.g., using a ZOH or FOH, and the
+otherwise, and that N noisy measurements of the output x(t)
+                                                                      resultant output through the CT filter G(p) is sampled at t = tk. On
+are obtained at the instants {tk}Nk=1. In other words, the output                                                                 the other hand, {G(p)x(t)}tk (or [G(p)x(t)]tk in the vector-valuedobservations are given by
+                                                                     case) means that the CT signal x(t) is filtered through G(p), and
+y(tk) = x(tk) + v(tk),  k = 1, . . . , N,                           (1)     later sampled at t = tk.
+
+                                                                   2
+
+===== PDF PAGE 3 =====
+R.A. González, C.R. Rojas, S. Pan et al.                                                                                            Automatica 133 (2021) 109859
+
+   The SRIVC method is described in Algorithm 1, where we    and that it minimises the prediction error and maximises the
+denote ϕf (tk) as the filtered regressor vector, ˆϕf (tk) as the filtered     likelihood function, but they lack rigorous theoretical analysis
+instrument vector, and yf (tk) as the filtered output. Note that    regarding the influence of the interpolation of the input and
+line 8 of Algorithm 1 requires the DT signals to be prefiltered    output for the prefiltering step. Only recently Pan, González et al.
+by CT transfer functions. This is usually done by assuming a    (2020) has taken into account the intersample behaviour of the
+ZOH or FOH reconstruction for the input and output signals and     signals for the consistency analysis. In Pan, González et al. (2020,
+then simulating the response by using, for example, the lsim    Theorem 1), the generic consistency of the SRIVC estimator was
+command in MATLAB. Although this approach has provided a    proven for inputs that can be exactly interpolated by FOH or
+quick procedure to compute the filtered regressor and instrument   ZOH devices. Loosely speaking, under mild assumptions regarding
+vectors, it is prone to approximation errors that can jeopardise    the sampling period, persistence of excitation of the input and
+the statistical properties of the method.                            intersample behaviour of the output, the following statements are
+                                                                    true for an input that is exactly reconstructible with FOH or ZOH
+Algorithm 1: SRIVC                                                   interpolation:
+ 1: Input: {u(tk), y(tk)}Nk=1, model order (n, m), initial vector es-         1. The matrix E{ˆϕf (tk)ϕ⊤f (tk)} is generically non-singular.1
+   timate θ1, tolerance ϵ and maximum number of iterations         2. If the SRIVC iterations converge, the true parameter θ∗is
+  M                                                                 the unique converging point.
+ 2: Using θ1, form the estimated system polynomials A1(p) and         3. As the sample size N approaches infinity, θj+1 in (7) locally
+    B1(p)                                                             converges to θ∗.
+ 3:  j ←1, flag ←1
+ 4: while flag = 1 and j ≤M do                                       Also, the effect of choosing a different intersample behaviour
+ 5:     Prefilter the (DT) input {u(tk)}Nk=1 and output     {y(tk)}Nk=1    than that of the system input was also analysed in Pan, González
+    to form                                                             et al. (2020, Corollary 3). In the following, we say that a correct
+                                                                             specification of the intersample behaviour in the model input occurs
+            1
+    ϕf (tk) ←      [ −py(tk),  . . . , −pny(tk),                    whenever the intersample behaviour of such signal in the SRIVC
+               Aj(p)                                               algorithm matches that of the input applied to the continuous-
+                              u(tk),  . . . , pmu(tk)]⊤,              (4)    time system. Otherwise, we say that the intersample behaviour
+                                                                        in the model input signal is misspecified. In Pan, González et al.
+            1 [                                                                (2020) it was shown that the SRIVC estimator      ˆϕf (tk) ←      −pBj(p) u(tk),  . . . ,
+               Aj(p)      Aj(p)
+                                                                                    1. remains generically consistent if a misspecification of the
+                                                                      intersample behaviour is used for generating the filtered       −pnBj(p) u(tk), u(tk), . . . , pmu(tk) ]⊤,                  (5)
+             Aj(p)                                                             signals in the instrument vector ˆϕf (tk), and
+            1                                                                 2. is generically inconsistent if a misspecification of the in-
+     yf (tk) ←       y(tk)                                          (6)          tersample behaviour is used for filtering the input signal in
+               Aj(p)
+                                                                       the regressor vector ϕf (tk).
+ 6:   Compute the parameter estimate
+                                                                    This result indicates that the intersample behaviour of the input
+                                 N        ]                    signal needs to be correctly taken into account for the consistency       [ N           ]−1[
+    θj+1 ← ∑ ˆϕf (tk)ϕ⊤f (tk) ∑ ˆϕf (tk)yf (tk)               (7)     of the SRIVC estimator. In particular, it implies that if the system
+             k=1                  k=1                               input is a signal that is not produced by a hold mechanism,
+                                                                 the estimator will be generically inconsistent. This argument
+ 7:      if Bj(p)/Aj(p) is unstable then
+                                                                 holds regardless of whether the additive noise v(tk) is white or 8:        Reflect  the  unstable  poles  of  1/Aj(s)  into  the
+                                                                    coloured.
+            stable region of the complex s-plane
+ 9:   end if
+         ∥θj+1 −θj∥                                                       4. Consistent SRIVC-type method
+10:      if       < ϵ then
+            ∥θj∥
+11:        flag ←0                                             As mentioned in the previous section, a correct specifica-
+12:   end if                                                         tion of the intersample behaviour of the input (ZOH of FOH) in
+13:       j ←j + 1                                                  the regressor vector ϕf (tk) guarantees generic consistency under
+14: end while                                                 mild conditions. The extension of this principle constitutes our
+15: Output: θj and its associated model Bj(p)/Aj(p).               main contribution. In this work, we propose an extension of the
+                                                            SRIVC method that computes the filtered regressors exactly for
+                                                                   multisine input excitations, and prove its generic consistency.
+Remark 2.  In the SRIVC method, the user has several choices                                                            The generalised equation error for the proposed approach is
+regarding the intersample behaviour assumptions. In particular,
+the intersample behaviour of the input in both (4) and (5) can be     ε(tk) = A(p)yf (tk) −{B(p)uf (t)}tk,                               (8)
+chosen, as well as the reconstruction of the output signal for the                          1
+                                                       where uf (t) =  A(p)u(t). In (8), the predicted output measure-filtering steps in (4) and (6). Usually the output is selected to have
+a FOH behaviour, since it is argued that it typically gives rise to a    ment is explicitly calculated by first computing the underlying
+satisfactory approximation if the sampling period is small (Chen,    CT signal, and later evaluating it at t =  tk. The proposed esti-
+Gilson, Garnier, & Liu, 2017).                                  mator follows the procedure described in Algorithm 1, but the
+                                                                             filtered regressor and instrument vectors in Eqs. (4) and (5) now
+3.1. Consistency analysis of the SRIVC estimator
+                                                                       1 In this context, generically non-singular means that the set M =  {θj ∈
+   Previous works (Young, 2008, 2015) have suggested that the     Rn: Aj(p)  is a  stable polynomial,  E{ˆϕf (tk)ϕ⊤f (tk)}  is  singular} has Lebesgue
+SRIVC estimator uses the optimal instrumental variable terms,     measure zero in Rn.
+
+                                                                   3
+
+===== PDF PAGE 4 =====
+R.A. González, C.R. Rojas, S. Pan et al.                                                                                            Automatica 133 (2021) 109859
+
+become                                                           (A2) The disturbance sequence {v(tk)} is a zero-mean stationary
+     [ −p          −pn                                  random process.
+ϕf (tk) =         y(tk),  . . . ,       y(tk),                               (A3) The number of sinusoids of the input, mu, satisfies mu ≥
+            Aj(p)             Aj(p)                                           (n + m)/2, and the input offset, α0, is different from zero.
+                                   ⊤                      (A4) All the zeros of Aj(p) have strictly negative real parts, n ≥
+      {  1    }      { pm   } ]
+                u(t)    ,  . . . ,        u(t)         ,               (9)         m, with Aj(p) and Bj(p) being coprime.
+           Aj(p)         tk          Aj(p)         tk                          (A5) The degrees  of the polynomials  in the model  satisfy
+                                                                min(n −n∗, m −m∗) = 0.
+and
+     [
+ˆϕf (tk) =         −pBj(p) u(t),  . . . , −pnBj(p) u(t),                       Assumptionssumption (A3)(A1)is a andpersistence(A2) areofstandard.excitationTherequirement,condition wherein As-
+            A2j (p)             A2j (p)                                                                                             α0̸ = 0 is set only for simplicity in our derivations and can be re-
+                                    ⊤                  moved.2 Given that the poles of unstable models are reflected in                 1           pm    ]
+                           u(t),  . . . ,       u(t)       .           (10)     line 6 of Algorithm 1, Assumption (A4) is met in practice. Assump-
+                     Aj(p)            Aj(p)
+                                                                              tk                      tion (A5) takes into account the model structure, as it ensures a
+                                                            unique solution of the model parameters to be obtained.
+Note that the tk in (10) follows the notation in Remark 1.
+                                                                      Since deterministic inputs will be considered in conjunction
+                                                             with stochastic noise processes, our analysis uses the standardRemark 3. The proposed estimator is an extension of the stan-
+                                                                        definition of expectation for quasi-stationary signals (Ljung, 1999,dard SRIVC estimator, and uses the complete CT input signal for
+identification. For input signals that are reconstructed exactly     pp. 34), which is
+through a ZOH or FOH (e.g., a PRBS signal), this estimator is equiv-                       N
+                                                                     1
+alent to the SRIVC estimator. Thus, the SRIVC-type estimator with     E{g(t)} := lim ∑ E{g(t)}.
+prefiltering stage given by (9) and (10) is generically consistent          N→∞ N                                                                                             t=1
+under the same assumptions as in Pan, González et al. (2020) for
+ZOH and FOH inputs.                                                    Theorem 4.  Consider the SRIVC-type estimator with a fixed sam-
+   In order to further analyse the asymptotic properties of the     pling period h and filtered regressor and instrument vectors given
+proposed estimator, we now study its consistency for multisine    by (9) and (10) respectively, and suppose that Assumptions (A1) to
+inputs.                                                           (A5) hold. Then, the following statements are true:
+                                                                                       1. There exists a maximum sampling period h∗ >  0 such
+4.1. Consistency analysis for multisine inputs
+                                                                                       that,  if h ≤h∗, the matrix E{ˆϕf (tk)ϕ⊤f (tk)} is generically
+                                                                              non-singular.  We consider multisine input signals of the form
+                                                                                       2.  If h ≤h∗and the SRIVC-type iterations converge, then the
+             mu
+                                                                              true parameter θ∗is the unique converging point.
+u(t) = α0 + ∑ αl cos(ωlt + ψl),                            (11)                                                                                       3. Denote ¯A(p) as the converging model denominator. As the
+               l=1
+                                                                    sample size, N, tends to infinity, the estimator locally con-
+where mu, {αl}mul=0, {ωl}mul=1 and {ψl}mul=1 are input parameters. The           verges to θ∗provided that the matrix (Φ1 + Ψ 2)−1Ψ 2 has
+frequencies ωl are assumed to be positive and distinct, and with-            spectral radius less than 1, where
+out loss of generality we assume that the weights αl are positive
+as well. It is well known that the output in steady state of an       Φ1 = E{ˆϕf (tk)¯ϕ⊤f 2(tk)}
+asymptotically stable LTI filter H(s) when u(t) is applied is also a
+                                                                and
+multisine, given by
+                 mu                          Ψ 2 = E{ˆϕf (tk)¯∆ ⊤(tk)},
+y(t) = H(0)α0 + ∑ αl|H(iωl)| cos(ωlt + ψl +̸  H(iωl)).      (12)                                                                      with ¯∆(tk) ∈Rn+m+1 having entries
+                    l=1
+This property of LTI systems provides a natural way to obtain             {{  pi    } −   pi          , i = 1, . . . , n                                                                                                                      ¯A(p)x(t)                                                                                                                                        ¯A(p)x(tk)                                                                                                                                (13)                                                                                                                                                                 tkexact values for the signal evaluations in (9) and (10), and it is             ¯∆i(tk) =
+of low computational cost, since the prefiltering is directly ob-                  0        , i = n + 1, . . . , n + m + 1,
+tained by evaluating (12) with the corresponding filter. Another                                                                and
+advantage of this approach is that it extends naturally to non-
+uniformly sampled data. For such type of sampling, the proposed             [ −pB∗(p)           −pnB∗(p)
+method is not as computationally intensive as the standard SRIVC                 ¯ϕf 2(tk) =             u(t),  . . . ,            u(t),                                                                                               ¯A(p)A∗(p)             ¯A(p)A∗(p)
+method, since the algorithm only requires approximations of
+the filtered output piA−1j  (p)y(tk), i = 0, . . . , n, instead of com-                             1           pm    ] ⊤
+puting approximations of the filtered values of both u(tk) and                                           u(t),  . . . ,      u(t)       .
+                                                                                                                          ¯A(p)              ¯A(p)
+y(tk). The filtered output computations can be carried out by,                                                                                                      tk
+e.g., an adaptive Runge–Kutta method (as in Chen et al. (2013)),
+or by any oversampling technique with intersample behaviour    Proof. Proof of Statement 1. By substituting
+assumptions.
+                                                  { B∗(p)                                                          }  We now prove the consistency of the proposed estimator for                                                                                          u(t)                                                 + v(tk)                                                                               y(tk) =
+the multisine input. The assumptions we use during the analysis              A∗(p)                                                                                                                                                      tk
+are the following:
+
+ (A1) The true system B∗(p)/A∗(p) is proper (n∗ ≥  m∗) and      2  If no offset is considered, then at least (n+ m+ 1)/2 sinusoids are required
+      asymptotically stable with A∗(p) and B∗(p) being coprime.       for our results.
+
+                                                                   4
+
+===== PDF PAGE 5 =====
+R.A. González, C.R. Rojas, S. Pan et al.                                                                                            Automatica 133 (2021) 109859
+
+into (9), we find that ϕf (tk) = ϕf 1(tk) −vf (tk), where              and B∗(p) are coprime. Hence, we can write the expected value of
+                                                                         interest as
+      [ −p { B∗(p)   }       −pn { B∗(p)   }
+ϕf 1(tk) :=                u(t)    ,  . . . ,              u(t)                 E{ˆϕf (tk)ϕ⊤f (tk)} = S(−Bj, Aj)Φ1S⊤(−B∗, A∗)
+             Aj(p)   A∗(p)         tk        Aj(p)   A∗(p)         tk                                           ⎧         ⎫                                                         [                                                              ]                                      ⊤                                                                                             udu(t)                                           ⎨                                      + S(−Bj, Aj)E                                                                                    ∆⊤(tk) ⎬                       (19)            { u(t) }      { pmu(t) } ]
+                                   ,  . . . ,                     ,         (14)                      A2j (p)                                                                   ⎭,                      Aj(p)   tk           Aj(p)     tk                    ⎩                tk
+                                                       where
+and
+                                        ⎧             ⎫                                                    [                                                                                      udu(t)                                                         ] [  udu(t)  ]⊤ ⎬       [  p                   pn                 ]⊤      Φ1 := E ⎨
+                                                                                                                                                                                                 j (p)                                                                                                Aj(p)A∗(p)   tk                                                                                                                                                      tkvf (tk) :=  Aj(p)v(tk),    . . . ,    Aj(p)v(tk),   0,    . . . ,  0     .         ⎩  A2                                                                      ⎭.
+                                                            (15)      It is shown in Lemma 8 in Appendix that Φ1 is generically non-
+                                                                          singular, which means that the first summand of the right hand
+On the other hand, we also have
+                                                                      side of (19) is generically non-singular.
+            [    ]                                                  Finally, as h tends to zero, the infinity norm of the difference                      udu(t)
+ˆϕf (tk) = S(−Bj, Aj)               ,                                between the direct evaluation of a CT signal and its interpolated
+                   A2j (p)                                               tk                                      counterpart also tends to zero. Thus, ∆(tk) →0 as h →0.
+                                                                            This, together with the fact that (generic) non-singularity of a ma-where
+                                                                               trix is preserved under small-enough matrix perturbations (Horn
+       [ dn+m        dn+m−1               ]⊤          & Johnson, 2012, Chap. 6), leads to the first statement of the
+udu(t) :=         u(t),            u(t),     . . . ,    u(t)    ,     (16)
+          dtn+m       dtn+m−1                                 theorem.
+and S(−Bj, Aj) is the Sylvester matrix associated with the poly-    Statement 2. Suppose that  ¯θ is a limiting point of the iteration
+nomials −Bj(p) and Aj(p), whose non-singularity follows from     in (7), where ϕf (tk) and  ˆϕf (tk) are defined as in (9) and (10)
+the same analysis done in Pan, González et al. (2020), where     respectively, and the corresponding polynomials are denoted by
+Assumption (A4) is used. With this, we compute                          ¯A(p) and  ¯B(p). These polynomials are coprime by Assumption
+                                                                         (A4). The ergodic lemmas in Söderström (1975) and Söderström
+               ⎧         ⎫                     [    ]                       and Stoica (1983, Lemma A4.3) permit us to write the iteration
+E{ˆϕf (tk)ϕ⊤f (tk)} = S(−Bj, Aj) E ⎨  udu(t)   ϕ⊤f 1(tk)⎬                equation (7), at the converging point and as N tends to infinity,
+                                A2j (p)                                                                     tk    ⎭                 as               ⎩
+                                 =:Φ                             E{ˆϕf (tk, ¯θ)ϕ⊤f (tk, ¯θ)}−1E{ˆϕf (tk, ¯θ)ε(tk, ¯θ)} = 0,               (20)
+          ⎧         ⎫              [    ]                                                                                                          is the                                                                     GEE                                                                                                      (8)                                                                                             evaluated                                                                                                                   at the                                                                                                           converging                                                                                                                                       point.          ⎨  udu(t)    −S(−Bj, Aj) E                          v⊤f (tk)⎬ .                   (17)    whereSince theε(tk,matrix¯θ)                                                                                     inverse                                                                                                  in                                                                                                 (20)                                                                                                                                 is assumed                                                                                                                  to                                                                                                    be non-singular,                     A2j (p)
+          ⎩                tk   ⎭                            the second expectation in (20) must be zero, i.e.,
+                       =:Ψ                                                                                        E{ˆϕf (tk, ¯θ)ε(tk, ¯θ)} = 0.                                     (21)
+Thus, for showing that E{ˆϕf (tk)ϕ⊤f (tk)} is generically non-singular        Let ¯A(p)B∗(p) −¯B(p)A∗(p) = h0pr + h1pr−1 + · · · + hr, where
+for a small enough sampling period h, it is sufficient to show that                                                                                  r = max(n + m∗, n∗+ m) = n + m. Then, the GEE in (8) can be
+Ψ = 0 and Φ is generically non-singular for a small enough
+                                                                rearranged as
+h. The difference between the analysis in Pan, González et al.
+(2020, Theorem 1) and the proof in the current paper is that          { ¯A(p)B∗(p) −¯B(p)A∗(p)   }
+                                                                               ε(tk, ¯θ) =                         u(t)  + v(tk)
+the signals of interest are hybrid in nature: some are evaluations                         ¯A(p)A∗(p)                   tk
+of CT signals, whereas others are DT signals interpolated with a
+                                                            }                                                    { u⊤du(t)reconstruction device, such as a FOH.                     =                                                                 h                                                   + v(tk),
+   The proof of Ψ = 0 can be found in Lemma 7 in Appendix. Re-                  ¯A(p)A∗(p)     tk
+garding the invertibility of Φ, we will conveniently write ϕf 1(tk)
+                                                                                                            ]⊤. Now, note that the instru-as ϕf 2(tk) + ∆(tk), where ∆(tk) ∈Rn+m+1 has entries             where h = [ h0,   h1,     . . . ,  hn+m
+                                                     ment vector ˆϕf (tk) can be written as
+      {{  pi    } −   pi          , i = 1, . . . , n                Aj(p)x(t)                                 Aj(p)x(tk)                                                                 [ udu(t) ]                                   tk∆i(tk) =                                                                                                                          ,                                                            (18)       ˆϕf (tk) = S(−¯B, ¯A)
+         0          , i = n + 1, . . . , n + m + 1,                                                 ¯A2(p)   tk
+and                                                    where S(−¯B, ¯A) is a Sylvester matrix associated with the poly-
+                                                                                                  ¯B(p) and ¯A(p), which again is non-singular. So, we can      [  −pB∗(p)           −pnB∗(p)                        nomials
+ϕf 2(tk) =              u(t),  . . . ,             u(t),                     express (21) as
+            Aj(p)A∗(p)            Aj(p)A∗(p)
+                                       ⊤                     {[ udu(t) ] [  udu(t)  ]⊤ }
+                                                                                 h                    1           pm    ]               0 = S(−¯B, ¯A) E                                                                                                        ¯A2(p)   tk   ¯A(p)A∗(p)   tk                               u(t),  . . . ,       u(t)
+                         Aj(p)            Aj(p)
+                                                                                      tk                                          :=¯Φ           
+               [  udu(t)  ]
+    = S(−B∗, A∗)                                            ,                                {[ udu(t) ]    }
+                                                                                                                                (22)                       Aj(p)A∗(p)   tk                   + S(−¯B, ¯A) E              v(tk)   .                                                                                                        ¯A2(p)   tk
+with S(−B∗, A∗) being the Sylvester matrix associated with the
+                                                                                   :=¯Ψ       polynomials −B∗(p) and A∗(p), which is non-singular since A∗(p)
+
+                                                                   5
+
+===== PDF PAGE 6 =====
+R.A. González, C.R. Rojas, S. Pan et al.                                                                                            Automatica 133 (2021) 109859
+
+Following a similar approach as in Lemma 7, we conclude that    Algorithm 2: SRIVC-c
+¯Ψ = 0, and by Lemma 8, ¯Φ is generically non-singular. Thus, for
+(22) to hold we need h = 0, which implies that                            1: Input:  {u(t)}t∈[t1,tN],  {y(tk)}Nk=1, model order  (n, m),  initial
+                                                                       vector estimate θ1, tolerance ϵ and maximum number of
+  ¯A(p)B∗(p) −¯B(p)A∗(p) = 0                                                 iterations M
+        ¯B(p)    B∗(p)                                                                2: Using θ1, form the estimated system polynomials A1(p) and
+H⇒                                                                         B1(p)      = A∗(p),        ¯A(p)                                                                                        3:  j                                            ←1, flag ←1
+i.e., θ∗is the unique limiting point.                                            4: while flag = 1 and j ≤M do
+                                                                                        5:   Compute   ϕf (tk)  and    ˆϕf (tk)  by   (9)  and   (10),
+Statement 3. The proof follows from the analysis made for proving
+                                                              where direct evaluations are performed as in (12)
+Statement 3 of Theorem 1 in Pan, González et al. (2020) and its
+                                                                                        6:   Compute the filtered output yf (tk) by (6)
+correction in Pan, González, Welsh, and Rojas (2021). □
+                                                                                        7:   Compute the parameter estimate as in (7)
+   Note that if the commonly used FOH (or ZOH) were chosen       8:      if Bj(p)/Aj(p) is unstable then
+as the intersample behaviour of the signals when discretising       9:        Reflect  the  unstable  poles  of  1/Aj(s)  into  the
+the prefilters, the reconstruction of u(t) would suffer from high                 stable region of the complex s-plane
+frequency distortion, which usually leads to inaccuracies in the     10:   end if
+                                                                               ∥θj+1 −θj∥
+computation of ϕf (tk) and ˆϕf (tk). As stated next, only an inac-     11:      if       < ϵ then
+                                                                                ∥θj∥curate computation of the regressor vector ϕf (tk) causes generic
+                                                                                 12:        flag ←0inconsistency of the proposed method under CT multisine input
+                                                                                 13:   end ifexcitation.
+                                                                                 14:       j ←j + 1
+                                                                                 15: end whileCorollary 5. Assume that the intersample behaviour in the model
+input  is  misspecified,  but  nevertheless  satisfies  G(p)u(tk)  =     16: Output: θj and its associated model Bj(p)/Aj(p).
+{G(p)u(t)}tk as h →  0. The SRIVC-type estimator with filtered
+regressor and instrument vectors given by (9) and (10) respectively
+
+    1. remains generically consistent if a misspecification of the in-     5. Simulation examples
+      tersample behaviour is used for generating the filtered signals
+       in the instrument vector ˆϕf (tk), and                              Via numerical simulations under several experimental condi-
+    2. is generically inconsistent  if a misspecification of the inter-     tions, we evaluate the consistency of the standard SRIVC method
+      sample behaviour is used for filtering the input signal in the    and the proposed SRIVC-c method. For a multisine input, we
+       regressor vector ϕf (tk).                                  examine the consistency of both methods for different regu-
+                                                                               lar sampling periods and also for irregular sampling. For the
+                                                                   following tests, we consider the systemProof. Statement 1: The result follows from the same logic as in
+the proof in Pan, González et al. (2020, Corollary 3, Statement 1).                  1.25
+                                                                   G∗(p) =                                                    (23)Statement 2: Statement 1 of Theorem 4 still holds by following the            0.25p2 + 0.7p + 1,
+same steps as before, but this time the vector ∆(tk) in (18) will    where the parameters of interest are a∗1 = 0.7, a∗2 = 0.25, and
+also have non-zero elements in its bottom m+1 entries. Namely,     b∗0 = 1.25. Regarding the implementation of the standard SRIVC
+the ith component of ∆(tk), with i = n+1, . . . , n+m+1, is now    method, we have used the srivc command from the CONTSID
+          pi−n−1     { pi−n−1   }                              toolbox version 7.3 for MATLAB (Garnier & Gilson, 2018), under
+∆i(tk) =        u(tk) −         u(t)    ,                              default initialisation and tolerance settings. It was set to estimate
+           Aj(p)            Aj(p)           tk                             the best model among the correct model structure with a FOH as
+which still satisfies ∆i(tk) →0 as h →0. Thus, Theorem 4 is    the intersample behaviour.
+valid for this case as well. However, Statement 2 of Theorem 4
+does not yet hold. This fact follows from the same analysis done      5.1. Regular sampling
+in the proof in Pan, González et al. (2020, Corollary 3, Statement
+2). □                                       We first test if the algorithms provide consistent estimates of
+                                                                 the parameter vector [a1, a2, b0]⊤. The system in (23) is excited
+Remark 6. A similar procedure to (9) and (10) could be proposed    with the CT input
+for the computation of  yf (tk) by exploiting the fact that the
+                                                                          u(t) = sin(0.714t) + sin(1.428t) + sin(2.142t).noiseless output also corresponds to a multisine (thus, a more
+adequate reconstruction scheme could be designed). However,    The noiseless output is computed analytically by assuming that it
+provided that h ≤ h∗and the matrix (Φ1 + Ψ 2)−1Ψ 2 has    corresponds to the output of the system at the stationary regime,
+spectral radius less than 1, Remark 5 of Pan, González et al. (2020)                                                                                                          i.e.,
+suggests that, as the number of iterations tends to infinity, the
+                                                                                         3
+GEE at the converging point does not depend on the intersample
+                                                                              x(t) = ∑ |G∗(iωk)| sin(ωkt +̸  G∗(iωk)),behaviour of the output. Thus, if the iterations converge, a more
+precise filtering of the output is usually not needed.                         k=1
+                                                       where (ω1, ω2, ω3) = (0.714, 1.428, 2.142) [rad/s]. This output
+4.2. The SRIVC-c algorithm                                                       is sampled at h = 0.3 [s] and is contaminated with additive
+                                                                         noise, which is set as an i.i.d. Gaussian white noise sequence of
+   To finalise this section, in Algorithm 2 we provide a pseudo-    variance 0.1. Sixty different sample sizes are considered, ranging
+code for computing the proposed SRIVC-type estimator, which is     logarithmically from N = 100 to N = 25500, and 300 Monte
+from now on labelled SRIVC-c.                                      Carlo runs are performed for each value of N.
+
+                                                                   6
+
+===== PDF PAGE 7 =====
+R.A. González, C.R. Rojas, S. Pan et al.                                                                                            Automatica 133 (2021) 109859
+
+
+                                                                              Table 1
+                                                                        Sample mean and MSE of each parameter, for SRIVC and SRIVC-c, when h =
+                                                                                    0.06, 0.2 and 0.6 [s].
+                                                                     Method    Param. (value)     Stats.    h = 0.06    h = 0.2     h = 0.6
+
+                                                                                      Mean    0.697        0.694        0.668
+                                                                                                      a1(0.7)                                                                                  MSE     7.0 · 10−5    9.3 · 10−5    1.1 · 10−3
+
+                                                                            SRIVC                  Mean    0.253        0.251        0.248
+                                                                                                   a2(0.25)                                                                                  MSE     1.8 · 10−5    1.1 · 10−5    1.6 · 10−5
+
+                                                                                      Mean    1.244        1.251        1.286
+                                                                                                  b0(1.25)                                                                                  MSE     1.6 · 10−4    1.2 · 10−4    1.5 · 10−3
+
+                                                                                      Mean    0.700        0.699        0.700
+                                                                                                      a1(0.7)                                                                                  MSE     6.0 · 10−5    6.3 · 10−5    6.7 · 10−5
+
+                                                                                SRIVC-c                 Mean    0.250        0.250        0.250
+                                                                                                   a2(0.25)                                                                                  MSE     1.1 · 10−5    1.1 · 10−5    1.2 · 10−5
+
+                                                                                      Mean    1.249        1.250        1.250
+                                                                                                  b0(1.25)                                                                                  MSE     1.3 · 10−4    1.3 · 10−4    1.3 · 10−4
+
+
+
+                                                                algorithm for a fixed number of output measurements (N =
+Fig. 1. Regular sampling. Sample means of each estimated parameter for SRIVC-c    2000) with different regular sampling periods. Since the rise time
+(red), and standard SRIVC (blue). The true parameters are in dashed-green.  (For     of the system is approximately 2 s, a good choice for the sampling
+interpretation of the references to colour in this figure legend, the reader is    period should be between 0.2 and 0.5 s according to the criterion
+referred to the web version of this article.)                               suggested in Åström and Wittenmark (1984). In order to cover
+                                                                                     fast, normal and slow sampling, we test with sampling periods
+                                                          h = 0.06, 0.2 and 0.6[s].
+                                                            The sample mean and mean square error of each parameter
+                                                               over 300 Monte Carlo runs for each sampling period are shown
+                                                                        in Table 1. On average, the SRIVC-c estimator delivers the true
+                                                                  values of every parameter for all sampling periods in this study,
+                                                          whereas the SRIVC estimator only performs well (but anyway
+                                                              has noticeable bias) when the sampling period is small. For h =
+                                                                  0.6 [s], the large sampling period exaggerates the interpolation
+                                                                      error of the input signal in the standard SRIVC estimator, which
+                                                                    severely degrades its performance. This is confirmed by the order
+                                                                        of magnitude of difference in MSE of the parameters given by the
+                                                      two estimators.
+
+                                                                                   5.3. Irregular sampling
+
+                                           We consider the same system described before, with the same
+                                                                 input and noise variance. In this simulation study, 2000 irregu-
+                                                                              larly sampled output measurements are obtained. The sampling
+                                                                         interval is distributed uniformly between hlb and hhb, where the
+                                                             lower bound is fixed at hlb = 0.05, while the upper bound is
+Fig. 2. Regular sampling  test. Sample MSE of each estimated parameter for    varied from 0.1 to 0.6. A total of 6 Monte Carlo simulations are
+SRIVC-c (red), and standard SRIVC (blue).  (For interpretation of the references
+to colour in this figure legend, the reader is referred to the web version of this    performed with each simulation containing 300 runs.
+article.)                                                                              Fig. 3 shows the mean value of each parameter, with their
+                                                                standard deviation around this value. As expected, the SRIVC-
+                                                                    c estimator provides accurate estimates for all sampling period
+                                                                ranges in this study. On the other hand, the SRIVC estimator has    Figs. 1 and 2 show the sample means and sample mean square
+                                                               a degrading performance as the sampling range increases, which
+errors (MSEs) of each estimated parameter. The SRIVC-c estimator
+                                                                could be attributed to the approximation errors in the prefilter
+accurately identifies  all parameters while the standard SRIVC
+                                                                       calculations due to incorrect assumptions on the intersampling
+method fails to recover the true parameter vector as N increases.
+                                                                  behaviour.
+Regarding Fig. 2, the MSEs for the SRIVC-c estimator decrease to
+zero. Together with the sampled means converging to the true
+                                                                             6. Conclusions
+values, these plots provide evidence for the consistency in mean
+square of the SRIVC-c estimator. Contrastingly, at least two out of                                                                          In this paper, we have derived an algorithm for continuous-
+the three estimated parameters given by the SRIVC method are                                                             time system identification that  is consistent for a wide class
+biased, which empirically indicates that the SRIVC estimator is                                                                        of input signals that have a known intersample behaviour. This
+not consistent in this example.                                     estimator extends the applicability of the standard SRIVC method
+                                                                     to continuous-time multisine inputs. This extension also allows
+5.2. Different sampling periods                                      estimation using irregularly-sampled data. We put forward a
+                                                            comprehensive analysis of the generic consistency of the pro-
+  We now study the effect of the intersample behaviour on the    posed estimator for multisine inputs, and extensive simulations
+SRIVC-type estimates. Under the same input and noise variance    have confirmed the theoretical findings and have shown advan-
+as the previous simulation, we test the performance of each    tages of this estimator over the widely popular SRIVC method.
+
+                                                                   7
+
+===== PDF PAGE 8 =====
+R.A. González, C.R. Rojas, S. Pan et al.                                                                                            Automatica 133 (2021) 109859
+
+
+                                                                                 N    k
+                                                                  1       ∫tk
+                                       = lim ∑ ∑      gi(tk −τ)u(τ)βk−r,lE{v(tr)}dτ
+                                                N→∞ N                                                                                     k=1 r=1  0
+                                       = 0,
+
+                                                       where we have used the fact that the disturbance signal has zero
+                                                          mean. □
+
+                                             Lemma 8.  Under Assumptions (A1) to (A5), with u(t) described as
+                                                                           in (11), the following matrix is generically non-singular with respect
+                                                                         to the parameters of the denominator of the model:
+                                                   {[ udu(t) ] [  udu(t)  ]⊤ }                                                                     ¯Φ := E                                            .
+                                                                                                ¯A2(p)   tk   ¯A(p)A∗(p)   tk
+
+
+                                                                   Proof.  Similar to Pan, González et  al. (2020), we follow an
+                                                                         analyticity argument. We must first prove that
+                                                   {[ udu(t) ] [ udu(t) ]⊤ }                                                                     ¯Φ ∗:= E                                                    (25)
+                                                                                 A∗2(p)   tk  A∗2(p)   tk
+                                                                                       is positive definite. For this, let z ∈Rn+m+1. We write
+                                          ⎧                                                                } )2⎫⎬                                          ⎨ ({ Bz(p)                                                                                                   u(t)Fig.  3. Irregular sampling  test. Sample means of each estimated parameter    z⊤¯Φ ∗z = E
+using SRIVC-c (red) and standard SRIVC (blue), with 1 standard deviation, for                      A∗2(p)         tkdifferent sampling intervals. The true parameter values are in dashed green.        ⎩           ⎭≥0.
+(For interpretation of the references to colour in this figure legend, the reader    Since u(t) is a multisine of the form (11), in steady state we have
+is referred to the web version of this article.)
+                                                                                        mu
+                                                                        Bz(p)
+                                                                                 u(t) = ˜α0 + ∑ ˜αl cos(ωlt + ˜φl),
+                                                                     A∗2(p)                                                                                                       l=1
+Further research on this topic concerns a variance analysis of
+this estimator, and theoretical guarantees for irregular sampling    where ˜α0 = α0Bz(0)/A∗2(0), ˜αl = αl|Bz(iωl)/A∗2(iωl)|, and ˜φl =
+schemes.                                                                   φl +̸  Bz(iωl)/A∗2(iωl). Therefore,
+                                                                                    N (      mu              )2Appendix                                                             1                                                             z⊤¯Φ ∗z = lim ∑   ˜α0 + ∑ ˜αl cos(ωlkh + ˜φl)
+                                                  N→∞ N
+Lemma 7. Consider u(t) as in (11), and vf (tk) and udu(t) as defined                       k=1         l=1
+in (15) and (16) respectively. Under Assumption (A2), the matrix Ψ           1  N (           mu
+defined in (17) is equal to zero.                     = lim ∑    ˜α20 + 2˜α0 ∑ ˜αl cos(ωlkh + ˜φl)            (26a)
+                                             N→∞ N
+                                                                                 k=1               l=1
+Proof. From the definition of vf (tk), we directly obtain that all          mu                    )
+the entries Ψ il of Ψ, with l > n + 1, are equal to zero. For the    + ∑ ˜αj ˜αl cos(ωjkh + ˜φj) cos(ωlkh + ˜φl)     .             (26b)
+other entries, we see that an arbitrary entry of this matrix is of             j,l=1
+the form
+                                                                       Recall the formula for a geometric series
+    ⎧              ⎫
+                                                                           N                                                                                                          N                                                          {                                                                     }    ⎨      { pn+m+1−iu(t) }     pl   ⎬                                                             1                                                                                                                                   eiφ                                                            (24)Ψ il = E                      ∑                               ∑                                                                lim                                                                                             lim                                                                                                                                       eiωk                                                                        cos(ωk + φ) = Re               A2j (p)                                            N→∞ N                                                               N→∞ N                                             tk    ⎩                               Aj(p)v(tk)⎭.                                                                              k=1                                                                                                               k=1
+If we define  {gi(t)}t≥0  as the inverse Laplace transform  of               = 0.
+sn+m+1−iA−2j   (s), the first term in the expectation in (24) can be    Using this result, and the identity cos(α) cos(β) =  [cos(α +
+written as                                                            β) + cos(α −β)]/2, the second term in the sum in (26a) is zero.
+{ pn+m+1−iu(t) }    ∫tk                                        Moreover, in (26b) the term for  j̸ = l is a sum of sinusoids whose
+          =      gi(tk −τ)u(τ)dτ.                   sum tends to zero as N tends to infinity, while for j = l constants
+     A2j (p)                          0                                            appear. Thus,                            tk
+Note that this is a DT signal, as a function of the time mea-                       mu                                                                     1
+surements {tk}. On the other hand, the second term (24) can be    z⊤¯Φ ∗z = ˜α20 + ∑ ˜α2j .                                    (27)
+                                                                     2
+described by                                                                                      j=1
+pn+1−l            k                                                    This computation leads to stating that z⊤¯Φ ∗z = 0 occurs if and
+       v(tk) = ∑ βk−r,lv(tr).                                      only if ˜α0 = ˜α1 = · · · = ˜αmu = 0, which in turn is equivalent to Aj(p)
+               r=1                                             imposing
+where {βj,l}k−1j=0 are the first k values of the impulse response of      Bz(0) = 0,  Bz(iωl) =  Bz(−iωl) = 0,  l = 1, . . . , mu.
+the FOH DT equivalent of plA−1j  (p). So, we compute Ψ il as           A∗2(0)        A∗2(iωl)    A∗2(−iωl)
+                                         k                                   Since mu ≥(n + m)/2, the only rational function that satisfies all                          }      {∫tk                                                                        of these restrictions is the null transfer function. Thus, Bz(p) = 0Ψ il = E                  gi(tk −τ)u(τ)dτ ∑ βk−r,lv(tr)
+                                                         and z = 0. With this, we have shown that ¯Φ ∗is positive definite.             0                   r=1
+
+                                                                   8
+
+===== PDF PAGE 9 =====
+R.A. González, C.R. Rojas, S. Pan et al.                                                                                            Automatica 133 (2021) 109859
+
+  We now show that the entries of the matrix ¯Φ are real    and addition of real analytic functions is real analytic (Krantz &
+analytic functions of the (real-valued) parameters (¯a1, . . . , ¯an) in     Parks, 2002), we conclude that ¯Φjl is real analytic in the variables
+the domain where ¯A(p) is a stable polynomial. We denote this      (¯a1, . . . , ¯an), in the domain Ω.
+domain as Ω⊂Rn. The entries of the matrix ¯Φ are given by           Thus, for n = n∗and m ≥m∗, the matrix ¯Φ is generically
+                                                                  non-singular with respect to (¯a1, . . . , ¯an) ∈Ωby Lemma A2.3
+     {{ pn+m+1−ju(t) } { pn+m+1−lu(t) } }¯Φjl := E                                                  ,                     of Söderström and Stoica (1983) and its corollary.  If n ≥n∗
+                   ¯A2(p)         tk     ¯A(p)A∗(p)      tk                   and m = m∗, we note that a∗:= (a∗1, . . . , a∗n∗, 0, . . . , 0) ∈Rn
+                                                           (where n −n∗zeros are appended) belongs to the boundary of
+where j, l = 1, 2, . . . , n + m + 1. By computing the expectation                                                    Ω. However, since det(¯Φ) is a real analytic function in Ω, its
+similarly to the derivation of (27), we find that                                                                    continuity ensures the existence of a small perturbation vector
+                 mu                                        η ∈Rn such that a∗+η ∈Ωand ¯Φ is non-singular when a∗+η are                  j     1
+¯Φjl = ˜α0 ˜αl0 + ∑ ˜αjr ˜αlr cos(˜φjr −˜φlr),                             the parameters of the model denominator. Hence, generic non-
+            2                 r=1                                                    singularity of ¯Φ also holds for this case by the same lemma cited
+where                                                            above. □
+    { 0,   j < n + m + 1                      { 0,   l < n + m + 1               References                                            ˜αl0 =˜α0j =       α0, j = n + m + 1,        α0, l = n + m + 1,
+          n+m+1−j                                                          Åström, K.  J. (1970). Introduction to stochastic control theory. Academic Press.
+      ωr                     [ (iωr)n+m+1−j ]                Åström, K. J., & Wittenmark, B. (1984). Computer controlled systems: theory and
+˜αjr = αr                               ˜φjr = φr +̸                                            design. Prentice-Hall.
+            ¯A2(iωr)                               ¯A2(iωr)                     Chen, F., Garnier, H., & Gilson, M. (2013). Refined instrumental variable identifi-                                                   ⏐⏐⏐⏐⏐                             ⏐⏐⏐⏐⏐,
+                                                                                         cation                                                                                                     of                                                                                            continuous-time                                                                                      OE and BJ                                                                                                           models                                                                                                                  from                                                                                                                                                       irregularly                                                                                                                                 sampled                                                                                                                                                                          data.                             [ (iωr)n+m+1−l ]          ωn+m+1−lr                                                                                             In 11th                                                                                             IFAC                                                                                                             international workshop                                                                                                           on                                                                                                                              adaptation                                                                                                                       and                                                                                                                                                     learning                                                                                                                                                                       in control                                                                                                                                          and                                                                                    .˜αlr = αr                                          ˜φlr = φr +̸
+                                                                                                  signal processing (ALCOSP), Caen, France.                                         ⏐⏐⏐⏐ ¯A(iωr)A∗(iωr) ⏐⏐⏐⏐,                  ¯A(iωr)A∗(iωr)                                                                               Chen,  F., Gilson, M., Garnier, H., & Liu, T. (2017). Robust time-domain output
+   The coefficient ˜αrj can be equivalently expressed as                       error method  for identifying continuous-time systems with time delay.
+                                                                                    Systems & Control Letters, 102, 81–92.
+          αrω rn+m+1−j                                                           Garnier, H. (2015). Direct continuous-time approaches to system identification.
+˜αjr =                                                                        Overview and benefits for practical applications. European Journal of Control,
+      Re{¯A(iωr)}2 + Im{¯A(iωr)}2                                                         24, 50–62.
+                     αrω rn+m+1−j                                          Garnier,  H., &  Gilson, M.  (2018). CONTSID:  a  Matlab  toolbox  for  stan-
+  =                                                                                   .    (28)         dard and advanced  identification  of black-box continuous-time models.
+                                                                                         IFAC-PapersOnLine,                                                                                                               51(15),                                                                                                       688–693.    (                                         2                                                                              2 )2                                              k )2 + (∑ 1≤k≤n      1 + ∑ 1≤k≤n                      ¯akωkr (−1)                                                  ¯akωkr (−1) k−1                                                                                        Garnier,                                                                                                               H.,  Gilson,  M.,                                                                                                    Young,                                                                                                                                              P.  C., &  Huselstein,  E.  (2007). An optimal                       k even                                                               k odd
+                                                                                       IV technique for identifying continuous-time transfer function model of
+  From (28), we see that the denominator of ˜α rj is a multivariate         multiple input systems. Control Engineering Practice, 15(4), 471–486.
+polynomial in the variables (¯a1,  . . . ,  ¯an), which is strictly posi-      Garnier, H., & Wang, L. (Eds.), (2008). Identification of continuous-time models
+tive in Ω, since we know that ¯A(p) is a stable polynomial for any         from sampled data. Springer.
+                                                                                                                                    j               Garnier, H., & Young, P. C. (2004). Time-domain approaches to continuous-time
+(¯a1,  . . . ,  ¯an) ∈Ω. This shows that the denominator of ˜αr is real        model identification of dynamical systems from sampled data. In Proceedings
+analytic in Ω, and since the quotient of real analytic functions is           of the 2004 American Control Conference, Vol. 1 (pp. 667–672).
+real analytic as long as the denominator does not vanish (Krantz      Garnier,  H., &  Young,  P.  C.  (2014). The  advantages  of  directly  identify-
+                                                                                                                 j                            ing continuous-time  transfer  function models  in  practical  applications.
+& Parks, 2002, Proposition 2.2.2), we have that ˜αr is real analytic          International Journal of Control, 87(7), 1319–1338.
+in Ω.                                                                            González, R. A., Rojas, C. R., & Welsh,  J. S. (2018). An asymptotically optimal
+   Similarly, the coefficient ˜αlr can be written as                               indirect approach to continuous-time system identification. In Proceedings of
+                                                                                           the 57th IEEE Conference on Decision and Control, (pp. 638–643).
+                αrωn+m+1−lr                                                      Horn,  R.  A., & Johnson,  C.  R. (2012). Matrix  analysis (2nd  ed.). Cambridge
+˜αlr =                                                        .                                     University Press.
+      |A∗(iωr)| √Re{¯A(iωr)}2 + Im{¯A(iωr)}2                                   Huselstein,  E., & Garnier, H. (2002). An approach to continuous-time model
+                                                                                                identification from non-uniformly sampled data. In Proceedings of the 41st
+Here, the argument of the square root is a real analytic function,         IEEE Conference on Decision and Control, 2002 (pp. 622–623).and the function x →1/√x is real analytic for x ∈(0, ∞).      Krantz, S. G., & Parks, H. R. (2002). A primer of real analytic functions. Springer.
+Thus, by Krantz and Parks (2002, Proposition 2.2.8), which states      Ljung, L. (1999). System identification: theory for the user (2nd ed.). Prentice-Hall.
+                                                                               Maruta,    I., &  Sugie,  T.  (2013).  Projection-based  identification  algorithm
+that the composition of real analytic functions is real analytic, we
+                                                                                                 for grey-box continuous-time models. Systems & Control  Letters, 62(11),
+conclude that ˜αlr is real analytic in Ω.3                                    1090–1097.
+   Finally, note that                                                            Pan, S., González, R. A., Welsh,  J. S., & Rojas, C. R. (2020). Consistency analysis
+        π                                                                              of the simplified refined instrumental variable method for continuous-time
+                                                                                      systems. Automatica, 113, Article 108767.φjr −φlr =    (l −j) +̸  A∗(iωr) −̸  ¯A(iωr),
+         2                                                                     Pan,  S., González, R.  A., Welsh,  J.  S., & Rojas, C. R. (2021). Corrigendum to
+                                                                                              ‘‘consistency analysis of the simplified refined instrumental variable method
+which leads to
+                                                                                                 for continuous-time systems" [Automatica 113 (2020) 108767]. Automatica,
+                                                                                              in press.                 Re{¯A(iωr)}                   (π                         cos                                                 (l −j) +̸  A∗(iωr) )                     Pan,  S., Welsh,  J.  S., González, R. A., & Rojas, C. R. (2020). Efficiency analysiscos(φjr −φlr) =                     |¯A(iωr)|      2                                                   of the simplified refined instrumental variable method for continuous-time
+                                                                                      systems.                                                                                                 Automatica,                                                                                                               121,                                                                                                                              Article 109196.         Im{¯A(iωr)}               (π                                                                                    Rao,                                                                                            G. P., &                                                                                     Unbehauen,                                                                                                            H. (2006).                                                                                                                                    Identification of continuous-time systems.   +                     sin                                       (l −j) +̸  A∗(iωr)) .
+             |¯A(iωr)|      2                                                           IEE Proceedings D (Control Theory and Applications), 153(2), 185–220.
+                                                                               Schoukens,   J.,  Pintelon,  R., & Guillaume,  P.  (1994). On the advantages  of
+By  the  same  justification  above,   Re{¯A(iωr)}/|¯A(iωr)|  and          periodic excitation in system identification. IFAC Proceedings Volumes, 27(8),
+Im{¯A(iωr)}/|¯A(iωr)|   are   real   analytic   functions   for  any        1115–1120.
+(¯a1, . . . , ¯an) ∈Ω. Therefore, cos(φrj −φlr) is real analytic for any     Schoukens,dynamicJ.,systemsPintelon,usingR., &piecewiseVan Hamme,constantH. (1994).excitations:Identificationuse, misuseof linearand
+(¯a1, . . . , ¯an) ∈Ω. Since any function defined by multiplication          alternatives. Automatica, 30(7), 1153–1169.
+                                                                                       Sinha, N. K., & Rao, G. P. (Eds.), (1991). Identification of continuous-time systems:
+                                                                                 methodology and computer implementation. Springer.
+  3 Note that the coefficients in A∗(iωr) do not play a role in the analyticity of     Söderström, T. (1975). Ergodicity results for sample covariances. Problems Control
+˜αlr, since ˜αlr is viewed as a function of (¯a1,  . . . ,  ¯an) only.                          on Information Theory, 4(2), 131–138.
+
+                                                                   9
+
+===== PDF PAGE 10 =====
+R.A. González, C.R. Rojas, S. Pan et al.                                                                                            Automatica 133 (2021) 109859
+
+
+Söderström,  T., & Stoica,  P. (1983). Instrumental variable methods  for system                              processing and machine learning. Prof. Rojas is a mem-
+    identification. Springer.                                                        ber of IEEE and the IEEE Technical Committee on System Identification and
+Young, P. C. (2008). The refined instrumental variable method. Journal Européen     Adaptive Processing since 2013, and of the IFAC Technical Committee TC1.1.
+    des Systèmes Automatisés, 42(2–3), 149–179.                               on Modelling, Identification, and Signal Processing since 2013. He is Associate
+Young, P. C. (2012). Recursive estimation and time-series analysis: an introduction      Editor for the IFAC journal Automatica and for the IEEE Control Systems Letters
+    for the student and practitioner. Springer.                                            (L-CSS).
+Young,  P.  C.  (2015).  Refined  instrumental  variable  estimation: Maximum
+    likelihood optimization of a unified Box–Jenkins model. Automatica,  52,
+   35–46.                                                                                                          Siqi Pan was born in  Jilin, China in 1993. She re-
+Young, P.  C., & Jakeman, A.  J. (1980). Refined instrumental variable methods                             ceived a B.E. degree (Honours Class  I and University
+    of recursive time-series analysis. Part III, extensions. International Journal of                           Medal)  in  electrical engineering and a  B.S. degree
+    Control, 31(4), 741–764.                                                                              (with Distinction) in physics in 2017 from the Uni-
+                                                                                                                     versity of Newcastle, Australia. She received her Ph.D.
+                                                                                                                    in electrical engineering from the same university in
+                                                                                                       2021. Her Ph.D.  thesis analysed the  theoretical  as-
+                      Rodrigo A. González was born in Viña del Mar, Chile                              pects and demonstrated the practical applications of
+                          in 1992. He obtained the electronics engineering title                            continuous-time system  identification. Her  research
+                     and M.S. degree in electronics engineering from the                                 interests include estimation, analysis and control of
+                       Universidad Técnica Federico Santa María, Valparaíso,                            continuous-time systems, and application of system
+                         Chile in 2016. In 2017 he joined the Division of De-      identification to biological processes.
+                          cision and Control Systems at KTH Royal Institute of
+                        Technology, Stockholm, Sweden, where he works as
+                       a Ph.D. student. His research interests include system
+                            identification, signal processing and control theory.
+                                                                                            James  S. Welsh was born in Maitland, Australia in
+                                                                                                       1965. He received a B.E. degree (Hons. I) in electrical
+                                                                                                         engineering in 1997 and his Ph.D. in 2004, both from
+                         Cristian R. Rojas was born in 1980. He received the                             the University of Newcastle, Australia. His Ph.D. thesis
+                         M.S. degree in electronics engineering from the Univer-                             analysed ill-conditioning problems arising in system
+                        sidad Técnica Federico Santa María, Valparaíso, Chile, in                                  identification. He spent more than 15 years working
+                       2004, and the Ph.D. degree in electrical engineering at                                in industry before taking up his current position with
+                     The University of Newcastle, NSW, Australia, in 2008.                             the University of Newcastle, where, since 2004 he has
+                        Since October 2008, he has been with the Royal In-                          been employed in the School of Electrical Engineering
+                            stitute of Technology, Stockholm, Sweden, where he is                         and Computing. His research  interests include data
+                         currently Professor of Automatic Control at the School                             driven modelling, system  identification, and control.
+                          of  Electrical Engineering and Computer Science. His     Most recently he has been actively involved in research projects in the areas of
+                        research interests  lie in system identification, signal     biomedical science, medical engineering and large electrical machine monitoring.
+
+
+
+
+
+                                                                   10

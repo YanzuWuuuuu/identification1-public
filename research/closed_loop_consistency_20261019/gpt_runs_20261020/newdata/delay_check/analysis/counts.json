@@ -1,0 +1,11 @@
+{
+  "fixed_total": 252,
+  "fixed_original_fail": 20,
+  "fixed_final_fail": 0,
+  "joint_full": 36,
+  "joint_high_success": 24,
+  "joint_low_success": 0,
+  "folds": 246,
+  "high_fold_success": 164,
+  "low_fold_success": 28
+}

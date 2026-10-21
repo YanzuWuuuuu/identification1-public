@@ -1,0 +1,10 @@
+{
+  "raw_joint_projection_equals_frozen_center_residual_covariance_relative": 1.733980461153284e-16,
+  "local_Gj_versus_center_Gk_covariance_relative": 0.026137458997567014,
+  "weighted_normal_matrix_whitening_relative": 5.919161667280732e-16,
+  "weighted_moment_whitening_relative": 5.892845258922361e-16,
+  "covariance_times_precision_relative": 6.361948330039434e-16,
+  "shrink_maps_not_identical_relative": 0.058728952204349816,
+  "max_excited_neighbor_count": 0,
+  "pass": true
+}

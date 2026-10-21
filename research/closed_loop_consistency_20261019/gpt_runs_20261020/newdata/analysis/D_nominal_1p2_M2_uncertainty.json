@@ -1,0 +1,42 @@
+{
+  "id": "D_nominal_1p2",
+  "method": "M2",
+  "frequency_u_hz": [
+    0.0073528156877383614,
+    0.013638721639043562,
+    0.0009331943761602648
+  ],
+  "damping_u_percentage_points": [
+    0.06744578852736344,
+    0.11414443285173047,
+    0.006710998663586684
+  ],
+  "log_parameter_sd": [
+    0.0007065653277186312,
+    0.0011873091857561191,
+    6.0550721188178886e-05,
+    0.013831285547116998,
+    0.03987950815937652,
+    0.0017482403652676365
+  ],
+  "relative_u_percent": [
+    0.07065655922750586,
+    0.1187310441071914,
+    0.006055072135468079,
+    1.383327018999493,
+    3.992710617810443,
+    0.17482443726910243
+  ],
+  "locally_valid_numerics": false,
+  "solver_converged": true,
+  "strict_score_pass": false,
+  "covariance_conditions": {
+    "scaled_condition": 205767.95731113368,
+    "scaled_rank": 158,
+    "dimension": 158,
+    "min_variance": 3.083712192238643e-15
+  },
+  "interpretation": "B-noise spectrum plug-in; fixed reference design; complete transient nuisance block retained; direct method local Gaussian linear+quadratic moment approximation (M curvature omitted here), not theorem 2",
+  "theta_order": "f1 f2 f3 zeta1 zeta2 zeta3",
+  "noise_borrowed_from_z0": false
+}

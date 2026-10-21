@@ -1,0 +1,1157 @@
+===== PDF PAGE 1 =====
+     Optimal instrumental variable method for closed-loop
+                           identification
+        Marion Gilson, Hugues Garnier, Peter J.W. Young, Paul van den Hof
+
+
+
+   To cite this version:
+
+    Marion Gilson, Hugues Garnier, Peter J.W. Young, Paul van den Hof. Optimal instrumental variable method
+     for closed-loop identification. IET Control Theory and Applications, 2011, 5 (10), pp.1147-1154. ⟨10.1049/iet-
+     cta.2009.0476⟩. ⟨hal-00594388⟩
+
+
+
+
+
+                 HAL Id: hal-00594388
+                    https://hal.science/hal-00594388v1
+
+                                    Submitted on 19 May 2011
+
+
+
+
+  HAL is a multi-disciplinary open access archive      L’archive ouverte pluridisciplinaire HAL, est des-
+for the deposit and dissemination of scientific re-  tinée au dépôt et à la diffusion de documents scien-
+search documents, whether they are published or not.  tifiques de niveau recherche, publiés ou non, émanant
+The documents may come from teaching and research  des établissements d’enseignement et de recherche
+institutions in France or abroad, or from public or pri-  français ou étrangers, des laboratoires publics ou
+vate research centers.                                   privés.
+
+
+                            HAL Authorization
+
+===== PDF PAGE 2 =====
+     Optimal instrumental variable method for closed-loop
+
+                           identiﬁcation∗
+
+                 Marion Gilson*†, Hugues Garnier*,
+             Peter C. Young**, Paul M.J. Van den Hof***
+
+
+
+                *Centre de Recherche en Automatique de Nancy, Nancy-Universit´e, CNRS,
+
+                    BP 70239, F-54506 Vandœuvre-les-Nancy, France.
+
+                        [marion.gilson, hugues.garnier]@cran.uhp-nancy.fr
+
+                     **Centre for Research on Environmental Systems and Statistics,
+
+           Systems and Control Group, Lancaster Environment Centre, Lancaster, LA1 4YQ, UK
+
+       Fenner School of Environment and Society, Australian National University, Canberra, Australia
+
+ School of Electrical Engineering and Telecommunications, University of New South Wales, Sydney, Australia.
+
+                                     p.young@lancaster.ac.uk
+
+                   ***Delft Center for Systems and Control, Delft University of Technology,
+
+                            Mekelweg 2, 2628 CD Delft, The Netherlands.
+
+                                   p.m.j.vandenhof@tudelft.nl
+
+
+
+                                     Abstract
+
+         This paper presents in a new uniﬁed way, optimal instrumental variable methods for
+
+      identifying discrete-time transfer function models when the system operates in closed-loop.
+
+     The conditions for the optimal design of preﬁlters and instruments depending on common
+
+     model structures are analyzed and diﬀerent approaches are developed according to whether
+
+      the controller is known or not. The performance of the proposed approaches is evaluated by
+
+     Monte-Carlo analysis in comparison with other alternative closed-loop estimation methods.
+
+
+Key words: System identiﬁcation; closed-loop identiﬁcation; optimal instrumental variable;
+
+Box-Jenkins models.
+
+
+
+
+
+   ∗Paper submitted for possible publication in IET Control Theory and Applications
+   †Corresponding author.
+                                         1
+
+===== PDF PAGE 3 =====
+1  Introduction
+
+
+Feedback is present in a variety of practical situations due to safety and/or economic restrictions.
+
+In the last two decades, various attempts have been made to handle linear system identiﬁcation
+
+in the presence of feedback. The main diﬃculties are well-known and due to the correlation
+
+between the disturbances and the control signal induced by the loop.  Identiﬁcation methods
+
+dealing with closed-loop experimental data were ﬁrst developed in the eighties ([18], [12]); several
+
+overviews gather these results (see e.g.  [2], [20], [1]). Renewed attention has been given lately
+
+to the problem of closed-loop identiﬁcation initiated by an emerging interest in identiﬁcation
+
+for model-based control ([3], [10], [7]) and/or experiment design in the closed-loop framework
+
+([15],[8]).  Several methods have been developed recently, therefore, and may be divided into
+
+two main approaches depending on the chosen state-space (see e.g. [9] for a survey) or transfer
+
+function model form.  In this paper, transfer function model identiﬁcation via instrumental
+
+variable (IV) methods is considered.
+
+The IV technique to the identiﬁcation of transfer function models has indeed a rich history in the
+
+control and system literature, with the earliest algorithms of this type dating back to the 1970s
+
+for the open-loop case [22] and 1980s for the closed-loop situation [19]. More recently, a so-called
+
+‘tailor-made IV algorithm’ was proposed [5] where the closed-loop plant is parameterized using
+
+the (open-loop) plant parameters. A connexion with the bias eliminated least-squares method
+
+was also discussed ([28],[27]). Then, an optimal (minimal) variance result was developed in the
+
+closed-loop extended IV identiﬁcation case, revealing consequences for the choice of weights, ﬁl-
+
+ters and instruments. Two bootstrap techniques were developed for estimating AR and ARARX
+
+models [6].
+
+Attention has been given very recently to more general models and optimal IV solutions are
+
+presented either for linear model identiﬁcation (see e.g.  [16] or [4] for Box-Jenkins hybrid
+
+continuous-time models) or non-linear models [11].  This paper outlines the main aspects of
+
+a statistically optimal reﬁned IV approach for the identiﬁcation of common use structures as
+
+ARX, ARARX, OE and BJ, in closed loop. The BJ model structure presents the advantage of
+
+allowing the plant and the noise models to have diﬀerent dynamics and it can be shown that the
+
+estimates of the noise model parameters are asymptotically independent of the process model
+
+parameter estimates (see [24] and the prior references therein). An apparent problem with this
+
+type of BJ model is that simple IV estimation cannot be used directly because the model is non-
+
+linear-in-the-parameters. However, more sophisticated IV estimation can be used to overcome
+
+this limitation [24]. Indeed, the identiﬁcation problem is rewritten in this paper to make use
+
+of a linear-in-the-parameters predictor next to an additional noise model identiﬁcation required
+
+for determining the optimal preﬁlter and instrument.
+
+This paper provides, therefore, a survey on the statistically optimal IV solutions for the esti-
+
+mation of discrete-time transfer function models when the system operates in closed-loop, and
+
+                                         2
+
+===== PDF PAGE 4 =====
+whatever the controller knowledge is.  In this regard, it can be compared to the well-known
+
+Prediction Error Minimization (PEM) approach [12]. However, as illustrated in this paper, the
+
+proposed reﬁned IV algorithm seems, as in the open-loop case [24], less sensitive than the PEM
+
+algorithm to the initialization [14].
+
+The paper is organized as follows. After the preliminaries, the optimal IV solution is presented
+
+according to the model structure used, and the controller knowledge.  Finally, the diﬀerent
+
+methods are compared with the help of Monte-Carlo simulation examples.
+
+
+2  Problem formulation
+
+
+                                                                                                     e0(t)
+                                   ❄
+
+
+                                                                              H0(q)
+                                                                   r1(t)
+
+
+                                                                                                      ξ0(t)
+                  r2(t)                     +    u(t)             +        y(t)
+                                + ❄              + ❄         ✲ ❣ ✲    Cc(q)    ✲ ❣ ✲    G0(q)    ✲ ❣  ✲
+             +              − ✻
+
+
+
+
+                        Figure 1: Closed-loop system conﬁguration
+
+
+Preliminaries
+
+Consider a stable, linear, Single Input Single Output (SISO), closed-loop system of the form
+
+shown in Figure 1. The data generating system is assumed to be given by the following relations
+
+                      y(t) = G0(q)u(t) + H0(q)e0(t)
+           S :                                                                            (1)                              u(t) = r(t) −Cc(q)y(t),  where r(t) = r1(t) + Cc(q)r2(t).         
+The plant is denoted by G0(q) = B0(q−1)/F0(q−1) with the numerator and denominator degree
+equals to n0, the controller is denoted by Cc(q) and q−1 is the delay operator with q−ix(t) =
+
+x(t−i). u(t) describes the plant input signal, y(t) the plant output signal. A coloured disturbance
+
+ξ0(t) = H0(q)e0(t) is assumed to aﬀect the closed-loop, where e0(t) is a white noise, with zero
+mean and variance σ2e0.
+The following general model structure is chosen to model the system (1)
+
+          M : y(t) = G(q, ρ)u(t) + H(q, η)ε(t, θ),                          (2)
+
+where the parameter vector is given as θT = (ρT ηT ). The parameterized plant model takes then
+
+the form,
+                               B(q−1, ρ)     b1q−1 + · · · + bnq−n
+                G : G(q, ρ) =      =                                       ,                    (3)
+                                F(q−1, ρ)   1 + f1q−1 + · · · + fnq−n
+                                         3
+
+===== PDF PAGE 5 =====
+where n denotes the plant model order and with the pair (F, B) assumed to be coprime. The
+
+plant model parameters are stacked columnwise in the parameter vector
+
+                          ρ = [f1  · · · fn b1  · · · bn]T ∈R2n.                             (4)
+
+The plant model order n is assumed known or identiﬁed from the data and the parameterized
+
+noise model is assumed to be in the form of the following ARMA process,
+                               C(q−1, η)   1 + c1q−1 + · · · + cmq−m
+                 H:H(q, η)=      =                                        ,                    (5)
+                              D(q−1, η)  1 + d1q−1 + · · · + dmq−m
+
+where the associated noise model parameters are stacked columnwise in the parameter vector,
+
+                        η =                                            ∈R2m.                         (6)                               d1   · · ·  dm  c1   · · ·  cm                             h                                                       iT
+Note that this paper deals with IV-based methods which are known to give consistent plant
+
+model parameter estimates of G0 irrespective of the structure of H0.
+
+
+Now consider the relationship between the plant input and output signals in (1),
+
+                                  y(t) = G0(q)u(t) + H0(q)e0(t).                              (7)
+
+If the plant G0 is included into the chosen model set G (G0 ∈G), y(t) can be written as
+
+                                      y(t) = ϕT (t)ρ0 + v0(t),                                  (8)
+
+where ρ0 denotes the true plant parameter vector,
+
+                 ϕT (t) = [−y(t −1) · · · −y(t −n) u(t −1) · · · u(t −n)]                   (9)
+
+and v0(t) = F0(q−1)H0(q)e0(t).
+
+In the following, the closed-loop system is assumed to be asymptotically stable and r(t) is an
+
+external signal that is persistently exciting of suﬃcient high order.
+
+The objective is then to estimate the parameter vector from the collected sampled data y(t),
+
+u(t) and r(t) when the controller Cc(q) is known or not.
+
+
+Let us introduce some notations used in the following Sections. The closed-loop system can be
+
+split up into two diﬀerent parts as follows
+
+                         G0(q)                1
+                 y(t) =           +            = ˚y(t) + ˜y(t)                     1 + Cc(q)G0(q)r(t)   1 + Cc(q)G0(q)ξo(t)
+                          1                 Cc(q)
+                u(t) =           −            = ˚u(t) + ˜u(t),            (10)                    1 + Cc(q)G0(q)r(t)   1 + Cc(q)G0(q)ξo(t)
+
+where ˚y(t) and ˚u(t) are the noise-free input/output, ˜y(t) and ˜u(t) the noise part of y(t) and
+u(t) respectively. The noise-free regressor ˚ϕT (t) is then deﬁned on the basis of these signals as
+
+follows
+                        ˚ϕT (t) = [−˚y(t −1) · · · −˚y(t −n) ˚u(t −1) · · ·˚u(t −n)].                (11)
+
+                                         4
+
+===== PDF PAGE 6 =====
+3  IV method for closed-loop identiﬁcation
+
+3.1  Extended IV
+
+The extended-IV estimate is given by (see e.g. [17])
+
+                                                                                              2                     N                      N
+                       1                           1
+     ˆρxiv(N) = arg min         L(q)ζ(t)L(q)ϕT (t) ρ −        L(q)ζ(t)L(q)y(t)        ,     (12)
+                       ρ   N                N                  "   t=1              #   "   t=1             # W         X         X
+where ζ(t) ∈Rnζ with nζ ≥2n is the instrument vector, ∥x∥2W = xT Wx, with W a positive
+deﬁnite weighting matrix and L(q) a stable preﬁlter.
+
+By deﬁnition, when G0 ∈G, the extended-IV estimate is consistent under the following two
+conditions1
+
+   • ¯EL(q)ζ(t)L(q)ϕT (t) is full column rank,
+
+   • ¯EL(q)ζ(t)L(q)v0(t) = 0.
+
+
+3.2  Lower bound for an IV method
+
+The choice of the instrumental variable vector ζ(t), the number of instruments nζ, the weighting
+matrix W and the preﬁlter L(q) may have a considerable eﬀect on the covariance matrix Pxiv
+
+produced by the IV estimation algorithm. In the open-loop situation the lower bound of the
+
+covariance matrix for any unbiased identiﬁcation method is given by the Cramer-Rao bound
+
+(see e.g.  [17] and [12]). The closed-loop situation has been investigated more recently in [6].
+
+The main results to be used in the following are only brieﬂy recalled here.  It was shown that
+
+a minimum value of the covariance matrix Pxiv as a function of the design variables ζ(t), L(q)
+
+and W exists under the restriction that ζ(t) is a causal function of the external signal r(t) only.
+                           opt
+In that case Pxiv ≥P xiv with
+
+                                       opt                   = σ2e0[¯E˚ϕf(t)˚ϕTf (t)]−1,                                  (13)                    P xiv
+                                 ˚ϕf(t) = Lopt(q)˚ϕ(t),                                          (14)
+                                      1
+                           Lopt(q) = F0(q−1)H0(q), and ζ(t) = ˚ϕ(t).                      (15)
+
+where ˚ϕ(t) is the noise-free part of ϕ(t) (see Section 2). Using equations (12) and (13)-(15), the
+
+following IV estimate is optimal
+
+                          N             N
+                         ˆρopt(N) =      ζf(t)ϕTf (t)          ζf(t)yf(t)                     (16)                                     t=1        !−1   t=1      !           X     X
+and where the regressor ϕf(t) = Lopt(q)ϕ(t), the output yf(t) = Lopt(q)y(t) and the instrument
+vector ζf(t) = Lopt(q)ζ(t) are ﬁltered by Lopt(q) (15).
+
+  1The notation ¯E[.] = limN→∞1N PNt=1 E[.] is adopted from the prediction error framework of [12].
+                                         5
+
+===== PDF PAGE 7 =====
+It has to be noted that in the IV estimator considered in (16), the optimal choice of instru-
+
+ments and preﬁlter is dependent on unknown system properties, i.e. the plant as well as the
+
+noise dynamics. Whereas dependency of plant dynamics could be taken care of by an iterative
+
+procedure where the instrument and preﬁlter are constructed on the basis of a previous plant
+model estimate ˆρi−1. Knowledge of the noise dynamics is generally missing in an extended IV
+
+estimator like (12) as it is not particularly estimated.
+
+Therefore the next step to an optimal IV method should be to extend the estimator (12) with
+
+a procedure to estimate an appropriate noise model, to be used as a basis for constructing the
+optimal preﬁlter Lopt(q) given in (15).
+
+
+4  Optimal IV identiﬁcation in closed-loop
+
+4.1  IV solutions for commonly used model structures in closed-loop
+
+Optimal IV identiﬁcation is based on (12). However, it requires the knowledge or the estimation
+
+of the noise model to build the ﬁlter.  In this perspective, a general prediction error identiﬁ-
+
+cation step is added to estimate a model for H0(q).  This requires the choice of a particular
+
+parametrization for H(q, θ), possibly in relation to G(q, ρ).
+Two common types of model structure2 have been used so far in the literature [6].
+
+   • ARX model structure:
+
+                            A(q−1, ρ)y(t) = B(q−1, ρ)u(t) + ε(t, ρ).
+
+     In this case the noise model
+                                                1
+                                  H(q, ˆρ) =                                        (17)
+                                              A(q−1, ˆρ)
+       is already available from the plant model estimate, and no additional noise model estimate
+
+       is required. On the basis of the estimated plant model G(q, ˆρ) the corresponding ﬁlter is
+
+     given by
+                                              1
+                                  L(q, ˆρ) =          = 1                         (18)
+                                        A(q−1, ˆρ)H(q, ˆρ)
+        ˆρ is estimated during the plant model identiﬁcation step.
+
+   • ARARX model structure:
+
+                                                       1                       A(q−1, ρ)y(t) = B(q−1, ρ)u(t) +                θ).                                                  D(q−1, η)ε(t,
+
+
+     In this case the corresponding noise model
+
+                                                1
+                              H(q, η) =                                             (19)
+                                         A(q−1, ˆρ)D(q−1, η)
+
+   2According to standard PE identiﬁcation literature the autoregressive part of the following models is denoted
+
+by polynomial A (in contrast with the notation F in section 2).
+                                         6
+
+===== PDF PAGE 8 =====
+       is not available from the plant model ˆρ only as previously, but an additional noise model
+     estimate is required. In [6], this is achieved by identifying D(q−1, η) as an autoregressive
+     model D(q−1, η)w(t) = ε(t, η) with
+
+                              w(t) = A(q−1, ˆρ)y(t) −B(q−1, ˆρ)u(t),                      (20)
+
+
+     by using a ﬁrst plant model estimate ˆρ and by applying a least square estimator
+
+                                      N
+                                            1
+                                                         ˆη = arg min        ε(t, η)2.
+                                                    η N
+                                                      t=1                X
+    The optimal ﬁlter that results from this procedure is therefore
+
+                                       L(q, ˆη) = D(q−1, ˆη).                              (21)
+
+
+Note that these two methods rely on special structures of the assumed noise models, and therefore
+
+limit the possibility to reach consistent estimates of H0(q) in situations where these structures
+
+are not in accordance with the properties of the underlying systems. Therefore, the IV estimators
+
+are then extended to other more general OE and BJ model structures.
+
+
+   • BJ model structure:
+
+    The more general structure is obtained by choosing a Box-Jenkins (BJ) model
+
+                                B(q−1, ρ)      C(q−1, η)
+                               y(t) =        +                ρ, η),                   (22)                                F(q−1, ρ)u(t)   D(q−1, η)ε(t,
+
+    The IV estimator (16) cannot be directly applied to this non-linear-in-the-parameter model
+
+      structure (as in [6]). Therefore, the solution is to deal with an IV estimator for the process
+
+     model coupled with a noise model estimation. This approach is stimulated by the previous
+
+     development of the reﬁned IV method for open-loop system identiﬁcation (see [23], [25],
+
+      [26] and [24] for a uniﬁed form that deals with both discrete and continuous-time models).
+
+   A natural way to extend the IV estimator (12) with an estimation of the noise model η is
+
+      to write
+                                        C(q−1, η)
+                                        v(t) =                        ˆρ, η)                            (23)                                       D(q−1, η)ε(t,
+     with v(t) = y(t) −B(q−1, ˆρ)/F(q−1, ˆρ)u(t) being available as a measured/reconstructed
+
+      signal once IV estimator (12) has delivered a plant model ˆρ (see the algorithm Section
+
+      4.3). Estimation of η in the above equation is then undertaken by an ARMA estimation
+
+     algorithm on the basis of v(t).
+
+    The optimal preﬁlter that results from this identiﬁcation procedure is then given by
+
+                                            D(q−1, ˆη)
+                                 L(q, ˆρ, ˆη) =                                            (24)                                         F(q−1, ˆρ)C(q−1, ˆη).
+
+                                         7
+
+===== PDF PAGE 9 =====
+   • OE model structure:
+
+    When choosing an Output Error (OE) model structure for the noise dynamics, we arrive
+
+      at
+                                     B(q−1, ρ)
+                                     y(t) =        + ε(t, ρ),                         (25)                                      F(q−1, ρ)u(t)
+
+     and of course no additional estimation of the noise dynamics is required. The optimal
+
+      preﬁlter however changes, and now becomes given by
+
+                                                1
+                                       L(q, ˆρ) =                                         (26)                                             F(q−1, ˆρ).
+
+4.2  Construction of the instruments
+
+According to (15), the instruments make use of the noise-free regressor ˚ϕ(t) which is unknown.
+
+It has to be estimated, therefore, from data during the plant model estimation. Two situations
+
+have to be investigated according to the controller knowledge.
+
+
+4.2.1  Controller unknown
+
+When the controller is unknown, the IV series ζf(t, ˆθ) are generated on the basis of the two closed-
+loop auxiliary models denoted as Gyr(q, ˆρyr) and Gur(q, ˆρur) (estimated TF between y(t)/r(t)
+
+and u(t)/r(t) respectively) as follows
+
+                           ˆ˚y(t) = Gyr(q, ˆρyr)r(t)                                                   (27)
+                          ˆ˚u(t) = Gur(q, ˆρur)r(t)                                                   (28)
+
+                                                                                          (29)
+             ζTf (t, ˆθ) = L(q, ˆθ) h −ˆ˚y(t                           −1)  . . . −ˆ˚y(t −n) ˆ˚u(t −1)  . . .  ˆ˚u(t −n)i
+where the closed-loop parameters ˆρyr and ˆρur can be estimated by the following IV technique
+
+
+                          N            N
+                                       ˆρyr =      ζr(t)ϕTyr(t)        ζr(t)y(t)                        (30)                          " t=1         #−1 t=1           X     X
+                          N            N
+                                      ˆρur =      ζr(t)ϕTur(t)        ζr(t)u(t)                        (31)                          " t=1         #−1 t=1           X     X
+with the instruments ζr(t) generated from the excitation signal r(t).
+
+
+4.2.2  Controller known
+
+When the controller is known, it is worthwhile to use this information into the identiﬁcation pro-
+
+cedure. Therefore, it may be used with the open-loop plant model to construct the instruments
+
+and the ﬁlter while satisfying the optimal conditions (13)-(15).  Indeed, the two closed-loop
+
+
+
+                                         8
+
+===== PDF PAGE 10 =====
+transfer functions (Gyr(q, ˆρyr) and Gur(q, ˆρur)) are no longer needed and the noise-free estima-
+
+tion of the instrumental vector can be achieved by using the previous-step estimated open-loop
+transfer function. In this case, the IV series ζf(t, ˆθ) are generated on the following basis
+
+                                          G(q, ˆρ)
+                                                     ˆ˚y(t, ˆρ) =                                                 (32)                                     1 + Cc(q)G(q, ˆρ)r(t),
+                                           1
+                                                   ˆ˚u(t, ˆρ) =                                                 (33)                                     1 + Cc(q)G(q, ˆρ)r(t),
+
+                                                                                          (34)
+          ζTf (t, ˆθ) = L(q, ˆθ) h −ˆ˚y(t                         −1, ˆρ)  . . . −ˆ˚y(t −n, ˆρ)ˆ˚u(t −1, ˆρ)  . . .  ˆ˚u(t −n, ˆρ)i
+4.3  Algorithm
+
+The outline of the optimal IV algorithm for any model structures described Section 4.1, within
+
+the closed-loop context is given below.
+
+
+Step 1. Initialization
+
+   • Estimate a ﬁrst plant model, get  ˆρ0 and denote G(q, ˆρ0) = B(q−1, ˆρ0)/F(q−1, ˆρ0) the
+
+     corresponding transfer function.
+
+   • Set the initial noise model estimates C(q−1, ˆη0) = D(q−1, ˆη0) = 1 and i = 1.
+
+   • If the controller is unknown, estimate as well the two closed-loop models (30)-(31) used in
+
+     the following to build the instruments.
+
+
+Step 2. Estimate by IV
+Generate the ﬁltered instruments3 according to the model structure used and the previous
+
+estimated models as
+
+           L(q, ˆθi−1) computed using either (18), (21), (24), or (26)
+                                                                                          (35)                  ζf(t, ˆθi−1) = L(q, ˆθi−1)  −ˆ˚y(t −1)  . . . −ˆ˚y(t −n) ˆ˚u(t −1)  . . .  ˆ˚u(t −n)                                     h                                           iwhere ˆθi−1,T =  ˆρi−1,T ˆηi−1,T  , and ζf(t, ˆθi−1) can be seen as a ﬁltered estimate of the noise-free
+part of the regressor vector ϕ(t) (9) based on estimates ˆ˚y(t) and ˆ˚u(t) of the noise-free output
+
+and input of the plant, respectively (using (27)-(28) if the controller is unknown and (32)-(33)
+
+if it is known). Determine the IV estimate using the preﬁlter and these instruments
+
+                  N                   N
+                               ˆρi =      ζf(t, ˆθi−1)ϕTf (t, ˆθi−1)         ζf(t, ˆθi−1)yf(t, ˆθi−1)              (36)                  " t=1                  #−1 t=1        X        X
+
+                                  ϕf(t, ˆθi−1) = L(q, ˆθi−1)ϕ(t)
+                                                                                          (37)                                                     yf(t, ˆθi−1) = L(q, ˆθi−1)y(t)                
+   3i stands for the ith iteration  
+                                         9
+
+===== PDF PAGE 11 =====
+This yields B(q−1, ˆρi) and F(q−1, ˆρi). Denote the corresponding transfer function by G(q, ˆρi) =
+B(q−1, ˆρi)/F(q−1, ˆρi).
+
+Step 3. Obtain an estimate of the noise model parameter vector ηi based on the
+
+estimated noise sequence
+Use one of the noise model identiﬁcation scheme4 described in Section 4 to estimate ˆηi and the
+associated transfer function H(q, ˆηi).
+
+Step 4. Repeat from step 2. Stop when F(q−1, ˆρ), B(q−1, ˆρ), H(q, ˆη) and L(q−1, ˆθ) have
+
+converged.
+
+
+Step 5. Compute the estimated parametric error covariance matrix ˆPθ associated
+
+with the parameter estimates, from
+
+
+                                                                                                 ,                             (38)                                                    f (t, ˆθ)ϕf(t, ˆθ)                                           ˆPθ = ˆσ2 h ϕT                                                    i−1
+where ˆσ2 is the sample variance of the estimated residuals.
+
+Then, according to the model structure used, the resulting algorithm will be referred to as
+
+clivarx, clivararx, clivbj or clivoe.
+
+
+Remark - Initialization step
+
+As illustrated in the following simulation example Section, the proposed optimal IV estimation
+
+method is robust to the initialization. Therefore, several methods may be used in this initial-
+
+ization step of the algorithm. Indeed, this ﬁrst plant estimate is only used to construct the ﬁrst
+
+ﬁlter and instruments, and therefore this suggests that minor deviations from the optimal value
+
+only causes second-order eﬀects in the resulting accuracy of the ﬁrst iteration model.
+
+
+5  Simulation examples
+
+
+These examples are concerned with a simulation model based on the following relations (1),
+
+where
+                                  0.0997q−1 −0.0902q−2
+                       G0(q) =                                           , n = 2                              1 −1.8858q−1 + 0.9048q−2
+                                 10.75 −9.25q−1
+                        Cc(q) =                          ,                                  1 −q−1
+
+  4One of the advantages of the proposed algorithms is that they provide consistent plant estimates while still
+
+exploiting the pseudo-linear regression type of estimation. Indeed, the IV based pseudo-linear regression method
+
+recently suggested in [21] could be used to estimate the ARMA process noise in this step of the algorithms.
+
+
+
+                                         10
+
+===== PDF PAGE 12 =====
+The excitation signal r(t) is a pseudo random binary signal of maximal length, with the number
+
+of stages for the shift register set to 9 and the clock period set to 8; e0(t) is a white noise
+
+uncorrelated with r(t).
+
+All of the IV methods presented in this paper lead to consistent results if the assumption G0 ∈G
+
+is fulﬁlled and optimal estimates if S ∈M. This example section illustrates this point with the
+
+use of the two following examples.
+
+
+5.1  Example 1: white measurement noise
+
+Firstly, a white noise disturbance (H0(q) = 1) is considered in order to evaluate the performance
+of the clivoe algorithm in the case S ∈M. The plant parameters are estimated on the basis
+
+of closed-loop data of length N = 4088. A Monte-Carlo simulation of 100 runs is used for a
+
+signal-to-noise (SNR) ratio given as
+
+                                                     P˚y
+                     SNR = 10 log    = 35 dB,                            (39)
+                                          Pe
+
+where Pe represents the average power of the zero-mean additive noise on the system output
+(e.g. the variance) while P˚y denotes the average power of the noise-free output ﬂuctuations. The
+
+proposed method is compared to:
+
+   • clivr: the ﬁrst basic IV method developed to handle the closed-loop case which uses the
+
+     delayed version of the reference signal as instruments [19];
+
+   • clivarx: the optimal IV method for an ARX model structure making use of the controller
+
+     knowledge (see Section 4);
+
+   • clivoe1: the proposed IV method for OE model, assuming the controller unknown (see
+
+      Section 4.3);
+
+   • clivoe2: the proposed IV method for OE model, making use of the controller knowledge
+
+      (see Section 4.2.2);
+
+   • pem: direct use of the closed-loop data (u(t) and y(t)) in the pem (OE here) method (see
+
+       e.g. [1]). The method is known to be theoretically eﬃcient in the S ∈M case.
+
+Monte-Carlo simulation (MCS) results are presented in Table 1 where the mean and standard
+
+deviation of the estimated parameters are displayed. The average number of iterations (Niter)
+
+for the pem and clivoe algorithms are also given.  All the methods provide unbiased results
+
+with smaller standard deviations for the two proposed clivoe and pem methods. Indeed, these
+
+methods lead to better results thanks to the iterative estimation procedure, even though the
+
+number of iterations required for convergence is quite low (although it should be noted that, on
+
+
+                                         11
+
+===== PDF PAGE 13 =====
+average, pem requires more iterations to converge here). As expected, the clivr method provides
+
+the least accurate results since it is a basic (and not optimal) IV approach.
+
+Moreover, it has to be noted that, contrary to the clivoe and pem algorithms, the clivarx method
+
+only works within the G0 ∈G assumption (and not S ∈M). However, even if the standard
+deviations are higher than those of the clivoe and pem, this reﬁned IV provides satisfactory
+
+results and is robust to a miss-speciﬁed noise model.
+
+Nevertheless, the proposed clivoe algorithms allow to achieved more accurate results thanks to
+
+the appropriate noise model estimation. The two clivoe methods (with or without the knowledge
+
+of the controller) perform similarly overall.
+
+    parameters                ˆb1                             ˆb2                            ˆa1                           ˆa2           Niter
+
+    true values        0.0997              -0.0902               -1.8838              0.9048
+         clivr      0.0997 ± 0.30e−3   −0.0898 ± 3.80e−3   −1.8821 ± 35e−3    0.9014 ± 32.4e−3
+       clivarx     0.0997 ± 0.30e−3   −0.0900 ± 1.10e−3    −1.8772 ± 9e−3     0.8977 ± 8.5e−3
+        clivoe1     0.0997 ± 0.05e−3   −0.0902 ± 0.06e−3   −1.8858 ± 0.12e−3   0.9048 ± 0.10e−3    3.53
+        clivoe2     0.0997 ± 0.05e−3   −0.0902 ± 0.06e−3   −1.8858 ± 0.10e−3   0.9048 ± 0.09e−3    3.89
+      pem      0.0996 ± 0.05e−3   −0.0901 ± 0.06e−3   −1.8858 ± 0.12e−3   0.9048 ± 0.10e−3    4.14
+
+
+
+      Table 1: Mean and standard deviation of the 100 estimated models, white measurement noise
+
+
+
+5.2  Example 2: colored measurement noise
+
+5.2.1  G0 ∈G case
+
+A second example is used to illustrate the performance of the proposed methods in the case of
+
+a colored measurement noise, with
+
+                                         1 + 0.5q−1
+                                H0(q) =                    .                                        1 −0.85q−1
+
+The following algorithms are used to estimate this model:
+
+   • the clivr method (with G0 ∈G, S̸ ∈M);
+
+   • the clivararx method (with G0 ∈G, S̸ ∈M);
+
+   • the clivoe1 method (with G0 ∈G, S̸ ∈M);
+
+   • clivbj1: the proposed IV method for BJ model, assuming the controller unknown (with
+
+    S ∈M);
+
+   • clivbj2: the proposed IV method for BJ model, making use of the controller knowledge
+
+     (S ∈M);
+
+                                         12
+
+===== PDF PAGE 14 =====
+   • the pem algorithm (with S ∈M).
+
+The plant parameters are estimated on the basis of closed-loop data of length N = 4088. A
+
+Monte-Carlo simulation of 100 runs is performed for SNR = 25dB. As previously, the results
+
+obtained using diﬀerent algorithms are presented in Table 2 along with the average number of
+
+iterations needed for the clivbj and pem algorithms. The Bode diagrams of the 100 models
+identiﬁed by the clivr, pem, clivararx and clivbj algorithms are displayed in Figure 2.
+
+As previously, all the IV-based methods give unbiased results. However, the basic clivr does
+
+clearly not deliver statistically eﬃcient results. The additional noise model estimation in the
+
+reﬁned IV type of algorithms allows to achieve statistically accurate results, especially with
+
+the clivbj methods which makes it possible to exactly model the noise. Moreover, it could be
+noted that the clivarx is again robust to a miss-speciﬁed noise model. Furthermore, in Table
+
+2 and Figure 2, it could be noticed that the pem algorithm (in the situation S ∈M) is not
+
+able to converge to the global minimum at each run and therefore leads sometimes to erroneous
+
+results (see the large standard deviation of the pem estimates in Table 2). This is an expected
+
+result since it is well-known that this method may suﬀer from initialization issues (see e.g. [13]
+
+and [14]). However, better results may be obtained using the pem routine along with a more
+
+sophisticated multiple initialization step.
+
+Additionally,  it can be seen from Figure 2 that the proposed IV method named clivoe  still
+
+gives really accurate results (unbiased and low variance) even in the G0 ∈G but S̸ ∈M case.
+Obviously, the variance is a little bit higher than with clivbj but still satisfactory. This point
+
+illustrates the ‘robustness’ of the method face to a miss-speciﬁed noise model.
+
+     parameters                ˆb1                            ˆb2                            ˆa1                           ˆa2           Niter
+
+     true values        0.0997              -0.0902              -1.8838              0.9048
+         clivr       0.0992 ± 0.5e−3   −0.0900 ± 4.9e−3   −1.8834 ± 44.3e−3   0.9025 ± 41.1e−3
+       clivararx     0.0998 ± 0.5e−3   −0.0898 ± 2.4e−3   −1.8823 ± 21.1e−3   0.9014 ± 19.6e−3
+        clivbj1      0.0997 ± 0.6e−3   −0.0903 ± 0.7e−3   −1.8860 ± 3.7e−3    0.9050 ± 3.4e−3     5
+        clivbj2      0.0997 ± 0.7e−3   −0.0903 ± 0.7e−3   −1.8856 ± 3.6e−3    0.9048 ± 3.2e−3    5.88
+        clivoe1      0.0996 ± 0.5e−3   −0.0901 ± 0.7e−3   −1.8857 ± 3.1e−3    0.9047 ± 2.9e−3     5
+      pem      0.0793 ± 64.8e−3   −0.0715 ± 64e−3   −1.8993 ± 34.7e−3   0.9181 ± 33.8e−3    4.22
+
+
+
+      Table 2: Mean and standard deviation of the 100 estimated models, colored measurement noise
+
+
+
+5.2.2   G0̸ ∈G case
+
+This section illustrates the performance of the proposed method face to miss-speciﬁed process
+
+and noise model structures (with S̸ ∈M and G0̸ ∈G). The example is the same as in Section
+
+                                         13
+
+===== PDF PAGE 15 =====
+5.2.1. A single experience is conducted using the clivoe method, estimating a third order model
+
+and assuming a white noise model.
+
+The results are given in Figure 3 where the comparison between the model output for the input
+
+signal and the measured output are depicted (over the ﬁrst 1000 data points). Since we generated
+
+the data, we enjoy the luxury of comparing the model output to the noise-free system output
+
+(using the compare Matlab routine). The two plots coincide quite well and the coeﬃcient of
+determination is equal to 98.9% (the pem routine on the same data set and assuming the same
+
+model structure leads to 81.4%).
+
+
+6  Conclusion
+
+
+This paper has highlighted the use of optimal instrumental variable techniques in the closed-loop
+
+identiﬁcation framework. Several available techniques have been presented in a new uniﬁed way
+
+according to the chosen model structure. Furthermore, a method able to estimate eﬃciently
+
+closed-loop Box-Jenkins models has been proposed. The general Box-Jenkins model structure
+
+identiﬁcation has been handled by making use of a linear-in-the-parameters predictor next to
+
+an additional noise model identiﬁcation required for determining the optimal ﬁlter and the
+
+instruments. The proposed method presents several advantages:  it does not need to know the
+
+controller, it may be applied whatever the structure (linear or not) of the controller, it is able to
+
+handle the estimation of the more common use model structures (as ARX, ARARX, OE, BJ),
+
+it is quite robust to the initialization step and it does not suﬀer from convergence problem.
+
+
+References
+
+
+ [1] U. Forssell and L. Ljung. Closed-loop identiﬁcation revisited. Automatica, 35(7):1215–1241,
+
+     1999.
+
+ [2] M. Gevers. Towards a joint design of identiﬁcation and control ?, chapter 5, pages 111–
+
+     151. H.L. Trentelman and J.C. Willems, Birkh¨auser - Boston, 1993. Essay on Control :
+
+     perspectives in the theory and its applications.
+
+ [3] M. Gevers. Identiﬁcation for control: from the early achievements to the revival of experi-
+
+    ment design. European Journal of Control, 11(4-5):335–352, 2005.
+
+ [4] M. Gilson, H. Garnier, P.C. Young, and P. Van den Hof. Instrumental variable methods
+
+     for closed-loop continuous-time model identiﬁcation. In Identiﬁcation of Continuous-time
+
+    Models from Sampled Data, pages 133–160. Springer, London, H. Garnier and L. Wang
+
+     edition, 2008.
+
+
+                                         14
+
+===== PDF PAGE 16 =====
+ [5] M. Gilson and P. Van den Hof. On the relation between a bias-eliminated least-squares
+
+    (BELS) and an IV estimator in closed-loop identiﬁcation. Automatica, 37(10):1593–1600,
+
+     2001.
+
+ [6] M. Gilson and P. Van den Hof.  Instrumental variable methods for closed-loop system
+
+     identiﬁcation. Automatica, 41(2):241–249, 2005.
+
+ [7] G. Goodwin and J. Welsh.  Bias issues in closed loop identiﬁcation with application to
+
+    adaptive control. Communications in Information and Systems, 2(4):349–370, December
+
+     2002.
+
+ [8] H. Hjalmarsson. From experiment design to closed-loop control. Automatica, 41(3):393–438,
+
+    March 2005.
+
+ [9] T. Katayama. Subspace methods for system identiﬁcation. Springer, 2005.
+
+[10] I.D. Landau, A. Karimi, and A. Constantinescu. Direct controller order reduction by iden-
+
+     tiﬁcation in closed loop. Automatica, 37(11):1689–1702, 2001.
+
+[11] V. Laurain, M. Gilson, and H. Garnier. Reﬁned instrumental variable methods for identi-
+
+     fying hammerstein models operating in closed loop. In 48th IEEE Conference on Decision
+
+    and Control (CDC’09), Shanghai - China, December 2009.
+
+[12] L. Ljung. System Identiﬁcation : Theory for the User - Second Edition. Prentice-Hall, 1999.
+
+[13] L. Ljung.  Initialisation aspects for subspace and output-error identiﬁcation methods. In
+
+    European Control Conference, Cambridge - UK, 2003.
+
+[14] L. Ljung. Experiments with identiﬁcation of continuous-time models. In 15th IFAC Sym-
+
+    posium on System Identiﬁcation, Saint Malo - France, June 2009.
+
+[15] L. Miˇskovi´c, A. Karimi, D. Bonvin, and M. Gevers. Closed-loop identiﬁcation of multivari-
+
+     able systems: with or without excitation of all references?  Automatica, 44(8):2048–2056,
+
+     2008.
+
+[16] R. Pintelon and J. Schoukens. Box-jenkins identiﬁcation revisited–part i: Theory. Auto-
+
+     matica, 42(1):63–75, 2006.
+
+[17] T. S¨oderstr¨om and P. Stoica.  Instrumental Variable Methods for System Identiﬁcation.
+
+     Springer-Verlag, 1983.
+
+[18] T. S¨oderstr¨om and P. Stoica. System identiﬁcation. Prentice-Hall, 1989.
+
+[19] T. S¨oderstr¨om, P. Stoica, and E. Trulsson. Instrumental variable methods for closed-loop
+
+     systems. In 10th World IFAC Congress, pages 363–368, Munich - Germany, 1987.
+                                         15
+
+===== PDF PAGE 17 =====
+[20] P.M.J. Van den Hof. Closed-loop issues in system identiﬁcation. Annual Reviews in Control,
+
+    22:173–186, 1998.
+
+[21] P. Young. An instrumental variable approach to ARMA model identiﬁcation and estimation.
+
+    In 14th IFAC Symposium on System Identiﬁcation, 2006.
+
+[22] P.C. Young. An instrumental variable method for real-time identiﬁcation of a noisy process.
+
+    Automatica, 6:271–287, 1970.
+
+[23] P.C. Young. Some observations on instrumental variable methods of time-series analysis.
+
+     International Journal of Control, 23(5):593–612, 1976.
+
+[24] P.C. Young. The reﬁned instrumental variable method: uniﬁed estimation of discrete and
+
+    continuous-time transfer function models.  Journal Europ´een des Syst`emes Automatis´es,
+
+     (42):149–179, 2008.
+
+[25] P.C. Young and A. Jakeman. Reﬁned instrumental variable methods of recursive time-series
+
+     analysis - part  i. single input, single output systems.  International Journal of Control,
+
+     29(1):1–30, 1979.
+
+[26] P.C. Young and A. Jakeman. Reﬁned instrumental variable methods of recursive time-series
+
+     analysis - part III. extensions. International Journal of Control, 31(4):741–764, 1980.
+
+[27] W. X. Zheng. Application of BELS based methods in direct identiﬁcation of linear systems
+
+    from closed loop data. In 42nd IEEE Conference on Decision and Control, pages 4539–4544,
+
+    Hawa¨ı - USA, December 2003.
+
+[28] W.X. Zheng.  Parametric identiﬁcation of linear systems operating under feedback con-
+
+      trol. IEEE Transactions on Circuits and Systems - I: Fundamental theory and applications,
+
+     48(4):451–458, 2001.
+
+
+
+
+
+                                         16
+
+===== PDF PAGE 18 =====
+     10                                                                                       10
+
+
+      0                                                                                        0
+
+
+    −10                                                                                    −10
+
+
+    −20                                                                                    −20
+
+    −30 −4                           −3                           −2                           −1                             0   −30 −4                           −3                           −2                           −1                             0
+      10                  10                  10                  10                  10      10                  10                  10                  10                  10
+
+
+    100                                                                                       50
+
+     50                                                                                        0
+      0
+                                                                                           −50
+    −50
+                                                                                          −100
+   −100
+   −150                                                                                   −150
+
+   −200 −4                           −3                           −2                           −1                             0  −200 −4                           −3                           −2                           −1                             0
+      10                  10                  10                  10                  10      10                  10                  10                  10                  10
+
+                    (a) clivr                                      (b) clivararx
+
+
+     10                                                                                       10
+
+
+      0                                                                                        0
+
+
+    −10                                                                                    −10
+
+
+    −20                                                                                    −20
+
+    −30 −4                           −3                           −2                           −1                             0   −30 −4                           −3                           −2                           −1                             0
+      10                  10                  10                  10                  10      10                  10                  10                  10                  10
+
+
+     50                                                                                       50
+
+      0                                                                                        0
+
+    −50                                                                                    −50
+
+   −100                                                                                   −100
+
+   −150                                                                                   −150
+
+   −200 −4                           −3                           −2                           −1                             0  −200 −4                           −3                           −2                           −1                             0
+      10                  10                  10                  10                  10      10                  10                  10                  10                  10
+
+                    (c) clivbj1                                     (d) clivbj2
+
+
+     10                                                                                      40
+
+
+                                                                                             20
+      0
+
+                                                                                              0
+    −10
+                                                                                           −20
+
+    −20
+                                                                                           −40
+
+
+    −30                                                                                           −60
+      10−4                 10−3                 10−2                 10−1                 100                                                                                              10−4                 10−3                 10−2                 10−1                 100
+
+
+
+
+     50                                                                                     200
+
+      0                                                                                     100
+
+                                                                                              0
+    −50
+                                                                                          −100
+   −100
+                                                                                          −200
+
+   −150                                                                                   −300
+
+   −200                                                                                          −400
+      10−4                 10−3                 10−2                 10−1                 100                                                                                              10−4                 10−3                 10−2                 10−1                 100
+
+                    (e) clivoe1                                         (f) pem
+
+Figure 2: Estimated Bode diagrams (gain and phase (degree)) of the plant model G(q, η) over
+
+the 100 MCS, colored noise
+
+
+                                         17
+
+===== PDF PAGE 19 =====
+Figure 3: Estimated (with clivoe) and noise-free outputs in the G0̸ ∈G case
+
+
+
+
+
+                                18

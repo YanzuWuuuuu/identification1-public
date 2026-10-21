@@ -1,0 +1,19 @@
+{
+  "controller": "lowgain",
+  "P_common": 5,
+  "P_each": [
+    7,
+    7,
+    5,
+    8
+  ],
+  "n_draws": 1000,
+  "bootstrap_failed": 0,
+  "D_condition_max": 19.599002311906332,
+  "U_condition_max": 96.63886937296981,
+  "G_halves_difference_percent": 9.73878030507983,
+  "random_se_relative_percent": 3.951809368489681,
+  "bootstrap_mean_shift_percent": 0.18335705030381622,
+  "instantaneous_gated_reference": true,
+  "interval": "pointwise paired-period bootstrap percentile; not simultaneous, excludes systematic/model error"
+}

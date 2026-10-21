@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "title_file": "1486187-ModalIdentification_of_MultivariableSystems-42-76.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\1486187-ModalIdentification_of_MultivariableSystems-42-76.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p01.txt",
+    "pages": 35,
+    "sha256": "732c6c4b3a62574bf22adc3f5a1253fe072213a647afa4dcdb738a1c30f61ab1"
+  },
+  {
+    "id": 2,
+    "title_file": "BOX-JENKINS CONTINUOUS-TIME MODELING.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\BOX-JENKINS CONTINUOUS-TIME MODELING.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p02.txt",
+    "pages": 6,
+    "sha256": "f3fd20588324338aa8d5d9fc03c3170d618e7c919460641c8a24bdbb2c7624f5"
+  },
+  {
+    "id": 3,
+    "title_file": "Box_Jenkins identification revisited_Part I_Theory.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Box_Jenkins identification revisited_Part I_Theory.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p03.txt",
+    "pages": 13,
+    "sha256": "8fb906b2215f1705798a5c5048b65277d8821a118ca4d50c93a04a327ff65959"
+  },
+  {
+    "id": 4,
+    "title_file": "BoxJenkins identification revisitedPart IIApplications.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\BoxJenkins identification revisitedPart IIApplications.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p04.txt",
+    "pages": 8,
+    "sha256": "42d8569d6b291d8a2b6b7a0bba547a3e130bdff176a548cabaea5193167d317f"
+  },
+  {
+    "id": 5,
+    "title_file": "BoxJenkins identification revisitedPart III.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\BoxJenkins identification revisitedPart III.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p05.txt",
+    "pages": 8,
+    "sha256": "7acaf6ac09cc2f3a326ef5a252ece5e36cfe7ca0c99a82ffa580bfda45e3d4d8"
+  },
+  {
+    "id": 6,
+    "title_file": "Consistency analysis of refined instrumental variable methods for continuous-time system identification in closed-loo.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Consistency analysis of refined instrumental variable methods for continuous-time system identification in closed-loo.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p06.txt",
+    "pages": 11,
+    "sha256": "ad921ea0404d6fe0033eb7899587dde23990c729a78c184d5931418c0df4a402"
+  },
+  {
+    "id": 7,
+    "title_file": "Consistent identification of continuous-time systems under multisine input signal excitation.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Consistent identification of continuous-time systems under multisine input signal excitation.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p07.txt",
+    "pages": 10,
+    "sha256": "3101cae61aa8eeead939677ff6d5fded53935c8a476dcf18c0e299f15039e5cb"
+  },
+  {
+    "id": 8,
+    "title_file": "Finite sample MIMO system identification with multisine excitationNonparametric, direct, and two-step parametric estimators,.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Finite sample MIMO system identification with multisine excitationNonparametric, direct, and two-step parametric estimators,.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p08.txt",
+    "pages": 16,
+    "sha256": "4de7d830168a534e784a0a9b945c1512c116e5279f5268dd038228e1724c771e"
+  },
+  {
+    "id": 9,
+    "title_file": "Frequency domain identification for multivariable motion control systemsApplied to a prototype wafer stage.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Frequency domain identification for multivariable motion control systemsApplied to a prototype wafer stage.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p09.txt",
+    "pages": 6,
+    "sha256": "95e3476ea194e8163116f8915df531be8cedae0478bc1b77ea6c8aa2ba8c509c"
+  },
+  {
+    "id": 10,
+    "title_file": "Frequency domain maximum likelihood estimation of linear dynamic errors-in-variables models.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Frequency domain maximum likelihood estimation of linear dynamic errors-in-variables models.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p10.txt",
+    "pages": 10,
+    "sha256": "d7cc9b9c02c16e5d0b6cbc50ea0dae4f87509be3a4dff479905e74a6a80f2b16"
+  },
+  {
+    "id": 11,
+    "title_file": "Frequency-domain_instrumental_variable_based_method_for_wide_band_system_identification.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Frequency-domain_instrumental_variable_based_method_for_wide_band_system_identification.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p11.txt",
+    "pages": 6,
+    "sha256": "9012e1b2e3f51c792ec8d610b535f9ecfac6f03750f95095abe405ba256d3b2f"
+  },
+  {
+    "id": 12,
+    "title_file": "Frequency_domain_system_identification_using_arbitrary_signals.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Frequency_domain_system_identification_using_arbitrary_signals.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p12.txt",
+    "pages": 4,
+    "sha256": "90a4b5f36facb99ee20d6cb774c8fd968c853a1bb4773b326a607b0dfaf50c16"
+  },
+  {
+    "id": 13,
+    "title_file": "Identification of additive continuous-time systems in open and closed.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Identification of additive continuous-time systems in open and closed.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p13.txt",
+    "pages": 12,
+    "sha256": "e542298b3b8c4f03a9e52c1301cc8421bffd6163ce44f1ee97f79f48c3b6e4bc"
+  },
+  {
+    "id": 14,
+    "title_file": "Identification of additive multivariable continuous-time systems.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Identification of additive multivariable continuous-time systems.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p14.txt",
+    "pages": 7,
+    "sha256": "2ff40ce96c06347360fa99b54bcb6b41e64e09a9c8239157fa7610aacec674c3"
+  },
+  {
+    "id": 15,
+    "title_file": "Identification of Continuous-time Systems Using.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Identification of Continuous-time Systems Using.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p15.txt",
+    "pages": 4,
+    "sha256": "7afee098987e722a88cbbf937cbbf5e997290007597f19e511552ddc2438ac97"
+  },
+  {
+    "id": 16,
+    "title_file": "Multivariable_frequency_domain_identification_using_IV-based_linear_regression.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Multivariable_frequency_domain_identification_using_IV-based_linear_regression.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p16.txt",
+    "pages": 6,
+    "sha256": "6c21377d45a53f7c83ba8de4717ec27860fa7721da0d6639b28a03b10d5f299d"
+  },
+  {
+    "id": 17,
+    "title_file": "Optimal instrumental variable method for closed-loop identification.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Optimal instrumental variable method for closed-loop identification.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p17.txt",
+    "pages": 19,
+    "sha256": "2bb8cd98498b092bad46fe384334d78460f8d0f5c16bdb20767907870e2b643b"
+  },
+  {
+    "id": 18,
+    "title_file": "Structured identification of multivariable modal systems.pdf",
+    "pdf": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\article\\Structured identification of multivariable modal systems.pdf",
+    "text": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\pdf_text\\p18.txt",
+    "pages": 19,
+    "sha256": "32defbe68154412ca6113f1e94c22c0d5d9a8dff045a449e5578718555c55a01"
+  }
+]

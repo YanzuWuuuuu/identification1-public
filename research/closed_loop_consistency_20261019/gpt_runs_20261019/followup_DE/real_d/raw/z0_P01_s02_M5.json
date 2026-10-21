@@ -1,0 +1,28 @@
+{
+  "z_mm": "0",
+  "P": 1,
+  "start_cycle_zero_based": 2,
+  "method": "M5",
+  "sampling": "zoh",
+  "band_hz": [
+    3,
+    25
+  ],
+  "n_parameters": 158,
+  "fixed_delay_correction_s": -0.0001,
+  "fitting_selection": "excited_lines_only",
+  "K_arx_relative_max_residual": 5.292730374680133e-11,
+  "reference_repeat_relative": 0.0,
+  "boundary_identity_relative": 1.7185585967525903e-18,
+  "n_frequency_bins": 133,
+  "n_nonexcited_bins": 0,
+  "covariance_nl": null,
+  "covariance_outer_updates": null,
+  "covariance_shrinkage": 0.1,
+  "real_truth_available": false,
+  "status": "not_applicable",
+  "converged": null,
+  "failure": false,
+  "unavailable": true,
+  "reason": "One-period half: no non-excited bins and no periodic sample covariance."
+}

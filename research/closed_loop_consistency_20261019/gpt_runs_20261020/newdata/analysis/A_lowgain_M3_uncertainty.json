@@ -1,0 +1,42 @@
+{
+  "id": "A_lowgain",
+  "method": "M3",
+  "frequency_u_hz": [
+    0.004782260346194289,
+    0.005059634512067278,
+    0.0009498594249315094
+  ],
+  "damping_u_percentage_points": [
+    0.05515899147052429,
+    0.04189855627834525,
+    0.007683528374336552
+  ],
+  "log_parameter_sd": [
+    0.00046141364468034116,
+    0.00044124880788112863,
+    6.174732903673798e-05,
+    0.011332707701105175,
+    0.01596169431030376,
+    0.0022088746864830375
+  ],
+  "relative_u_percent": [
+    0.04614137183574542,
+    0.04412488723146598,
+    0.006174732921330751,
+    1.1333799354554346,
+    1.596474461201445,
+    0.22088827695346444
+  ],
+  "locally_valid_numerics": true,
+  "solver_converged": true,
+  "strict_score_pass": true,
+  "covariance_conditions": {
+    "scaled_condition": 143088.7326709162,
+    "scaled_rank": 158,
+    "dimension": 158,
+    "min_variance": 4.6846982920322565e-15
+  },
+  "interpretation": "B-noise spectrum plug-in; fixed reference design; complete transient nuisance block retained",
+  "theta_order": "f1 f2 f3 zeta1 zeta2 zeta3",
+  "noise_borrowed_from_z0": false
+}

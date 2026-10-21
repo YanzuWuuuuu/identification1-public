@@ -1,0 +1,1064 @@
+===== PDF PAGE 1 =====
+           Rodrigo A. Gonz´alez et al., Finite Sample MIMO System Identification with Multisine Excitation: Nonparametric, Direct,
+                and Two-step Parametric Estimators, submitted for journal publication, uploaded to ArXiv November 3, 2025
+
+                                                                                                                                              1
+
+     Finite Sample MIMO System Identification with
+    Multisine Excitation: Nonparametric, Direct, and
+           Two-step Parametric Estimators
+
+          Rodrigo A. Gonz´alez, Member, IEEE, Koen Classens, Graduate Student Member, IEEE, Cristian R.
+          Rojas, Senior Member, IEEE, Tom Oomen, Senior Member, IEEE, H˚akan Hjalmarsson, Fellow, IEEE
+
+
+
+
+
+         Abstract— Multisine excitations are widely used for iden-   Fourier transform of the output, hereby improving the signal-2025   tifying multi-input multi-output systems due to their peri-   to-noise ratio [2].
+          odicity, data compression properties, and control over the                                                                          Multisines are closely linked to frequency-domain identifi-
+         input spectrum. Despite their popularity, the finite sample
+                                                                          cation approaches [3], since they enable the direct estimationOct   statistical properties of frequency-domain estimators under
+         multisine excitation, for both nonparametric and paramet-   of the frequency response function (FRF) of the system at each
+          ric settings, remain insufficiently understood. This paper   input frequency due to their sparse spectrum. From FRF esti-30  develops a finite-sample statistical framework for least-   mates, it is common to identify low-order parametric models
+        squares estimation of the frequency response function                                                                    through fitting the frequency-domain data. Levy [4] proposed
+        (FRF) and its implications for parametric modeling. First,
+                                                                    a weighted least-squares approach that avoids non-convex cost      we derive exact distributional and covariance properties of
+        the FRF estimator, explicitly accounting for aliasing effects   functions to be minimized, Sanathanan and Koerner (SK)
+        under slow sampling regimes, and establish conditions for   developed a method based on least-squares  iterations  [5],
+        unbiasedness, uncorrelatedness, and consistency across  and instrumental variable iterations have been studied in [6].
+         multiple experiments. Second, we show that the FRF esti-                                                                 Asymptotic analyses of iterative least-squares methods were
+       mate is a sufficient statistic for any parametric model under[stat.ME]                                                             pursued in [7], and vector fitting methods have been developed        Gaussian noise, leading to an exact equivalence between
+        optimal two stage frequency-domain methods and time-   in [8] and [9], which improve on the numerical conditioning
+       domain prediction error and maximum likelihood estima-   of the SK iterations by using barycentric basis functions, and
+          tion. This equivalence is shown to yield finite-sample con-  were compared in [10]. Extensions to multi-input multi-output
+         centration bounds for parametric maximum likelihood es-                                                    (MIMO) systems are also available in the literature [11]–[14],
+         timators, enabling rigorous uncertainty quantification, and
+                                                                    with applications to, e.g., modal identification of civil aircraft        closed-form prediction error method estimators without
+          iterative optimization. The theoretical results are demon-   structures [15] and high-tech mechatronic systems [16]. Most
+         strated in a representative case study.                        of these methods for MIMO systems incorporate weighting
+                                                                         functions acting elementwise on the multivariate error, known
+          Index Terms— Frequency-domain system identification;
+         multisine excitation; frequency response function; finite-   as Schur weighting [11]. While this approach is intuitive and
+       sample system identification.                                permits focusing the estimation on the bandwidth of interest,
+                                                                   ad-hoc weights may compromise the statistical properties of
+                                                                          the resulting parametric model.
+                                         I. INTRODUCTION                         Despite the wide use of frequency-domain system identifi-
+                                                                          cation methods, systematic studies of the finite-sample statis-arXiv:2510.26929v1   N system identification, multisine input excitation offers
+                                                                                        tical properties of FRF estimation and their implications for              significant advantages over white noise excitation for re-   I                                                           parametric modeling remain scarce. Most analyses have been          trieving informative output data of an unknown system. These
+                                                                  conducted in the asymptotic regime [17]–[19], or only consider         advantages include data compression, the simplification of the
+                                                                                        statistics of single-input single-output FRF measurements in        model validation step, and full control of the input power
+                                                                              errors-in-variables settings [20], [21]. Earlier surveys on itera-        spectrum [1]. Furthermore, by exploiting the periodicity of
+                                                                                   tive methods, as well as maximum-likelihood and least-squares         multisine input signals, time-averaging and multiple exper-
+                                                                          estimators with frequency domain data, were put forward in         iments can be used to reduce the variance of the Discrete
+                                                                         [22] and [23] respectively, while relations between frequency-
+            R. A. Gonz´alez, K. Classens, and T. Oomen are with the Depart-  domain and time-domain identification methods have been
+         ment of Mechanical Engineering, Eindhoven University of Technology,   covered in [24], [25], with statistical foundations being pre-
+          Eindhoven, The Netherlands. T. Oomen is also with the Delft Cen-
+            ter  for Systems and Control, Delft University of Technology,  Delft,   sented in [26]. In contrast, finite sample results in other identi-
+        The Netherlands (e-mails: r.a.gonzalez@tue.nl; k.h.j.classens@tue.nl;   fication contexts have risen prominently in recent years [27]–
+          t.a.e.oomen@tue.nl).                                                 [29]. In [30], the variance of the least-squares estimator for
+            C. R. Rojas and H. Hjalmarsson are with Division of Decision and
+          Control Systems, KTH Royal Institute of Technology, Stockholm, Swe-   scalar frequency response functions for discrete-time systems
+         den (e-mails: crro@kth.se; hjalmars@kth.se).                    was computed explicitly. Our results, while related to [30],
+
+===== PDF PAGE 2 =====
+ 2
+
+
+ focus on MIMO continuous-time systems, incorporate the  lemmas and their proofs can be found in the Appendix.
+ effect of undersampling and multiple experiments, and provide     Notation: The  Heaviside  operator p  satisfies px(t) =
+ a finite-sample link between nonparametric and parametric   dx(t)/dt. The Laplace transform of a signal x(t) is denoted
+ estimators when the input excitation  is a continuous-time   L{x(t)}(s), and  it is a function of the complex variable s.
+ multisine signal.                                              All vectors, matrices, and multivariate signals are written in
+   Recent studies [31], [32] have derived finite-sample conver-   bold, and vectors are column vectors, unless transposed. The
+ gence rates for the empirical transfer function estimate (ETFE,  complex conjugate and conjugate transpose of a vector x is
+ [33]), and related them to error rate orders for the resulting im-   denoted as x and xH respectively, A† denotes the Moore-
+ pulse response estimate. Their approach differs fundamentally   Penrose inverse of the matrix A, and the block diagonal matrix
+ from this paper in several ways. First, we do not explicitly   with matrices A1, . . . , Am along its diagonal is denoted as
+ address the ETFE, but a least-squares estimator of the band-   blkdiag(A1, . . . , Am). The operators ⊗and ⊙denote the
+ limited equivalent discrete-time impulse response [34], from   Kronecker and element-wise products,  respectively, the 2-
+ which we derive finite-sample confidence bounds for para-  norm√     is denoted by ∥x∥, the weighted 2-norm by ∥x∥A =
+ metric prediction error and maximum likelihood estimators,   x⊤Ax, and the Frobenius norm by ∥A∥F. The vector formed
+ and establish novel formal relationships between time-domain  by m ones is denoted 1m, and the identity matrix of size m
+ and frequency-domain parametric system identification. We    is denoted Im. The minimum singular value of A is σmin(A),
+ also consider continuous-time multisines, do not require a  and  if A is Hermitian,  its minimum eigenvalue is denoted
+ fixed frequency  resolution, and  explicitly address  aliasing   as λmin(A). The elementwise  vector-to-vector cosine and
+ effects produced by undersampling [35], which are relevant   exponential functions are denoted cos(x) and ex respectively.
+ in applications such as vision-in-the-loop systems [36].       The floor function is denoted as ⌊x⌋, and the Kronecker delta
+   In summary, the main results of this paper are:              function is denoted as δK(n), with n ∈Z.
+
+(C1) We  derive  explicit  finite-sample  statistical  properties
+                                                                                                        II. SYSTEM AND MODEL SETUP
+      of  least-squares estimators  for the FRF of a MIMO
+                                                             Consider  the  following MIMO,  linear  time-invariant,     continuous-time system, including the exact distribution
+                                                                asymptotically stable, causal, continuous-time system     and the effect of aliasing under slow sampling. By relat-
+     ing the system to a band-limited discrete-time equivalent                       x(t) = G0(p)u(t),                   (1)
+     model, we determine the well-posedness and unbiased-
+     ness (Theorem 1), as well as the covariance structure and  where x(t) ∈Rny  is the output of the system G0(p) when
+      uncorrelateness of the estimates (Theorem 2).              subject to the input u(t) ∈Rnu. Our interest  is centered
+(C2) We  establish conditions  for weak consistency of the   in estimating G0(p) from input and output data. Thus, we
+    FRF estimate at the input frequencies as the number of   perform m ≥nu experiments with continuous-time multisine
+     samples or experiments grows (Corollary 1), and provide   input excitations ui(t) of the form
+     a frequency-domain interpretation of the least-squares          M
+      estimate (Theorem 3).                                    ui(t) = a0,i + X aℓ,i ⊙cos(ωℓ1nut + ϕℓ,i),   i = 1, . . . , m,
+(C3) We prove that the FRF estimate is a sufficient statistic for                ℓ=1
+                                                                                                                                   (2)     any parametric model under Gaussian noise (Theorem 4),
+                                                       where the frequencies ωℓare assumed positive and sorted     implying an exact equivalence between optimal two step
+                                                                     in  strictly ascending order, and  a0,i, aℓ,i, ϕℓ,i ∈Rnu  for     frequency domain methods and time domain prediction
+                                 ℓ= 1, 2, . . . , M, and i = 1, . . . , m. Note that the input for      error or maximum likelihood estimation for finite data
+                                                          each experiment is allowed to differ in the amplitudes aℓ,i      (Corollary 2).
+                                                        and in the phase components ϕℓ,i, but not in the angular(C4) We obtain conditions for which the maximum likelihood
+                                                                frequencies ωℓ. The input coefficients are assumed to satisfy      estimator of a parametric model can be computed in
+                                                                  the following condition, which is commonly met in practical     closed-form (Corollary 3), and determine finite-sample
+                                                                  applications [3]:      concentration bounds for the parametric FRF estimator, as
+                                                           Assumption 1 (Input linear independence): The  following     well as for the parameter vector itself (Theorem 5). These
+                                                               matrices have full column rank:       results, which enable rigorous uncertainty quantification,
+                                                        a⊤ℓ,1      lead to explicit formulas for the prediction error method                                                                                                                                                     ℓ,1                                                               eiϕ⊤                                                                                               2                                              a⊤0,1 
+      in left matrix fraction description models (Theorem 6),                                                                                                                                   ℓ,2                                                                                                                                                     ℓ,2                                                                                             eiϕ⊤                                                    a⊤0,2          a⊤
+     and are exemplified via a case study (Section V-B).      A0 :=       Aℓ:=    ⊙               , ℓ= 1, . . . , M.                                                                                                                                                                                                                                                                                                                                                      ...                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ...                                                                                                                                                                                                                                                                                                                                                                                             2...   The remainder                   of this                      work  is                                   organized                                               as follows.                                                           In                                                                                                                                                                                            ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ℓ,m                                                                                                                                                                                                                                                                                                                                          a⊤ℓ,m                                                    a⊤0,m                                                                                             eiϕ⊤ Section           II we present                       the system                                  setup                                   and identification                                                                   set-
+                                                                                               2
+ ting. The least-squares estimator of MIMO frequency response                                                                 (3)
+ functions is derived and analyzed in Section III, while Section  The following three conditions, when jointly  satisfied, are
+ IV uses these results to formulate and analyze statistically   sufficient to ensure that Assumption 1 holds with probability 1:
+ optimal parametric estimation methods. Section V contains   (1) a subset of nu input offset vectors {a0,i}mi=1 forms a
+ examples on specific model parametrizations and case studies,   linearly independent set, (2) each element of each aℓ,i is non-
+ while final remarks are provided in Section VI. Technical   zero, and (3) the phases are chosen uniformly at random.
+
+===== PDF PAGE 3 =====
+GONZ ´ALEZ et al.: FINITE SAMPLE MIMO SYSTEM IDENTIFICATION WITH MULTISINE EXCITATION: NONPARAMETRIC, DIRECT, AND TWO-STEP PARAMETRIC
+ESTIMATORS                                                                                                                        3
+
+
+                                                     Remark 2: For all the results in this paper, the single-input
+                                                               multi-output (SIMO) and single-input single-output (SISO)
+                                                               cases are recovered as a special case by setting nu = 1 and
+                                                 nu = ny = 1, respectively. For these cases only one iden-
+                                                                          tification experiment (i.e., m = 1) is required. Nonetheless,
+                                             we also accommodate the use of multiple experiments, in line
+                                                           with the frameworks proposed in [38], [39] for discrete-time
+                                                              parametric system identification.
+
+Fig. 1.   Input spectrum plots with sampling periods h = 4/7 (left)          III. LEAST-SQUARES ESTIMATOR OF THE MIMO
+and h = 1/2 (right), representing scenarios where Assumption 2
+is satisfied and violated, respectively. The black arrows indicate the          FREQUENCY RESPONSE FUNCTION
+magnitude spectrum of a continuous-time multisine input with frequen-
+                                                              This section introduces a multisine equivalent discrete-timecies ωℓ= 0, π, and 5π. The blue stem plots show the discrete-time
+spectrum, and the grey boxes denote the fundamental frequency band.   form of the system (1), which is later used for system identifi-
+                                                                     cation. Unlike zero-order hold [40] and band-limited discrete-
+  For each experiment i, we retrieve a noisy measurement of   time equivalents [34], the multisine equivalent discrete-time
+the output vector xi(t) at times t = h, 2h, . . . , Nh:           model is always finite-dimensional, and it depends on the input
+                                                               frequencies ω = 0, ω1, . . . , ωM. It accurately incorporates a
+       yi(kh) = xi(kh) + vi(kh),  k = 1, . . . , N,      (4)   multisine intersample behavior without reconstruction error,
+where vi(kh) ∈Rny is zero-mean i.i.d. white noise that has a   providing exact output values at the sampling instants t = kh,
+                                                   k ∈N. We compute the least-squares estimator of this discrete-positive definite covariance matrix Σ, and where we assume
+                                                           time equivalent system and determine  its finite-sample andthat the noiseless output xi(kh) is in a stationary regime, i.e.,
+                                                            asymptotic statistical properties in Section III-B, followed byno distortions associated with transient effects are considered.
+                                                           a frequency-domain interpretation in Section III-C.Importantly, the sampling period h is not restricted to satisfy
+the Nyquist–Shannon criterion h < π/ωM, meaning that the
+measured output may suffer from aliasing effects [37]. In   A. Multisine discrete-time equivalent system
+cases where this condition is violated, we adopt an additional
+                                          We introduce  the  multisine  equivalent  discrete-time  re-
+assumption under slow sampling  to ensure  that the input
+                                                          sponse and present its main properties.
+frequency lines do not overlap after aliasing. This guarantees
+                                                                     Definition 1: Given a sampling period h and input frequen-
+a unique characterization of the input intersample behavior
+                                                                    cies ω =  0, ω1, . . . , ωM, we define the multisine equiva-
+given the input samples and input frequency knowledge.
+                                                                      lent discrete-time response of a causal MIMO system with
+  Assumption 2 (No overlapping input frequencies): The in-                                                             continuous-time impulse response H(t) = L−1{G(s)}(t) as
+put frequencies {ωℓ}Mℓ=1 satisfy
+                                                            Z ∞
+                                                                         ηk(τ)H(τ)dτ,  k = 0, 1, . . . , 2M,    (6)                                                  HMS(kh) :=  (ωℓ± ωτ̸       = 2nπh  for all ℓ, τ = 1, . . . , M; ℓ̸ = τ; n ∈Z,                                                                                    0                                                              (5)          nπ       ωℓ̸ = h        for all ℓ= 1, . . . , M; n ∈Z.                                                      where ηk(τ) ∈R is the (k + 1)-th entry of the vector solvingFigure 1 illustrates examples where Assumption 2 is either sat-
+                                                                 the interpolation problem η⊤(τ)˜Γ = φ⊤(τ), whereisfied or violated. Intuitively, Assumption 2 ensures that each
+input frequency maps to a unique frequency in the discrete-                                                    φ(τ) = [1, e−iω1τ, eiω1τ, . . . , e−iωMτ, eiωMτ]⊤,          (7)
+time fundamental band, preserving the number of spectral lines
+                                          1     1        1        · · ·      1         1  
+after sampling. Interestingly, a larger sampling period does not
+                                                          1   e−iω1h      eiω1h     · · ·   e−iωMh     eiωMh
+imply the violation of the condition in Assumption 2.         ˜Γ=
+  Our goal  is to derive and analyze estimators for G0(p)                                          ...                             ...                                               ...                                                                     ...                                                   ...                                                                                                                                                                                                                                                                                            .
+given samples of the continuous-time input signals ui(t) and       1 e−2iω1Mh  e2iω1Mh   · · ·  e−2iωMMh  e2iωMMh
+their corresponding noisy output samples {yi(kh)}Nk=1 for                                                                 (8)
+i = 1, . . . , m. We will examine three estimators and their    Remark 3: The multisine equivalent discrete-time response
+relationships: a nonparametric estimator of the FRF G0(iω),    is well defined if and only if the matrix ˜Γ in (8) is nonsingular.
+a parametric estimator G(p, θ) (parameterized by a vector   This matrix is a Vandermonde matrix, known to have full rank
+θ ∈Rnθ) derived directly from the time domain data, and    if the complex numbers 1, e±iω1h, . . . , e±iωMh are distinct [41,
+a second parametric estimator which constructs a model of   Sec. 0.9.11]. Such condition is equivalent to (5) in Assump-
+G0(p) based solely on the nonparametric estimator of the FRF.   tion 2, which is satisfied irrespectively of ω1, . . . , ωM−1 if the
+  Remark 1: The marginally stable system case is not ex-   Nyquist-Shannon condition h < π/ωM  is met. Additionally,
+plicitly addressed  in  this paper, though  similar  results  to   the entries of the vector η(τ) are multisines of frequencies
+Theorems 1 to 4 can be derived for this scenario. In this case,  ω = 0, ω1, . . . , ωM and are real-valued for any τ ∈R, since
+the input should not contain frequency component matching   the conjugate vector η(τ) satisfies ηH(τ)˜Γ = φ⊤(τ).
+the poles of G0(p) in the imaginary  axis, and achieving    The main properties of the discrete-time equivalent response
+output stationarity in practice may be more challenging due   introduced in Definition 1 require expressing the multisine
+to resonant behavior.                                           input in terms of prior input samples. To this end, we represent
+
+===== PDF PAGE 4 =====
+4
+
+
+the time-shifted input of the ith experiment in  its complex   last equality results from the blockwise multiplication of the
+exponential form                                             matrix integral in (16) with Ui(t).
+                                                             Proof of  (2). Let the matrix formed by the coefficients
+             ui(t −τ) = (φ⊤(τ) ⊗Inu)ζi(t),            (9)                                                HMS(kh) be defined as
+where t, τ ∈R, φ(τ) is defined in (7), and
+                                           HMS := HMS(0), HMS(h), . . . , HMS(2Mh) ⊤,     (17)
+                        a0,i       
+                               a1,i
+                          2  ⊙ei(ω11nut+ϕ1,i)                 and let the matrix of FRF evaluations be defined as
+                              a1,i
+                         2  ⊙e−i(ω11nut+ϕ1,i)                                                                        .        (10)        GMS := GMS(1), GMS(e−iω1h), GMS(eiω1h),            ζi(t) =                                                                                                                                                      ...                       aM,i                                                                           . . . , GMS(e−iωMh), GMS(eiωMh) ⊤.         (18)                         2  ⊙ei(ωM1nut+ϕM,i)                                                                                                       aM,i
+                        2  ⊙e−i(ωM1nut+ϕM,i)               Based on these definitions and (12), we find that G⊤MS =
+                                 H⊤MS(˜Γ ⊗Inu). Now, H⊤MS = R 0∞ H(τ)(η⊤(τ) ⊗Inu)dτ,By exploiting the fact that ˜Γ in (8) is a matrix whose rows are               ∞
+                                                      which implies G⊤MS = R 0  H(τ)(φ⊤(τ) ⊗Inu)dτ. By in-given by φ⊤(0), φ⊤(h), . . . , φ⊤(2Mh), the vector ζi(t) is a
+                                                               spection of each ny × nu block matrix forming GMS, we
+linear combination of 2M + 1 input samples via the relation            ∞
+                                                               obtain                                                      GMS(1) = R 0  H(τ)dτ = G(0), and GMS(e±iωℓh) =                                  ∞
+                  ζi(t) = (˜Γ−1 ⊗Inu)Ui(t),             (11)   R 0  H(τ)e∓iωℓτdτ = G(±iωℓ).               □
+                                                     Remark 4: The multisine equivalent discrete-time model in
+where Ui(t) = [u⊤i (t), u⊤i (t −h), . . . , u⊤i (t −2Mh)]⊤.        Definition 1 is not unique and needs not to be defined as
+  Lemma 1 presents the link between continuous-time and   a causal model. In fact, a noncausal FIR model may also
+discrete-time convolution with the multisine equivalent re-   describe a resulting frequency response estimate that is equal
+sponse, and introduces the discrete-time  finite impulse re-   to the continuous-time system at the input frequencies ω = 0
+sponse (FIR) model that characterizes the continuous-time  and ω = ±ωℓfor ℓ= 1, . . . , M. To analyze such case, we
+system for multisine excitations.                               consider the following FIR model:
+  Lemma 1: Assume that Assumption 2 holds, and consider
+the discrete-time transfer function                                           2M+nc
+                                                                 GMS,nc(z) = X  HMS,nc(kh)z−k,
+                    2M
+            GMS(z) := X HMS(kh)z−k,            (12)                          k=nc
+                       k=0                            where  nc  ∈   Z,  and  where  HMS,nc(kh)   is  defined
+                                                                   similarly  to  (6)  but  for k =  nc, . . . , 2M + nc,  andwith HMS(kh) being defined as in (6). Then, the following
+                                                      where ηk(τ)  is  the (k + 1 −nc)-th  entry  of  the  vec-statements are true:
+                                                                       tor  solving  η⊤(τ)˜Γ =  φ⊤(τ)Dnc,  where  φ(τ)  and
+  1) For any multisine input ui(t) of the form in (2), the output   ˜Γ  are  given by  (7) and  (8)  respectively, and Dnc =
+     of G(p) satisfies                                                                diag(1, eincω1h, e−incω1h, . . . , eincωMh, e−incωMh).  Via  the
+                  Z ∞                            same steps as in Lemma 1,  it can be shown that xi(kh) =
+                xi(t) =                         H(τ)ui(t −τ)dτ          (13)  P2M+nc                                                            r=nc  HMS,nc(rh)ui(t −rh), G(0) = GMS,nc(1), and                           0
+                  2M                            G(±iωℓ) = GMS,nc(e±iωℓh) for ℓ=  1, . . . , M. Thus, in
+            = X HMS(rh)ui(t −rh).        (14)  summary, different values of nc yield models with identical
+                      r=0                                 frequency response values at ω = 0, ω = ±ωℓ, ℓ= 1, . . . , M,
+                                                               but differ at other frequencies due to the distinct trigonometric  2) The frequency response function G(p) of the continuous-
+                                                                   interpolation imposed by nc. For simplicity of our exposition,    time system with impulse response H(t) satisfies, for ℓ=
+                                             we will consider nc = 0 for the remainder of this paper.     1, . . . , M,
+                                             An important observation from Lemma 1 is that the multi-
+      G(0) = GMS(1), G(±iωℓ) = GMS(e±iωℓh).     (15)   sine equivalent discrete-time formulation allows for an exact
+  Proof of (1). By inserting (9) into (13) and exploiting the   representation of any continuous-time system G0(p) as a
+fact that ζi(t) = (˜Γ−1 ⊗Inu)Ui(t), we find                    discrete-time FIR model (12) for such type of inputs. This
+           ∞                                              result holds even when the Nyquist-Shannon criterion is not
+             Z
+          xi(t) =     H(τ)ui(t −τ)dτ                            satisfied. The exact discrete-time representation in Lemma 1
+                    0                                            leads to a straightforward least-squares estimation procedure
+             Z ∞                                                                    in Section III-B to estimate the multisine equivalent model.        =    H(τ)(η⊤(τ) ⊗Inu)dτUi(t)      (16)
+                    0
+             2M
+        = X HMS(rh)ui(t −rh),                   B. Least-squares estimator of matrix coefficients and its
+                r=0                                       properties
+
+where the second equality is due to the mixed-product property     Since the system G0(p) is unknown, the matrix coefficients
+of the Kronecker product (φ⊤(τ) ⊗Inu)(˜Γ−1 ⊗Inu) =  HMS(kh), k = 0, 1, . . . , 2M must be estimated from data. The
+(η⊤(τ) ⊗Inu), with η(τ) being defined in Definition 1. The   following least-squares problem is proposed to estimate these
+
+===== PDF PAGE 5 =====
+GONZ ´ALEZ et al.: FINITE SAMPLE MIMO SYSTEM IDENTIFICATION WITH MULTISINE EXCITATION: NONPARAMETRIC, DIRECT, AND TWO-STEP PARAMETRIC
+ESTIMATORS                                                                                                                        5
+
+coefficients, collected in HMS ∈R(2M+1)nu×ny:                in (3). Since Aℓ(ℓ= 0, 1, . . . , m) have full column rank due
+           m N                                          to Assumption 1, it follows that D, and consequently K, also
+                                                         (19)   have full column rank. Hence, if Kw = 0, then w = 0 and  ˆHMS =arg min X X  yi(kh) −H⊤MSUi(kh) 2Σ−1.
+          HMS   i=1 k=1                           we conclude that Z is positive definite. This implies that the
+                                                                  least-squares estimator (20) is well-defined for N ≥2M + 1.Computing the matrix gradient of the cost function above with
+                                                     To establish unbiasedness, we compute the expected valuerespect to HMS and solving for HMS gives the least-squares
+                                                               of the least-squares estimator in (20) asestimator
+                                                                N         N             N                                          "               #−1        "                            #−1
+    X U(kh)U⊤(kh)          X U(kh)Y⊤(kh),    (20)     E nˆHMS o =(˜Γ−H ⊗Inu) X Z(kh)ZH(kh)   ˆHMS=
+                                                                                  k=1           k=1               k=1
+                                                   N
+where we have defined the input and output matrices                                        × X Z(kh) x1(kh), . . . , xm(kh) ⊤,       (27)
+                    h                   i                          k=1          U(kh) := U1(kh), . . . , Um(kh)  ,         (21)
+                                                      where we have exploited the representation of U(kh) in (24)
+                    h                  i
+          Y(kh) :=  y1(kh), . . . , ym(kh)  .          (22)  and the fact that vi(kh) in (4) has zero mean. Furthermore, due
+                                                                    to the stationarity assumption on the output of each experiment
+The following nonparametric estimator for the continuous-time
+                                             we can write
+FRF follows from the multisine discrete-time equivalent model
+                                                                         xi(kh) = GH0 ζi(kh),                (28)and its frequency-domain property detailed in Lemma 1:
+                  ⊤                              where
+              ˆG(iω) = ˆH MS Γ(eiωh) ⊗Inu  ,           (23)
+                                                     G0 := G0(0), G0(−iω1), G0(iω1),
+where Γ(eiωh) =  [1, e−iωh, . . . , e−2Miωh]⊤. Note  that, by
+construction, the proposed estimator satisfies the conjugacy                                      . . . , G0(−iωM), G0(iωM) ⊤.
+property ˆG(iω) = ˆG(−iω).                                    Therefore, inserting (28) into (27), we conclude that (˜ΓH ⊗
+  The explicit experimental conditions required for the well-  Inu)E{ˆHMS} = G0,  i.e., E{ ˆH ⊤MS}(˜Γ ⊗Inu) = GH0 . By
+posedness of this estimator and its unbiasedness are presented                                                                representing  ˜Γ  in  (8)  in terms  of Γ(eiωh), we  find  the
+in Theorem 1.                                                   ⊤
+                                                                        identities E{ ˆG(0)} =                                                             E{ˆH MS}(Γ(ei0h)⊗Inu) = G0(0), and  Theorem 1: Assume that m ≥nu experiments performed                                                         ⊤
+on the system described in (1) are conducted using multisines  E{ˆG(±iωℓ)} = E{ˆH MS}(Γ(e±iωℓh) ⊗Inu) = G0(±iωℓ) for
+of the form (2), designed under Assumption 1. Furthermore,  ℓ= 1, . . . , M.                        □
+assume that Assumption 2 holds, the output of each experiment    The  least-squares  estimator  of  the  multisine  equivalent
+is in a stationary regime, and the number of data samples   discrete-time model leads to unbiased estimates of the fre-
+N  is greater than 2M. Then, the least-squares estimator in   quency response of the continuous-time system at the frequen-
+(20)  is well-defined, and  its associated frequency response   cies of interest. This result is valid for N ≥2M + 1 samples
+estimator in Equation (23)  is unbiased  at the frequencies    if the transients are removed from the data, or is valid asymp-
+ω = 0, ±ω1, ±ω2, . . . , ±ωM.                                        totically in the sample size if they are not. For the frequencies
+  Proof. We first prove that the least-squares estimator in (20)   that are not excited by the multisine input, the least-squares
+is well-defined for N ≥2M +1. This will occur if and only if  method in (23) delivers a trigonometric interpolation of the
+its associated normal matrix is nonsingular. The matrix U(kh)   frequency response that is generally reliable if the frequencies
+in (21) can be written as                                           that are excited are sufficiently densely distributed around the
+                                                        bandwidth of interest. However, caution must be exercised
+             U(kh) = (˜Γ ⊗Inu)Z(kh),             (24)   for the slow-sampling scenario, as the frequencies above the
+                                                          Nyquist frequency π/h are aliased towards the fundamentalwhere the matrix
+                                                            frequency band [−π/h, π/h) due to the periodicity of Γ(eiωh)
+   Z(kh) = [ζ1(kh), . . . , ζm(kh)] ∈Cnu(2M+1)×m    (25)   in (23). As a result, the estimated frequency response near
+                                                                these aliased frequencies may not accurately reflect the trueis formed by evaluating (10) at t = kh for i = 1, . . . , m, and
+˜Γ is the nonsingular matrix given in (8). Thus, the normal   continuous-time FRF within the fundamental frequency band.
+                                                     The second result concerns the precision of the least-squaresmatrix in (20) is nonsingular if and only if
+                                                                   estimator. For a particular case where  it is shown that the
+                N
+                                                            frequency response estimates are uncorrelated, we will require
+           Z := X Z(kh)ZH(kh)              (26)
+                                                                    for the input to not exhibit spectral leakage, which means
+                    k=1                                        that only integer periods of the input signal must be used for
+is nonsingular. Let w ∈Cnu(2M+1) be arbitrary. We have   identification.
+wHZw = 0 if and only if ZH(kh)w = 0 for all k = 1, . . . , N.     Assumption 3 (No spectral leakage): The sampling period
+In particular, Kw = 0, where K = [Z(h), . . . , Z([2M +  and sample size are such that Nh is a multiple of the least
+1]h)]H. The rectangular matrix K can be decomposed as K =  common multiple of {2π/ωℓ}Mℓ=1.
+(˜Γ ⊗Im)D, where D = blkdiag A0,e−iω1hA1, eiω1hA1, . . . ,     In the same way as in (18), we denote the matrix that
+e−iωMhAM, eiωMhAM  , with the Aℓmatrices being defined   stacks the frequency response function estimates as ˆGMS. The
+
+===== PDF PAGE 6 =====
+6
+
+
+covariance of the least-squares estimator of the frequency   identity matrix Inu(2M+1), then
+response function can be computed in closed-form for finite             m N
+samples, as seen next.                             E⊤r ZEc = X X E⊤r ζi(kh)ζHi (kh)Ec
+  Theorem 2: Consider the least-squares estimator in (20),                    i=1 k=1
+and  its  associated  frequency  response  function  estimator              m
+                                                                                                                                   2 ⌋,iin (23). Assume that Assumptions 1 and 2 hold, and that the          = C X  a⌊r2 ⌋,i ⊙ei(−1)rϕ⌊r
+system output is in a stationary regime. Then, the following                       i=1
+                                                                       Nresult holds for any sample size N > 2M:
+                                                                                            i(−1)c+1ϕ⊤⌊c2 ⌋,i X                                                                                                                                    eikh¯ω                                          × a⊤⌊c2 ⌋,i ⊙e
+            n      o                                                                 k=1           Cov  vec{ˆGMS} = Σ ⊗Z−1,           (29)
+                                                                   N
+                                          = Mrc(A⌊r2 ⌋, A⌊c2 ⌋) X eikh¯ω,          (32)where Z   is  given  by  (26).  Furthermore,   if  Assump-
+                                                                                      k=1
+tion 3  also  holds, then  the frequency response  estimates
+ˆG(0), ˆG(−iω1), ˆG(iω1), . . . , ˆG(−iωM), ˆG(iωM)  are mutu-  where C is a scalar constant, ¯ω = ω⌊r2 ⌋(−1)r −ω⌊c2 ⌋(−1)c,
+                                                       and where we have denoted ω0 = 0 and ϕ0 = 0. The matrixally uncorrelated.
+  Proof. We begin by computing ˆGMS −E{ˆGMS} in terms of  Mrc(A⌊r2 ⌋, A⌊c2 ⌋) is given by
+the noise        components                       From (27),                              we                                                 find                     vi(kh).                                                                                                                                                                   r,                                                                                                      c                                                 A⊤                                                                                                                                          if                                                                                                              are                                                                                                             even,                                                                                                                     ⌋,                                                                         ⌋A⌊c                                                                                                                      2                                                                                           ⌊r2
+                                                    AH                                                                                                                           r,                                                                                                      c                                                                                                                                          if                                                                                                              are                                                                                                        odd,                                                                                                                     ⌋,                                                                                           ⌊r                                                                         ⌋A⌊c                                                                                                                      2                        −E{                                                                                                                                                       2     ˆGMS        −E{ˆGMS} =                               ˆHMS                                       ˆHMS}                         (˜ΓH ⊗Inu)                                              Mrc(A⌊r2 ⌋,A⌊c2 ⌋) =
+                    N                                                 A⊤                                                                                                r                                                                                                             c                                                                                                                                          if                                                                                                                                    is                                                                                                          even,                                                                                                                                                is                                                                                                              odd,                                                                                                                     ⌋,                                                                                           ⌊r                                                                         ⌋A⌊c                                                                                                                      2                                                                                                               2
+            = Z−1 X                         Z(kh)V⊤(kh),        (30)                                                    AH                                                                                                r                                                                                                                                          if                                                                                                                                    is                                                                                                     odd, c                                                                                                                                               is                                                                                                                   even.                                                                                                                     ⌋,                                                                                                                                   ⌊r                                                                         ⌋A⌊c                                                                                                                      2                                                                                                               2
+                         k=1
+                                                           Since Nh  is assumed to be a multiple of the least com-
+where Z is defined in (26), and the noise component V(kh) is  mon multiple of {2π/ωℓ}Mℓ=1 due to Assumption 3, for each
+given by V(kh) = [v1(kh), . . . , vm(kh)]. In vectorized form,  ℓ∈{1, . . . , M} there exists an integer dℓsuch that Nh =
+using the identity vec{AB} = (Im ⊗A)vec{B} where B has   2πdℓ/ωℓ. Thus, ¯ω can be written as ¯ω = 2πnrc/(Nh), where
+m columns, (30) is equivalent to                             nrc = d⌊r2 ⌋(−1)r −d⌊c2 ⌋(−1)c is a non-zero integer that is
+                                                              not a multiple of N due to Assumption 2.
+   vec{ˆGMS} −vec{E{ˆGMS}} =                                After substituting ¯ω = 2πnrc/(Nh) in (32), the resulting
+              N                                       complex-exponential sum in (32) becomes the sum of the nrc-
+       (Iny ⊗Z)−1 X (Iny ⊗Z(kh))vec{V⊤(kh)}.    (31)   th power of the N-th roots of unity, which is zero whenever
+                 k=1                                     nrc  is not a multiple of N  (see, e.g., [42, Ex. 3, Ch. 3]).
+                                                            Consequently, E⊤r ZEc = 0 for r̸ = c, which proves that Z isOn  the  other  hand,  the  covariance  of  the  noise  vector                                                           block diagonal with the appropriate block dimensions.   □vec{V⊤(kh)} is
+                                                     Remark 5:  If the spectral leakage condition stated in As-
+                                                         sumption 3 is not met,  it is  still possible to show that the   nCov vec{V⊤(kh)}[vec{V⊤(lh)}]⊤o =(Σ ⊗Im)δK(k −l),                                                            frequency response estimates are asymptotically uncorrelated
+                                                               as the sample size tends to infinity. This observation can be
+which, when combined with (31), implies that                                                              derived with the same approach as in (32), but its formal proof
+                         N                               is beyond the scope of this paper.
+   Cov vec{ˆGMS} = (Iny ⊗Z)−1 X (Iny ⊗Z(kh))         Since Theorems 1 and 2 are valid for any sample size
+                               k=1                         greater than 2M, they enable the exploration of limit results
+          ×(Σ⊗Im)(Iny ⊗ZH(kh)) (Iny ⊗Z)−1          as m or N approach infinity. It is possible to prove that the
+                                                                  least-squares estimator for G0  is weakly consistent  (i.e.,  it
+           = (Iny ⊗Z)−1(Σ ⊗Z)(Iny ⊗Z)−1      converges in probability to G0) under mild input conditions as
+           = Σ ⊗Z−1,                               the number of experiments m, or sample size N, approaches
+                                                                             infinity. Corollary 1 formalizes this result, extending the sta-
+where we have used the bilinearity property of the Kronecker    tistical analysis of discrete-time parametric identification with
+product, the mixed-product property (A ⊗B)(C ⊗D) =   multiple data sets [38], [39] to the continuous-time MIMO
+(AC ⊗BD), and the matrix inverse property (A ⊗B)−1 =   case with multisine inputs in a nonparametric framework.
+A−1 ⊗B−1.                                                   Corollary 1: Under the experimental conditions in Theo-
+  What is left to prove is the uncorrelatedness of the frequency  rem 1, the least-squares estimator of the frequency response
+response estimates at distinct frequencies. The frequency re-   function, ˆGMS,  is a weakly consistent estimator of G0 as
+sponse estimates ˆG(0), ˆG(−iω1), ˆG(iω1), . . . , ˆG(−iωM), N →∞with a fixed number of experiments m.
+ˆG(iωM) are mutually uncorrelated if and only if the matrix Z     Moreover, under  the same experimental conditions and
+is block diagonal, with each diagonal matrix being of size nu×   assuming Assumption 3, ˆGMS  is also weakly consistent for
+nu. If we denote Ec ∈Rnu(2M+1)×nu, c ∈{1, 2, . . . , 2M +1}  G0 as m →∞with a fixed sample size N per experiment,
+as the matrix formed by columns nu(c −1) + 1 to nuc of the   provided that the following conditions simultaneously hold:
+
+===== PDF PAGE 7 =====
+GONZ ´ALEZ et al.: FINITE SAMPLE MIMO SYSTEM IDENTIFICATION WITH MULTISINE EXCITATION: NONPARAMETRIC, DIRECT, AND TWO-STEP PARAMETRIC
+ESTIMATORS                                                                                                                        7
+
+  1. There exists γ > 0 such that, for all ℓ= 0, 1, . . . , M and  γ min1≤i≤nu ∥c(i)0 ∥, Condition 2 of the corollary statement
+            i̸ = j with 1 ≤i̸ = j ≤nu, the columns c(i)ℓ   of Aℓ   yields λmin(˜A⊤0 ˜A0) →∞as m →∞, which implies that
+   (ℓ= 0, 1, . . . , M) satisfy the mutual coherence bound   (NA⊤0 A0)−1 →0 as m →∞. Proceeding similarly with the
+                                                           remaining block-diagonal terms yields Cov{vec{ˆGMS}} →0
+                                    |⟨c(i)ℓ, c(j)ℓ⟩|                       < 1 −γ.     (33)   as m →∞, which completes the proof.          □            (nu −1) lim
+             m→∞ ∥c(i)ℓ∥∥c(j)ℓ∥                        Corollary 1 shows that for weak consistency to hold as the
+                                                    number of identification experiments increases, it is sufficient
+  2. For all i = 1, . . . , nu and ℓ= 0, 1, . . . , M, ∥c(i)ℓ∥→∞   to design the input frequency amplitudes so that they form a
+     as m →∞.                                                   series that is not square summable. This condition allows the
+  Proof. Since the least-squares estimator is unbiased due to   amplitudes to decay to zero when the number of experiments
+Theorem 1, Theorem 8.2 (page 54) of [43] implies that, to   increases, provided the decay rate is no faster than 1/√m.
+prove each weak consistency property, it is sufficient to show   Condition 1 of Corollary 1 further requires that the columns
+that the variance of each element of ˆGMS converges to zero   of Aℓbe sufficiently linearly independent. This is quantified
+as N →∞or as m →∞. From (29), this is guaranteed   formally with the mutual coherence, commonly used in com-
+if Z−1 →0, or equivalently,  if λmin(Z) →∞. By the   pressed sensing [44] and sparse system identification [45].
+block matrix version of Gerˇsgorin’s circle theorem [41, Chap.     In summary, we have demonstrated that the proposed least-
+6.1.P17], each eigenvalue of Z lies within the set              squares estimator for the FRF  at the input frequencies  is
+  2M+1 nu                                                   unbiased, established an exact condition for the mutual un-
+  [ [  z ∈R: z ≥λ(r)j − X  ∥E⊤r ZEc∥  ,   (34)   correlatedness of the frequency response estimates within the
+   r=1 j=1                1≤c̸=r≤2M+1                     context of finite-duration experiments, and established explicit
+                                                               conditions for weak consistency as either the sample size or the
+where λ(r)j   denotes the jth eigenvalue of E⊤r ZEr. It follows  number of experiments tends to infinity. A direct consequence
+from (32) that                                                 of Theorem 2 is that, when an integer period of the input signal
+                     λ(r)j ≥N  min  σ2min(Aℓ),                    is recorded and the additive measurement noise is Gaussian,
+                       0≤ℓ≤2M                           the FRF estimates at each frequency are mutually statistically
+                                                              independent.                                                                        This property                                                                                        enables                                                                                             both                                                                                                    computationally                                                                                                        and                           ∥Mrc(A⌊r2                                         ⌋,A⌊c2 ⌋)∥                                                                                      .  X  ∥E⊤r ZEc∥≤ X                                                             h¯ω                                                                           statistically efficient                                                                                procedures                                                                                                      for                                                                                                parametric                                                                                                   system identi-                                                               | sin( 2 )|  1≤c̸=r≤2M+1         1≤c̸=r≤2M+1                                                                         fication, as discussed in Section IV.
+Importantly, the lower bound on λ(r)j   is positive and increases                                                      C. Frequency domain interpretation
+with N, while the upper bound on the off-diagonal norm sum
+is finite and independent of N. Substituting these into (34)    Due to the fact that multisine inputs have discrete frequency
+yields a relaxed bound showing that all eigenvalues of Z grow   spectra, it is natural to consider a frequency-domain interpre-
+at least linearly in N. Therefore, λmin(Z) →∞as N →∞.    tation of the least-squares estimator in (20). Via Parseval’s
+  For the weak consistency result when m →∞, we note that   theorem [37] and the identity ˆGMS = (˜ΓH ⊗Inu)ˆHMS, (20) is
+under Assumptions 1 to 3, the matrix Z is block-diagonal due   equivalent to
+
+                                                 N                                                                 Nto Theorem 2, with block-diagonal terms given by NA⊤0 A0,        "                                                                                    2πn       2πn #−1
+                                                                N ]ΨH[ei N  ] X Ψ[ei N ]ΥH[ei N  ],NAHℓAℓ, and NAHℓAℓ, for ℓ= 1, . . . , M. For simplicity we    ˆGMS= X Ψ[ei                          2πn       2πn
+consider NA⊤0 A0; the same reasoning applies to each of the           n=1                  n=1
+                                                                                                                        (35)other block-diagonal terms. After denoting the columns of A0
+as c(i)0  , i = 1, . . . , nu, we consider the decomposition A0 =  where the discrete-time Fourier transforms (DTFTs) of Z(kh)
+                                                       and Y(kh) are respectively given by
+˜A0D, with D = diag(∥c(1)0  ∥, . . . , ∥c(nu)0   ∥). By the Rayleigh
+quotient characterization of the smallest eigenvalue of A⊤0 A0,          N                  N
+                                                      Ψ[eiωh]= X Z(kh)e−ikωh,  Υ[eiωh]= X Y(kh)e−ikωh.we find
+                                                                k=1                      k=1
+       λmin(A⊤0 A0) = λmin(D˜A⊤0 ˜A0D)                  The trigonometric  interpolation imposed by  the  multisine
+                 ≥λmin(˜A⊤0 ˜A0) min  ∥c(i)0 ∥2,           discrete-time equivalent model also leads to a trigonometric
+                                 1≤i≤nu                    interpolation of the FRF estimates, which in the frequency
+where ˜A⊤0 ˜A0  is a Gram matrix with unit diagonal entries.  domain can be interpreted as the quotient of DTFTs of the
+                                                                input and output samples evaluated at each input frequency.It follows from Gerˇsgorin’s circle theorem that the smallest
+eigenvalue of ˜A⊤0 ˜A0 is bounded by                          This interpretation is provided in Theorem 3.
+                                                       Theorem 3: Consider the least-squares estimator in (20),
+                                                    |⟨c(i)0  , c(j)0  ⟩|       and  its  associated  frequency  response  function  estimator    λmin(˜A⊤0 ˜A0) ≥1 −(nu −1)  max                       .
+                                 1≤i̸=j≤nu ∥c(i)0 ∥∥c(j)0 ∥        in (23). Assume that Assumptions 1 and 2 hold, and that the
+                                                         system output is in a stationary regime. Then, for N > 2M,
+The mutual coherence bound in Condition 1 then guaran-                                                                 the continuous-time frequency response estimator in (23) is
+tees a uniform lower bound on λmin(˜A⊤0 ˜A0) for large m,   given by
+ensuring that the Gram matrix  is nonsingular when m →                                                          ⊤   −1
+∞. Moreover, since for large m we have λmin(˜A⊤0 ˜A0) ≥               ˆG(iω) = ˆG MS ˜Γ  Γ(eiωh) ⊗Inu  ,         (36)
+
+===== PDF PAGE 8 =====
+8
+
+
+where the frequency response estimates ˆGMS can be computed     IV. DIRECT AND TWO-STEP PARAMETRIC ESTIMATORS
+as in (35). Furthermore, if Assumption 3 also holds, ˆGMS is
+given by                                              The finite-time properties stated in Theorems 1 to 3 provide
+                                                                 the essential tools towards the analysis of parametric estima-
+                  Υ[ei0]Ξ†[ei0]   
+                                                                      tors of the MIMO continuous-time system in (1) based on the
+                     Υ[e−iω1h]Ξ†[e−iω1h]
+                                                                multisine equivalent discrete-time FIR model in (23). The key
+                        Υ[eiω1h]Ξ†[eiω1h]
+            ˆGMS =                                        ,         (37)   idea behind the upcoming analysis is that the time-domain data                                                                                                                                                     ...                         from multiple experiments can be compressed without loss of
+                   Υ[e−iωMh]Ξ†[e−iωMh]                       statistical information.                                                                                                                                                                                                                       
+                     Υ[eiωMh]Ξ†[eiωMh]              We consider a parametric model structure G(p, θ) of G0(p),
+                                                      where θ ∈Rnθ  contains the coefficients associated with,
+where Ξ[eiωh] and Υ[eiωh] denote the DTFTs of U(kh) and                                                                    for example, the numerator and denominator polynomials of
+Y(kh), respectively.                                                                     rational transfer functions in matrix fraction description form,
+  Proof: The equivalent expression in (36) is direct by replac-   the  flexible and rigid-body modes  in mechanical systems
+ing ˆHMS = (˜Γ−H ⊗Inu)ˆGMS into (23). For proving (37), we   described in additive or modal form [47], or continuous-time
+require computing the discrete                                Fourier transform of Z(kh).   state-space descriptions. This parameter vector is assumed to                             2πn
+Due to Assumption 3, Ψ[ei N  ] is an N-periodic sequence   be constrained to a known compact set D. For the sequel,
+that can be computed from standard algebraic manipulations.  we define the matrix of frequency response evaluations of the
+One period of such transform is described by                  parametric model as
+               A⊤0 δK(nmod N)    
+            A⊤1 δK((n −Nhω12π )mod N)                   G(θ) := G(0, θ), G(−iω1, θ), G(iω1, θ),
+         2πn      AH1 δK((n + Nhω12π )mod N)                                                 . . . , G(−iωM, θ), G(iωM, θ) ⊤.      (39)
+    Ψ[ei N  ] = N                                                  ,    (38)
+                                                                                                                                                           ...
+                                                   The main contributions in this section are the explicit relations           A⊤MδK((n −NhωM2π  )mod N)                                                                                                                     NhωM                     between direct (i.e., one-step) and two-step parametric estima-            AHMδK((n +   2π  )mod N)                                                                      tors ˆθ describing the model G(p, ˆθ) for the true continuous-
+                     N ]ΨH[ei N ]=N 2blkdiag(A⊤0A0,   time system G0(p), and the implications of this result forwhich leads to PNn=1Ψ[ei 2πn       2πn
+AH1 A1, AH1 A1, . . . , AHMAM, AHMAM), where the block di-   computational methods and finite-sample statistical analyses.
+                                     A key result on data compression is given next, that relatesagonal terms are nonsingular due to Assumption 1, and the
+                                                                 the least-squares estimator of the frequency response in (23)terms outside the block diagonal are zero due to Assumption 2.
+                                                           with the sampled input and output data.Moreover,
+                                                       Theorem 4: Assume that m ≥nu experiments performed
+                      A⊤0 ΥH[ei0]          on the system  (1) are conducted using multisines of the
+                     A⊤1 ΥH[eiω1h]           form (2), designed under Assumptions 1 and 2, and that the
+    N                      AH1 ΥH[e−iω1h]                                                              output vector of each experiment is in a stationary regime.  X         Ψ[ei 2πnN ]ΥH[ei 2πnN  ] = N                                                                                 .
+                                                            Furthermore, assume that the output noise v(kh) is a Gaussian     n=1                                                                                                                                                           ...
+                                                           white noise signal of covariance Σ. Then, the least-squares                                                                                                                                                                                               A⊤MΥH[eiωMh]    
+                     AHMΥH[e−iωMh]           estimator ˆGMS of G0 is a sufficient statistic for θ.
+                                                                   Proof. A consequence of the Fisher–Neyman factorization
+In  light  of  these  expressions, we  find  that  ˆG(0) =   theorem [48, Theorem 6.2.6] is that  if the data can be ex-
+Υ[ei0]A0(NA⊤0 A0)−1 and, for ℓ=  1, . . . , M, ˆG(iωℓ) =   pressed as y⊤(kh) = ψH(kh)g(θ) + v⊤(kh), where v⊤(kh)
+Υ[eiωℓh]Aℓ(NA⊤ℓAℓ)−1. On the other hand, from (38) and    is i.i.d. Gaussian noise, ψ(kh) is a deterministic matrix, and g
+the  fact  that U(kh) = (1⊤2M+1 ⊗Inu)Z(kh),  it can be   depends only on θ, then a sufficient statistic for θ is given by
+verified that the DTFT of the input matrix U(kh), denoted
+
+                                                   Nby Ξ[eiωh], satisfies Ξ[ei0] = NA⊤0 , Ξ[eiωℓh] = NA⊤ℓand          "                                                                         #−1 "                                                                  N           #
+Ξ[e−iωℓh] = NAHℓ. Replacing these results into (35) leads      ˆg(y) = X ψ(kh)ψH(kh)  X ψ(kh)y⊤(kh)   .
+to (37), concluding the proof.                □             k=1                  k=1
+  Theorem 3 indicates that, when an integer period of the
+input signal is recorded, the least-squares estimator in (23)   In this context, we follow similar lines to (28) to find that
+provides an interpolation of the ETFE [46] for continuous-   xi(kh, θ) = GH(θ)ζi(kh), which leads to the model
+time systems using sampled data. In consequence, the sta-
+tistical properties derived in Theorems 1 and 2 extend the           Y⊤(kh) = ZH(kh)G(θ) + V⊤(kh),
+results in [46] to a MIMO continuous-time system framework.
+Additionally, these theorems provide the exact computation  where Z(kh) is given by (25), and V(kh) is the matrix formed
+of the covariance matrix of the ETFE, complementing prior  by stacking vi(kh), i = 1, . . . , m. Exploiting this description
+asymptotic expressions for errors-in-variables cases derived   together with the identities U(kh) = (˜Γ ⊗Inu)Z(kh) and
+in [3, Eq. 2-77].                                                 (˜ΓH ⊗Inu)ˆHMS = ˆGMS leads to writing a sufficient statistic
+
+===== PDF PAGE 9 =====
+GONZ ´ALEZ et al.: FINITE SAMPLE MIMO SYSTEM IDENTIFICATION WITH MULTISINE EXCITATION: NONPARAMETRIC, DIRECT, AND TWO-STEP PARAMETRIC
+ESTIMATORS                                                                                                                        9
+
+
+for θ as                                                Cny(2M+1)×nu
+
+                       N                       G       " N             #−1
+  ˆg(y) = X Z(kh)ZH(kh) X Z(kh)Y⊤(kh)
+
+         k=1                 k=1
+              N             N                             0        G(θ0)              "                #−1
+    = (˜ΓH⊗Inu) X U(kh)U⊤(kh) X U(kh)Y⊤(kh)                                                                                            G(ˆθ)
+                  k=1               k=1
+    = (˜ΓH ⊗Inu)ˆHMS
+                                                                                            ˆGMS
+    = ˆGMS,
+
+which shows what we aimed to prove.           □                                                                               Fig. 2.  Interpretation of the indirect prediction error method for system
+  In   other   words,  when   the   noise    is   Gaussian-    identification under multisine excitation. The FRF estimate ˆGMS, lying in
+distributed,  the  information  that  the  input  and  output   the subspace G ⊂Cny(2M+1)×nu, is projected onto the subspace
+                                                                               of parametric models, yielding ˆθ.
+data {ui(kh), yi(kh)}Nk=1 for i = 1, . . . , m contains about
+θ  is completely captured by the least-squares estimator of                                                            For reaching (42), under Assumption 3 we have
+the frequency response at each positive and negative input
+frequency. This  result  enables a  link between  the  direct             Cov{vec{ˆGMS}}−1 = NΣ−1 ⊗A,
+parametric method  using  the  time-domain  data  and  the  where
+two-step approach based on the frequency response estimate
+                             A =blkdiag(A⊤0A0,AH1A1,AH1A1,. . ., AHMAM,AHMAM).obtained in Section III, as presented in the following corollary.
+                                                                                                                        (43)  Corollary 2: Assume that the additive measurement noises
+                                                   The vectorization identities vec{ABC} = (C⊤⊗A)vec{B}{v(kh)}Nk=1 are Gaussian and white, with known covariance
+                                                       and tr{AHB} = vec{A}Hvec{B}, when applied to (40), yieldΣ, the inputs in (2) satisfy Assumptions 1 and 2, and that the
+outputs yi(kh) are measured in a stationary regime. Then, the       ˆθ = arg min tr nΣ−1 ˆGMS −G(θ) HA ˆGMS −G(θ) o .
+maximum likelihood estimator of θ within the compact set D,         θ∈D
+based on the data {ui(kh), yi(kh)}Nk=1 for i = 1, . . . , m is    Expressing ˆGMS, G(θ) and A in terms of G(iωℓ, θ), G(iωℓ)
+                                      2                      and Aℓrespectively, gives (42).               □
+     ˆθ = arg min  vec{ˆGMS −G(θ)}                        ,    (40)    Remark 6: Corollary 2 can also be interpreted through the        θ∈D                         Cov{vec{ˆGMS}}−1
+                                                                     indirect PEM framework [49], which first fits an overparam-
+where Cov{vec{ˆGMS}} and G(θ) are given by (29) and (39)   eterized model, here the FRF at ω = 0, ±ω1, . . . , ±ωM, and
+respectively. This estimator also minimizes the prediction error   then projects the estimates onto a smaller parametric model
+within the set D                                                     structure, G(p, θ), see Figure 2. Since the residual in (19)
+           m N                                                 is affine in the estimated parameters and (40) uses the exact
+                                                         (41)   covariance matrix (29), the extended invariance principle [50]      V (θ) := X X  yi(kh) −yi(kh, θ) 2Σ−1,
+                 i=1 k=1                                         applies, yielding an  alternative proof of the  finite sample
+                                                             equivalence between the direct and indirect PEM formulations.
+where
+
+                                                                Corollary 2 implies  that the time-domain prediction  er-    yi(kh, θ) = G(0, θ)a0,i
+                                                                    ror method coincides with the optimally-weighted frequency-          M
+        + X Re  G(iωℓ, θ) aℓ⊙eiϕℓ,i eiωℓkh   .      domain identification method when the frequency response
+                                                               function estimates are computed with the least-squares method
+                ℓ=1
+                                                                    in (20), and both maximize the likelihood function of the total
+Additionally, if the no spectral leakage assumption in Assump-                                                              output data, even if the measured outputs suffer from aliasing
+tion 3 also holds,                                                                         effects. This relationship is valid for any N > 2M  if the
+                                                               outputs are in a stationary regime. Hence,  it is not merely
+       ˆθ = arg min tr Σ−1h ˜G(0, θ)A⊤0 A0 ˜G⊤(0, θ)            asymptotic. If the noise covariance Σ is not known, then  it
+         θ∈D
+                                                         can be estimated jointly via the logdet criterion in, e.g., [51,       M
+    + 2 X Re ˜G(iωℓ, θ)AHℓAℓ˜GH(iωℓ, θ) i   ,     (42)   Ch. 7]; the analysis of this case is not considered in this work.
+                                                                     Naturally, Corollary 2 also has implications for SISO iden-
+           ℓ=1
+                                                                            tification. Since the simplified refined instrumental variable
+where ˜G(iωℓ, θ) = ˆG(iωℓ) −G(iωℓ, θ), ℓ= 0, 1, . . . , M.      method for continuous-time systems with multisine excita-
+  Proof. Since Σ is known, the log-likelihood function for   tions in [52] provides at convergence a stationary point of
+yi(kh), k =  1, . . . , N,  i =  1, . . . , m  is proportional  to   the likelihood under mild conditions,  it  is a way to solve
+V (θ). The statistical sufficiency of ˆGMS implies that the log-   the minimization problem in (40) via iterations in the time
+likelihood is also proportional to the cost in (40). Thus, since   domain. Conversely, Corollary 2 shows that the frequency-
+these expressions only differ by a constant term, they share  domain methods in [13] and [53] are equivalent to time-
+the same global optima.                                 domain prediction error methods for stationary multisine data,
+
+===== PDF PAGE 10 =====
+10
+
+
+provided the nonparametric FRF is estimated via (23) and the   a concentration bound for the FRF of the parametric model
+frequency weighting matrices are set to the inverse covariance   evaluated at the input frequencies, as well as for the parametric
+from Theorem 2.                                                 estimator, relying on the finite-time statistical properties of
+  The equivalence in Corollary 2 provides additional insights   ˆGMS explored in Theorems 1 and 2 of this paper. For the
+into the maximum likelihood and prediction error method   parametric estimator concentration bound, it is assumed that
+estimators for continuous-time system identification. In the   a true parameter vector θ0 ∈D exists that generates the data
+following, we study two scenarios:                         and that no undermodeling occurs. Only a local probability
+  1. The parametric model G(p, θ)  is underconstrained or  bound is obtained in this case, since the proof relies on the
+     fully constrained, i.e., nθ ≥nuny(2M + 1);            mapping θ 7→G(θ) being bi-Lipschitz, a property that can
+  2. The parametric model G(p, θ) is overconstrained,  i.e.,   only be guaranteed locally without imposing constraints on
+    nθ < nuny(2M + 1).                                      the parametric model structure.
+                                                       Theorem 5: Assume that m ≥nu experiments performedFor the under and fully constrained parametric model cases, we
+show in Corollary 3 that the parameter vector ˆθ that minimizes  on the system (1), described by the true parameter vector θ0 ∈
+                                                  D, are conducted using multisines of the form (2), designed(40) and (41) can be computed explicitly.
+                                                          under Assumptions 1 to 3, and that the output vector of each  Corollary 3: Assume that m ≥nu experiments performed
+                                                           experiment is in a stationary regime. Furthermore, assume thaton the system (1) are conducted using multisines of the form
+                                                                 the output noise v(kh) is a Gaussian white noise signal of(2), designed under Assumptions 1 and 2, and that the output
+                                                              covariance Σ, and that the no undermodeling occurs in thevector of each experiment is in a stationary regime. Moreover,
+                                                              parametric model. Then, for N > 2M, for all δ ∈(0, 1],assume  that parameter dimension and sample  size  satisfy
+nθ ≥nuny(2M + 1) and N > 2M respectively, and that    (         v
+there exists a parametric model G(p, ˜θ) with a real-valued     P  ∥G(ˆθ) −G(θ0)∥F ≥2uu      λmax(Σ)
+parameter vector ˜θ ∈D ⊆Rnθ such that                     t N 0≤ℓ≤Mmin λmin(AHℓAℓ)
+
+                                                        ! ) G(0, ˜θ) = ˆG(0), G(±iωℓ, ˜θ)= ˆG(±iωℓ), ℓ= 1, 2, . . . , M,      s      2  q
+                                                         (44)     ×    2 log   +  nuny(2M + 1)   ≤δ.    (45)
+                                                                              δ
+where ˆG(0) and ˆG(±iωℓ), ℓ=  1, . . . , M,  are obtained
+from (23). Then, the following statements are true:             Additionally, let β ∈(0, 1) and assume that the mapping θ 7→
+  1. The vector ˜θ minimizes the costs in (40) and (41).       vec{G(θ)} is continuously differentiable in D. Assume that
+  2. The  frequency  response  of  the  parametric  model,   the Jacobian J(θ) := ∂vec{G(θ)}/∂θ⊤has full column rank
+    G(iω, ˆθ),   is  unbiased   at  the  frequencies  ω  =   for all θ in an open ball B contained in the interior of D,
+     0, ±ω1, ±ω2, . . . , ±ωM, and the joint covariance of these   centered at θ0, whose elements satisfy ∥J(θ) −J(θ0)∥≤
+     estimates is given by (29).                            (1−β)σmin(J(θ0)) for all θ ∈B. Then, if ˆθ ∈B, for N > 2M
+  Proof. Statement 1 follows from the fact that G(˜θ) = ˆGMS,  and all δ ∈(0, 1],
+which means  that the cost function in (40) reaches zero,
+                                   (          v                                                                                         λmax(Σ)                                      uits minimum value. Note that  ˜θ is not necessarily unique.    P  ∥ˆθ −θ0∥≥     2                                      u
+Statement 2 follows directly from Statement 1 and Theorems 1                   βσmin(J(θ0)) t N  min λmin(AHℓAℓ)
+and 2.                            □                              0≤ℓ≤M
+  Remark 7: The transfer function G(p, ˜θ) with parameter     s      2  q        ! )
+vector ˜θ ∈Rnθ satisfying (44) exists under mild conditions    ×    2 log   +  nuny(2M + 1)   ≤δ.    (46)                                                                              δ
+on the model structure. For example, if each entry of G0(p)
+                                                              Proof: Denote Γ := Cov{vec{ˆGMS}}. Due to Theorems 1is independently parameterized by a static gain and a total
+                                                       and 2 and the Gaussianity assumption on v(kh), the randomof 2M poles and zeros, then  it can be shown that G(p, ˜θ)
+                                                                  variable e := Γ−1/2vec{ˆGMS−G(θ0)} is distributed as a zero-satisfying (44) exists for all vectors ˆGMS ∈Cnu(2M+1)×ny
+                                                 mean complex multivariate Gaussian with covariance matrixobtained from least squares, except at most for a set of FRF
+                                                        Inuny(2M+1) and complementary covariance matrix [54] C =estimates of Lebesgue measure zero.
+                                               E{ee⊤} given by  That  is,  for  a  parameter  vector  dimension  of nθ ≥
+nuny(2M +1), an estimator ˆθ that minimizes the time-domain                    N            !
+prediction error (41) for  finite samples N > 2M can be    C = Iny ⊗  Z−1/2 X Z(kh)Z⊤(kh)Z−⊤/2    ,
+constructed by first forming the least-squares estimator of the                         k=1
+frequency response at the input frequencies via (20) and (23),                                                      which can be shown  to  satisfy  the  inequality CHC ⪯
+and later performing a matrix function interpolation. Note that
+                                                          Inuny(2M+1). Thus,
+the parameter vector must provide sufficient flexibility for (44)
+to be feasible, although the parametric model is not restricted                                                       2
+                                                                                        ˆθ = arg min Γ−1/2vec{G(θ)−G(θ0)} −e    .     (47)
+to independently parameterized scalar transfer functions.               θ∈D
+  For the overconstrained parametric model case, the opti-
+mization problem in (40) admits no closed-form solution and   Evaluating the cost function above at θ = ˆθ and θ = θ0 yields
+is typically addressed as a nonconvex problem using gradient-                                              2
+based iterations [33]. Nonetheless, it is possible to determine           Γ−1/2vec{G(ˆθ)−G(θ0)} −e  ≤∥e∥2 ,
+
+===== PDF PAGE 11 =====
+GONZ ´ALEZ et al.: FINITE SAMPLE MIMO SYSTEM IDENTIFICATION WITH MULTISINE EXCITATION: NONPARAMETRIC, DIRECT, AND TWO-STEP PARAMETRIC
+ESTIMATORS                                                                                                                       11
+
+
+leading to the chain of inequalities                             Proof. To ease notation, we define
+                      2     n  vec{G(ˆθ)−G(θ0)}                           eHΓ−1/2vec{G(ˆθ)−G(θ0)}o          vu      λmax(Σ)                 Γ−1≤2Re                          A = 2u                                 t N  min λmin(AHℓAℓ).
+                 ≤2∥e∥ vec{G(ˆθ)−G(θ0)}        ,                       0≤ℓ≤M
+                                                Γ−1
+                                                 From Theorem 5, ∥G(ˆθ) −G(θ0)∥F > √ϵ occurs with proba-
+i.e., ∥vec{G(ˆθ) −G(θ0)}∥Γ−1 ≤2∥e∥. From Assumption 3                       √ϵ
+                                                                           bility at most 2 exp(−12( A −B)2), where for ϵ < (AB)2 thewe obtain Γ−1 = NΣ−1 ⊗A, with A defined in (43). More-
+                                                     bound is vacuous. Thus, from the integral characterization of
+over, after applying eigenvalue properties of block diagonal
+                                                                 the expected value, we find
+matrices and Kronecker products, the minimum eigenvalue of
+                                                                         oΓ−1 is given by                               E n                                                                                                              dϵ                                                               P n∥G(ˆθ)−G(θ0)∥F > √ϵ                                                         ∥G(ˆθ)−G(θ0)∥2F o =Z ∞
+        λmin(Γ−1) = Nλmin(Σ−1)λmin(A)                                                 0                                                                                                                 2                                                           Z ∞          √ϵ             N                         ≤(AB)2 + 2      exp −1   −B    dϵ
+           =        min λmin(AHℓAℓ).                           (AB)2        2  A                   λmax(Σ) 0≤ℓ≤M
+                                            rπ
+Thus,                                = (AB)2 + 4A2  1 + B          ,
+                                                                             2
+  ∥G(ˆθ)−G(θ0)∥F =∥vec{G(ˆθ)−G(θ0)}∥                                                      which proves the statement.                 □
+                      1
+          ≤            vec{G(ˆθ)−G(θ0)}              V. MODEL PARAMETRIZATIONS AND EXAMPLES         pλmin(Γ−1)                    Γ−1
+                                                     The following two subsections explore the consequences of
+         v
+         u      λmax(Σ)                       the main results in Section IV in matrix fraction description          ≤2u         t N  min λmin(AHℓAℓ)∥e∥.           parametrizations, and present a case study where closed-                     0≤ℓ≤M
+                                                      form computations and finite-time  statistical properties are
+The probability bound (45) follows from this inequality and   discussed in depth.
+Lemma 2 in Appendix I, whereas the probability bound (46)
+                                                        A. Model parametrization: Matrix fraction descriptionfollows from (45) and Lemma 3 in Appendix II.      □
+  Theorem 5 provides important insights on the dependence   A model parametrization that we study in further detail is
+of the model structure, multisine amplitudes and number of   the left matrix fraction description (LMFD)
+frequency lines, noise gain, sample size, and system dimen-                                                               G(p, θ) = D−1(p, θ)N(p, θ),           (48)
+sions on parametric model learning. In particular, an increase
+in noise variance or a decrease in input amplitude or num-  where we parameterize the D and N polynomial matrices as
+ber of experiments leads to requiring more data samples to                                                            D(p, θ) = Iny + D1p + · · · , +DnDpnD,
+achieve the same confidence bounds, and systems of larger
+                                                           N(p, θ) = N0 + N1p + · · · , +NnN pnN ,dimensions are typically more costly to identify. Furthermore,
+all quantities in the bounds in (45) and (46) can be computed   with Di ∈Rny×ny, and Nj ∈Rny×nu. The parameter vector
+explicitly beforehand except σmin(J(θ0)), which can be re-    is described in terms of Di and Nj as follows:
+laxed to minθ∈D σmin(J(θ)) if needed.
+  The finite-time confidence region for θ is conditioned on    Θ=[D1, . . . , DnD, N0, . . . , NnN ]⊤, θ =vec{Θ}.    (49)
+the event that the Jacobian J(ˆθ) deviates from J(θ0) by at   For the underconstrained and fully constrained model cases
+most (1 −β)σmin(J(θ)) in operator norm, where β ∈(0, 1) is   described  in Section IV,  i.e., nDny + nNnu ≥2Mnu,
+a user-defined parameter. Choosing β close to zero increases                                                              Corollary 3 shows that the maximum likelihood estimator
+the probability of this conditioning event but leads to a looser                                                                    for θ can be obtained through matrix rational interpolation
+confidence region bound. Although not explicitly derived in                                                                     [55], which for this case has an explicit closed-form solution.
+our result, a global probability result (i.e., for ˆθ ∈D) may be                                                           This solution provides the exact prediction error method and
+derived directly with our techniques in specific cases, such as                                              maximum likelihood estimator for finite sample size N and
+for parametric models that are linear in θ.                                                       any number of experiments m ≥nu, and is presented next.
+  The main result in Theorem 5 can directly be used to    Theorem 6: Assume that m ≥nu experiments performed
+compute a finite-time variance bound of the parametric FRF                                                     on the system (1) are conducted using multisines of the form
+estimates at the input frequencies, which is presented next.                                                                           (2), designed under Assumptions 1 and 2, and that the output
+  Corollary 4: Under the same experimental conditions as                                                                vector of each experiment is in a stationary regime. Moreover,
+Theorem 5 for obtaining (45), for any N > 2M,                                                              consider the model described by the LMFD in (48), and
+   E n∥G(ˆθ) −G(θ0)∥2F o                              assume that nDny + nNnu ≥2Mnu and N > 2M. Let
+                     √             J= −Ω1ˆGMS, . . .,−ΩnD ˆGMS,Ω0I, . . . ,ΩnNI  ,    (50)
+   ≤4      λmax(Σ)     B2 + 2 2πB + 4   ,
+     N  min λmin(AHℓAℓ)                          where I  =   [Inu, . . . , Inu]⊤  ∈  Rnu(2M+1)×nu,  and          0≤ℓ≤M
+                                Ω  =    diag(0, −iω1, iω1, . . . , −iωM, iωM) ⊗Inu   ∈
+where B := p nuny(2M + 1).                            Cnu(2M+1)×nu(2M+1), with Ω0 = Inu(2M+1).
+
+===== PDF PAGE 12 =====
+12
+
+
+  Then, provided the matrix J has  full row rank,  all the  whose first and second order statistics are exactly known from
+parameters that jointly minimize the cost functions in (40)  Theorems 1 and 2, tight confidence intervals and finite-sample
+and (41) are given by                                              distributions of the parameters can be obtained.
+                                                          Bear in mind that the solution of the normal equations
+                   ˆΘ = J† ˆGMS + KL,                (51)                                            J ˆΘ =  ˆGMS can always be chosen as  real-valued, since
+where K is a matrix whose nDny + (nN −2M)nu columns   the conjugate parameter matrix estimate ˆΘ can be shown to
+form a real basis of ker(J), and L ∈R[nDny+(nN−2M)nu]×ny    satisfy the same normal equations. Moreover, the matrix K can
+is a matrix of free parameters.                              always be taken to be real-valued because it can be computed
+  Proof.  It  follows from  Corollary 3  that,  for nDny +  from the real matrix formed by stacking the real and imaginary
+nNnu ≥ 2Mnu,  the  vector  of parameters must  satisfy   parts of the rows of J.
+D−1(0, ˆθ)N(0, ˆθ) = ˆG(0) and D−1(±iωℓ, ˆθ)N(±iωℓ, ˆθ) =    Remark 8: For the fully constrained model case, the closed-
+ˆG(±iωℓ), ℓ= 1, . . . , M. Denote the denominator and numera-  form solution provided in (51) coincides with the one obtained
+tor polynomial matrix coefficients composing the PEM param-  from Levy’s method for rational function estimation [57].
+eter estimate ˆθ as ˆDi and ˆNj, i = 1, . . . , nD, j = 0, . . . , nN.   In fact, the interpolation equations formed by (52) and (53)
+After some matrix manipulations, the polynomial matrices   correspond to the ones found in, e.g., Problem 2.3. of [58] for
+N(p, ˆθ) and D(p, ˆθ) can be shown to satisfy, respectively,      the SISO case. However, for the overconstrained model case,
+                                                           Levy’s method solves the minimization problem          N⊤(0, ˆθ)  
+            N⊤(−iω1, ˆθ)                               min D(0, θ)ˆG(0) −N(0, θ) 2
+             N⊤(iω1, ˆθ)     nN                         θ∈D                 W0
+                 = X ΩkI ˆN⊤k ,         (52)          M                                   2
+                      X  D(iωℓ, θ)ˆG(iωℓ) −N(iωℓ, θ)       ,                                                                                                 ...          k=0                    + 2
+                                                                             Wℓ
+                                                                        ℓ=1          N⊤(−iωM, ˆθ)                                                                                                                                                           
+           N⊤(iωM, ˆθ)                              where Wℓ, ℓ= 0, 1, . . . , M are fixed positive definite weight-
+                                                              ing matrices. This optimization problem does not have the
+                                                   same solution as (40) in general.and   ˆG⊤(0)D⊤(0, ˆθ)  
+   ˆG⊤(−iω1)D⊤(−iω1, ˆθ)                                B. A case study in finite-sample behavior
+     ˆG⊤(iω1)D⊤(iω1, ˆθ)          nD                   As shown in Theorem 6, the least-squares estimator of
+                = ˆGMS + X Ωk ˆGMS ˆD⊤k ,   (53)   the frequency response provides an approach  to compute                                                                     ...                   k=1
+                                                                 the maximum likelihood estimator in explicit form for the
+   ˆG⊤(−iωM)D⊤(−iωM, ˆθ)                                                                                                                                                                                    parametric model G(p, θ), which is known to be a consistent
+    ˆG⊤(iωM)D⊤(iωM, ˆθ)                                                       and asymptotically efficient estimator in many scenarios [33].
+where I and Ωare defined in the theorem statement. Thus,  To conclude this section, a case study  is presented below,
+by equating (52) with (53), the interpolation conditions can   containing closed-form computations and finite-time statistical
+be written as J ˆΘ = ˆGMS, with J as defined in (50). Such   analyses on the maximum likelihood parametric estimate for
+underdetermined linear matrix equation is solved explicitly by   a first-order system.
+(51), see [56, Chapter 3] for more details.         □     Consider the true continuous-time system in transfer func-
+  An important observation from Theorem 6 is that statisti-   tion form
+                                                                                                             b0,0
+cally optimal parametric estimators can be computed without                   G0(p) =                            (55)                                                                                            a1,0p + 1,iterative procedures or solving non-convex optimization prob-
+lems, even if the model structure is nonlinear in the parameters.  where a1,0 > 0 and  b0,0̸ =  0. The output of G0(p)  is
+In the underconstrained model case, the flexibility in choosing   corrupted by Gaussian white noise of variance σ2. We are
+the matrix L in (51) allows the direct fitting of models with   interested in obtaining an estimate of the system for three
+lower-dimensional parametrizations. For instance, a modal or   different scenarios: 1) the fully constrained model case with
+additive model [53] of the form                           G(p, θ) = b0/(a1p + 1) and input u(t) = α1 cos(ω1t −π/2)
+                      n                                  with α1, ω1 > 0; 2) the underconstrained model case with                              ϕl,iϕ⊤r,i
+         Gm(p, θ) = X                            (54)  G(p, θ) = (b1p+b0)/(a1p+1) and same input as 1); and 3) the                               a2,ip2 + a1,ip + 1,                        i=1                                  overconstrained model case with G(p, θ) = b0/(a1p + 1) and
+where ϕl,i ∈Rny, ϕr,i ∈Rnu, and  a1,i, a2,i >  0, can   input u(t) = α0+α1 cos(ω1t−π/2) with α0̸ = 0, α1, ω1 > 0.
+be recovered as long as there exists a parameter vector  ˜θ   For simplicity, we assume that Assumption 3 holds, i.e., we
+                                                              consider Nh to be a multiple of 2π/ω1, so that the resultingsatisfying the interpolation conditions
+                                                            frequency response estimates are uncorrelated according to
+ Gm(0, ˜θ) = ˆG(0), Gm(±iωℓ, ˜θ) = ˆG(±iωℓ), ℓ= 1, . . . , M.   Theorem 2.
+                                                                  1)  Fully constrained model  case: By Corollary  3,  theIf nD = 2n and nN ≥2n −2, Theorem 6 guarantees
+                                              maximum likelihood estimator ˆθ = [ˆa1,ˆb0]⊤must satisfythe existence of a matrix L such that (51) yields an LMFD
+model that can be decomposed exactly as (54). Moreover,                              ˆb0                                           ˆb0
+                                                                   ˆG(iω1) =            and  ˆG(−iω1) =since the parametric model has an explicit dependency on ˆGMS,                  iˆa1ω1 + 1                    −iˆa1ω1 + 1,
+
+===== PDF PAGE 13 =====
+GONZ ´ALEZ et al.: FINITE SAMPLE MIMO SYSTEM IDENTIFICATION WITH MULTISINE EXCITATION: NONPARAMETRIC, DIRECT, AND TWO-STEP PARAMETRIC
+ESTIMATORS                                                                                                                       13
+
+where ˆG(iω1) and ˆG(−iω1) are computed from the least-     1.4
+squares estimate of the FRF in (23). These equations form     1.2                                    2
+a system in ˆa1 and ˆb0 that can be solved explicitly, leading to
+                                                                                 1
+                                                                                                                                            1.5
+                                                                                               0.8               −Im{ ˆG(iω1)} 
+                       ˆa1      ω1Re{ˆG(iω1)}                                0.6                                    1           =                                  (56)
+                        ˆb0               |ˆG(iω1)|2                                                                                           .                            0.4
+                      Re{ ˆG(iω1)}                                                                                0.5
+                                                                                               0.2
+Let us focus on ˆa1. This parameter is given by the quotient     0                                    0
+of two zero-mean random variables that are jointly Gaussian:       0      0.5     1      1.5     2      2.5   0        0.5      1        1.5      2
+       Re{ ˆG(iω1)}         Re{G0(iω1)}                       Fig. 3.  Empirical distribution of ˆa1 (histogram) compared to its approx-
+          ∼N                            , P   ,            imate normal distribution (red curve). Left: N = 20; right: N = 60.       Im{ ˆG(iω1)}         Im{G0(iω1)}
+
+where, after computing Z = (α21/4)I2 in (26), we find that       then less data points are needed for the approximation to
+the covariance matrix P is exactly given by                      be valid.
+                                                                 2) The mean of the approximate normal  distribution of
+            σ2   1   1      1  −1    2σ2
+     P =          Z−1      =       I2.                      ˆa1 equals the true parameter a1,0. This approximation
+            4  −1  1      1   1    Nα21                   holds in finite time and can be empirically observed even
+Thus, the distribution of ˆa1 for finite N is given by the ratio       with fewer than 100 samples. In Figure 3 we compare
+of independent normal random variables with non-zero means.        the empirical distribution (using 2 · 105 Monte Carlo
+The exact distribution for this scenario has been derived in        runs) with the normal approximation for two different
+[59], enabling the computation of tight confidence bounds.       sample sizes: N = 20 and N = 60. The following
+The distribution of ˆa1 is heavy-tailed and does not have finite       parameters are considered:√         a1,0 = 1; b0,0 = 2; σ = 0.8;
+moments [60]; however, it can be approximated by a normal      α1 = 1; ω1 = 1/  2. Despite the relatively low signal-to-
+distribution under certain conditions involving the probability        noise ratio (approximately 5 [dB]) and limited data, the
+of observing negative (resp. positive) values of Re{ˆG(iω1)} if       approximation aligns well with the empirical distribution.
+Re{G0(iω1)} is positive (resp. negative). A precise statement    3) The frequency that minimizes the (approximate)√          vari-
+concerning the normal approximation is given in [61], but for       ance of the parameter  ˆa1  is ω1 = 1/(  2a1,0), which
+the sake of this example we consider a practical result. Using       corresponds to a 1.18 [dB] attenuation from the steady
+the criterion1stated in [62], whenever                                    state gain. Notably, the cutoff frequency ω1 = 1/a1,0
+                                                              does not minimize the approximate variance. The optimal
+                 σ   r 2
+                               ≤0.1,           (57)       approximate variance is given by
+              α1|Re{G0(iω1)}|  N
+
+the normal approximation is valid, and the normal distribution                                                   1,0                                                                                    Var{ˆa1} ≈27σ2a2    .
+that approximates the distribution of ˆa1 (see [61, Eq. (9)]) is                         2Nα21b20,0
+              Im{G0(iω1)}
+    ˆa1 ∼N − ω1Re{G0(iω1)},                                 4) The approximate variance in (58) coincides with the
+                                                                 asymptotic variance obtained through standard methods
+                 2σ2             Im{G0(iω1)}2                             1 +                            .           (see Appendix  III for the  details). However, our ex-
+       Nα21ω21Re{G0(iω1)}2      Re{G0(iω1)}2               pression was obtained through a  finite-time  analysis,
+Writing this distribution in terms of the true parameters a1,0        leading to greater insight about when the estimates can be
+and b0,0 gives                                                    considered to have reached their asymptotic distribution.
+                                                               2) Underconstrained model case: Now consider the model                        2σ2(1 + a21,0ω21)3 !
+                 ˆa1 ∼N   a1,0,                               .        (58)  G(p, θ) = (b1p + b0)/(a1p + 1), with θ = [a1, b0, b1]⊤. The
+                    Nα21ω21b20,0                maximum likelihood estimator is non-unique in this scenario,
+                                                       and thus Theorem 6 provides the set of all estimators thatFour interesting aspects can be noted from the approximate
+                                                        minimize the prediction error.mean and variance above:
+                                                     The kernel of J in (50) is described by the basis vector  1) For the normal approximation to be valid we require a                    √
+     balance between Re{G0(iω1)} and N in (57): If ω1 is
+                                                    "                          #⊤     too high, then Re{G0(iω1)} will be small and more data                1          Im{ˆG(iω1)}
+                               K =                      ,  −ω1                   ,  1     .    (59)
+     points will be required for achieving a reasonable nor-           Re{ ˆG(iω1)}      Re{ˆG(iω1)}
+    mal approximation. Also, the input signal-to-noise ratio
+    α21/σ2 plays a natural role in (57): If such ratio is large,   Since it is known from the fully constrained model case that
+                                                       one solution of the rational interpolation problem J ˆΘ = ˆGMS
+  1Other criteria are possible, and they are usually related to how small the
+ratio between the standard deviation and the mean of the random variable of    is given by ˆb1 = 0 and ˆa1,ˆb0 given by (56), then it follows
+the denominator is. Such random variable in this case is ω1Re{ ˆG(iω1)}.    from Theorem 6 that all maximum likelihood estimators for
+
+===== PDF PAGE 14 =====
+14
+
+
+                                                             confidence bounds exhibit the expected 1/N decay of the FRF
+                                                       and parameter errors in norm. In this example, the theoretical
+                                                     bound in (45) deviates by a factor of approximately 4 from
+                                                                 the empirical bounds for the FRF estimation, while a larger
+                                                       gap is observed for the parameter confidence bound due to
+                                                                 the relaxation required for obtaining the bi-Lipschitz constant
+                                                          βσmin(J(θ0)) in Lemma 3.
+
+                                                                               VI. CONCLUSIONS
+
+                                                                  In this paper, we developed a framework to analyze finite
+                                                        sample properties of the least-squares method for continuous-
+Fig. 4.  Empirical and theoretical 90% confidence bounds for the FRF   time MIMO system identification. First, we derived a nonpara-
+at the input frequency points (left), and for the vector ˆθ describing the   metric FRF estimator from the least-squares estimator of the
+parametric model (right).                                            multisine-interpolated discrete-time equivalent response, and
+                                                                 established its properties. These results revealed the effects of
+θ can be written as
+                                                          undersampling on FRF identification and lead to a consistency
+      −Im{ˆG(iω1)}          1                  analysis for when the number of experiments grows.
+ ˆa1  ω1Re{ ˆG(iω1)}        Re{ˆG(iω1)}               The finite-time statistical properties of this estimator also
+     ˆb0           |ˆG(iω1)|2  +L −ω1Im{ ˆG(iω1)}   , L ∈R.    enabled a formal link between frequency-domain parametric  =
+                                                         system identification and the time-domain prediction error     ˆb1         Re{ˆG(iω1)}                           Re{ˆG(iω1)}                                                                                                                                                     
+              0                  1                  method using concatenated input-output data. Such connection
+                                                               1)  clarifies the exact expression for optimal weighting in
+A more parsimonious model can be derived directly after  MIMO frequency-domain parametric identification; 2) pro-
+choosing which parameters should be constrained to zero. As   vides a closed-form maximum likelihood estimator of a para-
+an example, a zero at zero frequency can be enforced by setting   metric model when the number of frequency lines does not
+ˆb0 = 0, leading to                                         exceed the number of parameters, and 3) enables finite-time
+                Re{ ˆG(iω1)}                     confidence bounds for overconstrained models. A numerical
+                                                             case study was put forward to illustrate these findings.
+                        ˆa1     ω1Im{ ˆG(iω1)}            =
+                          ˆb1              |ˆG(iω1)|2                                      APPENDIX I                                                                                           .            NORM CONCENTRATION FOR GAUSSIAN DISTRIBUTIONS                     ω1Im{ ˆG(iω1)}
+                                               Lemma 2: Consider the m-dimensional zero-mean complex
+Naturally, the resulting model is typically unstable if the true                                                          Gaussian random variable x with covariance Im and comple-
+system is given by (55).                                                        mentary covariance matrix C, where Im −CHC is positive
+  3) Overconstrained model case: Since the maximum like-                                                                   semidefinite. Then, for all δ ∈(0, 1],
+lihood estimator has no closed-form solution for this case, a
+Monte Carlo simulation is presented to illustrate the confi-        (   s      2     )                                                   P ∥x∥≥   2 log   + √m  ≤δ.       (60)
+dence bounds in Theorem 5.                                                               δ
+  The system in (55) with a1 = 1 and b0 = 2 is excited   Proof. The complex random variable x can be characterized
+with u(t) = 1/2 + cos(2t −π/2), and the noise variance is  by the normal distribution of y = [Re{x⊤}, Im{x⊤}]⊤as
+set to σ2 = 0.25. The signals are sampled at h = π/10. For   follows (see, e.g., [54, p. 62]):
+an increasing sample size, empirical values for B1, B2 are
+                                                    Re{x}          1 Im + Re{C}    Im{C}computed such that each of the following events occur with       ∼N  0,                                                     .
+                                                    Im{x}          2   Im{C}    Im −Re{C}probability at least 0.9:
+                                                       Using the Rayleigh quotient, the largest eigenvalue of Cov{y}     n               o E1 =  ∥G(ˆθ) −G(θ0)∥F < B1   ,                                   is bounded by
+
+ E2 =     n∥ˆθ−θ0∥< B2 ∥J(ˆθ)−J(θ0)∥≤0.2σmin(J(θ0))o .                                                             1+Re{z⊤Cz} ≤1 + ∥C∥ ≤1,                                                     λmax(Cov{y})= max
+                                                                             ∥z∥=1      2            2
+These empirical values are compared with the  theoretical
+                                                      where the last inequality follows from Im −CHC being posi-bounds presented in Theorem 5. The sample size N is chosen
+                                                                        tive semidefinite. By considering the Cholesky decompositionas a multiple of 10, ranging from N = 20 to N = 300, and
+                                      VV⊤of the covariance matrix above, we note that the random2000 Monte Carlo runs are performed for each N. Note that
+                                                                  variable e := V−1y is a standard multivariate Gaussian. Theevery sample size multiple of 10 satisfies Assumption 3. The
+                                              map e 7→∥Ve∥= ∥y∥= ∥x∥is 1-Lipschitz since for anytime-domain simplified refined instrumental variable algorithm
+                                                                vectors e1, e2 of appropriate dimensions,of [52] is used to compute the parametric estimator, where a
+relative tolerance of 10−15 is implemented for the termination                                                   ∥Ve1∥−∥Ve2∥ ≤∥V(e1 −e2)∥
+rule of the refined instrumental variable iterations.
+                                                                       ≤σmax(V)∥e1 −e2∥
+  Figure 4 compares empirical and theoretical bounds for
+the FRF and parameter confidence  regions. The obtained                     ≤∥e1 −e2∥.
+
+===== PDF PAGE 15 =====
+GONZ ´ALEZ et al.: FINITE SAMPLE MIMO SYSTEM IDENTIFICATION WITH MULTISINE EXCITATION: NONPARAMETRIC, DIRECT, AND TWO-STEP PARAMETRIC
+ESTIMATORS                                                                                                                       15
+
+Thus, Theorem 2.26 of [63] gives the concentration bound     where E{·} denotes the expectation of a quasi-stationary signal
+                                                                   [33, p. 34], and the predictor ˆy(kh, θ) is given by
+       P {∥x∥≥t + E{∥x∥}} ≤2 exp(−t2/2),      (61)
+                                                                         ˆy(kh, θ) = α1|G(iω1, θ)| sin ω1kh + ∠G(iω1, θ)  .valid for all t ≥0. By noting that E{∥x∥2} = E{∥Ve∥2} =
+tr{Cov{y}} = m, Jensen’s inequality gives E{∥x∥} ≤√m.   After standard computations, we obtain
+Hence, {x: ∥x∥≥t+√m} ⊂{x: ∥x∥≥t+E{∥x∥}. Taking
+                                                                            −α1b0,0ω1                                                                         probability on both sides, introducing δ = 2 exp(−t2/2) and                                                                                                     cos(ω1kh + 2ϕ)
+combining with (61) gives (60), concluding the proof.   □        ∂ˆy(kh, θ)          a21,0ω21 + 1                                             =      α1
+                                                    ∂θ    θ=θ0                 sin(ω1kh + ϕ)                                                                                                                                                                    q                                       ,                   APPENDIX II                                               a21,0ω21 + 1
+  LOCAL LOWER BOUND FOR DIFFERENTIABLE MAPS
+                                                      where ϕ = ∠(1 −ia1,0ω1). Using the identity
+  Lemma 3: Let the mapping θ →vec{G(θ)} be continu-
+                                                                                                  cos(ϕ1 −ϕ2)ously differentiable on a convex and compact set D, and let    E                                                                                                                                                                                   ,                                                            {sin(ω1kh + ϕ1) sin(ω1kh + ϕ2)} =
+β ∈(0, 1). Suppose that the Jacobian J(θ) of vec{G(θ)} has                                           2
+full column rank for all θ ∈D. Then, for all θ0 there exists  we obtain
+an open ball B ⊂D centered around θ0 whose points satisfy                                   (                          ⊤)−1
+∥J(θ) −J(θ0)∥≤(1 −β)σmin(J(θ0)). Additionally, for all    E    ∂ˆy(kh, θ)          ∂ˆy(kh, θ)
+θ ∈B, the following inequality holds:                            ∂θ    θ=θ0      ∂θ    θ=θ0
+
+                                                                                       −α2                                                                                                                    1                                                                                                                          1b0,0ω1                                                                                                                                       sin(ϕ) 
+                                                                                                                     2(a2       ∥G(θ)−G(θ0)∥F ≥βσmin(J(θ0))∥θ−θ0∥.     (62)         4(a21,0ω21 + 1)4    2(a21,0ω2α2                                                                                            1+1)                                                                                                                          1,0ω21+1)3/2
+  Proof. By assumption J(θ) is continuous on the compact set    =                                                                                                                                           1   .                                                           α41b20,0ω21   −α21b0,0ω1 sin(ϕ)     α21b20,0ω2D, with θ0 belonging to the interior of D. Hence, there exists                               2(a21,0ω21+1)3/2    2(a21,0ω21+1)2
+an open ball B ⊂D containing θ0 such that ∥J(θ)−J(θ0)∥≤
+                                                           Thus, we conclude that
+(1 −β)σmin(J(θ0)) for all θ ∈B, where β ∈(0, 1) and
+σmin(J(θ0)) > 0 due to the full column rank condition. Since    Var{ˆa1}≈2σ2(a21,0ω21 +1)3 , Var{ˆb0}≈2σ2(a21,0ω21 +1)2 .
+θ 7→vec{G(θ)} is continuously differentiable, the mean value           Nα21b20,0ω21              Nα21
+theorem [64, Theorem 4.2, p.341] applies. Thus, for θ, θ0 ∈B,
+                 Z 1                                           REFERENCES
+  vec{G(θ)−G(θ0)}=   J(θ0 + t[θ−θ0])dt(θ−θ0).  (63)
+                         0                                                    [1]  J. Schoukens, R. Pintelon, and P. Guillaume, “On the advantages of
+                                                                                      periodic excitation in system identification,” IFAC Proceedings Volumes,
+If we denote the integral in (63) by Iθ0(θ −θ0), then                   vol. 27, no. 8, pp. 1115–1120, 1994.
+                                                                                      [2]  J. Schoukens, R. Pintelon, and Y. Rolain, “Time domain identification,
+                    Z 1                                             frequency domain identification. Equivalencies! Differences?” in 2004
+ ∥Iθ0(θ−θ0)−J(θ0)∥≤   ∥J(θ0 + t[θ−θ0])−J(θ0)∥dt         American Control Conference (ACC), vol. 1, 2004, pp. 661–666.
+                             0                                                [3] R.  Pintelon and  J. Schoukens, System  Identification: A Frequency
+                ≤sup ∥J(ξ) −J(θ0)∥                     Domain Approach, 2nd Edition.  John Wiley & Sons, 2012.
+                      ξ∈B                                              [4] E. C. Levy, “Complex-curve fitting,” IRE Transactions on Automatic
+               ≤(1 −β)σmin(J(θ0)).                           Control, vol. AC-4, no. 1, pp. 37–43, 1959.
+                                                                                      [5] C. Sanathanan and J. Koerner, “Transfer function synthesis as a ratio of
+Thus, Corollary 7.3.5 in [41] yields the singular value inequal-        two complex polynomials,” IEEE Transactions on Automatic Control,
+                                                                                              vol. 8, no. 1, pp. 56–58, 1963.
+ity                                                                                   [6] R. Van Herpen, T. Oomen, and M. Steinbuch, “Optimally conditioned
+                                                                                     instrumental variable approach for frequency-domain system identifica-
+  σmin(Iθ0(θ−θ0)) ≥σmin(J(θ0))−∥Iθ0(θ−θ0)−J(θ0)∥             tion,” Automatica, vol. 50, no. 9, pp. 2281–2293, 2014.
+                 ≥βσmin(J(θ0)),                                     [7] A. H. Whitfield, “Asymptotic behaviour of transfer function synthesis                                                                               methods,” International Journal of Control, vol. 45, no. 3, pp. 1083–
+which implies                                                              1092, 1987.
+                                                                                      [8] B. Gustavsen and A. Semlyen, “Rational approximation of frequency
+                                                                       domain responses by  vector  fitting,” IEEE Transactions on Power
+     ∥G(θ)−G(θ0)∥F ≥σmin(Iθ0(θ −θ0))∥θ −θ0∥                  Delivery, vol. 14, no. 3, pp. 1052–1061, 1999.
+                    ≥βσmin(J(θ0))∥θ −θ0∥,                    [9] A. A. Ozdemir and S. Gumussoy, “Transfer function estimation in
+                                                                            system identification toolbox via vector fitting,” IFAC-PapersOnLine,
+which proves the statement.                 □          vol. 50, no. 1, pp. 6232–6237, 2017.
+                                                                               [10] R. Voorhoeve, T. Oomen, R. van Herpen, and M. Steinbuch, “On numeri-
+                                                                                           cally reliable frequency-domain system identification: New connections
+                   APPENDIX III                               and a comparison of methods,” IFAC Proceedings Volumes, vol. 47,
+ COMPUTATION OF THE ASYMP. VARIANCE OF ˆa1 AND ˆb0           no. 3, pp. 10 018–10 023, 2014.
+                                                                               [11] R. A. de Callafon, D. de Roover, and P. M. J. Van den Hof, “Multi-
+  In this appendix we provide the computations that lead to         variable least squares frequency domain identification using polynomial
+the variance in (58) through an asymptotic approach.  It  is         matrix fraction descriptions,” in 35th IEEE Conference on Decision and
+well known (see, e.g., [33]) that the covariance of ˆθ can be         Control (CDC), vol. 2, 1996, pp. 2030–2035.                                                                               [12]  S. V. Gaikwad and D. E. Rivera, “Multivariable frequency-response
+approximated for large sample size by                                   curve fitting with application to control-relevant parameter estimation,”
+                                                                                Automatica, vol. 33, no. 6, pp. 1169–1174, 1997.
+          " (                                         ⊤)#−1     [13] R. S. Blom and P. M. J. Van den Hof, “Multivariable frequency domain                  ∂ˆy(kh,θ)        ∂ˆy(kh,θ) Cov{ˆθ}≈σ2 E                                                               ,            identification using IV-based linear regression,” in 49th IEEE Conference
+      N       ∂θ    θ=θ0     ∂θ    θ=θ0                on Decision and Control (CDC), 2010, pp. 1148–1153.
+
+===== PDF PAGE 16 =====
+16
+
+
+
+[14] R. Voorhoeve, N. Dirkx, T. Melief, W. Aangenent, and T. Oomen,         conditions, and consistency,” IEEE Control Systems Letters, vol. 8, pp.
+     “Estimating structural deformations for inferential control: a disturbance        2415–2420, 2024.
+     observer approach,” IFAC-PapersOnLine, vol. 49, no. 21, pp. 642–648,    [36] M. van Haren, L. Mirkin, L. Blanken, and T. Oomen, “Beyond Nyquist
+     2016.                                                                               in frequency response function identification: Applied to slow-sampled
+[15]  J. Vayssettes, G. Merc`ere, P. Vacher, and R. A. De Callafon, “Frequency-         systems,” IEEE Control Systems Letters, vol. 7, pp. 2131–2136, 2023.
+     domain identification of aircraft structural modes from short-duration    [37] A. V. Oppenheim, A. S. Willsky, and S. H. Nawab, Signals & Systems,
+       flight tests,” International Journal of Control, vol. 87, no. 7, pp. 1352–        2nd Edition.  Pearson Education, 1997.
+     1372, 2014.                                                              [38]  I. Markovsky and R. Pintelon, “Identification of linear time-invariant
+[16] R. Voorhoeve, R. de Rozario, W. Aangenent, and T. Oomen, “Identifying        systems from  multiple experiments,” IEEE Transactions on Signal
+     position-dependent mechanical systems: A modal approach applied to a         Processing, vol. 63, no. 13, pp. 3549–3554, 2015.
+      flexible wafer stage,” IEEE Transactions on Control Systems Technology,    [39]  S. V´asquez, M. Kinnaert, and R. Pintelon, “On the consistency and
+      vol. 29, no. 1, pp. 194–206, 2020.                                           asymptotic normality of discrete-time LTI models identified from con-
+[17]  J. Antoni and J. Schoukens, “A comprehensive study of the bias and         catenated data sets,” Automatica, vol. 140, Article 110209, 2022.
+     variance of frequency-response-function measurements: Optimal win-    [40] K. J. ˚Astr¨om and B. Wittenmark, Computer Controlled Systems: Theory
+    dow selection and overlapping strategies,” Automatica, vol. 43, no. 10,        and Design.   Prentice-Hall, 1984.
+     pp. 1723–1736, 2007.                                                    [41] R. A. Horn and C. R. Johnson, Matrix Analysis, 2nd Edition. Cambridge
+[18] R. Pintelon, J. Schoukens, G. Vandersteen, and K. Barb´e, “Estimation         University Press, 2012.
+      of nonparametric noise and FRF models for multivariable systems—Part    [42] W. Ledermann, Complex Numbers.  Springer, 1962.
+       I: Theory,” Mechanical Systems and Signal Processing, vol. 24, no. 3,    [43] E. L. Lehmann and G. Casella, Theory of Point Estimation, 2nd Edition.
+     pp. 573–595, 2010.                                                              Springer, 1998.
+[19] R. Pintelon, K. Barb´e, G. Vandersteen, and J. Schoukens, “Improved    [44] M. Elad, Sparse and Redundant Representations: From Theory  to
+      (non-) parametric identification of dynamic systems excited by periodic         Applications in Signal and Image Processing.  Springer, 2010.
+      signals,” Mechanical Systems and Signal Processing, vol. 25, no. 7, pp.    [45]  J. Parsa, C. R. Rojas, and H. Hjalmarsson, “Transformation of regressors
+     2683–2704, 2011.                                                                  for low coherent sparse system identification,” IEEE Transactions on
+[20] R. Pintelon and  J. Schoukens, “Measurement of frequency response        Automatic Control, vol. 69, no. 5, pp. 2947–2962, 2023.
+      functions using periodic excitations, corrupted by correlated input/output    [46] L. Ljung, “On the estimation of transfer functions,” Automatica, vol. 21,
+      errors,” IEEE  Transactions on  Instrumentation and  Measurement,         no. 6, pp. 677–696, 1985.
+      vol. 50, no. 6, pp. 1753–1760, 2001.                                     [47] R. A.  Gonz´alez, M. van der  Hulst, K.  Classens, and  T. Oomen,
+[21] R. Pintelon, Y. Rolain, and W. Van Moer, “Probability density function          “Statistically optimal structured additive MIMO continuous-time system
+      for frequency response function measurements using periodic signals,”          identification,” arXiv preprint arXiv:2505.14169, 2025.
+      in 19th IEEE Instrumentation and Measurement Technology Conference,    [48] G. Casella and R. L. Berger, Statistical Inference, 2nd Edition. Duxbury,
+      vol. 2, 2002, pp. 869–874.                                                 2002.
+[22] R. Pintelon, P. Guillaume, Y. Rolain, J. Schoukens, and H. Van Hamme,    [49]  T. S¨oderstr¨om, P. Stoica, and B. Friedlander, “An indirect prediction
+     “Parametric  Identification  of  Transfer  Functions  in  the Frequency          error method for system identification,” Automatica, vol. 27, no. 1, pp.
+    Domain–A Survey,” IEEE Transactions on Automatic Control, vol. 39,        183–188, 1991.
+     no. 11, pp. 2245–2260, 1994.                                             [50]  P. Stoica and T. S¨oderstr¨om, “On reparametrization of loss functions
+[23]  T. McKelvey, “Frequency domain  identification methods,”  Circuits,        used in estimation and the invariance principle,” Signal Processing,
+     Systems and Signal Processing, vol. 21, no. 1, pp. 39–55, 2002.                  vol. 17, no. 4, pp. 383–387, 1989.
+[24]  J. Schoukens, R. Pintelon, and Y. Rolain, “Study of conditional ML    [51]  T. S¨oderstr¨om and P. Stoica, System Identification.  Prentice-Hall, 1989.
+      estimators in time and frequency-domain system identification,” Auto-    [52] R. A. Gonz´alez, C. R. Rojas, S. Pan, and  J. S. Welsh, “Consistent
+     matica, vol. 35, no. 1, pp. 91–100, 1999.                                           identification of continuous-time systems under multisine input signal
+[25]  J. C. Ag¨uero,  J.  I. Yuz, G. C. Goodwin, and R. A. Delgado, “On          excitation,” Automatica, vol. 133, Article 109859, 2020.
+      the equivalence of time and frequency domain maximum likelihood    [53] M. van der Hulst, R. A. Gonz´alez, K. Classens, P. Tacx, N. Dirkx,
+      estimation,” Automatica, vol. 46, no. 2, pp. 260–270, 2010.                           J. van de Wijdeven, and T. Oomen, “Frequency domain identification
+[26] D. R. Brillinger, Time Series: Data Analysis and Theory.  SIAM, 2001.          for multivariable motion control systems: Applied to a prototype wafer
+[27] M. Simchowitz, H. Mania, S. Tu, M. I. Jordan, and B. Recht, “Learning          stage,” in Joint IFAC Symposium on Mechatronic Systems & Robotics
+     without mixing: Towards a sharp analysis of linear system identifica-          (in Press), 2025.
+      tion,” in Conference On Learning Theory, 2018, pp. 439–473.            [54]  P. J. Schreier and L. L. Scharf, Statistical signal processing of complex-
+[28] R. A. Gonz´alez and C. R. Rojas, “A finite-sample deviation bound         valued data: The theory of improper and noncircular signals.  Cam-
+      for stable autoregressive processes,” in Proceedings of the 2nd Annual         bridge University Press, 2010.
+     Conference on Learning for Dynamics and Control (L4DC), 2020, pp.    [55] A. Cuyt and L. Wuytack, Nonlinear Methods in Numerical Analysis.
+     191–200.                                                                            Elsevier, 1987.
+[29] Y. Jedra and A. Proutiere, “Finite-time identification of linear systems:    [56] A. Ben-Israel and T. N. E. Greville, Generalized Inverses: Theory and
+     Fundamental  limits and optimal algorithms,” IEEE Transactions on         Applications, 2nd Edition.  Springer, 2003.
+     Automatic Control, vol. 68, no. 5, pp. 2805–2820, 2022.                  [57]  S. A. Dyer and J. S. Dyer, “Least-squares fitting of data by rational func-
+[30] H. Hjalmarsson and B. Ninness, “Least-squares estimation of a class of          tions: Levy’s method (part 1),” IEEE Instrumentation & Measurement
+     frequency functions: A finite sample variance expression,” Automatica,        Magazine, vol. 12, no. 6, pp. 40–43, 2009.
+      vol. 42, no. 4, pp. 589–600, 2006.                                        [58] G. C. Goodwin and R. L. Payne, Dynamic System  Identification:
+[31] A. Tsiamis, M. Abdalmoaty, R. S. Smith, and J. Lygeros, “Finite sample        Experiment Design and Data Analysis.  Academic Press, 1977.
+     frequency domain identification,” in 63rd Conference on Decision and    [59] D. V. Hinkley, “On the ratio of two correlated normal random variables,”
+     Control (CDC), 2024, pp. 3025–3030.                                         Biometrika, vol. 56, no. 3, pp. 635–639, 1969.
+[32] ——, “Finite sample identification: from frequency to time domain,”    [60] G. Marsaglia, “Ratios of normal variables,” Journal of Statistical Soft-
+      in ICML 2024 Workshop: Foundations of Reinforcement Learning and         ware, vol. 16, no. 4, pp. 1–10, 2006.
+     Control–Connections and Perspectives, 2024.                             [61] E.  D´ıaz-Franc´es and  F.  J. Rubio, “On  the  existence of a normal
+[33] L. Ljung, System  Identification: Theory  for the User, 2nd Edition.        approximation to the distribution of the ratio of two independent normal
+      Prentice-Hall, 1999.                                                 random variables,” Statistical Papers, vol. 54, no. 2, pp. 309–323, 2013.
+[34] R. A. Gonz´alez, C. R. Rojas, and H. Hjalmarsson, “Non-causal regular-    [62] D. O. Kuethe, A. Caprihan, H. M. Gach, I. J. Lowe, and E. Fukushima,
+      ized least-squares for continuous-time system identification with band-        “Imaging  obstructed  ventilation with NMR  using  inert  fluorinated
+      limited input excitations,” in 60th IEEE Conference on Decision and          gases,” Journal of Applied Physiology, vol. 88, no. 6, pp. 2279–2286,
+     Control (CDC), 2021, pp. 114–119.                                         2000.
+[35] R. A. Gonz´alez, M. van Haren, T. Oomen, and C. R. Rojas, “Sampling    [63] M. J. Wainwright, High-Dimensional Statistics: A Non-Asymptotic View-
+      in parametric and nonparametric system identification: Aliasing, input          point.  Cambridge University Press, 2019.
+                                                                               [64]  S. Lang, Real and Functional Analysis, 3rd Edition.  Springer, 2012.

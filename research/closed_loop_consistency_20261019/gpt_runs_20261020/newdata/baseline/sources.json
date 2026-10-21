@@ -1,0 +1,26 @@
+[
+  {
+    "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\realfit_original_copy.py",
+    "copy": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\baseline\\realfit_original_copy.py",
+    "sha256": "9646263636035391bda454f40cb8e6464a23f327aaf9e3d779a345880661948f"
+  },
+  {
+    "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\realfit_extended.py",
+    "copy": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\baseline\\realfit_extended.py",
+    "sha256": "61ad5c1a46d1fc10392262156ea777b7d797fca450dc74d0563223164220dd4a"
+  },
+  {
+    "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\weighted_core.py",
+    "copy": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\baseline\\weighted_core.py",
+    "sha256": "09698d1c00a1e937098da52210d51d4bab69f9fabc9a9080cf3889beffe6db1e"
+  },
+  {
+    "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\sml_core_copy.py",
+    "copy": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\baseline\\sml_core_copy.py",
+    "sha256": "6ce4bccff1c38a5c3fa04223f3df4403651ea28ce898ba3acd352c91bc3b07aa"
+  },
+  {
+    "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\delay_identification_20261016\\effective_delay_matrix_us.csv",
+    "sha256": "59542d9e4940639969c2f291b0b6afbbc3660a6fd29097deca9c1b06f429e61f"
+  }
+]

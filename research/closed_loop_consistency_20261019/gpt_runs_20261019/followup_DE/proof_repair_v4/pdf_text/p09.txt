@@ -1,0 +1,402 @@
+===== PDF PAGE 1 =====
+                                   Available online at www.sciencedirect.com
+
+                       ScienceDirectScienceDirect
+
+                                    IFAC PapersOnLine 59-17 (2025) 67–72
+
+                Frequency domain identification for
+                  multivariable motion control systems:
+                 Applied to a prototype wafer stage
+                M. van der Hulst ∗R. A. Gonz´alez ∗K. Classens ∗P. Tacx ∗
+                       N. Dirkx ∗∗J. van de Wijdeven ∗∗T. Oomen ∗,∗∗∗
+                          ∗Dept. of Mechanical Engineering, Eindhoven University of
+                                          Technology, The Netherlands
+                             ∗∗ASML, Veldhoven, The Netherlands
+                            ∗∗∗Delft Center for Systems and Control, Delft University of
+                                         Technology The Netherlands
+
+          Abstract: Multivariable parametric models are essential for optimizing the performance of
+            high-tech systems. The main objective of this paper is to develop an identification strategy
+           that provides accurate parametric models for complex multivariable systems. To achieve this,
+          an additive model structure is adopted, offering advantages over traditional black-box model
+            structures when considering physical systems. The introduced method minimizes a weighted
+            least-squares criterion and uses a refined instrumental variable method to solve the estimation
+           problem, achieving local optimality upon convergence. Experimental validation is conducted on
+          a prototype wafer-stage system, featuring a large number of spatially distributed actuators and
+            sensors and exhibiting complex flexible dynamic behavior, to demonstrate the effectiveness of
+           the proposed method.
+            Copyright © 2025 The Authors. This is an open access article under the CC BY-NC-ND license
+             (https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+          Keywords: Parameter estimation, system identification, multivariable systems, frequency
+           response function
+
+                    1. INTRODUCTION                       of the system (Gawronski, 2004). Similar approaches are
+                                                      found in the thermal analysis of machine frames (ZhuSystem identification involves developing mathematical
+                                                                et al., 2008), RLC circuits (Lange and Leone, 2021), andmodels using experimental data, often incorporating in-
+                                                             acoustic modeling of room responses (Jian et al., 2022).sights from physical principles (Ljung, 1999). Data-driven
+                                              The estimation of additive transfer function models, whichparametric models of multi-input multi-output (MIMO)
+                                                            are related to unfactored transfer functions via partialsystems are essential for optimizing the performance of
+                                                               fraction expansion, offers several advantages. These mod-engineered systems, as they enable the design of high-
+                                                                        els enable more efficient parameterization by minimizingperformance controllers and observers, provide design val-
+                                                         the number of parameters needed to represent the system,idation and feedback, and facilitate online monitoring and
+                                                         thereby reducing model complexity and enhancing statis-fault diagnosis (Steinbuch et al., 2022).
+                                                                      tical estimation properties (S¨oderstr¨om and Stoica, 2001).
+Traditional  linear system  identification approaches  for   Furthermore, they provide improved physical insight for
+multivariable systems often rely on black-box model struc-   fault diagnosis (Classens et  al., 2022) and enhance nu-
+tures that do not consider the underlying structure of   merical conditioning, which is crucial for the parametric
+the physical system. Examples include rational common   identification of stiff and high-order systems (Gilson et al.,
+denominator models and matrix fractional descriptions   2018).
+(Pintelon and Schoukens, 2012). The literature on these
+                                         When identifying physical systems, estimating continuous-model parameterizations is extensive (Correa and Glover,
+                                                       time models offers distinct advantages over discrete-time1984; Vayssettes et al., 2016), yet they may not provide the
+                                                        models. Continuous-time models facilitate the integrationmost parsimonious or physically relevant model descrip-
+                                                                  of a priori knowledge, such as relative degree, and providetions for practical applications. Many physical systems are
+                                                 more interpretable parameters that directly correspond tomore naturally described by a sum of low-order transfer
+                                                             physical quantities (Garnier, 2015). In this context, thefunctions. Examples can be found in vibrational analysis
+                                                       frequency-domain approach for parametric identification(Vayssettes and Merc`ere, 2015; Dorosti et al., 2018) and in
+                                                                  of continuous-time models has become increasingly popu-the control of flexible motion systems (Voorhoeve et al.,
+                                                                          lar. Frequency-domain system identification offers several2021; Tacx et al., 2024), where models are often repre-
+                                                          advantages, including data and computational efficiency,sented as a sum of transfer functions with distinct denom-
+                                                                     flexible data processing, nonparametric noise model es-inators, corresponding to the individual resonant modes
+                                                            timation, and direct interpretation of system dynamics
+⋆This project is funded by Holland High Tech — TKI HSTM via                                                           (Pintelon and Schoukens, 2012).
+the PPP Innovation Scheme (PPP-I) for public-private partnerships.
+
+2405-8963 Copyright © 2025 The Authors. This is an open access article under the CC BY-NC-ND license.
+Peer review under responsibility of International Federation of Automatic Control.
+10.1016/j.ifacol.2025.10.141
+
+===== PDF PAGE 2 =====
+68                                 M. van der Hulst et al. / IFAC PapersOnLine 59-17 (2025) 67–72
+
+
+Many MIMO frequency-domain identification strategies
+have been developed for models parameterized using non-
+additive structures. These methods can largely be catego-
+rized into pseudo-linear regression-based techniques (Blom
+and Van Den Hof, 2010; Sanathanan and Koerner, 1961)
+and gradient descent methods (Bayard, 1994). In contrast,
+additive model estimation has primarily focused on single-
+input single-output (SISO) approaches. Examples include
+vector fitting (Semlyen, 1999), which involves fitting first-
+order pole models, a simplified refined instrumental vari-
+able method (SRIVC) for additive systems in (Gonz´alez
+et al., 2024; Young and Jakeman, 1980), and a block co-
+ordinate descent method for offline and online estimation
+(Gonz´alez et al., 2023; Classens et al., 2024).
+
+Although additive identification offers benefits for mod-
+eling physical systems, identification methods for MIMO                                                               Fig. 1. Experimental setup featuring a prototype wafer-
+systems in additive structures remain limited. The ap-                                                                 stage system.
+proach in Gonz´alez et al. (2024) enables the estimation of                                 z2                                                                                u2SISO additive systems using time-domain data but is not          z3                                                                                     u6                                                                       u7directly applicable to MIMO systems. This paper intro-               u3               u10       u1    z1
+duces a comprehensive MIMO frequency-domain identifi-
+cation method for estimating additive linear continuous-
+time models. The main contributions are:
+ C1 A frequency-domain  refined instrumental  variable                             z4
+    method for estimating continuous-time MIMO mod-
+      els in additive transfer function form.
+ C2 Experimental validation of the developed identifica-   Fig. 2. Schematic overview of the featured actuators ui
+     tion on a prototype wafer-stage system.                 and sensors zi in the out-of-plane direction.
+This paper is organized as follows. First, Section 2 formally   monitoring techniques. The availability of accurate math-
+introduces the additive model structure and outlines the   ematical models that capture the dynamics of the flexible
+identification problem considered. In section 3, the identi-   multivariable system is crucial for effectively addressing
+fication strategy is presented with experimental validation   these challenges.
+in Section 4. Finally, conclusions are given in Section 5.
+                                               The system contains 17 actuators: 13 are in the z direction
+Notation: Scalars, vectors and matrices are written as x,   and two each for the x and y directions. Furthermore,
+x and X, respectively. The imaginary unit is denoted by   the system includes 7 positioning sensors, 4 for the z-
+                                                                 direction, 2 for the x-directions, and a single sensor for thej2 = −1, and for z ∈Cn, the operation ℜ{z} returnsthe real part of the complex vector z. For a matrix A, its   y-direction. Only out-of-plane motions, that is, translation
+transpose is written as A⊤, and its Hermitian (conjugate   along the z axis, and rotations around the x and y axes,
+                                                            are considered in this paper to facilitate the exposition.transpose) as AH.  If x ∈Cn and Q ∈Cn×n  is aHermitian matrix, then the weighted 2-norm is given by  An overview of the sensors and actuators considered is
+∥x∥Q =  xHQx. For X = [x1, . . . , xn], with xi ∈Cn, the   provided in Figure 2.
+operation vec(X) = [x⊤1 , . . . , x⊤n ]⊤restructures the matrix
+into a vector by stacking its columns.                       2.2 Model structure
+
+      2. SETUP AND PROBLEM FORMULATION      To model the input/output dynamics of the wafer-stage
+                                                          system, an additive model structure is adopted, which is
+In this section, the experimental setup is presented and the   formally introduced in this section. Consider the linear
+additive model structure is formally introduced. Finally,   and time-invariant (LTI) model of a MIMO system with
+the identification problem considered is formulated.        nu inputs and ny outputs in additive form
+
+                                                          K
+2.1 Experimental setup: prototype wafer-stage system                      P(s, β) =    Pi(s, θi),               (1)
+                                                                                          i=1
+The considered experimental setup depicted in Figure 1 is                                                       with K the number of submodels, s the Laplace variable
+a prototype wafer stage system. The system is actively con-                                                  and β and θi the joint and submodel parameter vector.
+trolled in six motion degrees of freedom at a sampling rate                                                  Each submodel Pi(s, θi) is parametrized according to
+of 10 kHz, achieving accuracy in the sub-micrometer range.
+                                                                                1
+The     stage              is magnetically                           levitated                                  using                                          gravity                                         compen-
+                                                                           Pi(s, β) = sℓiAi(s)Bi(s),             (2)sators,       achieving               a mid-air                          equilibrium                               and                                          eliminating                                              any
+mechanical connections to the fixed world. These systems   where at most one submodel may include ℓi > 0 poles
+exhibit pronounced flexible dynamics, which pose signifi-   at the origin. The scalar denominator polynomial Ai(s)
+cant challenges for controller design, model updating, and   and the matrix numerator polynomial Bi(s) are such that
+
+===== PDF PAGE 3 =====
+                                   M. van der Hulst et al. / IFAC PapersOnLine 59-17 (2025) 67–72                                    69
+
+no complex number z simultaneously satisfies Ai(z) = 0   For the considered additive model structure the gradient
+and Bi(z) = 0. To ensure a unique characterization of   corresponds to
+{Pi(s)}Ki=1,  it  is assumed that at most one submodel        ˆΦ (ωk, β) =  ˆΦH1 (ωk, θ1) . . . ˆΦHK (ωk, θK) H ,    (11)Pi(s) is biproper. The Ai(s) and Bi(s) polynomials are
+parametrized as                                                    where ˆΦi (ωk, θi) for i = 1, . . . , K is given by
+         Ai(s) = 1 + ai,1s + . . . + ai,nisni,            (3)
+                                                                                        θi)         k pi(ξk, θi)         Bi(s) = Bi,0 + Bi,1s + . . . + Bi,mismi,       (4)      ˆΦi(ωk, β) =  −ξkpi(ξk,      , . . . , −ξni               ,
+                                                                                                 ξℓik Ai(ξk)            ξℓik Ai(ξk)where the Ai(s) polynomials are stable,  i.e.,  all roots                                                                                      H          (12)
+lie in the  left-half plane, and they do not share any                      Inuny       ξmik  Inuny
+common  roots. The polynomials Ai(s) and Bi(s) are                                               , . . . ,                    ,
+                                                                                              ξℓik Ai(ξk)       ξℓik Ai(ξk)jointly described by the parameter vector
+                          ⊤                    with pi(ξk, θi) = vec(Pi(ξk, θi)) the vectorized plant of
+            β = θ⊤1 ,  . . . , θ⊤K     ,               (5)   the ith submodel. In the following subsections, the first-
+                                                          order optimality condition (9) will be exploited to derivewhere θi for i = 1, . . . , K contains the parameters of the
+ith submodel                                        an estimator for the parameter vector ˆβ.
+                                    ⊤ θi =  ai,1, . . . , ai,ni, vec (Bi,0)⊤, . . . , vec (Bi,mi)⊤   .   (6)   3.2 Refined instrumental variables for additive systems
+
+2.3 Identification problem                           The condition in (9) is non-linear in the parameter vec-
+                                                              tor β. A solution is obtained by reformulating (7) to a
+                                                           pseudolinear form which enables the refined instrumentalA dataset  of noisy plant frequency response function
+                                                               variables approach. For each submodule in the additive
+(FRF) measurements G(ωk) ∈Cny×nu  of length N,   model structure, the residual can be reformulated into anis assumed to be available for the estimation problem.
+                                                       unique pseudolinear regression, as stated in the followingTo estimate continuous-time models from the measured
+                                                  lemma.FRF, the pseudo-continuous-time setting is adopted (see
+Wang and Garnier (2008), Chapter 8 for details). The
+identification problem is formulated based on the matrix  Lemma 1. The pseudolinear regression form of the resid-
+residual, which is computed as the difference between the   ual (7) corresponding to the ith submodel is expressed as
+                                                                                                                                                       i (ωk, β) θi,    (13)FRF measurement and the model, according to                 vec E (ωk, β) = ˜gf,i(ωk, β) −Φ⊤
+        E (ωk, β) = G (ωk) −P (ξk, β) ,          (7)   with the regressor
+where ξk = jωk. The parameter vector estimate  ˆβ  is                         β)         k ˜gi(ωk, β)obtained as the minimizer of the weighted least-squares      Φi(ωk, β) =  −ξk˜gi(ωk,     , . . . , −ξni               ,
+                                                                             Ai(ξk)            Ai(ξk)
+criterion
+                                                                                                                 (14)
+                 N                                                       ⊤                  1                        2                                   Inuny       ξmik  Inuny         ˆβ = arg min         vec E (ωk, β)             ,    (8)                                                 . . . ,                    ,                                      W(ωk)            β  2N                                                                              ξℓiAi(ξk),      ξℓik Ai(ξk)                     k=1
+                                                                                                                                      i  (ξk)˜gi(ωk, β) with ˜gi(ωk, β) =where W(ωk) ∈Cnuny×nuny  is a frequency-dependent   and where ˜gf,i(ωk, β) = A−1
+weighting matrix. The problem considered is to estimate   vec( ˜Gi(ωk, β)) the residual plant of the ith submodel,
+additive models as described by (1), that minimizes the   defined by
+cost function in (8), given a dataset of noisy FRF mea-
+surements.                                                                 ˜Gi (ωk, β) = G(ωk) −        Pℓ(ξk, θℓ).    (15)
+                                                                                                                 ℓ=1,...,K
+                                                                                                                                      ℓ̸=i  3. IDENTIFICATION STRATEGY FOR ADDITIVE
+            MIMO SYSTEMS                   Proof.  The residual (7) is rewritten for i = 1, . . . , K
+                                                           according to
+In this section, an iterative linear regression method is                         Bi (ξk)
+introduced to solve the nonlinear and nonconvex optimiza-   E (ωk, β) = ˜Gi (ωk, β) − ξℓik Ai (ξk) ,               (16)tion problem (8), thereby constituting contribution C1.
+                                                                1
+                                     =                                                                                                 ξℓik Ai (ξk) ˜Gi (ωk, β) −Bi (ξk)   ,  (17)3.1 Criterion for optimality                                                                                   ξℓik Ai (ξk)
+                                                           with ˜Gi defined in (15). Substituting the numerator and
+The minimizers of the cost function in (8) satisfy the first-   denominator polynomials (3) and (4), and vectorizing both
+order optimality condition                                      sides, (17) yields
+
+       1        N                                                                                                       ˜gi (ωk, β)         aniξnik  ˜gi (ωk, β)
+  0 =            ˆΦ (ωk, β) W(ωk) vec E (ωk, β)     ,   (9)    vec E (ωk, β) =      + . . . +    N   ℜ                                                       Ai (ξk)            Ai (ξk)
+         k=1
+                                                                                     (Bi,0)          k  vec (Bi,m)with the gradient                                                                                                                                                                                 . (18)                                     H                      −vecξℓik Ai (ξk)                                                              −. . . −ξmiξℓik Ai (ξk)
+                     ∂vec E (ωk, β)
+            ˆΦ (ωk, β) =                                    .       (10)   This expression can directly be written in the form (13) by
+                      ∂β⊤                        considering (6), thereby completing the proof.      □
+
+===== PDF PAGE 4 =====
+70                                 M. van der Hulst et al. / IFAC PapersOnLine 59-17 (2025) 67–72
+
+
+
+The residual formulation in (13) defines K pseudolinear   3.3 Initialization
+regressions. Introducing the stacked signals
+                                               The iterations in (23) require an initial estimate β⟨0⟩of
+  Υ (ωk, β) =  ˜gf,1(ωk, β) . . . ˜gf,K(ωk, β)     ,    (19)   the model parameters. This section introduces a method                                      ⊤              for computing the numerator parameters assuming fixed
+   Φ (ωk, β) = Φ⊤1 (ωk, β) . . . Φ⊤K (ωk, β)     ,     (20)   denominator polynomials. This reduces the initialization
+                                                     problem to determining initial pole locations, which areand the parameter matrix               ⊤
+                                                             often effectively obtained from the nonparametric FRF
+                       θ1    0                                                       model. To this end, assume that the denominator polyno-
+            =                     ...                B                                 (21)   mials are fixed at ¯Ai(s), and let η represent the parameter
+                    0   θK                         vector from (5) without the denominator coefficients. The
+                                                          estimate ˆη is found as the solution to the convex problemwhich contains the elements   of β along, the block diagonal,
+                                                        N
+allows to write the equivalent optimality condition (9) for                 1
+                                                                                             ˆη = arg                                                         minthe K subproblem as                                                   2N    ∥vec G(ωk) −Φ⊤(ωk) η∥22,  (24)                                                                 η
+ N                                                                      k=1                                                                                        where the regressor matrix Φ is obtained by stacking for
+   ℜ  ˆΦ(ωk, β)W(ωk) Υ⊤(ωk, β) −Φ⊤(ωk, β)B  = 0.   each submodel
+k=1                                                                                    (22)                          Inuny        ξmiInuny
+                                                       Φi (ωk) =                     . . . ,                      ,    (25)The solution to (22) is found iteratively by fixing β =                             ξℓi ¯Ai(ξk),       ξℓi ¯Ai(ξk)                                                                                      ⊤β⟨j⟩at the jth iteration in (19), the regressor (20), and                                                                in the same way as (20). Hence, an initial estimate β⟨0⟩is
+additionally the gradient (11), which leads to the following
+                                                       determined by first providing initial pole locations, which
+iterative procedure.
+                                                           enables the computation of the numerator parameters by
+Algorithm 1. Given an  initial estimate β⟨0⟩and a tol-   solving the convex problem (24) given data.
+erance  ϵ, compute  a new  estimate  until ∥β⟨j+1⟩−
+β⟨j⟩∥/∥β⟨j⟩∥< ϵ using:                                                      4. EXPERIMENTAL VALIDATION
+                ˆΦ(ωk, β⟨j⟩)W(ωk)Φ⊤(ωk, β⟨j⟩)             This section presents the experimental validation of the in-                             ×        troduced identification strategy, thereby providing contri- B⟨j+1⟩= Nk=1                          −1                                              bution C2. The considered system is the prototype wafer-            N
+                                                            stage system introduced in Section 2.
+                     ˆΦ(ωk, β⟨j⟩)W(ωk)Υ⊤(ωk, β⟨j⟩), (23)
+
+               k=1                                             4.1 Model structure
+where the updated parameter vector β⟨j+1⟩is extracted
+                                               The input/output dynamics of the wafer-stage system,from the block-diagonal coefficients of B⟨j+1⟩, as described
+in (21).                                              which consists of ny = 4 outputs and nu = 13 inputs,
+                                                                                is modeled in the additive structure
+The convergence point of the iterations described by (23)                                   nflex
+ satisfies the first-order optimality condition in (9). As a                 B1,0                Bi,0                                                            P(s, β) =   +                               (26)
+ result, the estimate corresponds to a stationary point of                   s2                                                                              s2/ω2i + 2(ζi/ωi)s + 1,                                                                                     i=2the cost function defined in (8), thereby ensuring local                                                            where the components of the decomposition are inter-
+optimality. Since the original cost function is non-convex,                                                          preted as rigid-body modes and flexible dynamic modes,
+accurate initialization is critical to ensure convergence to
+                                                       with ωi > 0 the resonance frequencies, ζi > 0 the cor-
+the global optimum.
+                                                        responding damping coefficients, and nflex the number of
+                                                                      flexible modes (Gawronski, 2004).
+Remark 1. As stability is not explicitly enforced in the
+estimator (23), the resulting model may contain unstable   4.2 Nonparametric modeling
+poles. A common approach to address this is to reflect any
+unstable continuous-time poles across the imaginary axis                                               As a first step in frequency-domain identification, a non-
+at each iteration (Wang and Garnier, 2008). Alternatively,                                                         parametric model needs to be identified. The nonparamet-
+                                                                        ric FRF model of the (4  13) plant, representing the out- if each submodel has a denominator of order ni ≤2, stability can be  directly enforced by constraining the               ×                                                              of-plane dynamics of the wafer-stage system, is obtained
+denominator coefficients to be positive.                                                           using the robust best-linear approximation approach de-
+Remark 2. Note that the iterations described by (23) cor-   scribed in (Pintelon and Schoukens, 2012, Chapter 3). The
+respond to a refined instrumental variable method, where   experiments are performed in a closed-loop configuration
+ˆΦ  is interpreted as the instrument matrix (Young and   since active control of the mid-air equilibrium is required
+Jakeman, 1980). Furthermore, for K = 1, the iterations    for stable operation. The plant FRF is derived using the
+in (23) correspond to the frequency-domain refined in-   indirect method, where the system is excited by nu single-
+strumental variable method in Blom and Van Den Hof   axis random-phase multisine signals with a flat amplitude
+(2010), and by replacing ˆΦ with Φ to the SK iterations   spectrum. The multi-sine excitation includes 10 periods
+by Sanathanan and Koerner (1961). The method can be   and 10 realizations, resulting in a plant FRF consisting
+considered as a MIMO frequency-domain variant of the    of N = 4000 complex data points spanning a frequency
+SISO approach introduced in Gonz´alez et al. (2024).        range of 0.25 Hz to 2000 Hz. Frequency lines below 20 Hz
+
+===== PDF PAGE 5 =====
+                                   M. van der Hulst et al. / IFAC PapersOnLine 59-17 (2025) 67–72                                    71
+
+
+
+are discarded during the parametric estimation step, as the
+coherence of the estimated FRF is of low quality at lower
+frequencies. The delays introduced by the hold circuit
+in the digital measurement environment are determined
+based on the FRF model. The dataset is then compensated
+for these delays, allowing the delay-corrected FRF to be
+modeled in continuous time (Wang and Garnier, 2008,
+Chapter 8).
+
+4.3 Weighting filter design
+
+For the weighting  filter an element-wise inverse plant
+magnitude weighting is selected, given by
+                                    −1
+         W(ωk) = diag vec (|G(ωk)|)      .        (27)
+The inverse plant magnitude weighting effectively trans-
+forms the matrix residual (7) from absolute to relative
+error criterion. This prevents overemphasizing frequencies
+with a large magnitude, which can dominate the estima-   Fig. 3. CMIF plot with σi(ωk) the ith singular value of the
+tion process, especially for systems containing integrator       measured FRF dataset. The frequency locations of the
+dynamics.                                                               flexible modes are indicated by peaks in the singular
+                                                                value plot. This information  is used to determine
+4.4 Initialization and model order selection                     the number of modes and provides accurate initial
+                                                               estimates of the corresponding natural frequency.
+Due to the non-convexity of the cost function in (8),                                                         introduced method, which uses a refined instrumental vari-
+accurate initialization of the estimator in (23) is essential.                                                            able method to minimize a least-squares criterion, enables
+The  initialization approach followed  is to  first derive                                                                direct estimation of additive transfer function models.
+initial pole locations using the Complex Mode Indicator                                           Many systems are more naturally described in an ad-
+Function (CMIF) (Shih et  al., 1988), which are then                                                                 ditive structure, leading to reduced complexity models,
+used to initialize the numerator parameters via (24). The                                                     improved conditioning, and enhanced physical insight. The
+CMIF is computed as the squared singular values of the                                                        procedure has been successfully tested on a prototype
+FRF matrix at each frequency point, with the number of                                                            wafer-stage system, providing accurate models over a large
+flexible modes nflex and their corresponding frequencies   frequency range.
+determined by the peak locations in the CMIF.
+                                                    REFERENCESFigure 3 shows the CMIF of the FRF dataset. Using this
+approach, nflex = 17 distinct flexible modes are identified   Bayard, D.S. (1994).  High-order multivariable transfer function
+in the dataset. The frequency locations of the peaks in      curve fitting: Algorithms, sparse matrix methods and experimen-
+the CMIF are used to initialize the natural frequencies       tal results. Automatica, 30(9), 1439–1444.
+ωi. The corresponding damping coefficients are initialized   Blom, R.S. and Van Den Hof, P. (2010).  Multivariable frequency
+                                                            domain identification using IV-based linear regression.  In Pro-
+as ζi = 0.01 for i = 1, . . . , nflex, which is a typical value                                                                          ceedings of the IEEE Conference on Decision and Control, 1148–
+encountered for lightly-damped systems. The initial modal                                                                       1153.
+parameters determine the pole locations, which in turn    Classens, K., Gonz´alez, R.A., and Oomen, T. (2024).  Recursive
+allow the initial estimates of the numerator parameters to       Identification of Structured Systems: An Instrumental-Variable
+be computed by solving the convex problem (24).             Approach Applied to Mechanical Systems. Submitted for journal
+                                                                             publication.
+4.5 Results                                                          Classens, K., Mostard, M., Van De Wijdeven, J., W.P.M.H. Heemels,
+                                                            and Oomen, T. (2022).  Fault Detection for Precision Mecha-
+The parametric model is estimated through 10 iterations       tronics: Online Estimation of Mechanical Resonances. In IFAC-
+                                                                PapersOnLine, volume 55, 746–751. Elsevier B.V.
+of (23). The frequency response of the estimated plant
+                                                                    Correa, G.O. and Glover, K. (1984). Pseudo-canonical Forms, Iden-
+model is shown in Figure 4, along with the FRF model                                                                                       tifiable Parametrizations and Simple Parameter Estimation for
+used as data. Additionally, Figure 5 presents the frequency      Linear Multivariable Systems: Input-Output Models. Automatica,
+response of a single plant entry, together with the cor-       20(4), 429–442.
+responding residual. The parametric model closely aligns    Dorosti, M., Fey, R.H., Heertjes, M.F., and Nijmeijer, H. (2018). Iter-
+with the FRF measurement across the entire frequency       ative Pole–Zero model updating: A combined sensitivity approach.
+range, demonstrating the validity of the proposed method.      Control Engineering Practice, 71, 164–174.
+In particular, the high-frequency flexible modes are accu-    Garnier, H. (2015).  Direct continuous-time approaches to system
+rately captured by the additive structure, which is often       identification. Overview and benefits for practical applications. In
+                                                                European Journal of Control, volume 24, 50–62.
+challenging to achieve using traditional model structures.
+                                                                Gawronski, W. (2004). Advanced Structural Dynamics and Active
+                                                                     Control of Structures. Springer.
+                      5. CONCLUSION                           Gilson, M., Welsh, J.S., and Garnier, H. (2018). A frequency local-
+                                                                               izing basis function-based IV method for wideband system iden-
+This paper addresses the parametric identification of mul-        tification. IEEE Transactions on Control Systems Technology,
+tivariable systems using frequency-domain datasets. The       26(1), 329–335.
+
+===== PDF PAGE 6 =====
+72                                 M. van der Hulst et al. / IFAC PapersOnLine 59-17 (2025) 67–72
+
+
+
+
+
+Fig. 4. Element-wise Bode magnitude plot of the FRF measurement (   ) and the estimated parametric model (   ).
+
+                                                                        Pintelon, R. and Schoukens, J. (2012). System Identification. John
+                                                                Wiley & Sons, New Jersey, second edition.
+                                                                Sanathanan, C. and Koerner, J. (1961). Transfer function synthesis
+                                                                         as a ratio of two complex polynomials. Technical report, Atomic
+                                                               Energy Commission, Ohio.
+                                                                 Semlyen, A. (1999). Rational approximation of frequency domain re-
+                                                                      sponses by vector fitting. IEEE Transactions on Power Delivery,
+                                                                             14(3).
+                                                                       Shih, C.Y., Tsuei, Y.G., Allemang, R.J., and Brown, D.L. (1988).
+                                                           Complex mode indication function and its applications to spatial
+                                                             domain parameter estimation. Technical Report 4.
+                                                                              S¨oderstr¨om, T. and Stoica, P. (2001). System Identification. Prentice
+                                                                               Hall.
+                                                                     Steinbuch, M., Oomen, T., and Vermeulen, H. (2022).  Motion
+                                                                         Control, Mechatronics Design, and Moore’s Law. IEEJ Journal
+                                                                               of Industry Applications, 11(2), 245–255.
+                                                                  Tacx, P., Habraken, R., Witvoet, G., Heertjes, M., and Oomen, T.
+                                                                           (2024). Identification of an overactuated deformable mirror system
+Fig. 5. Bode magnitude plot of the ˆG4,13 entry with the      with unmeasured outputs. Mechatronics, 99, 103158.
+   FRF measurement (   ), the estimated parametric    Vayssettes,  J. and Merc`ere, G. (2015).  New developments  for
+    model (   ) and residual (   ).                               experimental modal analysis of aircraft structures.  In MATEC
+                                                   Web of Conferences, volume 20. EDP Sciences.
+                                                                        Vayssettes, J., Merc`ere, G., and Prot, O. (2016). New developments
+                                                                                  for matrix fraction descriptions: A fully-parametrised approach.
+ Gonz´alez, R.A., Classens, K., Rojas, C.R., Welsh, J.S., and Oomen,
+                                                                    Automatica, 66, 15–24.
+   T. (2024).  Identification of additive continuous-time systems in
+                                                                 Voorhoeve, R., De Rozario, R., Aangenent, W., and Oomen, T.
+   open and closed-loop. Automatica, 173(112013).
+                                                                           (2021).  Identifying position-dependent mechanical systems: A
+ Gonz´alez, R.A., Rojas, C.R., Pan,  S., and Welsh,  J.S. (2023).
+                                                             modal approach applied to a flexible wafer stage. IEEE Transac-
+   Parsimonious identification of continuous-time systems: A block-
+                                                                            tions on Control Systems Technology, 29(1), 194–206.
+   coordinate descent approach.  In IFAC World Congress, 56(2),
+                                                         Wang, L. and Garnier, H. (2008).  Identification of Continuous-
+   4216–4221.
+                                                                    time Models from Sampled Data. Advances in Industrial Control.
+ Jian, H.M., Chen, Y.S., and Bai, M.R. (2022).  Acoustic modal
+                                                                       Springer London.
+   analysis of room responses from the perspective of state-space
+                                                              Young, P. and Jakeman, A. (1980). Refined instrumental variable
+   balanced realization with application to field interpolation. The
+                                                              methods of recursive time-series analysis. International Journal
+   Journal of the Acoustical Society of America, 152(1), 240–250.
+                                                                               of Control, 31, 741–764.
+Lange, C. and Leone, M. (2021). Broadband Circuit Model for EMI
+                                                                Zhu,  J., Ni,  J., and Shih, A.J. (2008).   Robust machine  tool
+   Analysis of Complex Interconnection Networks in Metallic Enclo-
+                                                                    thermal error modeling through thermal mode concept. Journal
+   sures of Arbitrary Shape. IEEE Transactions on Electromagnetic
+                                                                               of Manufacturing Science and Engineering, 130(6), 0610061–
+   Compatibility, 63(2), 474–483.
+                                                                     0610069.
+Ljung, L. (1999).  System Identification: Theory For The User.
+   Prentice Hall, second edition.

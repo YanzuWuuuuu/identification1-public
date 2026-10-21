@@ -1,0 +1,18 @@
+{
+  "protected_files": 2782,
+  "changed": [],
+  "missing": [],
+  "fixed_files": 252,
+  "joint_full_files": 36,
+  "fold_files": 246,
+  "simulation_files": 40,
+  "sparse_vs_dense_A_relative": 4.753030754016696e-16,
+  "moment_only_vs_equations_absolute_scaled": 0.0,
+  "dense_vs_sparse_g_absolute_scaled": 2.977401472917085e-19,
+  "score_difference": 0.0,
+  "max_gauge_sum_us": 2.8137492336099967e-12,
+  "max_additive_matrix_error_us": 3.637978807091713e-12,
+  "deliverables_present": true,
+  "counts_match": true,
+  "passed": true
+}

@@ -1,0 +1,274 @@
+===== PDF PAGE 1 =====
+                                                                                                                             Automatica,  Vol.  33, No.  5. pp. 991-994,  1997
+                                             PII: sooos-lo!N(%)oo2ss-o               0  1997 Elsevier Science PrintedLtd.  All inrightsGreatreservedBritain
+                                                                                                                                              ooos-109x/97 $17.na + 0.00
+
+                                                                              Technical  Communique
+
+     Identification   of Continuous-time   Systems  Using
+                      Arbitrary  Signals*
+
+
+                                 R. PINTELONt    and  J. SCHOUKENSt
+
+
+            Key Words-Continuous-time     models;  frequency-domain    identification:  parametric   transfer-function
+              models.
+
+
+
+ Abstrad-This      paper   presents   a  parametric   frequency-        using digital  filters,  a number  of samples  equal  to the  order
+domain   identification   algorithm   for  linear,  time-invariant,         of the model  (1) times the order  of the digital  filter  is lost to
+ continuous-time   systems  excited  by arbitrary  signals. Unlike          initialize  the whole  chain  of  digital  observation   filters (Van
+ the current  available  methods,   this approach  allows accurate      hamme et al., 1991).
+ modeling   in  the  complete   frequency  band  from DC  to         This   paper   presents   a  parametric   frequency-domain
+ Nyquist. 0  1997 Elsevier  Science  Ltd.                                    identification  algorithm  for continuous-time  models  (1) using
+                                                                                arbitrary  excitation  signals u(t).  It allows  accurate  modeling
+                                                                           of the  continuous-time   system  from DC  (f :=O) to Nyquist
+ 1. Introduction                                                                          (f = ‘d,),  and  does  not  require   the  design  of  a  digital
+Consider   the   identification    of  a   linear,   time-invariant,         observation   filter. The paper  is organized  as follows. Sections
+continuous-time,   single-input   single-output  system  (see  Fig.      2 and  4 develop  the  frequency-domain   model  of  (1)  for
+ 1)                                                                             arbitrary  excitations,  while Section 3 treats  the  identification
+                                                                                   issues. The  theory   is illustrated  by  simulations  (Section  5)
+                                                                and experimental   results  (Section  6).
+
+
+from N samples  ~l~(kT\), yL(kT,) (k = 0, 1,.      , N -  1) of the                                                                                 2. The frequency-domain   model for  arbitrary signals
+low-pass-filtered   input  u,(t)  and  output  yL(t)  signals  (7;  is                                                                       This  section  follows  the  lines  of  Pintelon   et  al.  (1997),
+the   sampling   period).    Correct   handling   of   the   time       where   the  theory  has  been  developed   for  discrete-time
+derivatives   in  the   differential   equation   (1)   is  the  basic        systems.  To  simplify   the   analysis,  we  shall  neglect   the
+problem   of  parameteric   continuous-time   system  identifica-                                                                                    anti-alias   filters  (AA(s)  = 1) in Sections  2 and  3. Section  4
+tion.  Several  solutions  have  been  proposed,    all  of which                                                                            discusses what happens   if the  transient  effects caused by the
+explicitly  or implicitly  reconstruct  the time  derivatives  of the         anti-alias    filters   are  important   (AA(s)   f  1).  Taking   the
+sampled  continuous-time   signals  involved  (Sinha  and  Rao,                                                                         one-sided  Laplace  transform  of (1) gives
+1991).
+  A  first  possibility   consists  in  applying  special  excitation
+signals. For example,   if the input  is a step or an impulse and                 4s)W)  = B(s)W) + T(s),            (2)
+the transient  response  is measured  at the output  then one can
+rely on the  literature  treating  the  identification  of the sum of
+exponentially  damped  sinewaves  (see  Ruitz er al.. 1995, and       where  U(s) and Y(s) are the one-sided  Laplace transforms  of
+references    therein).    If  the   input   is  periodic   then   the        u(t) and y(t).  respectively  B(s) and A(s)  are respectively  the
+differential    equation    (1)  can  be   transformed    without       numerator   and  denominator    polynomials   of  the   plant
+systematic  errors  into a linear  set of algebraic  equations,  and         transfer  function
+the  identification  can be reformed   in the frequency  domain
+(see Pintelon  et a/., 1994, and references  therein).                                                                                                     B(s)   C~!L,, b,,s”’  A  second   possibility  consists  in approximating   the  time                                                                                   (3)                                                                                          G(s) = A(s) = C$&,) a&’    ’derivatives   explicitly  or  implicitly  using  digital  filters  (Van
+hamme  et al., 1991). Depending  on  the  digital  filters  used,
+these methods  are known  as the Poisson moment  functional                                                                and  T,(s)  represents  the influence  of the  initial conditions:approach.    the    integrated    sampling   approach    or   the
+instantaneous   sampling  approach  (see Sinha and Rao,  1991,
+and  references   therein).  These  modeling  approaches  work                                                       4,     11-t
+reasonably   well  for  frequencies   below    if,,   but   in  the                           T,(s)  = 2  2   u,,s’I~“1~‘y”“)(o)
+neighborhood   of the Nyquist  frequency  (f>  $A) they  either                                                    n =   t     1,1 =o
+introduce   large  errors  or  require  (very)  high-order   digital                                                      “h              II       I
+filters  (Schoukens.  1990: Van hamme  et al.. 1991). When                    2  1   b,,s”-“’  ‘P)(O).
+                                                                                        ,?=I ,11=0
+
+  *Received   26  June   1996:  received   in   final  form  18      The   integrals   appearing    in  the  model   (2)  cannot   be
+November  1996. This paper was not presented   at any IFAC        evaluated,  since  the  input  and  output  signals  are unknown
+meeting.  This  paper  was recommended    for  publication   in                                                                                for  t 2 NT,. The  differential  equation  (1) is therefore  solved
+revised  form by Editor  Peter  Dorato.  Corresponding   author         for t>NT,  using the one-sided  Laplace  transform  (multiply
+Rik   Pintelon.   Tel.  +3226292944:    Fax  +322 6292850:        both  sides of (1) by e-,” and integrate  from  t = NT, to t = 3~):
+E-mail  rpintelQvnet3.vub.ac.be.
+    t Vrije  Universiteit   Brussel.  Department  ELEC,  Pleinlaan
+2. 1050 Brussels,  Belgium.                                              MY,     = B(s).!&(s) + e-Nrq’T2(s),              (5)
+                                                       991
+
+===== PDF PAGE 2 =====
+992                                       Technical  Communique
+
+                                                                  (Schoukens   et  al.,  1994). Neglecting  A(jo,J  in (12),  it can be
+                                                                             written  in the frequency  domain  as
+
+                                                          Ye&w,)  = G(jw,,  W&=,o~)    + l(jm,,  0) + Nv(e~),
+                                                                                                                                    (13)
+                                                                         &r-r(~)   = Ui,,,,(w,)  + Nu(~*)
+
+                                                                where   Q,,,     is the  discrete  Fourier  transform   of  the  true
+                                                               (unknown)   samples   of  the  input   signal,  G(s, 0)   is  the
+                                                                        parametric  plant model,
+
+                                                                            B(s b)   p$,“=t,b,Sm
+                                                                                                   G(s,  e)=--=                                  (14)
+                                                YLW                                                 A(s,  a)    ~~oa,s”        ’
+
+                                                                                               I(s, 0)  is the  parametric  model  for  the  (equivalent)   initial
+Fig.  1. Transient  model  of  a  linear  time  invariant  system                                                                           conditions  and the alias errors,
+G(s),  including  the  anti-alias  filters AA(s)   of the  acquisition
+                             channels.                                                                                  -=w, P)  xLc,P,Srn                                                                       ‘(” ‘) =A(s,  a)    zzo    a,$     ’
+with                                                                and f3 are the model  parameters,
+          X,(r) = J--r e-?c(t)   dt  (X = U, Y;x = u, y)
+                             \                                                0=  [a’  bT  pTIT
+and
+                                                                       = [al,  aI         a,”   b.   bI            b,,
+         P&) = 5   n2  a,$-“-‘y(“‘)(NT,)
+                   n=, m=,,                                         PO  PI   ”    PJ.                          (16)
+
+                                                                   NU(ofi) and Nr(u,J   are additive  noise  sources,  independent
+                                                                           of  U,,o,(w~).    Relying  on  the   properties   of  the  DFI
+Subtracting  (5) from  (2) gives                                               (Brillinger,  1981)  it is reasonable  to assume  that these  errors
+                                                                           are  independent    (over  the  frequency)   zero-mean,   jointly
+          A(s)Y,(s)   = B(s)U,(s)   + T,(s)  - emNT+T,(s),        (7)        correlated  complex  normally  distributed  random   variables.
+where (X = U, Y and x = U, y)                            An errors-in-variables   framework  requires  knowledge  of the
+                                                                          noise covariance  matrix (Anderson,  1985).                               NT,
+             X,(s)  = X(s)  - X,(s) =        e-9(t)    dt           (8)                                               I ,I
+Evaluating   (7)  along  the  jw  axis  at  the  discrete   Fourier
+transform   (DFT)   frequencies   ok = 2x(k/N7;),    using  the
+relationship   between   the  DFI   and  the  Fourier   integral            3.2. Parametric   estimation.  A necessary  condition   for  the
+(Brigham,  1974)                                                                 identifiability  of the model  (13)  is that   it  is not  possible  to
+                           N-l                                           represent   U,,or-r(o)  as a rational  form  in jo  of order  n,,/nh,
+          X~&O~)  = C. x(nT,)e-j”wtq                               at  the  angular  frequencies  o = Ok, k = 1,2,.     . , 4N  (for  a
+                               n=,,                                           proof,  see Mathew  and Fairman,  1972). Following  the  lines
+                                                                           of Pintelon  et al. (1992)  it is possible  to construct  generalized
+                    = i   ,,t    Xv(jo,   - jno,)           (9)                                 z                                           total   least-squares,    bootstrapped     total   least-squares   and
+                                                                  maximumrlikelihood    estimators   for  the  frequency-domain
+and taking  into account  the fact that e-jwkNq = 1, results  in        model  (13). For example,  the maximum-likelihood   estimates
+                                                                           are found by minimizing  V,,(e)   with respect  to 0:A(j@k)Yo&Wk) = S(jw&&r(wk)    + T(jwk) + Wwk).    (10)
+T(juk) = [T,(jw,)  -  T,(jw,)]/r,     is  a  polynomial   of  order                        lA(jw,, e)Ym=r(w*)
+n,  -  1, and  S(j,,)    is the spectral  alias error:
+
+         8(jw,J = F       2   [G(jw,)U,(jw,     - jnw,)
+                             n---x                             n+,,                                                                    - 2 Re b$dw)A(h,    a)B*(h,   b)l
+                       - Yv(jok  - jnml)l.                        (11)                                                           The  term  w,, =0  has been  omitted   in (18)  to remove  the
+Note    that   the   spectral    alias   error    is  due   to   the        possible  offset  errors  in the  input  and  output  signals. The
+zero-order-hold    approximation    of   the   Fourier   integrals        orders  n,,  n,, and n,, of the rational forms in (14) and (15) are
+UN(jo,J  and YN(jw,J, (8), by the discrete  Fourier  transforms         estimated   through   a   statistical   analysis   of   the   global
+(9):  it  is present  even   if the  signals  u(t) and  y(t)  passed      minimum  of the maximum-likelihood   cost function.   It can be
+through  a low-pass   filter  before  sampling.  The  result  (10)      shown  that   V,,(O,,)       is close  to  a random  variable  with
+without  8(jw,+) is similar  to  that  obtained   for  discrete-time       mean   value    V,,,,,  + Vmodrl and  variance     V,,,,,, + 2V,,,,
+systems  (Pintelon  et al., 1997).                                     (Schoukens  and  Pintelon,  1991). where   V,,,i,  = f[N  -  (n, +
+  Approximating   the  alias  error  6(jo*)  by a polynomial  in      &, + n,, + 2)]  represents   the  contribution   of  the‘ disturbing
+(lo),  the final frequency-domain   model becomes                      noise and  is known  beforehand,   while  Vmodel represents   the
+                                                                            contribution  of the model  errors.
+A(jWk)Yo&wk)  = B(j~&&r(~~)    + P(ju,)  + A(jm&    (12)                                                             The  asymptotic  properties   (as N-+ m) of  the  frequency-
+where  P(jwk)   is  a  polynomial   of  order   n,, ?n,   - 1 and       domain  estimates  can be found  under  the same  conditions
+A(jo,J    is  the  residual   alias  error,  which  can  be  made       and using the same standard  techniques  as in Vandersteen   et
+arbitrary  small by increasing  n,,.                                                  al.  (1997).  For  example,    if  the  disturbing   noise  N,(o,),
+                                                        Ny(mL)  satisfies  some  mixing  assumptions,   the maximum-
+3. Identification   of the frequency-domain    model                        likelihood  estimates  of the  plant model  parameters  a and b
+   3.1.  Stochastic   model.  Continuous-time   modeling  requires         are  strongly  consistent  and  asymptotically  normally  distrib-
+band-limited   input-output    measurements,   and  leads  in  a        uted.  It  is the experience  of the authors  that  increasing  the
+natural  way  to  a  stochastic   errors-in-variables   framework        order  n,, > n,  - 1 of the  polynomial  P(jw, p)  to model  the
+
+===== PDF PAGE 3 =====
+                                           Technical  Communique                                   993
+
+ alias  error  almost  does  not  influence  the  uncertainty   of the               601
+ plant model parameters  as long as n,, << N (see Section  5).
+
+ 4. Influence of the anti-alias   jilters
+  To  simplify  the  calculations,    it will be assumed  that  the
+ anti-alias    filters   of  both   data   acquisition   channels   are
+ identical.  Consider  the set-up shown  in Fig.  1. Applying  (7)
+ three  times  at the DFT frequencies  s = jw, gives
+                  B(h)          Ydjwk) = -             AhA
+                 C(bk)        TdjwJ         ufdj~k)  =D(jok)   uN(bk) +                  (19)                                  D(bk)    ’                                                                                                                                                  f (Hz)
+                       C(jok)        YLN(jWk)= -                                                    Fig.  2. Amplitude   of  the  true  frequency  response  function
+                    D(j%)                                                 (solid  line) and magnitude  of the complex  error between  the
+where  AA(s)  = C(s)/D(s)      is  the  anti-alias   filter’s  transfer         true   frequency    response    function   and   the   estimated
+ function   of  order   n,/n,,  (n,. sn<,).   TG(jok),     T,(jo,)    and         transfer-function   model  without  P(s)  (dotted  line) and with
+ T,(jw,)    are polynomials  of orders  n,  -  1, nd - 1 and nd - 1                             P(s),  n,, = 10 (dashed  line).
+ respectively.   Eliminating   U,(s)   and   Y,(s)   in  (19)  and
+ applying  the results  of Section 2 gives
+                                                                  sample   covariance   matrix  R  of   the  mean   values   are
+                                                                            calculated   for each  set  of 100 model  parameter   estimates.
+                                                           The normalized  squared  residuals  C*(a, b) of the mean  plant
+                                                (20)      model parameter  estimates,
+where  P(jok)   is a polynomial  of order  n,, > max (n&r,,  -  l),
+ (n,  -  l)n,.).  Identification  of the model  (20) can be reformed           Cz(a, b)=  ([;;;$]      -  [;::1)‘R-‘([&:;;]          -- [;::I),     (21)
+ following  the  lines of Section  3 (replacing   P(j,,,   p)  in (18)
+by   P(jo,,  p)lD(jw,,    d)).   Since  (20)   is  not  a  common-        where   a,, and   b,,  are  the  true  values,  are  approximately
+denominator  model,  the calculation  of the starting  values  for        X*-distributed.  This allows one  to perform  a bias  test with a
+ (20) is much more  difficult compared  with that  for the model        given  confidence   level,  for example,  the  95-percentile   of a
+ (13). One  way  to  get  around   this  problem   is  to  remove        X2-distributed  random  variable  with five degrees  of freedom
+ D(jok)    in (20) and  to increase  the  order  of the polynomial        equals  11. Table  1 summarizes   the  simulation   results.   It
+P(jwk)  in order  to model  the dynamics  of  l/D(jw,).   Since       shows  the  normalized   squared   residuals   (21).  the  mean
+ anti-alias    filters   are  low-pass    filters  with  a  nearly   flat       minimal value of the cost function  (V,,(f&,))     and  its sample
+amplitude  characteristic,  a moderate  increase  in the order  of       standard  deviation,  the  contribution   of the  disturbing  noise
+P(jw,)   will be sufficient.                                                    to   the   cost   function    I/noise = 92.5 -  $(n,, + l),   and   the
+                                                                        determinant   of  the  sample  covariance  matrix  of  the  plant
+5. Simulation   results                                            model  parameters  a and b (normalized  on that of the model
+  True  continuous-time    simulation   of  a  continuous-time         without   f(s))   as a function  of the  order  of  the numerator
+system  excited by an arbitrary  signal  is impossible.  Therefore        polynomial  P(s).   It follows from Table  1 that  the  first three
+a second-order  system                                            models (no P(s), nP = 2 and n,, = 4) contain  significant model
+                                                                                errors  (VML(&,))    >> V,,,,,  and generate  biased  estimates  for                                      s’/wf  + 1                    H(s)  =                                                  the  plant  model  parameters   C*(a, b) >> 11. Although  very
+                           sz/w:) + 2&/o,, + 1 ’                          small model  errors can be detected  for the model with n,, = 8,
+                                                                             the  ,y* test  reveals  no  bias  in the  plant  model  parameters.with L = 34.3Hz,  &=50Hz    and  6 =5X  10m7. has  been
+                                                                Note  also  that  all the models  including  transient  and  aliasexcited   with  periodic   noise   consisting   of  60  frequency
+                                                                  modeling  P(s) have a significant  smaller  uncertainty  than  thecomponents   equally  distributed   in  the  band   [l Hz,60Hz]
+                                                               model without  P(s). The uncertainty  of the models with P(s)with unit amplitude  and uniformly  distributed  phase between
+                                                                             increases  very slowly with the order  n,,. Figure 2 shows  the[-X,  n].  The   input  and  output   signals   are  sampled   at
+                                                                complex  error  of the estimated  plant  transfer  function modeli = 128 Hz. The input  U,,,,   and output  x,oFT DFT spectra
+                                                                         G(s, 6) with and without  transient  and  alias modeling   f(s).of N = 190 samples  (about   1:  periods)   of  the  steady-state
+response  of the  system  are  calculated.  Zero-mean  complex
+Gaussian  noise with variance  2 X 10mh is added  to the  input
+and  output  DFT   spectra.  The   signal-to-noise    ratio  per                    201
+spectra1 line equals 48 dB at the input. A set of 100 disturbed
+input-output   DFT  spectra    is  generated.   The  maximum-
+likelihood  estimates  (18) are  calculated  for  different  model
+structures   with  a  manic  denominator   polynomial:   n,, = 2,
+n,, = 2 without  the polynomial   P(s),  and  n,, = 2, n,, = 2 with
+n,, = 2, 4, 8, 10. 12, 14. The mean values (aML). (bML) and the
+
+            Table  1. Summary  simulation  results
+
+ Order  of                                           Ratio
+   P(s)     @(a, b)    WML.(@W_))    V,,,,,    determinant                                                                2.5                                 -‘“t--FTFT---
+                                                                                                                                    f (kHz)     -       9.3 x 10h  6.27 X 10’ f 100  92.5      1
+     2      4.6 x 104  1.68 x 104 f 18   91        0.205             Fig.  3. Amplitude   frequency   response   function   obtained
+     4      3.5 x 10’        749*4     90        0.207           from  periodic  measurement   data  (solid  line) and magnitude
+     8      7.1              92*  1    88        0.244             of  the  complex   error  between    this  frequency   response
+    10     2.6              88*  1    87        0.249             function   and  the  estimated    transfer   function   using  the
+    12     2.3              87 f 1    86        0.258             periodic   excitation    (dots),   the  random   excitation   with
+    14     2.3            86& 1    85        0.261              transient  and  alias modeling  (dashed  line) and  the random
+                                                                                 excitation  without  transient  modeling  (dash-dotted   line).
+
+===== PDF PAGE 4 =====
+                                        Technical Communique
+
+It follows  that  the  error  of the estimates  with  transient  and        References
+alias modeling  P(s)  is at least 60 dB smaller.                        Anderson,    B.  D.   0.   (1985)   Identification    of   scalar
+                                                                                   errors-in-variables   models  with  dynamics.  Automatica  21,
+6. Experimental    results                                                     709-716.
+  The  device  under  test  is an octave  bandpass   filter (B&K        Brigham,   E.   0.   (1974)  The  Fast   Fourier   Transform.
+1613) with  a  center  frequency   of 5OOHz. Two  types  of           Prentice-Hall,  Englewood   Cliffs, NJ.
+measurements  have been  performed.   First the bandpass  filter         Brillinger,  D.  R.  (1981)  Time  Series:  Data  Analysis  and
+has been  excited  with a periodic  signal (Schroeder  multi-sine           Theory. McGraw-Hill, New York.
+consisting   of  511  sine  waves  with  equal  amplitude   and      Mathew,  A. V. and Fairman.  F. W. (1972) Identification   in
+harmonically   related  frequencies  kf,/1024,  k = 1,2,    ,511,          the  presence   of  initial  conditions.  IEEE   Trans.  Autom.
+fs = 4.88 kHz).  Four  periods  of the  input  and output  signals          Control AC-17,394-396.
+are  measured   in steady  state  at  the  sampling  rate  f.  The        Pintelon,   R.,  Guillaume,   P.,  Rolain,  Y. and  Verbeyst,   F.
+frequency  response  function  calculated  from  these  periodic          (1992)  Identification   of  linear  systems   captured   in  a
+data  serves  as reference  value and  is shown  in Fig.  3. The          feedback   loop.  IEEE    Trans.   Instrum.   Meas.   IM-41,
+model  (12) with  n, = 6, nh = 4  (P(s) = 0 and  A(s) = 0  for           747-754.
+band-limited   periodic   steady-state   measurements)     is  iden-        Pintelon,   R., Guillaume,   P.,  Rolain,  R., Schoukens,   .I. and
+tified on the periodic  data  set using (18). Next the bandpass        Van  hamme,   H.  (1994)  Parametric    identification    of
+filter  is excited  with a random  excitation. N = 1024 samples            transfer   functions   in  the  frequency  domain-A    survey.
+of the random  input and output  signals are measured  at the        IEEE  Trans. Autom.   Control.  AC-39,2245-2260.
+rate  fi. Two model  structures,  (12) with  n, = 6,  n,, = 4 and        Pintelon,   R.,  Schoukens,    .I. and  Vandersteen,   G.  (1997)
+n,, = 6, and  (12) with  n, =6,   tr,, =4  and  without  P(s),  are         Frequency  domain  system   identification   using  arbitrary
+identified  on the random  data  set using (18) with (~~(0~) = 0,           signals. IEEE  Trans. Autom.  Control AC-42  (in press).
+oyu(wr) = 0 and  uy(ok) = 1 (k = 1,2,.       , $N). The  iden-         Ruitz, D.  P., Carrion, M. C., Gallego,  A. and Medouri,  A.
+tification   results  are  shown  in  Fig.  3.  It  follows  that  the         (1995)  Parameter   estimation   of  exponentially   damped
+estimates  on  the random  data  set  with  transient  and  alias          sinusoids  using a higher  order  correlation-based   approach.
+modeling  are  of  the same  quality  as those  on  the  periodic         IEEE  Trans.  Sig.  Process.  SP-43,  2665-2677.
+data  set. Significant  estimation  errors  remain when using the       Schoukens,   .I. (1990) Modeling  of continuous  time  systems
+random   data   set  without   including   P(s)   in  the  transfer-           using  a  discrete   time   representation.    Automatica    26,
+function  model.                                                             519-583.
+                                                                    Schoukens,  J. and Pintelon,  R. (1991) Identification  of Linear
+I.  Conclusions                                                           Systems:  A   Practical  Guideline   to  Accurate   Modeling
+  We  have   presented    a  parametric    frequency-domain          Pergamon,  Oxford.
+identification  algorithm  for continuous-time  models  (1) using       Schoukens,    J.  Pintelon,   R.  and  Van  hamme,  H.  (1994)
+arbitrary  excitation  signals  u(t).  It  is based  on an extended            Identification   of  linear  dynamic  systems  using  piecewice
+transfer-function  model  that takes into account  the begin and          constant    excitations:    use,   misuse   and    alternatives.
+end  effects of the data record and the alias errors.  According           Automatica   30, 1153-1169.
+to our experience,  modeling  the  alias errors  almost does not        Sinha,  N. K. and  Rao,  G.  P.,  eds  (1991)  Identification   of
+affect  the  uncertainty   of  the  estimated   plant  model.  The           Continuous-time    Systems.  Kluwer,  Dordrecht.
+method   allows  accurate  modeling   of  the  continuous-time         Vandersteen,   G., Van hamme,  H. and  Pintelon,  R. (1996)
+system from DC  (f = 0) to Nyquist  (f = if;),  and does  not          General  framework   for  asymptotic  properties   of general-
+require  the design  of a digital observation   filter.                         ized  weighted   nonlinear    least  squares   estimators   with
+                                                                                deterministic   and   stochastic   weighting.   IEEE    Trans.
+Acknowledgements-This    work  is sponsored  by the National          Autom.   Control  AC-41,  1501-1507.
+Fund   for   Scientific   Research   of  Belgium,   the  Flemish      Van  hamme,   H.,  Pintelon,  R.  and  Schoukens,   J.  (1991)
+Government  (GOA-IMMI)   and  the  Bilgiau  Program  on          Discrete-time   modeling  and  identification   of continuous-
+Interuniversity   Poles  of Attraction   initiated  by the  Belgian          time  systems:  a general  framework.,   In  Identification   of
+State,  Prime  Minister’s  Office,  Science  Policy programming            Continuous-time    Systems,   ed. N. K. Sinha and G. P. Rao,
+(IUAP  4/2).                                                                pp. 17-77. Kluwer.  Dordrecht.

@@ -1,0 +1,12 @@
+{
+  "target": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\闭环一致性_频域加性SRIVC_数学推导与验证.md",
+  "source_backup": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\proof_repair_v4\\原稿_v3_修订前.md",
+  "backup_sha256": "f1fec09109bfa20d3f848eb059b02b2aa742eba97c5784fc3258e161c710fdb9",
+  "revised_sha256": "ccb09947730a5cd764919c4852d548580b7354d3616a99c11e5a56c869ccc47f",
+  "historical_table_rows_preserved": 64,
+  "history_tables_identical": true,
+  "display_math_pairs": 28,
+  "inline_math_pairs": 233,
+  "model_data_and_experiment_code_changed": false,
+  "scope": "Authorized proof document repair, no new Monte Carlo runs"
+}

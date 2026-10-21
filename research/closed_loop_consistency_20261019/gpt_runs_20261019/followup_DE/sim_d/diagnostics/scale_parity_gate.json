@@ -1,0 +1,33 @@
+{
+  "P": 16,
+  "r": 0,
+  "full_DFT_equals_P_periodmean_relative": 2.240705741557704e-16,
+  "iv_parity_max_modal_log_difference": 3.0033963716036283e-07,
+  "iv_iterations_new": 7,
+  "iv_iterations_original": 7,
+  "covariance_scale_factor": 256,
+  "residual_scale_relative": 5.712622443503367e-14,
+  "jacobian_scale_relative": 2.0333981195540265e-12,
+  "estimate_scale_modal_log_difference": 5.280867704016146e-06,
+  "periodmean_info": {
+    "success": true,
+    "status": "`ftol` termination condition is satisfied.",
+    "nfev": 25,
+    "njev": 19,
+    "cost": 3050.613357189898,
+    "optimality": 81676.1816659905,
+    "normalized_score": 3.5163064586990897e-07,
+    "seconds": 2.973128599987831
+  },
+  "fullDFT_info": {
+    "success": true,
+    "status": "`ftol` termination condition is satisfied.",
+    "nfev": 25,
+    "njev": 19,
+    "cost": 3050.613357173465,
+    "optimality": 20236.754874110222,
+    "normalized_score": 2.784165938539361e-07,
+    "seconds": 3.122195700008888
+  },
+  "pass": true
+}

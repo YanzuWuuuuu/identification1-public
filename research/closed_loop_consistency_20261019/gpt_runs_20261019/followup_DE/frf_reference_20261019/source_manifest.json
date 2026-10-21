@@ -1,0 +1,362 @@
+[
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\raw\\z-0.5_P4_s1_zoh_M1.json",
+    "sha256": "f153c17078468296ede378a1f0d6eb4ab0bd29c69e2b76e63cb1db3dae816ed1",
+    "bytes": 15934
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\raw\\z-0.5_P8_s1_zoh_M1.json",
+    "sha256": "780ad83f8b2747a9d4853340aa12c55588ab2626fd0b2e128d5e978ae94c3abb",
+    "bytes": 16848
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\raw\\z0.5_P4_s1_zoh_M1.json",
+    "sha256": "14d7e2d79f51d886bf8e57d2be2c3d79f9bcbfbe60a9bf1d8b1cc4c5e1fde963",
+    "bytes": 12265
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\raw\\z0.5_P8_s1_zoh_M1.json",
+    "sha256": "6a009d21abddfb7cc6dab8bbaa4fad0ffe6676bae1c2826a96cb2a14511e3694",
+    "bytes": 12475
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\raw\\z0_P4_s1_zoh_M1.json",
+    "sha256": "abbbd1251aa810830a2cbf0ea469c382b4fd2d72d771edee75c5ce69a00a827a",
+    "bytes": 13716
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\raw\\z0_P8_s1_zoh_M1.json",
+    "sha256": "e53171569059e6338ae71fc87e2240a9ea0d6a7c16bec014211b3182eec03e4e",
+    "bytes": 12927
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\raw\\z1_P4_s1_zoh_M1.json",
+    "sha256": "47055011db034064a81db524016b068d0e245ecf93196573fdfb595f77b48a54",
+    "bytes": 12666
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\experiment_c\\raw\\z1_P8_s1_zoh_M1.json",
+    "sha256": "00364bfc0be476a13f13843a6da56efc16e181e204c391749f53cc0edf1a1557",
+    "bytes": 12461
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\data\\z-0.5_P08_s01.npz",
+    "sha256": "70173a33ee3f12740bbca24bd808de122aa92878610f2b02edb9aa22f37ea224",
+    "bytes": 346259
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\data\\z0.5_P08_s01.npz",
+    "sha256": "8b027d7838ea12ca73403b206161cc96b410a51a72f5a9df3627835fa446bf70",
+    "bytes": 346574
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\data\\z0_P08_s01.npz",
+    "sha256": "7479729a708e65b732db57013cc68bf805353894c14ce08fac531d674765a55c",
+    "bytes": 343020
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\data\\z1_P08_s01.npz",
+    "sha256": "756671be7e95130bfa980aaa9b3fb031dfe2f4cb2808083d6b2b5749fac90c98",
+    "bytes": 347210
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s01_M2.json",
+    "sha256": "f4f8dbc2a089c1f36a4295124085cb03ce867bd5d9557dd76071965d328d334f",
+    "bytes": 10611
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s01_M3.json",
+    "sha256": "4a986cf20da8816b8495e814b33a4bc182b0849658da1e4010134b38ff777d36",
+    "bytes": 10596
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s01_M3w.json",
+    "sha256": "101d4188049686e2c27766aab3bdd6b2e061d08c913a4a83fb1025c8751076b6",
+    "bytes": 10701
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s01_M5.json",
+    "sha256": "9374fa4fa414fc1ae17b1e351447ccd61e8fc09cb5da731d00f1ea612a8e0516",
+    "bytes": 10755
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s01_M5n.json",
+    "sha256": "53b18b6f3f74f2dc4c8d7e553863d24accc6cbda90e2ce984dfebc7fff10d050",
+    "bytes": 10748
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s05_M2.json",
+    "sha256": "59174c0e3a096db8edc7952adb3ba5eafdba876e3b2aed6f6334c96da9c3200a",
+    "bytes": 10588
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s05_M3.json",
+    "sha256": "b68e4854bd9e84eadab8722ccd10a9b87461d3983db4bb5ba68ae6821f8b3fec",
+    "bytes": 10591
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s05_M3w.json",
+    "sha256": "e234922dcf5a05e36cd177434f7201a9280d5819261cd03698a7bdb650d9c078",
+    "bytes": 10710
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s05_M5.json",
+    "sha256": "f8ced30c3d2ffac081aa052c25362aca3aad7a8a3052cfd66d638d1d4ec025f9",
+    "bytes": 10731
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P04_s05_M5n.json",
+    "sha256": "2f7d5fd4fe293bc53ca3d90a6da5bc1427efb6b44b8c9a60b1e05bd5d6d80efc",
+    "bytes": 10737
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P08_s01_M2.json",
+    "sha256": "4b80d6035921505c7e784187b557ca876aaba116031541034e887d175bdec956",
+    "bytes": 10603
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P08_s01_M3.json",
+    "sha256": "ecb766123902ec3c4c2d3a5f89f70d62ec5e6b1f8575a499d8fcb83719ba442d",
+    "bytes": 10595
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P08_s01_M3w.json",
+    "sha256": "8626ec918503ea1fff466f187840e9754d95225db1a29cea42bc88d96276ebe5",
+    "bytes": 10723
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P08_s01_M5.json",
+    "sha256": "393889523fb2411e7c07823e03883a65ab0c7938b14d08df0968528d9cbe6a77",
+    "bytes": 10740
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z-0.5_P08_s01_M5n.json",
+    "sha256": "78995c53c2ac17c7a4915e81dc812b585fa35a59bf18f75fddbd7c69db068020",
+    "bytes": 10756
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s01_M2.json",
+    "sha256": "b0b3d0be1d2394232dd33937c37c8e45bf596530d6b4495c9242462506baf77e",
+    "bytes": 10587
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s01_M3.json",
+    "sha256": "c54c4800bb87b37e8865eaa86f3b38379572c70a72c015a1eeeb19f211d5d878",
+    "bytes": 10587
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s01_M3w.json",
+    "sha256": "ea5436c495d5ea02582cde5ebd7aadcf037d883615df0ec4b8bad18e39037714",
+    "bytes": 10725
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s01_M5.json",
+    "sha256": "2f2c2aea90618b5991fd5b11573f408c89919fa7af5208c57889934f53fdc792",
+    "bytes": 10782
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s01_M5n.json",
+    "sha256": "abfe4bf2062cc5ecc9a301746c914338c0716ca9023c0b31e3e7ed2ee0521c05",
+    "bytes": 10725
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s05_M2.json",
+    "sha256": "2612896740023c8adca42ae0eeb7ccef3e424ff6741c6fda8790fa6f53c00d92",
+    "bytes": 10624
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s05_M3.json",
+    "sha256": "96371e3779087f5b0883095cd9d3b7b4d0831f7c1d0d2bd0e536dad03ae899f9",
+    "bytes": 10609
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s05_M3w.json",
+    "sha256": "1b27e0f65ca11b70dac183000d8608842190266f0638d258c7b80928a87dd543",
+    "bytes": 10716
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s05_M5.json",
+    "sha256": "b1b7cff12fb9fa3622a6923b7ca6dab202e91cda3327d27da8810a3b063822b8",
+    "bytes": 10762
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P04_s05_M5n.json",
+    "sha256": "53cc839473bc2ef58b9dea82ec6b0e33f156ba849394f636c7bfe23ea7a14201",
+    "bytes": 10740
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P08_s01_M2.json",
+    "sha256": "8f69f1dde49579ba399b29fa6553c55d090c9998c18c717bad8d74c3764b6159",
+    "bytes": 10594
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P08_s01_M3.json",
+    "sha256": "62f37fadaa2223d3d65c49a874176105a4aa79c9efd94347ac0a283543ce7526",
+    "bytes": 10605
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P08_s01_M3w.json",
+    "sha256": "dcf6dd4771ece89d7d7ab8e673b253f63c7932a81c1d0306bece7079f5252758",
+    "bytes": 10732
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P08_s01_M5.json",
+    "sha256": "1f97b519ca17a6a820a06951ad9602180fc871043a9a7b3b22e537af5632f603",
+    "bytes": 10781
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0.5_P08_s01_M5n.json",
+    "sha256": "bdad5925f6ea26304a3bb988839d4620af83a639aadfeaf1da1abcf33eaa37fa",
+    "bytes": 10757
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s01_M2.json",
+    "sha256": "f073fcc5179934dd09e260aca56630bc020d2272a940645e028d4d01199ae1cc",
+    "bytes": 10614
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s01_M3.json",
+    "sha256": "a8bb6d68ae7078d4f497ab79f7b4240b9de0d7735175ed51d643031891e045e8",
+    "bytes": 10597
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s01_M3w.json",
+    "sha256": "a9ba498e6316ebdeff6ea1d08649ba151bb9855ec097bc2edbeac26bb9828c5e",
+    "bytes": 10710
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s01_M5.json",
+    "sha256": "1ec6a88db2703d8d24f8339f36bdacdf7cb47f154fc1eb26b04251720f8cf3e5",
+    "bytes": 10733
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s01_M5n.json",
+    "sha256": "155b67e6b005d1c1b175c2fc2d2a42a5626f05198aea24c3638504c838e98b58",
+    "bytes": 10731
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s05_M2.json",
+    "sha256": "b37bfe2ba6d55e997266e2de438cd61779d9d463055de59ead2ca58a3f7074ca",
+    "bytes": 10624
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s05_M3.json",
+    "sha256": "fd5cda93451b6ddfa473b2be15ae6066b2efb04f9a8d61c6f13f0ff0ed6c153d",
+    "bytes": 10623
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s05_M3w.json",
+    "sha256": "2e33216c8053dc7fbfa30f971c7a7f2175e441380f8526aeacd84880e4826a1b",
+    "bytes": 10729
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s05_M5.json",
+    "sha256": "7c9e4ef06f5ceb9eee17f546b3d6e8fdb7dabd1bbcf8cc6d3c095c8400d37ecf",
+    "bytes": 10749
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P04_s05_M5n.json",
+    "sha256": "000e9ba4984b02f832b93d0a05ffb8c0a288b459c6e4b67e6b9cd00d198be8b1",
+    "bytes": 10731
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P08_s01_M2.json",
+    "sha256": "8a67024f4b2f97aff0ad797959ce8b18af81040b276574720b98e2b9026392a5",
+    "bytes": 10610
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P08_s01_M3.json",
+    "sha256": "951febf1fc94c3a633242e2f317e26d591e7759958d1b1fbd8e052a4e8004b17",
+    "bytes": 10613
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P08_s01_M3w.json",
+    "sha256": "234be5eac868ae91900ff23c62285b7f03f931e28df00f1213b1ebb88b461510",
+    "bytes": 10706
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P08_s01_M5.json",
+    "sha256": "607fa10eeceab949e63ddea34c7249cd6971da05d26cd4f0dc0398ad8d3fda65",
+    "bytes": 10792
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z0_P08_s01_M5n.json",
+    "sha256": "6b49bd5b9b8410431f24e041b316162a32b2bdeeaaae915e4362ed18889077ab",
+    "bytes": 10741
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s01_M2.json",
+    "sha256": "f13027489259d72d7a6421687e1807a6232297cf9960381275cf03ffcf121076",
+    "bytes": 10577
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s01_M3.json",
+    "sha256": "872be662caaebe9533ef90c270737e44a54f1b6ef88f61662a4e4b83edbfc057",
+    "bytes": 10584
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s01_M3w.json",
+    "sha256": "0ce7938c0ac04bffe7cea4d88a04ce5375ab0c56e6db5e3d4b8204cfea2f7ce8",
+    "bytes": 10731
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s01_M5.json",
+    "sha256": "2537fbe1494cef83db44fa4b9cda5093cb93507d62ddf91f45abee4ac5ea35be",
+    "bytes": 10761
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s01_M5n.json",
+    "sha256": "c312145746df5a942ecaea99c350d3f584c408c9057c4788d5c7887e50463b77",
+    "bytes": 10735
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s05_M2.json",
+    "sha256": "aa52f9c1691f3b90d843828e1717fc089c11a83040d9644b2ab203a3ec508ee4",
+    "bytes": 10591
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s05_M3.json",
+    "sha256": "537cce50a74183f165d76bdc7ac5064cc8727023fcbde97e4a5d25f2fc164dbd",
+    "bytes": 10567
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s05_M3w.json",
+    "sha256": "b6c5e3a00c696c7cca4c1f902f532a34d8cb8a6b10a07df220f3c844912085cb",
+    "bytes": 10698
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s05_M5.json",
+    "sha256": "42ba773b2fa152f4b8934670a5fc0da897858d2ccd4a1d0ed50cc6f684e95136",
+    "bytes": 10761
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P04_s05_M5n.json",
+    "sha256": "8a3b3afc17c561864a7f9a699ed780f830ef2127743411c020795722898d5a05",
+    "bytes": 10722
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P08_s01_M2.json",
+    "sha256": "47d75591b6454c79c147d2fc9f900e4e5257ea1695e86f74c5718baf24101cda",
+    "bytes": 10592
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P08_s01_M3.json",
+    "sha256": "7d87a43a9178725e68ac448d81f8cd0d4a26865826aa2c80562e3bbec03ba71a",
+    "bytes": 10586
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P08_s01_M3w.json",
+    "sha256": "334ebe2e4fc7226e4c8846054a246ad837755921704d031217a8fcc9ec02759f",
+    "bytes": 10705
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P08_s01_M5.json",
+    "sha256": "e21700dae8ef6ff503ccaefa03e11bf933433b023fa47eb8d4dd126f846c9c3a",
+    "bytes": 10762
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261019\\followup_DE\\real_d\\raw\\z1_P08_s01_M5n.json",
+    "sha256": "04fd60ed13eef8bb823e5f8e0f8c6b39b877182296bcc6fe095bf602186da887",
+    "bytes": 10762
+  }
+]

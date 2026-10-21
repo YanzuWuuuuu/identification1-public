@@ -1,0 +1,42 @@
+{
+  "id": "D_nominal_0p8",
+  "method": "M3w",
+  "frequency_u_hz": [
+    0.008803143727265124,
+    0.013408582378422775,
+    0.0014264559391689257
+  ],
+  "damping_u_percentage_points": [
+    0.08176824853243218,
+    0.10894520694728292,
+    0.00943032886018553
+  ],
+  "log_parameter_sd": [
+    0.0008421687106351724,
+    0.0011677162168366767,
+    9.196095208059476e-05,
+    0.016344585447559606,
+    0.044352347870941757,
+    0.0023246694874674598
+  ],
+  "relative_u_percent": [
+    0.08421691586152423,
+    0.11677174110266948,
+    0.009196095266386746,
+    1.63478605864676,
+    4.441783489620806,
+    0.23246789095272233
+  ],
+  "locally_valid_numerics": true,
+  "solver_converged": true,
+  "strict_score_pass": true,
+  "covariance_conditions": {
+    "scaled_condition": 8829232.26109305,
+    "scaled_rank": 158,
+    "dimension": 158,
+    "min_variance": 5.435749048408781e-15
+  },
+  "interpretation": "B-noise spectrum plug-in; fixed reference design; complete transient nuisance block retained; estimated W frozen, weight-estimation uncertainty omitted",
+  "theta_order": "f1 f2 f3 zeta1 zeta2 zeta3",
+  "noise_borrowed_from_z0": false
+}

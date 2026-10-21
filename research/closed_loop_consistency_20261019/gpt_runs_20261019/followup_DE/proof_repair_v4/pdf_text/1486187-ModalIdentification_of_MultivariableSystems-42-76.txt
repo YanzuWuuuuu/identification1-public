@@ -1,0 +1,1850 @@
+===== PDF PAGE 1 =====
+Chapter 3
+
+Identification of Additive Systems
+in the Frequency Domain
+
+
+
+
+
+This chapter introduces a system identification method to estimate continuous-time MIMO models
+within an additive structure. The formulation will closely resemble that presented previously for
+time-domain identification, with the primary distinction being that the estimation problem is
+formulated in terms of the FRF rather than the spectra of the input and output signals. In this
+formulation, the estimation procedure can be integrated with the effective frameworks for obtaining
+the non-parametric FRF dataset.  For each additive term, an output-error model structure is
+utilized with a numerator represented by a matrix polynomial and a denominator defined by a
+common scalar polynomial, aligning with the PFE description of modal systems. An extension is
+included to facilitate the estimation of marginally stable systems
+
+This chapter  is organized as follows:  First, Section 3.1 presents background information on
+frequency-domain identification; readers with a solid understanding of this topic may skip this
+section. The identification setting and problem formulation are introduced in Sections 3.2 and
+3.3, respectively. Section 3.4 outlines the approach for addressing the estimation problem. Exten-
+sions to the standard approach are discussed in Section 3.5, while Section 3.6 presents numerical
+simulations that validate the developed method.
+
+
+
+
+
+                                                                                   33
+
+===== PDF PAGE 2 =====
+     CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+                                                     DOMAIN
+
+3.1  Background frequency-domain system identification
+
+
+In frequency-domain system identification, the identification criterion is either formulated using
+the spectra of the measured input/output data or directly based on the FRF measurement [52].
+For steady-state signals, the estimation capabilities of the frequency-domain and time-domain
+methods are equal as no information is lost when converting between domains, i.e., the mapping is
+one-to-one. However, the frequency-domain formulation can yield practical advantages compared
+to the time-domain method in specific identification settings.
+
+By directly formulating the identification criteria using FRF measurements, challenging paramet-
+ric identification scenarios can be effectively addressed during the non-parametric modeling phase.
+One such example is the closed-loop identification setting. The open-loop plant FRF is obtained
+using a non-parametric indirect method, which enables the formulation of the parametric model
+identification problem based on the open-loop FRF [53]. Following this approach, a parametric
+model of the open-loop system is obtained without needing closed-loop parametric identification
+techniques. Another example is estimating noise models.  For periodic excitation signals, non-
+parametric estimates of the noise model are obtained cheaply. These non-parametric noise models
+can be included in the parametric identification criterion as weighting filters to improve the stat-
+istical efficiency of the estimates [52].
+
+Additional advantages include efficient data compression and the ease of integrating data from mul-
+tiple experiments. A smaller dataset of frequency spectra can typically accurately represent large
+time-domain signal measurements. Moreover, the averaging techniques used in non-parametric
+modeling approaches allow large datasets from various experiments to be combined. This reduces
+the noise level in the FRF and quantifies uncertainty due to non-linear distortions [52, 54]. Al-
+though the frequency-domain identification framework yields some practical advantages over the
+time-domain methods, it also has limitations. First, the Fourier transform is a linear operation,
+which must be performed off-line.  Therefore, the frequency-domain approach is inherently un-
+suited for addressing non-linearities and cannot be reformulated directly to a recursive form for
+online parameter estimation. Furthermore, possible errors due to the conversion of the data to
+the frequency domain, such as leakage or aliasing, will also influence the quality of the parametric
+model.
+
+The frequency-domain identification approach has gained significant popularity, particularly for vi-
+brational and modal analysis of mechanical systems, where the MIMO setting has been extensively
+addressed.  Typically, these methods use matrix fractional descriptions (MFD) to parameterize
+the model and formulate the identification criterion as a least-squares optimization problem. A
+key challenge in these methods has been the development of iterative estimation algorithms to
+solve the resulting non-linear least-squares problem. Two commonly used algorithms are the
+Sanathanan-Koerner (SK) method [55] and the Levenberg-Marquardt (LM) algorithm [56, 57],
+the latter being an improved variant of the well-known Gauss-Newton (GN) algorithm.
+
+In the SK method, the non-linear least-squares problem is solved iteratively using a pseudo-linear
+regression algorithm [58, 59], where a solution is obtained to the original non-linear problem
+through a sequence of linear regressions. The advantages of this algorithm are computational
+efficiency, especially for issues with a large number of parameters, and a lower sensitivity to
+initialization compared to GN algorithms [60]. The main disadvantage of the SK method is that
+the algorithm only reaches a stationary point of the cost function under restrictive conditions
+[61, 62]. The GN algorithm is a gradient-descent method that addresses the estimation problem
+through a series of local linearizations. Typically, the GN method converges to a minimum of the
+cost function but can be sensitive to initialization and converges more slowly compared to SK.
+Therefore, a common strategy is to combine the SK method with GN, using SK to generate an
+initial estimate that GN then refines. This idea was initially proposed in [63] and has been applied
+in several practical applications [24, 64].
+
+
+
+34
+
+===== PDF PAGE 3 =====
+CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+DOMAIN
+
+
+More recently, an alternative MIMO frequency domain identification algorithm has been developed
+that integrates instrumental variables with pseudo-linear regressions [65]. The SRIVC method is
+derived such that upon convergence, the parameter estimates are optimal in terms of maximum-
+likelihood, least-squares minimization, and instrumental variable criteria [33].  Regarding con-
+vergence, the SRIVC method integrates features of both the SK and GN methods.  It employs
+a pseudo-linear regression algorithm similar to the SK method while also leveraging the instru-
+mental variable mechanism to converge to a stationary point of the cost function, similar to the
+GN method [66]. The main disadvantage noted for the SRIVC method is that it can be prone to
+ill-conditioning [67].
+
+
+3.2  System and model setup
+
+
+Consider the LTI, causal, sampled continuous-time MIMO system with p inputs and q outputs in
+additive form containing K subsystems,
+
+                     K
+                      y(tn) = X G∗i (p, θ)u(tn) + v(tn),  n = 1, . . . , N.                    (3.1)
+                                i=1
+where p is the Heaviside operator, i.e., pu(tn) = dtu(tn),d       the input signal is denoted by u(tn) ∈Rp,
+the plant output is y(tn) ∈Rq and the additive output noise is given by v(tn) ∈Rq, which is
+assumed to be uncorrelated with the output signal, and N is the number of measured samples. The
+mapping from the time domain to the frequency domain is performed with the Discrete Fourier
+Transform (DFT), which is defined for signal x(t) ∈Rq and frequency spectrum X(k) ∈Cq as,
+
+                            N−1
+                              1
+                 X(ωk) = √ X x (tn) e−j2πnk/N,  k = 1, . . . , N.                   (3.2)
+                   N n=0
+
+By applying the DFT to the input/output relation (3.1) the frequency domain representation can
+be obtained
+                      K
+               Y (ωk) = X G∗i (jωk, θ)U(ωk) + V (ωk) + T (ωk),                    (3.3)
+                                  i=1
+where T (ωk) ∈Cq is the Fourier-transform of the transients. The transient response is non-periodic
+and originates from either possible initial conditions in the system or leakage effects. For stable
+systems, this term typically vanishes for large N. Each subsystem G∗i (jωk) is parameterized by a
+scalar denominator polynomial A∗i (jωk) of order ni and a numerator matrix polynomial B∗i (jωk)
+of order mi according to
+
+                                            1
+                      G∗i (jωk, θ) =                 i (jωk),                              (3.4)                                   A∗i (jωk)B∗
+where A∗i (jωk) and B∗i (jωk) are assumed coprime, i.e., they do not share any roots, the A∗i (jωk)
+polynomials are assumed anti-monic,  i.e., their constant coefficient is fixed to 1, are assumed
+stable, i.e., all roots are in the left half plane, and they are jointly co-prime. The polynomials are
+then defined as
+
+                                                                                                            i ,                          (3.5)                  A∗i (jωk) = 1 + a∗i,1jωk + · · · + a∗i,ni(jωk)n∗
+                                                                                                                    i .                     (3.6)                 B∗i (jωk) = B∗i,0 + B∗i,1jωk + · · · + B∗i,mi(jωk)m∗
+In addition, for obtaining a unique characterization of {G∗i (jωk)}Ki=1, we assume that at most one
+subsystem G∗i (jωk) is biproper. The polynomials A∗i (jωk) and B∗i (jωk) are jointly described by
+the true parameter vector
+
+         h           i⊤         h                                 ⊤i⊤   β∗= θ∗⊤1  ,  . . . , θ∗⊤K      ,  θ∗i =  a∗i,1,  . . . , a∗i,ni, vec B∗i,0 ⊤,  . . . , vec B∗i,mi         .    (3.7)
+
+
+                                                                                   35
+
+===== PDF PAGE 4 =====
+     CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+                                                     DOMAIN
+
+
+The identification criterion is formulated based on the matrix of frequency response measure-
+ments. Therefore, we require the dataset ZN = {G (ωk) , Cvec(G)(ωk)}Nk=1 of frequency response
+measurements G (ωk) ∈Cq×p and corresponding covariance matrix Cvec(G)(ωk) ∈Cqp×qp to be
+available.
+
+
+3.3  Formulation of the estimation problem
+
+
+This section introduces the instrumental variable-based method for identifying additive MIMO
+continuous time systems formulated in the frequency domain. The identification criterion is based
+on the complex matrix error residual [52], computed as the difference between a frequency response
+measurement and the model evaluated at the DFT grid.
+
+                   E (ωk, β) = G (ωk) −P (jωk, β) ,                             (3.8)
+
+where P(jωk, β) is the plant model parameterized as in (3.4).  The identification criterion is
+the instrumental variable criterion [52, 65].  Instead of directly minimizing a cost function, the
+parameter estimates are found as a solution to the instrumental variable equation. This equation
+is obtained by correlating a matrix of instrument signals with the residual function (3.8), resulting
+in
+
+                (   N                    )                            1
+                            ˆβ = sol  X ˆΦ (ωk, β) W(ωk) vec(E(ωk, β)) = 0   ,                  (3.9)
+                       β  N
+                               k=1
+
+where for the frequency-dependent weighting matrix W(ωk) ∈Cpq×pq the covariance matrix of
+the FRF dataset is selected
+                          W(ωk) = C−1vec(G)(ωk),                                 (3.10)
+corresponding to the sample maximum-likelihood criterion in [52]. The instrument matrix ˆΦ (ωk)
+is designed to eliminate asymptotic bias. This is typically achieved by constructing the matrix
+using noise-free estimates of the system, thereby avoiding correlation with the noise disturbance
+V (ωk). Optimal expressions for the instrument matrix can be derived based on the specific context
+in which the system operates. The optimality criteria and resulting optimal instrument expressions
+will now be derived in the following subsections.
+
+
+Remark 5 Other commonly used weighting filters could be appended to (3.10) according to
+
+                      W(ωk) = WH(ωk)C−1˜         vec(G) W(ωk),˜                                  (3.11)
+
+with
+             W(ωk)˜   = diag vec (WSchur (ωk)) W⊤in (ωk) ⊗Wout (ωk)  .             (3.12)
+
+Schur weighting is commonly applied to balance large magnitude differences in the residual, while
+input/output weighting is used to emphasize specific frequency ranges, e.g., to improve the fit of a
+particular resonance [67].
+
+
+3.3.1  Systems acting in open loop
+
+
+For the open-loop setting, we seek an estimator that satisfies the instrumental variable equation
+and minimizes the problem
+                                                    ˆβ = arg min V (β),                                  (3.13)
+                                        β
+
+
+
+
+36
+
+===== PDF PAGE 5 =====
+CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+DOMAIN
+
+
+with the output-error cost function
+
+                     N
+                V (β) = X vec (E (ωk, β))H W(ωk) vec (E (ωk, β)) .                   (3.14)
+
+                           k=1
+
+The optimizer of the output-error cost function is found as a solution to the first-order optimality
+condition
+
+                 N  (                H            )           ∂               ∂vec(E (ωk, β))
+            V (β) = X ℜ                 W(ωk) vec (E (ωk, β)) = 0.         (3.15)
+         ∂β                 ∂β
+                      k=1
+
+Due to the additive model structure (3.3), the gradient of the residual function with respect to
+the parameter vector β reduces to
+
+       ∂vec(E (ωk, β))  H               (jωk, β))                 (jωk, β))  H                =  −∂vec(P                   . . .  −∂vec(P                       (3.16)
+           ∂β                 ∂θ⊤1                 ∂θ⊤K
+
+Hence, the gradient of the residual function consists of the gradients of the individual subsystems.
+The gradient of each subsystem with corresponding parameter vector θi is computed considering
+the subsystem parametrization in (3.3), resulting in
+
+               ∂vec(P (jωk, β))     (jωk)l
+                    =        vec(P (jωk, β)),    l = 1, . . . , ni,             (3.17)
+                             ∂ai,l         Ai(jωk)
+               ∂vec(P (jωk, β))    (jωk)ℓ
+                    =                ℓ= 1, . . . , mi.             (3.18)                    ∂vec(Bi,ℓ)      Ai(jωk)Iqp,
+
+By selecting for the instrument matrix the gradient of the residual, we make sure that the solution
+to (3.9) additionally satisfies the first-order optimality condition (3.14) and consequently minimizes
+the output-error cost function. The instrument matrix for the open-loop setting can then thus be
+defined as
+                         ˆΦ (ωk, β) =  ˆΦ⊤1 (ωk, θ1)    . . .  ˆΦ⊤K (ωk, θK)  ⊤,                  (3.19)
+where each block entry of the instrument matrix ˆΦi(ωk, θi) ∈Cni+qp(mi+1)×qp is given by
+
+            −jωk                   −(jωk)ni                   Ipq        (jωk)miIpq ⊤
+ˆΦi (ωk, β) =          vec(Pi (jωk)), . . . ,          vec(Pi(jωk)),                . . . ,                       .            Ai (jωk)                 Ai (jωk)             Ai (jωk),     Ai (jωk)
+                                                                                              (3.20)
+
+
+3.3.2  Systems acting in closed loop
+
+
+The main difference with the open-loop setting is that, for systems operating in closed-loop,
+the input becomes correlated with the noise disturbance due to the feedback interconnection.
+Consequently, using an output-error cost function, as shown in equation (3.13), may lead to
+asymptotically biased estimators [47]. Instead of employing an instrumental variable approach, as
+discussed for the time-domain method in Chapter 2, the closed-loop setting is addressed during
+the non-parametric modeling step.
+
+The FRF of the plant operating in closed loop is identified using indirect FRF estimation methods
+as outlined in, e.g., [53]. The parametric identification criterion is then formulated using this
+open-loop FRF, eliminating the need for closed-loop parametric identification techniques. The
+main advantage of addressing the closed-loop setting during the non-parametric modeling step is
+computational efficiency: algorithms for open-loop parametric identification are generally more ef-
+ficient than their closed-loop counterparts, and the non-parametric indirect approach only requires
+a straightforward post-processing step of the measured FRF data.
+
+
+                                                                                   37
+
+===== PDF PAGE 6 =====
+     CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+                                                     DOMAIN
+
+3.4  Proposed solution procedure
+
+
+This section outlines the method for solving the instrumental variable estimation problem. For
+the considered model structure, the problem (3.9) is classified as a non-linear zero-finding problem
+and generally does not have closed-form solutions.  Therefore, iterative solution algorithms are
+typically used. The specific algorithm considered is SRIVC for the frequency-domain formulation,
+as described in [65]. These algorithms address the instrumental variable equation through pseudo-
+linear regressions, linearizing the problem at each iteration based on an intermediate parameter
+estimate. This linearization allows for closed-form solutions to update the parameter estimates in
+subsequent iterations. By iterating this process, an estimate of the solution to the original non-
+linear problem is obtained. To facilitate the pseudo-linear regressions in the SRIVC algorithm,
+it is necessary to reformulate the residual into a pseudo-linear form, which will be derived first,
+followed by an introduction to the SRIVC estimation algorithm.
+
+
+3.4.1  Pseudo-linear regression form for additive systems
+
+
+Before presenting the needed form of (3.8) for multiple subsystems, i.e., K > 1, the following
+proposition is provided for when the plant contains only a single subsystem, i.e., K = 1.
+
+Proposition 2 (Pseudo-linear form single subsystem) Consider K = 1, then the residual
+function (3.8) takes the form
+                      vec(E (ωk, β)) = vec(Gf(ωk)) −Φ⊤(ωk, θ) θ,                     (3.21)
+
+where the filtered plant is defined as
+
+                                           1
+                           vec(Gf(ωk)) =        vec(G(ωk)),                         (3.22)
+                                       A(jωk)
+and the filtered regressor matrix Φ(ωk, β) ∈Cn+qp(m+1)×qp is defined as
+             −jωk                 −(jωk)n                  Iqp       (jωk)mIqp ⊤
+ Φ (ωk, θ) =          vec (G (ωk)) , . . . ,         vec (G (ωk)) ,               . . . ,                      .         A (jωk)           A (jωk)         A (jωk),    A (jωk)
+                                                                                              (3.23)
+
+
+Proof:  The matrix residual in (3.8) for K = 1 is rewritten to
+
+                                           1
+              E (ωk, θ) = G (ωk) −          (jωk) ,                           A (jωk)B
+                                                                                              (3.24)
+                                   1
+                   =      A (jωk) G (ωk) −B (jωk)  .
+                     A (jωk)
+
+By expanding the polynomials (3.5) and (3.6), the residual takes the form
+
+                 1                    (jωk)n            1  E (ωk, θ) =          (ωk) + . . . + an          (ωk) −        −. . . −(jωk)m         A (jωk)G         A (jωk)G     A (jωk)B0     A (jωk)Bm,
+                                                                                              (3.25)
+which after vectorizing both sides yields
+
+                    1                         (jωk)n
+  vec(E (ωk, θ)) =       vec(G (ωk)) + . . . + an       vec(G (ωk))−
+           A (jωk)              A (jωk)
+                                                 1                                                      vec(B0) −. . . −(jωk)m vec(Bm).
+                               A (jωk)          A (jωk)
+                                                                                              (3.26)
+By factoring out the parameter vector (3.7), the form (3.21) is obtained, concluding the proof. □
+
+
+38
+
+===== PDF PAGE 7 =====
+CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+DOMAIN
+
+
+Next, the situation when the plant contains multiple subsystems, i.e., K > 1 is considered. The key
+idea is to formulate K sub-problems, where the parameters of the remaining ℓ= {1, . . . , K},  ℓ̸ = i
+subsystems are kept constant. Since for each sub-problem, the parameters of only a single subsys-
+tem are kept free, it can be readily rewritten to the needed pseudo-linear form using Proposition
+2. To start, the residual plant is introduced. This term represents the contribution of a single
+subsystem to the overall plant frequency response function. For i ∈{1, ..., K} the residual plant
+is defined as
+                                       Bℓ(jωk)
+                    ˜Gi (ωk, β) = G(ωk) − X              ,  ℓ= {1, . . . , K},  ℓ̸ = i.             (3.27)
+                                       Aℓ(jωk)
+                                                       ℓ
+
+Using the residual plant definition, the matrix residual function is written in K in different ways
+to obtain the sub-problems given by
+
+                                                      −B1(jωk)                                                                                                       ,
+                                                 A1(jωk)              E (ωk, β) = ˜G1 (ωk, β)                                                                                              (3.28)                                                                                                                                                                                                                                          ...
+
+                                                                                                         ,                  E (ωk, β) = ˜GK (ωk, β) −BK(jωk)                                                           AK(jωk)
+
+The matrix residual functions for each sub-problem are of the same form as in Proposition 2 and
+can therefore be reformulated to the pseudo-linear form
+
+            vec(E (ωk, β)) = vec(˜Gf,1(ωk)) −Φ⊤1 (ωk, β) θ1,
+                                                                                                         (3.29)                                                                                                                                                                                                                                                                          ...
+            vec(E (ωk, β)) = vec(˜Gf,K(ωk)) −Φ⊤K (ωk, β) θK,
+
+where for each sub-problem Φi (ωk, θ) ∈Cni+qp(mi+1)×qp denotes the filtered regressor matrix
+
+            −jωk                   −(jωk)ni                     Iqp       (jωk)mIqp ⊤
+Φi (ωk, θ) =          vec( ˜Gf,1 (ωk)), . . . ,          vec( ˜Gf,K (ωk)),               . . . ,                      .            Ai (ωk)            A (jωk)          A (jωk),    A (jωk)
+                                                                                              (3.30)
+and the filtered residual output is
+
+                                            1
+                           vec( ˜Gf,i (ωk, β)) =       vec( ˜Gi(ωk, β)),                       (3.31)
+                                            Ai(p)
+
+Instead of considering the K sub-problems separately, they are assembled in a single matrix
+equation by stacking the residual output vectors and regressor matrices. To this end, the stacked
+matrix of residuals E(ωk, β) ∈CK×pq , the stacked matrix of residual outputs Υ (ωk, β) ∈CK×pq
+                                                                                i ni+pq(mi+K)×pq are introducedand the stacked regressor matrix Φ (ωk, β) ∈C P
+
+                                          h         i⊤                    E(ωk, β) = vec(E (ωk))  1    . . .  1                                   (3.32)
+
+                               h                              i⊤          Υ (ωk, β) =   vec( ˜Gf,1(ωk))    . . .  vec( ˜Gf,K(ωk))      ,                (3.33)
+                               h                         i⊤           Φ (ωk, β) =  Φ⊤1 (ωk, β)    . . . Φ⊤K (ωk, β)      .                       (3.34)
+
+Furthermore, the parameter vector β  is stored in the block diagonal parameter matrix B ∈
+R P i ni+pq(mi+K)×K, defined as
+                            θ1      0 
+                        B =          ...                                         (3.35)                                                                        .
+                                  0     θK
+
+
+                                                                                   39
+
+===== PDF PAGE 8 =====
+     CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+                                                     DOMAIN
+
+
+Using these definitions, the single matrix equation containing the K independent pseudo-linear
+sub-problems are formulated as
+                         E⊤(ωk, β) = Υ⊤(ωk, β) −Φ⊤(ωk, β)B.                        (3.36)
+
+Substituting this expression in the instrumental variable equation (3.9) then results in the equi-
+valent criterion
+                 (   N                  )                              1
+                            ˆB = sol  X ˆΦ (ωk, β) W(ωk)E⊤(ωk, β) = 0   .                  (3.37)
+                        B  N
+                                 k=1
+
+
+3.4.2  Pseudo-linear regression algorithm
+
+
+The instrumental variable equation (3.37) has a non-linear dependency on the parameter vector β
+and therefore typically does not have a closed-form solution. The approach followed by the SRIV
+algorithm is to obtain a solution to the original non-linear equation through a sequence of linear
+regression steps. At every iteration j, the equation is linearized which consequently allows for
+computing a new parameter estimate through a closed-form solution. The equation is linearized
+by fixing at the jth iteration β = β⟨j⟩in the residual output (3.33), the regressor (3.34) and the
+instrument matrix (3.19) yielding
+
+              N
+               1
+      X ˆΦ(ωk, β⟨j⟩)W(ωk) Υ⊤(ωk, β⟨j⟩) −Φ⊤(ωk, β⟨j⟩)B = 0,           (3.38)
+         N
+                  k=1
+which is linear in the free variable B. By rearranging terms, the frequency-domain SRIV estimator
+is derived as
+
+                                     N         " N                           #−1
+   ˆB⟨j+1⟩= X ˆΦ(ωk, β⟨j⟩)W(ωk)Φ⊤(ωk, β⟨j⟩) X ˆΦ(ωk, β⟨j⟩)W(ωk)Υ⊤(ωk, β⟨j⟩).   (3.39)
+
+            k=1                                k=1
+The optimal parameter estimate can then be obtained, for a given initial estimate β⟨0⟩, by iter-
+ating this update formula while concurrently refining Υ(ωk, β), Φ(ωk, β) and ˆΦ(ωk, β) with the
+parameter estimates of the intermediate iterations. A detailed outline of the estimation algorithm
+for the frequency-domain SRIV is provided in Algorithm 2.
+
+Remark 6 (Matrix form estimator) The estimator (3.39) can typically not directly be imple-
+mented in commercial software packages as the matrices are complex-valued. Instead, the estim-
+ator is written as a single real-valued matrix equation,  i.e., without the summation, by stack-
+ing the matrices for every ωk and separating the real and imaginary parts. To this end, con-
+sider the matrix of regressors X(β) ∈R2Nqp×P i ni+pq(mi+K), the matrix of instruments M(β) ∈
+R2Nqp×P i ni+pq(mi+K), the matrix plant residuals Y(β) ∈R2Nqp×K
+
+          ℜΦ⊤(ω1)                             ℜˆΦ⊤(ω1)          ℜΥ⊤(ω1) 
+            ℑΦ⊤(ω1)                ℑˆΦ⊤(ω1)             ℑΥ⊤(ω1)
+    X(β) =                          ,  M(β) =                          ,  Y(β) =                           ,     (3.40)                                                                                         ...                                                                                                                      ...                                                                                                                     ...
+                                                ℜΥ⊤(ωN)           ℜΦ⊤(ωN)                                                                                                                                                                             ℜˆΦ⊤(ωN)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ℑΥ⊤(ωN)           ℑΦ⊤(ωN)                                     ℑˆΦ⊤(ωN)
+and the block-diagonal matrix WN ∈R2Nqp×2Nqp containing the frequency-dependent weighting
+filter
+       WN = diag( ℜW(ω1)  ℑW(ω1)    . . . ℜW(ωN) ℑW(ωN)   ).          (3.41)
+The update equation then takes the form
+                          h                   i−1                 ˆB⟨j+1⟩= M⊤(β⟨j⟩)WNX(β⟨j⟩)   M⊤(β⟨j⟩)WNY(β⟨j⟩).             (3.42)
+
+
+
+40
+
+===== PDF PAGE 9 =====
+CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+DOMAIN
+
+
+Algorithm 2 SRIVC for additive systems in the frequency domain
+  1: Input: dataset {G (ωk) , Cvec(G)(ωk)}Nk=1, weighting filter W(ωk), initial parameter estimate
+    β⟨0⟩, tolerance factor ϵ and maximum number of iterations M
+  2: while ∥β⟨j+1⟩−β⟨j⟩∥2/∥β⟨j⟩∥2 < ϵ and j ≤M do
+  3:    for i = 1 : K do
+  4:      Compute ˜Gf,i(ωk, β⟨j⟩) defined in (3.31).
+  5:      Compute Φi(ωk, β⟨j⟩) defined in (3.30).
+  6:      Compute ˆΦi(ωk, β⟨j⟩) defined in (3.20).
+  7:   end for
+  8:    Build Υ(ωk, β⟨j⟩), Φ(ωk, β⟨j⟩) and ˆΦ(ωk, β⟨j⟩) according to (3.33), (3.34) and (3.19).
+  9:    Set ˆB⟨j⟩←ˆB⟨j+1⟩using (3.39)
+10:    for i = 1 : K do
+11:          If a pole pi of 1/A⟨j+1⟩i    (ωk) is unstable, then −Re {pi} ←Re {pi}
+12:   end for
+13:    Update counter j ←j + 1
+14: end while
+15: Output: ˆβ
+
+
+3.5  Extensions to the simplified approach
+
+
+This section provides possible extensions to the standard approach outlined in Algorithm 2. First,
+the estimation of marginally stable systems is addressed, and after that, the estimation of noise
+models is discussed.
+
+
+3.5.1  Marginally stable systems
+
+
+The identification algorithm is extended to estimate marginally stable systems, i.e., systems with
+poles at ω = 0, as follows.  Consider the system in (3.3), but where the first subsystem has ℓ
+poles at the origin. The numerator matrix B∗1(jωk) is parameterized as in (3.6) while the plant
+denominator is given by
+
+                                                                                          1   ,                  (3.43)                    pℓA∗1(ωk) = pℓ  1 + a∗1,1jωk + . . . + a∗1,n1(jωk)n∗
+
+where the polynomial A∗1(jωk) represents the true plant denominator without poles at the origin.
+The regressor matrix is then modified to become
+
+            −jωk                   −(jωk)n1                     Iqp         (jωk)m1Iqp ⊤
+Φ1 (ωk, β) =           vec( ˜Gf,1(ωk)), . . . ,          vec( ˜Gf,1(ωk)),                    . . . ,                        ,           A1 (jωk)               A1 (jωk)              pℓA1 (jωk),    pℓA1 (jωk)
+                                                                                              (3.44)
+and the instrument matrix is derived following the same procedure as outlined in (3.17), which
+results in
+
+             −jωk                    −(jωk)n1                    Iqp         (jωk)m1Iqp ⊤
+ˆΦ1 (ωk, β) =            vec(P1 (jωk)), . . . ,           vec(P1(ωk)),                    . . . ,                        .             pℓA1 (jωk)                 pℓA1 (jωk)            pℓA1 (jωk),    pℓA1 (jωk)
+                                                                                              (3.45)
+The estimation procedure can then be applied as outlined in Algorithm 2 but with the first block
+in the regressor and instrument given by (3.44) and (3.45), respectively.
+
+
+
+
+
+                                                                                   41
+
+===== PDF PAGE 10 =====
+     CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+                                                     DOMAIN
+
+3.5.2  Noise modelling
+
+
+When the noise disturbance deviates from a perfect white noise signal, the variance of the para-
+meter estimates increases. To address potential coloring in the output noise, incorporating a noise
+model into the identification criterion can enhance the statistical efficiency of the estimator. In the
+time-domain method, a noise model estimation step is integrated into the estimation algorithm.
+This extension estimates a discrete-time ARMA noise model based on the residuals at each it-
+eration. The inverse of the fitted ARMA model is then appended to the prefilter used in the
+SRIVC algorithm, compensating for the noise coloring. In the frequency domain, a noise model
+can be estimated during the non-parametric modeling step. An essential requirement for this
+process is that the excitation signals must be periodic. When using such excitation signals, the
+corresponding FRF covariance matrix is obtained cheaply, using methods outlined in, e.g., [52,
+54]. This approach offers several advantages: it eliminates the need to address a double model se-
+lection problem (for both plant and noise models) and reduces the complexity of the optimization
+problem.
+
+
+3.6  Simulation results
+
+
+This section aims to validate the estimator outlined in Algorithm 2 using a simulation model
+that exemplifies a motion system. A schematic overview of the considered 3-mass spring damper
+system with p = 3 inputs and q = 3 outputs is provided in Figure 3.1. The simulation model
+contains K = 3 flexible modes.
+
+                                   q1                    q2                    q3
+                               u1                 u2                 u3
+                    d1                  d2                  d3
+
+                     m1             m2             m3
+
+
+                    k1                  k2                  k3
+
+Figure 3.1: Multivariate simulation model of a flexible motion system with nominal parameter
+values mi = 0.01 [kg], ki = 1000 [kN/m] and di = 10−4ki [kN/ms] for i = 1, . . . , 3.
+
+
+The dataset {G(ωk), Cvec(G)(ωk)}Nk=1 is gathered using the SIMO multisine approach as outlined
+in [52, Chapter 2]. The FRF measurement contains N = 2000 complex data points in the frequency
+range from 0.25 to 500 [Hz] and is estimated under output noise with an SNR of 30 [dB]. The
+estimator is initialized at a random system that satisfies β⟨0⟩i = β∗i (1+U(0.05, 0.05)), where U(a, b)
+denotes the uniform distribution of support (a, b).
+
+In Figure 3.2, the bode magnitude plot of the dataset, identified additive model, and matrix
+residual are provided. As can be noted, some dynamics remain in the residual. A possible source of
+this residue could be due to errors propagating from the non-parametric estimation step. Overall,
+the system model is estimated well, validating the introduced additive identification method using
+frequency-domain datasets.
+
+
+
+
+
+42
+
+===== PDF PAGE 11 =====
+CHAPTER 3. IDENTIFICATION OF ADDITIVE SYSTEMS IN THE FREQUENCY
+DOMAIN
+
+
+
+
+
+Figure 3.2: FRF result of the identification problem with mi = 0 (   ) the FRF dataset G(ωk),
+(   ) the identified additive model P(jωk), and (   ) the matrix residual E(ωk).
+
+3.7  Conclusions
+
+
+This chapter introduced a frequency-domain identification method for directly estimating MIMO
+continuous-time systems in additive form. For the frequency domain, the closed-loop setting and
+estimating noise models are effectively handled during the non-parametric estimation procedure
+and, therefore, do not need to be addressed in the parametric estimation step. The estimation
+problem was derived from the instrumental variable equation and the established optimality con-
+dition, which is iteratively solved using a pseudo-linear regression algorithm.  Additionally, the
+approach is extended to accommodate marginally stable systems. The numerical simulation ex-
+amples demonstrate the effectiveness of the proposed identification procedure.
+
+
+
+
+
+                                                                                   43
+
+===== PDF PAGE 12 =====
+
+
+===== PDF PAGE 13 =====
+Chapter 4
+
+Statistically Optimal Modal
+Identification of Mechanical
+Systems
+
+
+
+
+
+This chapter employs the methods developed in the previous chapters to estimate modal model
+structures in both the time and frequency domains. For SISO systems, the additive model structure
+exactly matches the modal system representation of mechanical systems [26]. However, for MIMO
+systems, the numerator matrix of each modal term in the additive decomposition consists of a dyad
+between the left and right eigenvector pair [68]. The additive identification methods introduced in
+the previous chapters do not directly enforce this property. To decompose the numerator matrix
+in a dyad, the matrix has to be of rank 1. However, as this condition is not directly enforced
+in the estimation problem, this is typically never exactly the case due to, e.g., noise, external
+disturbances, or interfering residual dynamics. Therefore, this chapter introduces a method for
+optimally enforcing the modal model structure in a second estimation step.
+
+
+
+
+
+                                                                                   45
+
+===== PDF PAGE 14 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+4.1  Introduction
+
+
+A typical approach for estimating the eigenvector pair is to use the first singular vectors obtained
+from a singular value decomposition (SVD) of the numerator matrices in the additive structure.
+The matrix formed by the outer product of the first singular vectors and the first singular value
+gives the best rank-1 approximation of the original matrix in terms of the Frobenius norm [69].
+However, the resulting modal system is approximative and typically yields satisfactory results only
+for unweighted estimation problems and systems with sufficiently spaced resonances. Furthermore,
+the asymptotic statistical properties of the SRIVC-optimal parameters are lost. Therefore, altern-
+ative methods for retrieving the eigenvector pair are investigated.
+
+To directly enforce this property, a rank 1 matrix constraint could be included in the linear
+regression problem, which is solved at each iteration of the SRIVC algorithm.  The resulting
+optimization problem is categorized as a Rank-Constrained Optimization Problem (RCOP), which
+has been extensively studied in literature due to its many applications in, e.g., signal processing,
+control systems, model reduction, and system identification [70–73]. The RCOP optimization
+problems are typically NP-hard to solve due to the discontinuous and non-convex nature of the
+rank function [74]. Therefore, many proposed methods either employ iterative methods or solve a
+relaxed problem. Examples include, e.g., in [75], where the RCOP is reformulated as an Iterative
+Rank Minimization (IRM) problem, which, upon convergence, satisfies the original rank constraint.
+Other directions include approximating the RCOP using a nuclear norm heuristic [76], which is
+the convex envelope of the rank function.
+
+Although RCOPs provide a solution for enforcing the rank constraint in the additive model struc-
+ture in a single-stage estimation, there are some shortcomings in the context of modal identific-
+ation.  Firstly, as RCOPs are NP-hard, the complexity of these optimization problems increases
+substantially, making the initialization process crucial to avoid converging to local optima. Fur-
+thermore, statistical guarantees, such as consistency and asymptotic efficiency, might be difficult
+to guarantee for these more complex estimation problems.
+
+Alternatively, instead of opting for a single-stage approach, the decomposition of the numerator
+matrix could be achieved in an optimal a posterori parameter transformation. A method for
+such a two-stage approach was introduced in [77], named the Indirect PEM (IPEM) method. This
+approach was developed for settings where the desired model structure is embedded within a larger,
+more easily estimated model structure. The IPEM method provides a framework for optimally
+reducing the initial PEM model to align with a more complex nested structure or incorporate
+difficult non-linear constraints.
+
+The IPEM estimates are obtained as the solution to a second least-squares optimization formulated
+in parameter space; that is, the parameters of the first problem are used as data instead of refitting
+the measured dataset. The cost function of the initial PEM is approximated in the second stage
+by weighting the least-squares problem with an estimate of the parameter covariance matrix. The
+advantage of this approach is that by formulating the estimation problem in parameter space,
+the number of data points that have to be fitted drastically reduces. For instance, typical MIMO
+FRF datasets for motion systems contain on the order of N ≈104 to 105 data points, whereas the
+parameter vectors are generally of size 102 to 103. As a result, the cost function in the second stage
+tends to be more well-behaved, which makes it easier to enforce more difficult model structures or
+include difficult non-linear constraints. Moreover, because the numerator matrices estimated with
+SRIVC are usually close to rank-1 for the considered estimation problems, the singular vectors
+obtained through SVD offer an accurate initial estimate, decreasing the likelihood of converging
+to a local optimum. This enables the second optimization problem to be solved efficiently despite
+the NP-hard nature of the rank condition.
+
+
+
+
+
+46
+
+===== PDF PAGE 15 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+
+                                            ZN
+
+
+              Model order selection              SRIVC initialization
+
+                        Subsection 4.5.1                             Subsection 4.5.2
+
+                                                   ZN, β⟨0⟩
+
+                                                                ˆβ                                              SRIVC
+
+                                                                Chapter 2 & 3
+                                                                                               ˆβ, ˆCˆβ
+
+            IPEM SRIVCinitialization           ρ⟨0⟩         IPEM
+
+                        Subsection 4.4.4                             Subsection 4.4.2
+
+                                                                                                     ˆρ
+
+
+Figure 4.1: Schematic overview of the modal identification procedure, where ZN is the measured
+dataset, β is the parameter vector describing the additive structure and ρ is the parameter vector
+describing the modal structure.
+
+
+Hence, the IPEM method presents a computationally efficient approach for enforcing the modal
+structure. The key aspect of this approach is that the two-stage estimator has the same asymptotic
+statistical properties as the PEM estimator that considers the reduced model structure. That
+is, consistency is conserved in the second stage while the statistical efficiency of the estimate
+typically improves due to the reduced model set size. This chapter aims to introduce a two-stage
+modal parameter estimation procedure that utilizes the developed additive estimation methods
+and an IPEM formulation to optimally enforce the rank 1 condition. Furthermore, initialization
+procedures are discussed that leverage prior knowledge for generating starting values while keeping
+user input at a minimum. A schematic overview of the complete proposed modal identification
+procedure is provided in Figure 4.1.
+
+The chapter is structured as follows: Section 4.2 provides some preliminaries of modal modeling
+for mechanical systems. Section 4.3 introduces the parameterizations used, followed by the IPEM
+formulation for modal systems in Section 4.4. Initialization techniques and model order selection
+are discussed in Subsection 4.5. Finally, Subsection 4.6 presents the simulation results.
+
+
+
+
+
+                                                                                   47
+
+===== PDF PAGE 16 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+4.2  Preliminaries
+
+
+Many mechanical systems are accurately described by a set of ordinary differential equations with
+constant coefficients [14]. The general equations of motion of a system with p inputs and q outputs
+is formulated in the nodal coordinates q(t) ∈Rq as
+
+                             M¨q(t) + D˙q(t) + Kq(t) = Ru(t),
+                                                                                                  (4.1)
+                               y(t) = Lq(t),
+
+where M ∈Rq×q is the mass matrix, D ∈Rq×q is the damping matrix, K ∈Rq×q is the stiffness
+matrix, R ∈Rq×p is the input matrix, and L ∈Rq×q is the output matrix. The system representa-
+tion (4.1) consists of a set of coupled second-order differential equations. To simplify the analysis,
+it is often useful to transform these equations into a modal coordinate system, where they be-
+come decoupled. This transformation allows the system to be expressed as a set of independently
+evolving modes, making the dynamics easier to interpret and analyze.
+
+In this section, we present the modal representations of mechanical systems for two types of viscous
+damping models, namely, proportionally damped and generally damped systems. Many lightly-
+damped mechanical systems are accurately described using a proportional damping assumptions,
+which offers advantages in model interpretability and model complexity. However, developments
+in motion system design (see, e.g., [78]) necessitate more complex damping models. While general
+damping models can represent a larger class of mechanical systems in a modal framework, they
+come with increased complexity and reduced interpretability compared to proportional damping
+models.
+
+
+4.2.1  Modal modeling for proportionally damped systems
+
+For proportionally damped systems, a coordinate transformation to modal coordinates qm(t) ∈Rq
+is obtained by solving the undamped eigenvalue problem of the system (4.1). The system of
+equations that has to be solved for each i = {1 . . . n} is given by
+
+                           (K −ω2i M)ϕi = 0,                                     (4.2)
+
+where ωi are the undamped natural frequencies and ϕi ∈Rq are the corresponding eigenvectors.
+Since the mass and stiffness matrices are positive (semi)-definite, the eigenvectors ϕi will be
+orthogonal with respect to these system matrices [68]. As a result, they diagonalize both the
+mass matrix M and the stiffness matrix K.  Since a proportional damping model is assumed,
+the undamped eigenvectors additionally diagonalize the damping matrix D. A transformation to
+modal coordinates can, therefore, be obtained by assembling each eigenvector in the modal matrix
+Φ = [ϕ1 . . . ϕn]. Substituting q(t) = Φqm(t) and pre-multiplying (4.1) with Φ⊤yields
+
+                    Mm¨qm(t) + Dm ˙qm(t) + Kmqm(t) = Φ⊤Ru(t),
+                                                                                                  (4.3)
+                         y(t) = LΦqm(t),
+
+where Mm = Φ⊤MΦ is the modal mass matrix, Dm = Φ⊤DΦ is the modal damping matrix and
+Km = Φ⊤KΦ is the modal stiffness matrix. The system can then be written in the standard form
+by normalizing the modal mass matrix to identity, such that
+
+                             ¨qm(t) + 2ZΩ˙qm(t) + Ω2qm(t) = Φ⊤r u(t),
+                                                                                                  (4.4)
+                            y(t) = Φlqm(t),
+
+where Z = 0.5M−1m DmΩ−1 is the diagonal matrix of modal damping ratios, the matrix Ω2 =
+M−1m Km is the diagonal matrix of squared natural frequencies, Φ⊤r = M−1m Φ⊤R is the modal
+
+
+48
+
+===== PDF PAGE 17 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+
+input distribution matrix and Φl = LΦ is the modal output distribution matrix. The form in
+(4.4) constitutes a decoupled set of equations, where the columns of Φ⊤r  give a measure for the
+degree of excitation of each mode due to the input channels u(t), and the rows of Φl provide
+information about the contribution of each mode in the output channels y(t). The transfer matrix
+of the system of equations is obtained by computing the Laplace transform, which after rearranging
+yields
+
+                                                   −1
+                         G(s) = Φl  s2 + 2ZΩs + Ω2  Φ⊤r .                           (4.5)
+
+The modes of the system are divided into nflex flexibility modes and nrbm rigid-body modes. A
+rigid-body mode refers to a motion in which the system undergoes either translation or rotation
+without internal deformations, and is typically associated with a natural frequency of ωi = 0. The
+expression in (4.5) can thus be written as
+
+                                 nrbm ϕl,iϕ⊤r,i        nflex       ϕl,iϕ⊤r,i                   G(s) = X     + X                               ,                    (4.6)
+                                       s2                                                        s2 + 2ζiωis + ω2i                                 i=1                                             i=nrbm+1
+
+where ϕl,iϕ⊤r,i ∈Rq×p is the modal residue matrix, which distributes the contribution of each
+mode over the transfer matrix input-output channels. This matrix is rank 1 by construction as it
+is formed via the dyadic product of ϕl,i and ϕr,i.
+
+
+4.2.2  Modal modeling for generally damped systems
+
+For generally damped systems, the matrix Dm = Φ⊤DΦ will not be diagonal and consequently
+the system of equations remain coupled under the coordinate transformation. This necessitates
+an alternative approach to obtaining the modal representation. Instead, the following descriptor
+state-space system is introduced
+
+                     E˙x(t) = Ax(t) + Bu(t)
+                                                                                                  (4.7)
+                                      y(t) = Cx(t)
+
+with the state-space matrices defined as
+
+          D M       −K  0       R
+       E =                    , A =                       , B =            , C =  L  0    .        (4.8)
+        M  0            0 M          0
+
+The main reason for adopting this particular state-space representation is that for symmetric
+matrices M, D and K the state-space matrices E and A will also be symmetric. Consequently,
+the eigenvectors obtained by solving the eigenvalue problem of the state space system will have the
+orthogonality property and can thus be used as a coordinate transformation to obtain a decoupled
+system. The system of equations which has to be solved for i = {1 . . . 2n} is given by
+
+                            (A −λiE)vi = 0,                                     (4.9)
+
+where
+                       q
+                                    λi = −ζiωi + jωi  1 −ζ2i ,                               (4.10)
+are the eigenvalues of the state-space system and vi ∈C2q are the corresponding complex eigen-
+vectors. As a result of the dependency in the state vector, the matrix of eigenvectors is partitioned
+according to
+
+                             U
+                V = [v1,  . . . , v2n] =               ,                            (4.11)
+                              UΛ
+
+
+
+                                                                                   49
+
+===== PDF PAGE 18 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+
+which means only the first n rows of vi contain the unique information of the system response.
+Using the matrix of eigenvectors, the system is transformed to modal coordinates by substituting
+x(t) = Vxm(t) and pre-multiplying (4.7) with V⊤, yielding
+
+                                    ˙xm(t) = Λxm(t) + V⊤Bu(t),
+                                                                                              (4.12)
+                                   y(t) = CVxm(t),
+
+where Λ = V⊤AV is a diagonal matrix containing the eigenvalues of the system. Substituting
+the input and output matrices (4.8) and noting the decomposition of the matrix with eigenvectors
+in (4.11) leads to
+                                   ˙xm(t) = Λxm(t) + U⊤Ru(t),
+                                                                                              (4.13)
+                                   y(t) = LUxm(t).
+
+By introducing the left eigenvector matrix Ψl = LU and the right eigenvector matrix Ψ⊤r = U⊤R
+and taking the Laplace transform of the decoupled state-space system, yields the transfer matrix
+expression for the flexible modes
+
+                            G(s) = Ψl (sIq −Λ)−1 Ψ⊤r ,                              (4.14)
+
+which can equivalently be written as the first-order Partial-Fraction Expansion (PFE) form
+
+                                              2n ψl,iψ⊤r,i                               G(s) = X             ,                                 (4.15)
+                                                s −λi                                               i=1
+
+with ψl,iψ⊤r,i ∈Cq×p being the complex rank 1 modal residue matrix of the first-order PFE
+form. For systems with real-valued inputs, outputs, and system matrices, the eigenvalues λi and
+eigenvectors vi appear in complex conjugated pairs. Therefore, the first-order PFE form is written
+as the complex-conjugated pole pairs
+
+                                     n  ψl,iψ⊤r,i     ¯ψl,i ¯ψ ⊤r,i                           G(s) = X     +              .                            (4.16)
+                                           s −λi     s −¯λi                                         i=1
+
+By introducing the partitioning of the rigid-body and flexible modes and combining the first-order
+terms in (4.16), the second-order PFE for generally damped mechanical systems is obtained
+
+
+                                    ⊤                   ⊤
+               nrbm ϕl,iϕ⊤r,i    nflex  ψl,iψ⊤r,i + ¯ψl,i ¯ψ r,i  s −  ¯λiψl,iψ⊤r,i + λi ¯ψl,i ¯ψ r,i     G(s) = X     + X                                                                                .       (4.17)
+                      s2                                                s2 −  λi + ¯λi s + λi¯λi               i=1                              i=1
+
+
+Remark 7 The second-order PFE form for proportionally damped systems (4.6) is retrieved as
+a special case of the second-order PFE for generally damped systems (4.17). For proportionally
+damped systems, the residue matrix ψl,iψ⊤r,i of the first-order PFE is purely imaginary [68]. Using
+this property, the following relations are derived
+
+                       ψl,iψ⊤r,i + ¯ψl,i ¯ψ ⊤r,i = 0,                                          (4.18)
+                    −¯λiψl,iψ⊤r,i −λi ¯ψl,i ¯ψ ⊤r,i = −2ℜ  ¯λψl,iψ⊤r,i = ϕl,iϕ⊤r,i.                (4.19)
+
+
+
+
+
+50
+
+===== PDF PAGE 19 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+4.3  Parameterizations
+
+
+This section provides the relevant parametrizations for the mechanical system class in transfer
+function form. The parametrizations are based on first-principle models and can, therefore, be
+categorized as grey-box models. The parameterization is provided in both additive forms and the
+corresponding modal forms. Furthermore, the parametrizations are valid for both the time-domain
+and the frequency-domain identification settings. Therefore, a unified operator ξ is used, which is
+equal to the Heaviside operator ξ = p for the time-domain setting, where the Heaviside operator
+was defined as px(t) = dtx(t)d     with x(t) ∈Rq a vector-valued signal, and equal to the Laplace
+variable ξ = s when considering the frequency-domain method. The additive model structure for
+proportionally and generally damped systems is then parameterized as follows.
+
+
+Definition 6 (Additive model with proportional damping) The continuous-time, propor-
+tionally damped mechanical system in additive form is described by
+
+                                                             nflex
+               M             Bi,0                         P(ξ, β) =  + X          + D,                      (4.20)
+                                      ξ2        ξ2 + ai,1ξ + ai,0                                             i=1
+
+with corresponding parameter vector
+
+          h                                            h    β = vec(M)⊤, θ⊤1 ,  . . . , θ⊤nflex, vec(D)⊤i⊤ ,   θi =  ai,0, ai,1, vec (Bi,0)⊤i⊤ .       (4.21)
+
+
+Definition 7 (Additive model with general damping) The continuous-time, generally damped
+mechanical system in additive form is described by
+
+                                                             nflex
+               M         Bi,1ξ + Bi,0                         P(ξ, β) =  + X          + D,                      (4.22)
+                                      ξ2        ξ2 + ai,1ξ + ai,0                                             i=1
+
+with corresponding parameter vector
+
+        h                                           h   β =  vec (M)⊤, θ⊤1 ,  . . . , θ⊤nflex, vec(D)⊤i⊤ ,   θi =  ai,0, ai,1, vec (Bi,0)⊤, vec (Bi,1)⊤i⊤ .
+                                                                                              (4.23)
+
+
+The rigid-body modes are captured by a single gain matrix M. The rank of this matrix corresponds
+to the number of rigid-body modes nrbm in the system, i.e., rank(M) = nrbm. The static-gain
+matrix D is included to model the higher-order flexible modes.  Since this term approximates
+an infinite number of flexible modes, it will generally be a full-rank matrix. The corresponding
+parametrizations in modal form are provided below.
+
+
+Definition 8 (Modal model with proportional damping) The continuous-time, proportion-
+ally damped mechanical system in modal form is described by
+
+                               nrbm ϕl,iϕ⊤r,i    nflex        ϕl,iϕ⊤r,i                  P(ξ, ρ) = X     + X              + D,              (4.24)
+                                     ξ2                                                 ξ2 −  λi + ¯λi  ξ + λi¯λi                                              i=1                               i=1
+
+with corresponding parameter vector
+
+                       h              ρ = ρrbm⊤1      ,  . . . , ρrbm⊤nrbm , ρflex⊤1     ,  . . . , ρflex⊤nflex , vec(D)⊤i⊤ ,              (4.25)
+
+and where
+
+                            h       i⊤         h              i⊤                    ρrbmi  = ϕ⊤l,i, ϕ⊤r,i     , ρflexi  =  ℜλi, ℑλi, ϕ⊤l,i, ϕ⊤r,i     .                 (4.26)
+
+
+                                                                                   51
+
+===== PDF PAGE 20 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+
+Definition 9 (Modal model with general damping) The continuous-time, generally damped
+mechanical system in modal form is described by
+
+
+                                   ⊤                   ⊤
+              nrbm ϕl,iϕ⊤r,i    nflex  ψl,iψ⊤r,i + ¯ψl,i ¯ψ r,i  ξ −  ¯λiψl,iψ⊤r,i + λi ¯ψl,i ¯ψ r,i   P(ξ, ρ) = X     + X                             + D,   (4.27)
+                    ξ2                                              ξ2 −  λi + ¯λi  ξ + λi¯λi              i=1                             i=1
+
+with corresponding parameter vector
+
+                       h              ρ = ρrbm⊤1      ,  . . . , ρrbm⊤nrbm , ρflex⊤1     ,  . . . , ρflex⊤nflex , vec(D)⊤i⊤ ,              (4.28)
+
+and where
+
+                    h       i⊤         h                           i⊤            ρrbmi  = ϕ⊤l,i, ϕ⊤r,i     , ρflexi  =  ℜλi, ℑλi, ℜψ⊤l,i, ℑψ⊤l,i, ℜψ⊤r,i, ℑψ⊤r,i     .         (4.29)
+
+
+4.4  Modal model estimation
+
+
+This section presents the approach for transforming the identified additive model into a modal
+model using the Indirect Prediction Error Method (IPEM). The IPEM method is a two-stage
+approach that initially performs a standard PEM estimation, followed by a second estimation to
+either reduce the model size or incorporate more complex constraints [77]. The key aspect of this
+approach is that the two-stage estimator has the same asymptotic statistical properties as the
+PEM estimator that considers the reduced model structure. That is, consistency is conserved in
+the second stage while the efficiency of the estimate improves due to the reduced model set size.
+
+
+4.4.1  The indirect prediction error method
+
+
+The IPEM method provides an optimal way of mapping the parameter vector, describing the
+additive model structure, to the parameter vector describing the modal model structure. This
+method is explained as follows. Consider the nested model structures A and M, with A repres-
+enting the additive model structure and M representing the modal model structure, and where
+M ⊂A. We are interested in estimating the modal parameter vector ρ describing a model in M.
+
+The central idea of the indirect PEM method is to estimate a model in M by treating the SRIVC-
+optimal parameter vector ˆβ describing the additive structure as data. This is achieved by solving
+a least-squares optimization problem in parameter space, where the weighting is based on the
+parameter covariance estimate ˆCˆβ. Weighting by the parameter covariance ensures that the cost
+function of the IPEM problem and the original SRIVC cost function, when parameterized in terms
+of the modal parameters, behave approximately the same [77, Interpretation 2.3]. This approxim-
+ation is most accurate near the SRIVC-optimal parameter vector ˆβ. The initial modal parameter
+vector ρ⟨0⟩is constructed using the SRIVC-optimal denominator coefficient and the singular vec-
+tors obtained via an SVD of the numerator matrices in the additive structure. Figure 4.2 shows
+the geometric interpretation of the IPEM estimation problem [77, Interpretation 2.1].
+
+To apply the IPEM method, the following assumptions on the model structures and data are
+needed.  First, the model structures are nested, i.e., M ⊂A, such that there exists a smooth
+and injective map f(ρ) = ˜β that links the modal parameter vector ρ with the additive parameter
+vector β in which the predictors are equal. That is if ε(tk, β) or E(jωk, β) are the residuals used
+for computing the estimates in the first stage, then ε2(tk, f(ρ)) = ε1(tk, β) in the time-domain
+and E2(jωk, f(ρ)) = E1(jωk, β) in the frequency-domain.  Furthermore, the Jacobian matrix
+∂f(ρ)/∂ρ must have full rank for all possible values of ρ, and both model structures A and M
+give parameter identifiability (see, e.g., [50, Definition 8.1]).
+
+
+52
+
+===== PDF PAGE 21 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+
+
+
+
+Figure 4.2: Geometric interpretation of the IPEM estimation problem. The parameter estimate
+ˆβ is first mapped to ρ⟨0⟩, which is used to initialize IPEM. The IPEM estimation problem finds
+a model in M for which the distance between f(ρ) = ˜β and the SRIVC-optimal ˆβ is minimum in
+terms of the metric induced by ˆCˆβ.
+
+
+4.4.2  Formulation of the estimation problem
+
+Instead of directly fitting to the measured dataset ZN, the IPEM method formulates the estimation
+problem based on the SRIVC-optimal parameter vector estimates describing the additive model
+structure. The modal parameter vector is then obtained as a solution to the weighted least-squares
+problem
+
+                                      ˆρ = arg min   ˆβ −f(ρ) ⊤ˆC−1  ˆβ −f(ρ)   ,                      (4.30)                                                                                             ˆβ                                ρ
+
+with ˆβ the SRIVC-optimal parameter vector and ˆCˆβ an estimate of the parameter covariance
+matrix. The time-domain estimator for the covariance matrix was given in (2.113) and, is for the
+frequency domain given by
+
+                      "   N                           #−1                            1
+                              ˆCˆβ =  X ˆΦ(ωk, ˆβ)ˆC−1vec(G)(ωk)ˆΦ⊤(ωk, ˆβ)       .                  (4.31)                 N
+                               k=1
+
+The mapping f(ρ) links the modal parameter vector ρ to the additive parameter vector β. Since
+the modes are independently parametrized the mapping f(ρ) takes the following structure
+
+                       h                    flex                    flex                f(ρ) =  f rbm(ρrbm), f 1   (ρflex1   ),  . . .  , f nflex(ρflexnflex), vec(D)⊤i⊤ ,            (4.32)
+
+where f rbm(ρrbm) is the mapping for the rigid-body mode parameters, and f iflex (ρflexi   ) specifies
+the mapping of parameters for each flexible mode. The mapping for D is identity as the para-
+metrization of this matrix is equal for both model structures. It still needs to be included in the
+estimation problem as changes in the flexible mode parameters will also impact D. The mapping
+for the rigid-body mode parameters are specified as follows
+
+                   rbm           rbm  h                        i⊤                        f    ρrbm = f    ϕ⊤l,1, ϕ⊤r,1,  . . . , ϕ⊤l,nrbm, ϕ⊤r,nrbm        ,
+
+                                         nrbm    !                                                                                              (4.33)
+                  = vec X ϕl,iϕ⊤r,i    ,
+                                         i=1
+                  = vec( ˜M).
+
+
+                                                                                   53
+
+===== PDF PAGE 22 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+The mapping of the flexible mode parameters f iflex  ρflexi     , varies depending on the specific damping
+model being used. For the proportionally-damped system class the mapping is given by
+
+                                   flex                flex  h              i⊤                             f i     ρflexi  = f i     ℜλi, ℑλi, ϕ⊤l,i, ϕ⊤r,i        ,
+
+                                                                                              (4.34)                    =                                   h λi¯λi, − λi + ¯λi  , vec(ϕl,iϕ⊤r,i)⊤i⊤ ,
+
+                                   h                    =   ˜ai,0, ˜ai,1, vec( ˜Bi,0)⊤i⊤ ,
+
+and for the generally damped system class
+
+  flex                flex  h                           i⊤ f i     ρflexi  = f i     ℜλi, ℑλi, ℜψ⊤l,i, ℑψ⊤l,i, ℜψ⊤r,i, ℑψ⊤r,i        ,
+
+                                             ⊤                  ⊤ ⊤                                          ⊤                  ⊤
+       =  λi¯λi, − λi + ¯λi  , −vec  ¯λiψl,iψ⊤r,i + λi ¯ψl,i ¯ψ r,i     , vec  ψl,iψ⊤r,i + ¯ψl,i ¯ψ r,i          ,
+
+             h       =   ˜ai,0, ˜ai,1, vec( ˜Bi,0)⊤, vec( ˜Bi,1)⊤i⊤ .                                          (4.35)
+
+
+4.4.3  Proposed solution procedure
+
+
+This section presents the proposed estimation procedure for obtaining solutions to the IPEM prob-
+lem (4.30). The optimal estimate is obtained iteratively using a Gauss-Newton (GN) algorithm. In
+this procedure, at each iteration j, a first-order Taylor approximation of the residue ε(ρ) = ˆβ−f(ρ)
+is developed around the current parameter estimate ρ⟨j⟩to obtain a local linearization. The local
+linearization of the residue yields a local quadratic approximation of the global cost function,
+which only depends on the parameter perturbation ∆ρ. The optimal parameter update is then
+readily determined from this quadratic cost function through a closed-form expression. The GN
+update formula is given by
+
+                                                                             2
+                     ˆρ⟨j+1⟩= ˆρ⟨j⟩+ α arg min  ε(ρ⟨j⟩) −J(ρ⟨j⟩)∆ρ         ,                 (4.36)
+                                   ∆ρ                     C−1ˆβ
+
+where α is a step-size selection parameter and J(ρ) is the Jacobian matrix of the parameter
+mapping (4.32) with respect to the modal parameter vector
+
+                                            ∂f(ρ)
+                                    J(ρ) =           .                                    (4.37)
+                                     ∂ρ
+
+Next, analytic expressions are provided for computing J. Since each mode of the system is inde-
+pendently parameterized, the Jacobian takes the block-diagonal form
+
+              J(ρ) = blkdiag Jrbm(ρrbm), Jflex1  (ρflex1   ),  . . .  , Jflexnflex(ρflexnflex), Ipq  ,          (4.38)
+
+where Jrbm(ρrbm) is the Jacobian matrix with respect to the rigid-body mode parameters, Jflexi   (ρflexi   )
+is the Jacobian matrix with respect to the flexible mode parameters and the Jacobian correspond-
+ing to the DC-gain parameters is identity.  Working out the partial derivatives yields for the
+rigid-body mode Jacobian
+
+           Jrbm(ρrbm) =  ϕr,1 ⊗Iq,  Ip ⊗ϕl,1,    . . .  ϕr,nrbm ⊗Iq,  Ip ⊗ϕl,nrbm  ,       (4.39)
+
+and for the flexible modes parameterized using a proportional damping model
+
+                       2ℜ(λi)  2ℑ(λi)    0       0  
+                         Jflexi   (ρflexi   ) =   −2      0       0       0                      (4.40)                                                    .
+                              0      0     ϕr,i ⊗Iq   Ip ⊗ϕl,i
+
+
+54
+
+===== PDF PAGE 23 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+
+Finally, the Jacobian matrix for generally-damped flexible modes is given by
+
+                                                                                                                     ,                 (4.41)                           Jflexi   (ρflexi   ) = h Jλii  (ρflexi   )  J ψl,ii   (ρflexi   )  J ψr,ii   (ρflexi   )i
+
+where the derivatives with respect to the eigenvalues are
+
+                           2ℜ(λi)             2ℑ(λi)    
+                             −2                 0
+                   Jλii  (ρflexi   ) =                                                             (4.42)                       −2 vec(ℜ(ψl,iψ⊤r,i))  −2 vec(ℑ(ψl,iψ⊤r,i))                                                                                                                               ,
+                                 0               0
+
+and for the left and right eigenvectors are given by
+
+                       0                        0          
+        ψl,i                   0                        0
+   J i   (ρflexi   ) =                                                                           (4.43)                     −¯λi(ψr,i ⊗Iq) −λi(¯ψr,i ⊗Iq)  −j¯λi(ψr,i ⊗Iq) + jλi(¯ψr,i ⊗Iq)                                                                                                                                         ,
+                         (ψr,i ⊗Iq) + (¯ψr,i ⊗Iq)         j(ψr,i ⊗Iq) −j(¯ψr,i ⊗Iq)
+
+and
+
+                       0                        0          
+        ψr,i                   0                        0
+    J i   (ρflexi   ) =                                                                           (4.44)                     −¯λi(Ip ⊗ψl,i) −λi(Ip ⊗¯ψl,i)  −j¯λi(Ip ⊗ψl,i) + jλi(Ip ⊗¯ψl,i)                                                                                                                                         .
+                         (Ip ⊗ψl,i) + (Ip ⊗¯ψl,i)        j(Ip ⊗ψl,i) −j(Ip ⊗¯ψl,i)
+
+
+4.4.4   Initializing the modal parameter vector
+
+In order to initialize the optimization problem (4.30), a starting value ρ⟨0⟩for the modal parameter
+vector has to be provided. The initial values are computed using the SRIVC-optimal additive
+parameter vector ˆβ through the following relations. The starting value for the eigenvalues λi is
+computed directly using the SRIVC-optimal denominator coefficients according to
+                                   λ⟨0⟩i = −1  + j rˆai,0 −1  i,1.                           (4.45)                                                     2ˆai,1              4ˆa2
+
+To obtain a starting value for the eigenvector pairs {ϕ⊤l,i, ϕ⊤r,i} for proportionally damped flex-
+ible modes and additionally the pair {ψ⊤l,i, ψ⊤r,i} for generally damped flexible modes, with i =
+1, . . . , nflex, an SVD is applied to the numerator matrices of the additive model structure. To
+initialize the eigenvectors for a proportionally damped system, the SVD can directly be applied
+to ˆBi,0. Therefore, the eigenvectors are initialized as follows
+                               ϕ⟨0⟩l,i = √σ1u1,i,   ϕ⟨0⟩r,i = √σ1v1,i,                          (4.46)
+
+where u1,i and v1,i are the first singular vectors obtained from the SVD decomposition ˆBi,0 =
+UiΣiVHi .  For generally-damped systems, the residue matrix of the first-order PFE has to be
+                         ˆretrieved from the matrices {Bi,0, ˆBi,1} using the relation
+
+                                          λi           1
+                         Ri =             ˆBi,0 +    ˆBi,1   .                            (4.47)
+                                       λi −¯λi          λi
+
+Then, the starting values for the eigenvectors are computed using
+                              ψ⟨0⟩l,i = √σ1s1,i,   ψ⟨0⟩r,i = √σ1x1,i,                          (4.48)
+
+where s1,i and x1,i are the first singular vectors obtained from the SVD decomposition Ri =
+SiΣiXHi .  Finally, the rigid-body mode eigenvector pairs {ϕ⊤l,i, ϕ⊤r,i} with i = 1, . . . , nrbm are
+
+
+                                                                                   55
+
+===== PDF PAGE 24 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+
+initialized using the first nrbm singular vectors of the SVD decomposition of the estimated gain
+matrix ˆM. More specifically,
+                                 ϕ⟨0⟩l,i = √σiui,   ϕ⟨0⟩r,i = √σivi,                            (4.49)
+where ui and vi are the ith singular vectors of the SVD decomposition ˆM = UΣVH. Using these
+expressions, the modal parameter vector can readily be constructed based on the SRIVC-optimal
+additive parameter vector.
+
+
+4.4.5  Implementation aspects
+
+
+Due to the wide variation in parameter values typically encountered in mechanical systems, the
+GN algorithm may experience numerical issues. To address this, the optimization problem must be
+scaled so that both the entries of the Jacobian matrix and the cost function values remain within
+the numerical working range of the software used for solving the optimization. The scalings are
+applied as follows: rather than solving the problem (4.30) directly, the scaled version of the problem
+is solved instead
+                               1                                ˜ρ = arg min     (ˆβ −f(S˜ρ)) ⊤ˆC−1  (ˆβ −f(S˜ρ))   ,                 (4.50)
+                            ρ    d                                ˆβ
+
+where S is a diagonal scaling matrix that normalizes the optimization variables, and d is a scalar
+scaling parameter used to scale the cost function. For the remainder of this report, the parameter
+d is selected to normalize the cost function to 1, when evaluated at the initial condition ρ⟨0⟩and
+the parameter scaling matrix is selected as S = diag(|ρ⟨0⟩|)−1.
+
+
+4.5  Model order selection and initialization
+
+
+This section addresses the problem of determining the model order and obtaining the needed
+starting values for the SRIVC algorithm. The estimation problem of the modal parameters is
+inherently non-convex and can, therefore, contain many local minima. To prevent converging to a
+sub-optimal solution, the estimation algorithm has to be initialized sufficiently close to the global
+optimum. The initialization problem becomes especially important for large estimation problems
+involving many parameters, such as those for large MIMO systems.
+
+Each proportionally damped flexible mode of the system is described by the parameters {ωi, ζi, Bi,0}.
+the key property that is exploited in solving the initialization problem is that when the modal
+parameters {ωi, ζi} are known, the gain matrix Bi,0 are obtained by solving a convex optimization
+problem using the dataset ZN. Since the optimization is convex, a closed-form solution relating
+the gain matrix to the modal parameters through the dataset can be obtained. The addition
+of this intermediate optimization problem yields two main advantages. Firstly, accurate starting
+values for the modal parameters {ωi, ζi} can intuitively be derived from prior knowledge of the
+mechanical systems through, e.g., the FRF or FEM modeling. Similar methods for the gain matrix
+are typically much less intuitive and/or accurate. Secondly, it significantly reduces the number of
+parameters for which starting values must be provided.
+
+First, we discuss the tools used for determining the model order of the modal system, i.e., the
+number of flexible modes nflex and the number of rigid-body modes nrbm. After that, the approach
+for initializing the denominator and numerator parameters is introduced. For relatively low-order
+estimation problems, the presented methods are generally sufficient to reach the global optimum.
+However, for estimation problems for which a large number of modes have to be identified, these
+tools could fall short.  Therefore, an iterative approach has been used in this study, where the
+starting values are progressively refined through successive iterations. This procedure is addressed
+in the last subsection.
+
+
+56
+
+===== PDF PAGE 25 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+4.5.1  Model order selection
+
+To determine the number of flexible modes, nflex, and their corresponding frequency locations, the
+Complex Mode Indicator Function (CMIF) is employed [79]. The CMIF is defined as the square
+of the singular values of the FRF matrix evaluated at each spectral line. A mode is identified by a
+peak in the CMIF, with the peak frequency corresponding to the flexible mode’s damped natural
+frequency. The mode multiplicity is determined by counting the number of singular values peaking
+at the same frequency. The key advantage of using the CMIF, instead of directly analyzing the
+FRF matrix, is that it reduces the order selection procedure from a MIMO representation to
+a Single-Degree-of-Freedom (SDOF) representation, making it more intuitive. Additionally, the
+CMIF allows for the simultaneous detection of both the mode frequency and its multiplicity. The
+singular value decomposition of the FRF matrix at each spectral line is defined as
+
+                            Gfrf(jωk) = U(jωk)Σ(jωk)V(jωk)H,                         (4.51)
+
+where U(jωk) ∈Cq×q and V(jωk) ∈Cp×p are the singular vectors and Σ(jωk) ∈Rq×p contains
+the singular values along the diagonal. The CMIF is then defined as
+
+                          CMIF(jωk) = Σ(jωk)⊤Σ(jωk),                            (4.52)
+
+i.e., the square of the singular values. By plotting the diagonal entries of this function in a single
+figure and checking the number of peaking singular values, the number of flexible modes nflex and
+corresponding frequency location is determined.  Figure 4.3 presents an example of the CMIF,
+calculated for a typical motion system with p = 8 inputs and q = 7 outputs.
+
+The rigid-body modes are represented by a single gain matrix M for the additive model structure.
+In the second stage, this matrix is mapped to a modal representation, where the gain matrix M is
+decomposed in nrbm dyads of the eigenvector pair {ϕ⊤l,i, ϕ⊤r,i}. The number of rigid-body modes,
+nrbm, is defined as the rank of the gain matrix, i.e., rank(M) = nrbm. To determine this from the
+estimated gain matrix ˆM, a singular value decomposition is performed, such that ˆM = UΣV⊤.
+The number of dominant singular values in ˆM corresponds to the number of rigid-body modes in
+the system. An example of a 7 × 8 motion system is shown in Figure 4.4 containing nrbm = 6
+rigid-body modes.
+
+
+
+
+
+Figure 4.3: Example of the CMIF, calculated using a FRF measurement obtained from a typical
+motion system with p = 8 inputs and q = 7 outputs. In total nflex = 15 flexible modes are found,
+each with multiplicity 1.
+
+
+                                                                                   57
+
+===== PDF PAGE 26 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+
+
+
+
+Figure 4.4: Example of a typical motion system with p = 8 inputs and q = 7 outputs. The
+singular values of the gain matrix ˆM display 6 dominant directions, which matches the expected
+nrbm = 6 rigid-body modes (left). For comparison, the singular values of the gain matrix ˆB1,0
+of the first proportionally damped flexible mode are displayed, showing only a single dominant
+direction (right).
+
+
+4.5.2   Initialization of the numerator parameters
+
+For initializing the numerator parameters we assume that the denominator coefficients {¯ai,1, ¯ai,0}
+for each flexible mode i = 1, . . . , nflex are known and fixed. Then, the parameter vector of the
+additive model structure for a proportionally damped system reduces to
+
+                     h             η =  vec (M)⊤, vec (B1,0)⊤, . . . , vec (Bnflex,0)⊤, vec(D)⊤i⊤ ,            (4.53)
+
+and the parameter vector of the additive model structure for the generally damped system becomes
+
+           h                                         h     η =  vec (M)⊤, η⊤1  . . . , η⊤nflex, , vec(D)⊤i⊤ , ηi =  vec (Bi,0)⊤, vec (Bi,1)⊤i⊤ .       (4.54)
+
+
+Time-domain solution to the convex optimization problem
+
+We are interested in obtaining an estimate of the parameter vector ˆη given the dataset ZN that
+minimizes the optimization problem
+
+                                  N
+                                         1
+                                                 ˆη = arg min X ∥ε(tk, η)∥22,                            (4.55)
+                                     η  N
+                                            k=1
+
+where the residual function is defined as
+
+                                                                      nflex
+                                                 Bi(p)                ε (tk, η) = y (tk) −M u (tk) −               X     u (tk) −Du (tk) .              (4.56)
+                                      p2               ¯Ai(p)                                                   i=1
+
+Next, the residual function is rewritten by expanding the numerator matrix of the flexible modes
+and applying the identity (1.2), such that
+
+                                                        nflex U⊤(tk)  ε (tk, η) = y (tk) −U⊤(tk) vec(M) −            X        vec (Bi,0) −
+                        p2                     ¯Ai(p)                                         i=1
+                                                                     . . . −pmiU⊤(tk) vec (Bmi) −U⊤(tk) vec(D).  (4.57)                                                          ¯Ai(p)
+
+
+58
+
+===== PDF PAGE 27 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+
+This function is linear in the parameter vector η and can therefore be cast in the classical linear-
+regression form
+
+                            ε (tk, η) = y (tk) −Φ⊤(tk) η,                             (4.58)
+
+where the regressor matrix is given by
+
+                          U⊤(tk)                         ⊤
+           Φ (ωk) =               , Φ⊤1 (tk) , . . . , Φ⊤nflex (tk) , U⊤(tk)     ,               (4.59)                                 p2
+
+and with
+                                 U⊤(tk)     pmiU⊤(tk) ⊤
+                      Φi (tk) =                , . . . ,                         .                       (4.60)
+                                              ¯Ai(p)           ¯Ai(p)
+
+The solution to the optimization problem is then obtained by computing the gradient of the cost
+function and setting this expression equal to zero
+
+                          N
+                              2
+                      0 = X Φ⊤(tk) y (tk) −Φ⊤(tk) η  ,                        (4.61)
+                  N
+                                 k=1
+
+which after rearranging yields the closed-form solution
+
+
+                                      N                        " N            #−1
+                                        ˆη = X Φ(tk)Φ⊤(tk) X Φ(tk)y(tk).                      (4.62)
+
+                              k=1                k=1
+
+
+Frequency-domain solution to the convex optimization problem
+
+For the frequency-domain formulation, the parameter estimate ˆη given the dataset ZN is obtained
+as a solution to the weighted optimization problem
+
+                        N
+                               ˆη = arg min X vec (E (ωk, η))H W(ωk) vec (E (ωk, η)) ,                (4.63)
+                          η
+                              k=1
+
+with the matrix residual defined as
+
+                                                                             nflex
+                   M        Bi(ωk)
+              E (ωk, η) = G (ωk) −    − X     −D.                   (4.64)
+                                            (jωk)2        ¯Ai(ωk)                                                         i=1
+
+The matrix residual are rewritten by expanding the numerator matrix for the flexible modes and
+applying the vectorization operator to obtain
+
+                                   1
+    vec (E (ωk, η)) = vec (G (ωk)) −      vec(M)−
+                                   (jωk)2
+                                      nflex                                                              (4.65)
+                              1
+        X          vec(Bi,0) + . . . + (jω)mi vec(Bi,mi)  −vec(D).
+                           Ai (ωk)                            i=1
+
+This expression is linear in the parameter vector η and can therefore be represented as a linear
+regression problem
+                        vec(E (ωk, η)) = vec(G (ωk)) −Φ⊤(ωk) η,                      (4.66)
+
+where the regressor matrix is denoted by
+
+                                      Iqp                       ⊤
+            Φ (ωk) =              , Φ⊤1 (ωk) , . . . , Φ⊤K (ωk) , Iqp     ,                  (4.67)
+                                 (jωk)2
+
+
+                                                                                   59
+
+===== PDF PAGE 28 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+
+and with
+                                             Iqp       (jωk)miIqp ⊤
+                      Φi (ωk) =                 . . . ,                       .                       (4.68)                               A1 (ωk),    AK (ωk)
+
+The solution to the optimization problem can then be found as a solution of the first-order optim-
+ality condition
+                     N
+                   0 = X ℜ nΦH (ωk) W(ωk) vec (E (ωk, η))o ,                      (4.69)
+
+                           k=1
+
+which yields the closed-form solution
+
+
+                                    N                " N                  #−1
+                        ˆη = X Φ(ωk)W(ωk)ΦH(ωk) X Φ(ωk)W(ωk) vec(G (ωk)).           (4.70)
+
+                    k=1                       k=1
+
+
+4.5.3   Initialization of the denominator parameters
+
+The denominator coefficients {ai,0, ai,1} for each flexible mode are initialized based on estimates of
+the modal parameter pair {ζi, ωi}. Initial estimates for the resonance frequencies ωi are obtained
+from the CMIF, which are accurate up to the resolution of the frequency grid. Since the frequency
+locations of the peaks in the CMIF correspond to the damped natural frequencies, this method is
+generally more accurate for lightly damped modes.
+
+Estimating the damping ratios ζi is more challenging. For simpler estimation problems, initializing
+with a standard damping ratio of 1-2% is usually sufficient. For larger or more complex estimation
+problems, the damping ratios can be estimated more precisely from the FRF data using the
+Enhanced FRF (EFRF) method, as introduced in [79]. The EFRF method simplifies the MIMO
+FRF into an SDOF approximation of the mode around its resonance frequency.  The modal
+parameter pair can then be obtained by applying widely used SDOF modal parameter estimation
+techniques (see, e.g., [80]) to each EFRF. The EFRF for each mode is calculated by
+
+                      EFRF(jωk) = u1(jωi)HG(jωk)v1(jωi),                        (4.71)
+
+where u1(jωi) ∈Cq and v1(jωi) ∈Cp are the first singular vectors of the SVD decomposition
+(4.51) evaluated at frequency of the mode ωi. After the modal parameters have been determined
+for each mode, they are used to initialize the additive denominator coefficients according to the
+relations ai,1 = 2ζiωi and ai,0 = ω2i .
+
+
+4.6  Simulation Results
+
+
+In this section, the modal identification procedure is validated through numerical simulations.
+First, an estimation experiment is conducted considering both proportionally damped and gener-
+ally damped model structures. Monte Carlo simulations are performed to verify the asymptotic
+properties of the estimated parameters.
+
+
+4.6.1  Model estimation
+
+
+This section aims to validate the different variants of the modal estimation procedure using a
+simulation model that exemplifies a motion system. A schematic overview of the considered 6-
+mass spring damper system with p = 6 inputs and q = 6 outputs is provided in Figure 4.5, which
+contains a total of nflex = 6 flexible modes.
+
+
+
+60
+
+===== PDF PAGE 29 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+                 q1                 q2                 q3                  q4                 q5                 q6
+               u1               u2               u3               u4               u5               u6
+    d1                d2                d3                d4                d5                d6
+
+         m1           m2                       m4           m5           m6
+
+    k1                k2                k3     m3      k4                k5                k6
+
+
+
+                                       d7
+
+Figure 4.5: Multivariate simulation model of a flexible motion system with nominal parameter
+values mi = 0.01 [kg], ki = 1000 [kN/m], di = 0.1 [kN/ms] for i = 1, . . . , 6.
+
+
+Two variants of the simulation model are considered. In the first variant, the damper parameter
+d7 is set to zero, so a proportional damping model can describe the system exactly. In the second
+variant, the d7 parameter is non-zero, resulting in a generally dampened system description. This
+allows for the validation of the proposed identification techniques for both types of modal models.
+Two identification experiments will be conducted. The first experiment will aim to identify the
+plant model using a time-domain dataset, while the second experiment aims to identify a plant
+model using a frequency-domain dataset.
+
+For the first experiment N = 104 samples of input/output measurements {u(tk), y(tk)}Nk=1 are
+collected with sampling frequency fs = 2000 [Hz] and the assumed intersample behavior for all
+signals is a zero-order hold (ZOH). The input signal u(tk) is a Gaussian white signal of unitary
+variance and output noise v(tk) is added with a SNR of 30 [dB]. For the second experiment, the
+FRF measurement {G(ωk), Cvec(G)(ωk)}Nk=1 is used as basis, obtained using the non-parametric
+modeling procedure outlined in [52, Chapter 2].  The FRF measurement contains N = 2000
+complex data points in the frequency range from 0.25 to 500 [Hz] and is estimated under output
+noise with an SNR of 30 [dB]. For both experiments, the estimator is initialized at a random
+system that satisfies β⟨0⟩i  = β∗i (1 + U(0.05, 0.05)), where U(a, b) denotes the uniform distribution
+of support (a, b).
+
+In Figure 4.6 and Figure 4.7 the FRFs of the identified additive and modal models using the
+time-domain dataset are presented. As can be noted, the model reduction step from additive to
+modal results in a negligible error. Furthermore, the time-domain signals used for identification are
+displayed in Figure 4.8, and the estimated mode shapes are compared to the analytical mode shapes
+in Figure 4.9, both displaying good agreement. In Figure 4.10 and Figure 4.11 the matrix residual
+and FRFs of the identified modal models using the frequency-domain dataset are presented. The
+residual of the generally damped case reaches the noise floor, while for the proportional damping
+case, some dynamics remain in the residual. This could be due to, e.g., errors propagating from
+the non-parametric modeling step.  Overall, the system models are accurately estimated using
+both time-domain and frequency-domain datasets, validating the proposed methods.
+
+
+
+
+
+                                                                                   61
+
+===== PDF PAGE 30 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+
+
+
+
+Figure 4.6: Time-domain estimation: FRF result for the proportionally damped system with
+(   ) the true system, (   ) the identified additive model, and (   ) the resulting modal model. The
+model reduction from additive to modal model introduced a negligible error.
+
+
+
+
+
+Figure 4.7: Time-domain estimation: FRF result for the generally damped system with (   )
+the true system, (   ) the identified additive model, and (   ) the resulting modal model. The
+model reduction from additive to modal model introduced a negligible error.
+
+
+
+62
+
+===== PDF PAGE 31 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+
+
+
+
+Figure 4.8: Time-domain estimation: Signal segments used for identification. The proportion-
+ally damped system (upper) and generally damped system (lower) with (   ) the dataset and (   )
+the simulated modal model.
+
+
+
+
+
+Figure 4.9: Time-domain estimation: True eigenvectors vs.  identified left and right eigen-
+vectors for the proportionally damped system.
+
+
+
+                                                                                   63
+
+===== PDF PAGE 32 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+
+
+
+
+Figure 4.10: Frequency-domain estimation: FRF result for the proportionally damped system
+with (   ) the FRF dataset, (   ) the identified modal model, and (   ) the matrix residual.
+
+
+
+
+
+Figure 4.11: Frequency-domain estimation: FRF result for the generally damped system with
+(   ) the FRF dataset, (   ) the identified modal model, and (   ) the matrix residual.
+
+
+
+
+64
+
+===== PDF PAGE 33 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+
+
+
+
+Figure 4.12: Visualization of the IPEM weighting matrix computed for one of the Monte Carlo
+realizations.
+
+
+4.6.2  Monte Carlo simulations
+
+
+This section repeats the Monte Carlo simulation experiment from Subsection 2.7.2 for the additive
+model structure. However, in this case, the modal model structure is enforced using the proposed
+IPEM method. 100 different sample sizes are collected, ranging logarithmically from N = 103 to
+N = 105. M = 100 Monte Carlo runs are performed for each sample size under different input
+and noise realizations. The input signal u(tk) is a Gaussian white signal of unitary variance, and
+output noise v(tk) is added with an SNR of 30 [dB]. The true system was defined in (2.117).
+The system is sampled at a rate of fs = 100 [Hz], and the assumed intersample behavior for all
+signals is a zero-order hold (ZOH). The estimators are initialized at a random system that satisfies
+β0 = β∗(1 + U(0.05, 0.05)), where U(a, b) denotes the uniform distribution.The performance is
+characterized by the mean squared error (MSE), as defined in (2.118).
+
+In Figure 4.13, the MSE simulation results for the first denominator coefficient are shown, while
+Figure 4.14 presents the MSE results for the (3, 3) entry of the numerator gain matrix. The
+linear decay of the modal model parameters with increasing N demonstrates that the consistency
+property is preserved. Additionally, the estimates for the gain matrices exhibit a slight reduction
+in variance compared to those from the additive model structure, although the variance of the
+denominator parameters remains unchanged.
+
+In the modal model structure, the numerator is described by fewer parameters than in the additive
+model structure, resulting in a lower variance. The denominator polynomial is represented with
+the same number of parameters as before and, therefore, does not induce any change in variance.
+This behavior can be further understood by examining the IPEM weighting matrix in Figure 4.12,
+where the weighting for the denominator coefficients is several orders of magnitude larger than
+that for the numerator coefficients. Consequently, the optimization problem tends to minimize
+the model mismatch between the additive and modal model structures primarily by adjusting the
+numerator parameters.
+
+
+
+
+
+                                                                                   65
+
+===== PDF PAGE 34 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+                                                       SYSTEMS
+
+
+
+
+
+Figure 4.13: Monte-Carlo simulations results. MSE with respect to the sample size N for the
+denominator coefficients. Here, (   ) denotes the MSE of the modal model and (   ) denotes the
+MSE of the additive model
+
+
+
+
+
+Figure 4.14: Monte-Carlo simulations results. MSE with respect to the sample size N for the
+denominator coefficients. Here, (   ) denotes the MSE of the modal model, and (   ) denotes the
+MSE of the additive model
+
+
+
+
+66
+
+===== PDF PAGE 35 =====
+CHAPTER 4. STATISTICALLY OPTIMAL MODAL IDENTIFICATION OF MECHANICAL
+SYSTEMS
+
+4.7  Conclusions
+
+
+This chapter introduces a two-stage procedure for the estimation of proportionally damped modal
+models and generally damped modal models.  First, an additive model is estimated and then
+optimally mapped to a modal model using the Indirect Prediction Error Method. This method
+involves formulating a second least-squares estimation problem in parameter space, where the
+parameter vector estimated in the first stage serves as input for the second stage. The two-stage
+method was successfully tested through a numerical example, and Monte Carlo simulation verified
+the statistical properties. Additionally, initialization and model order selection procedures were
+discussed.  Initialization proved crucial when considering more challenging estimation problems,
+such as those involving large MIMO systems. A convex optimization problem is introduced such
+that the numerator gain matrices can be obtained through a closed-form solution. As input,
+estimates of the denominator coefficients have to be provided.  Estimates of the denominator
+coefficients, parameterized by resonance frequency and damping ratio, can usually be derived
+from prior knowledge. The presented initialization and model order procedure offer advantages
+over other modal model estimation methods in the literature, primarily because the overall process
+is more intuitive.
+
+
+
+
+
+                                                                                   67

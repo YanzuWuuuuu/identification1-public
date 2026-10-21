@@ -1,0 +1,13 @@
+{
+  "A_fits": 720,
+  "A_replicates": 180,
+  "B_final_fits": 60,
+  "C_cases_including_unavailable": 120,
+  "SML_main_fits": 140,
+  "indirect_IVGN_main_fits": 160,
+  "indirect_LM_optimizer_checks": 160,
+  "original_files_checked": 26,
+  "original_files_changed": [],
+  "P1_M1_equals_M2": true,
+  "complete_requested_replicate_counts": true
+}

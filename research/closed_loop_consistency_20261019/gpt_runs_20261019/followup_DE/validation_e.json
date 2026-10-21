@@ -1,0 +1,11 @@
+{
+  "matrix_weight_parity_A": 2.4854136346326084e-16,
+  "matrix_weight_parity_g": 2.5000486936437235e-16,
+  "moment_derivative_relative_errors": [
+    2.08507879818689e-06,
+    1.5028601098056671e-06,
+    1.493427643804997e-06
+  ],
+  "E1_prior_log_pole_max_diff": 1.5764504386339695e-06,
+  "passed": true
+}

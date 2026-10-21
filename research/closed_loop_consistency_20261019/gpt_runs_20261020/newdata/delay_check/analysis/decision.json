@@ -1,0 +1,12 @@
+{
+  "a_any": true,
+  "a_count": 12,
+  "a_total": 24,
+  "b_mean_reduction_percent": 78.41036321891515,
+  "b_ratio_of_means_reduction_percent": 85.18447109580211,
+  "b_reestimated_mean_reduction_percent": 78.32224624502844,
+  "b_count": 12,
+  "c_any": true,
+  "b_pass": true,
+  "recommend_include": true
+}

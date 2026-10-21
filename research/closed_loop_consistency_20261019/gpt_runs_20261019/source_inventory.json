@@ -1,0 +1,138 @@
+{
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "files": [
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z-0.5.mat",
+      "bytes": 30683743,
+      "sha256": "3dfb54740f49d10e9b2c67e13433f3a68fc6019986bf51c08e0839f5eeba858f"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z-1.mat",
+      "bytes": 27340818,
+      "sha256": "6e091e19b9a611003c15353a723dca16a513a47be95c6cd2aa863d9493f17dce"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z0.5.mat",
+      "bytes": 31506111,
+      "sha256": "ba1c65b7a17d24dded84c6d91fa4ad8199217bf26801a5998fe3ae4bec53d98d"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z0.mat",
+      "bytes": 31027767,
+      "sha256": "117ae27a37b185521d13ddc595c693a4eb7104ce90eb9ad1a08a11f0fbacb299"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\experiment_data\\srivc_no_lrm_20261015\\closed_loop_consistency_20261019\\cl_data_z1.mat",
+      "bytes": 30749318,
+      "sha256": "2a8d08005ebafc9c821e12cbea840cc0430306da8d966bffbae7c1cd76a30fbc"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\analyze_sweep.py",
+      "bytes": 1418,
+      "sha256": "1cb088e92a3fbd7ce3d6a85462605a3aba647f57e6b6b7d2b054f1cbc8d32182"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\chk_C.py",
+      "bytes": 1419,
+      "sha256": "1a6bbbf5a465ca663068f849b2b2e107317f0defd0aa0011e5ad77f8674e8f2c"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\chk_C_siso.py",
+      "bytes": 1014,
+      "sha256": "6cead3af84e3e6fb4d56a958bff2ccce38536bacb84fbf56c10fd58bfcbe62b7"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\cl2.py",
+      "bytes": 9452,
+      "sha256": "bebfbd5c672c6326e76adfd658f586ba01c25eb764b43bef1183df3a74fc3ecf"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\design3.py",
+      "bytes": 1081,
+      "sha256": "ea15ccf7db41f942a853cd458bf07081461c66c27b481892bc910ac91c4701d9"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\exact_limit.py",
+      "bytes": 1619,
+      "sha256": "911841f99bda299869003f7ca87286f0bb9ed7aabf5095f90fcbf2af78aa5ab7"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\fd_cl.py",
+      "bytes": 3022,
+      "sha256": "632313b3a42a60b16b1b1e7df898be7c3ac15281d6fed56cef6a8cb6e2894307"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\mimo_cl.py",
+      "bytes": 11304,
+      "sha256": "46f908bb52324e015a278a806654c6b509e86dab0b91699bf5edc69121beb761"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\pred_siso.py",
+      "bytes": 1004,
+      "sha256": "109686cdb3d0a23da5551fb71f431d5887e9c023736868c842799cd4d196916f"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\predict.py",
+      "bytes": 3895,
+      "sha256": "f17a5a323245e2e30980cddeddc7dfe46ad6038e39d2cc1bff544ab31c995c72"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\predict2.py",
+      "bytes": 3894,
+      "sha256": "998c3c4bf98c0f0a7a3616e1281ce712efdfd18916d6baef3c95afedf73cdcc5"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\README.txt",
+      "bytes": 1477,
+      "sha256": "7a3cfbc96383a3581324dd7f3007b9773e7e4b68d28b304e35e9065710b5ee22"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\run_mc4.py",
+      "bytes": 1782,
+      "sha256": "5c699c114cc1e68ace18fa75f9524089d37831570256fb50f8a757daaf06f849"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\run_mc5.py",
+      "bytes": 2199,
+      "sha256": "097c68064c30d76009501c707c4970fd0d6680fba973ec7f0e0293abf1bc36b3"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\run_mc6.py",
+      "bytes": 2633,
+      "sha256": "ebb7ea5505496a07c16fc492414480e6e68e8ba0fb8b3c6f8bf173d6796b56c5"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\real_data\\load.py",
+      "bytes": 689,
+      "sha256": "345b429985d239c3583534857a96803e1eb6cc934d90d7b17302d9b03b23d67a"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\real_data\\realfit.py",
+      "bytes": 4592,
+      "sha256": "9646263636035391bda454f40cb8e6464a23f327aaf9e3d779a345880661948f"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\real_data\\run_real.py",
+      "bytes": 3766,
+      "sha256": "87768402f69184496bf73f9ec52d0fb7fe55a3ea8042aeab316745fc675c10bb"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\real_data\\xval.py",
+      "bytes": 1403,
+      "sha256": "c03ea4fbae61f04763f103731cee5c379d29f5b095774d26cc33696e9ebd8ec8"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\文献精读_闭环频域IV相关14篇_20261019.md",
+      "bytes": 11840,
+      "sha256": "60f4e2a398dca12123dc3eebf57358e040e906fdfee8510642a25a1e374f87fd"
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\闭环一致性_频域加性SRIVC_数学推导与验证.md",
+      "bytes": 35216,
+      "sha256": "f1fec09109bfa20d3f848eb059b02b2aa742eba97c5784fc3258e161c710fdb9"
+    }
+  ]
+}

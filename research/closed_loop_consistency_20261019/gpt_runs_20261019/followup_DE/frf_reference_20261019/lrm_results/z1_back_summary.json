@@ -1,0 +1,18 @@
+{
+  "z": "1",
+  "split": "back",
+  "configuration": {
+    "method": "linear",
+    "window": 31,
+    "sk_updates": 0
+  },
+  "frequency_count": 133,
+  "failed_frequency_count": 0,
+  "failed_output_count": 0,
+  "jackknife_failed_outputs": 0,
+  "median_Tud_condition": 7.478078901979559,
+  "max_Tud_condition": 62.01427157443188,
+  "median_se_db": 0.35815076562112214,
+  "max_se_db": 25.06332210413209,
+  "median_se_phase_deg": 2.131714278656027
+}

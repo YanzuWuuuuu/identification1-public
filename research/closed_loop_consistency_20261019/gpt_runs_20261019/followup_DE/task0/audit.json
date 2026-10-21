@@ -1,0 +1,124 @@
+{
+  "code_used": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\cl2.py",
+  "rows": [
+    {
+      "P": 1,
+      "N": 30000,
+      "df_Hz": 0.16666666666666666,
+      "band": [
+        3.0,
+        100.0
+      ],
+      "n_bins": 583,
+      "n_excited": 583,
+      "n_nonexcited": 0,
+      "full_DFT_vs_P_period_mean_maxabs": 0.0,
+      "line_power_ratio_maxerror": 5.329070518200751e-15,
+      "nonexcited_D_max": null,
+      "settle_cycles": 2,
+      "settle_seconds": 12,
+      "sd": 0.2,
+      "sv": 3e-07,
+      "input_noise_sd": 0.03,
+      "transient": "(tau0+tau1*z^-1)/(1+a1*z^-1+a2*z^-2), 24 fitted nuisance parameters",
+      "init_rule": "1% frequency / log damping SD .4 perturbation followed by direct linear fit",
+      "seed": 202611190
+    },
+    {
+      "P": 2,
+      "N": 60000,
+      "df_Hz": 0.08333333333333333,
+      "band": [
+        3.0,
+        100.0
+      ],
+      "n_bins": 1165,
+      "n_excited": 583,
+      "n_nonexcited": 582,
+      "full_DFT_vs_P_period_mean_maxabs": 7.103380699760832e-12,
+      "line_power_ratio_maxerror": 6.439293542825908e-15,
+      "nonexcited_D_max": 0.0,
+      "settle_cycles": 2,
+      "settle_seconds": 12,
+      "sd": 0.2,
+      "sv": 3e-07,
+      "input_noise_sd": 0.03,
+      "transient": "(tau0+tau1*z^-1)/(1+a1*z^-1+a2*z^-2), 24 fitted nuisance parameters",
+      "init_rule": "1% frequency / log damping SD .4 perturbation followed by direct linear fit",
+      "seed": 202612190
+    },
+    {
+      "P": 4,
+      "N": 120000,
+      "df_Hz": 0.041666666666666664,
+      "band": [
+        3.0,
+        100.0
+      ],
+      "n_bins": 2329,
+      "n_excited": 583,
+      "n_nonexcited": 1746,
+      "full_DFT_vs_P_period_mean_maxabs": 1.3116919128020489e-11,
+      "line_power_ratio_maxerror": 4.9960036108132044e-15,
+      "nonexcited_D_max": 0.0,
+      "settle_cycles": 2,
+      "settle_seconds": 12,
+      "sd": 0.2,
+      "sv": 3e-07,
+      "input_noise_sd": 0.03,
+      "transient": "(tau0+tau1*z^-1)/(1+a1*z^-1+a2*z^-2), 24 fitted nuisance parameters",
+      "init_rule": "1% frequency / log damping SD .4 perturbation followed by direct linear fit",
+      "seed": 202614190
+    },
+    {
+      "P": 8,
+      "N": 240000,
+      "df_Hz": 0.020833333333333332,
+      "band": [
+        3.0,
+        100.0
+      ],
+      "n_bins": 4657,
+      "n_excited": 583,
+      "n_nonexcited": 4074,
+      "full_DFT_vs_P_period_mean_maxabs": 2.9160618472599524e-11,
+      "line_power_ratio_maxerror": 5.995204332975845e-15,
+      "nonexcited_D_max": 0.0,
+      "settle_cycles": 2,
+      "settle_seconds": 12,
+      "sd": 0.2,
+      "sv": 3e-07,
+      "input_noise_sd": 0.03,
+      "transient": "(tau0+tau1*z^-1)/(1+a1*z^-1+a2*z^-2), 24 fitted nuisance parameters",
+      "init_rule": "1% frequency / log damping SD .4 perturbation followed by direct linear fit",
+      "seed": 202618190
+    },
+    {
+      "P": 16,
+      "N": 480000,
+      "df_Hz": 0.010416666666666666,
+      "band": [
+        3.0,
+        100.0
+      ],
+      "n_bins": 9313,
+      "n_excited": 583,
+      "n_nonexcited": 8730,
+      "full_DFT_vs_P_period_mean_maxabs": 7.905805909868188e-11,
+      "line_power_ratio_maxerror": 5.440092820663267e-15,
+      "nonexcited_D_max": 0.0,
+      "settle_cycles": 2,
+      "settle_seconds": 12,
+      "sd": 0.2,
+      "sv": 3e-07,
+      "input_noise_sd": 0.03,
+      "transient": "(tau0+tau1*z^-1)/(1+a1*z^-1+a2*z^-2), 24 fitted nuisance parameters",
+      "init_rule": "1% frequency / log damping SD .4 perturbation followed by direct linear fit",
+      "seed": 202626190
+    }
+  ],
+  "M1_equals_M2_at_P1": true,
+  "same_noise_same_model_same_settle": true,
+  "original_exact_limit_omission": "original exact_limit.py does not call periodic LINEMASK; this matters for P>1, not P=1",
+  "interpretation": "O(1) is an asymptotic order, not equality of finite-record estimator means at all P."
+}

@@ -1,0 +1,42 @@
+{
+  "id": "C_highgain_pppp",
+  "method": "M3w",
+  "frequency_u_hz": [
+    0.007844441194031389,
+    0.013230197007025967,
+    0.001809461844472009
+  ],
+  "damping_u_percentage_points": [
+    0.0809201766176859,
+    0.10598000410203733,
+    0.010142442402401038
+  ],
+  "log_parameter_sd": [
+    0.0007559740073162089,
+    0.0011534122983032089,
+    0.0001174775370241243,
+    0.016895627593199576,
+    0.04081580412610137,
+    0.002845218993192762
+  ],
+  "relative_u_percent": [
+    0.07559743313437711,
+    0.11534134491439539,
+    0.01174775382401024,
+    1.6899245306812347,
+    4.086683556176015,
+    0.2845236267863446
+  ],
+  "locally_valid_numerics": false,
+  "solver_converged": true,
+  "strict_score_pass": false,
+  "covariance_conditions": {
+    "scaled_condition": 9422669.691982215,
+    "scaled_rank": 158,
+    "dimension": 158,
+    "min_variance": 2.671593485049313e-15
+  },
+  "interpretation": "B-noise spectrum plug-in; fixed reference design; complete transient nuisance block retained; estimated W frozen, weight-estimation uncertainty omitted",
+  "theta_order": "f1 f2 f3 zeta1 zeta2 zeta3",
+  "noise_borrowed_from_z0": false
+}

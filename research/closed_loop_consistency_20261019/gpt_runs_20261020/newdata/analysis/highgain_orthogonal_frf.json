@@ -1,0 +1,19 @@
+{
+  "controller": "highgain",
+  "P_common": 5,
+  "P_each": [
+    6,
+    6,
+    5,
+    6
+  ],
+  "n_draws": 1000,
+  "bootstrap_failed": 0,
+  "D_condition_max": 38.26771076044686,
+  "U_condition_max": 1605.8145650122794,
+  "G_halves_difference_percent": 51.3030737763381,
+  "random_se_relative_percent": 120.2183504021121,
+  "bootstrap_mean_shift_percent": 49.21087638173443,
+  "instantaneous_gated_reference": true,
+  "interval": "pointwise paired-period bootstrap percentile; not simultaneous, excludes systematic/model error"
+}

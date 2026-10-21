@@ -1,0 +1,308 @@
+{
+  "seed": 712405,
+  "number_of_modes": 8,
+  "NOFLEX": "0",
+  "frequency_hz": [
+    10.6,
+    11.7,
+    16.1,
+    286.573,
+    344.945,
+    490.39,
+    718.958,
+    755.501
+  ],
+  "damping_ratio": [
+    0.03,
+    0.04,
+    0.05,
+    0.0119,
+    0.0132,
+    0.0186,
+    0.0322,
+    0.0346
+  ],
+  "parameters": 375,
+  "input_delay_samples": [
+    0,
+    1,
+    0,
+    1
+  ],
+  "output_delay_samples": [
+    1,
+    0,
+    1,
+    0
+  ],
+  "truth_delay_us": [
+    [
+      200.0,
+      400.0,
+      200.0,
+      400.0
+    ],
+    [
+      0.0,
+      200.0,
+      0.0,
+      200.0
+    ],
+    [
+      200.0,
+      400.0,
+      200.0,
+      400.0
+    ],
+    [
+      0.0,
+      200.0,
+      0.0,
+      200.0
+    ]
+  ],
+  "reconstructed_delay_us": [
+    [
+      200.0,
+      399.99999999999994,
+      199.99999999999994,
+      400.0
+    ],
+    [
+      5.421010862427522e-14,
+      200.0,
+      0.0,
+      200.00000000000006
+    ],
+    [
+      200.00000000000006,
+      400.0,
+      200.0,
+      400.00000000000006
+    ],
+    [
+      0.0,
+      199.99999999999994,
+      -5.421010862427522e-14,
+      200.0
+    ]
+  ],
+  "truth_delay_max_absolute_error_s": 5.421010862427522e-20,
+  "response_relative_error": 1.3900694855290832e-13,
+  "response_max_absolute_error": 2.631819708528375e-16,
+  "source_hashes": {
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\code\\validate_sim.py": "3186a70f556f979f74b382554dd5781aa02c6bff74e5bf958550b94e63b706c5",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\code\\sim_core.py": "17f6b55d3082c4804fb78863de7d64eaca11e1d44e6983877d119a4ee931b60f",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\cl2.py": "bebfbd5c672c6326e76adfd658f586ba01c25eb764b43bef1183df3a74fc3ecf"
+  },
+  "fitted_parameters": false,
+  "closed_loop_radius": 0.9980144722486228,
+  "state_y_from_d_relative_error": 2.0192769568060353e-12,
+  "state_u_from_d_relative_error": 2.904314799264979e-12,
+  "jacobian_checks": [
+    {
+      "group": "C0",
+      "directional_relative_errors": [
+        1.8207616968356446e-12,
+        7.398569544254379e-12,
+        1.85453253979238e-11,
+        6.622163333653494e-11,
+        2.2912318035108986e-10
+      ],
+      "step_sizes": [
+        0.0001,
+        3e-05,
+        1e-05,
+        3e-06,
+        1e-06
+      ],
+      "main_step": 1e-05,
+      "main_error": 1.85453253979238e-11,
+      "passed": true,
+      "analytical_derivative_norm": 0.012701029600489935
+    },
+    {
+      "group": "C1",
+      "directional_relative_errors": [
+        2.3828968137591733e-12,
+        9.424097114251223e-12,
+        2.618702705062759e-11,
+        9.253315825035808e-11,
+        2.7269308062714837e-10
+      ],
+      "step_sizes": [
+        0.0001,
+        3e-05,
+        1e-05,
+        3e-06,
+        1e-06
+      ],
+      "main_step": 1e-05,
+      "main_error": 2.618702705062759e-11,
+      "passed": true,
+      "analytical_derivative_norm": 0.010750868738825177
+    },
+    {
+      "group": "D0D2",
+      "directional_relative_errors": [
+        2.8104370856859866e-08,
+        8.986997466812029e-08,
+        2.861749846981546e-07,
+        8.245319385876371e-07,
+        2.5654262142682994e-06
+      ],
+      "step_sizes": [
+        0.0001,
+        3e-05,
+        1e-05,
+        3e-06,
+        1e-06
+      ],
+      "main_step": 1e-05,
+      "main_error": 2.861749846981546e-07,
+      "passed": true,
+      "analytical_derivative_norm": 5.556679069756591e-07
+    },
+    {
+      "group": "transient",
+      "directional_relative_errors": [
+        2.742076512463099e-10,
+        1.1594885159848694e-09,
+        2.9047732503926766e-09,
+        1.1437878762760389e-08,
+        3.5452993937441705e-08
+      ],
+      "step_sizes": [
+        0.0001,
+        3e-05,
+        1e-05,
+        3e-06,
+        1e-06
+      ],
+      "main_step": 1e-05,
+      "main_error": 2.9047732503926766e-09,
+      "passed": true,
+      "analytical_derivative_norm": 6.235994225036212e-05
+    },
+    {
+      "group": "poles",
+      "directional_relative_errors": [
+        9.712119629667078e-06,
+        8.825576169987814e-07,
+        1.0172452684680529e-07,
+        9.720905337188976e-08,
+        2.074232887071614e-07
+      ],
+      "step_sizes": [
+        0.0001,
+        3e-05,
+        1e-05,
+        3e-06,
+        1e-06
+      ],
+      "main_step": 1e-05,
+      "main_error": 1.0172452684680529e-07,
+      "passed": true,
+      "analytical_derivative_norm": 0.2713444886101115
+    },
+    {
+      "group": "delays",
+      "directional_relative_errors": [
+        3.3234435082341384e-10,
+        9.467776030929929e-10,
+        3.5908660750475683e-09,
+        1.1023379941837711e-08,
+        3.2668452195659215e-08
+      ],
+      "step_sizes": [
+        0.0001,
+        3e-05,
+        1e-05,
+        3e-06,
+        1e-06
+      ],
+      "main_step": 1e-05,
+      "main_error": 3.5908660750475683e-09,
+      "passed": true,
+      "analytical_derivative_norm": 0.0001180452109347317
+    },
+    {
+      "group": "all",
+      "directional_relative_errors": [
+        5.057771371601573e-05,
+        4.553598674558061e-06,
+        5.14096443192442e-07,
+        9.66851711402961e-08,
+        1.781255695055181e-07
+      ],
+      "step_sizes": [
+        0.0001,
+        3e-05,
+        1e-05,
+        3e-06,
+        1e-06
+      ],
+      "main_step": 1e-05,
+      "main_error": 5.14096443192442e-07,
+      "passed": true,
+      "analytical_derivative_norm": 0.6402486882949538
+    },
+    {
+      "group": "delay_coordinate_0",
+      "main_step": 1e-05,
+      "main_error": 3.2209152834221224e-09,
+      "passed": true
+    },
+    {
+      "group": "delay_coordinate_1",
+      "main_step": 1e-05,
+      "main_error": 4.108496303471346e-09,
+      "passed": true
+    },
+    {
+      "group": "delay_coordinate_2",
+      "main_step": 1e-05,
+      "main_error": 7.078445637178885e-09,
+      "passed": true
+    },
+    {
+      "group": "delay_coordinate_3",
+      "main_step": 1e-05,
+      "main_error": 6.396071133770913e-09,
+      "passed": true
+    },
+    {
+      "group": "delay_coordinate_4",
+      "main_step": 1e-05,
+      "main_error": 5.160718996082581e-09,
+      "passed": true
+    },
+    {
+      "group": "delay_coordinate_5",
+      "main_step": 1e-05,
+      "main_error": 5.6199845501159485e-09,
+      "passed": true
+    },
+    {
+      "group": "delay_coordinate_6",
+      "main_step": 1e-05,
+      "main_error": 8.46971826703607e-09,
+      "passed": true
+    }
+  ],
+  "jacobian_all_passed": true,
+  "noiseless": {
+    "periods": 2,
+    "settle_periods": 2,
+    "seed": 712405,
+    "total_relative_residual": 1.1109606835754914e-13,
+    "excited_line_relative_residual": 1.0917025875786278e-13,
+    "nonexcited_error_relative_to_total_output": 2.0595897825696143e-14,
+    "maximum_absolute_spectral_residual": 2.133266080827933e-13,
+    "transient_coefficients": "truth coefficients are zero; no nuisance fit",
+    "delay_register_boundary_terms_in_modal_model": false,
+    "boundary_qualification": "Finite-record delay registers can add boundary polynomials outside the modal transient span. This test uses two settling periods and repeated noiseless excitation, so boundary mismatch is numerically negligible; it does not prove omission is exact for arbitrary starting states or noisy record boundaries.",
+    "passed": true
+  },
+  "all_passed": true
+}

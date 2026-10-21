@@ -1,0 +1,16 @@
+{
+  "M3": {
+    "passing_pairs": 8,
+    "total_pairs": 18,
+    "all_below_2u": false,
+    "all_numerical_conditions": true
+  },
+  "M3w": {
+    "passing_pairs": 9,
+    "total_pairs": 18,
+    "all_below_2u": false,
+    "all_numerical_conditions": false
+  },
+  "M1_zeta1_or2_drift_above_2u": true,
+  "prediction_note": "No predeclared numerical meaning of same order: report signed ratios; do not invent a pass cutoff. Show M3 drift separately because it is not zero."
+}

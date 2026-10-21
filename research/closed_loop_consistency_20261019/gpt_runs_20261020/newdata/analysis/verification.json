@@ -1,0 +1,76 @@
+{
+  "independent_controller_and_excitation_checks": [
+    {
+      "controller": "lowgain",
+      "A_recovery_validation": 5.207890528312574e-12,
+      "K_A_vs_B_relative": 1.4475060322871963e-07,
+      "max_frequency_K_relative": 2.528882541645283e-07,
+      "row_normalized_D_condition_max": 1.0000000000000029,
+      "A_nonexcited_residual_to_B_trace_ratio": 1.231122969143407,
+      "A_input_band_rms_per_channel": [
+        0.1138392155777976,
+        0.1047716287952589,
+        0.10688789854507016,
+        0.13427863099749837
+      ],
+      "A_output_band_rms_per_channel": [
+        5.057887199278624e-05,
+        5.143031261202643e-05,
+        5.204146327338661e-05,
+        5.1827193943432125e-05
+      ]
+    },
+    {
+      "controller": "nominal",
+      "A_recovery_validation": 4.603465834336683e-12,
+      "K_A_vs_B_relative": 3.578503589139608e-07,
+      "max_frequency_K_relative": 4.898205470298192e-07,
+      "row_normalized_D_condition_max": 1.0000000000000102,
+      "A_nonexcited_residual_to_B_trace_ratio": 6.1416076092399,
+      "A_input_band_rms_per_channel": [
+        0.08100587107256652,
+        0.08270837428992535,
+        0.08969882730310406,
+        0.12034961436496558
+      ],
+      "A_output_band_rms_per_channel": [
+        4.1499923353959614e-05,
+        4.115831538681608e-05,
+        4.172501251459672e-05,
+        4.1805926470984536e-05
+      ]
+    },
+    {
+      "controller": "highgain",
+      "A_recovery_validation": 3.0057289113798243e-12,
+      "K_A_vs_B_relative": 2.3871248428895668e-08,
+      "max_frequency_K_relative": 3.2895337584501785e-08,
+      "row_normalized_D_condition_max": 1.0000000000000027,
+      "A_nonexcited_residual_to_B_trace_ratio": 2.883087494484012,
+      "A_input_band_rms_per_channel": [
+        0.07350647356999708,
+        0.065928790314764,
+        0.0748099968356229,
+        0.12063128138538422
+      ],
+      "A_output_band_rms_per_channel": [
+        2.9443556413394525e-05,
+        2.946660060915641e-05,
+        2.968246188053159e-05,
+        2.9671374249989347e-05
+      ]
+    }
+  ],
+  "Gaussian_quadratic_score_algebra": {
+    "covariance_relative_error": 0.012454496941114128,
+    "mean_max_standard_errors": 1.5186417079184722,
+    "seed": 90020,
+    "samples": 40000
+  },
+  "source_integrity": {
+    "unchanged": true,
+    "raw_records": 27,
+    "baseline_sources": 5,
+    "changed": []
+  }
+}

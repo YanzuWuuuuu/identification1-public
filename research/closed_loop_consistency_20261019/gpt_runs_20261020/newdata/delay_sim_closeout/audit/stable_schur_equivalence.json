@@ -1,0 +1,59 @@
+{
+  "source": "W P20 r000, fixed truth-q profiled point; original data and fixed instruments",
+  "full_linear_rank": true,
+  "direct_normal_schur_relative": 3.0990080481063984e-12,
+  "single_double_projection_relative": 4.1125464502014837e-16,
+  "max_projected_J_orthogonality": 1.8656896019560092e-15,
+  "max_projected_Z_orthogonality": 1.9199552472258655e-15,
+  "derivative_checks": [
+    {
+      "direction": "frequency",
+      "h": 0.0001,
+      "relative": 3.868158950674126e-06,
+      "normalized_relative": 3.843224251266869e-06
+    },
+    {
+      "direction": "frequency",
+      "h": 1e-05,
+      "relative": 3.8758431140072406e-08,
+      "normalized_relative": 3.852997444904027e-08
+    },
+    {
+      "direction": "damping",
+      "h": 0.0001,
+      "relative": 1.0482241988645121e-07,
+      "normalized_relative": 1.0787741116921361e-08
+    },
+    {
+      "direction": "damping",
+      "h": 1e-05,
+      "relative": 1.650586562951521e-06,
+      "normalized_relative": 1.9594072064961327e-07
+    },
+    {
+      "direction": "delay",
+      "h": 0.0001,
+      "relative": 1.0224035371894598e-05,
+      "normalized_relative": 1.883428899981514e-05
+    },
+    {
+      "direction": "delay",
+      "h": 1e-05,
+      "relative": 0.0002953192880455669,
+      "normalized_relative": 0.0002494875101674808
+    },
+    {
+      "direction": "mixed",
+      "h": 0.0001,
+      "relative": 8.817185184625486e-07,
+      "normalized_relative": 9.419342675499689e-07
+    },
+    {
+      "direction": "mixed",
+      "h": 1e-05,
+      "relative": 8.477279163032918e-09,
+      "normalized_relative": 9.14376800101724e-09
+    }
+  ],
+  "note": "Finite differences freeze Z_L and Z_N. This verifies the stated GN approximation, not the full updated-instrument moment derivative."
+}

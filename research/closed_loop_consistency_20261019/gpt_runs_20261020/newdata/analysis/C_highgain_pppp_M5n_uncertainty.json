@@ -1,0 +1,26 @@
+{
+  "id": "C_highgain_pppp",
+  "method": "M5n",
+  "frequency_u_hz": [
+    0.004437349158182224,
+    0.006963231661756513,
+    0.0009495957528257389
+  ],
+  "damping_u_percentage_points": [
+    0.03151351721994594,
+    0.08794244781304829,
+    0.006695099783272962
+  ],
+  "log_parameter_sd": [
+    0.00042759511759243374,
+    0.0006073258232922104,
+    6.16559095802941e-05,
+    0.006656804939070031,
+    0.032668205339484224,
+    0.0018800458673660164
+  ],
+  "n_bootstrap": 99,
+  "failed_bootstraps": 0,
+  "locally_valid_numerics": true,
+  "interpretation": "conditional paired-period bootstrap; nonlinear SML refit; original joint noise covariance frozen; not theorem 2; no independent known-noise coverage guarantee"
+}

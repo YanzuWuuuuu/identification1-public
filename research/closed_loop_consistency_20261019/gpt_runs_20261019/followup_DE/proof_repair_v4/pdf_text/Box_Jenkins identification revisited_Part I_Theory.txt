@@ -1,0 +1,840 @@
+===== PDF PAGE 1 =====
+                                                    Automatica 42 (2006) 63–75
+                                                                                                                     www.elsevier.com/locate/automatica
+
+
+         Box–Jenkins identiﬁcation revisited—Part I: Theory
+
+                                R. Pintelon∗, J. Schoukens
+
+                                      Vrije Universiteit Brussel, Departments ELEC, Pleinlaan 2, 1050 Brussels, Belgium
+
+                           Received 22 July 2004; received in revised form 5 September 2005; accepted 6 September 2005
+
+
+
+
+Abstract
+
+   In classical time domain Box–Jenkins identiﬁcation discrete-time plant and noise models are estimated using sampled input/output signals.
+The frequency content of the input/output samples covers uniformly the whole unit circle in a natural way, even in case of preﬁltering. Recently,
+the classical time domain Box–Jenkins framework has been extended to frequency domain data captured in open loop. The proposed frequency
+domain maximum likelihood (ML) solution can handle (i) discrete-time models using data that only covers a part of the unit circle, and (ii)
+continuous-time models. Part I of this series of two papers (i) generalizes the frequency domain ML solution to the closed loop case, and
+(ii) proves the properties of the ML estimator under non-standard conditions. Contrary to the classical time domain case it is shown that the
+controller should be either known or estimated. The proposed ML estimators are applicable to frequency domain data as well as time domain
+data.
+  2005 Elsevier Ltd. All rights reserved.
+
+
+Keywords: Parametric noise model; System identiﬁcation; Frequency domain; Continuous-time; Discrete-time; Open loop; Closed loop
+
+
+
+
+1. Introduction                                                noise model are then identiﬁed simultaneously from sampled
+                                                                  input/output signals. This case is studied in this series of two
+  System identiﬁcation is a powerful technique for building    papers.
+accurate models of complex systems from noisy data. Accord-      Since the frequency content of a sampled signal covers
+ing to the particular application one either has full control over    the whole unit circle, the classical time domain Box–Jenkins
+the excitation, or has to live with the operational perturbations.    approach (Box & Jenkins, 1970) identiﬁes the discrete-time
+In the ﬁrst case, it is advised to use periodic excitation signals     plant and noise models from DC (f = 0) to Nyquist (=half
+because it strongly simpliﬁes the identiﬁcation problem. For    the sampling frequency fs). Often one is only interested in
+example, handling noisy input/noisy output data is as simple as    the plant characteristics on a fraction of the unit circle, or
+handling known input/noisy output data (Pintelon & Schoukens,    one would like to remove the effect of slow trends and/or
+2001). A non-parametric noise model is then obtained in a pre-    high-frequency  disturbances. The  classical  approach  con-
+processing step and is used as weighting for the identiﬁcation     sists in applying a preﬁlter to the input/output data (Ljung,
+of the parametric plant model. In the second case, the pertur-    1999). The preﬁltering does not affect the input/output re-
+bations are often random and (parts of it) even may be unmea-     lation, and is equivalent to dividing the noise model by the
+surable, for example, the wind excitation on bridges, buildings     preﬁlter characteristics. However, to preserve the efﬁciency
+and airplanes. It is typically assumed that the measurable part    (open/closed loop) and the consistency (closed loop only)
+of the input is known exactly and that noisy observations of    of the plant estimates, the parametric noise model should be
+the output are available (Ljung, 1999). A parametric plant and    ﬂexible enough to follow the preﬁltered error spectrum accu-
+                                                                       rately (Ljung, 1999). As such, it will try to cancel the effect
+                                                                 of the preﬁlter. Hence, through the preﬁlter/noise model se-
+    This paper was not presented at any IFAC meeting. This paper was     lection a compromise must be made between the suppression
+recommended  for publication  in revised form by Associate Editor Brett
+                                                                 of the undesired frequency band(s) and the loss in efﬁciencyNinness under the direction of Editor T. Söderström.
+  ∗Corresponding author. Tel.: +32 2 629 29 44; fax: +32 2 629 28 50.          and/or consistency of the plant estimates. These conﬂicting
+   E-mail address: rik.pintelon@vub.ac.be (R. Pintelon).                demands can be avoided by performing the ﬁltering in the
+
+0005-1098/$ - see front matter   2005 Elsevier Ltd. All rights reserved.
+doi:10.1016/j.automatica.2005.09.004
+
+===== PDF PAGE 2 =====
+64                                              R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75
+
+frequency domain: the plant and noise models are identiﬁed in    (see Pintelon & Schoukens, 2001). The plant G and the plant
+the frequency band(s) of interest only. Another advantage of     transient TG transfer functions are rational forms of
+the frequency domain approach is that it is equally simple to                            nb        r                                                        B(  )                                                                                             br                                           =   r=0identify continuous-time models as discrete-time ones. More-   G(  ) =                                                                                                   na                                                                                                                                  r ,                                                        A(  )                                                                                r=0 arover in a lot of applications like, for example, modal analysis
+in mechanical engineering, electro-chemical impedance spec-                                    nig        r
+                                                                IG(  )                                                                                                                         igrtroscopy, and modeling of high-frequency devices, the data are                                           =   r=0                                                   TG(  ) =                                                                                                     na                                                                                                                                     r ,                            (3)
+collected by network analysers which provide the frequency           A(  )      r=0 ar
+domain spectra to the users rather than the original time sig-
+                                                       where  = z−1 and nig = max(na, nb) −1 for DT models, andnals. It can be concluded that there is a need for a frequency
+                                    = s and nig > max(na, nb) −1 for CT models (Pintelon &domain Box–Jenkins framework.
+                                                           Schoukens, 2001). The numerator coefﬁcients igr of TG depend  In Ljung (1993, 1999) a frequency domain Box–Jenkins
+                                                      on the initial and ﬁnal conditions of the experiment and decreaseframework has been developed for data collected in open loop.
+                                                                 as an O(N−1/2) as N →∞. Hence, for N sufﬁciently large,The proposed frequency domain maximum likelihood (ML) es-
+                                                                  the transient term TG in (3) can be neglected w.r.t. G(  k)U(k)timator can handle discrete-time and continuous-time models
+                                                                  (Pintelon & Schoukens, 2001). It motivates the following planton arbitrary frequency grids. The main contributions of this se-
+                                                      model assumption in the frequency domain.ries of two papers are the following: (i) The frequency domain
+ML solution is extended to the closed-loop case. A surprising
+                                                     Assumption 1 (Plant model). The input U(k) and output Y(k)
+result is that the controller should be either known (see also
+                                                             frequency domain data are related by
+McKelvey, 2000) or estimated. (ii) It is shown that the ML
+cost function can be reduced to a quadratic form. As a con-    Y(k) = G(  k)U(k),                                         (4)
+sequence the classical Newton–Gauss-based iterative schemes
+can still be used for calculating the ML estimates. It also al-    where  =z−1 for DT models,  =s for CT models, and where
+lows to prove the asymptotic properties of the ML estimator   G(  ) is deﬁned in (3).
+under non-standard conditions. Some properties have already
+been shown in McKelvey and Ljung (1997) and McKelvey     2.2. Noise model
+(2002) for discrete-time noise models in an open-loop setting
+(see Section 4.4). (iii) Throughout Part I and II, the connection       Similarly to the plant model the relationship between the
+with the classical prediction error method is established. (iv)   DFT V (k) of the measured noise samples v(n), and the DFT
+Illustration on a real life problem.                          E(k) of the (equivalent) driving noise samples e(n) is given by
+
+                                            V (k) = H(  k)E(k) + TH(  k)
+                                                    ZOH/DT:     k = z−1k = exp(−j2 k/N),                                                               with                                                       (5)
+2. Models for linear time-invariant systems                      BL/CT:       k = sk = j2 kf s/N.
+
+                                                    The noise transfer function H and the noise transient term TH
+2.1. Plant model                                                                  are rational functions of
+                                                                                                         nc        r
+   It is well known that the zero-order-hold (ZOH) assump-          C(  )      r=0 cr
+                                          H(  ) =    =    nd        r ,
+tion (the input u(t) is piecewise constant and the measurement         D(  )      r=0 dr
+setup contains no anti-alias ﬁlters), and the band limited (BL)                                   nih        r
+                                                             IH(  )      r=0 ihr
+assumption (all acquisition channels of the measurement setup   TH(  ) =    =    nd        r ,                           (6)                                                    D(  )                                                                                  r=0 drcontain anti-alias ﬁlters), lead in a natural way to a discrete-time
+(DT) and continuous-time (CT) representation of the plant. The                                                       where  = z−1 and nih = max(nc, nd) −1 for DT models, and
+input U(k) and output Y(k) discrete Fourier transform (DFT)                                              =s and nih > max(nc, nd)−1 for CT models. Similarly to (3),
+spectra of the input u(n) and output y(n) samples                                                                  the numerator coefﬁcients ihr of TH decrease as an O(N−1/2)
+                                                                and, hence, for N sufﬁciently large, the transient term TH in
+            N−1                                                 (6) can be neglected w.r.t. H(  k)E(k).
+X(k) = N−1/2     x(n)z−nk                                  (1)     The DFT E(k) of the driving noise source e(n) has the fol-
+              n=0                                          lowing properties. If e(n) is zero mean white (uncorrelated
+                                                              over n) noise, then E(k) is zero mean white (uncorrelated over
+                                                                 k) noise with var(E(k)) = var(e(t)) =  2 and E{E2(k)} = 0
+with X = U, Y and x = u, y, are then related by
+                                                                 (=circular complex distributed) (Pintelon & Schoukens, 2001).
+                                                                                 If e(n) is normally distributed, then E(k) is circular com-
+Y(k) = G(  k)U(k) + TG(  k)                                   plex normally distributed. If e(n) is independent and iden-
+                                                                            tically distributed with existing moments of any order, then
+       ZOH/DT:     k = z−1k = exp(−j2 k/N),  with                                                       (2)    E(k) is asymptotically (N →∞) independent, circular com-
+       BL/CT:       k = sk = j2 kf s/N                      plex normally distributed (see Pintelon & Schoukens, 2001,
+
+===== PDF PAGE 3 =====
+                                                 R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75                                       65
+
+Lemma 14.24). The assumptions on e(n) are fulﬁlled for the    modest orders of the transfer function (Pintelon & Kollár,
+following continuous-time noise processes: Wiener stochas-    2005). An easy way to improve the numerical conditioning sig-
+tic processes ( ˚Aström, 1970), and band-limited white noise    niﬁcantly consists in scaling the angular frequencies. Although
+(Schoukens, Rolain, Cauberghe, Parloo, & Guillaume, 2005b),    the scaling that minimizes the condition number depends on
+which result in a DT and CT description, respectively.            the system, the model, the excitation signal, and the estimator
+  All these properties motivate the following noise assumptions    used, the median of the angular frequencies is a good compro-
+in the frequency domain.                                    mise (Pintelon & Kollár, 2005). For example, the r + 1th term
+                                                                      in the denominator of (3) becomes
+Assumption 2 (Noise model with existing mth order mo-
+ments). The observed frequency domain noise V (k) can be    arsr = (ar   rmed)(s/  med)r = anorm rsrnorm
+written as                                                      with  med = median{  1,  2, . . . ,  F }.                  (9)
+
+V (k) = H(  k)E(k),                                        (7)     If scaling (9) is not sufﬁcient to obtain reliable estimates, then
+                                                                  the powers of s/  med in (3) and (6) are replaced by (vector) or-where  = z−1 for DT models,  = s for CT models, and
+                                                              thogonal polynomials (see Pintelon & Schoukens, 2001). Note
+where H(  ) is deﬁned in (6). E(k) is independent (over k),
+                                                                        that the latter can also be necessary for DT models, especiallycircular complex distributed (E{E2(k)} = 0) noise, with zero
+                                                  when the frequency band of interest covers only a small frac-
+mean, variance   , and ﬁnite moments of order m.
+                                                                      tion of the unit circle.
+
+Assumption 3 (Noise probability density function). The driv-
+ing white noise source E(k) in (7) is normally distributed.         3. Closed-loop framework
+
+2.3. Plant and noise model                                 The closed-loop setup of Fig. 1 is deﬁned by the following
+                                                              assumptions:
+  The stochastic framework is set by the following assumption:
+                                                     Assumption 5 (Closed loop). The input/output data U(k), Y(k)
+Assumption 4 (Generalized output error model). (a) The in-    are related to the reference signal R(k) and the driving white
+put and output are observed without errors (= no measurement    noise source E(k) as
+noise).
+                                                                    1           M( k)H(  k)   (b) The observed output is the sum of the plant response to   U(k) =             −the input, and the process noise (= noise produced by the plant).          1 + G( k)M( k)R(k)   1 + G( k)M(  k)E(k),
+
+                                                       G(  k)
+  Note that in an open-loop setting the process noise also may    Y(k) =                                                             1 + G( k)M( k)R(k)include output measurement errors. Note also that in a real
+                                                     H(  k)band-limited measurement setup the input always will be dis-       +                                                                                                                         (10)turbed by measurement noise MU (U = U0 + MU, with U0 the             1 + G( k)M(  k)E(k),
+true unknown input). However, it can be neglected if the fol-
+                                                       where G(  ), H(  ) and M(  ) are rational transfer functions
+lowing two conditions are fulﬁlled in the frequency band(s) of
+                                                                      in    .
+interest, |G|2var(MU)>var(V ) and var(MU)>var(U0).
+  Under Assumptions 1, 2(m = 2), and 4, the observed input
+and output frequency domain data are, respectively, related by
+                                                                               Xk( )                                                                                                                            J
+Y(k) = G( k)U(k) + H(  k)E(k).                         (8)                          M =   K---
+
+According to the particular parametrization of plant (3) and
+noise (6) model one distinguishes different DT model structures
+                                          Wk()           Rk( )    Uk()                 Yk( )
+(8), such as ARMA (G=0), OE (H =1), ARMAX (D=A), BJ               L = P               G = B                                                                                                                                                                                                                                     Q---                                                                                    A---(independently parametrized G and H), . . . (Ljung, 1999). The
+same terminology/classiﬁcation can be used for the CT model                                                Vk()
+structures. Moreover, in open loop (U(K) is independent of
+E(K)), with a BL excitation (Su(f ) = 0 for f ⩾fs/2), and a                                      H = C                                                                                                                                                                                                                                                                                                                                              D---measurement setup without anti-alias ﬁlters, it also makes sense
+to consider hybrid BJ model structures consisting of a CT plant
+model and a DT noise model.                                                                          Ek( )
+
+2.4. Frequency normalisation                                                                                     Fig. 1. Identiﬁcation in open loop (solid lines only), closed loop with known
+                                                                                       controller (solid and dashed lines only), and closed loop with unknown
+   It  is well known  that CT modeling  is numerically  ill-      controller (solid, dashed, and dash–dot lines). G, H, M and L are the plant,
+conditioned  if no special precautions are taken—even  for      the noise, the controller, and the signal transfer functions, respectively.
+
+===== PDF PAGE 4 =====
+66                                              R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75
+
+Assumption 6 (Independence reference signal and process     likelihood function is, within a constant, given by
+noise). The reference signal R(k) is independent of the process
+noise V (k).                                                          log( |S(  k,  )|2) +      −1| G(  k,  )|2            (14)
+                                                     k∈K                 k∈K
+   It will be shown that the ML estimator needs the controller                                                               with K deﬁned in (13), = var(E(k)), S(  ,  ) deﬁned as
+knowledge if only a part of the frequency grid is considered
+(see Sections 5 and 6). If the controller or reference signal are             H(  ,  )
+                                                        S(  ,  ) =                                               (15)known, then the closed-loop problem can be reformulated to an            1 + G(  , )M0(  ),
+equivalent open-loop problem (see Section 4). If the controller
+                                                      and G(  k,  ) the plant prediction error,and the reference signal are unknown, then the controller must
+be estimated (see Section 5). Since the unknown reference sig-                                                     G(  k,  ) = H −1(  k, )(Y(k) −G(  k,  )U(k)).         (16)
+nal acts as a disturbance for the identiﬁcation of the controller,
+it should be modelled as ﬁltered white noise (see Fig. 1). This    At DC (k = 0) and Nyquist (k = N/2) the sums in (14) are
+makes the identiﬁcation of the plant and controller models com-    multiplied by 1/2.
+pletely symmetric. Similarly to the process noise and the plant
+model (see Section 2), the reference signal R(k) and the output    Proof. See Appendix A.1. □
+of the controller X(k) are written as
+                                                             For M0( )=0 (14) reduces to the open loop result in LjungR(k) = L( k)W(k) + TL(  k)  and
+                                                               (1999, p. 230). By eliminating    , cost function (14) can be
+X(k) = M(  k)Y(k) + TM(  k),                          (11)
+                                                             simpliﬁed to a quadratic form.
+respectively, where  the  signal  transfer  function L(  ) =
+P ( )/Q(  ), the signal transient term TL(  ) = IL( )/Q(  ),    Corollary 1.1 (Maximum likelihood cost function—known con-
+the controller transfer function M(  ) = J( )/K(  ), and the     troller). Under the assumptions of Theorem 1 the Gaussian ML
+controller transient term TM(  ) = IM( )/K(  ) are rational    cost function VF (  , Z), where Z represents the data, is given by
+forms in    .
+  The classical open-loop problem (U(k) is independent of   VF (  , Z) = F −1       | G(  k, )gF ( )|2,                 (17)
+V (k)) follows as a special case of the closed problem with                  k∈K
+known controller: indeed (10) with M(  ) = 0 reduces to (8)                                                               with K deﬁned in (13), F the number of frequencies in K (DC,
+with U(k) = R(k). Therefore, we will only handle the closed-
+                                                          k = 0, and Nyquist, k = N/2, count for 1/2), G(  k,  ) deﬁned
+loop cases.                                                                      in (16), and
+
+4. Identiﬁcation in closed loop with known controller                                   1/F
+                                                      gF ( ) =      S(  k,  )
+4.1. Maximum likelihood cost function                               k∈K
+
+  Consider the parametric models G(  ,  ) (3) and H(  ,  )      = exp F −1     log S(  k,  )   ,                 (18)
+(6), with                                                               k∈K
+
+                                                        where S(  ,  ) is deﬁned in (15). The variance of the driving = [aT, bT, cT, dT]T,                                   (12)
+                                                              white noise source equals
+where b, a and c, d are vectors containing the numerator and
+denominator coefﬁcients of G(  ,  ) and H(  ,  ), respectively,      ( ) = F −1       | G(  k,  )|2.                            (19)
+and assume that the frequency domain data U(k), Y(k) is avail-              k∈K
+able at DFT frequencies fk = kf s/N, k ∈K, where             At DC (k = 0) and Nyquist (k = N/2) the sums in (17)–(19)
+                                                               are multiplied by 1/2.K ⊆{0, 1, 2, . . . , N/2}.                                 (13)
+
+Assume furthermore that the controller is known.                Proof. Appendix A.2. □
+
+Assumption 7 (Known  controller). The  controller  transfer     As a result the minimizer of (17) can be calculated in a
+function M0(  ) is known.                                     numerical stable way via the  iterative Newton–Gauss and
+                                                          Levenberg–Marquardt methods (see Part II). For DT models
+  Note that under Assumption 4 (the input and output are ob-    and frequency sets covering uniformly the full unit circle, (17)
+served without errors) the controller is known if the reference    can be simpliﬁed further.
+signal is known.
+                                                           Corollary 1.2 (ML cost function for DT models over  full
+Theorem 1 (Log-likelihood function—known controller). Under    unit  circle—known  controller).  If  the  frequencies  cover
+Assumptions 1, 2(m = 2), 3–7 the negative Gaussian log-    uniformly  the whole  unit  circle  (zk = exp(j2 k/N)  with
+
+===== PDF PAGE 5 =====
+                                                 R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75                                       67
+
+k∈K={0, 1, . . ., N/2}), and if S(z−1,  ) (15) and S−1(z−1,  )      These results are summarized in the following theorem.
+are stable and satisfy
+                                                 Theorem 2 (ML estimator—known  controller). Under As-
+                                                            sumptions 1, 2 (m = 2), 3–8 the ML estimator  ˆ (Z) of thez→∞S(z−1,lim           ) = 1,                                     (20)
+                                                                  plant and noise model parameters minimizes (17) subject to
+then the ML cost function (17) simpliﬁes to                       the constraints in Table 1.
+
+    N−1                                               Theorem 2 describes the ML estimator starting from fre-
+N−1        | G(z−1k  ,  )|2 + O((| max|N)/N),              (21)    quency domain data U(k), Y(k) (Assumptions 1, 2, 4) described
+     k=0                                               by model (8). If the raw data are time domain signals then (8)
+                                                        and (17) are asymptotically (number of time domain samples
+where  max is the dominant pole of log S(z−1,  ).                                    N →∞) valid. To improve the ﬁnite sample behaviour of the
+                                                                 estimate ˆ (Z), model (8) is replaced by the sum of (2) and (5)
+Proof. See Appendix A.3. □
+                                                        Y(k) = G(  k)U(k) + TG(  k) + H(  k)E(k) + TH(  k). (22)
+  Hence, under the assumptions of Corollary 1.2, the ML cost
+                                                             This results in the same cost function (17) where G(  k,  ) isfunction (17) converges (N →∞) at the rate O((| max|N)/N)
+                                                                replaced byto the classical prediction cost function (see Ljung, 1999, pp.
+201–202). However, they are different in all other cases. Note    G(  k,  ) = H −1(  k, )(Y(k) −G(  k, )U(k)
+that (20) puts a constraint on the parameter vector   and the                                                  −TG(  k,  ) −TH(  k,  )).                 (23)
+controller. The condition is fulﬁlled if c0 =d0 =1 (monic noise
+                                                        Note that the plant TG and noise TH transient terms in (22)model) and if the plant and/or the controller transfer functions
+                                                                  are not always distinguishable (separately identiﬁable). For ex-have a delay of at least one sample, for example, b0 =0; a0 =1
+                                                            ample, for ARMAX model structures (D = A) only the sumand M0(0)̸ = ∞.
+                                                                                   (igr + ihr) of the numerator coefﬁcients of TG and TH can be
+                                                                identiﬁed and in that case IG + IH in (23) is replaced by one
+4.2. The maximum likelihood estimator
+                                                              polynomial. For BJ models TG and TH are separately identi-
+                                                             ﬁable if A and D have no common roots and if nb ⩽na and
+  Note that model structure (8) is overparametrized: multiply-
+                                                             nc ⩽nd (Pintelon & Schoukens, 2001). Hence, according to the
+ing the numerator b and denominator a coefﬁcients of the plant
+                                                      model structure    is extended with the coefﬁcients of one or
+model by the same non-zero real number leaves G(  ,  ) un-
+                                                     more polynomials.
+changed, and similarly for the noise model H(  ,  ). Further,
+the fact that E(k) in (8) is not observed, and that the term
+                                                                        4.3. Properties of the maximum likelihood estimator
+H(  k, )E(k) remains the same when multiplying H(  k,  )
+and dividing E(k) by the same non-zero real number, imposes
+                                                      To study the asymptotic (F →∞) properties of the ML
+an additional constraint on the noise model parameters. Hence,
+                                                                     estimator, standard assumptions are needed concerning the
+according to the particular model structure, one (OE), two
+                                                                      true plant and noise models (Assumption 9), the parametric
+(ARMA, ARMAX), or three (BJ, hybrid BJ) parameter con-
+                                                                    plant and noise models (Assumption 10), and the excitation
+straints are needed (see Table 1). For example, in DT BJ mod-
+                                                          (Assumption 11).
+eling usually the choice a0 =c0 =d0 =1 is made. Other choices
+are, however, possible (see Part II). The cost function VF (  , Z)
+                                                     Assumption 9 (True plant/noise model). The true plant G0(  )
+(17) contains exactly the same parameter ambiguities as model
+                                                        and noise H0(  ) transfer functions belong to the considered
+structure (8) and, therefore, the estimated models G(  , ˆ ) and                                                      model set. The common poles of G0 and H0 are not common
+   ˆ H(  , ˆ ), with ˆ the minimizer of (17) and ˆ =  (ˆ ) (19),    zeros of G0 and H0, the private poles of G0 are not zeros of
+are independent of the particular parameter constraint(s) cho-    G0, and the private poles of H0 are not zeros of H0.
+sen (Pintelon & Schoukens, 2001).
+  Since cost function (17) only depends on the magnitude of   Assumption 10 (Derivative cost function of order p). The cost
+the noise model there is a global identiﬁability problem. For    function VF (  , Z) has continuous pth-order derivatives w.r.t.
+BJ model structures it is avoided by restricting the allowable       in a compact (=closed and bounded) set    r for any F, in-
+poles/zeros positions of the noise model to the stable region    ﬁnity included. The compact set    r is constructed such that it
+of the  -domain. This is not necessary for the poles of AR-    contains a unique global minimum of VF (  , Z), which is an
+MAX model structures (the plant and noise models have the     interior point of   r.
+same poles) that are determined by the plant dynamics. Both
+observations lead to the following standard assumption.         Assumption 11 (Persistence of excitation). There exists an F0
+                                                           such that for any F ⩾F0, inﬁnity included, the Hessian of the
+Assumption 8 (Constraint noise model). H −1(  ,  ) is a stable    expected value of the cost function VF ( ) = E{VF (  , Z)}, sub-
+transfer function. The poles of H(  ,  ) that are not in common     ject to the constraints of Table 1, is regular at the unique global
+with G(  ,  ) are stable.                                      minimizer of VF ( ) in   r.
+
+===== PDF PAGE 6 =====
+68                                              R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75
+
+
+Table 1
+Possible model parameter constraints (for CT models the constraint is imposed on the normalized model parameters (9))
+
+Plant/noise                                              Constraints on   for                               Constraints on   for CT
+model structure                          DT models                                  models
+
+ARMA ((8) with G = 0)                               c0 = d0 = 1                                       cnc = dnd = 1
+OE ((8) with H = 1)                                a0 = 1                                         ana = 1
+ARMAX ((8) with D = A)                           a0 = c0 = 1                                    ana = cnc = 1
+BJ                                                 a0 = c0 = d0 = 1                               ana = cnc = dnd = 1
+Controller/signal                                         Constraints on   for                              Constraints on   for CT
+model structure                          DT models                                  models
+
+BJ                                                   k0 = p0 = q0 = 1                                knk = pnp = qnq = 1
+
+
+
+  Assumption 11 requires  that the input spectrum  is suf-     discontinuities (e.g. relays) are allowed (see Schoukens et al.,
+ﬁciently  rich and  excludes,  for  example,  that  the  plant    2005 for the details).
+G(  ,  ) and/or noise H(  ,  ) model has cancelling pole/zero
+pairs.                                                Assumption 13 (Strategy of adding frequencies). As F →∞
+  Under Assumptions 1, 2(m = 2), 3–9, 10(p = 3), and 11    the frequencies fk cover the interval [fmin, fmax] with a density
+the Gaussian ML estimator ˆ (Z) satisﬁes the standard condi-    function n(f )
+tions, amongst others, (i) the likelihood function is based on                                                          NF (f +  f ) −NF (f )
+independent and identically distributed random variables E(k),    n(f ) =  lim   lim                                          ,            (24)
+                                                                            f →0 F→∞       F  f
+k=1, 2, . . . , F, and (ii) the number of model parameters dim( )
+does not increase with the amount of data F. Therefore, ˆ (Z) is    where NF (f ) is the number of frequencies in the interval [0, f ]
+strongly consistent (ˆ (Z) →  0 with probability one as F →   when the total number of frequencies is F. The density n(f )
+∞), asymptotically efﬁcient (the asymptotic covariance matrix     is continuous with bounded second-order derivative w.r.t. f in
+equals the Cramér–Rao lower bound), and asymptotically nor-    [fmin, fmax] except at a ﬁnite number of frequencies.
+mally distributed (Caines, 1988). One may wonder now how
+sensitive these asymptotic properties are w.r.t. the basic as-      Examples are uniform (n(f ) independent of f ) and loga-
+sumptions made to construct the Gaussian ML estimator. For    rithmic (n(f ) proportional to f −1) frequency distributions in
+example, what if the errors are not normally distributed (As-    [fmin, fmax].
+sumption 3), what if the true model does not belong to the
+                                                     Assumption 14  (Constraint on  the  plant  residual). Theconsidered model set (Assumption 9), or what if the indepen-
+                                                              second-order derivatives w.r.t. the frequency f of E{| G(  (f ),dence assumption is violated (Assumption 2)? To analyse the
+                                                                                )|2}, with   (f ) = j2 f, exp(−j2 f T s), and  its ﬁrst- androbustness of the asymptotic properties of ˆ (Z) the following
+                                                             second- order derivatives w.r.t.   , are bounded in the frequencyadditional standard assumptions are made.
+                                                        band [fmin, fmax], except at a ﬁnite number of frequencies.
+                                                               Since model errors (unmodelled dynamics, nonlinear distor-Assumption 12 (Noise mixing condition of order P). The pro-
+                                                                       tions) depend on the power spectrum of the excitation, we mustcess noise V (k) satisﬁes (7) where E(k) is circular complex
+                                                       deﬁne how new frequencies are added to the data (Assumptiondistributed (E{E2(k)} = 0), with zero mean and variance   2.
+                                                                    13), and put conditions on the limit power spectrum of the ex-V (k) is mixing over k of order P.
+                                                                          citation: it should be a continuous function of f with bounded
+                                                              second-order derivative (Assumption 14).  The mixing condition requires that the cumulants of order P
+                                                     Deﬁne now ˆ (Z), ˜ (Z0) and  ∗as, respectively, the mini-are absolutely summable and implies that the span of depen-
+                                                           mizer of the cost function (17)dence over the frequencies is sufﬁciently small (see Pintelon &
+Schoukens, 2001). For example, the stochastic nonlinear con-      ˆ (Z) = arg min VF (  , Z)   s.t. Table 1,                 (25)
+tributions generated by a nonlinear system excited by Gaus-               ∈   r
+sian noise is mixing over the frequency of order inﬁnity (see                                                                  the minimizer of the expected value of the cost function
+Pintelon & Schoukens, 2001, Theorem 3.10). This is a quite
+important example since the process noise in a linear identiﬁca-                                                                                 ˜ (Z0) = arg min VF ( )   s.t. Table 1 with
+                                                                    ∈   r
+tion framework is mostly dominated by the stochastic nonlin-
+                                                  VF ( ) = E{VF (  , Z)}                                   (26)ear distortions (Schoukens, Pintelon, Dobrowiecki, & Rolain,
+2005). Roughly speaking, Assumption 12 is valid for nonlinear    and the minimizer of the limit of the expected value of the cost
+systems whose steady state response to a periodic input is a    function
+periodic signal with the same period as the input. Phenomena   ∗= arg min V∗( )   s.t. Table 1 with
+such as chaos and subharmonics are excluded, while strongly            ∈   r
+nonlinear phenomena such as saturation (e.g. ampliﬁers) and    V∗( ) = F→∞VFlim     (  ).                                   (27)
+
+===== PDF PAGE 7 =====
+                                                 R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75                                       69
+
+The following theorem proves the asymptotic properties of ML        E{|E(k)|2E(k)} = 0 or E{R(k)} = 0, then the asymptotic
+estimate ˆ (Z) under non-standard conditions.                       covariance matrix (29) can be written as
+                                                        Cov(  (Z)) = (F1 + F2)−1(F1 + (kcu −1)F2)Theorem 3 (Asymptotic properties ML estimator—known con-
+troller). Consider model (8) where H(  ,  ) and G(  ,  ) are            × (F1 + F2)−1                       (31)
+deﬁned in (6) and (3), respectively, and where  stands for any                                                                   with kcu = (ku + 1)/2 and ku the kurtosis factor of the real
+identiﬁable parametrization of the plant and noise models (ra-                                                         and imaginary parts of the noise (e.g. kcu = 2 for Gaussian
+tio (orthogonal) polynomials, partial fraction expansion, state                                                                           noise),
+space representation). ˆ (Z) (25) has the following asymptotic
+(F →∞) properties.                                                             |S0(  k)|2 E{|R(k)|2}
+                                                         F1 = 2
+  Model errors, correlated non-Gaussian noise.                              |H0(  k)|4       0
+                                                               k∈K
+ 1. Stochastic convergence: ˆ (Z) converges strongly to ˜ (Z0)                 G(  k,  ) H   G(  k,  )
+                                        × Re
+    (Assumptions 1, 4–8, 10(p = 0), 11, and 12(P = 4); OR                                0                 0
+    Assumptions 1, 2(m = 4), 4–8, 10(p = 0), and 11).
+ 2. Systematic and stochastic errors: ˆ (Z) converges in prob-                           F     T
+     ability at the rate Op(F −1/2) to ˜ (Z0) with                  F2 =         k −F −1       k
+                                                             k∈K           k=1
+     ˆ (Z) = ˜ (Z0) +  (Z) + b (Z),                                                F
+                                                                                               k −F −1       k    ,     (Z) = −V F′′−1 (˜ (Z0))V F′T (˜ (Z0), Z)               (28)        ×
+                                                                                  k=1
+   and where x′ denotes the derivative of x w.r.t.   .   (Z) =
+   Op(F −1/2), with E{  (Z)}=0, is the dominating stochastic           k =     log |S(  k,  )|2,                            (32)
+    error, and b (Z) = Op(F −1) contains the contribution of                 0
+    the systematic errors (Assumptions 1, 4–8, 10(p = 3), 11,       where K, S(  ,  ) are deﬁned in (13), (15). At DC (k = 0)
+   and 12(P =4); OR Assumptions 1, 2(m=4), 4–8, 10(p=3),       and Nyquist (k = N/2) the sums in (32) are multiplied by
+   and 11).             √                                            1/2. For BJ model structures (independently parametrized
+ 3. Asymptotic normality:  F(ˆ (Z)−˜ (Z0)) converges in law    G and H) identiﬁed in open loop (M0 = 0), (31) simpli-
+    at the rate Op(F −1/2) to a Gaussian random                                                variable with        ﬁes to                     √
+    zero mean and covariance matrix Cov( F  (Z))
+                                                        Cov(  G(Z)) = F 1−1  and     √
+   Cov  F  (Z) = V F′′−1 (˜ (Z0))QF (˜ (Z0))V F′′−1 (˜ (Z0)),      Cov(  H (Z)) = (kcu −1)F 2−1                         (33)
+
+                                                                                                             T  QF (˜ (Z0)) = FE{V F′T (˜ (Z0), Z)V F′ (˜ (Z0), Z)}      (29)        with G the plant model parameters, for example,                                                                                  G =
+                                                                  [aT, bT], and H the noise model parameters, for example,    (Assumptions 1, 4–8, 10(p = 3), 11, and 12(P = ∞); OR         T                                       = [cT, dT].    Assumptions 1, 2(m = 4 +   with > 0), 4–8, 10(p = 3),       H
+                                                 No model errors and independent Gaussian noise,   and 11).
+ 4. Deterministic convergence:  ˜ (Z0) converges at the rate      7. Asymptotic efﬁciency: ˆ (Z) is asymptotically efﬁcient
+   O(F −1/2) to  ∗(27) with                                                        Cov(  (Z)) = (F1 + F2)−1                          (34)
+                          fmax
+   V∗( ) = |g∗( )|2       E{| G(  (f ),  )|2}n(f ) df ,               equals the Cramér–Rao lower bound (Assumptions  1,
+                           fmin                                  2(m = 2), 3–9, 10(p = 3), and 11).
+                       fmax
+   g∗( ) = exp        log(S(  (f ),  ))n(f ) df    ,      (30)                                                              Proof. See Appendix A.4. □
+                       fmin
+
+     (f ) = j2 f , e−j2 f T s, and where S(  ,  ) is deﬁned in     4.4. Discussion
+    (15) (Assumptions 1, 4–8, 10(p = 2), 11, 12(P = 4), 13,
+   and 14; OR Assumptions 1, 2(m = 4), 4–8, 10(p = 2), 11,     • A surprising consequence of Theorem 1 is that the knowl-
+    13, and 14).                                               edge of the controller contributes to the knowledge of
+   No model errors, correlated non-Gaussian noise.                  the plant and noise models (M(    )̸ = M0(  ) in (17)
+ 5. Consistency: ˆ (Z) and ˆ =  (ˆ (Z)) are strongly consis-         leads to biased estimates), which is not the case for the
+     tent: replace in properties 1–3  ˜ (Z0) by the true model        time domain prediction error method (see Ljung, 1999,
+    parameters  0 and add Assumption 9.                        and Corollary 1.2). This has been mentioned for the ﬁrst
+   No model errors and independent non-Gaussian noise.           time in McKelvey (2000). The apparent contradiction can
+ 6. Asymptotic  normality:   if  in  addition  to Assumptions        be explained by the fact that cutting out a part of the
+     1, 2(m = 4 +   with  > 0), 4-9, 10(p = 3), and 11;         unit circle corresponds to non-causal ﬁltering in the time
+
+===== PDF PAGE 8 =====
+70                                              R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75
+
+    domain (e.g. convolution with a sinc-function). The lat-    where  = z−1 for DT models,  = s for CT models, and
+     ter invalidates the classical construction of the likelihood    where M(  ) = J( )/K(  ) are rational form of    .
+     function based on time domain data captured in feedback
+     (Caines, 1988; Ljung, 1999).                          Assumption 17 (Signal probability density function). The driv-
+  • In contrast to the time domain prediction error method,    ing white noise source W(k) in (35) is normally distributed.
+     consistent estimation of the plant model parameters in open
+    loop ALWAYS requires the correct noise model structure.      Consider now transfer function models G(  ,  ), H(  ,  ),
+  • The asymptotic uncertainty of the time domain prediction   L(  ,  ), and M(  ,  ) with
+     error method (34) is also valid for non-Gaussian errors e(t)
+                                    = [aT, bT, cT, dT, jT, kT, pT, qT]T,                    (37)     (see Ljung, 1999). This is not in contradiction with Prop-
+     erty 7 of Theorem 3, showing that (F1 +F2)−1 is valid for
+                                                       where j, k and p, q are vectors containing the numerator and
+    Gaussian frequency domain noise only (kcu = 2). Indeed,                                                           denominator coefﬁcients of L(  ,  ) and M(  ,  ), respectively,
+     the DFT of ﬁltered i.i.d. noise with existing moments of
+                                                        and assume that the frequency domain data U(k), Y(k) is avail-
+    any order is asymptotically (number of time domain sam-
+                                                                 able at DFT frequencies fk = kf s/N, k ∈K with K deﬁned     ples N →∞) independent, circular complex normally dis-
+                                                                      in (13).
+     tributed (see Pintelon & Schoukens, 2001, Theorem 14.25).
+  • The special case CT-ARMA(X) is a valid alternative to
+                                                 Theorem 4 (Log-likelihood function—unknown controller).
+    Wahlberg, Ljung, and Söderström (1993), Söderström, Fan,
+                                                     Under Assumptions 1, 2(m=2), 3–6, 15(n=2), 16 and 17, the
+     Carlsson, and Bigi (1997), and Fan, Söderström, Moss-
+                                                                 negative Gaussian log-likelihood function is, within a constant,
+     berg, Carlsson, and Zou (1999) where the physical param-
+     eters of CT ARMA(X)-processes are identiﬁed using DT                                                                      log(   |T (  k,  )|2) +      −1| G(  k,  )|2
+    approximations.
+                                                      k∈K                  k∈K
+  • For the open-loop case and DT models the following re-
+                                    +      −1| M(  k,  )|2                               (38)     sults have been obtained in McKelvey and Ljung (1997)
+    and McKelvey (2002). Strong convergence and consistency        k∈K
+     are proven assuming that the disturbing noise V (k) is inde-                                                               with K deﬁned in (13), = var(E(k)), = var(W(k)), T (  ,  )
+    pendent (over k) and circular complex with bounded mo-                                                        deﬁned as
+    ments of order four. If in addition the noise model is ﬁxed
+    (H(z−1,  )) = H(z−1), then the asymptotic normality is           H(  , )L(  ,  )
+                                                  T (  ,  ) =                                              (39)    shown and an expression for the asymptotic covariance             1 + G(  , )M(  ,  ),
+    matrix is given.
+                                                      and G(  k,  ) and M(  k,  ), respectively, the plant (16) and
+5. Identiﬁcation in closed loop with unknown controller       controller prediction error
+                                               M(  k,  ) = L−1(  k, )(M(  k, )Y(k) + U(k)).        (40)5.1. Maximum likelihood cost function
+
+                                                             At DC (fk = 0) and Nyquist (fk = fs/2) the sums in (38) are
+  From Section 4 it follows that if the controller is unknown, it                                                                   multiplied by 1/2.
+must be estimated to avoid a bias error in the plant model. When
+identifying simultaneously the plant and the controller, Y(k) is                                                              Proof. See Appendix A.5. □
+a noisy observation of the true plant output, and U(k) is a noisy
+observation of the true controller output. Hence, similarly to                                                          Note the symmetry in the log-likelihood function (38) be-
+the identiﬁcation of the plant, the following assumptions are                                                         tween on the one hand G, H,   , and on the other hand M, L,   .
+needed to identify the controller.                                                        Note also that the identiﬁcation of G and H is coupled with the
+                                                                   identiﬁcation of M and L through the transfer function T (39).
+Assumption 15 (Signal model with existing nth order mo-                                                               Eliminating   and   in the log-likelihood function (38) gives
+ments). The reference signal R(k) in Fig. 1 can be written as                                                                  the following result.
+R(k) = L(  k)W(k),                                     (35)
+                                                           Corollary 4.1 (ML cost function—unknown controller). Under
+where  =z−1 for DT models,  =s for CT models, and where    the assumptions of Theorem 4 the Gaussian ML cost function
+L(  ) = P ( )/Q(  ) is a rational form of    . W(k) is indepen-   VF (  , Z), where Z represents the data, is given by
+dent (over k), circular complex distributed noise (E{W 2(k)} =
+0), with zero mean, variance   , and ﬁnite moments of order n.                        −1                                                  VF (  , Z) = |hF ( )|2 F           | G(  k,  )|2
+                                                                            k∈K
+Assumption 16 (Controller model). The frequency domain
+data Y(k) and X(k) in Fig. 1 are related by                                   −1                                         × F           | M(  k,  )|2                   (41)
+X(k) = M(  k)Y(k),                                    (36)                     k∈K
+
+===== PDF PAGE 9 =====
+                                                 R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75                                       71
+
+with K deﬁned in (13), F the number of frequencies in K (DC,     5.2. Maximum likelihood estimator
+k = 0, and Nyquist, k = N/2, count for 1/2),  G(  k,  ) and
+ M(  ,  ) deﬁned in (16) and (40),                               Following the lines of Section 4.2, the model parameters
+                                                                   (37) should be constrained, however, the identiﬁed mod-
+                          1/F
+                                                                         els G(  , ˆ ),    ˆ H(  , ˆ ), M(  , ˆ ) and    ˆ L(  , ˆ ), with ˆ the
+hF ( ) =     T (  k,  )
+                                                           minimizer of (41), ˆ = (ˆ ) (19), and ˆ =  (ˆ ) (43), are indepen-         k∈K
+                                                               dent of the particular constraint(s) chosen. Possible constraints
+   = exp F −1    log T (  k,  )                     (42)     for the plant, noise, controller and signal model parameters are
+                k∈K                                        given in Table 1. To avoid the global identiﬁability problem
+                                                                                   w.r.t. the signal model parameters, the following assumption is
+and where T (  ,  ) is deﬁned in (39). The variance   of the    made.
+driving noise source is deﬁned in (19), and that of the signal
+source equals                                          Assumption 18 (Constraint signal model). The signal model
+                                                   L(  ,  ) and its inverse L−1(  ,  )are stable transfer functions.
+  ( ) = F −1       | M(  k,  )|2.                            (43)
+          k∈K                                           Summarized we get the following theorem.
+At DC (k = 0) and Nyquist (k = N/2) all sums   k∈K · · · are
+                                                 Theorem  5 (ML  estimator—unknown  controller). Undermultiplied by 1/2.
+                                                           Assumptions 1, 2(m = 2), 3–6, 8, 15(n = 2), 16–18 the ML es-
+Proof. Follow exactly the same lines of the proof of Cor-    timator ˆ (Z) of the plant, noise, signal, and controller model
+ollary 1.1. □                                               parameters minimizes (41) subject to the constraints in Table 1.
+
+  In Part II (Pintelon, Rolain, & Schoukens, 2005a) it is shown       Similarly to Section 4.4.2, the ﬁnite sample behaviour of the
+that (41) can still be minimized in a numerical stable way via the    estimate ˆ (Z) is improved by adding the plant, noise, controller
+iterative Newton–Gauss and Levenberg–Marquardt methods.    and signal transient terms to the models. This results in the
+For DT models and frequency sets covering uniformly the full    same cost function (41) where G(  k,  ) is replaced by (23),
+unit circle, (41) can be simpliﬁed further.                     and M(  k,  ) by
+                                               M(  k,  ) = L−1(  k, )(M(  k, )Y(k) + U(k)Corollary 4.2 (ML cost function for DT models over  full
+                                          + TM(  k,  ) + TL(  k,  )).                 (46)unit circle—unknown  controller).  If  the  frequencies cover
+uniformly the whole unit circle (zk = exp(j2 k/N) with k ∈   The controller TM(  ,  ) and signal TL(  ,  ) transient terms are
+K = {0, 1, . . . , N/2}), and if the transfer function T (z−1,  )    distinguishable if the controller M(  ,  ) and the signal L(  ,  )
+deﬁned in (39) is stable, inversely stable and satisﬁes           models have no common poles.
+z→∞Tlim   (z−1,  ) = 1,                                     (44)     5.3. Properties maximum likelihood estimator
+
+then the ML cost function (41) simpliﬁes to
+                                                      The study of the asymptotic properties of the ML estimator in
+     N−1             N−1                           Theorem 5, follows the same lines of Section 4.3. The following
+ N−1       | G(z−1k  ,  )|2            | M(z−1k  ,  )|2                     additional assumptions are needed.
+       k=0                k=0
+  + O((| max|N)/N),                                  (45)   Assumption 19 (True controller/signal model). The controller
+                                               M0(  ) and signal L0(  ) transfer functions belong to the con-
+where  max is the dominant pole of log T (z−1,  ).                 sidered model set. The common poles of M0 and L0 are not
+                                              common zeros of M0 and L0, the private poles of M0 are not
+Proof. Follow the same lines of the proof of Corollary 1.2. □    zeros of M0, and the private poles of L0 are not zeros of L0.
+
+  Hence, under the assumptions of Corollary 4.2, the ML cost   Assumption 20 (Signal mixing condition of order P). The ref-
+function (41) converges at the rate O((| max|N)/N) to the clas-    erence signal R(k) satisﬁes (35) where W(k) is circular com-
+sical joint input–output approach with unobserved reference    plex distributed (E{W 2(k)} = 0), with zero mean and variance
+signal (Ljung, 1999; Söderström & Stoica, 1989), and the iden-         . R(k) is mixing over k of order P.
+tiﬁcation of the plant and noise models is no longer coupled
+with that of the controller and signal models. Condition (44)   Assumption 21 (Constraint on the controller residual). The
+puts a constraint on the model parameters   . It is fulﬁlled if the    second-order derivatives w.r.t. the frequency f of E{| M(  (f ),
+noise and signal models are monic (c0=d0=1 and p0=q0=1),       )|2},  (f ) = j2 f, exp(−j2 f T s), and its ﬁrst- and second-
+and if the plant and/or controller models have a delay of at least    order derivatives w.r.t.    , are bounded in the frequency band
+one sample (a0 = k0 = 1 and b0 = 0 and/or j0 = 0).               [fmin, fmax], except at a ﬁnite number of frequencies.
+
+===== PDF PAGE 10 =====
+72                                              R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75
+
+Theorem 6 (Asymptotic properties ML estimator—unknown      with gF ( ) deﬁned in (18). It shows that the identiﬁcation
+controller). Under Assumptions 1–6, 8–21 the minimizer ˆ (Z)       of the plant and noise model is decoupled from the signal
+of (41) has the asymptotic (F →∞) properties 1–5 and 7      model, and hence, as expected, (41) boils down to (17).
+of Theorem 3, except that the particular expression for the
+Cramér–Rao lower bound is no longer valid, and that VF ( )=
+E{VF (  , Z)} and V∗( ) (30) are replaced by, respectively,         6. Conclusions
+
+                                                          Summarized, Part I of this series of two papers has the fol-
+VF ( ) = |hF ( )|2E F −1       | G(  k,  )|2                                                           lowing contributions:
+                     k∈K
+               −1                                     • identiﬁcation in closed loop on an arbitrary frequency grid     × E F           | M(  k,  )|2    ,                                                               with known and unknown controller
+                 k∈K
+                                                      • ML properties are proven under non-standard conditions
+                        fmax                                  • discussion of the differences and similarities with the clas-
+V∗( ) = |h∗( )|2        E{| G(  (f ),  )|2}n(f ) df                   sical time domain DT modeling.
+                         fmin
+                  fmax                                     The following practical advice results. Beside the input u(t)
+     ×        E{| M(  (f ),  )|2}n(f ) df    ,                                                        and output y(t) of the plant,  it is strongly recommended to
+                  fmin
+                                                                      store also the reference signal r(t) in a feedback experiment.
+                   fmax                                            Indeed, from these three signals the controller transfer function
+h∗( ) = exp        log(T (  (f ),  ))n(f ) df    .         (47)    can easily be reconstructed, which allows to model the plant
+                   fmin                                        and process noise in the relevant frequency band(s). The latter
+                                                                                 is still possible without knowledge of the controller at the priceProof. Since each stochastic sum in (41) satisﬁes the condi-
+                                                                 of modeling simultaneously the plant, the process noise, thetions of Theorem 3, they converge strongly to their expected
+                                                                         controller, and the reference signal.value. The rest of the proof follows the same lines of A.4. □
+
+
+5.4. Discussion                                                    Acknowledgements
+
+• Identiﬁcation of the plant characteristics in closed loop with-                                                               This work is sponsored by the Fund for Scientiﬁc Research
+  out knowledge of the controller is much more complex than                                                         (FWO-Vlaanderen), the Flemish Government (GOA-ILiNoS)
+   in case the controller is known. Indeed, while the closed-loop                                                        and the Belgian Government (IUAP V/22).
+  problem with known controller is of the same complexity as
+   the open-loop problem, four transfer functions must be esti-
+  mated when the controller is unknown: beside the plant and
+                                                    Appendix A.
+   noise characteristics also the controller and signal transfer
+   functions.
+                                                                   A.1. Proof of Theorem 1
+• Corollary 4.2 nicely illustrates the duality of a feedback ex-
+  periment: by an appropriate choice of the DT model struc-
+                                                         Under Assumptions 1, 2–4 Y(k) (8) is independent (over k),
+   ture it is possible to identify the plant as well as the con-
+                                                                       circular complex normally distributed. To construct the likeli-
+   troller characteristics from a given set of input/output data
+                                                      hood function (U(k) is known exactly) it is sufﬁcient to calcu-
+   u(t), y(t).
+                                                                           late the mean and variance of Y(k) given the model parame-
+•  If the controller is known (M(  ,  ) →M0(  ) in (41)), then
+                                                                           ters  and the variance   of the driving white noise source. In
+   (41) reduces to
+                                                               closed loop the process noise V (k) is correlated with the in-
+                                                               put of the plant U(k) (Assumption 5), and is independent of
+    VF (  , Z) =  F −1       | G(  k, )gF ( )|2                    the reference signal R(k) (Assumption 6). Therefore, the ex-
+                   k∈K                                    pected values in the mean and variance calculation of Y(k)
+                                                  2                 should be conditioned on R(k). The latter is known since the
+                    −1      R(k)         × F                      ( )      ,                controller M0(  ) is known (Assumption 7) and since Y(k) and                        L(  k,  )lF                     k∈K                            U(k) are observed without errors (Assumption 4). Using (10)
+                                              we ﬁnd
+                             1/F
+     lF ( ) =     L(  k,  )                                              G(  k,  )
+                                                          E{Y(k)|R(k),  ,  } =                   ≡Y(k,  ),            k∈K                                                         1 + G(  k, )M0( k)R(k)
+     = exp F −1    log L(  k,  )   ,               (48)
+                                                             var(Y(k)|R(k),  ,  ) =  |S(  k,  )|2,                     (49)                   k∈K
+
+===== PDF PAGE 11 =====
+                                                 R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75                                       73
+
+where S(  ,  ) is deﬁned in (15). Hence, the probability density    where    l and   r are the poles and zeros of S(z−1,  ), with mul-
+function of Y(k) equals                                                  tiplicity    l and  r, respectively, satisfying |  l| < 1 and |  r| < 1
+                                                             (S(z−1,  ) and its inverse are by assumption stable). The Taylor
+fY(k)(Y(k)|R(k),  ,  ) ⎧                                                                   series of log(1 −  z−1) w.r.t. z−1 at z−1 = 0
+   ⎪⎪⎨     1      exp −|Y(k)−Y(k,  )|2       k̸=0, N ,              ∞
+       |S(  k,  )|2           |S(  k,  )|2             2
+=                                                             log(1 −  z−1) = −    ( z−1)r/r                        (56)
+   ⎪⎪⎩       1       exp −|Y(k)−Y(k,  )|2   k=0, N ,                        r=1
+     2   |S(  k,  )|2        2 |S(  k,  )|2          2
+                                                         (50)    converges for any |z|⩾1 if |  | < 1. Using
+
+because Y(k) is real at DC (k = 0) and Nyquist (k = N/2) and   N−1        0   for  r̸ = nN
+circular complex elsewhere. Using the independence of Y(k)        z−rk =                    with n = 0, 1, . . .
+over k we get                                                k=0     N   for r = nN
+                                                                                                                         (57)
+fY (Y|R,  ,  ) =    fY(k)(Y(k)|R(k),  ,  )              (51)
+             k∈K                                              the sum of log(1 − z−1) over a uniform grid on the unit circle
+                                                          can be written as
+with fY the likelihood of the output data Y(k), k ∈K. Elabo-
+rating the exponent in (50),                             N−1           ∞      N−1
+                                                                   log(1 −  z−1k  ) = −    ( r/r)    z−rk
+S−1(  k, )(Y(k) −Y(k,  ))                                   k=0                   r=1       k=0
+  = H −1(  k, )(Y(k) −G(  k, )U(k))                (52)                 ∞
+                                             = −N     nN/(nN).                (58)
+ﬁnally proves (14). The factor 1/2 at DC and Nyquist in the                            n=1
+sums of (14) stems from (50).
+                                                    The absolute value of (58) can be bounded above as
+
+A.2. Proof of Corollary 1.1                              N−1          ∞
+                                                                    log(1 −  z−1k  ) ⩽      | |nN/n⩽O(| |N).           (59)
+   Minimizing (14) w.r.t.   gives (19). Using (19)    is elimi-     k=0                 n=1
+nated in (14)
+                                                                 Collecting (55) and (59) gives
+
+    log |S(  k, )|2+F log F −1       | G(  k,  )|2  +F.  (53)    N−1
+k∈K                        k∈K                                 log S(z−1k  ,  ) ⩽O(| max|N),                       (60)
+                                                             k=0
+Dividing (53) by F, subtracting one, and taking the exponential
+function ﬁnally gives (17).                                 where z =  max is the pole or zero of S(z−1,  ) closest to the
+                                                                     unit circle (=dominant pole of log S(z−1,  )). Since | max| < 1
+                                              we conclude from (18), (54), (60), and N = 2F that gN( ) =A.3. Proof of Corollary 1.2
+                                                      1 + O((| max|N)/N), which proves the corollary.
+   For frequency sets covering uniformly the unit circle, zk =
+exp(j2 k/N) with K = {0, 1, . . . , N/2}, the sums in (17) and    A.4. Proof of Theorem 3
+(18) are replaced by
+                                                                      Properties 1–4 of Theorem 3 are proven by applying the
+          N−1
+                                                                        results of Section 15.8 (mixing noise) and Theorem 7.21 (in-
+      · · · = 0.5       · · ·                                    (54)                                                           dependent noise) of Pintelon and Schoukens (2001), while
+k∈K         k=0                                              Property 7 of Theorem 3 (asymptotic efﬁciency) immediately
+where the additional factor 1/2 accounts for DC (k=0), Nyquist    follows from the ML properties under standard conditions
+(k=N/2), and the fact that each frequency k=1, 2, . . . , N/2−1    (Caines, 1988). Only the particular form of V∗( ) (Property 4),
+appears twice in the sum (zk = zN−k). In the sequel of the    the consistency (Property 5), the asymptotic covariance matrix
+appendix we study the sum in the exponent of gN( ) for N →    (Property 6), and the Cramér–Rao bound (Property 7) remain
+∞.                                                                  to be proven.
+  Since by assumption S(0,  ) = 1, the natural logarithm of
+S(z−1,  ) equals                                           Property 4 (Limit cost function). Eq. (30) is the result of the
+                                                            convergence of the Riemann sum (17) to the corresponding
+log S(z−1,  ) =        r log(1 −  rz−1)                      Riemann integral (see Pintelon & Schoukens, 2001, Theorem
+                        r                                                  7.21), and only the particular expression for g∗( ) should be
+                                                                     clariﬁed. The latter follows immediately from the convergence         −           l log(1 −  lz−1),                 (55)
+                                                                 of the Riemann sum in the exponent of gF ( ) (18).                                       l
+
+===== PDF PAGE 12 =====
+74                                              R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75
+
+Property 5 (Consistency). To prove the strong consistency of    Property 7 (Cramér–Rao lower bound). Evaluating the deriva-
+ˆ (Z) it is sufﬁcient to show that ˆ (Z0)=  0 in (26). The strong     tives of (62) w.r.t.  ,  in  0,  0 gives
+consistency of ˆ =  (ˆ (Z))follows then from  0 =  ( 0). Since                                                           2V (  ,  )
+the minimizers of (14) and (17) are by construction exactly the   M11 =       2
+same (see A.2), the expected value of (17) is minimal in =  0                 = 0, = 0
+if and only if the expected value of (14), V (  ,  ), is minimal in                                     T
+                                                                   1       |S(  k,  )|2       |S(  k,  )|2
+ =  0 and =  0. Under Assumptions 6 and 9, V (  ,  ) equals     =
+                                                                               |S0(  k)|4          0                  0
+                                                            k∈K
+                           1      S0(  k)  2                              |S0(  k)|2 E{|R(k)|2}  2| G(  k,  )|2
+V (  ,  ) =     log |S(  k,  )|2 +                      +                                      2          ,                         H(  k,  )                                                                       |H0(  k)|4       0              0                                                              k∈K         k∈K                k∈K
+                    | G(  k,  )|2E{|R(k)|2}
+      ×             + F log                       2V (  ,  )         F
+                  |H0(  k)|2                          M22 =       2       =  2 ,
+                0      S0(  k)  2                                     = 0, = 0     0
+      +                                ,                        (61)
+                  S(  k,  )                                   2V (  ,  )             k∈K                                                 M12 =
+                                                           = 0, = 0
+where S(  ,  ) is deﬁned in (15), S0 = H0/(1 + G0M0), and                                        T                                                             1        1       |S(  k,  )|2
+ G(  k, )=G0( k)−G(  k,  ). Calculating the derivative of     =                                                          .
+                                                                                 0     |S0(  k)|2          0(61) w.r.t.  and   gives                                           k∈K
+
+                                                         Using the inverse of a 2 × 2 block matrix, the inverse of the
+ V (  ,  )
+                                                     Cramér–Rao lower bound CR( 0) of the model parameters
+                                                                                 is given by CR−1( 0) = (M11 −M12M−122 MT12). After some
+            1       |S(  k,  )|2   1      S0(  k)  2          straightforward calculations one ﬁnds CR−1( 0)=F1+F2 with  =                +
+          |S(  k,  )|2               H(  k,  )           F1, F2 given in (32).
+     k∈K                        k∈K
+        E{|R(k)|2}   | G(  k,  )|2                           Property 6 (Asymptotic covariance matrix). Using (10), cost   ×
+        |H0(  k)|2                                              function (17) can be written as
+
+                                                                                                                   2   −1     |S0(  k)|2| G(  k,  )|2E{|R(k)|2}                                  G(  k,  )
+                |H(  k,  )|4|H0(  k)|2                 FVF (  , Z) = |gF ( )|2        k∈K                                                             H(  k,  )
+        |H(  k,  )|2                                                      k∈K
+   ×                                                                                           2                       2                                                                             S0(  k)             S0(  k)                                          ×           |R(k)|2 +            |E(k)|2
+          0      |S0(  k)|2   |S(  k,  )|2                                  H0(  k)           S(  k,  )
+   −                                                     ,
+                |S(  k,  )|4                                             G(  k,  ) |S0(  k)|2 R(k)¯E(k)         k∈K                                  + 2 Re                                                             .
+                                                          H(  k,  )  ¯S(  k,  )  H0(  k)
+ V (  ,  )                                                                                                                 (63)
+
+                                                                After some calculations we ﬁnd
+    F              S0(  k)  2  | G(  k,  )|2E{|R(k)|2}  =  −1                                                     FV′′F ( 0) =  0|gF ( 0)|2(F1 + F2)
+             2     H(  k,  )         |H0(  k)|2
+             k∈K                                        FV′F ( 0, Z)
+               S0(  k)  2
+   +  0                              .                            (62)                       G(  k,  ) S0(  k)                                                                 Re              S(  k,  )                       = −2|gF ( 0)|2
+         k∈K                                                                                                           0  H02 ( k)R(k)¯E(k)                                                                    k∈K
+                                                                                      F
+Evaluating (62) in  =  0 and  =  0, using H(  k,  0) =                             −1                                                   −|gF ( 0)|2         k −F          k  |E(k)|2,        (64)H0(  k),  G(  k,  0) = 0, and
+                                                                    k∈K           k=1
+
+   | G(  k,  )|2                                           where F1, F2 and  k are deﬁned in (32). Using
+                                                               E{|E(k)|2|E(l)|2}
+           G(  k,  )                                                                                20,        k̸ = 1  = 2 Re                  G(  k,  )   ,
+                                    =                and
+                                                                       kcu 20,  k = l
+where ¯x denotes the complex conjugate of x, gives V (  ,  0)/                     1                                                   E{Re(ZT1 )Re(Z1)} =           1 Z1})                    (65)   0 = 0 and V ( 0,  )/   0 = 0 which concludes the proof.                     2Re(E{ZH
+
+===== PDF PAGE 13 =====
+                                                 R. Pintelon, J. Schoukens / Automatica 42 (2006) 63–75                                       75
+
+with E(k) independent noise (Assumption 2), kcu the kurtosis     McKelvey, T. (2000). Frequency domain identiﬁcation. Preprints 12th IFAC
+factor E{|E(k)|4}/(E{|E(k)|2})2, and Z1 zero mean circular       symposium on system identiﬁcation, 21–23 June. California (USA): Santa
+complex noise E{ZT1 Z1} = 0, together with E{|E(k)|2E(l)} = 0     McKelvey,Barbara.T. (2002). Frequency domain identiﬁcation methods. Circuits and
+and/or E{R(k)} = 0, it can be veriﬁed that                                                                             Systems Signal Processing, 21(1), 39–55.
+E{V F′ T(  , Z)V F′ (  , Z)}                                              McKelvey,identiﬁcation.T., & Ljung,PreprintsL. (1997).of  theFrequency11th  IFACdomainsymposiummaximumonlikelihoodsystem
+  =  20|gF ( 0)|4(F1 + (kcu −1)F2)/F 2.                 (66)         identiﬁcation, Kitakyushu (Japan), 8–11 July, Vol. 4 (pp. 1741–1746).
+                                                                          Schoukens,   J.,  Pintelon,  R.,  Dobrowiecki,  T., &  Rolain,  Y.  (2005).
+Collecting (29), (64), and (66) proves (31).                                Identiﬁcation of linear systems with nonlinear distortions. Automatica,
+                                                                                       41(3), 491–504.
+                                                                            Söderström,  T., Fan, H., Carlsson, B., & Bigi, S. (1997). Least squares
+A.5. Proof of Theorem 4                                                                               parameter estimation of continuous-time ARX models from discrete-time
+                                                                                           data. IEEE Transactions on Automatic Control, 4(5), 659–673.
+   Under Assumptions  1, 2–6, 15–17 the vector Z(k) =     Söderström, T., & Stoica, P. (1989). System identiﬁcation. Englewood Cliffs:
+[Y(k), U(k)]T is independent (over k), circular complex nor-         Prentice-Hall.
+mally distributed for any frequency different of DC (k = 0)      Pintelon, R., & Kollár,  I. (2005). On the frequency scaling in continuous-
+                                                                               time modeling. IEEE Transactions on Instrumentation and Measurement,
+and Nyquist (k = N/2), while  it is normally distributed at         53(5), 318–321.
+DC and Nyquist. Using (10) and (35) we ﬁnd for any  k,      Pintelon, R., & Schoukens,  J. (2001). System identiﬁcation: A frequency
+E{Z(k)|  ,  ,  } = 0 and                                              domain approach. New York: IEEE Press.
+                                                                                     Pintelon,   R.,  Rolain,   Y., &  Schoukens,   J.  (2005a).  Box–Jenkins
+CZ(k) = E{ZH(k)Z(k)|  ,  ,  }                                                identiﬁcation revisited—part  II: Application. Automatica, in press, doi:
+           1                                                                 10.1016/j.automatica.2005.09.005.
+   =                                                                       Pintelon R., Schoukens, J., Rolain, Y., Cauberghe, B., Parloo, E., & Guillaume,
+         |1 + GM|2                                                                        P. (2005b). Identiﬁcation of continuous-time noise models. Proceedings of
+               |GL|2 +  |H|2     G|L|2 − M|H|2                   the 16th IFAC world congress, Prague (Czec Republic), 4–8 July.
+     ×                                                                        ,           Wahlberg, B., Ljung, L., & Söderström, T. (1993). On sampling of continuous            G|L|2 − M|H|2     |L|2 + |HM|2
+                                                                               time stochastic processes. Control-Theory and Advanced Technology, 9(1),
+where G = G(  k,  ), H = H(  k,  ), M = M(  k,  ) and       99–112.
+L = L(  k,  ). After some calculations we get, det CZ(k) =
+   |T (  k,  )|2 and                                                                      Rik Pintelon was born in Gent, Belgium, on                                                                                         December 4, 1959. He received the degree of
+ZH(k)C−1Z(k)Z(k)                                                                                                     electrical engineer (burgerlijk ingenieur) in July         =  −1| G(  k,  )|2 +  −1| M(  k,  )|2,                                      1982, the degree of doctor in applied sciences in
+                                                                                                       January 1988, and the qualiﬁcation to teach at
+where G(  k,  ), T (  k,  ), and M(  k,  ) are deﬁned in (16),                                    university level (geaggregeerde voor het hoger
+(39), and (40), respectively. The rest of the proof follows the                                 onderwijs) in April 1994,  all from the Vrije
+                                                                                                                     Universiteit Brussel (VUB), Brussels, Belgium.
+same lines of A.1 (use (50) and (51)).                                                                                    From October 1982  till September 2000 he
+                                                                                         was a  researcher of  the Fund  for Scientiﬁc
+References                                                                                    Research—Flanders at the VUB. Since October
+                                                                                            2000 he is professor at the VUB in the Electrical
+˚Aström, K. J. (1970). Introduction to stochastic control theory. New York:     Measurement Department (ELEC). His main research interests are in the ﬁeld
+                                                                                 of parameter estimation/system identiﬁcation, and signal processing.  Academic Press.
+Box, G. E. P., & Jenkins, G. M. (1970). Time series analysis: Forecasting
+                                                                                        Johan Schoukens is born in Belgium in 1957.
+   and control. Oakland: Holden-Day.
+                                                                               He received the degree of engineer in 1980 and
+Caines, P. E. (1988). Linear stochastic systems. New York: Wiley.                                                                                                                the degree of doctor in applied sciences in 1985,
+Fan, H., Söderström, T., Mossberg, M., Carlsson, B., & Zou, B. Y. J. (1999).                                both from the Vrije Universiteit Brussel, Brus-
+   Estimation of continuous-time AR process parameters from discrete-time                                         sels, Belgium. He is presently professor at the
+   data. IEEE Transactions on Signal Processing, 47(5), 1232–1244.                                          Vrije Universiteit Brussel. The prime factors of
+Ljung, L. (1993). Some results on identifying linear systems using frequency                                     his interest are in the ﬁeld of system identi-
+   domain data. Proceedings of the 32nd IEEE conference on decision and                                 ﬁcation for linear and nonlinear systems, and
+   control, 15–17 December, Vol. 4. (pp. 3534–3538). Texas (USA): San                              growing tomatoes in his green house.
+   Antonio.
+Ljung, L. (1999). System identiﬁcation: Theory for the users. Upper Saddle
+   River: Prentice-Hall.

@@ -1,0 +1,13 @@
+{
+  "frequencies_hz": [
+    12.0,
+    60.0,
+    286.573,
+    344.945,
+    490.39
+  ],
+  "Jacobian_noise_factor_relative_error": 1.0686184589575024e-16,
+  "bias_trace_vs_latent_noise_columns_relative_error": 4.633210533145073e-16,
+  "common_delay_formula_5_1_relative_error": 6.4129180657125225e-15,
+  "passed": true
+}

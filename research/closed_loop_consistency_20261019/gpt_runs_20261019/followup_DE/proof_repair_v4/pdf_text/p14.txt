@@ -1,0 +1,370 @@
+===== PDF PAGE 1 =====
+                       Maarten van der Hulst et al., Identification of additive multivariable continuous-time systems,
+                                             accepted to LCSS, uploaded to ArXiv July 1, 2025
+              Identification of additive multivariable continuous-time systems
+
+                      Maarten van der Hulst1,∗, Rodrigo A. Gonz´alez1, Koen Classens1, Nic Dirkx2,
+                                          Jeroen van de Wijdeven2, Tom Oomen1,3
+
+
+
+            Abstract— Multivariable parametric models are critical for    [8]. Additive model structures offer several advantages, such
+           designing, controlling, and optimizing the performance of en-   as providing more physically insightful models for model
+           gineered systems. The main aim of this paper  is to develop                                                                     updating [9], and online monitoring techniques [10], while
+          a parametric identification strategy that delivers accurate and
+                                                                           also providing more parsimonious parameterizations leading           physically relevant models of multivariable systems using time-
+         domain data. The introduced approach adopts an additive    to improved statistical estimation properties [1]. Furthermore,
+         model structure, providing a parsimonious and interpretable    these structures contribute to numerically more stable algo-
+           representation of many physical systems, and applies a refined   rithms [11] and improve numerical conditioning, particularly
+          instrumental variable-based estimation algorithm. The devel-2025                                                                       for parametric identification of high-order systems [12].         oped identification method enables the estimation of multivari-
+                                                                     Accurate modeling  of  physical systems  benefits from           able parametric additive models in continuous time and is appli-
+           cable to both open- and closed-loop systems. The performance   approaches that align with the underlying dynamics. In thisJun    of the estimator is demonstrated through numerical simulations    regard, the estimation of continuous-time models [13] offers
+         and experimentally validated on a flexible beam system.         advantages over discrete-time models as they facilitate the
+            Index Terms— Identification, Closed-loop identification, Iden-30                                                                         direct incorporation of a  priori knowledge, such as the
+             tification for control
+                                                                                  relative degree of the system, which for discrete-time models
+                                                                                           is more challenging due to the presence of sampling zeros                                        I. INTRODUCTION
+                                                                               [14]. Moreover, direct continuous-time identification is well
+           System identification is critical in modeling and analyzing                                                                            suited for fast or non-uniformly sampled settings, and the
+           the dynamic behavior of multivariable systems  in many                                                                     parameters directly correspond to physical quantities, aiding
+          engineering domains. The obtained data-based models are                                                             model interpretability [15].
+          important for analyzing and predicting system dynamics,[eess.SP]                                                       The estimation of additive model parameterizations has
+          as well as for designing high-performance observers and                                                                  mainly been considered for the single-input single-output
+           control strategies. Many engineered systems contain a large                                                                (SISO) setting. Examples include vector fitting procedures
+        number of inputs and outputs, and the ability of identification                                                                               [16], which estimates first-order pole models, as well as
+         methods to effectively handle their inherent multivariable                                                                          the identification of nonlinear finite impulse responses and
+          nature is vital to further optimize system performance.                                                                        generalized Hammerstein models [17], [18]. Recent results in
+             Traditional  linear system  identification approaches  for                                                                            additive system identification include the direct continuous-
+           multivariable systems often include model structures that                                                                    time identification method introduced in [19], based on the
+         do not exploit the structure of the considered physical sys-                                                                            simplified  refined instrumental variable method (SRIVC)
+         tem [1]. Examples include unfactored common denominator                                                                               [20], as well as block coordinate descent techniques [21],
+          models, expressed as the quotient of a numerator matrix                                                                               [22]. In contrast to these SISO methods, many multi-input
+         polynomial and scalar denominator polynomial, or matrix                                                                         multi-output (MIMO)  identification  strategies have been
+           fractional descriptions (MFDs). The literature on these model                                                                   developed that consider non-additive structures. Estimating
+          parameterizations is extensive [2]–[4], yet MFDs may not                                           MIMO models  is inherently more challenging due to in-
+          provide the most parsimonious or physically relevant model                                                                       creased model complexity and typically larger-dimensionalarXiv:2504.01639v2    descriptions when considering practical applications in, e.g.,                                                                         estimation problems. Most of these methods are categoriz-
+           vibrational analysis and flexible motion systems  [5],  [6].                                                                         able in pseudo-linear regression-based approaches [23]–[25],
+         These systems are often modeled in a modal form, consisting                                                                          gradient descent methods [26] and subspace techniques [27].
+          of a sum of low-order transfer functions, where each term in                                                                  Although important developments in additive identification
+           the additive decomposition corresponds to a specific resonant                                                                 have been made, existing techniques are either limited to
+        mode of the system. Additive models are related to unfac-                                                        SISO systems, do not  explicitly address the closed-loop
+           tored transfer functions through partial fraction expansion                                                                                setting or are not directly applicable to time-domain identifi-
+         and are encountered in many engineering fields, such as RLC                                                                          cation of continuous-time models. This paper presents a com-
+            circuit modeling [7] and thermal analysis of machine frames                                                                       prehensive time-domain identification method for estimating
+              1 Dept. of Mechanical Engineering, Eindhoven University of Technology,    additive MIMO systems in continuous time applicable to
+          The Netherlands. 2 ASML, Veldhoven, The Netherlands. 3Delft Center for   both open- and closed-loop configurations. The proposed
+           Systems and Control, Delft University of Technology, The Netherlands.   method extends the work in [19] and can be viewed as a
+            This project is funded by Holland High Tech — TKI HSTM via the PPP
+             Innovation Scheme (PPP-I) for public-private partnerships. ∗Corresponding   time-domain counterpart to the frequency-domain approach
+              author, Email: M.v.d.hulst@tue.nl.                            introduced in [28]. The main contributions of this paper are:
+
+===== PDF PAGE 2 =====
+ C1 A time-domain  identification  strategy  for estimating                                              v(t)
+     continuous-time models of MIMO systems in additive
+     transfer function form, applicable to both open-loop and       u(tk)          u(t)            x(t)            y(tk)
+                                              ZOH        G∗(p)     closed-loop scenarios.                                                                                            tk
+ C2 Experimental validation of the developed identification                                                                                                               v(t)
+    method by application to a MIMO flexible-beam sys-
+     tem.                                                            r(tk)                                           y(tk)
+                                                                   Cd(q)   ZOH     G∗(p)  This paper is structured as follows. Section 2 introduces                                                          tk
+                                        −
+the additive model structure and presents the identification
+problem considered. In Section 3, the developed identifica-
+tion strategy is derived. Numerical simulations are provided     Fig. 1.  System acting in an open-loop setting (upper) and system acting
+in Section 4, with experimental validation of the method in     in a closed-loop setting (lower).
+Section 5. Finally, conclusions are given in Section 6.
+  Notation: Scalars, vectors and matrices are written as x,   with each submodel described by the vector
+x and X, respectively. If x ∈Rn is a column vector and
+                                                            hQ ∈Cn×n is a Hermitian matrix, then the weighted 2-norm    θi =  ai,1, . . . , ai,ni, vec (Bi,0)⊤, . . . , vec (Bi,mi)⊤i⊤.  (6)
+is given by ∥x∥Q = px⊤Qx. The Kronecker product is
+                                    A noisy measurement of the output is retrieved at every timerepresented by the ⊗operator and for X = [x1, . . . , xn]
+                                                                                        k=1 are equidistantwith xi ∈Cn  the operation vec(X) = [x⊤1 , . . . , x⊤n ]⊤    instant t = tk, k = 1, . . . , N, where {tk}N
+                                                                   in time. That is,restructures the matrix into a vector by stacking its columns.
+The Heaviside operator is denoted by pu(t) = dtu(t).d                      y (tk) = x (tk) + v (tk) ,               (7)
+                  II. PROBLEM FORMULATION                where v (tk) ∈Rny  is described by a zero-mean discrete-
+                                                           time random process of unknown covariance Σ∗, and x (tk)  In this section, the additive model structure is formally
+                                                                the sampled unobserved noise-free plant output. Two con-
+introduced and the identification problem is presented. Con-
+                                                                   figurations are considered. In the first, the true plant G∗(p)
+sider the causal linear and time-invariant (LTI) continuous-
+                                                              operates in an open-loop setup, while in the second, the plant
+time MIMO system with nu inputs and ny outputs in additive
+                                                              operates in a closed-loop configuration. The block diagrams
+form containing K submodels
+                                                                   for both the open- and closed-loop settings are shown in
+                    K                           Figure 1. In the open-loop case, the output noise v(tk) is
+         x(t) = G(p, θ)u(t) = X Gi(p, θ)u(t),       (1)   assumed to be statistically independent of the input u(tk),
+                               i=1                         while in the closed-loop scenario, the noise is assumed to
+where the input signal  is denoted by u(t) ∈Rnu and   be statistically independent of the external reference signal
+x(t) ∈Rny  is the unobserved noise-free plant output. The   r(tk) ∈Rny. The assumed intersample behavior of the input
+selection of K can be guided by physical knowledge of the   u(tk) is a zero-order hold (ZOH) and is for the closed-loop
+system, where, for mechanical systems, K corresponds to the   setup generated by the discrete-time LTI controller Cd(q),
+number of modes of the system [5]. Each submodel Gi(p)   where q represents the forward-shift operator, according to
+is parametrized as                                              the control law
+
+                          1                                        u(tk) = Cd(q) (r(tk) −y(tk)) ,            (8)
+              Gi(p, θ) = pℓiAi(p)Bi(p),              (2)                                                     which leads to the closed-loop expression
+where at most one submodel may include ℓi > 0 poles at                                                 u (tk) = S∗uo(q) r(tk) −v(tk)  ,           (9)the origin. The scalar denominator polynomial Ai(p) and the
+matrix numerator polynomial Bi(p) are such that no complex   with  the  control   sensitivity  defined  as  S∗uo(q)  =
+number z simultaneously satisfies Ai(z) = 0 and Bi(z) =   Cd(q)[Iny + G∗d(q)Cd(q)]−1 and where G∗d(q) represents
+0. To ensure a unique characterization of {Gi(p)}Ki=1, it is    the ZOH discrete-time equivalent of the true plant G∗(p).
+assumed that at most one submodel Gi(p) is biproper. The   The problem considered in  this paper  is to estimate the
+Ai(p) and Bi(p) polynomials are parametrized as            parameter vector β describing the additive MIMO model
+                                                                     structure, using a dataset of input/output measurements. To
+        Ai(p) = 1 + ai,1p + . . . + ai,nipni,             (3)    this end,  it is assumed that the data set {u(tk), y(tk)}Nk=1
+        Bi(p) = Bi,0 + Bi,1p + . . . + Bi,mipmi,       (4)    is  available  for  the  open-loop  setting  and  the  dataset
+                                                               {r(tk), u(tk), y(tk)}Nk=1 for the closed-loop setting. In ad-
+where the Ai(p) polynomials are stable, i.e., all roots lie in                                                                      dition, the controller is assumed to be known for the closed-
+the left-half plane, and they not share any common roots.                                                           loop setting.
+The polynomials Ai(p) and Bi(p) are jointly described by
+           β = θ⊤1 ,  . . . , θ⊤K ⊤,                (5)
+
+===== PDF PAGE 3 =====
+ III. IDENTIFICATION STRATEGY FOR CONTINUOUS-TIME      Note, that the open-loop instrument (13) is retrieved as
+            ADDITIVE MIMO SYSTEMS                  a special case of (14) when the feedback interconnection is
+                                                               omitted. In the following subsection, a refined instrumental  This section presents the identification strategy for estimat-
+                                                                 variable based method is introduced to estimate solutions ˆβing additive MIMO models and constitutes contribution C1.
+                                                                   to the correlation condition (11).
+A. Identification criteria
+                                                            B. Refined instrumental variables for additive systems
+  The identification problem is formulated using the residual
+                                                    The correlation condition (11) is non-linear in the param-
+output signal, which is computed as the difference between
+                                                                     eter vector β. A solution is obtained by reformulating (10)
+the measured system output y(tk) and the simulated model
+                                                                   to a pseudolinear form which enables the refined instrumen-
+output
+                                                                              tal variable approach. For each submodule in the additive
+                  K                          model structure, the residual can be reformulated into an
+         ε(tk, β) = y(tk) − X Gi(p, θi)u(tk).       (10)   unique pseudolinear representation, as stated in the following
+                            i=1                          lemma.
+                                              Lemma 3.1: The  pseudolinear  regression form  of  the
+  Remark 3.1: In (10) a mixed notation of continuous-time
+                                                                  residual signal (10) corresponding to the ith submodel is
+filters with sampled signals is introduced. If G(p) is a causal
+                                                            expressed as
+continuous-time filter and u(tk) is a sampled signal, then
+G(p)u(tk) implies that the signal is first interpolated using a           ε (tk, β) = ˜yf,i (tk, β) −Φ⊤i (tk, β) θi,      (15)
+specified intersample behavior before being filtered by G(p).
+                                                           with the regressor matrix
+The continuous-time output is then sampled at t = tk. The
+notation u⊤(tk)H(p) can be interpreted similarly.                     −p            −pni                                                Φi (tk, θi) =          ˜yi(tk), . . . ,        ˜yi(tk)
+  To identify systems acting in either an open or closed-                  Ai(p)           Ai(p)
+loop configuration, a correlation criterion is adopted [1]. The                  1               pmi       ⊤
+parameter vector estimate ˆβ is obtained as the solution to                  Ai(p)U⊤(tk), . . . , Ai(p)U⊤(tk)     ,  (16)
+              N
+               1                                                      and with ˜yf,i (tk, β) = A−1i  (p)˜yi(tk, β) the filtered version         0 =      X ˆΦ (tk, β) Σ−1ε(tk, β),        (11)
+         N                                           of the residual output signal
+                 k=1
+                                                                                  1
+with Σ ∈Rny×ny a positive-definite weighting matrix and        ˜yi (tk, β) = y(tk) − X   pℓiAj(p)Bj(p)u(tk).  (17)ˆΦ a matrix of instrument signals which is uncorrelated with                               j=1,...,K
+                                                                                                                   j̸=i
+the noise signal v(tk). For the considered additive structure,
+                                                                  Proof:  The residual (10) is rewritten for the ith sub-
+this instrument matrix is partitioned as follows
+                                                         model, with i = 1, . . . , K, according to
+ˆΦ (tk, β) =  ˆΦ⊤1 (tk, θ1) ,    . . . ,  ˆΦ⊤K (tk, θK)  ⊤,  (12)                          1
+                                                               ε(tk) = ˜yi (tk, β) − pℓiAi(p)Bi(p)u(tk),          (18)
+where the expression for ˆΦi for i = 1, . . . , K depends on                                                                 1
+the setting. For the open-loop case, the submodel instrument       =           pℓiAi(p)˜y(tk) −Bi(p)u(tk)  ,   (19)
+                                                                     pℓiAi(p)
+is selected as
+                                                           with ˜yi(tk, β) defined in (17). By applying the following             −pBi(p)          −pniBi(p)
+ ˆΦi (tk, θi) =                            . . . ,             u(tk),        identity for arbitrary matrices of matching dimensions               pℓiA2i (p)u(tk),      pℓiA2i (p)
+                                  ⊤               Xb = b⊤⊗I vec(X),             (20)            1                 pmi
+         pℓiAi(p)U⊤(tk),  . . . , pℓiAi(p)U⊤(tk)     , (13)   and substituting (3) and (4), each subproblem in (19) be-
+                                                   comes
+where U(tk) = u(tk)⊗Iny. Under this choice of instrument,
+                                                               1                      ai,nipni
+(11) is interpreted as the first-order optimality condition of a    ε (tk) =          ˜yi (tk, β) + . . . +             ˜yi (tk, β) −
+                                                                 Ai(p)                 Ai(p)least-squares minimization criterion [1]. For the closed-loop
+case, the instrument corresponds to                        U⊤(tk)vec (Bi,0) −. . . −U⊤(tk)pmi vec (Bi,mi) .  (21)
+                                                                    pℓiAi(p)                    pℓiAi(p)
+             −pBi(p)          −pniBi(p)
+ ˆΦi (tk, θi) =                           . . . ,                ˜r(tk),       This expression can directly be written in the form (15) by               pℓiA2i (p)˜r(tk),      pℓiA2i (p)
+                                  ⊤          considering (6), thus completing the proof.
+            1                 pmi
+                   ˜R⊤(tk),  . . . ,         ˜R⊤(tk)     , (14)   The form (15) enables the correlation condition to be solved
+          pℓiAi(p)             pℓiAi(p)                    using refined instrumental variable iterations [20]. Introduc-
+                                                             ing the stacked signalswith ˜r(tk) = Suo(q)r(tk) the noise-free input component
+and ˜R(tk) = ˜r(tk) ⊗Iny. This instrument is motivated by                 h                       i⊤                               Υ (tk, β) =  ˜yf,1 (tk, β) ,  . . . , ˜yf,K (tk, β)    ,    (22)
+the fact that among all instruments that produce a consistent
+estimator, this instrument minimizes the asymptotic covari-                 h                        i⊤                                 Φ (tk, β) = Φ⊤1 (tk, θ1) ,  . . . , Φ⊤K (tk, θK)    ,   (23)ance, which was established for the SISO case in [19].
+
+===== PDF PAGE 4 =====
+and the parameter matrix                                    without the denominator coefficients. This vector appears
+                                                                    linearly in the residual function (10) after applying identity
+               θ1      0 
+                                                              (20) and therefore allows a  linear regression form. The
+           B =           ...                       (24)   estimate ˆη is found as the solution to the convex problem                                             ,
+                  0     θK                                N
+                                                                      1                            2
+which contains the elements of β along the block diagonal,               ˆη = arg min X y (tk) −Φ⊤(tk) η 2 ,    (28)                                                                    η  N
+allows the correlation condition (11) for the K pseudolinear                       k=1
+regressions (15) to be written according to                 where the regressor matrix Φ is obtained by stacking for
+  N                                                     each submodel
+ X ˆΦ(tk, β)Σ−1 Υ⊤(tk, β) −Φ⊤(tk, β)B = 0.  (25)                 1                 pmi        ⊤
+  k=1                                           Φi (tk) =                               . . . ,                            , (29)                                                                                     pℓi ¯Ai(p)U⊤(tk),      pℓi ¯Ai(p)U⊤(tk)
+The solution is obtained iteratively by fixing β = β⟨j⟩at                                                                   in a similar way as (23). An initial estimate β⟨0⟩is thus
+the jth iteration in (22), the regressor (23), and instrument                                                          determined by  first providing initial pole locations, which
+matrix (12). In addition, for minimum asymptotic covariance                                                            enable the computation of the numerator parameters by
+we require a weighting equal to the true noise covariance,                                                              solving (28) given data.
+i.e., Σ = Σ∗. However, since Σ∗is typically unknown a
+priori it is estimated using                                                        IV. SIMULATION
+                N                                     This section aims to validate the introduced estimators
+                 1
+         ˆΣ(β⟨j⟩) = X ε(tk, β⟨j⟩)ε⊤(tk, β⟨j⟩),     (26)   through numerical simulations. Consider the 3-mass spring
+           N                    k=1                              damper system in Figure 2 with nu = 3 inputs and ny = 3
+                                                                 outputs. The model is parametrized in the additive form asproviding a sample maximum likelihood estimate of the true
+noise covariance [11]. Then, by solving for B in (25), the                                  3                                                                          B1,0              Bi,0
+estimator for additive systems acting in either open or closed-          G(p, β) =   + X                        (30)                                                                             p2         ai,2p2 + ai,1p + 1,
+loop is obtained as                                                                     i=2
+                                                     where the first term corresponds to a rigid-body mode, and        " N                            #−1
+  ˆB⟨j+1⟩= X ˆΦ(tk, β⟨j⟩)ˆΣ−1(β⟨j⟩)Φ⊤(tk, β⟨j⟩)  ×     the remaining two are flexible modes [5]. Two experiments
+                                                                are performed, with the system operating in open-loop in
+           k=1
+          N                                               the first experiment and in closed-loop in the second. The
+    X ˆΦ(tk, β⟨j⟩)ˆΣ−1(β⟨j⟩)Υ⊤(tk, β⟨j⟩),  (27)    external excitation signal (u(tk) in the open loop and r(tk)
+            k=1                                                in closed loop) is a Gaussian white signal of unitary variance
+                                                      and the output noise v(tk) is added with a variance of 0.001
+where the next iteration βj+1 is extracted from the block
+                                                                   for the open-loop experiment and an output SNR of 30 [dB]
+diagonal coefficients of Bj+1 described by (24). The con-
+                                                                   for the closed-loop experiment. For the closed-loop experi-
+vergence point of the iterations described by the estimator
+                                                          ment, a low-bandwidth controller is implemented, which is
+(27) provides a solution that under mild assumptions directly
+                                                                  discretized using a ZOH. Each parameter is initialized at a
+satisfies the correlation condition (11).
+                                                   random point that deviates at most 5 percent from its true
+  Remark 3.2: Note that the iterations described by (27)                                                                 value. The model is sampled at 1 [kHz] and in total N = 104
+recover the approach presented in [19] when the model is
+                                                         samples are collected. The assumed intersample behavior
+SISO. In addition, for non-additive models, that is K = 1,
+                                                                   for all signals is a ZOH and 10 realizations are computed
+the SRIVC iterations are obtained in the open-loop case [20],
+                                                            using the estimator (27) for each setting, where each real-
+while they correspond to CLSRIVC iterations in the closed-
+                                                                   ization required approximately 2 seconds of execution time
+loop case [29].
+                                                                   to compute. The frequency response functions (FRF) of the
+  Remark 3.3: The proposed method is readily extendable
+                                                             estimated models are shown in Figure 3 and Figure 4 for
+to noise spectrum estimation by adapting the estimator for
+                                                                the open- and closed-loop experiments, respectively. In both
+the noise covariance (26) to discrete-time ARMA model
+                                                                  cases, the proposed estimator provides accurate estimates of
+estimation, as commonly done in RIVC methods [13].
+                                                                the true dynamical system.
+C. Initialization
+  The iterations in (27) require an initial estimate β⟨0⟩of the                     z1              z2              z3
+model parameters. This section presents a method for com-                  u1            u2            u3
+                                                                                 d2             d3puting the parameters of the numerator matrix (4), assuming
+fixed denominator parameters. This reduces the initialization          m1         m2         m3
+problem to determining the initial pole locations, which are
+often effectively derived from nonparametric models. To this                        k2             k3
+end, assume that the denominator polynomials are fixed at
+¯Ai(p), and let η represent the parameter vector from (5)         Fig. 2.  Simulation model of a three-mass spring damper system.
+
+===== PDF PAGE 5 =====
+                                                                                  Fig. 5.  The flexible beam setup (upper) and schematic overview of the
+                                                                               featured actuators ui and sensors zi layout on the flexible beam (lower).
+Fig. 3.  Open-loop experiment: subset of the element-wise bode magnitude
+plot with the true system (    ) and 10 estimation realizations (    ).
+                                                           with ωi the natural frequency and ζi the damping coefficient
+                                                                         [5]. The first K = 5 modes of the system are estimated.
+                                                       Care must be taken when selecting K, as choosing a value
+                                                                   larger than the number of resonant modes present in the
+                                                              data may lead to poor convergence. The natural frequencies
+                                                                are initialized at the resonance peaks observed in the FRF
+                                                      measurement computed from the same dataset [11], and the
+                                                    damping ratios are set to 1% for each mode. The  initial
+                                                              estimate of the numerator parameters is obtained by solving
+                                                                    (28), with fixed denominators based on the initial natural fre-
+                                                           quencies and damping coefficients. The FRF of the estimated
+                                                                 additive model, which required approximately 10 seconds of
+                                                             execution time to compute, is shown in Figure 6 together
+                                                           with the measured FRF. This comparison demonstrates that
+                                                                the estimated model effectively captures the true dynamics
+                                                              of the system, as the frequency response closely matches the
+Fig. 4.  Closed-loop experiment: subset of the element-wise bode magnitude   measured FRF.
+plot with the true system (    ) and 10 estimation realizations (    ).       A key advantage of the additive model parameterization
+                                                                    (31), compared to an equivalent unfactored common de-
+                                                         nominator model of equal order, is that only second-order
+            V. EXPERIMENTAL VALIDATION                                                                   derivatives of the measured input/output signals are required
+  In this section, the introduced estimator is validated using    to construct the instrument and regressor. In contrast, the
+experimental data, providing contribution C2. The experi-  common denominator model necessitates derivatives up to
+mental setup shown in Figure 5, is a flexible beam measuring   order ten. Additionally, the poles of the flexible beam span
+500 × 20 × 2 [mm]. The setup is actuated using three voice   a wide frequency range, which causes large variations in the
+coil actuators and three collocated optical fiber sensors are   denominator coefficients when using an unfactored model.
+used to measure the deflection. The system  is open-loop   These aspects generally lead to more tractable computations
+stable, enabling the identification experiment to be conducted   and numerically more stable implementations.
+in an open-loop setting and operates at a sampling frequency
+                                                                          VI. CONCLUSIONof 4096 [Hz]. The system is excited using random phase
+multisine excitation signals with a  flat spectrum between      This  paper  addresses  the  parametric  identification  of
+0.25 [Hz] and 500 [Hz], which contain 5 periods of t = 4   continuous-time additive MIMO systems. A unified estimator
+seconds each, resulting in a total signal length of N = 81920    is presented, which uses a  refined instrumental  variable
+samples. The assumed intersample behavior is a ZOH, and   method to estimate additive models acting in either open-
+a delay of four signal samples is compensated. The model   or closed-loop. The method enables the estimation of parsi-
+is parametrized in the additive form                       monious and interpretable models, offering advantages when
+              K                                         identifying physical systems. The identification strategy has
+                                 Bi,0                                                       been validated through numerical simulations and is success-        G(p, β) = X                                                       (31)                     p2/ω2i + 2(ζi/ωi)p + 1,               fully tested on an experimental beam setup. As directions                     i=1
+
+===== PDF PAGE 6 =====
+Fig. 6.  Element-wise Bode magnitude plot of the the FRF measurement (    ), the initial estimate (    ) and the estimated additive parametric model (    ).
+The estimated model provides an accurate describtion of the flexible beam dynamics.
+
+
+for future work, we aim to extend the proposed method to    [13] H. Garnier and L. Wang, Identification of Continuous-time Models
+accommodate unknown controllers, and to investigate perfor-         from Sampled Data. Advances in Industrial Control, Springer London,
+                                                                             2008.
+mance under high-rate and non-uniform sampling intervals.     [14] G. P. Rao and H. Unbehauen, “Identification of continuous-time sys-
+                 REFERENCES                                      tems,” IEE Proceedings: Control Theory and Applications, vol. 153,
+                                                                                    no. 2, pp. 185–220, 2006.
+ [1]  T. S¨oderstr¨om and P. Stoica, System Identification. Prentice Hall, 2001.    [15] H. Garnier, “Direct continuous-time approaches to system identifica-
+ [2] K. Glover and J. C. Willems, “Parametrizations of Linear Dynamical           tion. Overview and benefits for practical applications,” in European
+     Systems: Canonical Forms and Identifiability,” IEEE Transactions on         Journal of Control, vol. 24, pp. 50–62, 2015.
+     Automatic Control, vol. 19, no. 6, pp. 640–646, 1974.                   [16] A. Semlyen, “Rational approximation of frequency domain responses
+ [3] G. O. Correa and K. Glover, “Pseudo-canonical Forms, Identifiable        by vector fitting,” IEEE Transactions on Power Delivery, vol. 14, no. 3,
+     Parametrizations and Simple Parameter Estimation for Linear Multi-         1999.
+      variable Systems: Input-Output Models,” Automatica, vol. 20, no. 4,    [17] E. W. Bai, “Identification of nonlinear additive FIR systems,” Auto-
+     pp. 429–442, 1984.                                                          matica, vol. 41, no. 7, pp. 1247–1253, 2005.
+ [4]  J. Vayssettes, G. Merc`ere, and O. Prot, “New developments for matrix    [18] E. W. Bai and K. S. Chan, “Identification of an additive nonlinear
+      fraction  descriptions: A fully-parametrised approach,” Automatica,         system and  its applications  in generalized Hammerstein models,”
+      vol. 66, pp. 15–24, 2016.                                                  Automatica, vol. 44, no. 2, pp. 430–436, 2008.
+ [5] W. Gawronski, Advanced Structural Dynamics and Active Control of    [19] R. A. Gonz´alez, K. Classens, C. R. Rojas, J. S. Welsh, and T. Oomen,
+      Structures. Springer, 2004.                                                        “Identification of additive continuous-time systems in open and closed-
+ [6]  T. Oomen, “Advanced motion control for precision mechatronics: Con-          loop,” Automatica, vol. 173, no. 112013, 2024.
+       trol, identification, and learning of complex systems,” IEEJ Journal of    [20]  P. Young and A. Jakeman, “Refined instrumental variable methods
+     Industry Applications, vol. 7, no. 2, pp. 127–140, 2018.                       of recursive time-series analysis,” International Journal of Control,
+ [7] C. Lange and M. Leone, “Broadband Circuit Model for EMI Analysis           vol. 31, pp. 741–764, 1980.
+      of Complex Interconnection Networks in Metallic Enclosures of Ar-    [21] K. Classens, R. A. Gonz´alez, and T. Oomen, “Recursive Identification
+      bitrary Shape,” IEEE Transactions on Electromagnetic Compatibility,          of Structured Systems: An Instrumental-Variable Approach Applied to
+      vol. 63, no. 2, pp. 474–483, 2021.                                       Mechanical Systems,” European Journal of Control (in Press), 2025.
+ [8]  J. Zhu, J. Ni, and A. J. Shih, “Robust machine tool thermal error    [22] R. A. Gonz´alez, C. R. Rojas, S. Pan, and J. S. Welsh, “Parsimonious
+     modeling through thermal mode concept,” Journal of Manufacturing           identification of continuous-time systems: A block-coordinate descent
+     Science and Engineering, vol. 130, no. 6, pp. 0610061–0610069, 2008.          approach,” in IFAC World Congress, no. 56(2), pp. 4216–4221, 2023.
+ [9] M. M. Da Silva, W. Desmet, and H. V. Brussel, “Design of mecha-    [23] R. S. Blom and P. Van Den Hof, “Multivariable frequency domain
+      tronic systems with configuration-dependent dynamics: Simulation and           identification using IV-based  linear regression,” in Conference on
+      optimization,” IEEE/ASME Transactions on Mechatronics, vol. 13,         Decision and Control, pp. 1148–1153, 2010.
+     no. 6, pp. 638–646, 2008.                                               [24] M. Akroum and K. Hariche, “Extending the SRIV  identification
+[10] K. Classens, M. Mostard, J. Van De Wijdeven, W.P.M.H. Heemels,         algorithm to MIMO LMFD models,” Journal of Electrical Engineering
+     and T. Oomen, “Fault Detection for Precision Mechatronics: Online        and Technology, vol. 4, no. 1, pp. 135–142, 2009.
+     Estimation of Mechanical Resonances,” in IFAC Modelling, Estimation    [25]  T. S¨oderstr¨om, “A generalised instrumental variable estimator for mul-
+     and Control Conference, vol. 55, (New Jersey, USA), pp. 746–751,           tivariable  errors-in-variables  identification problems,” International
+     2022.                                                                     Journal of Control, vol. 85, no. 3, pp. 287–303, 2012.
+[11] R. Pintelon and J. Schoukens, System Identification. New Jersey: John    [26] D. S. Bayard, “High-order multivariable transfer function curve  fit-
+     Wiley & Sons, second ed., 2012.                                                    ting: Algorithms, sparse matrix methods and experimental results,”
+[12] M. Gilson, J. S. Welsh, and H. Garnier, “A frequency localizing basis         Automatica, vol. 30, no. 9, pp. 1439–1444, 1994.
+     function-based IV method for wideband system identification,” IEEE    [27] A. Ohsumi, K. Kameyama, and K.-I. Yamaguchi, “Subspace identi-
+     Transactions on Control Systems Technology, vol. 26, no. 1, pp. 329–           fication for continuous-time stochastic systems via distribution-based
+     335, 2018.                                                                  approach,” Automatica, vol. 38, pp. 63–79, 7 2002.
+
+===== PDF PAGE 7 =====
+[28] M. van der Hulst, R. A. Gonz´alez, K. Classens, P. Tacx, N. Dirkx,
+       J. van de Wijdeven, and T. Oomen, “Frequency domain identification
+      for multivariable motion control systems: Applied to a prototype wafer
+      stage,” arXiv: 2503.02869, 2025.
+[29] M. Gilson, H. Garnier, P. J. Young, and P. Van Den Hof, “Refined
+     instrumental variable methods for closed-loop system identification,”
+    IFAC Symposium on System Identification, 2009.

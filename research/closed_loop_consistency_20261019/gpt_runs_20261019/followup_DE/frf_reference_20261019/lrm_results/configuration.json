@@ -1,0 +1,74 @@
+{
+  "role": "diagnostic; does not replace pre-specified LPM primary",
+  "selection": "minimum aggregate front-half leave-one-excitation-line-out standardized prediction MSE",
+  "positions": [
+    "-0.5",
+    "0",
+    "0.5",
+    "1"
+  ],
+  "selected": {
+    "method": "linear",
+    "window": 31,
+    "sk_updates": 0
+  },
+  "all_scores": [
+    {
+      "method": "linear",
+      "window": 21,
+      "sk_updates": 0,
+      "score_mse": 4.297779904375889,
+      "sse": 12394.797244220064,
+      "n_terms": 2884,
+      "failed_fits": 0
+    },
+    {
+      "method": "linear",
+      "window": 25,
+      "sk_updates": 0,
+      "score_mse": 2.854845457078628,
+      "sse": 8233.374298214763,
+      "n_terms": 2884,
+      "failed_fits": 0
+    },
+    {
+      "method": "linear",
+      "window": 31,
+      "sk_updates": 0,
+      "score_mse": 2.4316953580467793,
+      "sse": 7013.009412606912,
+      "n_terms": 2884,
+      "failed_fits": 0
+    },
+    {
+      "method": "SK3",
+      "window": 21,
+      "sk_updates": 3,
+      "score_mse": 4.775665241706264,
+      "sse": 13773.018557080866,
+      "n_terms": 2884,
+      "failed_fits": 0
+    },
+    {
+      "method": "SK3",
+      "window": 25,
+      "sk_updates": 3,
+      "score_mse": 3.068625102232734,
+      "sse": 8849.914794839206,
+      "n_terms": 2884,
+      "failed_fits": 0
+    },
+    {
+      "method": "SK3",
+      "window": 31,
+      "sk_updates": 3,
+      "score_mse": 2.5879923634799322,
+      "sse": 7463.769976276125,
+      "n_terms": 2884,
+      "failed_fits": 0
+    }
+  ],
+  "heldout_line": "removed from all periods and the local rational fit",
+  "period_jackknife": "random repeatability only; excludes smoothing/systematic/model bias",
+  "parameter_model_used": false
+}

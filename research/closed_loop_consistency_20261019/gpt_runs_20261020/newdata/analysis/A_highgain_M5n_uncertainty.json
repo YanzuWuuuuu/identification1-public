@@ -1,0 +1,26 @@
+{
+  "id": "A_highgain",
+  "method": "M5n",
+  "frequency_u_hz": [
+    0.003180629447923367,
+    0.01142790543670548,
+    0.0007677137591172785
+  ],
+  "damping_u_percentage_points": [
+    0.02803004111569761,
+    0.056045664683551565,
+    0.007138479565890318
+  ],
+  "log_parameter_sd": [
+    0.00030565820588512703,
+    0.0009962823270763805,
+    4.9844357221364535e-05,
+    0.005718314286751772,
+    0.02346396153587087,
+    0.002029958534972957
+  ],
+  "n_bootstrap": 99,
+  "failed_bootstraps": 0,
+  "locally_valid_numerics": true,
+  "interpretation": "conditional paired-period bootstrap; nonlinear SML refit; original joint noise covariance frozen; not theorem 2; no independent known-noise coverage guarantee"
+}

@@ -1,0 +1,269 @@
+===== PDF PAGE 1 =====
+IEEE TRANSACTIONS ON AUTOMATIC CONTROL, VOL. 42, NO. 12, DECEMBER 1997                                                                1717
+
+       Frequency Domain System Identiﬁcation
+               Using Arbitrary Signals
+
+         R. Pintelon, J. Schoukens, and G. Vandersteen
+
+
+  Abstract—It is the common conviction that frequency domain system
+identiﬁcation suffers from the drawback that it cannot handle arbitrary
+signals without introducing systematic errors. This paper shows that it
+is possible to deal with nonperiodic signals without any approximation
+and under the same assumptions as in the time domain, by estimating
+simultaneously some initial conditions and the system model parameters.
+  Index Terms— Frequency domain identiﬁcation, parametric transfer
+function models.
+
+                                                                                                                                  (a)
+                                    I. INTRODUCTION
+  Until now frequency domain system identiﬁcation assumes that
+the input and output signals are periodic or time limited within the
+observation time [1]–[4]. This is necessary to guarantee a leakage-free
+calculation of the input and output signal spectra through the discrete
+Fourier transform [5]. Indeed, suppose that the nonperiodic input u(t)
+and output y(t) signals (see Fig. 1) of a discrete-time system G(z  1)
+are observed without any errors (no measurement and no process
+noise) at time instants t = 0; Ts; 2Ts;      ; (N   1)Ts; where Ts
+is the sampling time. The problem with these signals in frequency
+domain identiﬁcation is that the ratio of the corresponding discrete
+Fourier spectra is not equal to the true transfer function (see Fig. 2)
+
+                        j! T     YDFT(!k)               G(e       ) 6=                               (1)
+                           UDFT(!k)                                                                    (b)
+where !i = 2 k=(NTs) and XDFT(!k) =  Nn=01 x(nTs)e jn! T     Fig. 1.  Random  excitation  (a) and response  (b) of a  fourth-order  dis-                                                                                 crete-time Butterworth ﬁlter (cutoff frequency fs=4).(X = U; Y and x = u; y): In Section II of this paper  it will be
+shown that the discrete Fourier spectra YDFT and UDFT satisfy an
+extended transfer function model that includes some initial conditions.                                                            where X(z) = 1k=0 x(kTs)z  k (X = U; Y and x = u; y) is the
+Estimators for this extended model are presented in Section III. The                                                                    one-sided Z-transform of x(kTs) and X1(z) =  nk=1 x(  kTs)zk;
+theory is illustrated on a simulation example in Section IV.                                                                     gives
+                                                                            1)Y (z) = B(z 1)U(z) + T1(z  1):           (4)       II. TRANSFER FUNCTION MODEL FOR ARBITRARY SIGNALS                A(z
+  Consider again the discrete-time signals shown in Fig. 1. Assume  A(z  1) and B(z  1) are, respectively, the denominator and numera-
+that the input and output samples are exactly known (no measurement    tor polynomials of the plant transfer function
+and no process noise) in the time interval [0; (N   1)Ts] and are
+unknown outside that interval. The discrete input and output signals                                  n     m
+                                                                                    bmzsatisfy the following difference equation:                                                                       B(z  1)   m=0                                                                                       1) =                                                       =  n                         (5)   n                 n                                            G(z                                                                          A(z  1)
+      any(t  nTs) =     bmu(t  mTs)                                                      anz n
+  n=0             m=0                                                                  n=0
+                                 t =  1;      ;  Ts; 0; Ts;      ; 1:  (2)                                                             and T1(z  1) stands for the inﬂuence of the initial conditions of the
+Taking the one-sided Z-transform of both sides of (2) using          experiment (past samples of u(t) and y(t))
+      1                                                                  n  m
+             x((k   n)Ts)z  k = z n(X(z) + X1(z))        (3)              T1(z  1) =        bmu(  kTs)zk m
+         k=0                                                          m=1 k=1
+                                                                               n   n
+  Manuscript received March 12, 1996; revised July 22, 1996. This work                                                                                       any(  kTs)zk  n:           (6)was supported by the National Fund for Scientiﬁc Research of Belgium, the
+Flemish Government (GOA-IMMI), and the Belgian Program on Interuniver-                         n=1 k=1
+sity Poles of Attraction initiated by the Belgian State, Prime Ministers Ofﬁce,    Model (4) cannot be evaluated along the unit circle since the
+Science Policy Programming (IUAP 4/2).                                                                       input and output samples for t  NTs are unknown. These samples  The authors are with the ELEC Department, Vrije Universiteit Brussel,
+Brussels, Belgium.                                              must hence be eliminated. Solve thereto difference equation (2) for
+  Publisher Item Identiﬁer S 0018-9286(97)08846-6.                           t = NTs; (N + 1)Ts;      ; 1 (multiply both sides of (2) with z  k
+
+
+
+                                                     0018–9286/97$10.00 1997 IEEE
+
+       Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:31:33 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 2 =====
+1718                                                          IEEE TRANSACTIONS ON AUTOMATIC CONTROL, VOL. 42, NO. 12, DECEMBER 1997
+
+and make the summation over k = N; N + 1;      ; 1) using         and is exactly known. These two commonly made assumptions1 lead
+     1                                                                in a very natural way to discrete-time modeling and to a generalized
+           x((k   n)Ts)z  k = z n(X(z)~  + z NX2(z))     (7)   output error stochastic framework [8]. Using (11), and assuming that
+      k=N                                                            the system is proper (nb   na ) nt = na   1); it can be written
+                                                                           in the frequency domain as
+where X(z)~  =  1k=N x(kTs)z  k and X2(z) =  nk=1 x((N
+k)Ts)zk (X = U; Y and x = u; y): One ﬁnds                            YDFT(!k) = G(e j! T  ; )UDFT(!k)
+                                                   + I(e j! T  ;  ) + NY (!k)         (12)        A(z  1)~Y (z) = B(z  1)~U(z) + z NT2(z  1)         (8)
+                                                                  with I(e j! T  ;  ) the parametric model for the (equivalent) initialwhere T2(z  1) stands  for  the inﬂuence of  the ﬁnal conditions                                                                      conditions(samples of u(t) and y(t) at the end of the experiment)
+                                                                                        n   1
+                  n  m                                                    m
+                               m                                              tmz
+         T2(z  1) =        bmu((N   k)Ts)zk                                   T(z  1)   m=0                m=1 k=1                                                I(z  1;  ) =     =  n                     (13)                                                                          A(z  1)
+                    n   n                                                                 anz n
+                          any((N   k)Ts)zk  n:        (9)                                   n=0
+                    n=1 k=1
+                                                                  with NY (!k)  the  additive  disturbing  noise and   =  [a0a1;
+Subtracting (8) from (4) gives                                  an b0b1    bn t0t1    tn   1]T the model parameters. The inde-
+                                                                 pendent parameterization of the polynomial T(z  1) = T1(z  1)  A(z 1)YN(z) = B(z 1)UN(z) + T1(z  1)  zNT2(z  1)   (10)
+                                                            T2(z  1) of order na   1  is motivated by the observation  that
+where XN(z) = X(z)  X(z)~  =  n=0N  1 x(nTs)z n (X = U; Y    the  coefﬁcients  of  the  polynomial T1(z  1)  (6)  depend,  for  a
+and x = u; y):                                                   given plant model, linearly on na independent  initial conditions
+  Evaluation of (10) along the unit circle at the discrete Fourier   y(  Ts); y(  2Ts);      ; y(  naTs): Replacing   by     (  2   0)
+transform frequencies zk = exp(j!kTs); !k = 2 k=(NTs); taking   in transfer function model (12) results in the same input–output
+into account that zNk = 1; YN(zk) = YDFT(!k); and UN(zk) =   description: G(z  1;   ) = G(z  1;  ) and I(z  1;   ) = I(z  1;  ):
+UDFT(!k); gives                                                  This parameter ambiguity  is removed by constraining the model
+                                                                                                     1 = 1 (monic denominator polynomial)               j! T                                               parameters   ; for example,
+        A(e      )YDFT(!k)                                     or k k2: Following  the  lines of time-domain  identiﬁcation,  the
+        = B(e j! T )UDFT(!k) + T(e j! T )       (11)   additive noise term NY (!k) can be modeled as ﬁltered white noise
+           j! T           j! T           j! T                       [2]where T(e       ) = T1(e       )   T2(e       ) is a polynomial
+of order nt = max(nb   1; na   1): Result (11) can be interpreted             NY (!k) = H(e j! T  ; )E(!k):             (14)
+as follows: at the discrete Fourier transform frequencies everything
+                                                                   Relying on the properties of the discrete Fourier transform [9]happens as if the transient at t  NTs; caused by the ﬁnal conditions
+                                                                                                          it can be shown  that E(!k)  is an independent (over  the  fre-z NT2(z  1) in (8), occurs at time instants t   0: This phenomenon
+                                                                quency) zero mean complex noise satisfying EfE2(!k)g = 0 andis called time aliasing in signal processing [5].                                           2
+                                                         EfjE(!k)j2g =   (Ef g stands for the expected value). Transfer
+                                                                      function model (12) combined with noise model (14) covers  all
+Notes                                                                        the classical time-domain model structures [10]. Noise model (14)
+   • A sufﬁcient condition to let the coefﬁcients of the polynomial   implicitly assumes that the continuous-time noise e(t) is piecewice
+    T(z  1) = T1(z  1)  T2(z  1) be zero is that the initial and ﬁnal   constant, which  is rarely the case. Therefore, instead of using a
+     conditions of the experiment are equal (for example, periodic   parametric noise model, one can rely on the properties of the discrete
+    and time-limited signals).                                        Fourier transform [9] to construct the following nonparametric noise
+   •  Exactly the same reasoning can be followed for a discrete-time   model. NY (!k) is an independent (over the frequency) zero mean
+    system with an arbitrary (fractional) sample delay: just multiply   complex normal distributed noise
+     both terms in the right-hand side of (11) with zk   ( 2   ):                                                  2
+   •  Since the Z-transform of the sum of exponentially increasing           EfNY (!k)NY (!l)g =  kl Y (!k)
+    sinewaves exists and equals a rational form with poles outside           EfNY (!k)NY (!l)g = 0                       (15)
+     the unit circle [6], the calculations made remain valid, and hence,                   NY (!k) 2 N(0;  Y2 (!k))
+     (11) is also true for unstable systems.
+   • Model (11) has exactly the same form as the model valid for   where superscript * stands for complex conjugate and   kl  is the
+     periodic excitations corrupted with transients [7].               Kronecker delta. Other advantages of (15) with respect to (w.r.t.)
+   • The same calculations can be done for continuous-time models   (14) are: 1) simpliﬁed minimization problem and 2) no additional
+     (see Appendix  I) leading  to a model  similar  to  (11). The   noise model selection required.
+     difference with the discrete-time case  is  that (11)  is exact
+     without any approximation, while its continuous-time equivalent   B. Parametric Identiﬁcation
+      is approximately true within some spectral alias errors.                                                                  Following the lines of [11], it can easily be shown that a necessary
+                                                                      condition for the identiﬁability of parametric model (12)  is that
+  III. ESTIMATION OF THE EXTENDED TRANSFER FUNCTION MODEL       it  is not  possible  to  represent UDFT(!) as a  rational form  in
+                                                             e j!T  of order na   1 over na; at the angular frequencies ! =
+A. Parametric Model                                           !k; k = 1; 2;      ; N=2: Using noise model (15) and following the
+  In control theory it is the custom to assume that the excitation of the     1Band limited input–output measurements lead to continuous-time models
+continuous-time plant is piecewice constant (zero order hold signal)   and a stochastic errors-in-variables framework (see Appendix II).
+
+       Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:31:33 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 3 =====
+IEEE TRANSACTIONS ON AUTOMATIC CONTROL, VOL. 42, NO. 12, DECEMBER 1997                                                                1719
+
+lines of [4], it is possible to construct generalized total least squares,
+bootstrapped total least squares, and maximum-likelihood estimators
+for the extended transfer function model (12). For example, the
+maximum-likelihood estimates are found by minimizing VML( )
+w.r.t.
+               N=2
+    VML( ) =    jYDFT(!k)  G(e j! T  ; )UDFT(!k)
+              k=1
+                       j! T         2                 I(e           ;                                 Y (!k):                  (16)                                 )j2=
+  To remove possible offset errors in the input and output signals
+the term !0 = 0 has been omitted in (16). When the parametric
+noise model (14) is used, then  Y2 (!k) in (16) should be replaced
+by jH(e j! T  ;  )j2  2: The model selection through a statistical                                             (a)analysis of the global minimum of the maximum-likelihood cost
+function described in [1] can still be applied to (16).
+
+C. Asymptotic Properties
+  The asymptotic properties (N          of the frequency domain              ! 1)estimates can be shown under the same assumptions as in time-
+domain system identiﬁcation using the same standard techniques
+[10]. For example, the maximum-likelihood estimates of the plant
+(and noise) model parameters are consistent, asymptotically efﬁcient,
+and asymptotically normal distributed. Although the estimates of
+the (equivalent) initial conditions, tm; m = 0; 1;      ; na    1; are
+inconsistent, they do not affect the asymptotic properties of the
+estimates of the plant (and noise) model parameters. Indeed, for
+example, for a bounded white noise excitation u(kTs) and bounded
+white noise errors e(kTs); UDFT(!k) and E(!k) will increase with                                           (b)
+probability one as p N; while the coefﬁcients of the polynomial    Fig. 2.  True frequency response function (solid line) and ratio of the discrete
+T(z  1) = T1(z  1) + T2(z  1) remain bounded above, independent    Fourier spectra ( ) of the signals shown in Fig. 1: (a) amplitude, (b) phase.
+of N for bounded excitations applied to stable systems (or unstable
+systems operating in feedback with a stabilizing controller); see (6)
+and (9). Hence with probability one
+
+                      = O(N  1)                   jI(ej! T j!;  T  ;  )j2            jG(e        )UDFT(!k)j2
+                      = O(N  1)          (17)                     jI(ej! j!T  ;T  ;  )j2              jH(e        )E(!k)j2
+so that asymptotically the contribution of initial conditions to the
+maximum-likelihood cost function can be neglected.
+  Note that this also implies that the estimates of the plant model
+parameters obtained without estimating T(z  1;  ) are still consistent.
+However, not estimating T(z  1;  ) introduces a bias error for every
+ﬁnite N: For stable systems, this bias error will be important if N
+is not much larger than the duration of the impulse response of the
+                                                                                   Fig. 3.  Magnitude of the complex difference between the true and thesystem.                                                                             estimated plant model (solid line). Results using model (11) (dotted line).
+                                                                              Results using model (11) without estimating the T(z  1) polynomial.
+                    IV. SIMULATION RESULTS
+  The goal of the simulation  is to  illustrate that model (11)  is   shown in Fig. 3. It can be seen that the accuracy of the estimates
+exactly true without any approximation. Therefore, no disturbing   including T(z  1;  ) in model (11) are at the level of the arithmetic
+noise is added to the signals. A fourth-order discrete-time system   precision of the calculations (15  digits). Large  errors remain  if
+G(z  1)  is excited with uniformly distributed noise (see Fig. 1).  T(z  1;  ) is not identiﬁed. Fig. 4 shows the transient response due
+Data points n = 0; 1;      ; 149 are used for the identiﬁcation (N =   to the (equivalent) initial conditions (T(z  1) in (11) using the same
+150):  Fig. 2 compares the  ratio of  the  discrete Fourier  spectra   amplitude scale as in Fig. 1).
+YDFT(!k)=UDFT(!k) with the true frequency response function     Simulations on an unstable plant within a stabilizing feedback loop
+G(e j! T ): Large differences can be observed which are due to   gave similar results.
+the spectral leakage errors in the calculation of UDFT and YDFT:
+Model (12)  is two times identiﬁed using (16) with  Y2 (!k) =
+1: once with and once without the parametric model I(z  1;  )                         V. CONCLUSION
+for the equivalent initial conditions. The difference G(e j! T )        This paper refutes the common conviction that frequency domain
+G(e j! T  ;  ) between the true and estimated transfer functions are   identiﬁcation cannot handle  arbitrary signals without introducing
+
+       Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:31:33 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 4 =====
+1720                                                          IEEE TRANSACTIONS ON AUTOMATIC CONTROL, VOL. 42, NO. 12, DECEMBER 1997
+
+
+                               N=2                          j! T                     j! T                                       jYDFT(!k)  G(e           ; )UDFT(!k)   I(e           ;  )j2
+                  VML( ) =                                                                                                                                      (23)
+                                   jG(e j! T  ;  )j2 U(!k)2   +  Y2 (!k)   2real( Y2 U(!k)G e( j! T  ;  ))                               k=1
+
+
+
+                                                         ﬁnd
+
+
+                                                         YDFT(!k) = G(j!k; )U0DFT(!k) + I(j!k;  ) + NY (!k)
+                                                        UDFT(!k) = U0DFT(!k) + NU(!k)                       (21)
+
+                                                            where U0DFT(!k)  is the  discrete Fourier transform of the  true
+                                                       unknown  input samples, and NU(!k); NY (!k) are independent
+                                                                      (over the frequency) zero mean, jointly correlated complex normal
+                                                                           distributed  errors. An  errors-in-variables framework  requires  the
+                                                            knowledge of the noise covariance matrix [1], [12]
+
+
+                                                                                2                            2
+                                                                    Y (!k) = EfjNY (!k)j2g   U(!k) = EfjNU(!k)j2g
+                                                                               2Fig. 4.  Transient response of the (equivalent) initial conditions.
+                                                                   Y                                                              U(!k) = EfNY (!k)NU(!k)g:                        (22)
+
+systematic errors. Adding initial conditions to the transfer function                                                           The maximum-likelihood  estimates  are found by minimizing
+model allows one to identify discrete-time models in the frequency                                                   VML( ) w.r.t.   , as shown in (23) at the top of the page.
+domain without any approximation and under the same experimental
+(excitation) and stochastic assumptions as in the time domain. The
+difference with time-domain identiﬁcation  is that the (equivalent)                         REFERENCES
+initial conditions take into account the beginning as well as the
+end effects of the ﬁnite data record. In the time domain the initial     [1]  J. Schoukens and R.  Pintelon,  Identiﬁcation of Linear Systems: A                                                                                      Practical Guideline to Accurate Modeling.  London: Pergamon, 1991.
+conditions remain the same as the amount of data N increases, while     [2] L. Ljung, “Some results on identifying linear systems using frequency
+in the frequency domain they vary with N: The advantages of the        domain data,” in Proc. 32nd Conf. Decision Contr., San Antonio, TX,
+frequency domain approach are: it can identify more general discrete-        Dec. 15–17, 1993, pp. 3534–3538.
+time models (arbitrary time delays are allowed) and, if available, it     [3] K. Godfrey, Perturbation Signals for System Identiﬁcation.  London:
+                                                                                         Prentice-Hall, 1993.can easily handle nonparametric noise models.                                                                                      [4] R. Pintelon, P. Guillaume, Y. Rolain, J. Schoukens, and H. Van hamme,
+                                                                                 “Parametric identiﬁcation of transfer functions in the frequency do-
+                       APPENDIX I                           main—A survey,” IEEE Trans. Automat. Contr., vol. 39, pp. 2245–2260,
+                                                                        Nov. 1994. EXTENDED TRANSFER FUNCTION MODEL—CONTINUOUS-TIME CASE                                                                                      [5] E. O. Brigham, The Fast Fourier Transform.  Englewood Cliffs, NJ:
+  Following the same lines as in Section II it can be found that              Prentice-Hall, 1974.
+                                                                                      [6]  P. Henrici, Applied and Computational Complex Analysis, vol. 2.  New
+       A(j!k)YN(j!k) = B(j!k)UN(j!k) + T(j!k)      (18)         York: Wiley, 1977.
+                                                                                      [7] R. Pintelon and J. Schoukens, “Frequency domain identiﬁcation of linear
+where T(j!k) is a polynomial of order na   1 and with                      time-invariant systems under nonstandard conditions,” in Conf. Record
+                      NT                                    IEEE Instrum. Meas. Technol. Conf., Brussels, Belgium, June 4–6, 1996,
+            UN(j!k) =        u(t)e j! t dt                            pp. 294–299.
+                               0                                                 [8]  J. Schoukens, R. Pintelon, and H. Van hamme, “Identiﬁcation of linear
+                      NT                                       dynamic systems using piecewice constant excitations: Use, misuse and
+             YN(j!k) =        y(t)e j! t dt:            (19)          alternatives,” Automatica, vol. 30, no 7, pp. 1153–1169, 1994.
+                               0                                                 [9] D. R. Brillinger, Time Series: Data Analysis and Theory.  New York:
+  Although the continuous-time signals u(t) and y(t) are low-pass        McGraw-Hill, 1981.                                                                               [10] L. Ljung, System Identiﬁcation: Theory for the User.  Englewood Cliffs,
+ﬁltered before sampling, the discrete Fourier spectra UDFT(!k) and        NJ: Prentice-Hall, 1987.
+YDFT(!k) of the input and output samples u(nTs) and y(nTs); n =    [11] A. V. Mathew and F. W. Fairman, “Identiﬁcation in the presence
+0; 1;      ; N  1 equal the true spectra UN(j!k) and YN(j!k) within         of initial conditions,” IEEE Trans. Automat. Contr., vol. AC-17, pp.
+some spectral alias errors [5]. Hence (18) becomes                         394–396, June 1972.
+                                                                               [12] R. Pintelon, P. Guillaume, Y. Rolain, and F. Verbeyst, “Identiﬁcation
+ A(j!k)YDFT(!k) = B(j!k)UDFT(!k) + T(j!k) + "(j!k)  (20)         of linear systems captured in a feedback loop,” IEEE Trans. Instrum.
+                                                                                Meas., vol. 41, pp. 747–754, 1992.
+where "(j!k) stands for the spectral alias errors. These errors tend
+to zero as the sampling frequency fs tends to inﬁnity [5].
+
+                       APPENDIX II
+            ESTIMATION—CONTINUOUS-TIME CASE
+  Band limited input–output measurements lead in a natural way to
+continuous-time models and an errors-in-variables stochastic frame-
+work [8]. Neglecting the spectral alias errors (see Appendix I) we
+
+       Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:31:33 UTC from IEEE Xplore. Restrictions apply.

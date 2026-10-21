@@ -1,0 +1,292 @@
+{
+  "artifact_checks_passed": true,
+  "scientific_hypotheses_all_passed": false,
+  "environment": {
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.2",
+    "Pillow": "12.3.0",
+    "PyMuPDF": "1.28.2"
+  },
+  "fits": 94,
+  "parameter_rows": 564,
+  "finite_uncertainty_files": 94,
+  "SML_bootstrap_records": 594,
+  "solver_failures": [
+    {
+      "id": "D_nominal_0p6",
+      "method": "M3"
+    },
+    {
+      "id": "E_nominal_m1p0",
+      "method": "M1"
+    },
+    {
+      "id": "E_nominal_m1p0",
+      "method": "M3"
+    },
+    {
+      "id": "E_nominal_m1p0",
+      "method": "M3w"
+    }
+  ],
+  "strict_score_failures": 26,
+  "figures": [
+    {
+      "name": "controller_singular_1_500",
+      "size_px": [
+        2494,
+        1624
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 498
+    },
+    {
+      "name": "controller_singular_3_25",
+      "size_px": [
+        2494,
+        1624
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 595
+    },
+    {
+      "name": "B_equivalent_noise_psd",
+      "size_px": [
+        2434,
+        1539
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 497
+    },
+    {
+      "name": "core_controller_zeta1_zeta2_f2",
+      "size_px": [
+        2734,
+        930
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 379
+    },
+    {
+      "name": "all_modal_controller",
+      "size_px": [
+        2734,
+        1710
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 615
+    },
+    {
+      "name": "C_lowgain_magnitude",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 828
+    },
+    {
+      "name": "C_lowgain_phase",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 769
+    },
+    {
+      "name": "C_lowgain_zoom_8_18",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 873
+    },
+    {
+      "name": "C_nominal_magnitude",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 835
+    },
+    {
+      "name": "C_nominal_phase",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 807
+    },
+    {
+      "name": "C_nominal_zoom_8_18",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 864
+    },
+    {
+      "name": "C_highgain_magnitude",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 827
+    },
+    {
+      "name": "C_highgain_phase",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 796
+    },
+    {
+      "name": "C_highgain_zoom_8_18",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 855
+    },
+    {
+      "name": "C_controller_comparison_magnitude",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 623
+    },
+    {
+      "name": "C_controller_comparison_phase",
+      "size_px": [
+        3184,
+        2730
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 603
+    },
+    {
+      "name": "amplitude_modal_scan",
+      "size_px": [
+        2734,
+        1710
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 668
+    },
+    {
+      "name": "repeat_modal_scan",
+      "size_px": [
+        2734,
+        1710
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 779
+    },
+    {
+      "name": "position_modal_scan",
+      "size_px": [
+        2734,
+        1710
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 588
+    },
+    {
+      "name": "C_normalized_residual",
+      "size_px": [
+        2434,
+        1234
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_text_characters": 210
+    }
+  ],
+  "source_files_unchanged": true,
+  "unwrap_complex_invariance_max_error": 2.6131546473217737e-15,
+  "syntax_checked": [
+    "build_report.py",
+    "delivery_checks.py",
+    "evaluate_results.py",
+    "identify.py",
+    "nonparametric.py",
+    "plot_results.py",
+    "prepare_data.py",
+    "sml_uncertainty.py",
+    "uncertainty_bias.py",
+    "verify_analysis.py"
+  ]
+}

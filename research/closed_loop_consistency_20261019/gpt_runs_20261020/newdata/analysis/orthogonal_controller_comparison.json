@@ -1,0 +1,35 @@
+[
+  {
+    "controller_a": "lowgain",
+    "controller_b": "nominal",
+    "relative_difference_percent": 59.88836407151337,
+    "global_standardized_statistic": 45.770832060138595,
+    "centered_bootstrap_95_threshold": 1.5009287616005205,
+    "bootstrap_p_value": 0.000999000999000999,
+    "compatible_global_95": false,
+    "pointwise_outside_fraction": 0.7664473684210527,
+    "interpretation": "conditional repeatability calibration; not exact finite-sample coverage"
+  },
+  {
+    "controller_a": "lowgain",
+    "controller_b": "highgain",
+    "relative_difference_percent": 78.10380522834612,
+    "global_standardized_statistic": 48.64560167313271,
+    "centered_bootstrap_95_threshold": 1.4863900372982692,
+    "bootstrap_p_value": 0.000999000999000999,
+    "compatible_global_95": false,
+    "pointwise_outside_fraction": 0.7185150375939849,
+    "interpretation": "conditional repeatability calibration; not exact finite-sample coverage"
+  },
+  {
+    "controller_a": "nominal",
+    "controller_b": "highgain",
+    "relative_difference_percent": 91.08062896446133,
+    "global_standardized_statistic": 22.700976338936016,
+    "centered_bootstrap_95_threshold": 1.463539320647142,
+    "bootstrap_p_value": 0.000999000999000999,
+    "compatible_global_95": false,
+    "pointwise_outside_fraction": 0.6470864661654135,
+    "interpretation": "conditional repeatability calibration; not exact finite-sample coverage"
+  }
+]

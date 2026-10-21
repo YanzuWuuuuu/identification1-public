@@ -1,0 +1,440 @@
+===== PDF PAGE 1 =====
+                                                     Automatica 42 (2006) 77–84
+                                                                                                                     www.elsevier.com/locate/automatica
+
+                                                Brief paper
+       Box-Jenkins identiﬁcation revisited—Part II:Applications
+
+                            R. Pintelon∗,Y. Rolain, J. Schoukens
+
+                                     Vrije Universiteit Brussel, Departamento ELEC, Pleinlaan 2, 1050 Brussels, Belgium
+
+                                             Received 5 September 2005; accepted 6 September 2005
+                                                            Available online 8 November 2005
+
+
+
+Abstract
+
+   Part I of this series of two papers handles the identiﬁcation of discrete-time and continuous-time Box-Jenkins models on arbitrary frequency
+grids in an open and closed loop setting. Part II (i) discusses the practical calculation of the estimators developed in Part I, (ii) illustrates some
+theoretical results via simulation, and (iii) applies the modeling technique to a real life problem.
+  2005 Elsevier Ltd. All rights reserved.
+
+
+Keywords: System identiﬁcation; Frequency domain; Box-Jenkins; ARMAX; Modal analysis; Flight ﬂutter
+
+
+
+
+
+1. Introduction                                                          According to the knowledge of the authors it is the ﬁrst time
+                                                                        that CT noise models have been identiﬁed on real measurement
+ A frequency domain Box-Jenkins (BJ) framework has been                                                                       data.
+developed in Part I (Pintelon & Schoukens, 2005) for data col-
+lected in open or closed loop. The resulting maximum likeli-                                                                        2. Numerical issues
+hood estimators can handle discrete-time (DT) and continuous-
+time (CT) models on arbitrary frequency grids (part(s) of the                                                                        2.1. Identiﬁcation in feedback with known controller
+unit circle). In Part II of this series of two papers we
+
+                                                                   In Part I  it has been shown that the estimated plant and
+  (i) discuss the numerical issues of the minimization of the                                                                noise models are independent of the particular parameter con-
+    maximum likelihood (ML) cost functions described in Part                                                                            straint(s) chosen. Possible parameter constraints are listed in
+       I: choice and implementation of the parameter constraints,                                                              Table 1 of Part I, for example, for the CT-BJ model structure
+    Newton–Gauss optimization of the ML cost functions, and                                                                  the constraints are
+     generation of starting values (see Sections 2.1 and 2.2),
+ (ii) calculate the uncertainty of the estimated noise model (see    ana = cnc = dnd = 1.                                        (1)
+     Section 2.3),
+                                                              Fixing a coefﬁcient to one has the disadvantage that it dete-(iii) illustrate some of the theoretical results (consistency, iden-
+                                                                        riorates the numerical conditioning in case the true value of     tiﬁcation in feedback, and bias) proven in Part I (see
+                                                                  the coefﬁcient is zero. Norm one constraints do not have this     Section 3),
+                                                               disadvantage and are therefore preferred. For example, for the (iv) show the usefulness and feasibility of the frequency do-
+                                                     CT-BJ model structure (1) is replaced by    main (CT) BJ modeling approach on a real life problem:
+     the modeling of a nonlinear electrical device (see Section    ∥a∥22 + ∥b∥22 = ∥c∥22 = ∥d∥22 = 1.                           (2)
+      4).
+                                     A drawback of the norm one constraints (2) is that, in general,
+    This paper was not presented at any IFAC meeting. This paper was    they are more difﬁcult to implement than ﬁxing coefﬁcients to
+recommended  for publication  in revised form by Associate Editor Brett
+                                                                one. However, for cost functions whose values are independentNinness under the direction of Editor T. Söderström.
+  ∗Corresponding author. Tel.: +32 2 629 29 44; fax: +32 2 629 28 50.          of the particular parameter constraint(s) chosen, the norm one
+   E-mail address: rik.pintelon@vub.ac.be (R. Pintelon).                     constraint(s) can easily be imposed in the following way. As
+
+0005-1098/$ - see front matter   2005 Elsevier Ltd. All rights reserved.
+doi:10.1016/j.automatica.2005.09.005
+
+===== PDF PAGE 2 =====
+78                                                  R. Pintelon et al. / Automatica 42 (2006) 77–84
+
+Table 1                                                         reasoning holds for real poles and real/complex zeros), then
+Invariance of the ML cost function w.r.t. the transformation h(  ,  ) of the    with some abuse of notation the cost function (3) has the
+model parameters
+                                                                property
+Model structure     Model parameters        Transformation h(  ,  )
+                                                 VF (− + j  , Z) = VF ( + j  , Z),   = s,
+ARMA               [cT, dT]T                     [ 1cT, 2dT]T                                                  VF ( −1, Z) = VF (  , Z),   = z−1                        (6)
+                                              with  1  2̸ = 0
+OE                 [aT, bT]T                   with = 0                                                                   (see Appendix B). It shows that no distinction can be made
+ARMAX            [aT, bT, cT]T                 [ 1aT, 1bT, 2cT]T                                                         between noise models which only differ in poles and/or zeros
+                                              with  1  2̸ = 0
+                                                                        that are mirrored w.r.t. the stability border (imaginary axis for(Hybrid) BJ          [aT, bT, cT, dT]T            [ 1aT, 1bT, 2cT, 3dT]T
+                                                      CT; unit circle for DT), and that VF (  , Z) contains at least                                              with  1 2   3̸ = 0
+                                                                 as many global minima as possible mirrored noise pole/zero
+                                                                       patterns. The practical consequence of property (6) is that sta-
+                                                                        bilization of the zeroes (and the poles) of the noise model inan example we take the ML cost function for identiﬁcation in
+                                                           each step of the Newton–Gauss minimization is not required.feedback with known controller (see Part I, Eq. (17))
+                                                             This is not true for the zeroes of the noise model in the classical
+          1                                                     prediction error cost functionVF (  , Z) =            | G(  k, )gF ( )|2,                     (3)
+        F
+            k∈K                                                N−1
+                                                                 1
+                                                        VPE(  , Z) =                                                                                                                             | G(z−1k  ,  )|2.                         (7)where K, G(  k,  ) and gF ( ) are deﬁned in Eqs. (13), (16) and                                           N
+(18) of Part I. First the Jacobian matrix Jre( ) of the vector of the                   k=0
+residuals G( )gF ( ) is calculated w.r.t. all model parameters                                                                Indeed, take, for example, H(z−1,  ) = 1 −c1z−1, then
+without constraining
+                                                              lim          , Z) = 0                                       (8)         Re(J( ))                     ( G( )gF ( ))            |c1|→∞VPE(Jre( ) =               with J( ) =                          ,
+         Im(J( ))
+         G(  1,  )                                       showing that the zeroes of H(z−1,  ) should be constrained to
+ G( ) =         · · ·          ,                                     (4)     lie within the unit circle.
+         G( F ,  )
+                                                                        2.2. Identiﬁcation in feedback with unknown controller
+with Re( ) the real part, Im( ) the imaginary part, and where ( )re
+stacks the real and imaginary parts on top of each other. Next,
+                                                      The Newton–Raphson method for ﬁnding the solution of
+taking into account that rank(Jre( )) = dim( ) −# constraints             ′                                            V F (  , Z) = 0, with x′ the derivative of x w.r.t.   , consists in(proof:  see  Appendix  A),  the  normal  equation  of  the
+                                                                solving iteratively
+Newton–Gauss algorithm (Fletcher, 1991) used for minimizing
+the ML cost function                                                                      T                                                      2VF (  , Z)         VF (  , Z)
+                                           = −                         ,                        (9)
+Jre( )  = −( G( )gF ( ))re                                (5)            2
+
+is solved using the pseudo-inverse of the Jacobian matrix    where superscript T denotes the transpose (Fletcher, 1991).
+(Ben-Israel & Greville, 1974). Via the singular value decom-    For quadratic cost functions VF (  , Z) (3) the O( G) terms in
+position of Jre(  ), a numerical stable implementation of the    the Hessian VF′′ (  , Z) are neglected resulting in the numerical
+pseudo-inverse is obtained (Golub & Van Loan, 1996). Finally     stable implementation of the Newton–Gauss method (5) (see
+the particular constraint(s) are imposed on the updated model     Fletcher, 1991). A similar reasoning will be applied to the ML
+parameters  +      . Following the lines of Appendix 7.L.4    cost function for identiﬁcation in feedback with unknown con-
+in Pintelon and Schoukens (2001), one can easily derive a     troller (see Part I, Eq. (41)), which can be written as
+Levenberg–Marquardt version of (5) which acts on the regular
+space of Jre( ) only.                                  VF (  , Z) = VG( G, Z)VM( M, Z)|hF ( )|2,              (10)
+   Starting values for the iterative Newton–Gauss algorithm (5)
+                                                       whereare generated as follows. First an estimate of the plant model
+parameters  is obtained using a nonparametric Box-Jenkins               1
+                                                 VG( G, Z) =           | G(  k,  G)|2,method (Schoukens, Pintelon, & Rolain, 2004). Next anARMA            F
+model is identiﬁed on the residuals ˆV (k)=Y(k)−G(  k, ˆ )U(k)                 k∈K
+                                                                  1
+using (3) where G(  k,  ) and Y(k) are replaced by, respec-   VM( M, Z) =           | M(  k, M)|2                     (11)
+tively, 0 and ˆV (k).                                        F k∈K
+  For BJ model structures (the plant and noise models are in-
+dependently parametrized) the cost function (3), subject to the    with  =  [ TG, TM]T, G = [aT, bT, cT, dT]T,  and  M =
+constraints (1) or (2), still contains another parameter ambi-    [jT, kT, pT, qT]T, and where G(  k,  ) and M(  k, M) hF ( )
+guity. Indeed, let  = + j  be a pole of H(  ,  ) (a similar    are deﬁned in Eqs. (16), (40), and (42) of Part  I. For ease
+
+===== PDF PAGE 3 =====
+                                                     R. Pintelon et al. / Automatica 42 (2006) 77–84                                           79
+
+of notation we drop the arguments of the functions. Since      JM( ) are calculated w.r.t. the unconstrained parameter vec-
+         ⎡      ⎤                                        tor   , next the normal equations are solved using the pseudo-
+               VG|hF |2                                                                      inverse, and ﬁnally the constraints are imposed on the updated
+ VF                G                                                                                  vector.                                    0,                      (12)    parameter   = 0 ⇔                          ⎢⎢⎣                                |2 ⎥⎥⎦=              VM|hF                                                                       Starting                                                                           values for the iterative Newton–Gauss algorithms
+              M                                         are generated following the lines the previous section: via U(k)
+                                                        and Y(k) as input/output data for the plant and noise model,we can apply the Newton–Raphson method to the second set
+                                                        and via Y(k) and −U(k) as input/output data for the controllerof equations giving
+                                                        and signal model.⎡               ⎤
+   2VG|hF |2    2VG|hF |2                                     For BJ plant/noise model structures the ML cost function
+         2                                                                      contains                                                                                          at                                                                                            least as                                                                   many                                                                                               global                                                                                   minima                                                                                                              as                                                                                                                  possible                                                                                                                       mir-              G  M                        G                             (10)      G ⎢⎢⎣                                                                rored                                                                       pole/zero                                                                                    patterns                                                                                         of                                                                                             the noise                                                                                       and                                                                                                             signal                                                                                                models                                                                                                                             (proof:                                |2 ⎥⎥⎦   M   2VM|hF               |2   2VM|hF
+                        2                                        follow the lines of Appendix B). As a practical consequence the
+    M⎡ G      MT ⎤                                     zeroes (and poles) of the noise and signal models should not be          VG|hF |2
+                                                                constrained in each Newton–Gauss step (16). This is not true
+            G  = −                                                         (13)     for the classical joint input–output approach where the zeroes             ⎢⎢⎣                     T ⎥⎥⎦,
+          VM|hF |2                                            of the signal and noise models must lie within the unit circle.
+
+          M
+where                                                                 2.3. Uncertainty models
+  2VG|hF |2     VG|hF |2  T  log |hF |2
+      =                                    An easy way to validate the estimated noise model is to
+                     M   G  M        G
+                                                       compare    (ˆ )|H(  k, ˆ )| to an estimate of the process noise                              2                            log |hF |2
+        + VG|hF |2                     ,                 DTF spectrum ˆV (k)
+                     G  M
+ 2VM|hF |2     VM|hF |2  T  log |hF |2
+      =                                                                     ˆV (k) = Y(k) −G(  k, ˆ )U(k) −TG(  k, ˆ ) −TH(  k, ˆ ), (17)
+  M  G       M        G
+                               2 log |hF |2        + VM|hF |2                     .                  (14)    where  k=sk=j  k for CT models, and  k=z−1k =exp(−j  kTs)
+                   M  G                              for DT models (see Part I, Eq. (22)). An approximation of the
+The ﬁrst and second terms in the right-hand side of Eq. (14)    variance of fk(ˆ ) =    (ˆ )|H(  k, ˆ )| is calculated via a ﬁrst-
+are, respectively, an O( ) and O( 2) where =[ TG, TM]T. Since    order Taylor series expansion. In case the controller is known,
+in addition the ﬁrst terms are exactly zero at the solution of      it takes the form
+VF′ (  , Z) = 0 (see (12)), it is reasonable to neglect the nondi-
+agonal blocks in (13):                                           var(fk(ˆ )) ∼gk( 0)Cov(ˆ )gTk ( 0),
+  2VG|hF |2           VG|hF |2  T                                    |H(  k,  )|           k)|  F                                                                 −|H0(                                                             ,                          gk( 0) =    0          G = −                                                                                                                                   k    ,        2                                                                        2F                                                                                                0                    G     G                                                                                                  k=1
+ 2VM|hF |2          VM|hF |2  T                                    log(|S(  k,  )|2)
+         = −                       .                    (15)       k =                               ,       2     M
+    M             M                                                      0
+                                                     H(  ,  )
+Neglecting            the O( G) and O( M) terms in the Hessians V G′′    S(  ,  ) = 1 + G(  , )M0(  ),                          (18)              ′′
+and V M  of Eq. (15) reduces each set of equations to the
+Newton–Gauss form (5)
+                                                       where the term in gk( 0) depending on  k originates from the
+(JG( ))re  G = −( G( )hF ( ))re  with                          uncertainty on  (ˆ ) (proof: see Appendix C). The following
+JG( ) =  ( G( )hF ( ))/    ,                                     observations can be made:
+(JM( ))re  M = −( M( )hF ( ))re  with
+                                                                        1. In general var(fk(ˆ )) depends on the uncertainty of  (ˆ ),JM( ) =  ( M( )hF ( ))/    .                             (16)
+                                                          which is not the case for classical time domain prediction
+These two sets of Newton–Gauss equations are coupled via        error methods. Indeed, if the frequencies cover uniformly
+hF ( ) = hF ( G, M) and can be solved simultaneously or se-        the unit circle (zk = exp(j2 k/N), k = 0, 1, . . . , N −1)
+quentially. In the last case a new update G is used for hF in      and if the discrete-time plant and noise models satisfy As-
+the equations for  M, which on its turn is used for hF in the       sumption 8 of Part I, then   N−1k=0 k/N = O((| max|N)/N)
+equations for G and so on and so forth. The constraints on the      where  max is the dominant pole of log(S(  ,  )) (proof:
+model parameters are implemented in exactly the same way as       use log(|S|2) = log(S) + log(S) with  ¯x the complex con-
+in the previous section: ﬁrst the Jacobian matrices JG( ) and        jugate of x and apply the  results of Appendix A.3 in
+
+===== PDF PAGE 4 =====
+80                                                  R. Pintelon et al. / Automatica 42 (2006) 77–84
+
+
+                       40                                      40
+
+
+                                             (dB)  0                                                                             (dB)   0
+                                                        model                                                                                                          model
+                                                        Plant -40                                                                                                 Noise -40
+
+
+
+                          -80                                           -80
+                            0.05   0.1   0.15   0.2   0.25   0.3          0.05   0.1   0.15   0.2   0.25   0.3
+                                     Frequency (Hz)                              Frequency (Hz)
+
+                       40                                      40
+
+
+                                             (dB)  0                                                                             (dB)   0
+                                                        model                                                                                                          model
+                                                        Plant -40                                                                                                 Noise -40
+
+
+
+                          -80                                           -80
+
+                             0.05   0.1   0.15   0.2   0.25   0.3          0.05   0.1   0.15   0.2   0.25   0.3
+                                     Frequency (Hz)                              Frequency (Hz)
+
+
+                       40                                      40
+
+
+                                             (dB)  0                                                                             (dB)   0
+                                                        model                                                                                                          model
+                                                        Plant -40                                                                                                 Noise -40
+
+
+
+                          -80                                           -80
+
+                             0.05   0.1   0.15   0.2   0.25   0.3          0.05   0.1   0.15   0.2   0.25   0.3
+                                     Frequency (Hz)                              Frequency (Hz)
+
+Fig. 1. Closed loop discrete-time simulation: comparison between the true and the mean estimated models. Left ﬁgures: plant models. Right ﬁgures: noise
+models. Top row: open loop estimates, (3) with controller transfer function set to zero. Middle row: closed loop estimates with known controller, (3) with true
+controller transfer function. Bottom row: closed loop estimates with unknown controller (10). Black line: true model. Grey line: complex difference between
+true and mean estimated model. Dashed line: 95% conﬁdence bound mean estimate.
+
+   Part I). Under these conditions (18) simpliﬁes to var(fk(ˆ )) ∼  An easy way to validate the estimated plant model is to com-
+    0var(|H(z−1k  ,  )|).                                         pare G(  k, ˆ ) to an estimate ˆG(j  k) of the frequency response
+2. Since in closed loop (M0̸ = 0),  k depends on the plant    function
+   model parameters, var(fk(ˆ )) also depends on the uncer-
+   tainty of the plant model parameters, even for BJ models.                                                                          ˆG(j  k) = (Y(k) −TG(  k, ˆ ) −TH(  k, ˆ ))/U(k)        (19)
+  The latter is not the case for classical time domain predic-
+   tion error methods (see observation 1).
+3. In practice  0 and  0 in (18) are unknown and are replaced    (see Part  I, Eq. (22)). An approximation of the variance of
+   by the estimates  (ˆ ) and ˆ .                        G(  k, ˆ ) is calculated via a ﬁrst-order Taylor series expansion
+
+===== PDF PAGE 5 =====
+                                                     R. Pintelon et al. / Automatica 42 (2006) 77–84                                           81
+
+(see Ljung, 1999 or Pintelon & Schoukens, 2001)                                   R           C
+                                                                      +
+              G(  k,  )         G(  k,  ) H
+var(G(  k, ˆ )) ≈             Cov(ˆ )                          .  (20)                                                                                                                               -                           0                      0
+                                                                                                                                                          y(t)
+Since the estimates are asymptotically normally distributed,       u(t)                             αy3(t)                          L
+the p%  conﬁdence  bounds  of  the  estimated  plant  and
+noise models at a particular frequency k are calculated as
+  −log(1 −p) (k), with  2(k) the variance of the estimated
+                                                                                     Fig. 2. Block diagram of the nonlinear electrical circuit with R = 16   ,
+model.                                                 C = 9.4  F, L = 1 H, and  ∼1000 V−2.
+
+3. Simulation example
+                                                                         controller. The mean estimated value of the controller transfer
+  The simulation set up (see Fig. 1 of Part I) consists of a    function equals 0.99995 with a standard deviation of 8×10−4.
+second-order DT plant model G0(z−1) (na = 2, nb = 1), and a    Similar results are obtained for non-Gaussian distributed time
+second-order monic DT noise model H0(z−1) (nc=nd=2), in a    domain data and CT models.
+unity feedback setting (M0(z−1)=1). The reference signal r(t)
+and the driving white noise source e(t) are white Gaussian DT     4. Real measurement example
+noise processes. The input/output DFT spectra U(k) and Y(k)
+are calculated from N = 4000 time domain samples, and DFT     The nonlinear electrical circuit of Fig. 2 simulates a second-
+lines k=199, 200, . . . , 1199 (F =1001) are used to identify the    order nonlinear mechanical system with a hardening spring.
+plant and noise model parameters. For each of the hundred runs    Using normally distributed excitations, the main error source
+of the Monte-Carlo simulation the three following estimates are    within a linear system identiﬁcation framework is the stochas-
+calculated:                                                                    tic nonlinear contribution that satisﬁes the mixing condition of
+                                                        Assumption 12 of Part I (see Pintelon & Schoukens, 2001). Two
+ 1. ML estimate (3) with M0 =0 (we pretend that the data was    experiments have been performed, the ﬁrst with a white band-
+    gathered in open loop),                                        limited normally distributed signal and the second with a white
+ 2. ML estimate (3) with M0 = 1 (the true controller model is    band-limited periodic signal with random phases. Both signals
+    used),                                                  have the same power (16 mV rms) and bandwidth (200 Hz).
+ 3. ML estimate (10) (the unknown controller is identiﬁed).      For both experiments the sampling frequency equals fS =
+                                                      20 MHz/215 ≈600 Hz, and the input/output signals are low-
+The estimates are obtained by minimizing the ML cost func-    pass ﬁltered before sampling. The random excitation data is
+tion (3) or (10), with G and M deﬁned in Eqs. (23) and (46)    used for identifying the BJ models, while the periodic excita-
+of Part I, and with model structure na =2, nb =1, b0 =0, nig =     tion data is used for cross-validation.
+1, nc = nd = 2, nih = 1, nj = nk = 0, and np = nq = 0. From       Starting from N = 10 400 input/output samples of the ran-
+Fig. 1 it can be seen that the plant and noise model estimates   dom excitation experiment the following three model struc-
+with M0 = 0 are biased (the difference between the true model     tures are identiﬁed (see Part I, maximum likelihood estimator
+and the mean estimated model is signiﬁcantly larger than the     in open loop: Eqs. (17) and (23) with M0 = 0): (i) hybrid BJ
+95% uncertainty bound of the mean estimate), while no bias can   (CT plant and DT noise model) over the full unit circle with-
+be detected in those with the known M0 = 1 and the estimated    out DC and Nyquist (F = 5199), (ii) hybrid BJ in the band
+
+
+
+                      30                                      30
+
+                                           (dB)  0                                                                             (dB)  0
+
+                         -30                                           -30
+                                                                                                Amplitude                         -60                                                                                                                                                                              Amplitude -60
+
+
+                         -90                                           -90
+                         0      50     100    150    200         0      50     100    150    200
+                                     Frequency (Hz)                             Frequency (Hz)
+
+
+Fig. 3. Validation and cross-validation of the identiﬁed CT plant models of order 0/2 of the nonlinear electrical circuit. Left ﬁgure: validation with the random
+excitation measurement. Right ﬁgure: cross-validation with the periodic excitation measurement. Dots: measured frequency response function (FRF) ˆG(j  k).
+Grey line: complex difference between the measured and modelled FRF. Dashed line: standard deviation of the model (left ﬁgure) or the measurement (right
+ﬁgure).
+
+===== PDF PAGE 6 =====
+82                                                  R. Pintelon et al. / Automatica 42 (2006) 77–84
+
+
+
+
+
+Fig. 4. Validation and cross-validation of the identiﬁed noise models of the nonlinear electrical circuit. Left ﬁgure: validation with the output residuals ˆV (k)
+of the random excitation measurement. Right ﬁgure: cross-validation with variance ˆ 2V (k) of the output residuals of the periodic excitation measurement. Top
+row: DT model of order 8/8 over the full unit circle. Middle row: DT model of order 6/5 in the band (0 Hz, 200 Hz]. Bottom row: CT model of order 4/5 in
+the band (0 Hz, 200 Hz]. Dots: measured output residuals. Solid line: noise model times standard deviation driving white noise source. Dashed line: standard
+deviation model.
+
+
+
+(0 Hz, 200 Hz] (F = 3406), and (iii) CT-BJ (CT plant and CT    the periodic data. It follows that the BJ models also explain the
+noise model) in the band (0 Hz, 200 Hz] (F = 3406). From the    periodic excitation data very well. Note that the reduced order
+validation tests in Figs. 3 and 4 it turns out that the random    noise models perform somewhat less in the neighbourhood of
+excitation measurements are explained very well by a second-    200 Hz (see Fig. 4, right column, middle and bottom rows).
+order CT plant model (na = 2, nb = 0) combined with, respec-    This is due to the resonance peak around 210 Hz in the noise
+tively, the following noise models: (i) eight-order DT noise    power spectrum (see Fig. 4, top left ﬁgure), which cannot be
+model (nc = nd = 8, nih = 7, and nig = 4), (ii) sixth-order DT    identiﬁed from the data in the band (0 Hz, 200 Hz].
+noise model (nc = 6, nd = 5, nih = 5, and nig = 0), and (iii)     The measured FRF ˆG(j  k) and measured (variance of the)
+ﬁfth-order CT noise (nc = 4, nd = 5, nih = 0, and nig = 2).    output residual ˆV (k) in Figs. 3 and 4 are calculated as in (19)
+Since the quality of the identiﬁed plant model is identical for    and (17) for random excitations, and as ˆG(j  k) = Y(k)/U(k)
+the three model structures, only the result for the CT-BJ model            2          2
+                                                        and   ˆ V (k) =  ˆ ˆG(k)|U(k)|2  for  the  periodic  excitations.structure is shown in Fig. 3. In the cross-validation tests of
+Figs. 3 and 4 the estimated BJ models are compared to the    In the  latter case ˆG(j  k) and  ˆ 2ˆG(k) are, respectively, the
+measured frequency response function (FRF) ˆG(j  k) and the    sample mean and sample variance obtained by analysing con-
+measured (variance of the) output residual ˆV (k) obtained from    secutive periods of the input/output signals. The uncertainty of
+
+===== PDF PAGE 7 =====
+                                                     R. Pintelon et al. / Automatica 42 (2006) 77–84                                           83
+
+    (ˆ )|H(  k, ˆ )| and G(j  k, ˆ ) is calculated using (18) and    then taking the complex conjugate of f ( +j )=|(sk −  )(sk −
+                                                                                  ¯ )| with sk = j  k gives(20), respectively.
+   Fig. 4 nicely illustrates the beneﬁt of modeling the process
+                                                  f ( + j ) = ||  |2 −2Re( )sk + s2k|noise in the frequency band of interest: in the band (0 Hz,
+                                        = ||  |2 + 2Re( )sk + s2k| = f (− + j  ).       (23)200 Hz] a DT noise model of order 6/5 is sufﬁcient to describe
+the noise power spectrum, while over the full unit circle an or-
+                                                                 Similarly we ﬁnd for f ( ) = |(1 −  z−1k  )(1 −  z−1k  )| withder 8/8 is needed. It also shows that the CT noise model (or-
+                                                                    zk = exp(j  kTs)
+der 4/5) is a valid alternative for the classical DT description
+(order 6/5).                                         f ( ) = |(1 −  zk)(1 −  zk)|
+                                      = | |2|z2k| |(1 −  −1z−1k  )(1 −  −1z−1k  )|
+5. Conclusion                              = | |2f ( −1).                                     (24)
+                                                         Using (23), (24), the fact that (3) only depends on the magni-
+  The usefulness/feasibility of (CT) BJ modeling in a limited    tude of H(  k,  ), and that (3) is not changed by multiplying
+frequency band (part of the unit circle) has been demonstrated   H(  k,  ) with a frequency independent parameter, proves (6).
+via simulations and a real measurement example, and the prac-
+tical implementation differences/similarities with the classical   Appendix C. Proof of (18)
+prediction error method have been discussed in detail (global
+minima of the cost function, Newton–Gauss minimization al-                                                           Using a ﬁrst order Taylor series expansion of fk(ˆ ) at =  0
+gorithm, choice/implementation of the parameter constraints,
+uncertainty calculation of the estimated noise model).            fk(ˆ ) ≈fk( 0) + f k(′  0)(ˆ −  0),                        (25)
+                                                       where x′ is the derivative of x w.r.t.   , the variance of f (ˆ ) can
+Acknowledgements                                        be approximated as
+
+  This work is sponsored by the Fund for Scientiﬁc Research    var(fk(ˆ )) ∼fk(′  0)Cov(ˆ )f k′T ( 0),                      (26)
+(FWO-Vlaanderen), the Flemish Government (GOA-ILiNoS)
+                                                       where
+and the Belgian Program on Interuniversity Poles of Attraction
+initiated by the Belgian State, Prime Minister’s Ofﬁce, Science            ′           |H(  k,  )|   |H0(  k)|    ( )
+                                                  fk( 0) =    0       +                           .           (27)Policy programming (IUAP V/22).                                                         0      2√ 0       0
+
+                                                      Under the assumptions of Theorem 3 of Part I,  ( ) (Eq. (19)
+Appendix A. Proof of the rank of the Jacobian matrix         of Part I) converges uniformly w.p. 1 to its expected value
+                                                                1      G(  k,  ) 2 S0(  k) 2
+   It is easy to verify that the vector of the residuals  ( ) =   E{ ( )} =
+                                                  F                                                       H(  k,  )   H0(  k) G( )gF ( ) (4) is invariant w.r.t. the parameter transformation                                                                 k∈K
+h(  ,  ) listed in Table 1                                                                                                2                                                                                                       0       S0(  k)                                         × E{|R(k)|2} +                                  .         (28)
+                                                             F      S(  k,  ) (h(  ,  )) =  (  ),                                        (21)                             k∈K
+
+                                                          Hence,
+where the degree of overparametrization dim( ) equals the
+                                                                            ( )    E{ ( )}number of constraints in Table 1 of Part I. Because  ( ) is inde-                           →
+pendent of   , we have   re( )/ = 0. Using (21), this equality         0            0
+can be written as                                                    F
+                                                                                 0
+                                    = −           k   w.p. 1 as F →∞,                  (29)
+   re(h)  h(  ,  )              h(  ,  )                       F  k=1         = 0  or   Jre     = 0,              (22)
+   h
+                                                       where   k  is deﬁned in (18). Collecting (26), (27) and (29)
+                                                              proves (18).
+where Jre ∈R2F×dim( ) with 2F > dim(  ). Since rank( h(  , )/
+   ) = dim( ) with dim( ) < dim(  ), it follows from (22) that    References
+dim(null(Jre))=dim( ) or rank(Jre)=dim( )−dim( ), which
+concludes the proof.                                                          Ben-Israel, A., & Greville, T. N. E. (1974). Generalized inverses: Theory and
+                                                                                        applications. London: Wiley.
+                                                                                       Fletcher, R. (1991). Practical methods of optimization (2nd ed.). New York:
+Appendix B. Multiple global minima of the cost function (3)        Wiley.
+                                                                          Golub, G. H., & Van Loan, C. F. (1996). Matrix computations (3rd ed.).
+                                                                                  Baltimore: John Hopkins University Press.
+  Let = + j  be a complex pole or zero of H(  ,  ) (the     Ljung, L. (1999). System Identiﬁcation Theory for the User. Upper Saddle
+reasoning for a real pole or zero follows exactly the same lines),         River: Prentice-Hall.
+
+===== PDF PAGE 8 =====
+84                                                  R. Pintelon et al. / Automatica 42 (2006) 77–84
+
+
+Pintelon, R., & Schoukens,  J. (2001). System identiﬁcation: A frequency                            Yves Rolain  is presently active  at the VUB
+   domain approach. New York: IEEE Press.                                                                      in  the  Electrical  Measurement  Department
+Pintelon, R., & Schoukens, J. (2005). Box-Jenkins identiﬁcation revisited—                             (ELEC). His main research interests are non-
+   Part I: Theory. Automatica.                                                                                        linear  micro-wave  measurement  techniques,
+                                                                                                             applied  digital  signal  processing,  parameter Schoukens, J., Pintelon, R., & Rolain, Y. (2004). Box-Jenkins alike identiﬁ-
+                                                                                                            estimation/system identiﬁcation, and biological
+   cation using nonparametric noise models. Automatica, 40(12), 2083–2089.
+                                                                                                                        agriculture.
+
+
+                       Rik Pintelon was born in Gent, Belgium, on
+                       December 4, 1959. He received the degree of
+                                 electrical engineer (burgerlijk ingenieur) in July
+                           1982, the degree of doctor in applied sciences in
+                           January 1988, and the qualiﬁcation to teach at                           Johan Schoukens is born in Belgium in 1957.
+                              university level (geaggregeerde voor het hoger                        He received the degree of engineer in 1980 and
+                            onderwijs) in April 1994,  all from the Vrije                                   the degree of doctor in applied sciences in 1985,
+                               Universiteit Brussel (VUB), Brussels, Belgium.                                both from the Vrije Universiteit Brussel, Brus-
+                      From October 1982  till September 2000 he                                         sels, Belgium. He is presently professor at the
+                       was a  researcher of  the Fund  for Scientiﬁc                                   Vrije Universiteit Brussel. The prime factors of
+                         Research—Flanders at the VUB. Since Octo-                                     his interest are in the ﬁeld of system identi-
+                            ber 2000 he  is professor  at the VUB in the                                 ﬁcation for linear and nonlinear systems, and
+Electrical Measurement Department (ELEC). His main research interests are in                              growing tomatoes in his green house.
+the ﬁeld of parameter estimation/system identiﬁcation, and signal processing.

@@ -1,0 +1,1161 @@
+===== PDF PAGE 1 =====
+                                     Mechanical Systems and Signal Processing 247 (2026) 113948
+
+
+                                           Contents lists available at ScienceDirect
+
+               Mechanical Systems and Signal Processing
+
+
+                                    journal homepage: www.elsevier.com/locate/ymssp
+
+
+Full length article
+Structured identification of multivariable modal systems$
+M. van der Hulst a    ,∗, R.A. González a   , K. Classens a   , P. Tacx a, N. Dirkx b   ,
+J. van de Wijdeven b   , T. Oomen a,c
+
+a Department of Mechanical Engineering, Eindhoven University of Technology, The Netherlands
+b ASML, Veldhoven, The Netherlands
+c Delft Center for Systems and Control, Delft University of Technology, The Netherlands
+
+
+A R T I C L E   I N F O           A B S T R A C T
+
+
+Communicated by S. Fassois                        Physically interpretable models are essential for next-generation industrial systems, as these
+                                                 representations enable effective control, support design validation, and provide a foundation
+Keywords:
+                                                     for monitoring strategies. The aim of this paper is to develop a system identification framework
+Modal identification
+                                                     for estimating modal models of complex multivariable mechanical systems from frequency
+Parameter estimation
+Modal systems                                  response data. To achieve this, a two-step structured identification algorithm  is presented,
+Flexible mechanics                           where an additive model is first estimated using a refined instrumental variable method and
+Motion control                                  subsequently projected onto a modal form. The developed identification method provides accu-
+                                                       rate, physically-relevant, minimal-order models, for both generally-damped and proportionally
+                                      damped modal systems. The effectiveness of the proposed method is demonstrated through
+                                              experimental validation on a prototype wafer-stage system, which features a large number of
+                                                     spatially distributed actuators and sensors and exhibits complex flexible dynamics.
+
+
+
+
+1. Introduction
+
+
+   Increasingly stringent performance requirements of next-generation industrial systems require data-driven models to integrate
+prior knowledge via interpretable physical principles. Embedding such principles improves model accuracy, increases interpretabil-
+ity, and typically reduces model complexity [1]. These characteristics are crucial not only for advanced multivariable control
+design methods [2,3] but also for mechanical system design, model validation, machine monitoring techniques, and simulation
+studies [4–7].
+   The use of modal model structures for modeling mechanical systems enables efficient representations that capture the underlying
+physics [8,9]. In such models, the dynamics are expressed as a combination of independently evolving dynamic modes, each associ-
+ated with a resonance behavior of the system. Key advantages include that modal models directly realize the system’s minimal order,
+which is critical for applications in control system design [10], while still offering clear physical interpretation and computational
+tractability. As a result, modal forms are widely used in applications such as mechatronic positioning systems [3,11,12], fault
+detection [13,14], finite element model updating [15,16], vibrational analysis of aerospace systems [17], adaptive optics [18] and
+civil engineering applications [19].
+   Reliably estimating modal input–output models remains challenging, primarily due to the structural constraints of the modal
+form and the complexity of industrial systems. A defining characteristic of modal decompositions is the requirement that the
+numerator matrix associated with each mode satisfies a low-rank constraint [20]. Traditional parametric system identification
+
+
+
+ $
+     This project is funded by Holland High Tech | TKI HSTM via the PPP Innovation Scheme (PPP-I) for public–private partnerships.
+  ∗Corresponding author.
+     E-mail address:  M.v.d.hulst@tue.nl (M. van der Hulst).
+
+https://doi.org/10.1016/j.ymssp.2026.113948
+Received 12 September 2025; Received in revised form 2 December 2025; Accepted 26 January 2026
+Available online 4 February 2026
+0888-3270/©  2026  The  Authors.     Published  by  Elsevier  Ltd.     This   is  an  open  access  article  under  the  CC  BY  license
+(http://creativecommons.org/licenses/by/4.0/ ).
+
+===== PDF PAGE 2 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+methods do not incorporate such constraints [21], leading to increased model orders [22] and reduced interpretability. Enforcing
+exact rank constraints is in general NP-hard [23], requiring specialized optimization methods or carefully designed relaxations for
+tractability. Another structural aspect is that modal systems are naturally expressed in additive form, that is, as a sum of low-order
+transfer matrices [24]. Most identification methods, however, are tailored to single unfactored transfer models and are therefore
+less suitable for the estimation of modal systems [25]. Moreover, industrial systems often feature many inputs and outputs and
+exhibit complex dynamics such as closely spaced and lightly damped flexible modes. These characteristics lead to poor numerical
+conditioning [26,27] and high-dimensional estimation problems, thereby complicating the modeling task.
+   Despite extensive work on modal identification, relatively few methods explicitly enforce the rank constraint inherent to
+modal decompositions. Traditional approaches include single-step methods, which approximate the original nonlinear least-squares
+problem by a linear surrogate [28,29]. Improved estimation accuracy has been achieved through iterative multi-step methods that
+directly minimize the nonlinear cost function, using gradient-descent optimization [30], pseudo-linear regression techniques [31,32]
+or vector fitting procedures [33,34]. These approaches have been applied in a range of multi-input multi-output (MIMO) modal
+identification methods [12,35–37]. However, single-step methods generally lack statistical optimality guarantees, while many multi-
+step approaches either neglect the rank constraint or rely on singular value decompositions, which are typically effective only for
+systems with sufficiently spaced modes.
+   While some efforts have been made to incorporate the rank constraint, the range of available methods remains limited. Post-
+processing strategies, such as data refitting, transform an initially estimated model into modal form and then re-estimate the
+parameters [12,22]. In contrast, integrated approaches aim to enforce the structure directly, either by incorporating modal properties
+into the parameterization [38,39] or by using parameter projection techniques [40,41]. While data refitting can yield accurate modal
+estimates, it can become computationally demanding, particularly in large-scale MIMO settings. Parameter projection methods offer
+a promising alternative, but their development has so far been largely limited to state-space model estimation.
+   Although many parametric modal identification techniques are available, there is currently no systematic and computationally
+efficient framework that explicitly enforces the rank constraints intrinsic to modal decompositions, exploits the additive structure
+of modal models in the model structure, and remains applicable to large-scale industrial systems with closely spaced modes. This
+paper introduces a novel two-stage identification strategy for estimating MIMO input–output models in modal form. In the first
+stage, an additive model is estimated using a refined instrumental variable method [42], which is subsequently projected onto a
+modal form using the indirect prediction error method (IPEM) [43]. The framework accommodates both proportional damping and
+general-viscous damping models [20], as these formulations are commonly encountered in industrial applications [44]. The main
+contributions of this paper are:
+
+C1: A general framework is introduced for estimating continuous-time MIMO models in additive transfer-function form using a
+    frequency-domain refined instrumental variable method.
+C2: A structured identification framework is introduced that projects additive models onto the modal form, accommodating both
+    proportional and general-viscous damping model parameterizations.
+
+  A preliminary version addressing C1 was presented in [45]. In addition, the two-stage strategy for structured model estimation
+may be interpreted as the frequency-domain counterpart of the time-domain method introduced in [46], which includes an extensive
+statistical analysis. In this paper, we extend these results to a broader class of damping models and provide a comprehensive
+experimental validation on a complex industrial system.
+   The remainder of this paper is organized as follows. Section 2 introduces the modal modeling framework for flexible mechanical
+systems, and provides a concise problem formulation. Section 3 formulates the two-stage identification problem, with the solution
+procedures for the first stage provided in Section 4 and for the second stage in Section 5. Experimental validation is described in
+Section 6, and finally, Section 7 presents the conclusions.
+   Notation: Scalars, vectors, matrices and sets are written as 𝑎, 𝐚, 𝐀 and , respectively. The imaginary unit is denoted by 𝑗 and
+satisfies 𝑗2 = −1. For 𝐳∈C𝑛, the operation ℜ{𝐳} returns the real part, ℑ{𝐳} returns the imaginary part and  ̄𝐳 returns the complex
+conjugate of the complex vector 𝐳. The identity matrix of size 𝑛 is denoted by 𝐈𝑛. For a matrix 𝐀, its transpose is written as 𝐀⊤,
+and its Hermitian (conjugate transpose) as 𝐀𝖧. If 𝐱∈C𝑛 and 𝐐∈C𝑛×𝑛 is a Hermitian matrix, then the weighted 2-norm is given     √
+by ‖𝐱‖𝐐=  𝐱𝖧𝐐𝐱. For 𝐗= [𝐱1, … , 𝐱𝑛], with 𝐱𝑖∈C𝑛, the operation vec(𝐗) = [𝐱⊤1 , … , 𝐱⊤𝑛]⊤ restructures the matrix into a vector by
+stacking its columns.
+
+
+2. Problem formulation
+
+
+   This section  first introduces the considered modal modeling framework for describing mechanical systems and thereafter
+formulates the problem addressed in this paper.
+
+
+2.1. Modal modeling of mechanical systems
+
+   The equations of motion for a spatially discretized linear-time invariant (LTI) mechanical system of order 2𝑛 with 𝑛u inputs and
+𝑛y outputs are defined in terms of the generalized coordinates 𝐪(𝑡) ∈R𝑛 as follows
+
+       𝐌̈𝐪(𝑡) + 𝐃̇𝐪(𝑡) + 𝐊𝐪(𝑡) = 𝐅𝐮(𝑡),
+                                                                                                                                  (1)
+        𝐲(𝑡) = 𝐐𝐪(𝑡),
+
+                                                                2
+
+===== PDF PAGE 3 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+with 𝐲(𝑡) ∈R𝑛y the system outputs, 𝐮(𝑡) ∈R𝑛u the system inputs, the mass matrix 𝐌∈R𝑛×𝑛 is positive definite, the viscous damping
+matrix is given by 𝐃∈R𝑛×𝑛, the stiffness matrix 𝐊∈R𝑛×𝑛 is positive semi-definite, 𝐅∈R𝑛×𝑛u is the input matrix, and 𝐐∈R𝑛y×𝑛 is
+the output matrix. The coupled second-order differential equations are expressed in modal form, following standard approaches in
+vibration analysis [9,20,24]. Two modal formulations are considered. The first corresponds to generally viscously damped systems,
+while the second assumes proportional damping, a special case in which the damping matrix is proportional to the mass and stiffness
+matrices, resulting in mode-shape vectors that are real-valued and coincide with those of the undamped system [24]. The choice
+between damping models depends on the system under consideration. While proportional damping provides a simpler and more
+interpretable model description due to the real-valued mode-shape vectors, it can be inadequate for systems involving more complex
+damping behavior, necessitating the use of the general form (see, e.g., [44]). A complete derivation of the modal forms is provided
+in Appendix A, and the main results are presented in the following subsections.
+
+
+2.1.1. General-viscously damped mechanical systems
+   The general case is considered first. The dynamics are partitioned into 𝑛rbm rigid-body modes and 𝑛flex flexible modes, where
+𝑛= 𝑛rbm + 𝑛flex. A rigid-body mode represents a motion of the system involving pure translation or rotation without internal
+deformation and is described by a second-order model with two poles at 𝑠= 0. While physical systems contain infinitely many
+dynamic modes, only the dominant modes within the excited and measured frequency range are estimated explicitly. Modes
+at substantially higher frequencies typically have only a minor effect in this range, and their combined contribution can be
+approximated by a residual static gain [24]. This term is omitted for notational clarity but is straightforwardly included if required.
+The transfer matrix corresponding to (1), expressed in modal form with general damping, is given by
+                  𝑛rbm∑ 𝐑rbm𝑗        𝑛flex∑   𝐋𝑖       𝐋𝑖
+      𝐏𝑚(𝑠) =       +              +̄            ,                                                                                     (2)
+                𝑗=1   𝑠2      𝑖=1 𝑠−𝜆𝑖   𝑠−̄ 𝜆𝑖
+       𝐋𝑖= 𝝍𝑙,𝑖𝝍⊤𝑟,𝑖,                                                                                                            (3)
+       𝐑rbm𝑗  = 𝝓𝑙,𝑗𝝓⊤𝑟,𝑗,                                                                                                            (4)
+where 𝑠∈C is the Laplace variable, 𝐑rbm𝑗   ∈R𝑛y×𝑛u and 𝐋𝑖∈C𝑛y×𝑛u are rank-one modal residue matrices, 𝝍𝑙,𝑖∈C𝑛y and 𝝍𝑟,𝑖∈C𝑛u are
+the complex left and right mode-shape vectors of the flexible modes, 𝝓𝑙,𝑗∈R𝑛y and 𝝓𝑟,𝑗∈R𝑛u are the real left and right mode-shape
+vectors of the rigid-body modes, and 𝜆𝑖∈C is the eigenvalue, given by
+         √
+     𝜆𝑖= −𝜁𝑖𝜔𝑖+ 𝑗𝜔𝑖  1 −𝜁2𝑖,                                                                                                   (5)
+
+with 𝜔𝑖> 0 the natural frequency and 𝜁𝑖> 0 the damping coefficient. Note that the decomposition of rank-one residue matrices
+𝐋𝑖= 𝝍𝑙,𝑖𝝍⊤𝑟,𝑖 is not unique, since any alternative factorization satisfies 𝐋𝑖=̃ 𝝍𝑙,𝑖̃𝝍⊤𝑟,𝑖, where ̃𝝍𝑙,𝑖= 𝛼𝝍𝑙,𝑖 and ̃𝝍𝑟,𝑖= 𝛼−1𝝍𝑟,𝑖 for some
+nonzero scalar 𝛼∈C [47]. This invariance allows for arbitrary scaling of the mode-shape vectors, which is typically resolved by
+applying an appropriate normalization [20]. To obtain a representation expressed in real-valued model parameters, the conjugated
+first-order terms in (2) are combined, yielding
+                  𝑛rbm∑ 𝐑rbm𝑗        𝑛flex∑     𝐍𝑖,1𝑠+ 𝐍𝑖,0
+      𝐏𝑚(𝑠) =       +                                            ,                                                                               (6)
+                𝑗=1   𝑠2      𝑖=1 𝑠2 −(𝜆𝑖+̄ 𝜆𝑖)𝑠+ 𝜆𝑖̄𝜆𝑖
+
+          𝐍𝑖,1 = 𝐋𝑖+̄ 𝐋𝑖,                                                                                                            (7)
+
+          𝐍𝑖,0 = −̄𝜆𝑖𝐋𝑖−𝜆𝑖̄𝐋𝑖,                                                                                                       (8)
+where 𝐍𝑖,1 ∈R𝑛y×𝑛u and 𝐍𝑖,0 ∈R𝑛y×𝑛u are real-valued rank-two matrices. The parameters describing the general-viscously damped
+modal system are jointly stored in the parameter vector
+           [                               ]⊤
+    𝝆= 𝝔⊤1 …  𝝔⊤𝑛rbm  𝝆⊤1 …  𝝆⊤𝑛flex     .                                                                                 (9)
+
+where the vector 𝝔𝒋 denotes the parameter vector of the 𝑗th rigid-body mode, and 𝝆𝑖 denotes the parameter vector of the 𝑖th flexible
+dynamic mode, which are both given by
+           [         ]⊤        [                                         ]⊤
+     𝝔𝑗= 𝝓⊤𝑙,𝑗  𝝓⊤𝑟,𝑗     ,  𝝆𝑖= ℜ𝜆𝑖   ℑ𝜆𝑖  ℜ𝝍⊤𝑙,𝑖  ℑ𝝍⊤𝑙,𝑖  ℜ𝝍⊤𝑟,𝑖  ℑ𝝍⊤𝑟,𝑖     .                                           (10)
+
+
+2.1.2. Proportionally damped mechanical systems
+   In contrast to the general case, proportional damping assumes that the damping matrix can be expressed as a linear combination
+of the mass and stiffness matrices [20]. Consequently, the mode shapes coincide with the mode shapes of the undamped system
+and remain real-valued, whereas in the general case they are typically complex-valued. Under proportional damping, the transfer
+matrix in (6) simplifies to
+                  𝑛rbm∑ 𝐑rbm𝑗        𝑛flex∑       𝐑flex𝑖
+      𝐏𝑚(𝑠) =       +                                    ,                                                                            (11)
+                𝑗=1   𝑠2      𝑖=1 𝑠2 + 2𝜁𝑖𝜔𝑖𝑠+ 𝜔2𝑖
+
+
+                                                                3
+
+===== PDF PAGE 4 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+        𝐑flex𝑖  = 𝝓𝑙,𝑖𝝓⊤𝑟,𝑖,                                                                                                     (12)
+where 𝝓𝑙,𝑖∈R𝑛y and 𝝓𝑟,𝑖∈R𝑛u. The parameter vector describing proportionally damped modal systems is given by (9) but with 𝝆𝑖
+for 𝑖= 1, … , 𝑛flex for the flexible dynamic modes replaced by
+           [                 ]⊤
+     𝝆𝑖=  𝜔𝑖    𝜁𝑖  𝝓⊤𝑙,𝑖  𝝓⊤𝑟,𝑖     .                                                                                        (13)
+
+2.2. Problem statement
+
+   This paper addresses the estimation of input–output models in modal form, as defined in (9), for both proportionally damped
+and generally viscously damped mechanical systems using experimental data. The identification problem is structured, since the
+numerators are constrained to the dyadic product of the mode-shape vectors. A frequency-domain identification approach is adopted,
+in which the objective is to estimate a model that best fits a measured Frequency Response Function (FRF) of the system. To
+obtain continuous-time models from FRF data, the setup outlined in [48, Chapter 13] is used. The noisy FRF dataset is denoted
+by {𝐆(𝜔𝑘)}𝑁𝑘=1, with 𝑁 the number of frequency points and 𝐆(𝜔𝑘) ∈C𝑛𝑦×𝑛𝑢 the response at frequency 𝑘, and forms the basis for
+subsequent parametric identification.
+
+3. Two-stage modal identification approach
+
+   This section introduces the identification strategy used to estimate modal systems from frequency response data. The modal
+model structure requires a structured identification approach, since the numerators formed by the dyadic products of the mode-shape
+vectors impose a rank-one constraint on the residue matrices. Enforcing rank constraints is generally NP-hard [23]. To address this
+challenge, a two-stage identification approach is adopted. In the first stage, an additive model is estimated with freely parameterized
+numerator matrices. In the second stage, the estimated additive model is projected onto the subspace of models satisfying the rank
+constraint to obtain a model consistent with the modal form. In the following subsections, the identification problems for the first
+and second stages are formally defined.
+
+3.1. Stage 1: Identification of additive MIMO systems
+
+   This subsection introduces the additive model structure and formulates the additive model identification problem. Consider the
+LTI plant model in additive form
+     ∑𝐾
+       𝐏(𝑠, 𝜷) =     𝐏𝑖(𝑠, 𝜽𝑖),                                                                                               (14)
+                   𝑖=1
+where each submodel 𝐏𝑖 is an 𝑛y × 𝑛u transfer matrix, 𝐾 the number of submodels and 𝜷 and 𝜽𝑖 the joint and submodel parameter
+vector, respectively. Each submodel 𝐏𝑖(𝑠, 𝜽𝑖) is parametrized according to
+                  1
+        𝐏𝑖(𝑠, 𝜽𝒊) =          𝐁𝑖(𝑠),                                                                                            (15)
+                   𝑠𝓁𝑖𝐴𝑖(𝑠)
+where at most one submodel may include 𝓁𝑖> 0 poles at the origin. The scalar denominator polynomial 𝐴𝑖(𝑠) and the matrix
+numerator polynomial 𝐁𝑖(𝑠) are such that no complex number 𝑧 simultaneously satisfies 𝐴𝑖(𝑧) = 0 and 𝐁𝑖(𝑧) = 𝟎. To ensure a unique
+characterization of {𝐏𝑖(𝑠, 𝜽𝒊)}𝐾𝑖=1, it is assumed that at most one submodel 𝐏𝑖(𝑠, 𝜽𝒊) is biproper. The 𝐴𝑖(𝑠) and 𝐁𝑖(𝑠) polynomials are
+parametrized as
+       𝐴𝑖(𝑠) = 1 + 𝑎𝑖,1𝑠+ ⋯+ 𝑎𝑖,𝑛𝑖𝑠𝑛𝑖,                                                                                       (16)
+       𝐁𝑖(𝑠) = 𝐁𝑖,0 + 𝐁𝑖,1𝑠+ ⋯+ 𝐁𝑖,𝑚𝑖𝑠𝑚𝑖,                                                                                   (17)
+where the 𝐴𝑖(𝑠) polynomials are stable, i.e., all roots lie in the left-half plane, and they do not share any common roots. The
+polynomials 𝐴𝑖(𝑠) and 𝐁𝑖(𝑠) are jointly described by the parameter vector
+             [
+    𝜷=          𝜽⊤1 …  𝜽⊤𝐾 ]⊤,                                                                                              (18)
+where 𝜽𝑖 for 𝑖= 1, … , 𝐾 contains the parameters of the 𝑖th submodel
+           [                                          ]⊤                                  )⊤                                                                                                            .                                                              (19)     𝜽𝑖=  𝑎𝑖,1 …    𝑎𝑖,𝑛𝑖   vec (𝐁𝑖,0  …   vec(𝐁𝑖,𝑚𝑖)⊤
+
+The identification problem is formulated based on the matrix residual, which is computed as the difference between the FRF dataset
+{𝐆(𝜔𝑘)}𝑁𝑘=1 and the model, according to
+      𝐄(𝜔𝑘, 𝜷) = 𝐆(𝜔𝑘 ) −𝐏(𝜉𝑘, 𝜷) ,                                                                                      (20)
+
+where 𝜉𝑘= 𝑗𝜔𝑘. The parameter vector estimate ̂𝜷 is obtained as the minimizer of the weighted least-squares criterion
+                 1 ∑𝑁    (              2    𝜷= arg min         vec 𝐄(𝜔𝑘,                   ,                                                                           (21)               𝜷  2𝑁 𝑘=1 ‖‖‖‖               𝜷))‖‖‖‖𝐖(𝜔𝑘)
+where 𝐖(𝜔𝑘) ∈C𝑛u𝑛y×𝑛u𝑛y is a frequency-dependent weighting matrix. The main objective of the first stage is to estimate additive
+models, as described by (14), that minimize the cost function in (21), given the noisy dataset 𝐆(𝜔𝑘).
+
+                                                                4
+
+===== PDF PAGE 5 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+3.2. Stage 2: Structured identification of modal models
+
+
+   The solution to the stage one identification problem yields an estimate of the additive parameter vector ̂𝜷. Since the numerator
+matrices are unconstrained in the additive model structure, the resulting model generally cannot be represented exactly in modal
+form and has a higher order than necessary to describe the system [22]. To address this, the estimate ̂𝜷 is projected onto the space
+of models that satisfy the rank constraint by solving a second least-squares problem. This procedure corresponds to the Indirect
+Prediction Error Method (IPEM) [43], which treats the intermediate estimate ̂𝜷 as data. The IPEM framework enables structured
+model identification by exploiting the statistical information in ̂𝜷 without requiring access to the original dataset.
+   Consider the nested model structures 1 and 2, where 1 denotes the modal model structure and 2 the additive model
+structure, with 1 ⊂2. Since the model structures 1 and 2 are nested, there exists a smooth and injective map 𝐟∶1 →2,
+that links the parameter vectors 𝝆 and 𝜷 such that 𝜕𝐟(𝝆)∕𝜕𝝆⊤ has full rank over 1. For the defined model structures, the subspace
+1 = Rdim(𝝆) consists of the vectors 𝝆 as defined in (9), while the subspace 2 ⊂Rdim(𝜷) consists of the vectors 𝜷 that admit a lower
+dimensional representation of the form 𝐟(𝝆) = 𝜷, i.e., the set of additive models satisfying the rank constraint. The explicit form of
+𝐟 depends on the considered damping model and is further specified in Section 5. An estimate of the parameter vector 𝝆 is then
+obtained as a solution to a weighted least-squares optimization problem
+
+                                                                   2̂
+    𝝆= arg min                         ,                                                                                          (22)              𝝆    ‖‖‖̂𝜷−𝐟(𝝆)‖‖‖𝜮−1̂𝜷
+
+where ̂𝜮̂𝜷 is an estimate of the parameter covariance matrix of the vector ̂𝜷. Weighting by the parameter covariance ensures that
+the cost function in (22) approximates the original cost function when expressed in terms of the modal parameter vector, thereby
+preserving the connection to the original dataset [43]. An expression for estimating ̂𝜮̂𝜷 is provided in Section 4. The main objective
+of this second stage is to compute a solution ̂𝝆 to (22), given ̂𝜷 and its covariance estimate.
+
+
+Remark 1. To remove the ambiguity in mode-shape vector scaling, an additional constraint must be imposed on the mode-shape
+vectors in (22). If a collocated actuator–sensor pair is present in the system to be identified, the mass-normalized mode-shape vectors
+are uniquely determined [49]. However, in the absence of such a pair, as in the prototype wafer-stage system, this issue is resolved
+by either fixing one of the coefficients or including a norm constraint on one of the mode-shape vectors.
+
+
+3.3. Discussion
+
+
+   The proposed two-stage identification approach provides a computationally efficient framework for estimating structured modal
+models. By omitting the challenging rank constraint in the first stage, the initial estimation problem becomes considerably more
+tractable. The constraint is subsequently enforced through a second projection problem, which is easier to solve for two main reasons.
+First, the estimated additive model is often close to the modal subspace, enabling accurate initialization of the second-stage, which
+reduces the possibility of convergence to local minima. Second, the dimensionality of the data involved in the IPEM problem is
+significantly reduced. Instead of refitting the full dataset, the IPEM problem operates on the parameter vector ̂𝜷 obtained from the
+first stage. Since dim(̂𝜷) is typically much smaller than the total number of frequency response data points 𝑛y𝑛u𝑁, the optimization
+problem involves fewer data points. Consequently, the cost function tends to be better conditioned, making it easier to handle
+challenging model parameterizations and resulting in faster execution times.
+
+
+3.4. Outline of the estimation procedure
+
+
+   In the following sections, the solution procedures are provided for the identification problems (21) and (22). Fig. 1 provides a
+schematic overview of the two-stage estimation procedure, indicating the subsections in which the solution methods for each stage
+are discussed. In the first stage, a linear least-squares (LS) problem is solved to obtain an initial estimate, which is subsequently
+used as starting point for a Refined Instrumental Variable (RIV) method. In the second stage, the additive model is used to derive
+an initial modal model via Singular Value Decompositions (SVDs), yielding a suboptimal estimate that is then refined by solving
+the IPEM problem to obtain the final modal model estimate.
+
+
+4. Frequency-domain identification of MIMO additive models: A refined instrumental variable approach
+
+
+   This section introduces a RIV method for estimating MIMO additive models and thereby provides contribution C1. First, an
+initialization procedure for generating initial estimates is presented, followed by the RIV estimation algorithm.
+
+
+4.1. Initialization via linear least-squares
+
+
+   To solve the problem (21) an initial estimate of the model parameters 𝜷 is needed. A convex linear least-squares method is
+introduced, which allows the numerator parameters to be computed in closed form, assuming fixed denominator polynomials. This
+reduces the initialization problem to determining initial pole locations, which are often effectively obtained from finite element
+models, FRF data, or tools such as complex mode indicator functions (CMIF) [50]. To this end, assume that the denominator
+
+                                                                5
+
+===== PDF PAGE 6 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+
+
+
+
+Fig. 1. Outline of the estimation procedure. In Stage 1, an additive parametric model is estimated by fitting directly to the measured FRF data.
+A linear LS problem is first solved to obtain an initial estimate, which is subsequently refined by the RIV method via iterative minimization of a
+nonlinear cost function. In Stage 2, the modal model is obtained directly from the Stage 1 solution. The IPEM problem is initialized using SVDs,
+which subsequently projects the Stage 1 solution onto the set of models satisfying 𝜷∈2, yielding the final modal model estimate.
+
+polynomials𝜼is found asarethefixedsolutionat ̄𝐴𝑖(𝑠),to theandconvexlet 𝜼 representproblem the parameter vector from (18) without the denominator parameters. The estimate
+
+                𝑁
+                 1 ∑                      )   2    𝜼= arg min        vec(𝐆(𝜔𝑘)) −Φ⊤(𝜔𝑘                                                                            (23)                                                       𝐖(𝜔𝑘),                𝜼  2𝑁 𝑘=1 ‖‖‖                                       𝜼‖‖‖
+
+with the regressor matrix Φ given by
+                                         [                    ]⊤
+            )   [        )               )             )        𝐈𝑛u𝑛y             𝜉𝑚𝑖𝐈𝑛u𝑛y                      Φ⊤𝐾 (𝜔𝑘   ]⊤,  Φ𝑖 (𝜔𝑘 =      …                           .                                 (24)   Φ (𝜔𝑘 =  Φ⊤1 (𝜔𝑘  …
+                                                                          𝜉𝓁𝑖̄𝐴𝑖(𝜉𝑘)          𝜉𝓁𝑖̄𝐴𝑖(𝜉𝑘)
+
+Hence, an initial estimate of 𝜷 is determined by first providing initial pole locations, which enables the computation of the numerator
+parameters as the solution to the convex problem (23).
+
+
+4.2. RIV estimation for additive systems
+
+
+   Next, the RIV estimation method used to solve the nonconvex optimization problem in (21) is introduced. First, the optimality
+conditions used in the method are established. The estimator is subsequently derived and finally an expression for the parameter
+covariance is provided.
+
+
+4.2.1. Criterion for optimality
+   The minimizers of the cost function in (21) satisfy the first-order optimality condition
+
+          1 ∑𝑁    𝟎=     ℜ{̂Φ (𝜔𝑘, 𝜷) 𝐖(𝜔𝑘) vec(𝐄(𝜔𝑘, 𝜷))} ,                                                                      (25)
+      𝑁
+              𝑘=1
+
+with the Jacobian matrix
+          ( 𝜕vec(𝐄(𝜔𝑘, 𝜷)) )𝖧   Φ (𝜔𝑘, 𝜷) =                                       .                                                                                  (26)
+                      𝜕𝜷⊤
+
+For the considered additive model parameterization the Jacobian corresponds to
+                                     [̂           )                  ) ]𝖧                          Φ𝖧𝐾 (𝜔𝑘, 𝜽𝐾         ,                                                                  (27)   Φ (𝜔𝑘, 𝜷) =  Φ𝖧1 (𝜔𝑘, 𝜽1    …̂
+                )where ̂Φ𝑖 (𝜔𝑘, 𝜽𝑖  for 𝑖= 1, … , 𝐾 is given by
+             [                                                                        ]𝖧                    −𝜉𝑘vec(𝐏𝑖(𝜉𝑘, 𝜽𝑖))         −𝜉𝑛𝑖𝑘vec(𝐏𝑖(𝜉𝑘, 𝜽𝑖))       𝐈𝑛u𝑛y             𝜉𝑚𝑖𝑘𝐈𝑛u𝑛y
+      Φ𝑖(𝜔𝑘, 𝜷) =          …                …                           .                             (28)
+                              𝜉𝓁𝑖𝑘𝐴𝑖(𝜉𝑘)                     𝜉𝓁𝑖𝑘𝐴𝑖(𝜉𝑘)          𝜉𝓁𝑖𝑘𝐴𝑖(𝜉𝑘)          𝜉𝓁𝑖𝑘𝐴𝑖(𝜉𝑘)
+
+Next, the first-order optimality condition (25) will be exploited to derive an estimator for the parameter vector 𝜷.
+
+                                                                6
+
+===== PDF PAGE 7 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+4.2.2. Derivation of the RIV estimator
+   The condition in (25) is nonlinear in the parameter vector 𝜷. A solution is obtained by reformulating (20) to a pseudolinear
+form which enables the RIV approach. For each submodel in the additive model structure, the residual can be reformulated into an
+unique pseudolinear regression, as stated in the following lemma.
+
+
+Lemma 1. The pseudolinear regression form of the residual (20) corresponding to the 𝑖th submodel is expressed as
+      vec(𝐄(𝜔𝑘, 𝜷)) = vec(̃𝐆𝑓,𝑖(𝜔𝑘, 𝜷)) −Φ⊤𝑖 (𝜔𝑘, 𝜷) 𝜽𝑖,                                                                    (29)
+
+with the regressor
+             [                                                                       ]⊤                    −𝜉𝑘vec(̃𝐆𝑖(𝜔𝑘, 𝜷))         −𝜉𝑛𝑖𝑘vec(̃𝐆𝑖(𝜔𝑘, 𝜷))       𝐈𝑛u𝑛y             𝜉𝑚𝑖𝑘𝐈𝑛u𝑛y
+      Φ𝑖(𝜔𝑘, 𝜷) =          …                …                           ,                            (30)
+                           𝐴𝑖(𝜉𝑘)                     𝐴𝑖(𝜉𝑘)           𝜉𝓁𝑖𝑘𝐴𝑖(𝜉𝑘)          𝜉𝓁𝑖𝑘𝐴𝑖(𝜉𝑘)
+and where vec(̃𝐆𝑓,𝑖(𝜔𝑘, 𝜷)) = 𝐴−1𝑖(𝜉𝑘) vec(̃𝐆𝑖(𝜔𝑘, 𝜷)) with vec(̃𝐆𝑖(𝜔𝑘, 𝜷)) the residual plant of the 𝑖th submodel, defined by
+      𝐆𝑖 (𝜔𝑘, 𝜷) = 𝐆(𝜔𝑘) − ∑  𝐏𝓁(𝜉𝑘, 𝜽𝓁).                                                                              (31)
+                                   𝓁=1,…,𝐾
+                                        𝓁≠𝑖
+
+Proof.  The residual (20) is rewritten for 𝑖= 1, … , 𝐾 according to
+                                    )                                𝐁𝑖 (𝜉𝑘
+                                                                         ,                                                                                 (32)      𝐄(𝜔𝑘, 𝜷) =̃ 𝐆𝑖 (𝜔𝑘, 𝜷) −         )                                     𝜉𝓁𝑖𝑘𝐴𝑖 (𝜉𝑘
+                    1    (                )̃               ))
+                                                                                                             ,                                                              (33)           =         )  𝜉𝓁𝑖𝑘𝐴𝑖 (𝜉𝑘 𝐆𝑖 (𝜔𝑘, 𝜷) −𝐁𝑖 (𝜉𝑘                       𝜉𝓁𝑖𝑘𝐴𝑖 (𝜉𝑘
+
+with ̃𝐆𝑖 defined in (31). Substituting the numerator and denominator polynomials (16) and (17), and vectorizing both sides, (33) yields
+                                                                        )                   )                          vec(̃𝐆𝑖(𝜔𝑘, 𝜷))         𝑎𝑛𝑖𝜉𝑛𝑖𝑘vec(̃𝐆𝑖(𝜔𝑘, 𝜷))   vec (𝐁𝑖,0          𝜉𝑚𝑖𝑘vec (𝐁𝑖,𝑚      vec(𝐄(𝜔𝑘, 𝜷)) =          )   + ⋯+            )     −         )                                      −⋯−          )   .                          𝐴𝑖 (𝜉𝑘                 𝐴𝑖 (𝜉𝑘             𝜉𝓁𝑖𝑘𝐴𝑖 (𝜉𝑘             𝜉𝓁𝑖𝑘𝐴𝑖 (𝜉𝑘
+
+This expression can directly be written in the form (29) using (19), thereby completing the proof. □
+
+   The residual formulation in (29) defines 𝐾 pseudolinear regressions. Introducing the stacked signals
+                  [                                      ]⊤   Υ (𝜔𝑘, 𝜷) =   vec(̃𝐆𝑓,1(𝜔𝑘, 𝜷)) …   vec(̃𝐆𝑓,𝐾(𝜔𝑘, 𝜷))       ,                                                           (34)
+                  [                              ]⊤
+                         Φ⊤𝐾 (𝜔𝑘, 𝜷)       ,                                                                    (35)   Φ (𝜔𝑘, 𝜷) =  Φ⊤1 (𝜔𝑘, 𝜷) …
+
+and the parameter matrix
+
+           ⎡ 𝜽1        𝟎  ⎤
+    = ⎢   ⋱       ⎥ ,                                                                                            (36)
+                      ⎢⎣  𝟎      𝜽𝐾   ⎥⎦
+
+which contains the elements of 𝜷 along the block diagonal, allows to write the equivalent optimality condition (25) for the 𝐾
+subproblems as
+  ∑𝑁    {̂           (                )}
+     ℜ  Φ(𝜔𝑘, 𝜷)𝐖(𝜔𝑘) Υ⊤(𝜔𝑘, 𝜷) −Φ⊤(𝜔𝑘, 𝜷)  = 𝟎.                                                               (37)
+       𝑘=1
+The solution to (37) is found iteratively by fixing 𝜷= 𝜷⟨𝑗⟩ at the 𝑗th iteration in (34), the regressor (35), and additionally the
+Jacobian (27), which leads to the following iterative procedure.
+
+Algorithm 1. Given an initial estimate 𝜷⟨0⟩ and tolerance 𝜖1, compute a new estimate until ‖𝜷⟨𝑗+1⟩−𝜷⟨𝑗⟩‖∕‖𝜷⟨𝑗⟩‖ < 𝜖1 using:
+          [ 𝑁                          ]−1 𝑁
+      ∑           ∑
+      ⟨𝑗+1⟩=     𝜱(𝜔𝑘, 𝜷⟨𝑗⟩)𝐖(𝜔𝑘)𝜱⊤(𝜔𝑘, 𝜷⟨𝑗⟩)      𝜱(𝜔𝑘, 𝜷⟨𝑗⟩)𝐖(𝜔𝑘)𝜰⊤(𝜔𝑘, 𝜷⟨𝑗⟩),                                        (38)
+                       𝑘=1̂                                             𝑘=1̂
+where the updated parameter vector 𝜷⟨𝑗+1⟩ is extracted from the block-diagonal coefficients of ⟨𝑗+1⟩, as described in (36).
+
+   The convergence point of the iterations described by (38) satisfies the first-order optimality condition in (25). As a result, the
+estimate corresponds to a stationary point of the cost function defined in (21), thereby ensuring local optimality. Since the original
+cost function is nonconvex, accurate initialization is critical to ensure convergence to the global optimum.
+
+
+Remark 2. As stability is not explicitly enforced in the estimator (38), the resulting model may contain unstable poles. A common
+approach for RIV estimators to address this is to reflect any unstable continuous-time poles across the imaginary axis at each
+
+                                                                7
+
+===== PDF PAGE 8 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+iteration [51]. Alternatively, if each submodel has a denominator of order 𝑛𝑖≤2, stability is directly enforced by constraining
+the denominator coefficients to be positive.
+
+
+Remark 3.  Note that the iterations described by (38) correspond to a RIV method, where ̂Φ is interpreted as the instrument
+matrixΦwith[42].Φ toFurthermore,the SK iterationsfor 𝐾=by [31].1, theTheiterationsmethodin can(38)becorrespondconsideredto asthea frequency-domainMIMO frequency-domainRIV methodvariantin [32],of theandSISOby approachreplacing
+introduced in [52].
+
+
+4.2.3. Estimator for the parameter covariance
+   The uncertainty of the estimates  is quantified using the parameter covariance matrix. The expression for estimating this
+covariance matrix is derived following a similar approach to that presented in [21, Chapter 9] and [46]; a detailed derivation
+of this result is beyond the scope of this paper. Specifically, an approximation of the parameter covariance of the estimator in (38)
+is given by
+        [   𝑁                         ]−1
+             1 ∑
+     𝜮̂𝜷=         Φ(𝜔𝑘,̂ 𝜷)̂ 𝜮̂𝐆(𝜔𝑘)̂ Φ𝖧(𝜔𝑘,̂ 𝜷)       .                                                                       (39)        𝑁                        𝑘=1̂
+
+where ̂𝜷 denotes the converged solution of (38), ̂Φ represents the Jacobian of (27) evaluated at ̂𝜷, and ̂𝜮̂𝐆(𝜔𝑘) is an estimate of the
+covariance matrix of the measured FRF [48]. The estimate obtained using (39) serves as the weighting matrix in the IPEM problem
+specified in (22).
+
+
+5. Structured identification of modal models
+
+
+   This section presents the solution procedure for the IPEM problem in (22), thereby providing contribution C2. First, the approach
+for obtaining an initial modal model is discussed. Subsequently, a solution method for the structured identification problem is
+provided for both general-viscously damped and proportionally damped mechanical systems. The procedure outlined below assumes
+that an estimate ̂𝜷, along with its corresponding covariance estimate ̂𝜮̂𝜷, is available.
+
+
+5.1. Initial modal model via SVD decomposition
+
+
+   To solve the IPEM problem, the estimated additive model is first used to derive an initial estimate of the modal parameter
+vector in (9). The eigenvalues can be computed exactly from the estimated denominator coefficients. The corresponding mode-
+shape vectors are initialized by reducing each estimated residue matrix to its best rank-one approximation. This is achieved via
+SVDs, which provides the optimal approximation in least-squares sense, as formalized below.
+
+                                                      ∑𝑟Theorem 1 (Eckart–Young–Mirsky [47]). Let 𝐀∈R𝑛×𝑚 have SVD 𝐀=    𝑖=1 𝜎𝑖𝐮𝑖𝐯⊤𝑖, with 𝜎1 ≥⋯≥𝜎𝑟> 0. The best rank-one
+approximation of 𝐀 in the Frobenius norm is 𝐀1 = 𝜎1𝐮1𝐯⊤1 .
+
+   This decomposition is applied to the residue matrices estimated in the first stage, where the parameterization (6) is considered for
+the general case, and (11) for the proportionally damped case. The estimates of the real residue matrices ̂𝐑flex𝑖   are directly available,
+whereas the complex residue matrices ̂𝐋𝑖 are obtained by rearranging (7) and (8), yielding
+             1     (̂        )
+     𝐋𝑖=           𝐍𝑖,0 + 𝜆𝑖̂𝐍𝑖,1   .                                                                                        (40)
+            𝜆𝑖−̄ 𝜆𝑖
+The𝐋𝑖=mode-shape𝐔𝜮𝐕𝖧. In thevectorsadditive𝝍𝑙,𝑖modeland 𝝍𝑟,𝑖structure,are initializedall rigid-bodyusing modesthe dominantare representedleft and collectivelyright singularby vectorsa singleofsubmodel,the SVD whereasdecompositionin the
+modal𝐑rbm≈∑𝑛rbmrepresentation𝑗=1 𝐑rbm𝑗   containsthey appearthe combinedas a sumcontributionover 𝑛rbm individualof all rigid-bodyrigid-bodymodes,modes.with Asits adominantresult, thesingularcorrespondingdirectionsresiduespanningmatrixthe
+rigid-body subspace. Consequently, the initial estimates for the rigid-body mode-shape vectors 𝝓𝑙,𝑗 and 𝝓𝑟,𝑗 are obtained from the
+first 𝑛rbm dominant singular vectors of the SVD ̂𝐑rbm = 𝐔𝜮𝐕𝖧. The mode-shape vectors for the proportional damping case are
+initialized following the same procedure.
+
+
+5.2. IPEM for modal model estimation
+
+
+  A key aspect of the IPEM problem (22) is the definition of the function 𝐟∶𝝆↦𝜷 which links the modal parameter vector (9) to
+the additive parameter vector (18). The function 𝐟 specifies how a given set of modal parameters is translated into the corresponding
+coefficients of the additive model representation. In essence, 𝝆 and 𝐟(𝝆) = 𝜷 describe the same system but expressed in different
+parameterizations, and 𝐟 provides the formal relationship between these two representations. For the considered model structures,
+the mapping 𝐟 allows the partitioning
+
+                                                                8
+
+===== PDF PAGE 9 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+       𝐟(𝝆) = [𝐠(𝝔1, … , 𝝔𝑛rbm)   𝐡1(𝝆1) …   𝐡𝑛flex(𝝆𝑛flex)]⊤,                                                                (41)
+where the function 𝐠∶[𝝔⊤1 , … , 𝝔⊤𝑛rbm]⊤↦𝜽1 maps the rigid-body mode parameter vectors of the modal representation to the
+corresponding additive model parameter vector, and each 𝐡𝑖∶𝝆𝑖↦𝜽𝑖 maps the parameter vector describing the 𝑖th flexible
+mode from modal representation to additive model representation. The explicit definition of the parameter mappings depend on
+the considered damping model and are provided in the subsequent subsections. A solution to the nonconvex problem in (22) can
+be obtained, e.g., using a Gauss–Newton (GN) procedure. At each iteration 𝑗, the residual
+
+       𝜺(𝝆) =̂ 𝜷−𝐟(𝝆),                                                                                                    (42)
+
+is linearized by a first-order Taylor expansion. This yields a local quadratic approximation of the cost function in terms of the
+parameter perturbation 𝛥𝝆, from which the optimal update is computed via linear regression. Thus, the GN iterations proceed as
+follows.
+
+Algorithm 2. Given an initial estimate 𝝆⟨0⟩ and tolerance 𝜖2, compute a new estimate until ‖𝝆⟨𝑗+1⟩−𝝆⟨𝑗⟩‖∕‖𝝆⟨𝑗⟩‖ < 𝜖2 by solving
+       𝝆⟨𝑗+1⟩=̂ 𝝆⟨𝑗⟩+ 𝛼arg min                                                2̂     ,                                                                      (43)
+                                                                 𝜮−1̂𝜷                           𝛥𝝆    ‖‖‖𝜺(𝝆⟨𝑗⟩) −𝐉(𝝆⟨𝑗⟩)𝛥𝝆‖‖‖
+
+where 𝛼 is a step-size parameter and 𝐉(𝝆⟨𝑗⟩) is the analytic Jacobian matrix evaluated at the current parameter estimate
+
+               𝜕𝐟(𝝆)
+        𝐉(𝝆⟨𝑗⟩) =                                                                                                          (44)
+              𝜕𝝆⊤                                               ||||̂𝝆⟨𝑗⟩.
+
+   The converged solution of the iterations in (43) provides a locally optimal estimate of the nonlinear least-squares problem (22).
+Since the cost function is nonconvex, global optimality cannot be guaranteed and the obtained solution depends on the chosen
+initialization. The following subsections provide the explicit forms of the parameter mappings, along with their associated Jacobians,
+for each of the considered model structures.
+
+
+5.2.1. Parameter mappings for general-viscously damped mechanical systems
+   For the general damping model, the mappings 𝐠 and 𝐡𝑖 are derived considering the second-order parameterization in (6), with
+the associated parameter vector defined in (9). The function 𝐠 links the modal and additive parameterizations of the rigid-body
+modes, and since the additive representation describes all rigid-body dynamics using a single submodel, 𝐠 amounts to summing the
+dyads of the 𝑛rbm rigid-body mode-shape vectors according to
+                           (𝑛rbm    )          ∑
+       𝐠(𝝔1, … , 𝝔𝑛rbm) = vec      𝝓𝑙,𝑗𝝓⊤𝑟,𝑗    .                                                                                (45)
+                                𝑗=1
+
+The function 𝐡𝑖 links the modal and additive parameterizations of the 𝑖th flexible mode, with 𝑖= 1, … , 𝑛flex. The mapping includes
+the relation between eigenvalues and quadratic denominator parameters and the construction of the rank-2 numerator matrices
+from the complex mode-shape vectors. Specifically,
+             [                              )            (̄                )⊤     (             )⊤]⊤                                                                                                                                                                         ,                              (46)       𝐡𝑖(𝝆𝑖) =  𝜆𝑖̄𝜆𝑖   −(𝜆𝑖+̄ 𝜆𝑖   −vec  𝜆𝑖𝝍𝑙,𝑖𝝍⊤𝑟,𝑖+ 𝜆𝑖̄𝝍𝑙,𝑖̄𝝍⊤𝑟,𝑖     vec  𝝍𝑙,𝑖𝝍⊤𝑟,𝑖+̄ 𝝍𝑙,𝑖̄𝝍⊤𝑟,𝑖
+
+where the first two entries correspond to the denominator coefficients, and the last two entries correspond to the numerator matrices.
+Since each mode is parameterized independently, the Jacobian in (44) takes a block-diagonal form
+             ⎡𝐒(𝝔1, … , 𝝔𝑛rbm)     𝟎   ⋯       𝟎     ⎤
+             ⎢      𝟎         𝐗1(𝝆1) ⋯       𝟎     ⎥       𝐉(𝝆) = ⎢                                          ⎥ ,                                                                 (47)
+             ⎢      ⋮          ⋮   ⋱       ⋮     ⎥
+                           ⎢⎣                   𝟎           𝟎   ⋯   𝐗𝑛flex(𝝆𝑛flex)⎥⎦
+where 𝐒 denotes the Jacobian of (45), and 𝐗𝑖 corresponds to the Jacobian of (46). The derivation of the Jacobians relies on the
+following identity, applicable to vectors and matrices of compatible dimensions
+
+       vec(𝐮𝐱⊤) = (𝐱⊗𝐈) 𝐮= (𝐈⊗𝐮) 𝐱,
+
+which allows dyadic vector products to be expressed in an affine form. Working out the derivatives leads for 𝐒 to
+                       [                                                     ]
+       𝐒(𝝔1, … , 𝝔𝑛rbm) =  𝝓𝑟,1 ⊗𝐈𝑛y    𝐈𝑛u ⊗𝝓𝑙,1 …   𝝓𝑟,𝑛rbm ⊗𝐈𝑛y    𝐈𝑛u ⊗𝝓𝑙,𝑛rbm   ,                                           (48)
+
+while the Jacobian 𝐗𝑖 pertaining to the 𝑖th flexible mode results in
+               ⎡     2ℜ(𝜆𝑖)             2ℑ(𝜆𝑖)         0     0     0     0  ⎤
+               ⎢     −2                0           0     0     0     0  ⎥
+       𝐗𝑖(𝝆𝑖) = ⎢                                                                 ⎥ ,                                         (49)
+               ⎢ 2 vec(ℜ(𝝍𝑙,𝑖𝝍⊤𝑟,𝑖))  −2 vec(ℑ(𝝍𝑙,𝑖𝝍⊤𝑟,𝑖))   𝐗𝑖,33   𝐗𝑖,34   𝐗𝑖,35   𝐗𝑖,36 ⎥
+                              ⎢⎣                     0                 0             𝐗𝑖,43   𝐗𝑖,44   𝐗𝑖,45   𝐗𝑖,46 ⎥⎦
+
+                                                                9
+
+===== PDF PAGE 10 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+Procedure 1 Two-stage approach for MIMO modal model estimation
+Input: FRF dataset {𝐺(𝑗𝜔𝑘)}𝑁𝑘=1, initialization {𝜔⟨0⟩𝑖                                                                                            , 𝜁⟨0⟩𝑖   }𝑛flex𝑖=1  , RIV tolerance 𝜖1, IPEM tolerance 𝜖2
+   Stage 1: additive model estimation
+  1: Construct ̄𝐴𝑖(𝑠) from {𝜔⟨0⟩𝑖   , 𝜁⟨0⟩𝑖   }𝑛flex𝑖=1  .
+  2: Solve the linear LS problem (23) to obtain ̂𝜼 and construct 𝜷⟨0⟩.
+  3: Solve the nonlinear LS problem (21) using the RIV Algorithm 1 to obtain ̂𝜷.
+  4: Compute ̂𝜮̂𝜷 using (39)
+   Stage 2: projection to modal model
+  5: Construct 𝝆⟨0⟩ from ̂𝜷 using SVDs
+  6: Solve the IPEM problem (22) using Algorithm 2 to obtain ̂𝝆.
+Output: Modal parameter vector estimate ̂𝝆
+
+
+
+with the submatrices 𝐗𝑖,𝑗𝑘 defined as
+
+          𝐗𝑖,33 = −̄𝜆𝑖(𝝍𝑟,𝑖⊗𝐈𝑛y) −𝜆𝑖(̄𝝍𝑟,𝑖⊗𝐈𝑛y),      𝐗𝑖,35 = −̄𝜆𝑖(𝐈𝑛u ⊗𝝍𝑙,𝑖) −𝜆𝑖(𝐈𝑛u ⊗̄ 𝝍𝑙,𝑖),
+          𝐗𝑖,34 = −𝑗̄𝜆𝑖(𝝍𝑟,𝑖⊗𝐈𝑛y) + 𝑗𝜆𝑖(̄𝝍𝑟,𝑖⊗𝐈𝑛y),   𝐗𝑖,36 = −𝑗̄𝜆𝑖(𝐈𝑛u ⊗𝝍𝑙,𝑖) + 𝑗𝜆𝑖(𝐈𝑛u ⊗̄ 𝝍𝑙,𝑖),
+          𝐗𝑖,43 = (𝝍𝑟,𝑖⊗𝐈𝑛y) + (̄𝝍𝑟,𝑖⊗𝐈𝑛y),            𝐗𝑖,45 = (𝐈𝑛u ⊗𝝍𝑙,𝑖) + (𝐈𝑛u ⊗̄ 𝝍𝑙,𝑖),
+          𝐗𝑖,44 = 𝑗(𝝍𝑟,𝑖⊗𝐈𝑛y) −𝑗(̄𝝍𝑟,𝑖⊗𝐈𝑛y),          𝐗𝑖,46 = 𝑗(𝐈𝑛u ⊗𝝍𝑙,𝑖) −𝑗(𝐈𝑛u ⊗̄ 𝝍𝑙,𝑖).
+
+5.2.2. Parameter mappings for proportionally damped mechanical systems
+   For proportionally damped systems, the mapping functions 𝐠 and 𝐡𝑖 are derived considering the second-order parameterization
+in (6), with the associated parameter vector defined in (9). The rigid-body mapping 𝐠 is identical to the expression in (45). For the
+𝑖th flexible mode, 𝑖= 1, … , 𝑛flex, the function 𝐡𝑖 takes the form
+           )   [                      )⊤]                                                                                ,                                                                             (50)        𝐡𝑖 (𝝆𝑖 = 𝜔2𝑖   2 𝜁𝑖𝜔𝑖   vec(𝝓𝑙,𝑖𝝓⊤𝑟,𝑖
+
+where the first two entries define the denominator coefficients, while the final entry contains the numerator terms constructed from
+the real mode-shape vectors. Finally, the Jacobian matrix takes the same form as in (44), but with the Jacobian 𝐗𝑖 of the 𝑖th flexible
+mode now computed according to
+
+                ⎡ 2𝜔𝑖    2𝜁𝑖      0         0     ⎤            )      𝐗𝑖 (𝝆𝑖 = ⎢  0    2𝜔𝑖      0         0     ⎥ .                                                                     (51)
+                                ⎢⎣                  0    0    𝝓𝑟,𝑖⊗𝐈𝑛y    𝐈𝑛u ⊗𝝓𝑙,𝑖   ⎥⎦
+
+5.3. Summary
+
+
+   The above derivations provide explicit parameter mappings and their associated Jacobians for both generally viscously damped
+and proportionally damped mechanical systems. These parameter mappings and their Jacobians are used to formulate and solve
+the IPEM problem, enabling the structured identification of modal models from the additive parameters estimated in the first stage
+and thereby completing the solution to the IPEM problem (22). A complete overview of the proposed two-stage MIMO modal
+identification framework is provided in Procedure 1.
+
+
+6. Experimental validation
+
+
+   Next, the two-stage identification procedure is experimentally validated on an experimental wafer-stage system. First, the
+experimental setup is introduced, followed by a discussion of the estimation process, and finally the results are presented.
+
+
+6.1. Experimental setup: experimental wafer-stage system
+
+
+   The considered experimental setup depicted in Fig. 2 is a prototype wafer stage system, which is designed as a lightweight
+mechanical structure to enable fast motions with high accelerations. The stage  is magnetically levitated by passive gravity
+compensators positioned at its corners, establishing a mid-air equilibrium, and is actively controlled in six motion degrees of freedom
+at a sampling rate of 10 kHz, achieving sub-micrometer accuracy. The system contains 17 actuators, with 13 voice-coil actuators
+in the 𝑧-direction and two Lorentz actuators for each 𝑥- and 𝑦-directions. To measure the position and orientation of the stage, the
+system includes seven positioning sensors, consisting of four linear encoders for the 𝑧-direction, two capacitance sensors for the
+𝑥-direction, and a single capacitance sensor for the 𝑦-direction.
+   The complete input–output dynamics of the wafer-stage system are described by a 7 × 17 transfer matrix. To simplify the
+presentation of the results, only the measurements in the out-of-plane direction are considered, namely translation along the 𝑧
+axis and rotations around the 𝑥 and 𝑦 axes. The corresponding input–output dynamics of this subset of actuators and sensors are
+
+                                                                10
+
+===== PDF PAGE 11 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+
+
+
+
+                                                   (a)                                                                       (b)
+
+
+Fig. 2. Wafer chuck with force frame extracted from the machine (left). Schematic overview of the featured actuators 𝑢𝑖 and sensors 𝑧𝑖 in the
+out-of-plane direction (right).
+
+
+
+
+
+Fig. 3. Overview of the experimental wafer-stage setup. The sensory equipment is mounted on the metrology frame (A), which is isolated from
+the baseframe (B) through an air suspension system (C). The linear encoders for the out-of-plane measurements and the capacitance sensors for
+the in-plane measurements are mounted on the pillars (D), which are attached to the metrology frame. The actuation system is mounted on the
+force frame (E), and the stage (F) is isolated from the force frame by a set of gravity compensators.
+
+
+
+described by a 4 × 13 transfer matrix. A schematic overview of the actuator and sensor layout in the out-of-plane direction is
+provided in Fig. 2. In addition, in Figs. 3 and 4 a detailed overview is provided of the experimental setup. The lightweight design of
+the stage results in high-order, lightly damped flexible dynamics that limit system performance, making accurate parametric models
+essential for achieving further performance improvements.
+
+
+6.2. Nonparametric modeling
+
+
+    First, an FRF model of the wafer-stage system is estimated to serve as the dataset for subsequent parametric identification. The
+system consists of 𝑛y = 4 outputs and 𝑛u = 13 inputs in the out-of-plane direction, with actuator and sensor positions shown in Fig. 2.
+The FRF model of the 4 × 13 out-of-plane plant dynamics is obtained using the robust best linear approximation approach described
+in [48, Chapter 3]. The experiments are performed in a closed-loop configuration since active control of the mid-air equilibrium is
+required to ensure stable operation. The plant FRF is derived using the indirect method, where the system is excited by 𝑛u single-axis
+random-phase multisine signals with a flat amplitude spectrum. The multisine excitation includes 10 periods and 10 realizations,
+resulting in a plant FRF consisting of 𝑁= 4000 complex data points spanning a frequency range of 0.25 Hz to 2000 Hz. Frequency
+lines below 20 Hz are discarded during parametric estimation due to low FRF quality in this range.
+
+                                                                11
+
+===== PDF PAGE 12 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+
+
+
+
+Fig. 4. Overview of the actuation system. The force frame is shown extracted from the machine, with the locations of the in-plane Lorentz motors
+for the 𝑥-direction shown in (A) and the actuator locations for the 𝑦-direction shown in (B). For the out-of-plane motion direction, 13 voice-coil
+actuators are used, with a single actuator shown in (C). Four passive gravity compensators are positioned at the corners (D) to compensate the
+gravitational load of the stage.
+
+
+
+
+
+Fig. 5. CMIF plot used for model order selection and initialization of the mode frequencies (left) with additional zoomed-in view (right), with
+𝜎𝑖(𝜔𝑘) denoting the 𝑖th singular value of the measured FRF dataset at frequency 𝑘. The frequency locations of the flexible modes are indicated
+by peaks in the singular-value plot, with multiplicity determined by the number of singular values peaking at each frequency.
+
+
+
+6.3. Model structure and model-order selection
+
+
+   Next, the model structure and corresponding model orders used for parametric identification are specified. The general damping
+model structure is considered; however, it is noted that since the wafer-stage system is well described by a proportional damping
+assumption, the general formulation yields only a slight improvement in performance for this specific case. The wafer-stage system
+exhibits 𝑛rbm = 3 rigid-body modes in the out-of-plane direction, corresponding to translation along the 𝑧-axis and rotations around
+the 𝑥- and 𝑦-axes.
+   The number of flexible modes 𝑛flex is determined using the CMIF [50], which is computed from the squared singular values of
+the FRF matrix at each frequency. The corresponding modal frequencies are identified from the peak locations in the CMIF, while
+mode multiplicity is inferred from the number of singular values peaking at the same frequency. From the CMIF, shown in Fig. 5,
+𝑛flex = 17 distinct flexible modes are identified. Thus, the used model structure consists of 𝑛rbm = 3 rigid-body modes, 𝑛flex = 17
+flexible modes, and an additional DC gain to capture the effect of higher-order dynamics, which results in a 40th-order parametric
+model.
+
+                                                                12
+
+===== PDF PAGE 13 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+
+
+
+
+Fig. 6. Cost-function evolution over iterations. Stage 1 (𝑗≤10) corresponds to the (    ) RIV algorithm, while Stage 2 (𝑗> 10) applies the (    )
+IPEM algorithm.
+
+
+
+
+
+Fig. 7. Normalized singular values of the estimated residue matrices after the first stage (𝑗= 10). The mode at 𝑓= 0 Hz shows 3 dominant
+directions, consistent with the expected 𝑛rbm = 3, whereas the flexible modes mostly show a single dominant direction. The DC-gain is full-rank
+as it approximates the higher-order modes. Since the flexible modes are not strictly rank-one, they cannot be represented exactly by a modal
+model, motivating the need for further refinement.
+
+
+
+6.4. Weighting filter design
+
+
+   To balance the contribution of different frequency regions in the identification, a weighting filter is introduced. An element-wise
+inverse plant magnitude weighting is selected, given by
+               (     𝐖(𝜔𝑘) = diag vec (|𝐆(𝜔𝑘)|))−1 .                                                                                     (52)
+
+The inverse plant magnitude weighting effectively transforms the matrix residual (20) from absolute to relative error criterion. This
+prevents overemphasizing frequencies with a large magnitude, which can dominate the estimation process, especially for systems
+containing integrator dynamics.
+
+
+6.5. Initialization
+
+
+   Due to the non-convexity of the cost function in (21), accurate initialization of the estimator (38) is essential. To initialize the
+stage one estimation problem, initial pole locations must be provided, which enable the numerators to be computed using the convex
+LS problem (23). The pole locations are constructed from initial estimates 𝜔𝑖 and 𝜁𝑖, where the natural frequencies 𝜔𝑖 are set to
+the CMIF peak frequencies, and damping ratios 𝜁𝑖 are uniformly assigned a value of 0.01, representative of lightly damped flexible
+modes.
+
+                                                                13
+
+===== PDF PAGE 14 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+
+
+
+
+  Fig. 8. Element-wise Bode magnitude plot of the FRF measurement 𝐆(𝜔𝑘) (    ) and the estimated parametric modal model ̂𝐏𝑚(𝑗𝜔𝑘) (     ).
+
+
+
+
+
+Fig. 9. Bode magnitude plot (top) with the corresponding residual (bottom). Shown are the FRF measurement 𝐆(𝜔𝑘) (     ), the estimated
+parametric modal model ̂𝐏𝑚(𝑗𝜔𝑘) (     ), and the residual 𝐄𝑚(𝑗𝜔𝑘) (     ).
+
+
+
+6.6. Results
+
+
+   The two-stage parametric identification procedure is applied to estimate a parametric model of the wafer-stage system. In the
+first stage, an additive model is estimated by solving (21) using the RIV approach. In the second stage, the resulting estimate is
+projected onto a modal model by solving the IPEM problem (22), which is implemented using available gradient-based numerical
+solvers in MATLAB. In Fig. 6, the evolution of the cost function (21) is shown. It is emphasized that the RIV method does not
+guarantee monotonic convergence in general but typically demonstrates fast convergence to a locally optimal solution. Fig. 7 shows
+the singular value distribution of the estimated residue matrices after the first stage (𝑗= 10). This distribution reflects the extent
+to which the model approximates an ideal modal form. In an exact modal representation of flexible modes, the residue matrices in
+(12) must be exactly rank one. However, the estimated residue matrices contain additional nonzero singular values, with the largest
+discrepancy for the modes around 500 Hz and 1800 Hz, motivating the need for further refinement. The rigid-body mode shows
+
+                                                                14
+
+===== PDF PAGE 15 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+
+
+
+
+Fig. 10. Experimentally identified mode shapes of the experimental wafer-stage system (actuator side) for the first 12 modes. The shapes are
+interpolated using the thin-plate spline method introduced in [12]. The first 3 modes correspond to rigid-body modes, while the remaining 9 are
+flexible modes.
+
+
+
+
+
+Fig. 11. Theoretical mode shapes obtained from the FEM model of the wafer-stage system for the first 12 nontrivial out-of-plane modes. The
+shapes are interpolated onto a regular grid using the same thin-plate spline procedure as used for the experimentally identified modes. The first
+3 modes represent rigid-body motion, while the remaining 9 correspond to flexible structural modes.
+
+
+
+three dominant singular values, consistent with 𝑛rbm = 3, and since the DC gain must approximate many higher-order modes, its
+residue matrix is expected to be full rank.
+   Next, the second-stage IPEM problem defined in (43) is solved. First, an initial modal model is computed using the SVD-based
+decomposition, which is subsequently refined through the projection step. The frequency response of the identified modal model
+
+                                                                15
+
+===== PDF PAGE 16 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+is shown in Fig. 8, together with the FRF measurement used in the estimation. Furthermore, Fig. 9 shows the frequency response
+of individual plant entries, along with the corresponding model error. These figures shows a good agreement between the modal
+model and the FRF over the complete frequency range. In the frequency range around 500 Hz, the modeling error is slightly larger,
+suggesting either the presence of higher mode multiplicities or of unmodeled dynamics not captured by the modal-model structure.
+    Finally, Fig. 10 visualizes the estimated mode-shape vectors at the actuator side. Real-mode shape-vectors are provided
+corresponding to the proportionally damped model structure, which are interpolated using thin-plate splines (see [12] for details).
+In addition, Fig. 11 shows the theoretical mode shapes obtained from a Finite-Element Method (FEM) analysis of the wafer-stage
+system, enabling a qualitative comparison between the estimated and modeled dynamics. Details of the FEM model are provided in
+Appendix B. The first three modes correspond to rigid-body motion, while the remaining modes represent flexible dynamics. The
+first nine flexible modes show a clear correspondence between the experimental and FEM mode shapes, whereas the higher modes
+show deviations due to the limited spatial resolution of the available actuators and sensors. These mode shapes provide valuable
+insight into the spatial deformation behavior of the wafer-stage system and support both controller design and system analysis.
+
+
+7. Conclusions
+
+
+   This paper introduced a parametric identification method for complex, MIMO mechanical systems in a modal model structure,
+that accommodates both general-viscous and proportional damping formulations. By decomposing the structured identification
+problem into two sequential estimation stages, the proposed framework enables computationally efficient estimation of modal
+models for high-dimensional systems. Experimental validation on a prototype wafer-stage system with 13 actuators and 4 sensors
+produced an accurate 40th-order modal model, comprising three rigid-body modes and 17 flexible modes, that closely matches the
+measured FRF. These results demonstrate the method’s effectiveness and robustness in modeling the dynamics of high-dimensional
+industrial systems.
+
+
+CRediT authorship contribution statement
+
+
+  M. van der Hulst: Writing – review & editing, Writing – original draft, Visualization, Validation, Software, Methodology,
+Investigation, Formal analysis, Data curation, Conceptualization. R.A. González: Writing – review & editing, Visualization,
+Supervision, Methodology, Formal analysis, Conceptualization. K. Classens: Writing – review & editing, Supervision, Methodology,
+Investigation, Formal analysis, Conceptualization. P. Tacx: Writing – review & editing, Methodology, Conceptualization. N. Dirkx:
+Writing – review & editing, Supervision, Methodology, Conceptualization. J. van de Wijdeven: Writing – review & editing,
+Supervision, Methodology, Conceptualization. T. Oomen: Writing – review & editing, Supervision, Resources, Project administration,
+Methodology, Funding acquisition, Conceptualization.
+
+
+Declaration of competing interest
+
+
+   The authors declare that they have no known competing financial interests or personal relationships that could have appeared
+to influence the work reported in this paper.
+
+
+Appendix A. Modal representations of mechanical systems
+
+
+   This Appendix derives the modal form for the general-viscous damping case in (2) and for the proportional damping case in
+(11). Finally, a minimal and real state-space representation is provided describing both forms.
+
+
+A.1. General-viscously damped systems
+
+
+    First, the general case is considered, where the damping matrix 𝐃 can be an arbitrary matrix. The system of equations in (1) are
+written in the descriptor state-space form
+
+        𝐄̇𝐱(𝑡) = 𝐀𝐱(𝑡) + 𝐁𝐮(𝑡),
+                                                                                                                         (53)
+          𝐲(𝑡) = 𝐂𝐱(𝑡),
+
+with the state 𝐱= [𝐪⊤,̇ 𝐪⊤]⊤ and with the system matrices defined as
+       [𝐃 𝐌]     [−𝐊   𝟎 ]      [𝐅 ]         [       ]
+    𝐄=                  , 𝐀=                    , 𝐁=        , 𝐂= 𝐐   𝟎  .                                                         (54)
+      𝐌   𝟎           𝟎  𝐌         𝟎
+
+A coordinate transformation to a modal form is obtained by solving the generalized eigenvalue problem
+
+     (𝐀−𝜆𝑖𝐄)𝐯𝑖= 𝟎,  𝑖= {1 … 2𝑛},                                                                                     (55)
+where 𝐯𝑖∈C2𝑛 is the complex mode-shape vector, normalized according to 𝐯⊤𝑖𝐄𝐯𝑖= 1, and 𝜆𝑖∈C is the corresponding eigenvalue
+given in (5). The state relation described by the matrices (54) enables the modal matrix 𝐕= [𝐯1, … , 𝐯2𝑛] to be partitioned as
+𝐕= [𝐔⊤, 𝜦𝐔⊤]⊤, with 𝐔∈C𝑛×2𝑛 containing the unique mode-shape information, and the matrix 𝜦= diag([𝜆1, … , 𝜆2𝑛]) contains
+
+                                                                16
+
+===== PDF PAGE 17 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+the eigenvalues along the main diagonal. The descriptor system (53) is transformed to a modal system with states 𝐱𝑚∈R2𝑛 by
+substituting 𝐱(𝑡) = 𝐕𝐱𝑚(𝑡) followed by premultiplication with 𝐕⊤ to obtain
+       𝐱𝑚(𝑡) = 𝜦𝐱𝑚(𝑡) + 𝜳⊤𝑟𝐮(𝑡),
+                                                                                                                         (56)
+          𝐲(𝑡) = 𝜳𝑙𝐱𝑚(𝑡),
+where 𝜳⊤𝑟 = 𝐔⊤𝐅= [𝝍𝑟,1, … , 𝝍𝑟,2𝑛]⊤  is the modal input matrix, 𝜳𝑙= 𝐐𝐔=  [𝝍𝑙,1, … , 𝝍𝑙,2𝑛] is the modal output matrix, and
+𝝍𝑙,𝑖∈C𝑛y, 𝝍𝑟,𝑖∈C𝑛u are the complex left and right mode-shape vectors, respectively. The transfer matrix representation of (56) is
+obtained using the Laplace transform, yielding
+      𝐏𝑚(𝑠) = 𝜳𝑙 (𝑠𝐈2𝑛−𝜦)−1 𝜳⊤𝑟,                                                                                        (57)
+
+which can equivalently be written as a first-order partial-fraction expansion
+     ∑2𝑛 𝝍𝑙,𝑖𝝍⊤𝑟,𝑖
+      𝐏𝑚(𝑠) =                     .                                                                                                (58)
+                  𝑖=1 𝑠−𝜆𝑖
+For real-valued state matrices in (54), the eigenvalues 𝜆𝑖 and mode-shape vectors 𝐯𝑖 appear as complex conjugate pairs. This property
+enables the first-order form to be partitioned according to
+     ∑𝑛  𝝍𝑙,𝑖𝝍⊤𝑟,𝑖    𝝍𝑙,𝑖̄𝝍⊤𝑟,𝑖
+      𝐏𝑚(𝑠) =                +̄               ,                                                                                      (59)
+                  𝑖=1 𝑠−𝜆𝑖     𝑠−̄ 𝜆𝑖
+
+which after introducing the partitioning of rigid-body and flexible modes, yields the form in (2), concluding the derivation.
+
+
+A.2. Proportionally-damped systems
+
+
+   For proportionally damped systems, the damping matrix 𝐃 is such that the damped system shares the same modal basis as
+the undamped system. Hence, a coordinate transform to modal coordinates can be obtained by solving the generalized eigenvalue
+problem for the undamped system
+
+     (𝐊−𝜔2𝑖𝐌)𝝓𝑖= 𝟎,  𝑖= {1, … , 𝑛},                                                                                   (60)
+where 𝝓𝑖∈R𝑛 are the mode-shape vectors, which are normalized with respect to the mass matrix according to 𝝓⊤𝑖𝐌𝝓𝑖= 1. By
+substituting 𝐪(𝑡) = Φ𝐪𝑚(𝑡) in (1), followed by pre-multiplication with Φ⊤, the equations of motion in modal coordinates are obtained
+
+       𝐪𝑚(𝑡) + 2𝐙Ω̇𝐪𝑚(𝑡) + Ω2𝐪𝑚(𝑡) = Φ⊤𝑟𝐮(𝑡),
+                                                                                                                         (61)
+        𝐲(𝑡) = Φ𝑙𝐪𝑚(𝑡),
+with Ω= diag([𝜔1, … , 𝜔𝑛]), 𝐙= diag([𝜁1, … , 𝜁𝑛]) and where Φ⊤𝑟= Φ⊤𝐅= [𝝓𝑟,1, … , 𝝓𝑟,𝑛] is the modal input matrix and Φ𝑙= 𝐐Φ =
+[𝝓𝑙,1, … , 𝝓𝑙,𝑛] is the modal output matrix. The transfer matrix representation is obtained through the Laplace transform
+      𝐏𝑚(𝑠) = Φ𝑙 (𝑠𝐈2𝑛+ 2𝐙Ω+ Ω2)−1 Φ⊤𝑟,                                                                                (62)
+
+which can equivalently be written as a second-order partial-fraction expansion
+     ∑𝑛      𝝓𝑙,𝑖𝝓⊤𝑟,𝑖
+      𝐏𝑚(𝑠) =                                    ,                                                                                        (63)
+                  𝑖=1 𝑠2 + 2𝜁𝑖𝜔𝑖𝑠+ 𝜔2𝑖
+
+which corresponds to the provided form in (11). Note that (63) is a special case of the general form and, under an appropriate
+scaling of the mode-shape vectors, directly follows from (59) (see [20] for a proof).
+
+
+A.3. State-space representation
+
+
+   For control applications it is often preferable to work with a real-valued, minimal state-space model. A real realization of (56)
+is obtained via a similarity transformation with the transformation matrix
+            [̄𝜦𝑛   −𝐈𝑛 ]    𝐓=                      ,                                                                                                   (64)
+          𝜦𝑛   −𝐈𝑛
+
+where 𝜦𝑛= diag([𝜆1, … , 𝜆𝑛]) contains the 𝑛 unique eigenvalues along the diagonal. Applying the similarity transform yields the
+transformed system
+            [̇       ]   ⎡   𝟎            𝐈𝑛̃   Φ⊤𝑟  ⎤ [       ]          𝐱𝑚(𝑡)                                   𝐱𝑚(𝑡)           = ⎢ −Ω2  −2𝐙Ω  Φ⊤𝑟  ⎥                   ,                                                                    (65)
+            𝐲(𝑡)            ⎢⎣   Φ𝑙̃    Φ𝑙     𝟎     ⎥⎦    𝐮(𝑡)
+where Φ𝑟,̃ Φ𝑟∈R𝑛u×𝑛, Φ𝑙,̃ Φ𝑙∈R𝑛y×𝑛 are the real modal input and output matrices, respectively. Furthermore, the state-space form
+of (61) directly corresponds to (65) with ̃Φ𝑟,̃ Φ𝑙= 𝟎. Hence, the key difference between modal forms is that the general damping
+
+                                                                17
+
+===== PDF PAGE 18 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+
+
+
+
+                                                 Fig. 12. FEM model of the wafer-stage system.
+
+
+
+model introduces an additional coupling between the position and velocity of each modal state whereas the proportional damping
+model results in each modal state depending solely on position. The state-space form (65) provides a real and minimal representation
+of the mechanical system described by (1) for both damping models and can be constructed directly using the parameters estimated
+in the two-stage identification procedure.
+
+
+Appendix B. FEM model OAT
+
+
+   The FEM model is derived from a Siemens NX geometry of the wafer stage and discretized using tetrahedral elements, resulting
+in a mesh with 85 262 nodes and 259 185 elements. The wafer stage is modeled as a thin rectangular structure with a width of 0.6
+[m], length 0.6 [m] and a height of 45 [mm], which for the considered material properties leads to a mass of approximately 8.6
+[kg]. The FEM model is used to compute the theoretical mode shapes and eigenfrequencies of the experimental wafer-stage system,
+which serve as a reference for validating the experimentally identified modes. The FEM model can be seen in Fig. 12.
+
+
+
+Data availability
+
+
+   Data will be made available on request.
+
+
+
+References
+
+
+  [1]  T. Söderström, P. Stoica, System Identification, Prentice Hall, 2001.
+  [2] M. Van De Wal, G. Van Baars, F. Sperling, O. Bosgra, Multivariable feedback control design for high-precision wafer stage motion, Control Eng. Pract. 10
+      (2002) 739–755.
+  [3]  R. Van Herpen, T. Oomen, E. Kikken, M. Van De Wal, W. Aangenent, M. Steinbuch, Exploiting additional actuators and sensors for nano-positioning robust
+      motion control, Mechatronics 24 (6) (2014) 619–631.
+  [4] R.M. Schmidt, G. Schitter, J. van Eijk, The Design of High Performance Mechatronics, IOS Press BV, Delft, 2011.
+  [5] M. Heertjes, H. Butler, N. Dirkx, S. van der Meulen, R. Ahlawat, K. O’Brien, J. Simonelli, K. Teng, Y. Zhao, Control of Wafer Scanners: Methods and
+      Developments, in: American Control Conference, Denver, 2020, pp. 3686–3703.
+  [6] M. Steinbuch, T. Oomen, H. Vermeulen, Motion control, mechatronics design, and Moore’s law, IEEJ J. Ind. Appl. 11 (2) (2022) 245–255.
+  [7]  K. Classens, M. Heemels, T. Oomen, From fault diagnosis and predictive maintenance to control reconfiguration, DSPE Mikroniek 5 (2023) 5–12.
+  [8]  J. M. M. Silva, N. M. M. Maia, Modal Analysis, Research Studies Press, Taunton, Baldock, U.K., 1997.
+  [9]  D. Ewins, Modal Analysis and Testing, second ed., Research Studies Press, Baldock, 2000.
+[10]  S. Skogestad, I. Postlethwaite, Multivariable Feedback Control, Analysis and Design, second ed., John Wiley and Sons, 2006.
+[11] K.W. Verkerk, J. Achterberg, C.M.M. Van Lierop, S. Weiland, Modal observer design for a flexible motion system with state dependent sensor positions,
+        in: Conference on Decision and Control, Maui, Hawaii, 2012, pp. 4440–4445.
+[12]  R. Voorhoeve, R. De Rozario, W. Aangenent, T. Oomen, Identifying position-dependent mechanical systems: A modal approach applied to a flexible wafer
+       stage, IEEE Trans. Control Syst. Technol. 29 (1) (2021) 194–206.
+[13]  K. Classens, M. Mostard, J. Van De Wijdeven, W. Heemels, T. Oomen, Fault detection for precision mechatronics: Online estimation of mechanical
+      resonances, in: IFAC Modelling, Estimation and Control Conference, Vol. 55, No. 37, New Jersey, USA, 2022, pp. 746–751.
+[14]  K. Classens, R.A. González, T. Oomen, Recursive identification of structured systems: An instrumental-variable approach applied to mechanical systems,
+       Eur. J. Control (2025) 101238.
+[15] M.M. Da Silva, W. Desmet, H.V. Brussel, Design of mechatronic systems with configuration-dependent dynamics: Simulation and optimization, IEEE/ASME
+       Trans. Mechatronics 13 (6) (2008) 638–646.
+[16] M. Dorosti, R.H. Fey, M.F. Heertjes, H. Nijmeijer, Iterative Pole–Zero model updating: A combined sensitivity approach, Control Eng. Pract. 71 (2018)
+      164–174.
+[17]  J. Vayssettes, G. Mercère, New developments for experimental modal analysis of aircraft structures, in: MATEC Web of Conferences, vol. 20, EDP Sciences,
+      2015.
+[18]  P. Tacx, Identification and Control of Overactuated Mechatronic Systems (Ph.D. thesis), Eindhoven University of Technology, Eindhoven, 2024.
+[19] M. Zhang, F. Xu, Variational mode decomposition based modal parameter identification in civil engineering, Front. Struct. Civ. Eng. 13 (5) (2019)
+      1082–1094.
+[20]  B. De Kraker, A Numerical-Experimental Approach in Structural Dynamics, Shaker Publishing, Maastricht, Netherlands, 2004.
+
+                                                                18
+
+===== PDF PAGE 19 =====
+M. van der Hulst et al.                                                                             Mechanical Systems and Signal Processing 247 (2026) 113948
+
+
+[21]  L. Ljung, System Identification: Theory For The User, second ed., Prentice Hall, 1999.
+[22]  B. Gustavsen, A. Semlyen, A robust approach for system identification in the frequency domain, IEEE Trans. Power Deliv. 19 (3) (2004) 1167–1173.
+[23] M. Fazel, Matrix Rank Minimization with Applications (Ph.D. thesis), Stanford University, Stanford, 2002.
+[24] W. Gawronski, Advanced Structural Dynamics and Active Control of Structures, Springer, 2004.
+[25] M. Gilson, J.S. Welsh, H. Garnier, A frequency localizing basis function-based IV method for wideband system identification, IEEE Trans. Control Syst.
+      Technol. 26 (1) (2018) 329–335.
+[26]  R. Voorhoeve, T. Oomen, R. Van Herpen, M. Steinbuch, On numerically reliable frequency-domain system identification: new connections and a comparison
+       of methods, in: Proceedings of the 19th IFAC World Congress, Cape Town, South Africa, 2014, pp. 10018–10023.
+[27]  R. Van Herpen, T. Oomen, M. Steinbuch, Optimally conditioned instrumental variable approach for frequency-domain system identification, Automatica
+     50 (9) (2014) 2281–2293.
+[28]  B.  Peeters, H. Van Der Auweraer,  P. Guillaume,  J.  Leuridan, The PolyMAX frequency-domain method: A new  standard  for modal parameter
+      estimation? Shock. Vib. 11 (3–4) (2004) 395–409.
+[29]  B. Peeters, H. Van Der Auweraer, PolyMax: a revolution in operational modal analysis, in: 1st International Operational Modal Analysis Conference,
+      Copenhagen, Denmark, 2005.
+[30]  D.S. Bayard, High-order multivariable transfer function curve fitting: Algorithms, sparse matrix methods and experimental results, Automatica 30 (9) (1994)
+      1439–1444.
+[31]  C. Sanathanan, J. Koerner, Transfer Function Synthesis as a Ratio of Two Complex Polynomials, Technical report, Atomic Energy Commission, Ohio, 1961,
+      pp. 101–110.
+[32]  R.S. Blom, P. Van Den Hof, Multivariable frequency domain identification using IV-based linear regression, in: Conference on Decision and Control, 2010,
+      pp. 1148–1153.
+[33]  A. Semlyen, Rational approximation of frequency domain responses by vector fitting, IEEE Trans. Power Deliv. 14 (3) (1999).
+[34] M. Civera, G. Calamai, L. Zanotti Fragonara, Experimental modal analysis of structural systems by using the fast relaxed vector fitting method, Struct.
+       Control. Health Monit. 28 (4) (2021).
+[35]  P. Verboven, P. Guillaume, B. Cauberghe, Multivariable frequency-response curve fitting with application to modal parameter estimation, Automatica 41
+      (10) (2005) 1773–1782.
+[36]  J. Vayssettes, G. Mercère, P. Vacher, R.A. De Callafon, Frequency-domain identification of aircraft structural modes from short-duration flight tests, Internat.
+        J. Control 87 (7) (2014) 1352–1372.
+[37]  E. Reynders, System identification methods for (operational) modal analysis: Review and comparison, Arch. Comput. Methods Eng. 19 (1) (2012) 51–124.
+[38]  R. Voorhoeve, R. de Rozario, T. Oomen, Identification for motion control: Incorporating constraints and numerical considerations, in: American Control
+      Conference, IEEE, Boston, 2016, pp. 6209–6214.
+[39]  J. Vayssettes, G. Mercere, Y. Bury, V. Pommier-Budinger, Structured model identification algorithm based on constrained optimisation, in: European Control
+      Conference, IEEE, Linz, Astria, 2015, p. 306.
+[40]  G. Mercere, O. Prot, J.A. Ramos, Identification of parameterized gray-box state-space systems: From a black-box linear time-invariant representation to a
+       structured one, IEEE Trans. Autom. Control 59 (11) (2014) 2873–2885.
+[41]  C. Yu, L. Ljung, M. Verhaegen, Identification of structured state-space models, Automatica 90 (2018) 54–61.
+[42]  P. Young, A. Jakeman, Refined instrumental variable methods of recursive time-series analysis, Internat. J. Control 31 (1980) 741–764.
+[43]  T. Söderström, P. Stoica, B. Friedlander, An indirect prediction error method for system identification, Automatica 27 (1) (1991) 183–188.
+[44]  K. Verbaan, Robust Mass Damper Design for Bandwidth Increase of Motion Stages (Ph.D. thesis), Eindhoven University of Technology, Eindhoven, 2015.
+[45] M. van der Hulst, R.A. González, K. Classens, P. Tacx, N. Dirkx, J. van de Wijdeven, T. Oomen, Frequency domain identification for multivariable motion
+       control systems: Applied to a prototype wafer stage, 2025, arXiv:2503.02869.
+[46]  R.A. González, M. Van Der Hulst, K. Classens, T. Oomen, Statistically optimal structured additive MIMO continuous-time system identification, 2025,
+      arXiv:2505.14169.
+[47]  R.A. Horn, C.R. Johnson, Matrix Analysis, second ed., Cambridge University Press, Cambridge, 2013.
+[48]  R. Pintelon, J. Schoukens, System Identification, second ed., John Wiley & Sons, New Jersey, 2012.
+[49]  P. Tacx, M. van de Vosse, R. Voorhoeve, G. Witvoet, M. Heertjes, T. Oomen, Spatio-temporal modeling for overactuated motion control, Mechatronics 105
+      (2025).
+[50]  C.Y. Shih, Y.G. Tsuei, R.J. Allemang, D.L. Brown, Complex mode indication function and its applications to spatial domain parameter estimation, Mech.
+       Syst. Signal Process. 2 (4) (1988) 367–377.
+[51]  H. Garnier, L. Wang, Identification of Continuous-time Models from Sampled Data, in: Advances in Industrial Control, Springer London, 2008.
+[52]  R.A. González, K. Classens, C.R. Rojas, J.S. Welsh, T. Oomen, Identification of additive continuous-time systems in open and closed-loop, Automatica 173
+      (112013) (2024).
+
+
+
+
+
+                                                                19

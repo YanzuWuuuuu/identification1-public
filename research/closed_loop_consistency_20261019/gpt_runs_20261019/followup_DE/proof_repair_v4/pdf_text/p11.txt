@@ -1,0 +1,430 @@
+===== PDF PAGE 1 =====
+2013 American Control Conference (ACC)
+Washington, DC, USA, June 17-19, 2013
+
+
+ Frequency-domain instrumental variable based method for wide band
+                        system identiﬁcation
+
+                         Marion Gilson1, James S. Welsh2, Hugues Garnier1
+
+
+  Abstract— The aim of this paper  is to propose an instru-   even when the system is not included into the model class.
+mental variable (IV) solution for wide-band frequency domain   From  this  perspective,  the IV method  offers a  solution
+identiﬁcation. The focus is ﬁrst on the extension of the reﬁned                                                                   to the prediction error method in the frequency domain
+IV method  for continuous-time model identiﬁcation  to the
+                                                         framework. In the literature, an effective and reliable IV-frequency domain. Then, an iterative IV scheme coupled with
+an appropriate frequency localising basis function is developed   based algorithm known for time-domain identiﬁcation  is
+to provide consistent results in the case of highly resonant    the Reﬁned Instrumental Variable (RIVC, or SRIVC for its
+wide-band systems. Finally, to illustrate the performance of the   simpliﬁed version) algorithm [21], [23]. This algorithm has
+proposed approach, a representative Monte Carlo simulation                                                       been recently formulated for frequency domain identiﬁcation
+as well as a practical case are presented.
+                                                              of output error models [2] and shown to give satisfactory
+                                                                         results.
+                          I. INTRODUCTION                     The IV method is based on the inversion of the normal
+                                                            matrix which is known to be sensitive to both the dynam-  The instrumental variable (IV) technique of identiﬁcation
+                                                                      ics and bandwidth of the system, hence, can lead to  ill-has been applied with success to a wide variety of prob-
+                                                                conditioning. This ill-conditioning has been well studied forlems (see e.g. [16], [22], [15]). This paper focuses on its
+                                                                the least squares solution [6]. Even though the IV algorithmapplication to frequency domain identiﬁcation of linear time-
+                                                                    offers a nice solution to remove the bias of the least squaresinvariant systems. There are many application ﬁelds such as
+                                                    method in case of noisy measurements,  it  still  relies onmechanical engineering, vibrational analysis and microwave
+                                                                the use of the normal matrix. A poor conditioning of thissystems where data are collected by a frequency analyzer
+                                                            matrix results in poor or erroneous estimates of the systemgiven access to the signal transforms instead of samples of
+                                                              parameters. This problem especially occurs when identifyingthe input/output. A thorough analysis of frequency domain
+                                                          systems with a large dynamic range.identiﬁcation may be found in the work of [12]. Several
+                                                              Several works have been developed to improve the condition-advantages exist for the case of frequency domain identi-
+                                                             ing of the normal matrix for a variety of reasons: to overcomeﬁcation over that of identiﬁcation in the time domain [11],
+                                                           a poor low frequency ﬁt [13], to improve the numerical[9]. These advantages include: the ease of noise reduction
+                                                                 properties of the normal matrix by the use of orthogonal(only frequencies where excitation is provided are used in the
+                                                          polynomials [1] or orthogonal basis functions [18], [10].estimation procedure), data reduction (through the use of a
+                                                       However, as demonstrated in [19], there is still signiﬁcantnon-parametric model of the system frequency response), the
+                                                                   ill-conditioning  associated with  all  these methods whenease of combining data from different experiments and model
+                                                             considering systems with a large dynamic range and generalvalidation (periodic excitation provides a good frequency
+                                                                    inputs. Other recent work [3] has proposed an algorithm thatresponse model at the excitation frequencies). Another im-
+                                                            uses a two step procedure and utilizes frequency scaling asportant advantage of the frequency domain approach is that
+                                                            well as orthogonal polynomials as basis functions. Evidencedirect continuous-time system identiﬁcation can be dealt with
+                                                           provided in [3], based on real experimental data, shows thatin a rather straightforward fashion.
+                                                                the condition number for the examples is relatively low.Moreover, there exists a strong relationship between time
+                                                  The solution chosen here relies on the technique proposeddomain and frequency domain methods. Indeed, it has been
+                                                                   in [19], based on a particular set of basis functions, whichshown that the prediction error method for time domain data
+                                                                              is aimed speciﬁcally at improving the numerical propertiescan be exactly interpreted as an estimator in the frequency
+                                                              of the normal matrix in a rational function estimation over adomain in the case of a ﬁxed or known noise model and
+                                                                  large dynamic range. A key point in this approach is thatapproximated in the other cases [8].
+                                                                the method  restricts the dynamic range over which each   It has been shown that IV methods have the property
+                                                              coefﬁcient is estimated by the use of frequency localizingto provide consistent results even when the noise model is
+                                                                 basis functions (FLBF) which span a desired frequencyunknown or poorly estimated. More precisely, IV methods
+                                                                 region. These functions allow the normal matrix to take on autilize simple linear regressions and give consistent results
+                                                            near block diagonal form and hence improve its conditioning.
+   1.  Universit´e  de  Lorraine, CRAN, CNRS UMR  7039,  Nancy,   Moreover, the ﬁlters used in these functions are bandpass and
+BP   70239,   France    -  marion.gilson@univ-lorraine.fr,   hence easy to implement. It has been shown that the achieved
+hugues.garnier@univ-lorraine.fr
+   2. School of Electrical Engineering and Computer Science, University of   condition number of the normal matrix is independent of
+Newcastle, Australia. - james.welsh@newcastle.edu.au            the dynamic range [20]. In [19], the basis functions are
+
+978-1-4799-0178-4/$31.00 ©2013 AACC                      1663
+
+   Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:33:38 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 2 =====
+associated with a least squares method to identify the process    for k = 1, . . . , N.The estimation problem is then to deter-
+model transfer function. However, in case of noisy mea-   mine the parameter vector θ on the basis of the measured
+surement the solution gives biased estimates. In this paper   frequency domain data (2), by minimizing a cost function of
+a method introducing basis functions into an IV procedure    the following generic form
+is proposed to consistently handle the frequency domain                     N
+                                                                         1identiﬁcation case.                                                                    J(θ) =        |ε(jωk, θ)|2            (11)
+  This paper  is divided into four main  parts. After the              N k=1preliminaries, some prediction error solutions posed in the         X
+                                                           with
+frequency framework are presented in Section III. The propo-
+                                                                      ε(jωk, θ) = G(jωk) −G(jωk, θ)         (12)
+sition using basis-functions associated with an IV technique
+is developed in Section IV and illustrated via a representative   where G(jωk, θ)  is the frequency response of the model
+Monte Carlo simulation and a practical case in Section V.    computed from the estimation of the parameter vector θ
+                                                         based on the minimization of ε(jωk, θ) such that                    II. PROBLEM STATEMENT
+  We consider a linear time invariant, input output system                                  ˆθ = arg min J(θ).                 (13)
+                                                                                                     θ
+given by a rational transfer function
+                                                                            III. BASIC ITERATIVE LS AND IV-BASED ESTIMATORS
+                             B0(s)
+             S :   G0(s) = A0(s).                 (1)     The plant model parameters are usually obtained by mini-
+                                                        mizing the sum of the squared residuals (12). However, since
+where s denotes the Laplace transform variable. The fre-                                                   G(jωk, θ)  is a nonlinear function of θ, the cost function
+quency domain identiﬁcation problem  is to determine an                                                              (11) is a non-quadratic function of θ. Several methods have
+estimate of this system from a measured frequency response                                                       been developed to minimize (11) by (successive) linear least
+                     G(jωk)k=1,...N                     (2)   squares approximation(s). The key idea  is to make (11)
+                                                               quadratic in θ by parametrizing G(jωk, θ) as a rational form
+which is available in a particular frequency grid denoted ωk,
+                                                   B(jωk, θ)/A(jωk, θ) and by multiplying each residual in the
+k = 1, . . . N and where G(jω) denotes the measurement of
+                                                                 cost function (11) by A(jωk, θ) [12].
+the system frequency function G0(jω). This data is corrupted                                                    To overcome the lack of sensitivity to low-frequency errors
+with the measurement noise,
+                                                                   in the basic least squares (LS) estimator, [13] makes the
+               V (jωk)k=1,...N.                    (3)   procedure iterative. The ith step of the algorithm consists of
+                                                        minimizing
+We will assume in this paper that we have access to the
+system measurements in the frequency domain. Other works          N                                              2                                                                     1
+focusing on the estimation of the frequency response func-    Jsk−ls(θ)=               (A(jωk, θ)G(jωk)−B(jωk, θ))
+                                                                A(jωk, ˆθi−1)tion may be found in the literature (see e.g. [5], [14] and            k=1                     X
+references therein).                                         This iterative LS-based method is known as the Sanathanan-
+  The system is modeled by its transfer function G(s) and   Korner algorithm, and will be denoted as sk-ls in the
+parametrized by a parameter vector θ, as follows               sequel. Other methods developed for the frequency domain
+                             B(s, θ)                      identiﬁcation problem are generally classiﬁed into three main
+             G : G(s, θ) =                         (4)
+                              A(s, θ)                     approaches: the maximum likelihood solution, the instrumen-
+                                                                              tal variable (IV) technique and the subspace based methods.
+where
+                                                              In the following, the focus  is on IV methods, and more
+     B(s, θ) = bmsm + bm−1sm−1 + . . . + b1s + b0    (5)    precisely on the extension of the reﬁned instrumental variable
+     A(s, θ) = sn + an−1sn−1 + . . . + a1s + a0        (6)   (RIVC or SRIVC in its simpliﬁed form when the measure-
+                                                    ment noise is assumed to be white) initially developed in      with θ = [a0  . . . an−1 b0  . . . bm] ∈Rn+m+1.    (7)
+                                                                the time-domain (see [21], [23]) to the frequency domain.
+  Now, consider the relationship between the input and   The frequency domain version of this algorithm has been
+output spectra                                                    ﬁrstly reported in [17]. Using Parseval’s relationship, it can
+                                                       be summarized as follows        Y (jω) = G0(jω, θ)U(jω) + V (jω).         (8)
+                                                    N
+If the plant G0 is included in the chosen model set G (i.e.    ˆθfsrivc=argmin   |Z(jωk)L(jωk)(Y (jωk)−Φ∗(jωk)θ)|2
+G0 ∈G), the output Y (jω) can be written as                                   θ k=1                       X                                    (14)
+      (jω)nY (jω) = Φ(jω)θ0 + A0(jω, θ)V (jω)     (9)                                                     where (.)∗denotes complex conjugate transpose and the
+where θ0 denotes the true plant parameter vector, and the   instrument Z(jωk) and ﬁlter L(jωk) are given by
+regressor is built up from
+                                                                Z(jωk) = L(jωk)˚Φ(jωk)             (15)
+    φ(jωk) = −Y (jωk) . . . −(jωk)n−1Y (jωk)                                      1
+                                                                 L(jωk) =                            (16)
+                U(jωk)   . . .  (jωk)mU(jωk)]     (10)                          A0(jωk)
+
+
+                                                       1664
+
+   Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:33:38 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 3 =====
+with ˚Φ(jωk) denotes the noise-free part of Φ(jωk). It has   gives satisfactory results, the resulting estimates are biased
+to be noted that in the resulting IV estimator, the optimal    in the noisy case. The proposed technique developed in this
+choice of instruments and preﬁlter is dependent on unknown   paper aims at removing the bias of the former method by
+system properties: the plant dynamics. This can be handled   using the IV technique.
+approximately either in a multistep or adaptive procedure.     The method consists in using the particular basis functions,
+The latter will be used here and will be denoted fsrivc in   speciﬁcally dedicated to improve the numerical properties of
+the sequel. By deﬁnition, when G0 ∈G (even if the noise    the IV normal matrix for wide band transfer function model
+model is misspeciﬁed), the SRIVC estimate (14) is consistent    estimation.
+under the following two conditions
+                                                            A. Outline of the proposed method  1)   k=1 Z(jωk)L(jωk)Φ∗(jω) is non singular
+  2)   k=1 Z(jωk)L(jωk)V (jω) = 0.                     The proposed method consists in using frequency local-   PN
+The main steps of the fsrivc algorithm for frequency    izing basis functions (FLBF). This is equivalent to ﬁltering   PN
+domain identiﬁcation are summarized in the following.        the input and output through a bank of passband ﬁlters. The
+                                                                ﬁltered input, ﬁltered output of the passband ﬁlter are related  1)  Initialization step. A ls algorithm (or the sk-ls) may
+                                                    by a linear regression with a constant coefﬁcient that can be     be used to obtain the initial estimate ˆθ(0)
+                                                             estimated using frequency domain IV type of techniques.  2)  Iterative estimation. For i = 1 : convergence
+                                                   Once these coefﬁcients have been determined, the param-
+        a) Use the previous estimate with the process model
+                                                       B(jωk,ˆθ(0))        eter of the original differential equation can be computed via           as deﬁned by G(jωk, ˆθ(0)) =               to                                                       A(jωk,ˆθ(0))       a linear transformation in the second step (see [20]).
+           generate the ﬁlter L(θ(i−1)) and the instruments     The basis functions  that have been recently proposed
+           (15) given as (where (jωk) has been omitted)      for frequency-domain identiﬁcation, take the following form
+                                                                    [19], [20]      Z(ˆθ(i)) = L(ˆθ(i−1))˚Φ(ˆθ(i−1)),                    (17)
+                   1                                                           k sk−1pk      L(ˆθ(i−1)) =                                      (18)             Fk(s) =                  ,  k = 1, . . . , n.       (22)
+                   A(ˆθ(i−1))                                                     s + pl
+                                                                                  l=1                           Y     ˚Φ(ˆθ(i−1))= −G(ˆθ(i−1))U . . . −(jωk)n−1G(ˆθ(i−1))U                                                      Note that these ﬁlters have approximately 0dB gain in the              h   U  . . . (jωk)m−1U              (19)   range [pk−1 pk] for basis function Fk. Outside of this range,
+                                                                the gain decreases by at least 20dB per decade.
+        b) Based on the instruments ZT (ˆθ(i)), and the data
+           ﬁltered by (16), determine the IV estimate at the   B. Model re-parametrization and IV estimation
+            ith iteration as                                                            Consider the model (1) where,
+                    ˆθ(i)fsrivc = [¯Z(ˆθ(i−1))¯ΦTf (ˆθ(i−1))]−1                                                            A(s)Y (s) = B(s)U(s) + A(s)V (s).       (23)
+                                      [¯Z(ˆθ(i−1))(jω)n ¯Yf(ˆθ(i−1))]   (20)
+                                                  To mitigate the ill-conditionning problem when estimating
+          with the notation                                a highly resonant wide-band system, we ﬁrst re-parametrize
+     M¯ T = [Re(M(jω1)) Im(M(jω1))       (21)    the model of the system as follows
+                             . . . Re(M(jωN)) Im(M(jωN))]                   A(s)       B(s)
+                                                          E(s)Y (s) = E(s)U(s) + W(s)         (24)
+  3) When the convergence is obtained, compute the esti-
+     mated parametric error covariance matrix, associated   with
+     with the converged estimate  ˆθfsrivc  of the system                 n                                                       A(s)
+     model parameter vector.                       = 1 +   a⊥l−1Fl(s)                         (25)
+                                                      E(s)
+                                                                             l=1      IV. BASIS FUNCTIONS WITH IV ESTIMATION                   n X
+                                                     B(s)
+                                      =    b⊥l−1Fl(s)                              (26)  Both adaptive LS (sk-ls) and IV (fsrivc) algorithms      E(s)
+                                                                         l=1give satisfactory results for most classical systems. However    X                                                               n
+these methods perform poorly when applied  to a  large                                                      E(s) =    (s + pl) = sn + en−1sn−1 + . . . + e0   (27)
+bandwidth type of system. Indeed, in that case, a well-known
+                                                                         l=1problem [6]  is the ill-conditioning of the normal matrix     Y
+which results in poor or even erroneous estimates.           where Fl(s) is given by (22) and W(s) = E(s)VA(s)   (s). With
+  Several methods have been developed to cope with this    the new model parametrization, (24) can be rewritten as
+problem (see e.g. [19] and the references therein) and  it          n                   n
+appears that one of the most efﬁcient approaches is based                                                       1 +   a⊥l−1Fl(s)  Y (s) =    b⊥l−1Fl(s)U(s) + W(s)
+on the frequency localizing basis functions presented in [19].                                                                     l=1     !         l=1Whereas this method coupled with the basic LS estimator   X      X                    (28)
+
+                                                       1665
+
+   Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:33:38 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 4 =====
+where we deﬁne                                       where ˚Yfl(jωk) is the noise-free part of the output. Since
+                                                                        this noise-free output is not known in practice, an iterative
+   A⊥(s, θ⊥) = 1 + a⊥0 s + . . . + a⊥n−1sn             (29)   procedure is used where the instruments are constructed on
+   B⊥(s, θ⊥) = b⊥0 s + . . . + b⊥n−1sn                  (30)    the basis of the previous plant estimate ˆθ⊥(i−1)flbf−iv
+    and θ⊥= a⊥0   . . . a⊥n−1 b⊥0   . . . b⊥n−1 ∈R2n.    (31)
+                                                                                   ˆθ⊥(i)flbf−iv = ¯Z(jωk, ˆθ⊥(i−1)flbf−iv)¯ΦTfl(jωk)The least squares solution is the result of the minimizationof the following cost function                                           h                      i−1                                                                                    ¯Z(jωk, ˆθ⊥(i−1)flbf−iv)¯Y (jωk)      (39)
+           N           1                                                               h                     i
+   J(θ⊥) =       A⊥(jωk, θ⊥)Yfl(jωk)                The normal matrix here (¯Z ¯ΦTfl) makes use of the basis       N
+              k=1                                           functions Fl(s) which ensures a reasonably well conditioned     X                                2
+                 −B⊥(jωk, θ⊥)Ufl(jωk)     (32)   matrix for the inverse (see [20] for a proof). This method will
+                                                       be referred as flbf-iv algorithm in the following. Note
+where                                                               that we do not advocate explicitly forming and inverting
+                                                                the normal matrix and suggest  that techniques such  as      Yfl(jωk) = Fl(jωk)Y (jωk),   l = 1, . . . n
+                                                       (33)   Cholesky Factrisation, Househoulder transformation and QR  (Ufl(jωk) = Fl(jωk)U(jωk)                              factorization be utilized [7], [6]. Moreover, the computation
+The LS estimate is then given by                              of the estimate is achieved by only using real number
+             ˆθ⊥= (¯Φfl ¯ΦTfl)−1(¯Φfl ¯Y )             (34)       Remarks:
+                                                                 1) The basis function representation given in (25)-(26)with the notation deﬁned in (21) and where the regressor is
+                                                                                     is speciﬁcally for a  strictly proper model G(s).  Ifbuilt up from
+                                                        G(s) is bi-proper, then the re-parametrization for A(s)
+     Φfl = [−Yf1(jωk)  . . . −Yfn(jωk)                          remains the same, however re-parametrization for B(s)
+                                                         becomes                  Uf1(jωk)  . . . −Ufn(jωk)]T     (35)
+                                                                           n
+                                                                                   b⊥n s
+                                                                                                                     (40)and Y = [Y (jω1)  . . . Y (jωN)]T . This estimator is denoted                B(s) =                                                                        b⊥l=1Fl(s) +
+as flbf-ls in the following. However, in the presence of                E(s)    l=1            s + pn                         Xnoise on the data, the LS estimate ˆθ⊥is biased. The solution
+presented in this paper is to reduce the bias using an iterative        where pn is the high frequency breakpoint.
+IV estimation procedure.                                        2) This FLBF method has been shown to ensure a bound
+  Equation (28) is linear in the parameter θ⊥and may also        on the condition number of the LS normal matrix
+be written as                                               which is independent of the frequency range (see [20]).
+             Y (s) = Φ∗flθ⊥+ W(s)              (36)      3) One advantage of using an IV technique is that even
+                                                                                             if the noise model is miss-speciﬁed, the resulting IV
+The IV technique consists then in using an instrument which         estimates are still consistent.
+is uncorrelated with the noise and which ensures the IV      4) The flbf-iv method may be related to the approach
+normal matrix to be regular. The IV solution to equation         developed in the time-domain identiﬁcation in  [4].
+(36) is deﬁned as                                             However, it has the advantage of not introducing the
+             N                                                 additional estimation of signal initial conditions terms.
+   ˆθ⊥flbf−iv=argmin    Z(jωk)(Y (jωk)−Φ∗fl(jωk)θ⊥) 2        5) The frequency-domain version of the SRIVC method
+                   θ                k=1                                           along with the two FLBF-based methods will be incor-      X                                (37)         porated in the upcoming new version of the CONTSID
+Contrary  to equation  (14), the  ﬁlter L does not appear         toolbox (see www.cran.uhp-nancy.fr/contsid)
+explicitly here since  it has already been included into the
+matrix Φfl. By deﬁnition, when G0 ∈G, the IV estimate is                                                                         V. SIMULATION EXAMPLE
+consistent under the following two conditions
+  1)   k=1 Z(jωk)Φ∗fl(jω) is full column rank              The system to be identiﬁed is a highly resonant wide band
+  2)   k=1 Z(jωk)W(jω) = 0.                           system of order 18 that spans several decades of frequency   PN
+One solution is therefore to choose the instruments equal                            9   PNto the noise-free version of the regressor since they will be                                  blω2l                                                              G(s) =                                  (41)
+strongly correlated with the true spectra and uncorrelated                         l=1 (s2 + 2ζlωls + ω2l )                        Xwith the noise. In this frequency basis function framework,
+this leads to                                           where ωl spans 9 decades. A magnitude Bode plot of the
+                                                                   true system appears in Fig. 1 as the blue line. Estimation is
+  Z(jωk) =                       Ufl(jωk)                                                       ,  k = 1, . . . , N  (38)    carried out based on measured frequency response data.           h −˚Yfl(jωk)                               i
+                                                       1666
+
+   Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:33:38 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 5 =====
+                                                                                                                                                                                                                                                        103                                                                                      103
+  1) Illustration of the ill-conditioning problem: A white
+circular complex noise is added to the output to illustrate                                 102                                                                                      102
+the performances of the proposed method. The proposed
+flbf-iv method will provide a consistent estimate in the                                 101                                                                                      101
+G0 ∈G case (and not S ∈M). The system is estimated via
+the following methods:                                                                                                                                                                     1010                                                                                                                                                                                                                                                                                                                                                                                      0 −2                                                                             10−1    10100 −2                                                                             10−1
+  1) the Sanathanan-Koerner algorithm (sk-ls);                                                                               (a) flbf-ls              (b) flbf-iv
+  2) the frequency-domain version of the SRIVC method
+     denoted as fsrivc;                                                    Fig. 2.  Zoom of the Bode diagram on the second resonant mode
+  3) the flbf-ls method;
+  4) the proposed flbf-iv method ;
+                                                                   to illustrate this particular point, we run two Monte Carlo
+The frequency response of the system was evaluated at 1000
+                                                              simulations with snr = 10dB and using basis functions with
+logarithmically spaced points that span the entire frequency
+                                                                     different break point choices:
+range of the system. The performance of the above methods
+                                                                 1) Breakpoint frequencies chosen logarithmically spacedare evaluated through the use of a Monte Carlo simulation
+                                                            between  minimum  (10−3   rad/s)  and  maximum(MCS) of 100 experiments with a snr =  10dB. The
+                                                                      (106rad/s) frequency.   It can be noticed in Figure 3breakpoint frequencies of the basis functions have been
+chosen logarithmically spaced between 3 × 10−3 rad/s and                                105                                                                                     105
+
+
+                                                                                                                                                                                                                                                    104                                                                                     104106 rad/s. Table I compares the condition number of the
+normal matrix for the four methods.  It may be noticed                                101032                                                                                     101032
+that the condition number for both sk-ls and fsrivc                                101                                                                                     101
+
+
+                                                                                                                                                                                                                                                    100                                                                                     100methods is much poorer than that obtained with flbf-based
+methods. Note also that for all of the estimations, we use the                                1010−1−2                                                                                     1010−1−2
+QR factorization to improve the statistical properties of the                                10−3       10−2             100             102             104             106          10                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         −3       10−2             100             102             104             106
+estimates and to ensure that each method is considered on                                                                               (a) flbf-ls              (b) flbf-iv
+an equal footing.
+                                                                                  Fig. 3.   Real (blue) and estimated (green) Bode diagrams (gain) of the
+                                                                             simulation example over the 100 MCS, basis function chosen as in 1
+         Method    sk-ls    fsrivc   flbf-ls   flbf-iv
+
+         Cond. #    9.5e+108    8.9e+97      2084        2157                    that this choice of basis functions is not suitable for
+                                                                      the flbf-ls algorithm, while the flbf-iv  still
+                     TABLE I                                  provides unbiased results with low variance.
+        CONDITION NUMBER OF THE DIFFERENT METHODS               2) Breakpoint frequencies chosen close to the resonant
+                                                      modes analyzed from the frequency response.  As
+  Figure 1 compares the magnitude of the estimated fre-
+quency response with that of the true system. It can be seen                                101054                                                                                     101054
+that the frequency-domain version of the SRIVC method                                103                                                                                     103
+
+
+                                                                                                                                                                                                                                                    102                                                                                     102gives much better results than the sk-ls method.  It can
+
+
+                                                                                                                                                                                                                                                                                                                                                                                  1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      1
+                                                                                                                                                                                                                                                                                                                                            10
+also be observed that the variance of the results is quite                                10
+                                                                                                                                                                                                                                                                                                                                                                                  0
+                                                                                                                                                                                                                                                    10                                                                                                                                                                                                                                                                                                                                            10
+large. However, thanks to the use of the basis function, the                                10−1                                                                                     100−1
+
+
+                                                                                                                                                                                                                                                                                                                                                                         −2                                                                                     10−2results are signiﬁcantly improved with both flbf methods                                10
+
+                                                                                                                                                                                                                                                                                                                                                                                        −2             100             102             104             106          10−3       10−2             100             102             104             106providing satisfactory results. Moreover, when examining the                                10−3       10
+estimation of the second resonant mode, it is noted that only                (a) flbf-ls              (b) flbf-iv
+the flbf based methods are able to reliably estimate the
+                                                                                  Fig. 4.   Real (blue) and estimated (green) Bode diagrams (gain) of the
+model.                                                                     simulation example over the 100 MCS, basis function chosen as in 2
+  2) Analysis of the bias of the proposed method: Along
+with the improved conditioning of the normal matrix, the              it can be observed in Figure 4, with this choice of
+flbf-iv method gives unbiased results (in the G0 ∈G          basis function the results stemming from the flbf-ls
+case), while still relying on linear regression algorithms, as         algorithm are slightly biased whereas those from the
+it is illustrated in the following. Figure 2 represents a zoom      flbf-iv method are still unbiased with low variance.
+of the Figure 1 Bode plot of the second resonant mode, for
+the two FLBF based methods. The flbf-ls solution gives          VI. REAL DATA FROM A RESONANT BEAM
+slightly biased results whereas the flbf-iv-based method      Finally, we present estimation results for real frequency
+is able to provide unbiased results, with low variance.         response data collected from a resonant beam. The exper-
+  3) Basis function dependency: Another advantage of the   imental data spans approximately 2 decades and is shown
+proposed method  is to be less sensitive to the choice of    in Figure 5 by the blue dots. Also shown in Figure 5 is
+the basis functions chosen for the identiﬁcation. In order    the estimated frequency response obtained by applying the
+
+                                                       1667
+
+   Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:33:38 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 6 =====
+ 105                                                                                     105                                                                                     105                                                                                     105
+
+
+ 104                                                                                     104                                                                                     104                                                                                     104
+
+
+ 103                                                                                     103                                                                                     103                                                                                     103
+
+
+ 102                                                                                     102                                                                                     102                                                                                     102
+
+
+ 101                                                                                     101                                                                                     101                                                                                     101
+
+
+ 100                                                                                     100                                                                                     100                                                                                     100
+
+
+ 10−1                                                                                    10−1                                                                                    10−1                                                                                    10−1
+
+
+ 10−2                                                                                    10−2                                                                                    10−2                                                                                    10−2
+
+ 10−3       10−2             100             102             104             106          10−3       10−2             100             102             104             106          10−3       10−2             100             102             104             106          10−3       10−2             100             102             104             106
+           (a) sk-ls                      (b) fsrivc                      (c) flbf-ls                    (d) flbf-iv
+
+               Fig. 1.  Real (blue) and estimated (green) Bode diagrams (gain) of the simulation example over the 100 MCS, white noise
+
+
+flbf-ls (magenta) and flbf-iv (green) methods, with      [5] M. Gevers, R. Pintelon, and  J. Schoukens.  The local polynomial
+slightly better results obtained from the latter method. Again        method for nonparametric system identiﬁcation: improvements and
+                                                                                   experimentation.  In Joint IEEE-CDC and ECC Conference, pages
+it would seem that an excellent ﬁt has been obtained with         4302–4307, Orlando - USA, December 2011.
+this easy to tune method.                                                    [6] G. Golub and C.F. Van Loan. Matrix computations - 3rd edition. Johns
+                                                                        Hopkins University Press, Baltimore - USA, 1996.
+ 30                                                                                  [7] G.C. Goodwin and R.L. Payne.   Dynamic system  identiﬁcation:
+                                                                               experiment design and data analysis. New York - Academic Press,
+ 20                                                                           1977.
+                                                                                     [8] L. Ljung. System Identiﬁcation : Theory for the User - Second Edition.
+ 10                                                                                     Prentice-Hall, 1999.
+                                                                                     [9] L. Ljung.  State of the art in linear system identiﬁcation: time and
+  0                                                                            frequency domain methods. In IEEE American Control Conference,
+                                                                            pages 650–660, June-July 2004.
+ï10                                                                           [10] B. Ninness and H. Hjalmarsson.  Model structure and numerical
+                                                                                       properties of normal equations. IEEE Transactions on Circuits and
+                                                                                  Systems, 48(4):425–437, 2001.
+ï20                                                                           [11] R. Pintelon,  P. Guillaume, Y. Rolain,  J. Schoukens, and H. Van
+                                                                 hamme. Parametric identiﬁcation of transfer functions in the frequency
+ï30 0      1000    2000    3000    4000    5000    6000    7000    8000    9000    10000         domain – a survey. IEEE Transactions on Automatic and Control,
+                                                                             39(11):2245–2259, November 1994.
+Fig. 5.  Resonant Beam Data. Dots - Experimental Data, Solid - Estimated    [12] R. Pintelon and  J. Schoukens.  System identiﬁcation : a frequency
+Model using flbf-ls (magenta) and flbf-iv (green) methods               domain approach. IEEE Press, New York, 2001.
+                                                                              [13] C.K. Sanathanan and  J. Koerner.  Transfer function synthesis as a
+                CONCLUSION                                           ratio of two complex polynomials. IEEE Transactions on Automatic
+                                                                                    Control, AC-8:56–58, 1963.
+  In this paper, wide band system identiﬁcation from noisy    [14]  J. Schoukens, Y. Rolain, and R. Pintelon.   Analysis of window-
+frequency domain data has been considered. A problem          ing/leakage  effects  in frequency response function measurements.
+when identifying such systems using LS-based methods is         Automatica, 42(1):27–38, 2006.
+                                                                              [15]  T.  S¨oderstr¨om.  How accurate can instrumental  variable models
+the ill-conditioning of the normal matrix. A solution using        become? In L. Wang and H. Garnier, editors, System Identiﬁcation, En-
+frequency localizing basis function coupled with an iterative         vironmental Modelling, and Control System Design. Springer-Verlag,
+instrumental variable estimator has been developed not only         2012.
+                                                                              [16]  T. S¨oderstr¨om and P. Stoica. Instrumental Variable Methods for System
+to improve the numerical conditioning but also to provide a          Identiﬁcation. Springer-Verlag, 1983.
+consistent estimate when dealing with noisy data.                 [17]  P.M.J. Van den Hof and S. Douma.  An IV-based iterative linear
+             ACKNOWLEDGMENT                                  regression algorithm with optimal output error properties. Technical
+                                                                             Report 09-018, TU Delft, 2009.
+  The analysis was completed whilst M. Gilson was visiting    [18] B. Wahlberg.  System identiﬁcation using Laguerre models.  IEEE
+the Centre  for Complex Dynamic Systems and Control          Transactions on Automatic Control, 36(5):551–562, 1991.
+                                                                              [19]  J. Welsh and G.C. Goodwin.  Frequency localising basis functions
+(CDSC), University of Newcastle, Australia. She gratefully                                                                                          for wide-band identiﬁcation.   In IEEE,  editor, European Control
+acknowledges the ﬁnancial support of CDSC and CRAN.            Conference, Cambridge - UK, 2003.
+                 REFERENCES                                 [20]  J. Welsh and C. Rojas.  Frequency localising basis functions for
+                                                                          wide-band identiﬁcation: a condition number bound for output error
+ [1] D.S. Bayard.  Statistical plant set estimation using schroeder-phased          systems. In European Control Conference, Kos - Greece, 2007.
+      multi-sinuso¨ıdal input design. In American Control Conference, pages    [21]  P.C. Young. Some observations on instrumental variable methods of
+     2988–2995, Chicago - USA, 1992.                                              time-series analysis. International Journal of Control, 23(5):593–612,
+ [2] R. Blom and P.M.J. Van den Hof.  Multivariable frequency domain         1976.
+      identiﬁcation using IV-based linear regression.  In 49th IEEE Con-    [22]  P.C. Young. Recursive Estimation and Time-Series Analysis. Springer
+      ference on Decision and Control, pages 1148–1153, Atlanta - USA,          Verlag, London, second edition, 2011.
+     2010.                                                                   [23]  P.C. Young, H. Garnier, and M. Gilson. Reﬁned instrumental vari-
+ [3] A. Bultheel, M. VanBarel, Y. Rolain, and R. Pintelon. Numerically          able identiﬁcation of continous-time hybrid Box-Jenkins models.  In
+      robust transfer function modeling from noisy frequency domain data.          Identiﬁcation of Continuous-time Models from Sampled Data, pages
+    IEEE Transactions on Automatic Control, 50(11):1835–1839, 2005.          91–132. Springer, London, H. Garnier and L. Wang edition, 2008.
+ [4] H. Garnier, G. Goodwin, and  J. Welsh. A time-domain approach
+      to continuous-time model identiﬁcation of highly resonant wide-band
+     systems. In 3rd IFAC Symposium on Mechatronic Systems, Sydney -
+      Australia, September 6-8 2004.
+
+
+                                                       1668
+
+   Authorized licensed use limited to: Harbin Institute of Technology. Downloaded on October 19,2026 at 06:33:38 UTC from IEEE Xplore. Restrictions apply.

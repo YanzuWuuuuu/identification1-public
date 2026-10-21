@@ -1,0 +1,11 @@
+{
+  "P": 2,
+  "z_mm": 0,
+  "DFT_U_relative": 5.59068373891994e-15,
+  "DFT_Y_relative": 1.7262454874944496e-15,
+  "whitened_residual_relative": 3.2085769422014772e-15,
+  "transformed_jacobian_relative": 7.439348109199513e-15,
+  "mean_covariance_divisor": 4,
+  "mean_transient_divisor": 2,
+  "pass": true
+}

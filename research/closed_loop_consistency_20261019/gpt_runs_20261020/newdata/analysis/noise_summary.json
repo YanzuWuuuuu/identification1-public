@@ -1,0 +1,81 @@
+{
+  "records": [
+    {
+      "controller": "lowgain",
+      "P_noise": 6,
+      "band_trace": 9.156776842084924e-08,
+      "band_trace_ci95": [
+        5.9217843456091906e-08,
+        1.2523081188625033e-07
+      ],
+      "covariance_condition_median": 32.39874670264255,
+      "alpha": 0.1,
+      "neighbor_bins": 5,
+      "phi_units": "variance of N^-1/2 DFT; divide by fs for two-sided PSD per Hz",
+      "C_diagnostic_band_trace": 9.691398654172952e-08
+    },
+    {
+      "controller": "nominal",
+      "P_noise": 8,
+      "band_trace": 3.4287061151496294e-08,
+      "band_trace_ci95": [
+        2.1386077636803603e-08,
+        4.623535393929316e-08
+      ],
+      "covariance_condition_median": 37.25988346278576,
+      "alpha": 0.1,
+      "neighbor_bins": 5,
+      "phi_units": "variance of N^-1/2 DFT; divide by fs for two-sided PSD per Hz",
+      "C_diagnostic_band_trace": 4.084760750420704e-08
+    },
+    {
+      "controller": "highgain",
+      "P_noise": 8,
+      "band_trace": 2.857432320962682e-08,
+      "band_trace_ci95": [
+        2.134659184740333e-08,
+        3.6347116779875495e-08
+      ],
+      "covariance_condition_median": 34.17619733924698,
+      "alpha": 0.1,
+      "neighbor_bins": 5,
+      "phi_units": "variance of N^-1/2 DFT; divide by fs for two-sided PSD per Hz",
+      "C_diagnostic_band_trace": 6.0567717929069e-08
+    }
+  ],
+  "comparisons": [
+    {
+      "a": "lowgain",
+      "b": "nominal",
+      "trace_ratio": 2.6422703762762647,
+      "ratio_ci95": [
+        1.5644709431187473,
+        4.550724992256005
+      ],
+      "includes_one": false,
+      "median_frequency_trace_ratio": 0.9276735349542873
+    },
+    {
+      "a": "lowgain",
+      "b": "highgain",
+      "trace_ratio": 3.1926058437468234,
+      "ratio_ci95": [
+        1.9147401750880941,
+        4.955429168197209
+      ],
+      "includes_one": false,
+      "median_frequency_trace_ratio": 1.180761006664128
+    },
+    {
+      "a": "nominal",
+      "b": "highgain",
+      "trace_ratio": 1.2082812843120707,
+      "ratio_ci95": [
+        0.6999257669982453,
+        1.8073300466125681
+      ],
+      "includes_one": true,
+      "median_frequency_trace_ratio": 1.4130151584215804
+    }
+  ]
+}

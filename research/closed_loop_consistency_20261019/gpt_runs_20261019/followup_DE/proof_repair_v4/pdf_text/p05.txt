@@ -1,0 +1,520 @@
+===== PDF PAGE 1 =====
+                                                   Automatica 43 (2007) 868–875
+                                                                                                                     www.elsevier.com/locate/automatica
+
+                                                Brief paper
+             Box–Jenkins identiﬁcation revisited—Part III
+                         Multivariable systems
+
+                        R. Pintelona,∗, J. Schoukensa, P. Guillaumeb
+
+                             aElectrical Measurement Department, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussels, Belgium
+                       bDepartment of Mechanical Engineering, Vrije Universiteit Brussel, Pleinlaan 2, 1050 Brussels, Belgium
+
+                            Received 31 October 2005; received in revised form 29 May 2006; accepted 6 November 2006
+                                                             Available online 12 March 2007
+
+
+
+Abstract
+
+   Part I of this series of three papers handles the identiﬁcation of single input single output Box–Jenkins models on arbitrary frequency grids
+in an open and closed loop setting. Part II discusses the computational aspects and illustrates the theory on simulations and a real life problem.
+This paper extends the results of Parts I and II to multiple input multiple output systems. Contrary to the classical time domain approach, the
+presented technique does not require symbolic calculus for multiple output polynomial Box–Jenkins models.
+  2007 Elsevier Ltd. All rights reserved.
+
+
+Keywords: Multivariable; Parametric noise model; System identiﬁcation; Feedback; Discrete-time; Continuous-time; Frequency domain
+
+
+
+1. Introduction                                             modelling in the process industry. The following important is-
+                                                               sues are handled:
+  Recently  (Ljung,  1993;  McKelvey,  2002;  Pintelon &
+                                                                                       (i) maximum likelihood (ML) Box–Jenkins (BJ) identiﬁcationSchoukens, 2005; Pintelon, Rolain, & Schoukens, 2005) a
+                                                                          in feedback;framework for identifying continuous-time and discrete-time
+                                                                                         (ii) discussion  of  the  asymptotic  properties  (consistency,Box–Jenkins (BJ) models in a given frequency band (part(s)
+                                                                  asymptotic efﬁciency, asymptotic normality, robustness,imaginary axis or unit circle) has been developed for single
+                                                                                  etc.) of the ML estimator;input, single output (SISO) systems. The use of continuous-
+                                                                                          (iii) numerical stable Newton–Gauss minimization of the MLtime noise models has been motivated in Pintelon, Schoukens,
+                                                                        cost function;and Guillaume (2006), and an in depth analysis of the theoret-
+                                                                            (iv) generation of starting values;ical and computational aspects of maximum likelihood (ML)
+                                                                      (v) calculation of the Cramér–Rao lower bound.estimation in an open and closed loop setting has been given
+in Pintelon and Schoukens (2005) and Pintelon et al. (2005).
+                                                                        Finally, we also report the results of a real life application:
+The ML solution for multivariable systems in open loop can
+                                                                ﬂight ﬂutter analysis.
+be found in McKelvey and Ljung (1997). This paper general-
+izes all these results to multivariable systems in closed loop,
+                                                                        2. BJ identiﬁcation in feedback
+and is intended for those applications where one has to iden-
+tify transfer function models in a given frequency band using
+                                                                        2.1. Closed loop framework
+the operational perturbations. Examples are modal analysis of
+bridges, buildings and airplanes subject to wind excitation, and
+                                                              Consider the closed loop setup of Fig. 1
+
+    This paper was not present at any IFAC meeting. This paper was rec-    Y(k) = G(  k)U(k) + V (k),
+ommended for publication in revised form by Associate Editor Brett Ninness
+under the direction of Editor Torsten Söderström.                     U(k) = R(k) −M(  k)Y(k),                                (1)
+  ∗Corresponding author. Tel.: +32 2 629 29 44; fax: +32 2 629 28 50.
+    E-mail address: Rik.Pintelon@vub.ac.be (R. Pintelon).            V (k) = H(  k)E(k)
+
+0005-1098/$ - see front matter   2007 Elsevier Ltd. All rights reserved.
+doi:10.1016/j.automatica.2006.11.007
+
+===== PDF PAGE 2 =====
+                                                   R. Pintelon et al. / Automatica 43 (2007) 868–875                                         869
+
+                                                      • Assumption 1.3 is valid after a DFT for normally distributed
+                M (Ω)                                  white noise e(t). It is asymptotically (N →∞) valid after a
+                                             DFT for a general class of non-Gaussian time domain errors
+                                                                      (see Brillinger, 1981; Pintelon & Schoukens, 2001).
+                                                      • The delays between the input noise channels are included in
+                                                                     the noise transfer function H(  ); otherwise the covariance
+   R(k)          U(k)                                 Y(k)
+                                                                 matrix of E(k) would be complex valued and frequency
+                   G (Ω)
+                                                                 dependent, and Assumption 1.4 would be violated.
+                                                      • In the open loop case (M = 0 in Fig. 1) the output noise
+                                                       V(k) = H (Ω)E(k)     V (k) may also contain output measurement errors.
+
+Fig. 1. Closed loop setup where  =z−1 for discrete-time systems and  =s     2.2. Gaussian ML cost function
+for continuous-time systems.
+                                                        Under Assumption 1, Y(k) is independent (over k), circu-
+                                                                             lar complex normally distributed. To construct the likelihood
+with R(k), U(k), and Y(k) the nu × 1 reference, nu × 1 in-                                                                 function (U(k) is known exactly) it is sufﬁcient to calculate
+put, and ny × 1 output spectra, respectively; G(  ), H(  ), and                                                                  the mean and covariance of Y(k) given the model parameters
+M(  ) the ny × nu plant, ny × ny noise, and nu × ny controller                                                        and the covariance matrix   of the driving white noise source
+transfer functions, respectively; E(k) the ny × 1 driving white                                                           E(k). Since the process noise V (k) is correlated with the input
+noise source;   k = z−1k = exp(−j2 fk/fs), with fs the sam-    of the plant U(k), and since it is independent of the reference
+pling frequency, for discrete-time systems;   k =sk =j2 fk for     signal R(k), the expected values in the mean and covariance
+continuous-time systems; and k the frequency index.                                                                    calculation of Y(k) should be conditioned on R(k). The lat-
+                                                                             ter is known since the controller is known and since Y(k) and
+Assmption 1.                                                    U(k) are observed without errors. Using (1) we ﬁnd that
+1. The input/output data are generated by (1).
+                                                       Y(k) = (Iny + G( k)M( k))−1G(  k)R(k)2. The controller transfer function M(  ) is known.
+3. E(k) is independent (over the frequency index k), circu-                                       + (Iny + G( k)M( k))−1H(  k)E(k)             (3)    lar complex (E{E(k)ET(k)} = 0, with E{ } the expected
+   value, and superscript T the transpose operator) normally    and
+   distributed noise with zero mean (E{E(k)} = 0) and covari-
+   ance matrix E{E(k)EH(k)} =   (superscript H is the com-    E{Y(k)|R(k),  ,  }
+   plex conjugate transpose operator).
+                                    = (Iny + G(  k, )M0( k))−1G(  k, )R(k) ≡Y(k,  ),4. The ny × ny covariance matrix    is real valued.
+5. E(k) is independent of the reference signal R(k).
+                                                         Cov(Y(k)|R(k),  ,  ) = S(  k,  ) SH(  k,  ) ≡CY(k)(  ),  (4)6. The input U(k) and output Y(k) of the plant are observed
+   (measured) without errors.                                                        S(  k,  ) = (Iny + G(  k, )M0( k))−1H(  k,  ).
+7. The frequency domain data U(k), Y(k) are available at fre-
+   quencies fk, k ∈K = {1, 2, . . . , F}.                        Hence, within a  -independent additive constant, the negative
+                                                           Gaussian log-likelihood function is given by
+  Discussion:
+                                                     VNLL(  ,   , Z)
+•  If the raw data are time domain signals, then Assumption 1.1
+    is asymptotically (for the number of time domain samples    =    log det(CY(k)( )) +
+  N going to inﬁnity) valid after a discrete Fourier transform        k∈K                 k∈K
+  (DFT)
+                                                               (Y(k) −Y(k, ))HC−1Y(k)( )(Y(k) −Y(k,  )),          (5)
+             N−1
+            1
+    X(k) = √       x(t)z−tk                                (2)    where Z  is a vector containing the input/output data (see
+        N
+                  t=0                                            Pintelon & Schoukens, 2001, p. 437, Eq. (14-14)). At DC
+                                                           (f = 0) and Nyquist (f = fs/2) the sums in (5) are multiplied   with x =r, u, . . . and X =R, U, . . . (Pintelon & Schoukens,        1
+                                                      by 2. Using   2001), and the frequency domain data in Assumption 1.7 are
+   available at DFT frequencies fk=kf s/N, k ∈K, where K ⊆                                                      S−1(  k, )(Y(k) −Y(k,  ))   {0, 1, 2, . . . , N/2} and ord(K) = F. For ﬁnite N Eq. (1) is
+   extended with transients terms that take into account the ini-    = H −1(  k, )(Y(k) −G(  k, )U(k)) ≡  (  k,  ),
+    tial and ﬁnal conditions of the experiment (see the discussion
+   of Section 2.2). These transient terms vanish as O(N−1/2)         log det(CY(k)( )) = log | det(S(  k,  ))|2 + log det(  ).
+    w.r.t. the main contributions (Pintelon & Schoukens, 2001).                                                                  (6)
+
+===== PDF PAGE 3 =====
+870                                                R. Pintelon et al. / Automatica 43 (2007) 868–875
+
+Eq. (5) can be written as                                          Discussion:
+
+VNLL(  ,   , Z)                                           •  If the raw data are time domain signals, then the model
+  =    log | det(S(  k,  ))|2
+                                                           Y(k) = G(  k, )U(k) + H(  k, )E(k)              (12)    k∈K
+
+   + F log det(  ) +     H(  k,  ) −1 (  k,  ).         (7)         is asymptotically (number of time domain samples N →
+                   k∈K                         ∞) valid. To improve the ﬁnite sample behaviour of the
+                                                                    estimates the plant and noise transient terms are added
+For the open loop case (M0=0 ⇒S=H) Eq. (7) divided by F                                                                         in (11)
+reduces to Eq. (9) in McKelvey and Ljung (1997). Minimizing
+the real part of (7) w.r.t.   (VNLL is a real number) gives
+                                                                              (  k,  ) = H −1(  k, )(Y(k) −G(  k, )U(k)
+
+           1
+  ( ) = Re           (  k,  ) H(  k,  )   ,                    (8)             −TG(  k,  ) −TH(  k,  )),              (13)
+        F
+             k∈K
+                                                               where, for example,
+where Re(x) stands for the real part of x. Combining (7) and
+(8) gives                               G = A−1B,  TG = A−1IG,
+VNLL(  , Z) =     log | det(S(  k,  ))|2                 H = D−1C,  TH = D−1IH                        (14)
+            k∈K
+                                                                with A, B, C, D, IG and IH matrix polynomials of the ap-
+                            1                                  propriate matrix dimensions (see Pintelon & Schoukens,
+        + F log det  Re           (  k,  ) H(  k,  )
+                      F                                2001). The coefﬁcients of IG and IH  decrease as an
+                             k∈K                      O(N−1/2) and, hence, for N sufﬁciently large the transients
+        + Fny.                                      (9)       terms can be neglected in (13).
+                                                       •  If the following conditions are satisﬁed: (i)   k = z−1k  with
+For the open loop case (S =H) Eq. (9) divided by F reduces to                                                                       zk = exp(j2 k/N) and k ∈K = {0, 1, . . . , N −1},  (ii)
+Eq. (12) in McKelvey and Ljung (1997), except that in the latter       det(S(z−1,  )) has all its roots within the unit circle, and (iii)
+  ( ) is not constrained to be real and, hence, is sub-optimal.
+Dividing (9) by F and taking the exponential function gives,
+within a  -independent multiplicative constant,                    z→∞det(S(z−1,lim               )) = 1,                            (15)
+
+                          1                                  then (11) simpliﬁes to
+VF (  , Z) = |hF ( )|2 det  Re           (  k,  ) H(  k,  )      ,
+                    F
+                           k∈K                                         N−1
+                                                                         1
+                                                   VN(  , Z) = det                                                                                        (z−1k  ,  ) H(z−1k  ,  )            1                                                N
+hF ( ) = exp         log det(S(  k,  ))   .                (10)                           k=0
+          F
+              k∈K
+                                            + O(| max|N/N)                       (16)
+Taking the nyth root of |hF ( )|2, the factor can be brought into
+the determinant giving                                           with  max the dominant pole of log det(S(z−1,  )) (proof:
+                                                                         ﬁrst note that the sum over the full unit circle is real, and next
+                   1                                           follow the lines of Appendix A.3 in Pintelon & Schoukens,
+VF (  , Z) = det  Re           (  k,  ) H(  k,  )      ,
+               F                                           2005). Using (13), the ﬁrst term in the right-hand side of (16)
+                    k∈K
+                                                                  equals exactly the classical time domain result (see Ljung,
+ (  k,  ) = gF ( ) (  k,  ),                               (11)       1999, p. 219, Eq. (7.96))
+
+             1                                                1 N−1gF ( ) = exp                       log det(S(  k,  ))   ,                           det                                                                             (z−1k  ,  ) H(z−1k  ,  )           Fny                                          N                k∈K                                                                        k=0
+
+where S(  k,  ) and  (  k,  ) are deﬁned in (4) and (6). This                 N−1                                                                   1
+results in the following theorem:                      = det            (t,  ) T(t,  )                     (17)
+                                            N
+                                                                                   t=0
+Theorem 1 (ML cost function). Under Assumption 1, the Gaus-
+sian ML cost function is given by (11), where at DC (f = 0)       with  (t, )=H −1(q, )(y(t)−G(q,  )u(t)) and q the back-
+and Nyquist (f = fS/2) the summands are multiplied by 2.1         ward shift operator (qx(t) = x(t −1)).
+
+===== PDF PAGE 4 =====
+                                                   R. Pintelon et al. / Automatica 43 (2007) 868–875                                         871
+
+2.3. ML estimator                                             det(C(  ,  )) via |D(  k,  )|2 and det(C(  k,  ))|2 only. It
+                                                         shows that the cost function remains the same when the
+  Consider, for example, a common denominator representa-        roots  of D(  ,  ) that are not in common with A(  ,  ) and
+tion of the plant and noise models                                   the roots   of det(C(  ,  )) are mirrored w.r.t. the stability
+                             nb         r                                 border ( →−¯ , where  ¯x denotes the complex conju-        B(  ,  )                        Br          =   r=0G(  ,  ) =                             na                                              r ,                                 gate of x, for continuous-time systems, and →  −1 for        A(  ,  )                       r=0 ar                                       discrete-time systems). This is not true for the zeroes of the
+                                                              polynomial matrix adj(C(  ,  )), unless the MIMO problem                                    nig         r
+          IG(  ,  )                                    Igr                                                                             independent SISO problems. Note that nei-                                                                 reduces to ny           =   r=0TG(  ,  ) =                               na                                                 r ,                                                                     −1         A(  ,  )                         r=0 ar                                      ther H nor H   should be stable for the calculations in the
+                                                                frequency domain. For time domain calculations H(D) and                               nc         r        C(  ,  )                        Cr                                    H −1 (det(C)) can be stabilized without modifying the sta-           =   r=0H(  ,  ) =                              nd                                               r ,        D(  ,  )                        r=0 dr                                              tistical properties of the estimate. The stabilization of H −1,
+                                                               however, requires symbolic calculations for multiple output                                    nih         r
+          IH(  ,  )      r=0 Ihr                                  systems. This is the bottle neck of the time domain ap-
+TH(  ,  ) =      =    nd        r                     (18)         D(  ,  )                          r=0 dr                                  proach. It can only be avoided via a specially parametrized
+                                                                             state space model that excludes common dynamics in the
+with A and D polynomials, IG and IH vector polynomials of                                                                       plant and noise models.
+size ny × 1, and B and C, matrix polynomials of size ny × nu                                                      • Under some additional standard assumptions on the true
+and ny ×ny, respectively. The parametric models (18), where                                                              model, the model set and the cost function (see Pintelon
+contains all the numerator and denominator polynomials coef-
+                                    & Schoukens, 2005, Assumptions 9–11)  it can be shown
+ﬁcients, are overparametrized. Indeed, multiplying the numera-
+                                                                           that the ML estimator in Theorem 2 is strongly consistent,
+tors and denominators in (18) by a non-zero real number leaves
+                                                                   asymptotically normally distributed, and asymptotically ef-
+the parametric models unchanged. This imposes a constraint
+                                                                    ﬁcient (see Caines, 1988).
+on the coefﬁcients of the A and D polynomials. Further, the
+                                                      • Following   exactly   the  same   lines   of   Pintelon
+fact that E(k) in (3) is not observed, and that H(  k, )E(k) =                                                           and Schoukens (2005) the robustness of the ML estimator
+H(  k, )T T −1E(k) for any regular ny ×ny matrix T , imposes                                                                         in Theorem 2 can be shown. The estimate  ˆ (Z) remains
+n2y additional constraints on the coefﬁcients of the matrix poly-                                                                     strongly consistent and asymptotically normally distributed
+nomial C. The following parameter constraints are often used:
+                                                                         for non-Gaussian, mixing frequency domain noise V (k)
+                      z-domain      s-domain                   (the mixing condition allows for a correlation over the
+                                                                    frequency). Moreover, using the deﬁnition
+ARMAX, BJ, OE :      a0 = 1     or  ana = 1
+                                                         (19)
+ARMA,ARMAX, BJ :  C0 = Iny   or  Cnc = Iny                                   1                                                     VF ( ) = det  Re E           (  k,  ) H(  k,  )
+                                                             FBJ :                    d0 = 1     or  dnd = 1,                                     k∈K
+                                                                                                                         (20)where for CT models the constraints are imposed on the nor-
+malized model parameters; other choices are, however, possible                                                                     the general expressions for the convergence rate and the
+(see Section 3.1).                                                                asymptotic covariance matrix of  ˆ (Z) remain valid (see
+                                                                    Pintelon & Schoukens, 2005, Theorem 3, Properties 1–5).
+Theorem 2 (ML estimator). Under Assumption 1 the ML
+estimator  ˆ (Z) of model structure (12), where G(  ,  ) and
+H(  ,  ) are, for example, parametrized as in (18), and with     3. Minimization of the ML cost function
+  a vector containing the plant and noise transfer function
+coefﬁcients, minimizes (11) subject to the constraints (19).         3.1. Newton–Gauss algorithm
+
+  Discussion                                            The minimizer of (11)
+
+                                                 VF (  , Z) = det(  ( ))  with•  It can easily be veriﬁed that the cost function VF (  , Z) (11)
+   contains exactly the same parameter ambiguities as the plant                  F
+                                                                 1
+   and noise models in (18). Using the results of Pintelon,       ( ) = Re           (  k,  ) H(  k,  )                    (21)
+   Schoukens, Vandersteen, and Rolain (1999), it follows that           F k=1
+   the estimated models G(  , ˆ ) and H(  , ˆ )  1/2(ˆ ), with
+    ˆ the minimizer of (11), are independent of the particular     is found as the solution of  VF (  , Z)/    i = 0,  i = 1, 2, . . . ,
+   parameter constraint(s) chosen.                           dim(  ). Since   log det(X)/ X = X−T it follows that
+• Using H −1(  ,  ) = D(  ,  ) adj (C(  ,  ))/ det(C(  ,  )),
+                                                            det(X)             X   with adj(C) the adjoint matrix of C,  it can be seen that                                        = det(X) trace  X−1          ,                   (22)
+   the cost function VF (  , Z) (11) depends on D(  k,  ) and                 i                                                 i
+
+===== PDF PAGE 5 =====
+872                                                R. Pintelon et al. / Automatica 43 (2007) 868–875
+
+where X =   (  ). Hence,                                      with JL( )=L( )J( ), L( )=L( ) (  ), and J( )=   ( )/    ,
+                                                        and where   ( ), L( ) and  ( ) are deﬁned in (21) and (26),
+ VF (  , Z)                                   ( )                      respectively. A numerical stable implementation consists in      = 0 ⇒   trace    −1( )     = 0      (23)
+           i                                                               i                      solving
+
+for i = 1, 2, . . . , dim(  ). Using                               (JL( ))re  = −( L(  ))re,                               (30)
+
+    ( )       1                  (  k,  )                      where ( )re puts the real and imaginary parts on top of each
+    = Re       2 herm           H(  k,  )      ,             other, via a QR-factorization or an SVD decomposition (Golub       i       F                                  i
+                      k                        & Van Loan, 1996).
+  −1( ) =  −T /2( )  −1/2(  ),                               The iterative Newton–Gauss algorithm is implemented as
+                                                                   follows. First we calculate (JL( ))re w.r.t. all model parameters
+Y herm (X)Y H = herm (YXY H),                                   (constraints (19) are not imposed), next we solve (30) using the
+                                                               pseudo-inverse of (JL( ))re (the dimension of the null space
+trace(herm()) = Re(trace()),                             (24)    of (JL( ))re equals one for OE, two for ARMA(X), and three
+                                                                      for BJ), and ﬁnally we impose the following constraints on the
+with herm(X) = (X + XH)/2, Eq. (23) can be written as
+                                                            updated model parameters +     :
+
+                   ( )                                                                              na         nbtrace   −1( )
+                                i                            ARMAX, BJ, OE :      a2r +    trace(BTr Br) = 1
+                                                                                 r=0      r=0
+     2                              (  k,  )                                                             nc  =  Re      trace    −1/2( )
+    F                                                                   i                ARMA,ARMAX, BJ :     CTr Cr = Iny                k
+                                                                                     r=0
+
+                                                                                     nd   × (  −1/2( ) (  k,  ))H
+                                                   BJ :      d2r = 1                                       (31)
+                                                                    r=0
+     2                                             (  k,  )
+  =  Re      (  −1/2( ) (  k,  ))H  −1/2( )                  because they are numerically more robust than (19) (constraints
+    F                                                                                          i              (19) result in an ill conditioned set of Eqs. (30) if, for example,                k
+                                                                     in the z-domain the true value of a0 is zero).
+     2                           ( )
+  =  Re  (L( ) ( ))HL( )             ,                   (25)
+    F                                             i                                                                        3.2. Starting values
+where
+                                                                            First starting values for the plant model are calculated by
+L( ) = IF ⊗  −1/2( )  and                                 minimizing the following weighted non-linear least squares cost
+                                                                   function:
+ ( ) = [ T(  1,  ), . . . , T(  k,  ), . . . , T( F ,  )]T        (26)
+                                                       1               −1with ⊗the Kronecker product. From (25) we conclude that the          H(  k,  )ˆCY    (  k,  ) subject to constraints(31) (32)
+                                           F
+minimizer of (21) is found as the solution of the following set      k∈K
+of equations:
+                                                                                   w.r.t.    , where ˆCY  is a non-parametric estimate of the noise
+                          ( )                                model (see Appendix A), and where (32) is started from a
+Re  (L( ) ( ))HL( )    = 0.                       (27)
+                                                           weighted linear least squares version of (32). Next starting val-
+                                                             ues for the noise model are obtained in three steps: (i) calcu-
+The derivative of the left-hand side of (27) w.r.t.   equals                                                                       lation of the output residuals ˆV (k) = Y(k) −G(  k, ˆ )U(k),
+                              ( )                                 with ˆ the minimizer of (32); (ii) estimate of the denominator
+  Re  (L( ) ( ))HL( )                                     polynomial D via a SISO-ARMA ﬁt of
+                                  ⎛       ⎞1/2
+                  H                                                  ny
+                     ( )              ( )                                                 |ˆV[p](k)|2
+  = Re   L( )        L( )     + O( ).       (28)  ⎝       ⎠                                       (33)
+                                                                        var(ˆV[p])                                                         p=1
+
+Neglecting  the O( ) terms  in  (28),  the Newton–Raphson
+                                                             with var(ˆV[p]) = (1/F)  k∈K|ˆV[p](k)|2; (iii) estimate of thealgorithm  for ﬁnding the solution of (27) reduces  to the
+                                                           numerator polynomial matrix C via a MIMO-MA ﬁt of theNewton–Gauss method (Fletcher, 1991)
+                                                                   ﬁltered residuals D(  k, ˆ )ˆV (k), with D(  k, ˆ ) the solution of
+Re(JLH ( )JL( ))  = −Re(J LH ( ) L( ))                 (29)    step (ii).
+
+===== PDF PAGE 6 =====
+                                                   R. Pintelon et al. / Automatica 43 (2007) 868–875                                         873
+
+4. Calculation of the Cramér–Rao lower bound                Using constraints (34), the negative log-likelihood function
+                                                                                        is, within a  -independent constant, given by (7) with  =
+  The ultimate goal is to calculate uncertainty bounds on in-                                                                       Iny. Applying the deﬁnition of the Cramér–Rao lower bound
+variants of model structure (12) starting from the Cramér–Rao                                         CR ( 0).
+lower bound on the estimated model parameters. Examples of
+invariants are the plant transfer function G(  ,  ) and its poles   CR−1( 0) = 2E{VNLL(  , Iny, Z)}/   20                   (35)
+and zeroes, and the noise power spectrum H(  ,  ) H H(  ,  ).
+Note that the uncertainty calculation of H H H only requires   we ﬁnd after some calculations
+the uncertainty of H  1/2 and not that of H and    separately.
+Hence, the calculation of the Cramér–Rao lower bound can   CR−1( 0) = 2(J1)Tre(J1)re + (J2)Tre(J2)re,                 (36)
+be simpliﬁed signiﬁcantly by imposing the constraint  = Iny.
+                                                       where ( )re stacks the real and imaginary parts on top of eachThis is done by right multiplication of the estimated matrix co-
+                                                                 1/2     other. J1 and J2 are given byefﬁcients ˆCr by   1/2(ˆ ) giving Cr = ˆCr  1/2(ˆ ). Since H                                           ⎡     ⎤        ⎡     ⎤
+can still be right multiplied by an orthogonal matrix T without              vec(W1)                 vec(V1)
+changing the noise power spectrum H H H, the symmetry of
+                                                                  vec(W2)                 vec(V2)
+one of the matrix coefﬁcients Cr should also be imposed. This    J1 =                       ,   J2 =                    and,is done as follows: ﬁrst one matrix coefﬁcient is decomposed             0  ⎢⎢⎢⎢⎣     . . .         ⎥⎥⎥⎥⎦             0  ⎢⎢⎢⎢⎣     . . .          ⎥⎥⎥⎥⎦
+in singular values, for example, C0 = U0 0V 0T , and next all                                                              vec(WF )                vec(VF ),
+matrix coefﬁcients Cr are right multiplied by T0 =V0UT0 . Sum-
+marized the Cramér–Rao lower bound of the model parameters   Wk = H0( k)G(  k,  )(Inu + M0( k)G0(  k))−1S1/2R  (k),
+subject to the constraints:
+                                                        Vk = S−10  (  k)S(  k, )SH(  k, )S−H0   (  k),
+                          z-domain      s-domain
+                                                       where  vec( )  stacks  the columns on  top  of  each  other,
+ARMA,ARMAX, BJ, OE :  = Iny    or  = Iny                                                    X0(  k) = X(  k,  0),  and  S1/2R  (k)  is  a  square  root  of
+ARMAX, BJ, OE :          a0 = 1     or  ana = 1    (34)    E{R(k)RH(k)}. If the expected value in (35) is taken w.r.t. to
+                                                               = R(k)                                                                                                           S1/2R  (k)ARMA,ARMAX, BJ :     C0 = CT0   or  Cnc = CTnc          the disturbing noise E(k) only, then (36) with
+                                                                                 is the Cramér–Rao lower bound for the particular realization of
+BJ :                        d0 = 1     or  dnd = 1                                                                  the reference signal R(k). Finally, the Cramér–Rao lower bound
+will be calculated.                                       on any model parameter related quantity f ( ) is obtained via
+
+                       40                                    200
+
+
+                       20                                    100
+                                           (dB)
+                        0                                                       (°)                                                               0
+                                                                                                                                                                 Phase                                                                                                Amplitude  -20                                                                   -100
+
+
+                          -40                                        -200
+                          4      5      6      7      8          4      5      6      7      8
+                                    Frequency (Hz)                            Frequency (Hz)
+
+                       40                                    200
+
+
+                       20                                    100
+                                           (dB)
+                                                                                                (°)                        0                                      0
+                                                                                                                                                                Phase                                                                                                Amplitude  -20                                                                   -100
+
+
+                          -40                                        -200
+                          4             6             8          4             6             8
+                                    Frequency (Hz)                            Frequency (Hz)
+
+
+Fig. 2. Flight ﬂutter data: measured frequency response function (gray bullets), plant model (bold solid line), and standard deviation plant model (bold dashed
+line). Left column: amplitude, right column: phase.
+
+===== PDF PAGE 7 =====
+874                                                R. Pintelon et al. / Automatica 43 (2007) 868–875
+
+
+                        20                                      20
+
+
+                         0                                       0
+                                            (dB)                                                                                     (dB)
+                                                                                                   Amplitude  -20-40                                                                                                                                                                        Amplitude  -20-40
+
+
+                           -60                                           -60
+                           4      5      6      7      8         4      5      6      7      8
+                                      Frequency (Hz)                             Frequency (Hz)
+
+                        20                                      20
+
+
+                         0                                       0
+                                            (dB)                                                                                    (dB)
+                                                                                                    Amplitude  -20-40                                                                                                                                                                        Amplitude  -20-40
+
+
+                           -60                                           -60
+                           4      5      6      7      8         4      5      6      7      8
+                                      Frequency (Hz)                             Frequency (Hz)
+
+
+Fig. 3. Flight ﬂutter data: measured noise power spectrum (gray bullets), modelled noise power spectrum (bold solid line), and standard deviation modelled
+noise power spectrum (bold dashed line).
+
+
+CR(f ( 0)) = f ′( 0)CR( 0)f ′H( 0), where   ′  denotes  the    very well. The non-parametric FRF and noise power spectra
+derivative w.r.t.   (see Caines, 1988; Pintelon & Schoukens,   shown in these ﬁgures (gray bullets) are calculated as
+2001).
+                                                               Y(k) −TG(sk, ˆ ) −TH(sk, ˆ )
+                                                                    ˆG(sk) =                                                  ,
+                                                                     U(k)
+5. Measurement example: ﬂight ﬂutter analysis
+                                                                                        ˆV (k)ˆV H(k) with ˆV (k) = Y(k) −G(sk, ˆ )U(k) −TG(sk, ˆ )
+  Although the asymptotic properties (consistency, asymptotic
+covariance matrix, robustness, etc.) of the ML estimator has                       −TH(sk, ˆ ),                   (37)
+been veriﬁed on numerous simulation examples, we prefer to
+report the results of a real life application: ﬂight ﬂutter analysis.    where ˆ is the ML estimate.
+  To excite the air plane during ﬂight, a perturbation signal is
+injected in the control loop of the ﬂap mechanism at the tip side     6. Conclusion
+of the right wing. The angle perturbation of the ﬂap is used as a
+measure of the applied force, and the acceleration is measured         It has been shown that all results for SISO BJ identiﬁcation
+at two different positions on the left wing. Beside the applied    on parts of the imaginary axis (s-domain) or unit circle (z-
+perturbation the air plane is also excited during ﬂight by the    domain) gracefully extend to the multivariable case.
+natural turbulence. The resulting turbulent forces acting on the      Although the computational aspects of the ML estimator
+air plane cannot be measured and are assumed to be white in    (Newton–Gauss minimization, parameter constraints, starting
+the frequency band of interest. Since the input/output signals     values, Cramér–Rao lower bound) have been discussed for one
+are lowpass ﬁltered before sampling, a continuous-time plant     particular parametrization of the transfer function models (com-
+and noise model is the natural choice. The signals are measured   mon denominator), exactly the same lines can be followed for
+during about 128 s at the sampling rate fs = 256 Hz, giving    other parametrization (for example, left matrix fraction descrip-
+N = 32 768 data points per channel. Fig. 2 shows the 2 × 1     tion).
+force to acceleration frequency response function (FRF) in the
+band [4.00, 7.99 Hz] (DTF lines k = 513, 514, . . . , 1023 ⇒   Acknowledgement
+F = 511). From Figs. 2 and 3 it can be seen that a continuous-
+time ARMAX model ((18) with  = s and D = A) of order      This work is sponsored by the Fund for Scientiﬁc Research
+na = 8, nb = 8, nig = 9, and nc = 8 explains the measurements    (FWO-Vlaanderen), the Flemish Government (GOA-ILiNoS)
+
+===== PDF PAGE 8 =====
+                                                   R. Pintelon et al. / Automatica 43 (2007) 868–875                                         875
+
+and the Belgian Program on Interuniversity Poles of Attraction     McKelvey, T., & Ljung, L., (1997). Frequency domain maximum likelihood
+initiated by the Belgian State, Prime Minister’s Ofﬁce, Science         identiﬁcation. In 11th IFAC symposium on system identiﬁcation, (Vol. 4,
+Policy programming (IUAP V/22).                                          pp. 1741–1746) Kitakyushu, Japan, 8–11, July, preprints.
+                                                                                     Pintelon, R., Rolain, Y., & Schoukens, J. (2005). Box–Jenkins identiﬁcation
+                                                                                 revisited—Part II: Applications. Automatica, 42(1), 77–84.
+Appendix A. Non-parametric noise model                            Pintelon, R., & Schoukens,  J. (2001). System identiﬁcation: A frequency
+                                                                      domain approach. New York (USA): IEEE Press.
+  The data records of N input/output samples are split in      Pintelon,   R., &  Schoukens,   J.   (2005).  Box–Jenkins   identiﬁcation
+M  blocks  of equal  length ⌊N/M⌋, and  the  input/output        revisited—Part I: Theory. Automatica, 42(1), 63–75.
+DFT spectra U[r](k), Y [r](k) of each block are calculated      Pintelon, R., Schoukens, J., & Guillaume, P. (2006). Continuous-time noise                                                                              modelling from sampled data. IEEE Transactions on Instrumentation and
+(r =1, 2, . . . , ⌊N/M⌋). To reduce the leakage effect the spectra       Measurement, 55(6), 2253–2258.
+are differenced (Schoukens, Rolain, & Pintelon, 2006)               Pintelon, R., Schoukens, J., Vandersteen, G., & Rolain,Y. (1999). Identiﬁcation
+                                                                                    of invariants of (over)parametrized models: Finite sample results. IEEE
+  [r]
+                                                                                 Transactions on Automatic Control, AC-44(5), 1073–1077.Y D (k + 0.5) = Y [r](k + 1) −Y [r](k),
+                                                                          Schoukens,   J.,  Rolain,  Y., &  Pintelon,  R.  (2006).  Leakage  reduction
+U[r]D (k + 0.5) = U[r](k + 1) −U[r](k)                   (38)         in frequency response  function measurements. IEEE Transactions on
+                                                                                  Instrumentation and Measurement, 55(6), 2286–2291.
+and M is kept as small as possible. Next, the noise covariance
+matrix is estimated as                                                                   Rik Pintelon was born in Gent, Belgium, on
+                                                                                         December 4, 1959. He received the degree of
+                                                                                                                             electrical                                                                                                                    engineer                                                                                                                                           (burgerlijk                                                                                                                                             ingenieur)                                                                                                                                                                 in JulyˆCy(k) = 2(ˆSYDYD(k) −ˆSYDUD(k)ˆS−1UDUD(k)ˆSHYDUD),      (39)                                                                                                      1982, the                                                                                                                 degree of                                                                                                                              doctor in applied                                                                                                                                                  sciences                                                                                                                                                                      in
+                                                                                                       January 1988, and the qualiﬁcation to teach at
+where =M/(M−nu) is a bias correction factor, 21 accounts for                                    university level (geaggregeerde voor het hoger
+the differencing (38), and where ˆSXY =M−1  Mr=1X[r](Y [r])H.                                 onderwijs)Universiteit inBrusselApril (VUB),1994,  allBrussels,from theBelgium.Vrije
+From (39) it follows that the minimal value of M equals nu+1.                          From October 1982  till September 2000 he
+Finally, in order to guarantee the existence of the second order                            was a  researcher of  the Fund  for Scientiﬁc
+moments of ˆC−1Y (k) for a given input, ˆCY (k) is averaged over                              Research—Flandersber 2000 he  is professorat the atVUB.the VUBSince inOcto-the
+Q neighbouring frequencies such that Q=⌈(ny +3)/(nu +1)⌉      Electrical Measurement Department (ELEC). His main research interests are in
+(Mahata, Pintelon, & Schoukens, 2004). To reduce the variabil-      the ﬁeld of parameter estimation/system identiﬁcation, and signal processing.
+ity of the estimate we mostly choose Q > ⌈(ny + 3)/(nu + 1)⌉.
+                                                                                        Johan Schoukens is born in Belgium in 1957.
+                                                                              He received the degree of engineer in 1980 and
+References                                                                                                  the degree of doctor in applied sciences in 1985,
+                                                                                                       both from the Vrije Universiteit Brussel, Brus-
+Brillinger, D. R. (1981). Time series: data analysis and theory. New York:                                         sels, Belgium. He is presently professor at the
+   McGraw-Hill.                                                                                              Vrije Universiteit Brussel. The prime factors of
+                                                                                                                      his interest are in the ﬁeld of system identi-Caines, P. E. (1988). Linear stochastic systems. New York: Wiley.
+                                                                                                           ﬁcation for linear and nonlinear systems, and
+Fletcher, R. (1991). Practical methods of optimization. 2nd ed., New York:
+                                                                                                 growing tomatoes in his green house.
+   Wiley.
+Golub, G. H., & Van Loan, C. F. (1996). Matrix computations. 3rd ed.,
+   Baltimore: John Hopkins University Press.
+                                                                                                     Patrick Guillaume was born  in Anderlecht,
+Ljung, L., (1993). Some results on identifying linear systems using frequency
+                                                                                                   Belgium, in 1963. He received the degree in
+   domain  data. In Proceedings 32nd IEEE conference on decision and                                                                                                              mechanical-electrotechnical engineering in 1987
+   control, (Vol. 4, pp. 3534–3538) San Antonio, Texas, USA, December                             from the Vrije Universiteit Brussel, Belgium. In
+   15–17.                                                                                    1987 he joined the Department of Fundamen-
+Ljung, L. (1999). System identiﬁcation: theory for the users. Upper Saddle                                           tal  Electricity and Intrumentation (ELEC) of
+   River (USA): Prentice-Hall.                                                                                 the Vrije Universiteit Brussel and received the
+Mahata,  K.,  Pintelon,  R., & Schoukens,  J.,  (2004). Frequency domain                               Ph.D. degree in 1992. In 1996 he joined the De-
+   identiﬁcation using non-parametric noise models. In Proceedings of the                                partment of Mechanical Engineering (MECH)
+                                                                                              where he is currently lecturer. His main research   43rd IEEE conference on decision and control, (Vol. 1, pp. 821–826)
+                                                                                                                            interests are situated in the ﬁeld of system iden-
+   Atlantis, Bahamas, December 14–17.
+                                                                                                                        tiﬁcation, signal processing and experimental
+McKelvey, T. (2002). Frequency domain identiﬁcation methods. Circuits and                                                                                            modal analysis.
+   Systems Signal Processing, 21(1), 39–55.
