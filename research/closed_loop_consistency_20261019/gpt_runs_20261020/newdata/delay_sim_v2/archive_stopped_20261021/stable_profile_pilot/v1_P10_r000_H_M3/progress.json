@@ -1,0 +1,142 @@
+{
+  "complete": true,
+  "solver": {
+    "success": false,
+    "status": "trf_finished",
+    "score": 1.8499347928257023e-05,
+    "original_linear_score": 2.88460076131091e-10,
+    "near_bound": false,
+    "seconds": 51.14237259999936,
+    "profile_calls": 12,
+    "iterations": 12,
+    "optimizer": {
+      "status": 0,
+      "message": "The maximum number of function evaluations is exceeded.",
+      "scipy_success": false,
+      "nfev": 12,
+      "njev": 12,
+      "optimality": 2.9401224439064547e-07,
+      "cost": 4.916979908136192e-15
+    },
+    "version": "projected_schur_trf_v1",
+    "jacobian": "projected",
+    "frozen_instrument_GN": true,
+    "final_full_375_threshold": 1e-06,
+    "linear_threshold": 1e-09,
+    "rcond_on_tall_matrix": 1e-13,
+    "qscale": [
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4
+    ],
+    "final_evaluation": 12,
+    "history": [
+      {
+        "evaluation": 1,
+        "full_375_score": 0.37347237649349013,
+        "original_linear_score": 2.292661830840722e-10,
+        "inner_ok": true,
+        "seconds": 2.023884000001999
+      },
+      {
+        "evaluation": 2,
+        "full_375_score": 0.4847116202033467,
+        "original_linear_score": 5.690861464553455e-10,
+        "inner_ok": true,
+        "seconds": 4.15533609999693
+      },
+      {
+        "evaluation": 3,
+        "full_375_score": 0.423514041979208,
+        "original_linear_score": 2.748421314751217e-10,
+        "inner_ok": true,
+        "seconds": 6.076906499998586
+      },
+      {
+        "evaluation": 4,
+        "full_375_score": 0.46232336463464496,
+        "original_linear_score": 6.90305402519844e-10,
+        "inner_ok": true,
+        "seconds": 9.37310730000172
+      },
+      {
+        "evaluation": 5,
+        "full_375_score": 0.34327386012784733,
+        "original_linear_score": 8.70344876962129e-10,
+        "inner_ok": true,
+        "seconds": 14.919148300003144
+      },
+      {
+        "evaluation": 6,
+        "full_375_score": 0.2627205995114148,
+        "original_linear_score": 6.853473910480491e-10,
+        "inner_ok": true,
+        "seconds": 19.704692300001625
+      },
+      {
+        "evaluation": 7,
+        "full_375_score": 0.009870344544893545,
+        "original_linear_score": 7.359180515973598e-10,
+        "inner_ok": true,
+        "seconds": 24.57894110000052
+      },
+      {
+        "evaluation": 8,
+        "full_375_score": 0.0015181439076006318,
+        "original_linear_score": 9.399137621282752e-10,
+        "inner_ok": true,
+        "seconds": 28.75304299999698
+      },
+      {
+        "evaluation": 9,
+        "full_375_score": 0.0004633625859300879,
+        "original_linear_score": 3.029795558197853e-10,
+        "inner_ok": true,
+        "seconds": 34.14274199999636
+      },
+      {
+        "evaluation": 10,
+        "full_375_score": 0.0002036228067138044,
+        "original_linear_score": 5.751950491532842e-10,
+        "inner_ok": true,
+        "seconds": 38.96302260000084
+      },
+      {
+        "evaluation": 11,
+        "full_375_score": 7.320100744897109e-05,
+        "original_linear_score": 5.444616328582864e-10,
+        "inner_ok": true,
+        "seconds": 43.90084349999961
+      },
+      {
+        "evaluation": 12,
+        "full_375_score": 1.8499347928257023e-05,
+        "original_linear_score": 2.88460076131091e-10,
+        "inner_ok": true,
+        "seconds": 48.84254340000189
+      }
+    ],
+    "all_trials_preserved": true,
+    "formal_MC_inclusion": false
+  }
+}

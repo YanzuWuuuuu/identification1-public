@@ -1,0 +1,4398 @@
+[
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M1",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M1",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      22
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 15.073824299994158
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      20
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 15.09741390000272
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      19
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 15.10018090000085
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      21
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 19.568896199998562
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      23
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 21.26530850000563
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      24
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 21.390313099997
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      25
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 21.3933512000076
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      26
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 22.745176299999002
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      12
+    ],
+    "state": "no_decreasing_population_step",
+    "success": false,
+    "seconds": 8.700792299991008
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      19
+    ],
+    "state": "no_decreasing_population_step",
+    "success": false,
+    "seconds": 9.928656299991417
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      27
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 25.42253999999957
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      29
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 25.36927189999551
+  },
+  {
+    "case": [
+      20,
+      "W",
+      15,
+      "M1",
+      28
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 25.495069600001443
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      60,
+      "M1",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      27
+    ],
+    "state": "no_decreasing_population_step",
+    "success": false,
+    "seconds": 12.289785000000848
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      28
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 13.9951635000034
+  },
+  {
+    "case": [
+      20,
+      "L",
+      60,
+      "M1",
+      29
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 15.211332399994717
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      4
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 91.28289159999986
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      6
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 97.12257000000682
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      3
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 129.5020075999928
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      5
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 148.05381449998822
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      9
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 84.27681999999913
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      8
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 103.01129169999331
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      7
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 115.39156720000028
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      10
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 103.80390909999551
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      11
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 119.62325740000233
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      13
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 124.10785600000236
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      12
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 130.74766989999625
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      14
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 84.37390720000258
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      15
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 75.00845340000524
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      16
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 87.71886759999325
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      17
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 87.82404010000755
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      18
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 87.34160949999932
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      19
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 119.5280356000003
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      20
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 100.23780989999068
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      22
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 93.99592159999884
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      21
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 100.16842079999333
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      26
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 87.48611309999251
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      23
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 93.89843679999467
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      25
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 94.50122679999913
+  },
+  {
+    "case": [
+      20,
+      "W",
+      60,
+      "M1",
+      24
+    ],
+    "state": "converged",
+    "success": true,
+    "seconds": 113.90435289999004
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      15,
+      "M3",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      15,
+      "M3",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "L",
+      15,
+      "M3",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      20,
+      "H",
+      15,
+      "M3",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "L",
+      15,
+      "M3",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      40,
+      "H",
+      15,
+      "M3",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      9
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      10
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      11
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      12
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      13
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      14
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      15
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      16
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      17
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      18
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      19
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      20
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      21
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      22
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      23
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      24
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      25
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      26
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      27
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      28
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "L",
+      60,
+      "M3",
+      29
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      60,
+      "M3",
+      0
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      60,
+      "M3",
+      1
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      60,
+      "M3",
+      2
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      60,
+      "M3",
+      3
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      60,
+      "M3",
+      4
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      60,
+      "M3",
+      5
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      60,
+      "M3",
+      6
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      60,
+      "M3",
+      7
+    ],
+    "state": "existing",
+    "success": true
+  },
+  {
+    "case": [
+      10,
+      "H",
+      60,
+      "M3",
+      8
+    ],
+    "state": "existing",
+    "success": true
+  }
+]

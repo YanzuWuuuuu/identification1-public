@@ -1,0 +1,41 @@
+{
+  "completed_runtimes": {
+    "H_M3": {
+      "n": 72,
+      "median_seconds": 240.74660465000488,
+      "mean_seconds": 274.03889735277767,
+      "max_seconds": 578.5330025000003
+    },
+    "L_M3": {
+      "n": 72,
+      "median_seconds": 9.04009299999234,
+      "mean_seconds": 8.986644549999559,
+      "max_seconds": 16.677033699997992
+    },
+    "H_M1": {
+      "n": 31,
+      "median_seconds": 88.83896139998978,
+      "mean_seconds": 536.9960497225812,
+      "max_seconds": 2102.9592005000013
+    },
+    "L_M1": {
+      "n": 32,
+      "median_seconds": 7.632454600003257,
+      "mean_seconds": 7.58542862499894,
+      "max_seconds": 8.61517879999883
+    },
+    "W_M1": {
+      "n": 28,
+      "median_seconds": 2051.994408999999,
+      "mean_seconds": 2186.5822194535713,
+      "max_seconds": 3343.9730067000055
+    }
+  },
+  "interrupted_checkpoints": [
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\mc_qr_final\\raw\\P20_r025_W_M1.started.json",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\mc_qr_final\\raw\\P20_r027_W_M1.started.json",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\mc_qr_final\\raw\\P20_r030_W_M1.started.json",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\mc_qr_final\\raw\\P20_r031_H_M1.started.json"
+  ],
+  "note": "Saved v1 times only; not a v2 benchmark. No model/data generation or fitting."
+}

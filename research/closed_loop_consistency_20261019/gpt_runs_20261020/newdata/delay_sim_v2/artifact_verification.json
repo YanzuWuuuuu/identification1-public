@@ -1,0 +1,46 @@
+{
+  "verification_passed": true,
+  "checks": [
+    {
+      "controller_fc": 60.0,
+      "band": "L",
+      "rank": 153,
+      "minimum_energy": 0.17438175609288858
+    },
+    {
+      "controller_fc": 60.0,
+      "band": "H",
+      "rank": 153,
+      "minimum_energy": 0.13035886136085392
+    },
+    {
+      "controller_fc": 60.0,
+      "band": "W",
+      "rank": 207,
+      "minimum_energy": 0.45019953544169244
+    },
+    {
+      "controller_fc": 15.0,
+      "band": "L",
+      "rank": 153,
+      "minimum_energy": 0.5105696916496113
+    },
+    {
+      "controller_fc": 15.0,
+      "band": "H",
+      "rank": 153,
+      "minimum_energy": 0.11963367996120314
+    },
+    {
+      "controller_fc": 15.0,
+      "band": "W",
+      "rank": 207,
+      "minimum_energy": 0.30419917912299343
+    }
+  ],
+  "controller_and_jacobian_C0_identical": true,
+  "original_batch_running": false,
+  "new_mc_run": false,
+  "old_inputs_unchanged": 8143,
+  "note": "Only reads existing deterministic results, hashes and metadata."
+}

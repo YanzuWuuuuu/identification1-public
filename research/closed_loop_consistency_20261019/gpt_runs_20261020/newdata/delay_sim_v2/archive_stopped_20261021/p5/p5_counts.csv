@@ -1,0 +1,7 @@
+﻿model,side,comparisons,valid_comparisons,within_1u_raw,within_2u_raw,within_1u_extra,within_2u_extra
+a,output,24,24,4,6,4,5
+a,input,24,24,7,9,7,9
+a,all,48,48,11,15,11,14
+b,output,24,24,0,0,0,0
+b,input,24,24,1,3,1,3
+b,all,48,48,1,3,1,3

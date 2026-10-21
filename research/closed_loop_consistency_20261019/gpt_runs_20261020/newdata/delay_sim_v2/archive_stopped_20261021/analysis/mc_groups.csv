@@ -1,0 +1,10 @@
+﻿P,band,method,planned,raw_saved,raw_success,refinements_saved,diagnostic_full_root_success,aborted_qr_trial_saved,final_saved,final_success,final_failed,missing,raw_failures_not_refined
+20,L,M1,40,3,0,0,0,0,32,0,32,8,3
+20,H,M1,40,3,0,0,0,0,31,0,31,9,3
+20,W,M1,40,0,0,0,0,0,28,0,28,12,0
+10,L,M3,40,40,0,4,0,4,40,0,40,0,36
+10,H,M3,40,40,0,0,0,0,40,0,40,0,40
+20,L,M3,40,3,0,0,0,0,32,0,32,8,3
+20,H,M3,40,3,0,0,0,0,32,0,32,8,3
+40,L,M3,40,0,0,0,0,0,0,0,0,40,0
+40,H,M3,40,0,0,0,0,0,0,0,0,40,0

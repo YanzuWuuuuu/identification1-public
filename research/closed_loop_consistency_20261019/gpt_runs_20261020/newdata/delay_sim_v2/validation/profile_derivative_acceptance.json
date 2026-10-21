@@ -1,0 +1,44 @@
+[
+  {
+    "fc": 15,
+    "band": "L",
+    "inner_pass": true,
+    "derivative_step_relative": 7.713100296300155e-08,
+    "passed": true
+  },
+  {
+    "fc": 15,
+    "band": "H",
+    "inner_pass": true,
+    "derivative_step_relative": 6.051150018756265e-07,
+    "passed": true
+  },
+  {
+    "fc": 15,
+    "band": "W",
+    "inner_pass": true,
+    "derivative_step_relative": 4.250757983463214e-07,
+    "passed": true
+  },
+  {
+    "fc": 60,
+    "band": "L",
+    "inner_pass": true,
+    "derivative_step_relative": 2.566974051549427e-08,
+    "passed": true
+  },
+  {
+    "fc": 60,
+    "band": "H",
+    "inner_pass": true,
+    "derivative_step_relative": 3.8732335042480055e-07,
+    "passed": true
+  },
+  {
+    "fc": 60,
+    "band": "W",
+    "inner_pass": true,
+    "derivative_step_relative": 3.10048973988419e-07,
+    "passed": true
+  }
+]

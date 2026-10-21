@@ -1,0 +1,6 @@
+{
+  "bias_moment_identity_relative": 1.543969792981814e-13,
+  "full_curvature_derivative_relative": 7.117778852585317e-07,
+  "passed": true,
+  "includes_all_parameters": 153
+}

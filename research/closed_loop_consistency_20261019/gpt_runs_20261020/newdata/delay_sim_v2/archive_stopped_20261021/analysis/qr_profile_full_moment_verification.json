@@ -1,0 +1,60 @@
+{
+  "version": "tall_qr_v3_compact_residual",
+  "source_sha256": "d036df9a0ff924df365e2798e497456eb28272d3cbee1731002fa2ac2be554e8",
+  "records": [
+    {
+      "P": 10,
+      "band": "L",
+      "method": "M3",
+      "saved_linear_score": 1.2032421382737752e-06,
+      "full_equations_linear_score": 1.2032421382737752e-06,
+      "absolute_difference": 0.0,
+      "full_score": 0.34121540988699317
+    },
+    {
+      "P": 10,
+      "band": "H",
+      "method": "M3",
+      "saved_linear_score": 2.292661835225714e-10,
+      "full_equations_linear_score": 2.292661830840722e-10,
+      "absolute_difference": 4.384991960623232e-19,
+      "full_score": 0.37347237649349013
+    },
+    {
+      "P": 10,
+      "band": "W",
+      "method": "M3",
+      "saved_linear_score": 2.7282882308161174e-10,
+      "full_equations_linear_score": 2.728288206134228e-10,
+      "absolute_difference": 2.468188919524581e-18,
+      "full_score": 0.3757150281057363
+    },
+    {
+      "P": 10,
+      "band": "H",
+      "method": "M1",
+      "saved_linear_score": 7.13946135412092e-10,
+      "full_equations_linear_score": 7.139461491679102e-10,
+      "absolute_difference": 1.3755818165337135e-17,
+      "full_score": 0.3657674113250931
+    },
+    {
+      "P": 20,
+      "band": "H",
+      "method": "M3",
+      "saved_linear_score": 2.901498298899167e-10,
+      "full_equations_linear_score": 2.901498356051194e-10,
+      "absolute_difference": 5.715202713763258e-18,
+      "full_score": 0.3734876574946293
+    },
+    {
+      "P": 20,
+      "band": "W",
+      "method": "M3",
+      "saved_linear_score": 2.627866031057415e-10,
+      "full_equations_linear_score": 2.62786602608013e-10,
+      "absolute_difference": 4.977285332459936e-19,
+      "full_score": 0.3757323640235302
+    }
+  ]
+}

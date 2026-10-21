@@ -1,0 +1,22 @@
+{
+  "saved": 235,
+  "successful": 0,
+  "failed": 235,
+  "planned": 360,
+  "remaining": 125,
+  "invalid_files": [],
+  "pid": 24420,
+  "running": false,
+  "updated": "2026-10-21T09:48:48.152396",
+  "batch_complete_marker": false,
+  "exit_code": 4294967295,
+  "complete": false,
+  "source_audit": {
+    "checked": 8143,
+    "total": 8143,
+    "changed": [],
+    "missing": [],
+    "errors": [],
+    "note": "Changes, if any, are reported; this check alone cannot attribute concurrent external edits."
+  }
+}

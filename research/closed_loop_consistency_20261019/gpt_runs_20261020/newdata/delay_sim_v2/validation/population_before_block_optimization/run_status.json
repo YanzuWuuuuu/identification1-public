@@ -1,0 +1,20 @@
+[
+  {
+    "configuration": [
+      20,
+      "L",
+      15,
+      "M1"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      20,
+      "H",
+      15,
+      "M1"
+    ],
+    "state": "finished"
+  }
+]

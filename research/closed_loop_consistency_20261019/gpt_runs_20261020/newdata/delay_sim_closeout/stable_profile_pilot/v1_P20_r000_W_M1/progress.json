@@ -1,0 +1,106 @@
+{
+  "complete": true,
+  "solver": {
+    "success": false,
+    "status": "wall_time_limit",
+    "score": 0.0013743245335939166,
+    "original_linear_score": 1.5868602395204748e-12,
+    "near_bound": false,
+    "seconds": 410.1478543999983,
+    "profile_calls": 8,
+    "iterations": 8,
+    "optimizer": null,
+    "version": "projected_schur_trf_v1",
+    "jacobian": "projected",
+    "frozen_instrument_GN": true,
+    "final_full_375_threshold": 1e-06,
+    "linear_threshold": 1e-09,
+    "rcond_on_tall_matrix": 1e-13,
+    "qscale": [
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.04,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4
+    ],
+    "final_evaluation": 8,
+    "history": [
+      {
+        "evaluation": 1,
+        "full_375_score": 0.36472786874486657,
+        "original_linear_score": 3.625677717808049e-13,
+        "inner_ok": true,
+        "seconds": 13.271933800002444
+      },
+      {
+        "evaluation": 2,
+        "full_375_score": 0.4765724212389242,
+        "original_linear_score": 4.831877275209141e-13,
+        "inner_ok": true,
+        "seconds": 61.35400159999699
+      },
+      {
+        "evaluation": 3,
+        "full_375_score": 0.3615001415921136,
+        "original_linear_score": 8.837985858681497e-13,
+        "inner_ok": true,
+        "seconds": 114.81627859999571
+      },
+      {
+        "evaluation": 4,
+        "full_375_score": 0.2431028817459143,
+        "original_linear_score": 1.370967312979263e-12,
+        "inner_ok": true,
+        "seconds": 170.37866930000018
+      },
+      {
+        "evaluation": 5,
+        "full_375_score": 0.1267758520510452,
+        "original_linear_score": 1.6663837157394187e-12,
+        "inner_ok": true,
+        "seconds": 225.59426459999668
+      },
+      {
+        "evaluation": 6,
+        "full_375_score": 0.02840554151221708,
+        "original_linear_score": 1.5404363104267299e-12,
+        "inner_ok": true,
+        "seconds": 273.863629499996
+      },
+      {
+        "evaluation": 7,
+        "full_375_score": 0.006325648847805102,
+        "original_linear_score": 1.6124133555534672e-12,
+        "inner_ok": true,
+        "seconds": 321.63375539999834
+      },
+      {
+        "evaluation": 8,
+        "full_375_score": 0.0013743245335939166,
+        "original_linear_score": 1.5868602395204748e-12,
+        "inner_ok": true,
+        "seconds": 376.9167101999992
+      }
+    ],
+    "all_trials_preserved": true,
+    "formal_MC_inclusion": false
+  }
+}

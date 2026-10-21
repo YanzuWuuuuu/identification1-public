@@ -1,0 +1,24 @@
+{
+  "L": {
+    "parameters": 153,
+    "response_vs_independent_state": 1.3945421526767094e-13,
+    "analytic_jacobian_relative": 5.986425555524562e-08,
+    "boundary_relative": 2.9512477050260304e-12,
+    "steady_output_relative": 2.1259967346973922e-16
+  },
+  "H": {
+    "parameters": 153,
+    "response_vs_independent_state": 1.6074660433826853e-13,
+    "analytic_jacobian_relative": 4.474756036729382e-07,
+    "boundary_relative": 7.331365089775013e-14,
+    "steady_output_relative": 2.4349104188613817e-16
+  },
+  "W": {
+    "parameters": 207,
+    "response_vs_independent_state": 1.1174383751756986e-13,
+    "analytic_jacobian_relative": 3.0332202110566646e-08,
+    "boundary_relative": 1.8311465008456318e-12,
+    "steady_output_relative": 2.409082115656601e-16
+  },
+  "acceptance_pass": true
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "coarse": 0.16666666666666666,
+    "fine": 0.08333333333333333,
+    "bands": {
+      "L": {
+        "normalized_M_relative_difference": 1.9402673642683837e-06,
+        "normalized_b_relative_difference": 0.00010662831662145022
+      },
+      "H": {
+        "normalized_M_relative_difference": 4.46409519296992e-06,
+        "normalized_b_relative_difference": 2.8589375359442403e-06
+      },
+      "W": {
+        "normalized_M_relative_difference": 3.5677708138548424e-06,
+        "normalized_b_relative_difference": 0.00010662039179860522
+      }
+    }
+  }
+]

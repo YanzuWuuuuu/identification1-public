@@ -1,0 +1,164 @@
+[
+  {
+    "configuration": [
+      20,
+      "L",
+      15,
+      "M1"
+    ],
+    "state": "existing"
+  },
+  {
+    "configuration": [
+      20,
+      "H",
+      15,
+      "M1"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      20,
+      "L",
+      60,
+      "M1"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      20,
+      "W",
+      15,
+      "M1"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      20,
+      "H",
+      60,
+      "M1"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      10,
+      "L",
+      15,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      10,
+      "H",
+      15,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      20,
+      "L",
+      15,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      20,
+      "H",
+      15,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      40,
+      "L",
+      15,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      40,
+      "H",
+      15,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      10,
+      "L",
+      60,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      10,
+      "H",
+      60,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      20,
+      "L",
+      60,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      20,
+      "H",
+      60,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      40,
+      "L",
+      60,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      40,
+      "H",
+      60,
+      "M3"
+    ],
+    "state": "finished"
+  },
+  {
+    "configuration": [
+      20,
+      "W",
+      60,
+      "M1"
+    ],
+    "state": "finished"
+  }
+]

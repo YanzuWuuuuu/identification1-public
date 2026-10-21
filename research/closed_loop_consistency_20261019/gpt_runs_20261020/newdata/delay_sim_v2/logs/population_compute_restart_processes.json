@@ -1,0 +1,17 @@
+[
+  {
+    "ProcessId": 38188,
+    "ParentProcessId": 28684,
+    "CommandLine": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" run_population.py"
+  },
+  {
+    "ProcessId": 37152,
+    "ParentProcessId": 38188,
+    "CommandLine": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=38188, pipe_handle=996)\" \"--multiprocessing-fork\""
+  },
+  {
+    "ProcessId": 2684,
+    "ParentProcessId": 38188,
+    "CommandLine": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=38188, pipe_handle=788)\" \"--multiprocessing-fork\""
+  }
+]

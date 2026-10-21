@@ -1,0 +1,30 @@
+{
+  "no_fit": true,
+  "no_simulation": true,
+  "no_random_generation": true,
+  "max_nuisance_column_relative_error": 1.6956237761373612e-16,
+  "max_analytic_delay_central_difference_relative_error": 1.470623083467556e-10,
+  "max_sequential_vs_direct_projector_absolute_error": 1.7413293029733268e-11,
+  "original_dependencies": [
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\code\\cl2.py",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\时延扩展_理论推导_v1.md",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_check\\baseline\\modal_model.py",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\stable_profile_pilot\\v1_P10_r000_H_M3\\protocol.json",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\mc\\data\\P20_r000.npz",
+      "unchanged": true
+    }
+  ]
+}

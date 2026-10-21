@@ -1,0 +1,13 @@
+﻿model,record,folds,valid,full_and_fold_endpoints_valid,saved_jackknife_valid,max_delta_csv_error_us,max_SE_csv_error_us,max_delay_csv_error_us,max_zero_sum_error_us
+a,A_lowgain,7,True,True,True,0.0,2.220446049250313e-16,0.0,6.039613253960852e-14
+a,A_nominal,7,True,True,True,0.0,4.440892098500626e-16,0.0,1.1368683772161603e-13
+a,A_highgain,8,True,True,True,0.0,0.0,0.0,1.1368683772161603e-13
+a,C_lowgain_pppp,7,True,True,True,0.0,2.220446049250313e-16,0.0,2.1804780203638074e-13
+a,C_nominal_pppp,6,True,True,True,0.0,2.220446049250313e-16,0.0,2.7355895326763857e-13
+a,C_highgain_pppp,6,True,True,True,0.0,4.440892098500626e-16,0.0,8.526512829121202e-14
+b,A_lowgain,7,True,True,True,0.0,1.1102230246251565e-16,0.0,2.2026824808563106e-13
+b,A_nominal,7,True,True,True,0.0,5.551115123125783e-17,0.0,2.2026824808563106e-13
+b,A_highgain,8,True,True,True,0.0,1.1102230246251565e-16,0.0,5.684341886080802e-14
+b,C_lowgain_pppp,7,True,True,True,0.0,1.1102230246251565e-16,0.0,1.6342482922482304e-13
+b,C_nominal_pppp,6,True,True,True,0.0,2.220446049250313e-16,0.0,1.1102230246251565e-13
+b,C_highgain_pppp,6,True,True,True,0.0,1.1102230246251565e-16,0.0,2.7355895326763857e-13

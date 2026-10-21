@@ -1,0 +1,31 @@
+{
+  "stoppedAt": "2026-10-21T09:48:44.5701844+09:00",
+  "reason": "User requests stop; no new MC until PLAN approval",
+  "parent": {
+    "ProcessId": 24420,
+    "CreationDate": "2026-10-21T02:23:04.10276+09:00",
+    "CommandLine": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" -B code/run_qr_mc.py --workers 4"
+  },
+  "workers": [
+    {
+      "ProcessId": 31768,
+      "CreationDate": "2026-10-21T02:23:05.102439+09:00",
+      "CommandLine": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"-B\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=24420, pipe_handle=748)\" \"--multiprocessing-fork\""
+    },
+    {
+      "ProcessId": 36500,
+      "CreationDate": "2026-10-21T02:23:05.106516+09:00",
+      "CommandLine": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"-B\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=24420, pipe_handle=980)\" \"--multiprocessing-fork\""
+    },
+    {
+      "ProcessId": 31300,
+      "CreationDate": "2026-10-21T02:23:05.111043+09:00",
+      "CommandLine": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"-B\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=24420, pipe_handle=972)\" \"--multiprocessing-fork\""
+    },
+    {
+      "ProcessId": 6280,
+      "CreationDate": "2026-10-21T02:23:05.115094+09:00",
+      "CommandLine": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\" \"-B\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=24420, pipe_handle=1004)\" \"--multiprocessing-fork\""
+    }
+  ]
+}

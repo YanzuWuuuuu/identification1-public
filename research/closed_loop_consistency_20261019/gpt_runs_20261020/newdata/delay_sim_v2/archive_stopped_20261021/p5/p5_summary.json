@@ -1,0 +1,123 @@
+{
+  "prediction": "P5",
+  "method": "M3",
+  "compared_models": [
+    "a",
+    "b"
+  ],
+  "excluded_common_delay": true,
+  "original_prediction_quote": "P5（实测，秩 1 相对时延）。** 在 220–420 Hz 与 450–550 Hz 两个窗口中改用秩 1 共享振型模型：两个窗口估计的相对时延 \\(a,b\\) 在合成不确定度（jackknife 与运行间复现性）内一致；而自由留数模型下（现有结果）它们不一致。\\(\\tau_c\\) 不在本预测之内。",
+  "coverage_factor_predefined_in_theory": false,
+  "descriptive_coverage_factors": [
+    1,
+    2
+  ],
+  "comparison_counts": [
+    {
+      "model": "a",
+      "side": "output",
+      "comparisons": 24,
+      "valid_comparisons": 24,
+      "within_1u_raw": 4,
+      "within_2u_raw": 6,
+      "within_1u_extra": 4,
+      "within_2u_extra": 5
+    },
+    {
+      "model": "a",
+      "side": "input",
+      "comparisons": 24,
+      "valid_comparisons": 24,
+      "within_1u_raw": 7,
+      "within_2u_raw": 9,
+      "within_1u_extra": 7,
+      "within_2u_extra": 9
+    },
+    {
+      "model": "a",
+      "side": "all",
+      "comparisons": 48,
+      "valid_comparisons": 48,
+      "within_1u_raw": 11,
+      "within_2u_raw": 15,
+      "within_1u_extra": 11,
+      "within_2u_extra": 14
+    },
+    {
+      "model": "b",
+      "side": "output",
+      "comparisons": 24,
+      "valid_comparisons": 24,
+      "within_1u_raw": 0,
+      "within_2u_raw": 0,
+      "within_1u_extra": 0,
+      "within_2u_extra": 0
+    },
+    {
+      "model": "b",
+      "side": "input",
+      "comparisons": 24,
+      "valid_comparisons": 24,
+      "within_1u_raw": 1,
+      "within_2u_raw": 3,
+      "within_1u_extra": 1,
+      "within_2u_extra": 3
+    },
+    {
+      "model": "b",
+      "side": "all",
+      "comparisons": 48,
+      "valid_comparisons": 48,
+      "within_1u_raw": 1,
+      "within_2u_raw": 3,
+      "within_1u_extra": 1,
+      "within_2u_extra": 3
+    }
+  ],
+  "magnitudes": [
+    {
+      "model": "a",
+      "side": "output",
+      "mean_absolute_gap_us": 5.146419728216377,
+      "max_absolute_gap_us": 11.883418682936812,
+      "mean_jackknife_SE_us": 0.4401960853051568
+    },
+    {
+      "model": "a",
+      "side": "input",
+      "mean_absolute_gap_us": 21.458473321361527,
+      "max_absolute_gap_us": 77.78720817460736,
+      "mean_jackknife_SE_us": 1.6471623989288642
+    },
+    {
+      "model": "a",
+      "side": "all",
+      "mean_absolute_gap_us": 13.302446524788953,
+      "max_absolute_gap_us": 77.78720817460736,
+      "mean_jackknife_SE_us": 1.0436792421170105
+    },
+    {
+      "model": "b",
+      "side": "output",
+      "mean_absolute_gap_us": 15.03120068841711,
+      "max_absolute_gap_us": 19.645881163711056,
+      "mean_jackknife_SE_us": 0.029698368874979914
+    },
+    {
+      "model": "b",
+      "side": "input",
+      "mean_absolute_gap_us": 8.599041296516614,
+      "max_absolute_gap_us": 16.886890363678916,
+      "mean_jackknife_SE_us": 0.5487588529382166
+    },
+    {
+      "model": "b",
+      "side": "all",
+      "mean_absolute_gap_us": 11.815120992466865,
+      "max_absolute_gap_us": 19.645881163711056,
+      "mean_jackknife_SE_us": 0.2892286109065983
+    }
+  ],
+  "all_sources_unchanged": true,
+  "conclusion": "现有实测数据不支持 P5：秩1共享振型模型的相对时延跨窗口不一致；1u与2u两种描述性尺度下均如此。"
+}

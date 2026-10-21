@@ -1,0 +1,48 @@
+{
+  "backend": "Python/matplotlib",
+  "new_fits": false,
+  "smoothing": false,
+  "source_sha256": {
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\audit\\loop_gain_grid.npz": "de6e695019c4be9f6bdf5f67561cd0c870008a8ba719e7854615693e11b873bd",
+    "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\delay_sim_closeout\\audit\\stability_identifiability_audit.json": "e66b4da99c03f40dfbdb959a36b823fe91d7182b17d737181990d5b6eb21db9b"
+  },
+  "source_unchanged": true,
+  "loop_points_shown": 9005,
+  "high_band_audit_maximum": {
+    "value": 0.7140781896673639,
+    "frequency_hz": 286.5811395583123,
+    "below_point_one": false
+  },
+  "pdf_text_fonttype": 42,
+  "artifacts": [
+    {
+      "path": "figures\\audit_high_band_loop_gain.png",
+      "bytes": 157433,
+      "width_pixels": 2160,
+      "height_pixels": 1050,
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    },
+    {
+      "path": "figures\\audit_high_band_loop_gain.pdf",
+      "bytes": 56302
+    },
+    {
+      "path": "figures\\audit_band_information.png",
+      "bytes": 218412,
+      "width_pixels": 2160,
+      "height_pixels": 1170,
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    },
+    {
+      "path": "figures\\audit_band_information.pdf",
+      "bytes": 61988
+    }
+  ],
+  "interpretation": "Numerical deterministic diagnostics; no exact ZOH non-identifiability proof."
+}
