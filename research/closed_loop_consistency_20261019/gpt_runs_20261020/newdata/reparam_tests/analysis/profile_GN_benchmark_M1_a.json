@@ -1,0 +1,55 @@
+{
+  "model": "a",
+  "method": "M1",
+  "solver": {
+    "success": true,
+    "status": "score_converged",
+    "score": 1.7978640775160325e-08,
+    "iterations": 6,
+    "inner_failures": 0,
+    "profile_calls": 7,
+    "seconds": 10.086059499997646,
+    "near_bound": false,
+    "history": [
+      {
+        "iteration": 0,
+        "score": 0.007128864398278979,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 1,
+        "score": 4.663611305158627e-05,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 2,
+        "score": 5.6894964149203015e-06,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 3,
+        "score": 8.354666506075373e-07,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 4,
+        "score": 1.4315026936703214e-07,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 5,
+        "score": 1.7978640775160325e-08,
+        "inner_iterations": 1,
+        "inner_ok": true
+      }
+    ],
+    "hybrid": null
+  },
+  "max_parameter_difference": 1.1037176950168259e-07,
+  "prior_seconds": 51.894585399997595
+}

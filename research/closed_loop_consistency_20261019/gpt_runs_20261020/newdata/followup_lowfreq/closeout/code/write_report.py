@@ -1,0 +1,215 @@
+from common import *
+def fmt(x,n=3):
+    return f'{x:.{n}f}' if isinstance(x,(float,np.floating)) else str(x)
+def tab(headers,rows):
+    return '\n'.join(['| '+' | '.join(headers)+' |','| '+' | '.join(['---']*len(headers))+' |']+
+        ['| '+' | '.join(map(str,r))+' |' for r in rows])+'\n'
+def main():
+    cv=rd(HERE/'analysis/curvature.json');jk=rd(HERE/'analysis/prediction_jackknife.json');ss=rd(HERE/'analysis/sensitivity.json')
+    su=rd(HERE/'analysis/sensitivity_summary.json');vv=rd(HERE/'analysis/verification.json')
+    parts=[]
+    def add(s):parts.append(s.strip()+'\n')
+    add("""# 低频偏差预测三项收尾报告
+
+日期：2026-10-20。定位：**主结果不变 + 新增不确定度与敏感性诊断**。
+
+## 结论
+
+1. nominal 的两种预测差异不是 M−C 接近奇异所致。A_nominal 的尺度不变曲率指标 q 为0.228；降低激励后为0.412，距特征值1仍有0.772/0.588。差异来自模态留数—极点曲率通过联合参数耦合投影到第二阶阻尼，单个参数的相对变化明显大于全向量的变化。
+2. 已在41个删除周期折（对应原82次M1/M3重估）上重新估谱和预测。纳入预测误差及其与实测的相关性后，A_nominal 的主公式联合 z 仍为2.895，A_lowgain 为−5.036；并没有因为加误差棒而使原问题消失。按旧检测门槛，A_nominal 仍标为“预测效应低于检测限”，其z只是附加诊断。
+3. 原D0+D2模型下，三个频带都保持A、C组“第二阶M1−M3随控制增益单调增大”。M3的绝对阻尼变化小于M1，但仍有可见变化，不能写成跨控制器严格不变。
+4. 带外二阶背景对照已全部执行，但36个拟合端点中34个达到迭代上限，其余2个停在背景边界且未通过严格score。**没有形成可靠的新增背景稳健性证据**，也不能据此认定23–25Hz残差主要来自背景模型。所有端点均保留。
+
+## 0. 范围、数据与只读保护
+
+六条记录、原数据、原主模型、原0.5Hz谱规则及原判据不变。新增目录之外的文件全部只读。主模型仍为158参数、原时延减100μs、精确ZOH及原24个瞬态系数。M1是全频点直接法，M3是激励谱线参考IV。
+""")
+    add(f"""写入前保护快照包含 {vv['protected_files']} 个已有文件；收尾改变 {len(vv['changed'])}、丢失 {len(vv['missing'])}，四份模型/求解器/时延副本逐字节一致。3–25Hz原模型重算的M1/M3参数与原端点逐项相同；Q/EQ相对重现误差小于7×10⁻¹²。没有用新结果覆盖旧报告、旧图或旧判定。
+
+## 1. 曲率修正稳定性
+
+### 1.1 量纲和判据
+
+令 H=M⁻¹C，d=M⁻¹b，d_c=(M−C)⁻¹b=(I−H)⁻¹d。原始H的欧氏范数随参数单位/坐标缩放变化，**不能给它一个通用物理阈值**。本组原始范数为数百至两万以上，却不意味着(I−H)接近奇异。
+
+同时报告两种标准化：
+
+- S=diag(M)⁻¹ᐟ²；M_s=SMS、C_s=SCS，对角标准化H_s=M_s⁻¹C_s。该范数消除了简单量纲，仍受参数相关性影响。
+- 对称广义特征问题 Cv=λMv，q=max|λ|=‖M⁻¹ᐟ²CM⁻¹ᐟ²‖₂=‖H‖_M。M正定且C对称时，q是M度量下的诱导范数，广义特征值不随可逆重参数化改变。
+
+在q<1时，有
+
+‖d_c−d‖_M / ‖d‖_M ≤ q/(1−q)。
+
+本轮事先固定的**新增诊断规则**是：q≤0.1可作为“小曲率”检查（上界约11.1%）；q≥0.5标为修正不再小、不能据此依赖小扰动展开；q≥1则Neumann级数不收敛，不能以该级数保证可靠。另检查min|1−λ|；只有λ接近1才直接指向M−C的奇异性，|λ|>1本身并不等同于M−C不可逆。
+
+这只是曲率矩阵的扰动规则，**不是非线性偏差公式有效性的充分判据**。即使q<0.5，单个阻尼分量仍可能因抵消而敏感；还必须检查具体预测变化、误差棒与实测。旧主判据没有因此改变。
+
+### 1.2 全部记录及缩放情形
+""")
+    add(tab(['记录/情形','‖H‖₂原坐标','‖H_s‖₂','λ最小/最大','q','特征值距1的最小距离'],[
+        [r['id']+(' 缩放' if r['scenario']=='scaled' else ''),fmt(r['raw_H_norm2'],1),fmt(r['diagonal_scaled_H_norm2']),
+         f"{r['eigen_min']:.4f}/{r['eigen_max']:.4f}",fmt(r['max_abs_eigenvalue'],4),fmt(r['distance_to_one'],4)] for r in cv]))
+    add(tab(['记录/情形','κ₂(M)原坐标','κ₂(M−C)原坐标','κ₂(M_s)','κ₂(M_s−C_s)'],[
+        [r['id']+(' 缩放' if r['scenario']=='scaled' else ''),f"{r['raw_condition_M']:.3e}",f"{r['raw_condition_MminusC']:.3e}",
+         f"{r['scaled_condition_M']:.3e}",f"{r['scaled_condition_MminusC']:.3e}"] for r in cv]))
+    add("""原始条件数很大与不同参数量纲有关；标准化条件数约10⁵量级。所有q<0.5，所有特征值距1都大于0.58；nominal的变化不能归因于突然出现的近奇异反演。
+
+### 1.3 为什么nominal从8.11变成4.76，缩放后从14.16变成2.13
+""")
+    nom=[r for r in cv if r['id']=='A_nominal']
+    add(tab(['情形','M⁻¹b预测ζ2 %','(M−C)⁻¹b预测ζ2 %','ζ2预测相对变化','全向量M度量相对修正','模态留数贡献（百分点）','模态极点贡献（百分点）'],[
+        [r['scenario'],fmt(r['pred_M'][4]),fmt(r['pred_MminusC'][4]),
+         fmt(100*r['zeta2_relative_change_between_predictions'],1)+'%',
+         fmt(100*r['relative_correction_in_M_metric'],1)+'%',
+         fmt(r['correction_by_source'][0]['zeta2_percent_point_correction']),
+         fmt(r['correction_by_source'][1]['zeta2_percent_point_correction'])] for r in nom]))
+    add("""精确矩阵恒等式为
+
+d_c−d=(M−C)⁻¹ C d。
+
+按C的输入列分组，以g∈{模态留数、模态极点、D0D2、瞬态}定义
+
+Δ_g=(M−C)⁻¹ C[:,g] d[g]，Σ_g Δ_g=d_c−d。
+
+表中百分比贡献用同一个指数函数割线因子，把第二阶log分量Δ_g转换成可加的百分点，合计严格等于两种百分比预测之差；这是代数归因，不是四次独立物理干预。
+
+原nominal为8.107−4.048+0.704=4.763%；缩放后为14.160−15.417+3.384=2.127%。可见**主要是留数—极点联合修正中的抵消**，不是反演分母趋零。全向量的M度量修正仅7.7%/14.6%，但单个ζ2百分比预测变化达41.2%/85.0%；全向量小不能保证每个坐标分量小。
+
+### 1.4 C到底来自哪些参数方向
+""")
+    add(tab(['记录/情形','标准化C行能量：模态留数 %','模态极点 %','D0D2 %','瞬态 %'],[
+        [r['id']+(' 缩放' if r['scenario']=='scaled' else '')]+
+        [fmt(100*g['standardized_C_row_frobenius_fraction'],2) for g in r['direct_C_groups']] for r in cv]))
+    add("""C的D0/D2和瞬态行、列在此实现中严格为零；非零曲率来自模态留数与极点、以及极点之间的二阶导数。**这不意味着瞬态和背景对结果没有影响**：M的逆仍耦合全部158个参数。
+
+例如A_nominal最大广义特征值对应的向量，在“对角标准化参数坐标的欧氏分量平方”这一描述下，约97%位于瞬态坐标，缩放后约96%。这是弱方向中模态与瞬态联合变化的指标，不是物理能量分配，也不意味着C有一个未列出的直接瞬态项。
+
+进一步将6个极点坐标p与其余152个线性nuisance坐标n分开：C_nn=0，但两种系统消元后的右端并不相同：
+
+S_M=M_pp−M_pn M_nn⁻¹ M_np，r_M=b_p−M_pn M_nn⁻¹b_n；
+
+S_c=M_pp−C_pp−(M_pn−C_pn)M_nn⁻¹(M_np−C_np)，
+r_c=b_p−(M_pn−C_pn)M_nn⁻¹b_n。
+
+所以curvature既改变6维Schur矩阵，也通过线性参数耦合改变右端，不能仅看C_pp或某个阻尼对角项。消元所得6个偏移与完整158维解复现到约10⁻¹³以内。
+
+对论文的建议：两种预测同时报告；用q和min|1−λ|描述矩阵级稳定性，再单独报告目标阻尼的预测敏感性。不能选择8.11%仅因为它更接近12.35%的实测，也不能因为曲率修正有理论形式就把4.76%认定为更准确的实测预测。
+
+## 2. 预测误差棒和联合jackknife
+
+### 2.1 实现
+
+复用原41个删除周期折和82个M1/M3端点，不重新选择更好的初值或端点。每折用其剩余时间数据重建DFT，在原3–25Hz外扩2Hz估计0.5Hz全4×4非激励点谱，减去该折M3的瞬态，再重算两种预测。K、通道时延及模型结构仍固定为原实现。
+
+对每折δ_i=实测配对差、p_i=预测，分别计算se(δ)、se(p)、se(δ−p)。联合方差保留同折协方差：
+
+se²(δ−p)=se²(δ)+se²(p)−2cov_JK(δ,p)。
+
+图上点估计仍为原完整记录的值，误差棒为折间jackknife 1SE；不以删除折均值替换主点估计，不做事后的偏差校正。这个误差棒包括本程序中模态端点与谱估计的共同变化，不包括重新辨识K、固定时延误差、运行间漂移和模型类错误。
+""")
+    rows=[]
+    for r in jk:
+        for key in ('M','MminusC'):
+            k=4
+            cov=r['observed_prediction_JK_covariance_'+key][k]
+            so=r['observed_se'][k];sp=r['pred_'+key+'_se'][k];sd=r['difference_'+key+'_se'][k]
+            rows.append([r['id'],'M' if key=='M' else 'M−C',fmt(r['observed'][k]),fmt(r['pred_'+key][k]),
+                 fmt(so),fmt(sp),fmt(sd),fmt(cov/(so*sp),2),fmt(r['z_joint_'+key][k],3),
+                 '可检' if abs(r['pred_'+key][k])>2*so else '低于原检测门槛'])
+    add(tab(['记录','公式','实测 %','预测 %','实测SE','预测SE','差值联合SE','相关系数','联合z','原效应门槛'],rows))
+    add("""41折预测计算全部完成，无数值失败。旧82个估计端点中的严格score异常仍保留，没有因这次预测计算成功而被改写成严格收敛。
+
+联合z使用完整记录的“实测−预测”除以se(δ−p)。原任务检测门槛仍按原定义|预测|>2se(实测配对差)单列，主结果与正式判定均不替换。A_nominal的主公式虽有代数z=2.895，但仍属于原效应门槛以下，只作描述性诊断。
+
+不能把实测SE与预测SE当独立量做平方和。例如A_highgain有显著正相关，联合SE=5.905%，小于两个边际SE；A_lowgain联合SE约0.270%，使不吻合更明显。给预测加误差棒，并不保证z会变小。
+
+M⁻¹b对A_nominal的联合z约1.819，曲率主公式约2.895；两种结果都保留。原主公式的四条比值判据仍然3/4通过，A_nominal未通过，不能用替代公式的较好z反过来改主结论。
+
+新图 `figures/main_paired_prediction` 为双面板：左M⁻¹b，右原主公式(M−C)⁻¹b。两边实测、预测均有各自1SE；A和C++++保持不同标记。预测与实测的误差棒是否重叠，不能代替联合SE计算。
+
+## 3. 频带和背景敏感性
+
+### 3.1 设置及可比性
+
+六条记录分别使用3–20、3–25、3–30Hz。原D0/D2的归一化频率仍固定25Hz，不随测试频带改变。所有原支承模态、固定通道时延和精确ZOH保持不变。原模型的初值、80步上限、1e−5模态步长阈值、0.05步长上限沿用。
+
+额外背景为全4×4实留数的单个二阶项，频率初值40Hz、阻尼初值0.2，精确ZOH；频率限制35–200Hz以保证始终在最高30Hz频带以外，阻尼限制0.005–2。它是带外背景近似，不宣称是实际测出的40Hz模态。
+
+为了给该新增动态保留与原方法一致的有限记录边界表示，一并增加其8个瞬态系数。故对照为158+16个实留数+2个极点+8个瞬态=184参数；新增动态与其边界表示是一个整体对照，并非只增加两个参数。新增背景的边界活动集显式记录。
+
+各自频带内的Q/EQ使用各自端点的同记录0.5Hz谱及全部相应参数，未以n−p替代斜投影期望。另在所有配置共同的23–25Hz上冻结原主谱，报告未归一化预测残差及固定协方差Q；3–20Hz模型的这一段属于带外预测，不能伪称为带内残差检验。
+
+### 3.2 原D0+D2模型：全结果
+""")
+    add(tab(['记录','频带','M1 ζ2 (%)','M3 ζ2 (%)','配对差 %','M3 Q/EQ','M1/M3迭代','M1/M3严格score'],[
+        [r['id'],f"3–{r['hi']}",fmt(r['fits']['M1']['damping_percent'][1],4),fmt(r['fits']['M3']['damping_percent'][1],4),
+         fmt(r['paired_percent'][4]),fmt(r['residual']['ratio'],2),
+         f"{r['fits']['M1']['solver_info']['iterations']}/{r['fits']['M3']['solver_info']['iterations']}",
+         f"{r['fits']['M1']['strict_score_pass']}/{r['fits']['M3']['strict_score_pass']}"]
+        for r in ss if r['background']=='D0D2']))
+    add(tab(['组','频带','M1跨控制器极差（阻尼百分点）','M3极差','M1随增益单调','配对差随增益单调'],[
+        [r['group'],f"3–{r['hi']}",fmt(r['M1_range_percentage_points'],4),fmt(r['M3_range_percentage_points'],4),
+         str(r['M1_monotone']),str(r['paired_monotone'])] for r in su if r['background']=='D0D2']))
+    add("""原背景36个M1/M3端点均达到原停止规则，其中4个未达到更严格score；没有删除它们。在三个频带中，A和C组的M1及配对差都随增益单调增加。**这个方向性结论对频带上限选择稳定。**
+
+但M3仍有约0.16–0.27个阻尼百分点的跨控制器极差，不能把“比M1变化小”改写成“M3基本不变已得到统计证明”。在没有统一工作点及运行间复现性证据时，较合适的文字是“参考IV的控制器相关变化较小，绝对不变性尚未建立”。
+
+三个频带内M3 Q/EQ都大于2；裁到3–20Hz仍有约15–79倍超出。因此拟合充分性问题不是仅删除23–25Hz数据就能消除的。
+
+### 3.3 新增带外项：所有失败和端点
+
+下表所有值都是计算保留的端点；标记“否”即未到原停止规则。“是”也不代表严格score或无活动边界。**本表不得作为已收敛模型的效果对照。**
+""")
+    add(tab(['记录','频带','M1 ζ2','M3 ζ2','配对差 %','M3 Q/EQ*','M1/M3到停止规则','M1/M3背景f (Hz)','M1/M3背景ζ'],[
+        [r['id'],f"3–{r['hi']}",fmt(r['fits']['M1']['damping_percent'][1],4),fmt(r['fits']['M3']['damping_percent'][1],4),
+         fmt(r['paired_percent'][4]),fmt(r['residual']['ratio'],2),
+         '/'.join('是' if r['fits'][met]['converged'] else '否' for met in ('M1','M3')),
+         '/'.join(fmt(r['fits'][met]['background_f_hz'],2) for met in ('M1','M3')),
+         '/'.join(fmt(r['fits'][met]['background_damping'],4) for met in ('M1','M3'))]
+        for r in ss if r['background']=='extra40']))
+    add("""*此处Q/EQ只是把端点代入条件线性化公式的诊断值。未收敛或约束活动时，全参数根处投影的统计解释不成立；不能因某个数下降就宣布改善。
+
+36个新增背景端点：34个达到80次迭代上限，2个因背景在边界而满足步长停止；36个全部未通过严格score。仅2个停止端点为：A_lowgain、3–30Hz、M1，背景200Hz/ζ=2；C_lowgain++++、3–30Hz、M3，背景35Hz/ζ=2。其余边界、score、最后步长和完整历史在各JSON/CSV。
+
+已核查新增输出/雅可比实现：新增线性系数的中心差分相对误差约10⁻¹³；新增极点的前向雅可比与独立中心差分误差约1.7×10⁻⁶及5.0×10⁻⁷；置新增留数和瞬态为零时，输出逐位退化为原模型。未发现将模型/导数写错的证据。
+
+可观察到背景极点游走、频率/阻尼贴边、步长反复被上限截断。这与仅低频数据中新增带外极点、原D0D2、留数和边界项之间的弱区分相容，但**本轮不能把求解失败归结为已证明的结构不可辨识**。也不能用这些失败值证明主方法对背景选择不稳健；可靠的背景稳健性结论仍未建立。
+
+### 3.4 23–25Hz是否主要是背景误差
+""")
+    er=[]
+    for rid in IDS:
+        b=next(r for r in ss if r['id']==rid and r['hi']==25 and r['background']=='D0D2')
+        e=next(r for r in ss if r['id']==rid and r['hi']==25 and r['background']=='extra40')
+        er.append([rid,fmt(e['edge_23_25']['Q']/b['edge_23_25']['Q']),
+                   fmt(e['edge_23_25']['raw_residual_norm']/b['edge_23_25']['raw_residual_norm']),
+                   '未收敛；仅诊断'])
+    add(tab(['记录','23–25Hz固定协方差Q：新增/原','复残差范数：新增/原','状态'],er))
+    add("""没有一致、可靠的下降：固定谱Q比值约0.61–1.28，且这六个新增背景M3端点全部未收敛。原模型在3–20Hz内也有显著残差超出。故本轮只能说“边界背景近似是待查原因之一”，不能确认其为23–25Hz残差主因，也不能排除模型/瞬态/非线性等其他来源。
+
+## 4. 主结果保持什么、增加什么限定
+
+| 项目 | 原主结果 | 本轮收尾 |
+| --- | --- | --- |
+| 两种偏差公式 | 原主公式为(M−C)⁻¹b | 两者并列；nominal单分量对曲率较敏感，但并非矩阵近奇异 |
+| 主比值判据 | nominal/highgain四条中3条通过 | 不改点估计、不改判据，仍3/4 |
+| 配对差吻合 | 仍有不吻合和低检测力情形 | 增加预测与差值联合SE；不借替代公式或门槛改写原判定 |
+| 控制器趋势 | 参考IV的变化比直接法小 | 原背景下三个频带方向一致；绝对不变性未建立 |
+| 噪声水平拟合充分性 | Q/EQ未通过 | 原背景三个频带均未通过；新增背景缺少有效收敛对照 |
+| 背景模型解释 | 尚未定论 | 不能用本轮失败端点确认23–25Hz主要为背景误差 |
+
+需要保留的适用边界：新q阈值是矩阵级诊断，不是对非线性偏差公式的保证；联合jackknife不包括模型错误和运行间漂移；背景对照额外含其8个瞬态系数；约束/未收敛端点的Q/EQ无根处渐近检验含义。没有通过改频带、背景、求解器权重或选最好端点来替换主结论。
+
+## 5. 文件与复现
+
+- `analysis/curvature_metrics.csv`：9种情形的范数、特征值范围、条件数；`curvature_contributions.csv`：分组曲率贡献。
+- `analysis/prediction_uncertainty.csv`：全部阻尼分量、两种预测、边际/联合SE、同折相关性和z。
+- `analysis/sensitivity_all.csv`：36种记录×设置的全部M1/M3端点、score、背景边界、残差；`common_edge_23_25.csv`：冻结协方差的共同频段对照。
+- `raw`：9组曲率矩阵、41折重新估计的谱和预测矩阵、72个敏感性拟合端点及36组残差/共同频段结果。
+- `figures`：更新后的双公式预测误差棒图、曲率尺度图、原背景频带敏感性图、背景失败诊断图；均PNG 300dpi及PDF。
+- `analysis/verification.json`与`protected_hashes_before.json`：来源保护、模型退化、雅可比、联合方差恒等式、原结果重现检查。复现命令见README。
+""")
+    target=HERE/'收尾报告.md';target.write_text('\n'.join(parts),encoding='utf-8')
+    print('SAVED',target,'characters',len('\n'.join(parts)))
+if __name__=='__main__':main()

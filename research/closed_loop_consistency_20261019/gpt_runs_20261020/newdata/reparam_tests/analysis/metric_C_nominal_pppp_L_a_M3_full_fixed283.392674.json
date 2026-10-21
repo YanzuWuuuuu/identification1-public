@@ -1,0 +1,33 @@
+{
+  "id": "C_nominal_pppp",
+  "window": "L",
+  "model": "a",
+  "method": "M3",
+  "success": false,
+  "omit": null,
+  "qe": {
+    "all": {
+      "Q": 296915.5700985128,
+      "EQ": 142983.2784824839,
+      "ratio": 2.076575479662724
+    },
+    "negative_expected_entries": 0
+  },
+  "covariance_source": "original fixed-delay model (a); joint-delay parent failed",
+  "delay_residual_fraction": [
+    4.2656137212314434e-05,
+    4.874654870676331e-05,
+    4.6778762321112416e-05,
+    8.877999432237869e-05,
+    3.518342619830724e-05,
+    9.396565362930575e-05
+  ],
+  "delay_conditional_singular_values": [
+    0.011404197118330869,
+    0.00951469013900277,
+    0.007097700855692358,
+    0.0063354909268607245,
+    0.005300359899764229,
+    0.004112890011529607
+  ]
+}

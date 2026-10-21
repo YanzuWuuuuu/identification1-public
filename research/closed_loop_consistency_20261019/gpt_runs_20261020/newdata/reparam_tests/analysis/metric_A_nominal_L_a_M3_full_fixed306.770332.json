@@ -1,0 +1,33 @@
+{
+  "id": "A_nominal",
+  "window": "L",
+  "model": "a",
+  "method": "M3",
+  "success": true,
+  "omit": null,
+  "qe": {
+    "all": {
+      "Q": 247458.1375348845,
+      "EQ": 186977.28291571914,
+      "ratio": 1.32346632529914
+    },
+    "negative_expected_entries": 0
+  },
+  "covariance_source": "original fixed-delay model (a); joint-delay parent failed",
+  "delay_residual_fraction": [
+    0.0001787035624644057,
+    0.00014893753301167476,
+    0.00015166596168815876,
+    0.00017406773576785007,
+    0.000333334121979652,
+    0.0001168778204392842
+  ],
+  "delay_conditional_singular_values": [
+    0.01900770471938544,
+    0.014562029501987638,
+    0.012898126944971158,
+    0.012454083364624363,
+    0.011653471184430612,
+    0.008542361011275562
+  ]
+}

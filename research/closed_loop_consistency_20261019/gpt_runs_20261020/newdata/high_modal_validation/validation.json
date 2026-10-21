@@ -1,0 +1,11 @@
+{
+  "output_vs_old_relative": 3.341532410631154e-16,
+  "jac_vs_old_forward_difference_relative": 5.583489119130331e-12,
+  "transfer_vs_old_relative": 1.711896646466496e-16,
+  "scaled_moment_matrix_relative": 4.2941736699975245e-16,
+  "scaled_moment_gradient_relative": 6.695370940963234e-16,
+  "directional_derivative_relative": 1.374532750556886e-07,
+  "transfer_derivative_relative": 1.3675823427673717e-07,
+  "noiseless_max_log_modal_error": 3.402211845582315e-11,
+  "noiseless_converged": true
+}

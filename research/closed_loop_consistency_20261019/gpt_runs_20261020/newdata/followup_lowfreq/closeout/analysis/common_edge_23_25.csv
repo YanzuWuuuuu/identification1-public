@@ -1,0 +1,13 @@
+﻿id,background,relative_common_covariance_Q,relative_raw_residual,M3_converged,M3_strict
+A_lowgain,D0D2,1.0,1.0,True,True
+A_nominal,D0D2,1.0,1.0,True,True
+A_highgain,D0D2,1.0,1.0,True,True
+C_lowgain_pppp,D0D2,1.0,1.0,True,True
+C_nominal_pppp,D0D2,1.0,1.0,True,True
+C_highgain_pppp,D0D2,1.0,1.0,True,True
+A_lowgain,extra40,0.6119001204778777,1.131644064739397,False,False
+A_nominal,extra40,1.0277916908461897,0.8575226398764623,False,False
+A_highgain,extra40,1.0444881834882487,2.1172355679137835,False,False
+C_lowgain_pppp,extra40,0.8354422219155153,1.0977992566107886,False,False
+C_nominal_pppp,extra40,0.8884835871006133,0.9156796245200365,False,False
+C_highgain_pppp,extra40,1.2767220733462166,1.5931163067997627,False,False

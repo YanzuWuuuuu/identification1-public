@@ -1,0 +1,81 @@
+{
+  "model": "a",
+  "method": "M1",
+  "solver": {
+    "success": true,
+    "status": "score_converged",
+    "score": 1.9190229627566182e-11,
+    "iterations": 10,
+    "inner_failures": 0,
+    "profile_calls": 12,
+    "seconds": 6.557839000000968,
+    "near_bound": false,
+    "history": [
+      {
+        "iteration": 0,
+        "score": 0.007128864398281525,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 1,
+        "score": 4.663611295041727e-05,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 2,
+        "score": 5.689496629414198e-06,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 3,
+        "score": 8.354666821549243e-07,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 4,
+        "score": 1.431499665739375e-07,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 5,
+        "score": 1.7978803488581404e-08,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 6,
+        "score": 4.104929285978553e-09,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 7,
+        "score": 5.766451322062021e-10,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 8,
+        "score": 1.2372639342983257e-10,
+        "inner_iterations": 1,
+        "inner_ok": true
+      },
+      {
+        "iteration": 9,
+        "score": 1.9190229627566182e-11,
+        "inner_iterations": 1,
+        "inner_ok": true
+      }
+    ],
+    "hybrid": null
+  },
+  "max_parameter_difference": 9.048228832853056e-11,
+  "linear_difference": 3.983701830055381e-20,
+  "linear_solved": true,
+  "prior_seconds": 51.894585399997595
+}

@@ -1,0 +1,24 @@
+{
+  "model": "c",
+  "method": "M1",
+  "solver": {
+    "success": true,
+    "status": "profile_hybrid_root",
+    "score": 7.424154637073872e-13,
+    "iterations": 0,
+    "inner_failures": 0,
+    "profile_calls": 31,
+    "seconds": 16.080845299999055,
+    "near_bound": false,
+    "history": [],
+    "hybrid": {
+      "message": "The solution converged.",
+      "evaluations": 28,
+      "success": true
+    }
+  },
+  "max_parameter_difference": 3.765876499528531e-13,
+  "linear_difference": 1.3354003809056079e-19,
+  "linear_solved": true,
+  "prior_seconds": 52.64470900000015
+}

@@ -1,0 +1,56 @@
+{
+  "config": {
+    "fs": 5000.0,
+    "taps": [
+      40,
+      100
+    ],
+    "delays": [
+      0,
+      2,
+      5
+    ],
+    "main": [
+      25,
+      80
+    ],
+    "guards": [
+      [
+        3,
+        25
+      ],
+      [
+        80,
+        170
+      ]
+    ],
+    "targets": [
+      [
+        260,
+        310
+      ],
+      [
+        320,
+        380
+      ],
+      [
+        450,
+        800
+      ]
+    ],
+    "gain_max": 1.05,
+    "gain_design_margin": 0.0005,
+    "guard_max": 1.05,
+    "target_max": 0.1,
+    "ridge": 1e-05,
+    "max_sweeps": 4,
+    "feasibility_tolerance": 0.0002
+  },
+  "python": "3.11.9",
+  "numpy": "2.4.6",
+  "cvxpy": "1.9.3",
+  "command": "python -u run_validation.py",
+  "source_sha256": "b781f47c6552f83c921f081e6c5050c04ec290d011564e2ed4f15ca82f5e7fbe",
+  "data_sha256": "0d1709f980ea7e05b2bc77c9ddcce7e84fbb8fec9fde2f5fd5dd4834af9eeb73",
+  "scope": "offline/dev, no hardware"
+}

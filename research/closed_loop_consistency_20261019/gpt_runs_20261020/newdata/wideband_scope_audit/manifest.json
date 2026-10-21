@@ -1,0 +1,32 @@
+{
+  "parent_claim": "closed-loop modal measurement across controllers",
+  "question": "Should validation include high-frequency flexible dynamics?",
+  "design": "same prepared C records, same gate/discard rules and common P; raw 3–800 Hz orthogonal FRF only",
+  "resource_envelope": "CPU numpy/scipy, one process, sequential FFT, no Monte Carlo refit, bounded memory <1 GB",
+  "paper_role": "supporting",
+  "section_id": "experimental validation",
+  "item_id": "wideband-feasibility",
+  "fixed_conditions": [
+    "raw data read only",
+    "original A–E fit results unchanged",
+    "all raw bins retained",
+    "no LRM or inverse regularization"
+  ],
+  "comparability": "half-record repeatability comparable by band; frequency-dependent signal-to-noise differs; no modal consistency claims",
+  "validation": [
+    {
+      "controller": "lowgain",
+      "old_band_relative_difference": 0.0
+    },
+    {
+      "controller": "nominal",
+      "old_band_relative_difference": 0.0
+    },
+    {
+      "controller": "highgain",
+      "old_band_relative_difference": 0.0
+    }
+  ],
+  "status": "completed descriptive audit",
+  "next_action": "separate extended modal-model experiment with frozen model order and fair M1/M2/M3/M3w/SML comparisons"
+}

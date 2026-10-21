@@ -1,0 +1,241 @@
+{
+  "original_files": 6221,
+  "changed": [],
+  "missing": [],
+  "original_unchanged": true,
+  "endpoints": [
+    {
+      "id": "A_lowgain",
+      "model": "a",
+      "present": true,
+      "success": false,
+      "score_recomputed": 7.608997445999079e-05,
+      "score_saved": 7.608997445999079e-05,
+      "scaled_condition": 16541516294.390862,
+      "scaled_rank_1e12": 285,
+      "parameters": 285,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": 0.0,
+      "joint_EQ_sum_error": -1.8189894035458565e-12
+    },
+    {
+      "id": "A_lowgain",
+      "model": "c",
+      "present": true,
+      "success": true,
+      "score_recomputed": 8.077521039897255e-13,
+      "score_saved": 8.077521039897255e-13,
+      "scaled_condition": 133384.522334456,
+      "scaled_rank_1e12": 205,
+      "parameters": 205,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": -3.725290298461914e-09,
+      "joint_EQ_sum_error": 0.0
+    },
+    {
+      "id": "A_nominal",
+      "model": "a",
+      "present": true,
+      "success": false,
+      "score_recomputed": 0.0001096757158042828,
+      "score_saved": 0.0001096757158042828,
+      "scaled_condition": 83439777153.49483,
+      "scaled_rank_1e12": 285,
+      "parameters": 285,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": 0.0,
+      "joint_EQ_sum_error": 0.0
+    },
+    {
+      "id": "A_nominal",
+      "model": "c",
+      "present": true,
+      "success": true,
+      "score_recomputed": 5.375908920525224e-13,
+      "score_saved": 5.375908920525224e-13,
+      "scaled_condition": 240903.56436656648,
+      "scaled_rank_1e12": 205,
+      "parameters": 205,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": -1.862645149230957e-09,
+      "joint_EQ_sum_error": 1.8189894035458565e-12
+    },
+    {
+      "id": "A_highgain",
+      "model": "a",
+      "present": true,
+      "success": true,
+      "score_recomputed": 1.4057484279950395e-07,
+      "score_saved": 1.4057484279950395e-07,
+      "scaled_condition": 1302868955244.212,
+      "scaled_rank_1e12": 284,
+      "parameters": 285,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "joint_Q_sum_error": 1.862645149230957e-09,
+      "joint_EQ_sum_error": 0.0
+    },
+    {
+      "id": "A_highgain",
+      "model": "c",
+      "present": true,
+      "success": true,
+      "score_recomputed": 1.5904803964681395e-12,
+      "score_saved": 1.5904803964681395e-12,
+      "scaled_condition": 40144.870904069554,
+      "scaled_rank_1e12": 205,
+      "parameters": 205,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": -3.725290298461914e-09,
+      "joint_EQ_sum_error": 0.0
+    },
+    {
+      "id": "C_lowgain_pppp",
+      "model": "a",
+      "present": true,
+      "success": true,
+      "score_recomputed": 2.447000000238241e-07,
+      "score_saved": 2.447000000238241e-07,
+      "scaled_condition": 365489375206.4238,
+      "scaled_rank_1e12": 285,
+      "parameters": 285,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": -9.313225746154785e-10,
+      "joint_EQ_sum_error": 0.0
+    },
+    {
+      "id": "C_lowgain_pppp",
+      "model": "c",
+      "present": true,
+      "success": true,
+      "score_recomputed": 6.668293056101646e-13,
+      "score_saved": 6.668293056101646e-13,
+      "scaled_condition": 116398.80893156242,
+      "scaled_rank_1e12": 205,
+      "parameters": 205,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": 0.0,
+      "joint_EQ_sum_error": 0.0
+    },
+    {
+      "id": "C_nominal_pppp",
+      "model": "a",
+      "present": true,
+      "success": false,
+      "score_recomputed": 9.138801542469387e-05,
+      "score_saved": 9.138801542469387e-05,
+      "scaled_condition": 366059657340.95306,
+      "scaled_rank_1e12": 285,
+      "parameters": 285,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": 0.0,
+      "joint_EQ_sum_error": 1.8189894035458565e-12
+    },
+    {
+      "id": "C_nominal_pppp",
+      "model": "c",
+      "present": true,
+      "success": true,
+      "score_recomputed": 5.120976009810407e-13,
+      "score_saved": 5.120976009810407e-13,
+      "scaled_condition": 216861.46462127104,
+      "scaled_rank_1e12": 205,
+      "parameters": 205,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": 0.0,
+      "joint_EQ_sum_error": -1.8189894035458565e-12
+    },
+    {
+      "id": "C_highgain_pppp",
+      "model": "a",
+      "present": true,
+      "success": true,
+      "score_recomputed": 2.3067776303380562e-07,
+      "score_saved": 2.3067776303380562e-07,
+      "scaled_condition": 1228332971714.218,
+      "scaled_rank_1e12": 284,
+      "parameters": 285,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "joint_Q_sum_error": 2.7939677238464355e-09,
+      "joint_EQ_sum_error": 0.0
+    },
+    {
+      "id": "C_highgain_pppp",
+      "model": "c",
+      "present": true,
+      "success": true,
+      "score_recomputed": 8.60372042805011e-13,
+      "score_saved": 8.60372042805011e-13,
+      "scaled_condition": 59464.4101196764,
+      "scaled_rank_1e12": 205,
+      "parameters": 205,
+      "cutoff_near_technical_upper_1percent": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "joint_Q_sum_error": 1.1175870895385742e-08,
+      "joint_EQ_sum_error": 1.8189894035458565e-12
+    }
+  ],
+  "required": 12,
+  "completed": 12,
+  "successful": 9,
+  "all_results_present": true,
+  "verification_passed": true
+}

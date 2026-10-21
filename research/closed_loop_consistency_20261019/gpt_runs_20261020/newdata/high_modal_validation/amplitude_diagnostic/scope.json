@@ -1,0 +1,17 @@
+{
+  "purpose": "Same-controller amplitude check, secondary to fixed 120 comparisons",
+  "methods": [
+    "M3"
+  ],
+  "windows": [
+    "H300",
+    "H493"
+  ],
+  "records": [
+    "D_nominal_0p6",
+    "D_nominal_0p8",
+    "D_nominal_1p0",
+    "D_nominal_1p2"
+  ],
+  "primary_results_replaced": false
+}

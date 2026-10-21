@@ -1,0 +1,33 @@
+{
+  "extra_jacobian_checks": [
+    {
+      "parameter": 158,
+      "relative": 1.4775824164777888e-13
+    },
+    {
+      "parameter": 164,
+      "relative": 9.622910761751238e-14
+    },
+    {
+      "parameter": 173,
+      "relative": 1.0061661877243829e-13
+    },
+    {
+      "parameter": 174,
+      "relative": 1.6581092057180513e-06
+    },
+    {
+      "parameter": 175,
+      "relative": 5.044493426042237e-07
+    },
+    {
+      "parameter": 176,
+      "relative": 2.2126918224778538e-13
+    },
+    {
+      "parameter": 183,
+      "relative": 2.795066791337019e-13
+    }
+  ],
+  "nested_model_max_error": 0.0
+}

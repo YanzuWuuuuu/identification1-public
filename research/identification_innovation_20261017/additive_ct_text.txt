@@ -1,0 +1,1281 @@
+                                                                    Automatica 173 (2025) 112013
+
+
+
+                                                            Contents lists available at ScienceDirect
+
+
+                                                                         Automatica
+                                                  journal homepage: www.elsevier.com/locate/automatica
+
+
+
+
+Identification of additive continuous-time systems in open and closed
+loop✩
+                                   ∗
+Rodrigo A. González a , , Koen Classens a , Cristian R. Rojas b , James S. Welsh c ,
+Tom Oomen a,d
+a
+  Control Systems Technology Section, Department of Mechanical Engineering, Eindhoven University of Technology, Eindhoven, The Netherlands
+b
+  Division of Decision and Control Systems, KTH Royal Institute of Technology, 10044 Stockholm, Sweden
+c
+  School of Engineering, University of Newcastle, Callaghan, 2308 NSW, Australia
+d
+  Delft Center for Systems and Control, Delft University of Technology, Delft, The Netherlands
+
+
+article              info                            a b s t r a c t
+
+Article history:                                     When identifying electrical, mechanical, or biological systems, parametric continuous-time identifica-
+Received 19 December 2023                            tion methods can lead to interpretable and parsimonious models when the model structure aligns
+Received in revised form 3 June 2024                 with the physical properties of the system. Traditional linear system identification may not consider
+Accepted 27 September 2024
+                                                     the most parsimonious model when relying solely on unfactored transfer functions, which typically
+Available online 7 December 2024
+                                                     result from standard direct approaches. This paper presents a novel identification method that delivers
+Keywords:                                            additive models for both open and closed-loop setups. The estimators that are derived are shown
+Continuous-time system identification                to be generically consistent, and can admit the identification of marginally stable additive systems.
+Parsimony                                            Numerical simulations show the efficacy of the proposed approach, and its performance in identifying
+Closed-loop system identification                    a modal representation of a flexible beam is verified using experimental data.
+Refined instrumental variables
+                                                          © 2024 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY license
+                                                                                                                (http://creativecommons.org/licenses/by/4.0/).
+
+
+
+1. Introduction                                                                      a priori knowledge of the relative degree of the physical sys-
+                                                                                     tems they model. This feature is particularly useful in estimating,
+    The goal in system identification is to obtain mathematical                      e.g., mechanical systems, as they often exhibit no impulse re-
+descriptions of systems using input and output data. These mod-                      sponse discontinuities due to the double integration relationship
+els can play a critical role for prediction, analysis, and design                    between force and position (Gawronski, 2004), leading to models
+of control laws for electrical, mechanical, biological, or environ-                  with relative degree equal to 2. In contrast, discrete-time meth-
+mental systems, among others (Ljung, 1999; Söderström & Stoica,                      ods must also account for sampling zeros that are not present in
+1989). A distinction can be made between discrete-time and                           the continuous-time system representation (Åström, Hagander, &
+continuous-time system identification methods using sampled                          Sternby, 1984), requiring an additional optimization step if the
+data. Identification algorithms for discrete-time systems provide                    resulting discrete-time model is later converted to continuous
+difference equation models that give meaningful information only                     time (González, Rojas, & Welsh, 2018). Recent research has pro-
+at the sampling instants. In contrast, continuous-time system                        posed tailored variants of instrumental variables to address this
+identification methods use sampled data to estimate differential                     particular challenge (González, Rojas, Pan, & Welsh, 2023a).
+equation models that represent the system at any point in time.                          When addressing the identification of physical systems, in-
+    Linear continuous-time system identification methods (Rao &                      creasingly stringent performance requirements necessitate the
+Unbehauen, 2006) are widely used and successful in a range                           use of parsimonious models, i.e., models with the fewest number
+of practical applications (Garnier, Bitmead, & de Callafon, 2014;                    of parameters that can adequately describe the phenomenon
+Garnier & Young, 2014; Young, 2012), offering several advantages                     under investigation. From a statistical standpoint, it is well known
+over the standard discrete-time algorithms. One advantage of                         that parsimonious model structures that contain the true sys-
+continuous-time methods is their ability to directly incorporate                     tem within the model set result in reduced variance compared
+                                                                                     to over-parameterized model sets (Stoica & Söderström, 1982).
+                                                                                     Most linear continuous-time identification methods parameter-
+  ✩ The material in this paper was not presented at any conference. This paper
+                                                                                     ize the model structure as an unfactored transfer function, that
+was recommended for publication in revised form by Editor Alessandro Chiuso.
+   ∗ Corresponding author.                                                           is, a quotient of polynomials in the Laplace transform variable
+      E-mail addresses: r.a.gonzalez@tue.nl (R.A. González), k.h.j.classens@tue.nl
+                                                                                     s with numerator and denominator polynomial degrees indi-
+(K. Classens), crro@kth.se (C.R. Rojas), james.welsh@newcastle.edu.au                cating the number of zeros and poles of the model, respec-
+(J.S. Welsh), t.a.e.oomen@tue.nl (T. Oomen).                                         tively. Unfactored transfer function parametrizations may not
+
+https://doi.org/10.1016/j.automatica.2024.112013
+0005-1098/© 2024 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                      Automatica 173 (2025) 112013
+
+
+always offer the most parsimonious model structure, but due               in both open and closed-loop settings. Our contributions can be
+to their simplicity they are widely adopted in the Simplified             summarized as follows:
+Refined Instrumental Variable method for Continuous-time sys-
+tems (SRIVC, Young and Jakeman (1980)), the Poisson moment                   C1 We derive the optimality conditions that the proposed esti-
+functional approach (Saha & Rao, 1982), the Least-Squares State-                mators for additive continuous-time system identification
+Variable Filter method (LSSVF, Young (1965)), and other linear                  must satisfy in both open and closed-loop scenarios in a
+filter and integral methods (Garnier, Mensler, & Richard, 2003).                unified manner. To achieve this, we establish a connec-
+The closed-loop variants of these estimators are also limited to                tion between the first-order optimality condition of the
+estimating unfactored transfer functions (Gilson & Garnier, 2003;               open-loop estimator in an output error setup and the in-
+Gilson, Garnier, Young, & Van den Hof, 2008; Young, Garnier, &                  strumental variable approach in the closed-loop setting.
+Gilson, 2009). Although more general model structures can be in-                In the closed-loop case, we derive explicit expressions for
+corporated using the prediction error method and maximum like-                  an instrument vector that ensures a consistent estimator
+lihood paradigm (Åström, 1979), typically one unfactored transfer               while also yielding a minimum asymptotic covariance ma-
+function is estimated in the linear and time-invariant continuous-              trix in a positive definite sense. The closed-loop results
+time identification problem (Ljung, 2009).                                      extend the ones found in Gilson et al. (2008) to a general
+    While unfactored transfer functions are standard choices for                class of additive continuous-time models.
+the model structure in linear system identification, many practi-            C2 We develop open and closed-loop estimators based on the
+cal applications related to, e.g., flexible motion systems (Oomen,              derived optimality conditions, extending the SRIVC and
+2018) and vibration analysis (Gawronski, 2004), often involve                   CLSRIVC estimators for additive continuous-time models.
+systems that are more easily interpreted as a sum of trans-                     We also consider the identification of marginally stable ad-
+fer functions with distinct denominators, typically correspond-                 ditive systems, and provide a thorough consistency analysis
+ing to different resonant modes. In addition, modal parameter                   for our estimators, demonstrating their generic consistency
+estimation for structures subject to vibrations is essential for                under mild conditions.
+design and model validation, to guarantee safety and quality                 C3 We evaluate the proposed method through extensive Monte
+control (Reynders, 2012; Voorhoeve, de Rozario, Aangenent, &                    Carlo simulations, and we show its efficacy using data from
+Oomen, 2020). Additive model parametrizations have advantages                   an experimental flexible beam setup.
+such as leading to physically more insightful models for fault di-
+agnosis (Classens, Mostard, Van De Wijdeven, Heemels, & Oomen,               The remainder of this paper is structured as follows. Section 2
+2022; Classens, van de Wijdeven, Heemels, & Oomen, 2023) and              introduces the problem setup for both open and closed-loop
+improving the numerical conditioning of parameter estimation              settings. Section 3 describes the optimality conditions for the
+for high-order or highly-resonant systems (Gilson, Welsh, & Gar-          additive model structures of both settings. Section 4 contains
+nier, 2017). These model parametrizations, which have previ-              the proposed unified iterative procedure for additive continuous-
+ously been considered in statistics (Hastie & Tibshirani, 1986) and       time system identification with its asymptotic analysis. Extensive
+econometrics (Härdle, Huet, Mammen, & Sperlich, 2004), offer              simulations can be found in Section 5, while Section 6 con-
+increased model flexibility and the ability to decentralize the           tains experimental setup results. Concluding remarks are pre-
+analysis of each additive component for optimization and control          sented in Section 7. A technical lemma used for proving the main
+purposes. Despite some contributions in nonlinear discrete-time           theoretical results can be found in the Appendix.
+finite-impulse response and generalized Hammerstein model es-
+timation (Bai, 2005; Bai & Chan, 2008), the application of addi-
+                                                                          2. System and model setup
+tive model structures in the realm of system identification has
+been limited. Recently, González, Rojas, Pan, and Welsh (2023b)
+introduced a block coordinate algorithm to identify continuous-              Consider the single-input single-output, linear and time-
+time systems under an additive model structure. However, this             invariant (LTI), continuous-time system in additive form
+                                                                                   K
+approach is confined to open-loop setups and can be computa-                       ∑
+tionally demanding due to the need for estimating each submodel           x(t) =           G∗i (p)u(t),                                                           (1)
+with a tailored version of the SRIVC method at each iteration                      i=1
+of the descent algorithm (González, Classens, Rojas, Welsh, &             where p is the Heaviside or derivative operator (i.e., pu(t) =
+Oomen, 2024).                                                              d
+                                                                             u(t)) and u(t) is the input signal. Each subsystem G∗i (p) has ni
+                                                                          dt
+    Another difficulty when estimating linear systems with an             poles and mi zeros, and can be expressed as B∗i (p)/A∗i (p), where
+additive model decomposition is that some systems are known               the numerator and denominator polynomials are assumed co-
+to have integral action, i.e., their transfer function descriptions       prime, i.e., they do not share roots. These polynomials are given
+contain integrators. Applications featuring such systems can be           by
+found in platooning (Ploeg, Scheepers, Van Nunen, Van de Wouw,
+& Nijmeijer, 2011), hydraulics, mechanical systems (Gawronski,            A∗i (p) = a∗i,ni pni + a∗i,ni −1 pni −1 + · · · + a∗i,1 p + 1,
+                                                                                                                                                                  (2)
+2004; Preumont, 2018), among others. As an illustrative example,          B∗i (p) = b∗i,mi pmi + b∗i,m+i−1 pmi −1 + · · · + b∗i,1 p + b∗i,0 ,
+mechatronic positioning systems can often be represented as a
+combination of rigid-body and flexible modes, with the rigid-             with a∗ni ̸ = 0 and mi ≤ ni . We assume, without loss of generality,
+body modes modeled as double integrators (Oomen, 2018). Many              that the A∗i (p) polynomials do not share roots and that they are
+system identification methods are only suitable for asymptoti-            anti-monic, i.e., their constant coefficient is fixed to 1. In addition,
+cally stable systems, since the predictors become ill-conditioned         to obtain a unique characterization of {G∗i (p)}Ki=1 , we assume that
+when the models are unstable. Although this problem has been              at most one subsystem G∗i (p) has the same number of poles and
+tackled for Box–Jenkins model structures in discrete-time and             zeros. The polynomials A∗i (p) and B∗i (p) are jointly described by
+continuous-time settings (Forssell & Ljung, 2000; González, Rojas,        the parameter vector
+Pan, & Welsh, 2022), these works do not consider additive model
+                                                                                                                                                           ]⊤
+                                                                          θ ∗i = a∗i,1 ,     a∗i,2 ,   ...,   a∗i,n ,   b∗i,0 ,   b∗i,1 ,   ...,   b∗i,m        . (3)
+                                                                                [
+                                                                                                                  i                                    i
+parametrizations.
+    In this paper, we propose a comprehensive identification              A noisy measurement of the output is retrieved at every time
+method for modeling additive linear continuous-time systems               instant t = tk , k = 1, . . . , N, where {tk }Nk=1 are evenly spaced
+                                                                      2
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                                                Automatica 173 (2025) 112013
+
+
+                                                                                      case) are quasi-stationary. Consequently, we will use the standard
+                                                                                      definition of expectation for quasi-stationary signals (Ljung, 1999,
+                                                                                      p. 34)
+                                                                                                                    N
+                                                                                                                  1 ∑
+                                                                                      E{g(tk )} := lim                        E{g(tk )}.
+                                                                                                        N →∞      N
+                                                                                                                        k=1
+
+
+
+                                                                                      3. Stationary points for additive continuous-time system iden-
+                                                                                      tification
+
+                                                                                         In this section, we present the optimality conditions that will
+                                                                                      be exploited for designing the proposed additive system identifi-
+                                                                                      cation method in Section 4.
+Fig. 1. Block diagrams for the open (a) and closed-loop (b) settings studied in
+this paper.                                                                           3.1. Open-loop setting
+
+                                                                                         In the open-loop case, we seek an estimator that minimizes
+in time.1 That is,                                                                    the output-error cost
+                                                                                                                                                                    )2
+y(tk ) = x(tk ) + v (tk ),                                                                                    N
+                                                                                                                        (               K
+                                                                           (4)                              1 ∑                         ∑
+                                                                                      β̂ = arg min                          y(tk ) −              Gi (p, θ i )u(tk )     ,           (7)
+where v (tk ) is assumed to be a zero-mean stationary random                                    β∈Ω         2N
+                                                                                                                  k=1                    i=1
+process of finite variance σ 2 . Two frameworks are considered in
+this work: open and closed-loop identification. Block diagrams                        where each Gi (p, θ i ) is a transfer function parameterized as in
+that describe these setups are presented in Fig. 1. The output                        (2). Note that the notation G(p)u(tk ) means that the sampled
+noise v (tk ) is assumed to be uncorrelated with the input samples                    input is interpolated with a zero-order hold, filtered through the
+u(tk ) for the open-loop case, and uncorrelated with the refer-                       continuous-time system G(p), at later evaluated at t = tk . The
+ence signal r(tk ) for the closed-loop case. For both settings, we                    optimizer of the cost function in (7) must satisfy the first-order
+assume for simplicity that the input signal u(t) is known to be                       optimality condition
+                                                                                        N
+                                                                                                             (                K
+                                                                                                                                                            )
+constant between samples, i.e., it has a zero-order hold (ZOH)                        1 ∑                                     ∑
+behavior. Other known intersample behaviors, such as first-order                                ϕ̂(tk , β̂) y(tk ) −                 Gi (p, θ̂ i )u(tk )        = 0,                 (8)
+                                                                                      N
+hold or band-limited, can also be addressed within the proposed                           k=1                                  i=1
+framework at the expense of a more involved notation and ad-
+                                                                                      where β̂ is given by (7), and the gradient of the residual can be
+hoc prefiltering techniques (González, Rojas, Pan, & Welsh, 2021).
+                                                                                      written as
+The closed-loop setting considers an input signal generated from                                                                                       ]⊤
+                                                                                      ϕ̂(tk , β̂) = ϕ̂⊤
+                                                                                                      1 (tk , β̂),             ...,       ϕ̂⊤
+                                                                                                                                            K (tk , β̂)
+                                                                                                                                                          ,
+                                                                                                   [
+a known discrete-time LTI controller Cd (q), with q being the                                                                                                                        (9)
+forward-shift operator. Formally, we can describe the input u(tk )
+in terms of the reference and output noise as follows:                                with each vector ϕ̂i (tk , β̂) being given by
+                                                                                                                                             −pni B̂i (p)
+                                                                                                        [
+u(tk ) = r̃(tk ) − ṽ (tk ),                                               (5)                              −pB̂i (p)
+                                                                                      ϕ̂i (tk , β̂) =                    u(tk ), . . . ,                     u(tk ),
+                                                                                                            [Âi (p)]2                       [Âi (p)]2
+where                                                                                                                                                 ]⊤                            (10)
+                                                                                                                                           m
+                                                                                                              1                          p    i
+r̃(tk ) := Suo (q)r(tk ), ṽ (tk ) := Suo (q)v (tk ),
+             ∗                             ∗
+                                                                           (6)                                        u(tk ), . . . ,              u(tk )       .
+                                                                                                            Âi (p)                     Âi (p)
+with Suo (q) being the sensitivity function Suo (q) = Cd (q)/[1 +
+         ∗                                              ∗
+
+G∗d (q)Cd (q)]−1 , and G∗d (q) being the ZOH-equivalent discrete-time
+                       ∑K ∗
+system of G∗ (p) =                                                                    3.2. Closed-loop setting
+                          i=1 Gi (p).
+     We are concerned with developing data-driven methods to
+obtain estimates of the parameter vector                                                  In contrast to the open-loop analysis, an output-error loss
+                                       ∗⊤ ⊤                                           function of the form in (7) applied to closed-loop system iden-
+β∗ := θ ∗⊤
+        1 ,        θ ∗⊤
+                     2 ,       ...,   θK        .
+     [                                   ]
+                                                                                      tification can result in an asymptotically biased estimator. This
+To this end, we consider as given the input and output data                           phenomenon is due to the correlation of the output noise with
+{u(tk ), y(tk )}Nk=1 for the open-loop scenario, while {r(tk )}Nk=1 is also           the input u(t) through the closed-loop interconnection (González,
+known in the closed-loop setting.                                                     Pan, Rojas, & Welsh, 2024; Van den Hof, 1998). The bias in closed
+                                                                                      loop can be mitigated or reduced completely as N tends to infinity
+Remark 1. In Section 4 we also consider the identification of ad-                     if an instrumental variable approach is considered, as in Gilson,
+ditive systems that are marginally stable. Since the denominator                      Garnier, Young, and Van den Hof (2011) for the unfactored trans-
+polynomials related to these systems cannot be represented in an                      fer function case. Thus, instead of (7), for the closed-loop setting
+anti-monic form as in (2), we provide the required system and                         we are interested in computing the instrumental variable solution
+                                                                                                  {       N
+                                                                                                                          (               K
+                                                                                                                                                                       )     }
+model assumptions for this case separately.                                                             1 ∑                               ∑
+                                                                                      β̂ ∈ sol                    ζ (tk ) y(tk ) −                  Gi (p, θ i )u(tk )     =0 ,     (11)
+                                                                                            β∈Ω       N
+                                                                                                            k=1                              i=1
+Remark 2. Throughout this paper we assume that the input (for                                                             ∑K
+the open-loop case) and reference signals (for the closed-loop                        where ζ (tk ) ∈ RK + i=1 (ni +mi ) is an instrument vector that is
+                                                                                      assumed to be uncorrelated with the output noise v (tk ). Such
+  1 Extensions of our proposed identification methods for irregularly sampled         assumption is not restrictive in practice, since the instrument
+signals are feasible by following similar steps to the ones found in Huselstein       vector is typically formed by filtered versions of the reference
+and Garnier (2002).                                                                   signal, which are designed by the user.
+                                                                                  3
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                                                       Automatica 173 (2025) 112013
+
+
+   A crucial aspect of the estimator in (11) is how the instrument                             Remark 3. The nonsingularity condition in Lemma 1 suggests
+vector is chosen for yielding consistent estimates of minimum                                  that the instrument vector should be correlated with filtered
+covariance. Conditions on the instrument vector under which the                                versions of the derivatives of the noiseless model output and
+estimator is generically consistent are provided in Lemma 1.                                   input. Such interpretation is ubiquitous in instrumental variable
+                                                                                               estimation, and has been thoroughly studied for the unfactored
+Lemma 1.             Assume that the instrument vector ζ (tk ) is uncor-                       transfer function case (Boeren, Blanken, Bruijnen, & Oomen, 2018;
+related with the output noise v (tk ), and that r(tk ) and v (tl ) are                         Garnier & Wang, 2008; Mooren, Witvoet, & Oomen, 2023; Pan,
+quasi-stationary and mutually independent for all integers                 k and }l.           Welsh, González, & Rojas, 2020). Lemma 1 presents the first
+Then, the estimator (11) is generically consistent if E ζ (tk )ϕ̃ (tk )
+                                                                            r⊤
+                                                                         {
+                                                                                               extension of these analyses to the additive system identification
+is generically nonsingular2 with respect to the system and model                               framework.
+denominator parameters, where ϕ̃ (tk ) is formed by stacking the
+                                                      r
+                                                                                                   In accordance to Lemma 1, we will focus solely on instrument
+vectors {ϕ̃i (tk )}i=1 , where
+              r       K
+                                                                                               vectors that meet the nonsingularity requirement, which defines
+                 −pB∗i (p)                        −pni B∗i (p)
+             [
+ϕ̃ri (tk ) =              ∗     r̃(tk ), . . . ,                r̃(tk ),                       a family of generically consistent estimators. Among these, we
+                Ai (p)Ai (p)                      Ai (p)A∗i (p)                                aim to characterize the one that obtains the least asymptotic
+                                                        ]⊤                     (12)
+                  1                      pmi                                                   covariance. In cases where the transfer function is unfactored, it is
+                       r̃(tk ), . . . ,          r̃(tk ) .                                     established in both discrete-time (Söderström, Stoica, & Trulsson,
+                Ai (p)                  Ai (p)
+                                                                                               1987; Stoica & Söderström, 1983) and continuous-time (Gilson
+                                                                                               & Van den Hof, 2005) formulations that the instrument vector
+                                                                                               achieving the lower bound of the asymptotic covariance matrix
+Proof. As the sample size tends to infinity, the sum in k in (11)                              for the parameter estimator is given by the noise-free compo-
+converges to an expected value due to the quasi-stationarity as-                               nent of the regressor vector. However, for the additive model
+sumptions on the reference and noise signals (Söderström, 1975),                               description, the computation of β̂ cannot be carried out in a
+which leads to θ̄ i = limN →∞ θ̂ i satisfying                                                  straightforward analytical manner, and the model output cannot
+         {        (            K
+                                                           )}
+                               ∑                                                               be expressed using just one regressor vector. Despite these dif-
+       E ζ (tk ) y(tk ) −            Gi (p, θ̄ i )u(tk )        =0                             ficulties, Theorem 1 confirms that the asymptotic distribution of
+                               i=1
+                                                                                               β̂ in Eq. (11) follows a normal distribution, and the asymptotic
+         K
+         ∑                                                                                     covariance can be explicitly computed.
+           E ζ (tk ) G∗i (p) − Gi (p, θ̄ i ) u(tk ) = 0
+            {       [                       ]      }
+ ⇐⇒
+          i=1
+                                                                                               Theorem 1.                Consider the estimator (11). Assume that r(tk ) and
+    K
+    ∑                                                                                          v (tl ) are quasi-stationary and mutually independent for all integers
+      E ζ (tk ) G∗i (p) − Gi (p, θ̄ i ) r̃(tk ) = 0,
+       {       [                       ]       }
+ ⇐⇒                                                                                 (13)       k and l, and that the instrument vector ζ (tk ) is constructed such that
+          i=1
+                                                                                               β̂ is a consistent estimator of β∗ . Then, β̂ is asymptotically Gaussian
+where we have used the fact that the instrument vector is uncor-                               distributed, i.e.,
+related with the output noise v (tk ) in both steps (recall that r̃(tk )                       √                       dist.
+                                                                                                               −→ N (0, PIV ),
+                                                                                                   N(β̂ − β∗ ) −                                                                              (14)
+is given by (6)). Furthermore, we have
+                                      1                                                        where the asymptotic covariance matrix PIV is given by
+ Gi (p) − Gi (p, θ̄ i ) r̃(tk ) = ∗            [1, p, . . . , pni +mi ]ηi ,
+[ ∗                    ]
+                                                                                                                                      }−1
+                                 Ai (p)Āi (p)                                                 PIV = σ 2 E ζ (tk )ψ ⊤ (tk )
+                                                                                                                  {
+
+where ηi ∈ Rni +mi +1 is the vector that contains the coefficients of
+                                                                                                                                           }−1
+                                                                                                    × E ζ (tk )ζ ⊤ (tk ) E ψ(tk )ζ ⊤ (tk )     ,
+                                                                                                       {                } {
+A∗i (p)B̄i (p) − Āi (p)B∗i (p) in descending order of degree. By following
+the derivation of Eq. (15) of Pan, González, Welsh, and Rojas                                  where
+                                                                                                                                                             ]⊤ ⏐
+                                                                                                                 ∂ G1 (p, θ 1 )             ∂ GK (p, θ K )
+                                                                                                             [
+(2020), we find that
+                                                                                               ψ(tk ) =                           ,...,                                   r̃(tk ).
+                                                                                                                                                                ⏐
+      1
+                                                                                                                                                                ⏐                             (15)
+               S(−B∗i , A∗i )[1, p, . . . , pni +mi ]⊤ r̃(tk ) = ϕ̃i (tk ),
+                                                                   r                                                  ∂θ ⊤
+                                                                                                                         1                        ∂θ ⊤
+                                                                                                                                                     K
+                                                                                                                                                                ⏐
+                                                                                                                                                                   β=β∗
+   ∗
+Ai (p)Āi (p)
+
+where ϕ̃i (tk ) is given in (12), and S(−B∗i , A∗i ) is a Sylvester matrix
+           r
+
+that is nonsingular for i = 1, . . . , K due to the coprimeness                                Proof. A first-order Taylor expansion of the left hand side of (11)
+of the polynomials A∗i (p) and B∗i (p) (Söderström & Stoica, 1983,                             gives
+Lemma A3.1). If the vectors ϕ̃ (tk ) and η are formed by stacking
+                                   r                                                                                   (                                     )
+                                                                                                  N                                   K
+                                                                                                1 ∑
+the vectors ϕ̃i (tk ) and ηi respectively, then (13) reduces to the
+                 r
+                                                                                                                                      ∑
+                                                                                               √             ζ (tk ) y(tk ) −                 ∗
+                                                                                                                                            Gi (p)u(tk )
+condition                                                                                          N   k=1                            i=1
+                                                                     ⎤−⊤
+                    S(−B∗1 , A∗1 )
+                   ⎡                                                                                     N
+                                                            0                                          1 ∑
+                                           ..                                                      −√                  ζ (tk )ψ⊤ (tk )(β̂ − β∗ ) # 0,
+E ζ (tk )ϕ̃ (tk ) ⎣
+           r⊤
+                                                                           η = 0,
+ {               }
+                                                .
+                   ⎢                                                 ⎥
+                                                                     ⎦                                  N    k=1
+                              0                     S(−B∗K , A∗K )
+                                                                                               where the # symbol means that the left-hand side and the right-
+which implies that η is generically the zero vector (i.e., Gi (p, θ̄ i ) =                     hand side differ by a quantity converging to zero in probability,
+G∗i (p) for all i = 1, . . . , K ) if the matrix E{ζ (tk )ϕ̃ (tk )} is generi-
+                                                            r⊤
+                                                                                               and where ψ (tk ) is defined in (15). Hence,
+cally nonsingular. □
+                                                                                                                        [        N
+                                                                                                                                                         ]−1       N
+                                                                                               √                               1 ∑                               1 ∑
+                                                                                                   N(β̂ − β )#   ∗
+                                                                                                                                      ζ (tk )ψ (tk )
+                                                                                                                                               ⊤
+                                                                                                                                                               √             ζ (tk )v (tk )
+                                                                                                                            N                                      N
+                                                                                                                                k=1                                    k=1
+  2 In this context, a statement s, which depends on the elements ρ of some                                                                         N
+                                                                                                                                              }−1 1 ∑
+                                                                                                                      #E ζ (tk )ψ ⊤ (tk )             ζ (tk )v (tk ).
+                                                                                                                           {
+open set Ω ⊆ Rn , is generically true with respect to Ω (Söderström & Stoica,                                                                    √                                            (16)
+1983) if the set M = {ρ ∈ Ω |s(ρ) is not true} has Lebesgue measure zero in Ω .                                                                          N   k=1
+
+                                                                                           4
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                                                  Automatica 173 (2025) 112013
+
+
+It follows from Lemma A4.1 of Söderström and Stoica (1983) that                     4. Additive system identification: An instrumental variable so-
+   N                                                                                lution
+ 1 ∑                 dist.
+√    ζ (tk )v (tk ) −−→ N (0, P),                                        (17)
+   N   k=1                                                                             This section presents the proposed instrumental variable-
+                                                                                    based method for identifying additive continuous-time systems
+where, following Eq. (22) of Pan, Welsh, et al. (2020) and exploit-
+                                                                                    in open or closed loop settings, and its consistency analysis.
+ing the fact that ζ (tk ) and v (tk ) are uncorrelated, we have
+                   N N
+                 1 ∑∑                                                               4.1. Derivation of the instrumental variable solution
+                               E [ζ (tk )v (tk )][ζ (ts )v (ts )]⊤
+                                   {                                 }
+P = lim
+       N →∞      N
+                     k=1 s=1                                                            When computing β̂ that satisfies (8) or (11), the difference
+  = σ 2 E ζ (tk )ζ ⊤ (tk ) .
+         {                }
+                                                                                    between the measured and predicted outputs cannot be written
+                                                                                    as a unique pseudolinear regression when K > 1 due to the ad-
+The desired result is then obtained from Lemma A4.2 of Söderström
+                                                                                    ditive structure of the model. Then, to estimate additive models,
+and Stoica (1983) applied to (16). □
+                                                                                    we write the residual in K different ways:
+                                                                                                  K
+Corollary 1. The asymptotic covariance matrix of β̂ in (11) is
+                                                                                                  ∑
+                                                                                    y(tk ) −                                                          i (tk , θ̂ i )θ̂ i ,
+                                                                                                          Gi (p, θ̂ i )u(tk ) = yf ,i (tk , θ̂ i ) − ϕ⊤                               (21)
+minimized in a positive definite sense when ζ (tk ) = ψ (tk ).                                    i=1
+
+                                                                                    where i = 1, . . . , K . Here, yf ,i (tk , β̂) represents a filtered residual
+Proof. Since any covariance matrix is positive semi-definite, we                    output of the form
+have                                                                                                     1
+  {[                      ]⊤ }                                                      yf ,i (tk , β̂) =         ỹi (tk ),                                     (22)
+       ζ (tk )    ζ (tk )
+                 ][
+                                                                                                      Âi (p)
+E                              ⪰ 0.                                  (18)
+       ψ(tk )     ψ(tk )                                                            where the residual output pertaining to the ith additive submodel
+                                                                                    is given by
+                            of E ζ (tk )ψ ⊤ (tk ) implies that the matrix
+                                 {               }
+  { nonsingularity
+The                                                                                                                  ∑
+E ζ (tk )ζ ⊤ (tk ) is positive definite. Thus, (18) is equivalent to the            ỹi (tk ) = y(tk ) −                         Gl (p, θ̂ l )u(tk ),                                 (23)
+                  }
+Schur complement                                                                                                   l=1,...,K ,
+                                                                                                                      l ̸ =i
+E ψ (tk )ψ ⊤ (tk ) − E ψ (tk )ζ ⊤ (tk )
+  {                   }        {                }
+                                                                         (19)       and the regressor vector associated with the ith additive sub-
+                     }−1 {
+ × E ζ (tk )ζ ⊤ (tk )   E ζ (tk )ψ ⊤ (tk ) ⪰ 0.                                     model, denoted by ϕi (tk , θ̂ i ), is expressed as
+    {                                     }
+                                                                                                                                  −pni
+                                                                                                     [
+                                                                                                         −p
+Provided that the matrices above are nonsingular, (19) is equiva-                   ϕi (tk , θ̂ i ) =          ỹi (tk ), . . . ,         ỹi (tk ),
+lent to                                                                                                Âi (p)                    Âi (p)
+                      }−1                  }−1                                                                                                    ]⊤ (24)
+E ψ (tk )ψ ⊤ (tk )      ⪯ E ζ (tk )ψ⊤ (tk )                                                                                        pmi
+  {                          {
+                                                                                                           1
+                                               }−1                                                              u(tk ), . . . ,           u(tk ) .
+        × E ζ (tk )ζ ⊤ (tk ) E ψ(tk )ζ ⊤ (tk )     .                                                    Âi (p)                   Âi (p)
+           {                } {
+                                                                                    Thus, if we define the following signals and matrix
+Equality holds when ζ (tk ) = Mψ (tk ), with M being a nonsingular
+constant matrix. Since M can be canceled out from (11), we set                                      1 (tk , θ̂ 1 ), . . . , ϕK (tk , θ̂ K )] ,
+                                                                                     ϕ(tk , β̂) = [ϕ⊤                        ⊤              ⊤
+                                                                                                                                                                                      (25)
+M equal to the identity matrix without loss of generality, which
+                                                                                    Υ (tk , β̂) = [yf ,1 (tk , β̂), . . . , yf ,K (tk , β̂)] ,             ⊤
+                                                                                                                                                                                      (26)
+leads to the desired result. □
+                                                                                                    θ̂ 1
+                                                                                                  ⎡                      ⎤
+      Corollary 1 indicates that the optimal instrument vector is                                                     0
+given by a filtered version of the reference signal that depends                                             ..          ⎦,
+                                                                                             B̂ = ⎣             .                                                                     (27)
+                                                                                                  ⎢                      ⎥
+on the true system parameters, as seen in (15). Since the true
+parameters are not known, the solution for the unfactored trans-                                               0                     θ̂ K
+fer function case adopted in, e.g., the closed-loop SRIVC estimator                 the conditions in (8) and (11) can be written in K different ways
+(CLSRIVC, Gilson et al. (2008)), is to let ζ (tk ) depend on β as well.             using (21), which leads to the following equivalent equation that
+In the additive identification case, we let the instrument vector                   the optimal estimate must satisfy:
+take the form (9), but where, for i = 1, . . . , K ,                                  N
+                                                                                    1 ∑                   (                              )
+                                −pni Bi (p)                                                    ϕ̂(tk , β̂) Υ ⊤ (tk , β̂) − ϕ⊤ (tk , β̂)B̂ = 0.
+              [
+                −pBi (p)                                                                                                                                                              (28)
+ζ i (tk , β) =          2
+                          ,...,              ,                                      N
+                [Ai (p)]          [Ai (p)]2                                              k=1
+                                     ]⊤                           (20)                                                               j
+                    1          pmi                                                  Thus, by fixing β̂ = β̂ in ϕ̂(tk , β̂), Υ ⊤ (tk , β̂) and ϕ⊤ (tk , β̂), we
+                        ,...,            Suo (q)r(tk ),
+                 Ai (p)       Ai (p)                                                obtain the jth iteration of the proposed estimator for both open
+                                                                                    and closed loop settings by solving for B̂ as follows:
+where Suo (q) = Cd (q)/[1 + Gd (q)Cd (q)]−1 .                                                     [                                                  ]−1
+                                                                                                        N
+   In summary, the open-loop and closed-loop identification                                           1 ∑
+problems can be solved using the optimality condition (8) and                       B   j+1
+                                                                                              =                    ϕ̂(tk , β )ϕ (tk , β )
+                                                                                                                                 j       ⊤       j
+                                                                                                      N
+the (refined) instrumental variable expression (11), respectively.                                         k=1
+                                                                                                                                                                                      (29)
+In the closed-loop scenario, the instrument ζ (tk ) depends on the
+                                                                                                      [      N
+                                                                                                                                                          ]
+                                                                                                           1 ∑
+model, as indicated in (20).                                                                      ×                    ϕ̂(tk , β )Υ (tk , β ) ,
+                                                                                                                                         j   ⊤        j
+                                                                                                           N
+                                                                                                               k=1
+Remark 4. To unify the notations pertaining to the open and
+                                                                                    where the next iteration βj+1 is extracted from the block diag-
+closed loop cases, from now on we denote the instrument vector
+                                                                                    onal coefficients of Bj+1 as in (27), and the instrument vector is
+composed by stacking the vectors (20) for i = 1, . . . , K as ϕ̂(tk , β).
+                                                                                    described by (10) or (20) for the open or closed loop setups, re-
+The difference between this vector and the one described by (10)
+                                                                                    spectively. The iterations in (29) are computed until convergence
+will be clear from the context.
+                                                                                    for (8) or (11) to be satisfied.
+                                                                                5
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                                     Automatica 173 (2025) 112013
+
+
+Remark 5. The iterations in (29) can be viewed as an extension                      while ϕ̂(tk , βj ) is formed by (10) or (20) in the open and closed-loop
+of the open-loop and closed-loop refined instrumental variable                      setups, respectively. Denote β̄ as the converging point of the iterative
+estimators to the additive model case. When we consider K = 1,                      procedure, with B̄ = limj→∞ Bj , and assume that the matrix
+i.e., the unfactored transfer function case, the iterations in (29)
+                                                                                    [     N
+                                                                                                                         ]
+                                                                                        1 ∑
+reduce to                                                                                          ϕ̂(tk , β̄)ϕ (tk , β̄)
+                                                                                                                ⊤
+                                                                                                                                                                           (33)
+           [                                              ]−1                           N
+                 N                                                                           k=1
+               1 ∑
+θ j1+1 =                 ϕ̂1 (tk , θ j1 )ϕ⊤         j
+                                          1 (tk , θ 1 )
+               N                                                                    is nonsingular. Then, the converging point of the iterative procedure
+                   k=1
+      [                                             ]                   (30)        satisfies (8) or (11) if and only if the matrix B̄ is block-diagonal.
+            N
+          1 ∑
+  ×                  ϕ̂1 (tk , θ j1 )yf ,1 (tk , θ j1 ) ,
+          N
+               k=1
+                                                                                    Proof. The straight implication part of the result is direct from
+                                                                j
+where the instrument vector ϕ̂1 (tk , θ 1 ) is given by (10) for the                the derivation leading to (28) and (29). For the converse, we note
+open-loop case, and (20) for the closed-loop setting. These iter-                   that the converging point of the iterative procedure in (29) must
+ations correspond to the standard SRIVC and CLSRIVC methods,                        satisfy
+respectively (Gilson et al., 2008; Young & Jakeman, 1980). The                               [ N                             ]−1 [ N                                   ]
+SRIVC and CLSRIVC estimators have recently been proven to be
+                                                                                              ∑                                   ∑
+                                                                                    B̄ =             ϕ̂(tk , β̄)ϕ (tk , β̄)
+                                                                                                                    ⊤
+                                                                                                                                             ϕ̂(tk , β̄)Υ (tk , β̄) .
+                                                                                                                                                          ⊤
+generically consistent under mild conditions (González, Pan, et al.,                           k=1                                     k=1
+2024; Pan, González, et al., 2020), and the asymptotic efficiency of
+the SRIVC estimator has been proven in Pan, Welsh, et al. (2020).                   Equivalently,
+                                                                                    N
+                                                                                    ∑
+                                                                                            ϕ̂(tk , β̄) Υ ⊤ (tk , β̄) − ϕ⊤ (tk , β̄)B̄ = 0.
+                                                                                                       [                              ]
+Remark 6.        The proposed approach can be extended to the                       k=1
+estimation of marginally stable systems as follows. Consider the
+system (1), but where the first submodel has ℓ poles at the origin.                 Define B̃ = diag(θ̄ 1 , . . . , θ̄ K ). This matrix satisfies
+In other words, let G∗1 (p) = B∗1 (p)/[pℓ A∗1 (p)], where A∗1 (p) and B∗1 (p)       Υ ⊤ (tk , β̄) − ϕ⊤ (tk , β̄)B̃
+are coprime polynomials, and have the same form as in (2). For                               (
+                                                                                                        ∑K
+                                                                                                                                 )
+either open or closed-loop variants of the proposed approach,                            = y(tk ) −           Gi (p, θ̄ i )u(tk ) [1, . . . , 1],
+we require the computation of the gradient of each submodel                                                  i=1
+with respect to their respective parameter vector. For G1 (p), this
+computation leads to the following instrument vector:                               which shows that the matrix formed by the off-diagonal elements
+                                      −pn1 B1 (p)                                   of B̄, denoted as E = B̄ − B̃, must satisfy
+              [
+                 −pB1 (p)
+ϕ̂1 (tk , β) = ℓ            , . . . ,              ,                                N
+                p [A1 (p)]2           pℓ [A1 (p)]2                                  ∑
+                                                                       (31)           ϕ̂(tk , β̄)ϕ⊤ (tk , β̄)E
+                                                ⊤
+                                      pm1
+                                              ]
+                     1                                                              k=1
+                           ,..., ℓ                z(tk ),
+                 pℓ A1 (p)
+                                                                                                            (                                      )
+                                    p A1 (p)                                                N
+                                                                                            ∑                            K
+                                                                                                                         ∑
+                                                                                      =           ϕ̂(tk , β̄) y(tk ) −            Gi (p, θ̄ i )u(tk ) [1, . . . , 1]
+where z(tk ) = u(tk ) for the open-loop algorithm, and z(tk ) =
+                                                                                            k=1                             i=1
+Suo (q)r(tk ) for the closed-loop variant. On the other hand, the
+                                                                                      = 0,
+model residual retains the same form as in (21), with the filtered
+residual output given by (22), but with the regressor vector now
+                                                                                    where the last equality is due to the assumption that the limiting
+expressed as
+                                                                                    point β̄ satisfies the optimality condition (8) or (11) in the open
+                                                −pn1
+                  [
+                      −p
+ϕ1 (tk , θ̂ 1 ) =            ỹ1 (tk ), . . . ,         ỹ1 (tk ),                  or closed-loop setting, respectively. Since the modified normal
+                    Â1 (p)                     Â1 (p)                             matrix (33) is assumed to be nonsingular, we reach E = 0, which
+                                                                   ]⊤ (32)
+                        1                           pm1                             concludes the proof. □
+                                u(tk ), . . . ,              u(tk ) .
+                    pℓ Â1 (p)                   pℓ Â1 (p)
+                                                                                       As seen in Lemma 2, the nonsingularity of the matrix (29) is
+By computing the iterations in (29) with the first block of the                     essential for the method to be well posed. This aspect, as well as
+instrument and regressor vectors given by (31) and (32) respec-
+                                                                                    the convergence of the iterations, will be studied extensively in
+tively, we obtain a direct extension of the proposed method for
+                                                                                    the next subsection.
+identifying marginally stable systems in additive form. This solu-
+tion extends the one proposed in Solution 6.2 of González et al.
+(2022), which is only applicable to unfactored transfer functions
+in closed loop. We note that the user’s choice of including an                      4.2. Consistency analysis
+integral action term in the model can be motivated by physical
+intuition, or by model order selection methods (Ljung, 1999).
+                                                                                       Before presenting the main theorem on the generic consis-
+   Note that a block diagonal structure for Bj+1 is not achieved in                 tency of the proposed method for open and closed loop, we shall
+general at each iteration (29), but it is guaranteed if the iterations
+                                                                                    introduce some signals of interest. By substituting (4) into (24),
+converge to a stationary point that satisfies the pseudolinear
+                                                                                    we can express the regressor vector ϕ(tk , β) as the block vector
+regression equations in (28). This result is presented in Lemma 2.
+                                                                                    formed by
+Lemma 2. Consider the iterative procedure in (29) for finite N                      ϕi (tk , β) = ϕ̃ui (tk , β) + ∆ui (tk , β) − vui (tk , β),
+with ϕ(tk , βj ) and Υ (tk , βj ) given by (25) and (26) respectively,
+                                                                                6
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                                          Automatica 173 (2025) 112013
+
+
+where ϕ̃i (tk , β) has the same form as ϕ̃i (tk , β) in (12) but with
+              u                                                        r
+                                                                                                        Assumption 3 is not restrictive, since the poles of the model at
+r̃(tk ) replaced by u(tk ). That is,                                                                    each iteration are typically reflected to the left half-plane if they
+                   −pB∗i (p)                   −pni B∗i (p)                                             are unstable. Cancelling the unstable poles using all-pass filters
+                [
+ϕ̃ui (tk , β) =          ∗     u(tk ), . . . ,               u(tk ),                                    also circumvents this problem (González et al., 2022). Finally,
+                  Ai (p)Ai (p)                 Ai (p)A∗i (p)
+                                                                   ]⊤                                   Assumption 4 avoids aliasing issues associated with the discrete-
+                           1                        pmi                                                 time implementation of the prefiltering steps, and is satisfied in
+                                 u(tk ), . . . ,            u(tk )         .                 (34)
+                       Ai (p)                      Ai (p)                                               practice if the sampling period is chosen small compared to the
+                                                                                                        rise time of the system.
+The vector ∆u (tk , β) contains the interpolation errors that arise
+                                                                                                            Theorem 2 shows that the proposed method in generically
+from constructing the filtered disturbance-free derivatives of
+                                                                                                        consistent for both open and closed-loop settings.
+the output, as well as the residual model bias. The entries of
+∆ui (tk , β), denoted ∆ui,j (tk , β), are zero for j > ni and                                           Theorem 2. Consider the proposed estimator (29) for the open and
+                  pj B∗i (p)
+                                               { ∗
+                                          pj
+                                                             }
+                                                Bi (p)                                                  closed-loop settings in Fig. 1, and suppose Assumption 1 to 4 hold.
+∆ui,j (tk , β) =               u(t k ) −                u(t)
+                 Ai (p)A∗i (p)           Ai (p) A∗i (p)        t =t
+                                                                                                        Then, the following statements are true:
+                                                                                         k
+
+                                      pj { ∗                                                                  1. The modified normal matrix E ϕ̂(tk , β)ϕ⊤ (tk , β) is generi-
+                         ∑                                                                                                                        {                   }
+                                                                 }
+                  −                         (Gl (p) − Gl (p))u(t) t =t                       (35)
+                                     Ai (p)                            k                                         cally nonsingular with respect to the system and model de-
+                       l=1,...,K ,
+                          l ̸ =i                                                                                 nominator polynomials, provided that the following condition
+                                                                                                                 holds for each respective setting:
+for j = 1, . . . , ni . The direct contribution of the noise to the
+regressor is given by                                                                                              (a) Open loop:
+                                                                                ]⊤
+                                                    pni                                                                E ϕ̂(tk , β)∆u⊤ (tk , β) 
+                   [                                                                                                    {                      }
+                          p
+vui (tk   , β) =                v (tk ), . . . ,            v (tk ), 0, . . . , 0    .                                                             2
+                                                                                                                                                                                (36)
+                       Ai (p)                      Ai (p)                                                               < σmin E ϕ̂(tk , β)ϕ̃u⊤ (tk , β) ,
+                                                                                                                                 ( {                    })
+In the closed-loop case, the input also contains filtered out-
+                                                                                                                       where σmin (·) represents the minimum singular value
+put noise that must be rewritten for the analysis. By exploiting
+                                                                                                                       of a matrix, and ϕ̂(tk , β), ϕ̃ (tk , β) and ∆u (tk , β) are
+                                                                                                                                                      u
+(5), the regressor vector in the closed-loop setting can also be
+                                                                                                                       formed by stacking the vectors described by (10), (34)
+expressed as
+                                                                                                                       and (35), respectively.
+ϕi (tk , β) = ϕ̃ri (tk , β) + ∆ri (tk , β) − vri (tk , β),                                                         (b) Closed loop:
+                                                                                                                       E ϕ̂(tk , β)∆r ⊤ (tk , β) 
+                                                                                                                        {                       }
+where ϕ̃i (tk , β) is given by (12), and ∆ri (tk , β) has the same form
+             r
+                                                                                                                                                    2
+                                                                                                                                                                                (37)
+as (35) but with r̃(tk ) instead of u(tk ), and vri (tk , β) solely contains                                            < σmin E ϕ̂(tk , β)ϕ̃r ⊤ (tk , β) ,
+                                                                                                                                 ( {                     })
+filtered versions of the output noise v (tk ).
+                                                                                                                       where ϕ̂(tk , β), ϕ̃ (tk , β) are formed by stacking the
+                                                                                                                                           r
+    For the main result of this section, we require the following
+assumptions, some of which are divided into open or closed-loop                                                        vectors described by (12) and (20), respectively, and
+assumptions depending on the setting we consider.                                                                      ∆r (tk , β) has the same form as (35) but with r̃(tk )
+                                                                                                                       instead of u(tk ).
+Assumption 1 (Persistency of Excitation). Open loop: The input
+                                                                                                              2. Assume that (36) for open loop or (37) for closed loop is
+u(tk ) is persistently exciting of order no less than 2n. Closed
+                                                                                                                 satisfied, and the iterations of the estimator converge for all
+loop: The input r(tk ) is persistently exciting of order no less than
+                                                                                                                 N sufficiently large to say, B̄, with B̄ being a block-diagonal
+2n + nc , where nc is the order of the discrete-time LTI controller
+                                                                                                                 matrix formed by β̄i . Then, the true parameter vector β∗ is
+Cd (q).
+                                                                                                                 the unique converging point of β̄ as the sample size tends to
+                                                                                                                 infinity.
+Assumption 2 (Stationarity and Independence). Open loop: The in-
+put u(tk ) and disturbance v (ts ) are quasi-stationary and mutually
+independent for all k and s. Closed loop: The reference r(tk ) and                                      Remark 7. The expressions in (36) and (37) give sufficient
+disturbance v (ts ) are quasi-stationary and mutually independent                                         { not necessary }conditions for the generic nonsingularity of
+                                                                                                        but
+for all k and s.                                                                                        E ϕ̂(tk , β)ϕ⊤ (tk , β) . They are satisfied in practice when the re-
+                                                                                                        spective interpolation error ∆u (tk , β) or ∆r (tk , β) arising from
+                                                                                                        constructing the filtered output derivatives is not significant,
+Assumption 3 (Stability and Coprimeness). All the zeros of the jth
+                                                                                                        which typically occurs when the sampling period is chosen ap-
+iteration of the model denominator estimate Ai,j (p) have strictly
+                                                                                                        propriately.
+negative real parts, with Ai,j (p) and Bi,j (p) being coprime. Closed
+loop: Additionally, the discrete-time equivalent model estimates                                           Proof of Statement 1, Part (a): Since the input is uncorrelated
+at each iteration are asymptotically stabilized by the controller                                       with the output noise, the expectation of interest is given by
+Cd (q).                                                                                                 E ϕ̂(tk , β)ϕ⊤ (tk , β) = E ϕ̂(tk , β)[ϕ̃u (tk , β) + ∆u (tk , β)]⊤ .
+                                                                                                          {                    }      {                                   }
+
+                                                                                                        Provided the condition (36) holds, due to Theorem 5.1 of Dahleh,
+Assumption 4 (Sampling Rate). The sampling frequency is more
+than
+                                                                                                        {Dahleh, and      Verghese    (2002), the perturbation matrix E
+∏K twice ∗that of the largest imaginary part of the zeros of                                              ϕ̂(tk , β)∆u⊤ (tk , β) is small enough
+                                                                                                                                }
+                                                                                                                                                 (in 2-norm)} to not affect the
+  j=1 Aj (p)Aj (p).                                                                                      nonsingularity of the matrix E ϕ̂(tk , β)ϕ⊤ (tk , β) . Thus, we study
+                                                                                                                                           {
+
+                                                                                                         the generic nonsingularity of the matrix E ϕ̂(tk , β)ϕ̃ (tk , β)
+                                                                                                                                                                     u⊤
+                                                                                                                                                           {                  }
+    Assumption 1 to 4 are the same ones that have been consid-
+ered in recent consistency analyses of open-loop and closed-loop                                        instead.
+refined instrumental variable estimators (González, Pan, et al.,                                           By following standard operations (see, e.g., González, Pan,
+2024; Pan, González, et al., 2020). Assumptions 1 and 2 can be                                          et al., 2024), the noise-free, interpolation-error-free regressor
+readily satisfied if the input is white noise or a periodic signal                                      vector and the instrument vector can be rewritten using the
+of sufficient number of frequency lines. The stability condition in                                     identities
+                                                                                                    7
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                     Automatica 173 (2025) 112013
+
+
+                                  1
+ϕ̃ui (tk , β) = S(−B∗i , A∗i )            ui (tk ),                     (38)
+                            Ai (p)A∗i (p)
+                             1
+ϕ̂i (tk , β) = S(−Bi , Ai ) 2 ui (tk ),                                 (39)
+                           Ai (p)
+where S(−B∗i , A∗i ) and S(−Bi , Ai ) are Sylvester matrices that are
+nonsingular due to the coprimeness of the polynomials of the
+true system G∗i (p) and the coprimeness assumption on the model
+Gi (p) (Söderström & Stoica, 1983, Lemma A3.1). The vector ui (tk )
+is formed by input derivatives, i.e.,
+                                                         ]⊤
+ui (tk ) = pni +mi ,       pni +mi −1 ,       ...,            u(tk ).
+           [
+                                                     1                  (40)
+Hence,
+
+                                    ∗,
+E ϕ̂(tk , β)ϕ̃u⊤ (tk , β) = S Φ u S ⊤
+  {                            }
+                                                                        (41)
+where
+      ⎧⎡ 1                 ⎤⎡                         ⎤⊤ ⎫
+            2 (p) u1 (tk )
+                                    1
+      ⎪   A                     ∗            u1 (tk )    ⎪
+      ⎪⎢ 11                ⎥ ⎢ A1 (p)A 1 (p)
+      ⎪
+      ⎪                                                  ⎪
+                                                         ⎪
+                                    1
+      ⎨⎢ A2 (p) u2 (tk ) ⎥ ⎢ A∗ (p)A (p) u2 (tk ) ⎥ ⎪
+      ⎪                                               ⎥  ⎪
+                                                         ⎬
+                           ⎥⎢ 2 2
+                                                      ⎥ ⎪,
+        ⎢ 2
+Φu = E ⎢          ..                      .
+                                                      ⎥                 (42)
+                                          ..
+                           ⎥
+                   .
+      ⎪
+      ⎪ ⎢                  ⎥⎢⎣                        ⎦ ⎪
+      ⎪ ⎣                  ⎦                             ⎪
+      ⎩ 21 uK (tk )                 1
+      ⎪                                                  ⎪
+                                             u  (t  )
+      ⎪                                                  ⎪
+                               A∗ (p)A (p) K k
+                                                         ⎭
+                AK (p)                    K    K
+                                                                                      Fig. 2. Bode plot of the open-loop continuous-time system under study.
+and where S and S ∗ are block diagonal matrices formed by
+S(−Bi , Ai ) and S(−B∗i , A∗i ), respectively. Since these block Sylvester
+matrices are nonsingular, in order for (41) to be generically non-
+singular, we must show that Φ is generically nonsingular. Pro-                     5. Simulations
+vided Assumption 1, 2 and 4 hold, the generic nonsingularity of
+such matrix follows from taking S(q) = 1 and zi (tk ) = ui (tk ) in                   In this section, Monte Carlo experiments are performed to
+Lemma 3 in the Appendix, which concludes the proof. □                              test the asymptotic properties of the proposed estimator, and to
+      Proof of Statement 1, Part (b): The proof follows the same lines             compare them with other direct continuous-time identification
+as the proof of Part (a) of Statement 1 with regards to the pertur-                methods.
+bation analysis, with u(tk ) replaced by r̃(tk ) in the expressions. In
+this case, the noise-free regressor and instrument vectors can be                  5.1. Open-loop experiment
+rewritten by considering
+                                            1                                         Consider the following 8th order system
+ϕ̃ui (tk , β) = S(−B∗i , A∗i )Suo
+                               ∗
+                                  (q)               ri (tk ),         (43)                    4
+                                      Ai (p)A∗i (p)                                           ∑               b∗i,0
+                                                                                   G∗ (p) =                                  ,
+                                       1                                                          a∗i,2 p2   + a∗i,1 p + 1
+ ϕ̂i (tk , β) = S(−Bi , Ai )Suo (q) 2 ri (tk ),                       (44)                    i=1
+                                    Ai (p)
+                                                                                   where the DC-gains are given by [b∗1,0 , b∗2,0 , b∗3,0 , b∗4,0 ] = [3, 0.4,
+where ri (tk ), i = 1, . . . , K , have the same structure as (40). Hence,         0.2, 0.05], and their associated poles are, respectively, −0.25 ±
+we obtain                                                                          1.39i, −0.15 ± 3.16i, −0.17 ± 5.77i, and −0.5 ± 9.99i. The
+E ϕ̂(tk , β)ϕ̃r ⊤ (tk , β) = S Φ r S ⊤                                             frequency response of this system is shown in Fig. 2. The input is
+                                     ∗,
+  {                            }
+                                                                                   chosen to be a zero-mean Gaussian noise with unitary variance,
+where Φ r has the same form as (A.1) in the Appendix, but with                     and the output is being sampled every h = 0.05[s]. The noise
+S(q) and zi (tk ) replaced by Suo (q) and ri (tk ), respectively. The              v (tk ) in (4) is given by
+generic nonsingularity of this matrix follows from Lemma 3.                                    q + 0.5
+   Proof of Statement 2: As N → ∞, (29) implies that                               v (tk ) =            e(tk ),
+                               }−1                                                            q − 0.85
+E ϕ̂(tk , β̄)ϕ⊤ (tk , β̄)
+  {
+                                                                        (45)       where e(tk ) is a zero-mean Gaussian white noise of variance 0.02,
+      × E ϕ̂(tk , β̄) Υ ⊤ (tk , β̄) − ϕ⊤ (tk , β̄)B̄ = 0.
+         {           (                              )}
+                                                                                   yielding a signal-to-noise ratio of approximately 9 [dB]. Thirty
+                                                                                   different sample sizes are considered, ranging logarithmically
+Since the matrix inverse above is generically nonsingular by
+                                                                                   from N = 2 · 103 to N = 105 . For each sample size, we
+Statement 1, we only need to analyze the second expectation.
+                                                                                   conduct 300 Monte Carlo runs with varying input and noise
+By following the derivation of the proposed estimator in (29), we
+                                                                                   realizations. The goal is to compare the performance of the pro-
+find that
+                                                                                   posed estimator with the SRIVC estimator, which is the algorithm
+Υ ⊤ (tk , β̄) − ϕ⊤ (tk , β̄)B̄                                                     behind the tfest command in the MATLAB System Identification
+         (
+                    ∑K
+                                             )                                     Toolbox (Ljung & Singh, 2012). To this end, we report the mean-
+     = y(tk ) −           Gi (p, θ̄ i )u(tk ) [1, . . . , 1],                      square error of the DC gains bi,0 related to each submodel. Both
+                         i=1                                                       estimators initialize at a random system that satisfies βi = β∗i (1 +
+                                                                                   U (−0.05, 0.05)), where U (a, b) denotes the uniform distribution
+which, when inserted in (45), leads to the condition
+  {            (                                    )}                             with lower and upper limits a and b, respectively. The maximum
+              K
+              ∑                                                                    number of iterations of the algorithms is set to 100, and the
+E ϕ̂(tk , β̄)   [Gi (p, θ i ) − Gi (p, θ̄ i )]u(tk )
+                          ∗
+                                                       = 0.                        relative error bound that is used as a termination rule for both
+                   i=1                                                             iterative procedures is set to 10−10 .
+The rest of the proof follows from the derivations made in the                         In Fig. 3 we present the MSE of each DC gain estimate as a
+proof in Lemma 1 and is therefore omitted. □                                       function of the sample size. Both methods exhibit a linear decay
+                                                                               8
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                        Automatica 173 (2025) 112013
+
+
+
+
+Fig. 3. Mean square error of the DC gain estimates with respect to the sample
+size N, open-loop identification. The proposed method delivers parameter
+estimates with less MSE for b2,0 and b3,0 , while having similar performance
+to the SRIVC estimator in the other parameters.
+                                                                                    Fig. 4. Mean square error of the system parameter estimates with respect
+                                                                                    to the sample size N, closed-loop identification. All estimators give consistent
+                                                                                    estimates, and the proposed method gives the least mean-square error for every
+in terms of the MSE of each parameter, which indicates that                         parameter.
+they are consistent in this scenario. This aligns with Theorem 2.
+Furthermore, we note a substantial decrease in the MSE for both
+b2,0 and b3,0 when comparing the proposed method to the SRIVC                       exploits the parametrization in (46), which gives 6 parameters
+method, while remaining competitive with respect to the other                       to be computed in total.
+parameters. The proposed estimator requires 12 parameters to                           Our goal is to compare the parameter vectors of the resulting
+describe the system, whereas the standard SRIVC estimator con-                      additive form of each estimator. For this, after computing the
+siders 8 poles and 6 zeros, leading to a total of 15 parameters to                  estimates using the SRIVC and CLSRIVC methods, we factor the
+be estimated. The parsimony of the additive structure results in                    resulting transfer function and obtain their associated additive
+more accurate estimates.                                                            parameter vector estimate. In Fig. 4, we have plotted the mean
+                                                                                    square error of each parameter for all the sample sizes considered
+                                                                                    in this study. All three estimators are known to be generically
+5.2. Closed-loop experiment
+                                                                                    consistent in this setup due to Theorems 11 and 15 of González,
+                                                                                    Pan, et al. (2024), and Theorem 2 of this work. However, the
+   Consider the following 4th order system                                          proposed method attains lower MSEs compared to the SRIVC and
+                  3                      1                                          CLSRIVC methods. Similar to Section 5.1, this improvement is due
+ ∗
+G (p) =                     +                      ,                    (46)
+        0.25p2 + 0.25p + 1     0.025p2 + 0.01p + 1                                  to a more parsimonious model structure that is imposed: the
+                                                                                    proposed additive estimator only requires 6 parameters to exactly
+which is controlled by a feedback PID controller of the form
+                                                                                    describe the system in (46), as opposed to the unfactored transfer
+                  0.00725q     0.00454(q − 1)
+Cd (q) = 0.0115 +           +                 ,                                     function model descriptions provided by the standard SRIVC and
+                    q−1              q                                              CLSRIVC estimators, which require 7.
+with sampling period h = 0.05[s]. The parameters of interest
+are β∗ = [0.25, 0.25, 3, 0.01, 0.025, 1]⊤ . The reference is                        6. Experimental validation
+chosen to be a zero-mean Gaussian white noise signal of unitary
+variance, and the noise v (tk ) is a zero-mean white noise Gaus-                        In this section, the proposed identification method is vali-
+                                                                                    dated using experimental data. Consider the setup depicted in
+sian of variance 0.01. Fifty different sample sizes are considered,
+                                                                                    Fig. 5. The system consists of a slender and flexible steel beam of
+ranging logarithmically from N = 500 to N = 123036, each
+                                                                                    500 × 20 × 2[mm]. It is equipped with five contactless fiberoptic
+with 300 Monte Carlo runs with varying reference and noise
+                                                                                    sensors and three voice-coil actuators and is suspended by wire
+realizations. Three estimators are tested: the SRIVC estimator
+                                                                                    flexures, leaving one rotational and one translational direction
+(i.e., the direct closed-loop approach, Forssell & Ljung, 1999),
+                                                                                    unconstrained. The system is operating at a sampling frequency
+the CLSRIVC estimator (Gilson et al., 2008), and the proposed                       of 4096[Hz], and the middle actuator and sensor are used for
+estimator for closed-loop identification, i.e., (29) with instrument                conducting the experiments. Lightly-damped systems such as the
+vector described by (20). The estimators are all initialized by the                 one under study can be described in a modal representation of the
+same mechanism detailed in Section 5.1, and the relative error                      form
+bound for the termination rule of each algorithm is set to 10−7 .                              K
+The SRIVC and CLSRIVC estimators consider a model structure
+                                                                                               ∑               b∗i,0
+                                                                                    G∗ (p) =                                     ,
+consisting of 4 poles and 2 zeros, and the proposed method                                           p2 /ωi2 + 2(ξi /ωi )p + 1
+                                                                                               i=1
+                                                                                9
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                                   Automatica 173 (2025) 112013
+
+
+
+
+Fig. 5. Prototype experimental flexible beam setup. The moving part is indicated
+by ⃝a and is suspended by wire flexures ⃝ b . The deflection is measured with five
+contactless fiber optic sensors, of which middle sensor is used ⃝ c and the setup
+is actuated with three current-driven voice coils of which the middle actuator
+used ⃝ d.
+                                                                                          Fig. 6. Estimation of the frequency response function of the flexible beam
+                                                                                          system. A nonparametric estimate (     ) and the parametric modal estimate with
+                                                                                          a 4-sample delay (      ) are indicated as well as the initial condition ( ) of
+                                                                                          the algorithm. The proposed method converges to a parametric model closely
+where ξi and ωi represent the relative damping and natural
+                                                                                          aligned with the first four modes of the system.
+frequencies of the flexible modes, see Gawronski (2004) for more
+details.
+    An open-loop experiment is conducted with a random-phase
+multisine input of 2[s] with a flat spectrum between 0.5[Hz] to                           Acknowledgments
+500[Hz]. We test the performance of the proposed method for
+the open-loop scenario, i.e., (29) with instrument vector given by                           This work was partially supported by the Swedish Research
+(10). Considering the input and output data {u(tk ), y(tk )}8192
+                                                            k=1 , the                     Council under contract number 2023-05170, and by the Wal-
+first four modes of the system are estimated (i.e., four second-                          lenberg AI, Autonomous Systems and Software Program (WASP)
+order systems without zeros), and the result is depicted in Fig. 6.                       funded by the Knut and Alice Wallenberg Foundation.
+The iterations in (29) are initialized with the submodel estimates
+θ 11 = [0.001, 0.025, 10]⊤ ,                    θ 12 = [5e−5, 1.5e−4, 0.2]⊤ ,             Appendix. Technical lemma
+θ 13 = [8.5e−7, 2e−5, 0.001]⊤ ,             θ 14 = [7.5e−7, 5e−6, 0.01]⊤ .
+These parameters describe a model which deviates on purpose
+from the expected outcome to illustrate the converging nature of                          Lemma 3 (Generic Nonsingularity). Consider the ni -th order, asymp-
+the algorithm and its robustness against poor initialization. The                         totically stable continuous-time transfer functions 1/Ai (p), i =
+delay is estimated to be four samples and the converged estimate                          1, . . . , K , which depend on some parameters νi , and define A∗i (p)
+of the parametric model has parameters                                                    as the polynomial Ai (p) evaluated at νi = ν∗i . The polynomials A∗i (p),
+                                                                                          i = 1, . . . , K , are assumed to be coprime. Furthermore, consider
+θ̂ 1 = [0.0024, 0.023, 11.81]⊤ ,
+                                                                                          the asymptotically stable discrete-time transfer function S(q), which
+θ̂ 2 = [2.33e−5, 1.65e−4, 0.159]⊤ ,                                                       depends on some parameters ξ , and define S ∗ (q) as the transfer
+θ̂ 3 = [8.59e−7, 1.03e−5, 3.19e−4]⊤ ,                                                     function S(q) evaluated at ξ = ξ ∗ . Assume that S(q) has at most
+                                                                                          ms nonminimum phase zeros, and that Assumption 4 holds. If the
+θ̂ 4 = [7.55e−7, 3.55e−6, 1.27e−4]⊤ .                                                     signal z(tk ) ∑ is quasi-stationary and persistently exciting of order no
+                                                                                                             K
+These parameters describe a continuous-time model that is close                           less than 2 i=1 ni + ms , then the following matrix is generically
+to the nonparametric estimate obtained using the same data                                nonsingular with respect to {νi }Ki=1 and ξ :
+sequence, verifying the validity of the model obtained.
+                                                                                                     ⎧⎡         1
+                                                                                                                         ⎤⎡                         ⎤⊤ ⎫
+                                                                                             ⎪       ⎪ S(q) 2 z1 (tk )
+                                                                                                     A1 (p)
+                                                                                                     ⎪                       S ∗ (q) ∗ 1   z1 (tk )
+                                                                                                                                 A1 (p)A1 (p)
+                                                                                                                                                       ⎪
+                                                                                                                                                       ⎪     ⎪
+                                                                                             ⎨⎢ S(q) A21(p) z2 (tk ) ⎥ ⎢              1
+                                                                                                                         S ∗ (q) A∗ (p)A
+                                                                                             ⎪ ⎢                     ⎥                                       ⎪
+7. Conclusions
+                                                                                             ⎪                                                  z2 (tk ) ⎥   ⎪
+                                                                                                                                                             ⎬
+                                                                                                                                          2 (p)
+                                                                                                                                                                 ,
+                                                                                                      2
+                                                                                                                       ⎢          2
+                                                                                                                                                         ⎥
+                                                                                          Φ=E ⎢                                        ..                             (A.1)
+                                                                                               ⎢                     ⎥⎢
+                                                                                                         ..          ⎥⎢                                  ⎥
+                                                                                                          .                             .
+                                                                                             ⎪ ⎢                     ⎥                                   ⎥   ⎪
+    In this paper, we have presented a unified method for iden-
+                                                                                             ⎪
+                                                                                             ⎪                         ⎣                                 ⎦   ⎪
+                                                                                                                                                             ⎪
+                                                                                             ⎪⎣                      ⎦
+                                                                                                                                      1
+                                                                                             ⎩ S(q) 21 zK (tk )          S ∗ (q) A∗ (p)A (p) zK (tk )
+                                                                                                                                                             ⎪
+tifying continuous-time models in an additive form, applicable
+                                                                                             ⎪                                                               ⎪
+                                                                                                                                                             ⎭
+                                                                                                             AK (p)                    K    K
+to both open and closed-loop settings. This method is derived
+from the optimality conditions established for both scenarios and                         where zi (tk ) = [p    ,p
+                                                                                                               ni +mi
+                                                                                                                         , . . . , 1] z(tk ), with mi < ni for all
+                                                                                                                        ni +mi −1          ⊤
+
+extends the properties of well-known refined instrumental vari-                           but at most one i, at which mi = ni .
+able algorithms to address the identification of systems requiring
+more flexible model parameterizations. Our open and closed-loop
+estimators have been rigorously demonstrated to be generically                            Proof. We need to show that the two statements needed for
+consistent, and extensive simulations were conducted to vali-                             applying the genericity result in Lemma A2.3 of Söderström and
+date this property. Moreover, our proposed additive identification                        Stoica (1983) are true, which are that
+method has been successfully tested using experimental data.
+The approach in this paper not only provides accurate models                                  1. all the entries of Φ are real analytic functions of the coef-
+but also offers insights beyond standard unfactored transfer func-                               ficients of Ai (p) and S(q), and
+tion estimation, as it is capable of directly retrieving the system                           2. there exist {νi }Ki=1 and ξ vectors that lead to Φ being
+parameters in its additive form.                                                                 nonsingular.
+
+                                                                                     10
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                                           Automatica 173 (2025) 112013
+
+
+                                                                                                   Åström, K. J., Hagander, P., & Sternby, J. (1984). Zeros of sampled systems.
+The first statement follows from applying the same logic as in                                         Automatica, 20(1), 31–38.
+Lemma 9 of Pan, González, et al. (2020) and is therefore omitted.                                  Bai, E.-W. (2005). Identification of nonlinear additive FIR systems. Automatica,
+As for the second statement, we will show that setting S(q) =                                          41(7), 1247–1253.
+S ∗ (q) and Ti (p) = Ti∗ (p) for all i = 1, 2, . . . , K , leads to a                              Bai, E.-W., & Chan, K.-S. (2008). Identification of an additive nonlinear system
+                                                                                                       and its applications in generalized Hammerstein models. Automatica, 44(2),
+nonsingular matrix Φ . To this end, we define                                                          430–436.
+    ⎧⎡              1
+                                      ⎤⎡ ∗             1
+                                                                         ⎤⊤ ⎫
+        S ∗ (q) [A∗ (p)   2 z1 (t k )     S   (q)    ∗       2 z1 (t k )                           Boeren, F., Blanken, L., Bruijnen, D., & Oomen, T. (2018). Optimal estimation of
+                        ]
+                                      ⎥ ⎢ ∗ [A1 (p)        ]
+    ⎪                                                                       ⎪
+    ⎪
+    ⎪             1                                                      ⎥ ⎪
+                                                                            ⎪                          rational feedforward control via instrumental variables: With application to
+    ⎪⎢ ∗            1                                  1                    ⎪
+    ⎨⎢ S (q) [A∗ (p)
+    ⎪                       z  (t
+                        ]2 2 k ⎥ ⎢
+                                    ) ⎥ ⎢ S   (q)              z
+                                                  [A∗2 (p)]2 2 k ⎥
+                                                                  (t   ) ⎥  ⎪
+                                                                            ⎬                          a wafer stage. Asian Journal of Control, 20(3), 975–992.
+ ∗
+Φ =E ⎢            2
+                     ..                                 ..                    .                    Classens, K., Mostard, M., Van De Wijdeven, J., Heemels, W., & Oomen, T. (2022).
+      ⎢
+                                      ⎥ ⎢                                ⎥
+                                                                                                       Fault detection for precision mechatronics: Online estimation of mechanical
+                      .                                  .
+    ⎪
+    ⎪ ⎢                               ⎥⎢                                 ⎥ ⎪⎪
+    ⎪ ⎣                               ⎦ ⎣                                ⎦  ⎪                          resonances. IFAC-PapersOnLine, 55(37), 746–751.
+    ⎩ S ∗ (q) ∗ 1 2 zK (tk )              S ∗ (q) ∗ 1 2 zK (tk )
+    ⎪
+    ⎪                                                                       ⎪
+                                                                            ⎪
+                                [AK (p)]
+                                                                            ⎭
+                                                                        [AK (p)]                   Classens, K., van de Wijdeven, J., Heemels, W., & Oomen, T. (2023). From fault
+                                                                                                       diagnosis and predictive maintenance to control reconfiguration. Mikroniek,
+                  K+ K                                                                                 63(5), 5–12.
+                    ∑
+Take x ∈ R            i=1 (ni +mi )           . The following inequality is direct:
+                       ⎧(                                                                          Dahleh, M., Dahleh, M. A., & Verghese, G. (2002). Lectures on dynamic systems
+                                                               )2 ⎫
+                                                                                                       and control. Department of Electrical Engineering and Computer Science,
+                                    Bx (p)
+                       ⎨                                          ⎬
+x⊤ Φ ∗ x = E                ∏K                       z̃(tk )             ≥ 0,         (A.2)            Massachusetts Institute of Technology.
+                       ⎩         i=1   [A∗i (p)]2                  ⎭                               Forssell, U., & Ljung, L. (1999). Closed-loop identification revisited. Automatica,
+                                                                                                       35(7), 1215–1241.
+                                                                                                   Forssell, U., & Ljung, L. (2000). Identification of unstable systems using output
+               S ∗ (q)z(tk ) is a persistently exciting signal of order
+where z̃(tk ) =∑                                                                                       error and Box-Jenkins model structures. IEEE Transactions on Automatic
+                  K
+no less than 2 i=1 ni , and Bx (p) is a polynomial of degree at most                                   Control, 45(1), 137–141.
+ ∑K
+2 i=1 ni − maxk (nk − mk ) of the form                                                             Garnier, H., Bitmead, R. R., & de Callafon, R. A. (2014). Direct continuous-time
+             K                                                                                         model identification of high-powered light-emitting diodes from rapidly
+             ∑                    ∏                                                                    sampled thermal step response data. IFAC Proceedings Volumes, 47(3),
+Bx (p) =               Qi (p)                 [A∗j (p)]2 ,                                             6430–6435.
+              i=1               j=1,...,K ,                                                        Garnier, H., Mensler, M., & Richard, A. (2003). Continuous-time model identifica-
+                                   j ̸ =i
+                                                                                                       tion from sampled data: implementation issues and performance evaluation.
+with Qi (i = 1, . . . , K ) being an arbitrary polynomial of degree                                    International Journal of Control, 76(13), 1337–1357.
+                                                                                                   Garnier, H., & Wang, L. (Eds.), (2008). Identification of Continuous-time Models
+ni + mi , described by the entries of the vector x. By following                                       from Sampled Data. Springer.
+the same arguments as in Eqs. (38)–(40) of Pan, González, et al.                                   Garnier, H., & Young, P. C. (2014). The advantages of directly identify-
+(2020) (which require the persistence of excitation and sampling                                       ing continuous-time transfer function models in practical applications.
+frequency assumptions), we find that x⊤ Φ ∗ x = 0 implies that                                         International Journal of Control, 87(7), 1319–1338.
+Bx (p) ≡ 0.                                                                                        Gawronski, W. K. (2004). Advanced structural dynamics and active control of
+                                                                                                       structures. Springer.
+    Now our goal is to show that Bx (p) ≡ 0 implies that Qi (p) ≡ 0                                Gilson, M., & Garnier, H. (2003). Continuous-time model identification of systems
+for all i = 1, . . . , K , which means that x = 0. First, it is clear                                  operating in closed-loop. IFAC Proceedings Volumes, 36(16), 405–410.
+that at least two Q polynomials must be nonzero in case the                                        Gilson, M., Garnier, H., Young, P. C., & Van den Hof, P. M. J. (2008). Instrumental
+statement were to be disproven. To tackle this case, we argue                                          variable methods for closed-loop continuous-time model identification. In
+                                                                                                       H. Garnier, & L. Wang (Eds.), Identification of Continuous-time Models from
+by contradiction. Suppose that there are at least two polynomials
+                                                                                                       Sampled Data (pp. 133–160). Springer.
+Qk , Ql that are nonzero, and without loss of generality3 assume                                   Gilson, M., Garnier, H., Young, P. C., & Van den Hof, P. M. J. (2011). Optimal
+that deg(Qk ) < 2nk . Since Bx (p) ≡ 0, the following relations                                        instrumental variable method for closed-loop identification. IET Control
+between polynomials hold true:                                                                         Theory & Applications, 5(10), 1147–1154.
+           ∏                                                                                       Gilson, M., & Van den Hof, P. M. J. (2005). Instrumental variable methods for
+Qk (p)                 [A∗j (p)]2                                                     (A.3)            closed-loop system identification. Automatica, 41(2), 241–249.
+         j=1,...,K ,                                                                               Gilson, M., Welsh, J. S., & Garnier, H. (2017). A frequency localizing ba-
+           j̸ =k
+                                                                                                       sis function-based IV method for wideband system identification. IEEE
+                                    ∑                      ∏
+                                                                                                       Transactions on Control Systems Technology, 26(1), 329–335.
+         = −[A∗k (p)]2                          Qi (p)                 [A∗j (p)]2
+                                                                                                   González, R. A., Classens, K., Rojas, C. R., Welsh, J. S., & Oomen, T.
+                                  i=1,...,K ,            j=1,...,K ,
+                                    i̸ =k                  j̸ =i,k
+                                                                                                       (2024). Statistical analysis of block coordinate descent algorithms for lin-
+                                                                                                       ear continuous-time system identification. IEEE Control Systems Letters, 8,
+         ̸= 0.                                                                                         388–393.
+                                                                                                   González, R. A., Pan, S., Rojas, C. R., & Welsh, J. S. (2024). Consistency anal-
+Thus, the polynomial in (A.3) must have the same zeros as                                              ysis of refined instrumental variable methods for continuous-time system
+[A∗k (p)]2 , counting
+                    ∏ their multiplicity.       These zeros cannot be ac-                              identification in closed-loop. Automatica, 166, Article 111697.
+                                    ∗     2
+counted for in        j=1,...,K , [Aj (p)]  since the A∗j polynomials are                          González, R. A., Rojas, C. R., Pan, S., & Welsh, J. S. (2021). The SRIVC algorithm
+                                      j̸ =k                                                            for continuous-time system identification with arbitrary input excitation in
+jointly coprime, and neither in Qk (p), since deg(Qk ) < deg([A∗k (p)]2 )                              open and closed loop. In 60th IEEE Conference on Decision and Control (pp.
+= 2nk . We conclude that such Qk , Ql nonzero polynomials that                                         3004–3009).
+satisfy the equality in (A.3) cannot exist. Hence, by contradiction,                               González, R. A., Rojas, C. R., Pan, S., & Welsh, J. S. (2022). Refined instrumental
+                                                                                                       variable methods for unstable continuous-time systems in closed-loop.
+we have found that all Q polynomials must be zero for Bz (p) ≡ 0                                       International Journal of Control, 1–15.
+to be true, and therefore, Φ ∗ is nonsingular.                                                     González, R. A., Rojas, C. R., Pan, S., & Welsh, J. S. (2023a). On the relation be-
+   Since both statements (1) and (2) are true, the result in                                           tween discrete and continuous-time refined instrumental variable methods.
+Lemma 3 follows from Lemma A2.3 of Söderström and Stoica                                               IEEE Control Systems Letters, 7, 2233–2238.
+(1983). □                                                                                          González, R. A., Rojas, C. R., Pan, S., & Welsh, J. S. (2023b). Parsimonious iden-
+                                                                                                       tification of continuous-time systems: A block-coordinate descent approach.
+                                                                                                       In 22nd IFAC World Congress: Vol. 56, (pp. 4216–4221).
+References                                                                                         González, R. A., Rojas, C. R., & Welsh, J. S. (2018). An asymptotically optimal
+                                                                                                       indirect approach to continuous-time system identification. In 57th IEEE
+Åström, K. J. (1979). Maximum likelihood and prediction error methods. IFAC                            Conference on Decision and Control (pp. 638–643).
+    Proceedings Volumes, 12(8), 551–574.                                                           Härdle, W., Huet, S., Mammen, E., & Sperlich, S. (2004). Bootstrap inference
+                                                                                                       in semiparametric generalized additive models. Econometric Theory, 20(2),
+                                                                                                       265–300.
+  3 At most one polynomial Q will have degree 2n , due to n = m occurring                          Hastie, T., & Tibshirani, R. (1986). Generalized additive models. Statistical Science,
+                                     i          i          i   i
+for at most one i ∈ {1, . . . , K }.                                                                   1(3), 297–310.
+
+                                                                                              11
+R.A. González, K. Classens, C.R. Rojas et al.                                                                                                    Automatica 173 (2025) 112013
+
+
+Huselstein, E., & Garnier, H. (2002). An approach to continuous-time model                    Professor in the Control Systems Technology Section. His research focuses on the
+    identification from non-uniformly sampled data. In Proceedings of the 41st                design and analysis of data-driven modeling, estimation, and control methods,
+    IEEE Conference on Decision and Control: Vol. 1, (pp. 622–623).                           with applications in the high-tech precision industry.
+Ljung, L. (1999). System identification: Theory for the user (2nd ed.). Prentice-Hall.
+Ljung, L. (2009). Experiments with identification of continuous time models. In
+    15th IFAC Symposium on System Identification (pp. 1175–1180). Elsevier.
+Ljung, L., & Singh, R. (2012). Version 8 of the MATLAB system identification                                           Koen Classens received the B.Sc degree (cum laude)
+    toolbox. IFAC Proceedings Volumes, 45(16), 1826–1831.                                                              (2016), the M.Sc degree (cum laude) (2019) in Me-
+Mooren, N., Witvoet, G., & Oomen, T. (2023). On-line instrumental variable-based                                       chanical Engineering, and the M.Sc degree (cum laude)
+    feedforward tuning for non-resetting motion tasks. International Journal of                                        (2019) in Systems & Control from the Eindhoven Uni-
+    Robust and Nonlinear Control, 1–19.                                                                                versity of Technology, Eindhoven, The Netherlands. He
+Oomen, T. (2018). Advanced motion control for precision mechatronics: Control,                                         is currently pursuing a Ph.D. degree in the Control
+    identification, and learning of complex systems. IEEJ Journal of Industry                                          Systems Technology group within the department of
+    Applications, 7(2), 127–140.                                                                                       Mechanical Engineering at Eindhoven University of
+Pan, S., González, R. A., Welsh, J. S., & Rojas, C. R. (2020). Consistency analysis                                    Technology. His research is centered around the de-
+    of the simplified refined instrumental variable method for continuous-time                                         velopment of fault detection and isolation systems for
+    systems. Automatica, 113, Article 108767.                                                                          precision mechatronics.
+Pan, S., Welsh, J. S., González, R. A., & Rojas, C. R. (2020). Efficiency analysis
+    of the simplified refined instrumental variable method for continuous-time
+    systems. Automatica, 121, Article 109196.
+Ploeg, J., Scheepers, B. T. M., Van Nunen, E., Van de Wouw, N., & Nijmeijer, H.                                        Cristian R. Rojas was born in 1980. He received the
+    (2011). Design and experimental evaluation of cooperative adaptive cruise                                          M.S. degree in electronics engineering from the Univer-
+    control. In 14th International IEEE Conference on Intelligent Transportation                                       sidad Técnica Federico Santa María, Valparaíso, Chile, in
+    Systems (pp. 260–265). IEEE.                                                                                       2004, and the Ph.D. degree in electrical engineering at
+Preumont, A. (2018). Vibration Control of Active Structures: An Introduction (3rd                                      The University of Newcastle, NSW, Australia, in 2008.
+    ed.). Springer.                                                                                                    Since October 2008, he has been with the Royal In-
+Rao, G. P., & Unbehauen, H. (2006). Identification of continuous-time systems.                                         stitute of Technology, Stockholm, Sweden, where he is
+    IEE Proceedings-Control Theory and Applications, 153(2), 185–220.                                                  currently Professor of Automatic Control at the School
+Reynders, E. (2012). System identification methods for (operational) modal                                             of Electrical Engineering and Computer Science. His
+    analysis: review and comparison. Archives of Computational Methods in                                              research interests lie in system identification, signal
+    Engineering, 19, 51–124.                                                                                           processing and machine learning. Prof. Rojas is a Senior
+Saha, D., & Rao, G. P. (1982). A general algorithm for parameter identification in            Member of IEEE, of the IEEE Technical Committee on System Identification
+    lumped continuous systems–the Poisson moment functional approach. IEEE                    and Adaptive Processing (since 2013), and of the IFAC Technical Committee
+    Transactions on Automatic Control, 27(1), 223–225.                                        TC1.1. on Modelling, Identification, and Signal Processing (since 2013). He has
+Söderström, T. (1975). Ergodicity results for sample covariances. Problems of                 been Associate Editor for the IFAC journal Automatica and for the IEEE Control
+    Control and Information Theory, 4(2), 131–138.                                            Systems Letters (L-CSS).
+Söderström, T., & Stoica, P. (1983). Instrumental Variable Methods for System
+    Identification. Springer.
+Söderström, T., & Stoica, P. (1989). System Identification. Prentice-Hall.
+Söderström, T., Stoica, P., & Trulsson, E. (1987). Instrumental variable methods                                      James S. Welsh received a B.E. degree (Hons. I) in
+    for closed loop systems. IFAC Proceedings Volumes, 20(5), 363–368.                                                electrical engineering in 1997 and his Ph.D. in 2004,
+Stoica, P., & Söderström, T. (1982). On the parsimony principle. International                                        both from the University of Newcastle, Australia. His
+    Journal of Control, 36(3), 409–418.                                                                               Ph.D. thesis analyzed ill-conditioning problems arising
+Stoica, P., & Söderström, T. (1983). Optimal instrumental variable estimation and                                     in system identification. He spent more than 15 years
+    approximate implementations. IEEE Transactions on Automatic Control, 28(7),                                       working in industry before taking up his current po-
+    757–772.                                                                                                          sition with the University of Newcastle, where, since
+Van den Hof, P. M. J. (1998). Closed-loop issues in system identification. Annual                                     2004 he has been employed in the School Engineering.
+    Reviews in Control, 22, 173–186.                                                                                  His research interests include data driven modeling,
+Voorhoeve, R., de Rozario, R., Aangenent, W., & Oomen, T. (2020). Identifying                                         system identification, and control. Most recently he has
+    position-dependent mechanical systems: A modal approach applied to a                                              been engaged with research projects in the areas of
+    flexible wafer stage. IEEE Transactions on Control Systems Technology, 29(1),             biomedical science, medical engineering and large electrical machine monitoring.
+    194–206.
+Young, P. C. (1965). The determination of the parameters of a dynamic process.
+    IERE Journal of Radio and Electronic Engineering, 29, 345–361.
+Young, P. C. (2012). Recursive estimation and time-series analysis: An introduction
+    for the student and practitioner (2nd ed.). Springer.                                                               Tom Oomen is full professor with the Department of
+Young, P. C., Garnier, H., & Gilson, M. (2009). Simple refined IV methods                                               Mechanical Engineering at the Eindhoven University
+    of closed-loop system identification. In 15th IFAC Symposium on System                                              of Technology. He is also a part-time full professor
+    Identification (pp. 1151–1156).                                                                                     with the Delft University of Technology. He received
+Young, P. C., & Jakeman, A. J. (1980). Refined instrumental variable methods                                            the M.Sc. degree (cum laude) and Ph.D. degree from
+    of recursive time-series analysis. Part III, Extensions. International Journal of                                   the Eindhoven University of Technology, Eindhoven,
+    Control, 31(4), 741–764.                                                                                            The Netherlands. He held visiting positions at KTH,
+                           Rodrigo A. González was born in Viña del Mar, Chile,                                         Stockholm, Sweden, and at The University of Newcastle,
+                           in 1992. He earned the professional title of Ingeniero                                       Australia. He is a recipient of the 7th Grand Nagamori
+                           Civil Electrónico and a Masters degree in Electronic                                         Award, the Corus Young Talent Graduation Award, the
+                           Engineering from Universidad Técnica Federico Santa                                          IFAC 2019 TC 4.2 Mechatronics Young Research Award,
+                           María, Valparaíso, Chile, in 2016, obtaining the Best              the 2015 IEEE Transactions on Control Systems Technology Outstanding Paper
+                           Electronic Engineering Student Award. He received his              Award, the 2017 IFAC Mechatronics Best Paper Award, the 2019 IEEJ Journal
+                           Ph.D. in Electrical Engineering from KTH Royal Insti-              of Industry Applications Best Paper Award, and recipient of a Veni and Vidi
+                           tute of Technology, Stockholm, Sweden, in 2022. Since              personal grant. He is currently a Senior Editor of IEEE Control Systems Letters
+                           June 2022, he has been affiliated with the Department              (L-CSS) and Co-Editor-in-Chief of IFAC Mechatronics, and he has served on the
+                           of Mechanical Engineering at Eindhoven University of               editorial board of IEEE Transactions on Control Systems Technology. He has also
+                           Technology, where he currently serves as an Assistant              been vice-chair for IFAC TC 4.2 and a member of the Eindhoven Young Academy
+                                                                                              of Engineering. His research interests are in the field of data-driven modeling,
+                                                                                              learning, and control, with applications in precision mechatronics.
+
+
+
+
+                                                                                         12
+

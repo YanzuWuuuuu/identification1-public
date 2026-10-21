@@ -1,0 +1,9 @@
+{
+  "returncode": 0,
+  "command": [
+    "run_p7_sim.py",
+    "--workers",
+    "4"
+  ],
+  "finished": "2026-10-20 21:55:19"
+}

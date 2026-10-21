@@ -1,0 +1,290 @@
+[
+  {
+    "id": "A_lowgain",
+    "window": "H493",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_nominal",
+    "window": "H493",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_highgain",
+    "window": "H493",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_lowgain_pppp",
+    "window": "H493",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_nominal_pppp",
+    "window": "H493",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_highgain_pppp",
+    "window": "H493",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_lowgain",
+    "window": "H300",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_nominal",
+    "window": "H300",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_highgain",
+    "window": "H300",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_lowgain_pppp",
+    "window": "H300",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_nominal_pppp",
+    "window": "H300",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_highgain_pppp",
+    "window": "H300",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_lowgain",
+    "window": "H100",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_nominal",
+    "window": "H100",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_highgain",
+    "window": "H100",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_lowgain_pppp",
+    "window": "H100",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_nominal_pppp",
+    "window": "H100",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_highgain_pppp",
+    "window": "H100",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_lowgain",
+    "window": "H700",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_nominal",
+    "window": "H700",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "A_highgain",
+    "window": "H700",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_lowgain_pppp",
+    "window": "H700",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_nominal_pppp",
+    "window": "H700",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  },
+  {
+    "id": "C_highgain_pppp",
+    "window": "H700",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ],
+    "config_hash": "f4240a151e5acc38d23100b29ebfcd1d5f2ce0e3a769f70a826a69663aca9662"
+  }
+]

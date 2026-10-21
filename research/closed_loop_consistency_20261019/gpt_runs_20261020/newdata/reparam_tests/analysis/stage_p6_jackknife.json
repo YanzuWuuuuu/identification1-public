@@ -1,0 +1,12 @@
+{
+  "returncode": 0,
+  "command": [
+    "run_p6.py",
+    "--jackknife",
+    "--methods",
+    "M3",
+    "--workers",
+    "4"
+  ],
+  "finished": "2026-10-20 22:22:20"
+}

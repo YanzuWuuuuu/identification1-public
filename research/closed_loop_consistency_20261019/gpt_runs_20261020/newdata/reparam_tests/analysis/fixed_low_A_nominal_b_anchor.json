@@ -1,0 +1,4 @@
+{
+  "common_fixed_us": 327.3067122693153,
+  "rule": "Equal mean of the same-record two high-window M3 common delays; not selected by low-window residual."
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "name": "controller_singular_1_500",
+    "source": "controllers/*.npz; analysis/*_wide_frf.npz",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "controller_singular_3_25",
+    "source": "controllers/*.npz; analysis/*_wide_frf.npz",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "B_equivalent_noise_psd",
+    "source": "analysis/*_noise.npz",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "core_controller_zeta1_zeta2_f2",
+    "source": "fits/A_*; analysis/A_*_uncertainty.json; analysis/A_*_bias.json",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "all_modal_controller",
+    "source": "fits/A_*; analysis/A_*_uncertainty.json; analysis/A_*_bias.json",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_lowgain_magnitude",
+    "source": "analysis/*_orthogonal_frf.npz; fits/A_*_model NPZ",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_lowgain_phase",
+    "source": "analysis/*_orthogonal_frf.npz; fits/A_*_model NPZ",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_lowgain_zoom_8_18",
+    "source": "analysis/*_orthogonal_frf.npz; fits/A_*_model NPZ",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_nominal_magnitude",
+    "source": "analysis/*_orthogonal_frf.npz; fits/A_*_model NPZ",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_nominal_phase",
+    "source": "analysis/*_orthogonal_frf.npz; fits/A_*_model NPZ",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_nominal_zoom_8_18",
+    "source": "analysis/*_orthogonal_frf.npz; fits/A_*_model NPZ",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_highgain_magnitude",
+    "source": "analysis/*_orthogonal_frf.npz; fits/A_*_model NPZ",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_highgain_phase",
+    "source": "analysis/*_orthogonal_frf.npz; fits/A_*_model NPZ",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_highgain_zoom_8_18",
+    "source": "analysis/*_orthogonal_frf.npz; fits/A_*_model NPZ",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_controller_comparison_magnitude",
+    "source": "analysis/*_orthogonal_frf.npz",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_controller_comparison_phase",
+    "source": "analysis/*_orthogonal_frf.npz",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "amplitude_modal_scan",
+    "source": "analysis/scans.csv",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "repeat_modal_scan",
+    "source": "analysis/scans.csv",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "position_modal_scan",
+    "source": "analysis/scans.csv",
+    "png_dpi": 300,
+    "editable_pdf": true
+  },
+  {
+    "name": "C_normalized_residual",
+    "source": "analysis/frf_normalized_validation.json",
+    "png_dpi": 300,
+    "editable_pdf": true
+  }
+]

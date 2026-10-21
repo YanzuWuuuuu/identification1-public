@@ -1,0 +1,23 @@
+{
+  "id": "A_nominal",
+  "model": "c",
+  "draws": 200,
+  "windows": {
+    "H300": {
+      "analytic": 10325.722794194002,
+      "independent_low_rank_trace": 10325.722794193924,
+      "bootstrap_mean": 10303.370998769231,
+      "bootstrap_MC_SE": 17.961348258770578,
+      "difference_in_MC_SE": -1.244438619125179,
+      "trace_relative_error": 7.57492196056743e-15
+    },
+    "H493": {
+      "analytic": 5013.426435350692,
+      "independent_low_rank_trace": 5013.426435350754,
+      "bootstrap_mean": 5023.0961950625015,
+      "bootstrap_MC_SE": 11.094194934956676,
+      "difference_in_MC_SE": 0.8716053547374282,
+      "trace_relative_error": 1.2336002236808123e-14
+    }
+  }
+}

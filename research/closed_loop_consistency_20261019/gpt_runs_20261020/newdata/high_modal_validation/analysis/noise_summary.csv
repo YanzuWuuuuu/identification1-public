@@ -1,0 +1,13 @@
+﻿controller,window,reference_solver_converged,reference_strict_score,reference_near_bound,noise_periods,noise_trace_sum,median_noise_covariance_condition
+lowgain,H100,True,True,False,6,2.229719664047118e-12,21.51534115318199
+lowgain,H300,True,False,False,6,2.373995069753228e-12,17.042686559091095
+lowgain,H493,True,False,False,6,3.81292674989947e-13,15.026024544191944
+lowgain,H700,False,False,True,6,1.8013627532161695e-13,10.586943983144097
+nominal,H100,True,True,False,8,3.1807374200006985e-13,13.566134492801298
+nominal,H300,True,False,False,8,1.50398231848468e-12,8.787817942450488
+nominal,H493,True,True,False,8,2.7195628467739693e-13,6.299423299894962
+nominal,H700,False,False,False,8,5.951396432463952e-14,3.5691240699351092
+highgain,H100,True,True,False,8,3.216801832679365e-13,11.008595957567655
+highgain,H300,True,True,False,8,1.7505669992255967e-12,7.623870696429814
+highgain,H493,True,True,False,8,2.4795909523224194e-13,4.636266947135776
+highgain,H700,False,False,False,8,5.282182023569687e-14,2.8886650785369072

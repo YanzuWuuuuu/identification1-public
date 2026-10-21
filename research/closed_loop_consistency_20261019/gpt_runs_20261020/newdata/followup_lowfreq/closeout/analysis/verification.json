@@ -1,0 +1,105 @@
+{
+  "time": "2026-10-20T14:04:34.365287",
+  "protected_files": 2079,
+  "changed": [],
+  "missing": [],
+  "all_protected_unchanged": true,
+  "model_copies_identical": true,
+  "curvature_cases": 9,
+  "max_resolvent_error": 6.977381686111217e-12,
+  "max_profile_reproduction_error": 7.735478924075778e-14,
+  "prediction_folds": 41,
+  "prediction_fold_failures": 0,
+  "observed_jackknife_SE_reproduction_error": 0.0,
+  "joint_variance_identity_relative_error": 8.552810705896982e-16,
+  "sensitivity_configurations": 36,
+  "sensitivity_endpoints": 72,
+  "sensitivity_solver_failures": 34,
+  "sensitivity_strict_failures": 40,
+  "baseline_reproduction": [
+    {
+      "id": "A_lowgain",
+      "max_abs_beta_M1": 0.0,
+      "max_abs_beta_M3": 0.0,
+      "Q_ratio_relative": 1.2057708116752794e-12
+    },
+    {
+      "id": "A_nominal",
+      "max_abs_beta_M1": 0.0,
+      "max_abs_beta_M3": 0.0,
+      "Q_ratio_relative": 2.8938579966804656e-12
+    },
+    {
+      "id": "A_highgain",
+      "max_abs_beta_M1": 0.0,
+      "max_abs_beta_M3": 0.0,
+      "Q_ratio_relative": 1.2469054968046793e-12
+    },
+    {
+      "id": "C_lowgain_pppp",
+      "max_abs_beta_M1": 0.0,
+      "max_abs_beta_M3": 0.0,
+      "Q_ratio_relative": 1.7227231648218693e-12
+    },
+    {
+      "id": "C_nominal_pppp",
+      "max_abs_beta_M1": 0.0,
+      "max_abs_beta_M3": 0.0,
+      "Q_ratio_relative": 7.394683503690662e-13
+    },
+    {
+      "id": "C_highgain_pppp",
+      "max_abs_beta_M1": 0.0,
+      "max_abs_beta_M3": 0.0,
+      "Q_ratio_relative": 6.659302352027951e-12
+    }
+  ],
+  "extra_block_jacobian": [
+    {
+      "parameter": 158,
+      "relative_error": 1.4775824164777888e-13
+    },
+    {
+      "parameter": 164,
+      "relative_error": 9.622910761751238e-14
+    },
+    {
+      "parameter": 173,
+      "relative_error": 1.0061661877243829e-13
+    },
+    {
+      "parameter": 174,
+      "relative_error": 1.6581092057180513e-06
+    },
+    {
+      "parameter": 175,
+      "relative_error": 5.044493426042237e-07
+    },
+    {
+      "parameter": 176,
+      "relative_error": 2.2126918224778538e-13
+    },
+    {
+      "parameter": 183,
+      "relative_error": 2.795066791337019e-13
+    }
+  ],
+  "nested_model_max_error": 0.0,
+  "figures": [
+    "background_failure_diagnostic.png",
+    "curvature_scale_and_component_sensitivity.png",
+    "frequency_band_sensitivity.png",
+    "main_paired_prediction.png"
+  ],
+  "code_sha256": {
+    "code\\common.py": "5879aed176f6ae73769b3872f0282d8d2f5a8a7d8a81a72b5687f888cdf6af3b",
+    "code\\curvature.py": "5e67902caa02be39ef5105706500a1fb7c402ec7efb19381f3c9d7592f4245ea",
+    "code\\noise_bias.py": "e597ec0db6152c8dd428f5a06a23becf0be50e39ae3a4666619392647c02070c",
+    "code\\prediction_jackknife.py": "12deadc993b74923e76055cf2ddc497fb7cb8c8d73583c02f8571512a36b0e7c",
+    "code\\present.py": "92995367ae9102296c47f0bd436e812aaa28ae2a69d050489c7377e1c2c8a3d4",
+    "code\\residual_checks.py": "72f269c8d130c1dd104e04bba8f4432aabf1177239fdbdcde488a4e137f9a534",
+    "code\\sensitivity.py": "d231ec8953cb650e978839d27a7d707c1702e71215c96678c96472a2bb8c0d45",
+    "code\\verify_closeout.py": "ce124562efe933bdf2a9f7e11a47cc6382775c8f744b076b26e71b5a5a1403f5",
+    "code\\write_report.py": "6f4ff37b5d07bf8da477c02de66c363270f9ded043964e3099e2e7af11002ae7"
+  }
+}

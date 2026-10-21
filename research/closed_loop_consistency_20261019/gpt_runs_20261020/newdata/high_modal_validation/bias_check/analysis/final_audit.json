@@ -1,0 +1,78 @@
+{
+  "protected_count": 2406,
+  "changed": [],
+  "missing": [],
+  "model_copy_unchanged": true,
+  "tau_copy_unchanged": true,
+  "full_cases": 12,
+  "jackknife_folds": 82,
+  "refit_endpoints": 164,
+  "refit_failures": 0,
+  "refit_boundary": 0,
+  "refit_strict_failures": 0,
+  "before_polish_strict_failures": 93,
+  "max_final_score": 9.975141925519161e-09,
+  "joint_variance_identity_max_relative_error": 4.955317090662046e-15,
+  "minimum_neighbors": 12,
+  "figures": [
+    {
+      "file": "high_frequency_closeup.png",
+      "size": [
+        3011,
+        1983
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf": true
+    },
+    {
+      "file": "paired_damping_frequency_M.png",
+      "size": [
+        2730,
+        1983
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf": true
+    },
+    {
+      "file": "paired_damping_frequency_MminusC.png",
+      "size": [
+        2730,
+        1983
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf": true
+    },
+    {
+      "file": "reproducibility_vs_noise.png",
+      "size": [
+        2734,
+        1114
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf": true
+    }
+  ],
+  "model_validation": true,
+  "code_hashes": {
+    "code\\analyze.py": "57576e269a412b38eec429458dcded38ac4eed380d1c2082a91449767e76b17a",
+    "code\\audit.py": "078cc72deb49f1cc8599f21473a988aff9522e2ac46e444f28714bab798e6c61",
+    "code\\bias.py": "1de5f27440ef29c2a21bdb24e291fcfa027cbc51d889b5c318b91b0c6f5ca4f9",
+    "code\\common.py": "c9dea21576791efddc55ab43def444e873809220550b2ac8901d35209155ea63",
+    "code\\plot.py": "68ecbddf4db77ef48cf5767084391c570495225a4a23c9df01c1dce8e109f4e1",
+    "code\\report.py": "f8434b1ad5c3ea97e8704fd66c5ae00378048624f657d29356e6a37a0555f4a5",
+    "code\\validate.py": "6949c8deccbe512b0b0df7ca266816c33b25e3bcc756dd2cc3a47406e002bc44"
+  },
+  "passed": true
+}

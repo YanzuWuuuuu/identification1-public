@@ -1,0 +1,21 @@
+{
+  "id": "A_nominal",
+  "window": "H493",
+  "method": "M3",
+  "frequency_u_hz": [
+    0.0006305924812238733
+  ],
+  "damping_u_pp": [
+    0.00012716037944520626
+  ],
+  "local_numerical_conditions": true,
+  "scaled_rank": 74,
+  "dimension": 74,
+  "scaled_condition": 530.1354417527469,
+  "log_modal_sd": [
+    1.2774956970085705e-06,
+    0.00034977506766626455
+  ],
+  "scope": "B noise at z=0; full transient nuisance block; local correct-model sandwich; not model/operating-condition uncertainty",
+  "estimated_weight_frozen": false
+}

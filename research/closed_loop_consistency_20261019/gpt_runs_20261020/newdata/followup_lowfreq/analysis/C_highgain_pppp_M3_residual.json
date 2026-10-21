@@ -1,0 +1,117 @@
+{
+  "id": "C_highgain_pppp",
+  "method": "M3",
+  "lines": 133,
+  "real_dimension": 1064,
+  "n_parameters": 158,
+  "Q": 142474.16818064637,
+  "EQ": 5286.172288194775,
+  "ratio": 26.95223697094088,
+  "nominal_n_minus_p": 906,
+  "numerics": {
+    "condition": 202783.57894594176,
+    "rank_1e12": 158,
+    "dimension": 158
+  },
+  "EQ_lowrank": 5286.172288195303,
+  "trace_identity_relative_error": 9.978996110405658e-14,
+  "projector_relative_error": 1.9232050988556564e-12,
+  "bootstrap_n": 200,
+  "bootstrap_seed": 102030,
+  "bootstrap_mean": 5539.837313294846,
+  "bootstrap_sd": 1992.9935420271204,
+  "bootstrap_mean_se": 140.92592484283733,
+  "bootstrap_q95": 9260.622747805815,
+  "bootstrap_interval95": [
+    3090.8490167909763,
+    10009.774007743008
+  ],
+  "bootstrap_mean_standardized": 1.799988365398077,
+  "frequency_bands": [
+    {
+      "lo": 3.0,
+      "hi": 5.0,
+      "Q": 15815.281336410935,
+      "EQ": 248.75834738388326,
+      "ratio": 63.57688697780594
+    },
+    {
+      "lo": 5.0,
+      "hi": 7.0,
+      "Q": 21633.42800659197,
+      "EQ": 239.78607482825134,
+      "ratio": 90.21970113188218
+    },
+    {
+      "lo": 7.0,
+      "hi": 9.0,
+      "Q": 13801.781184139358,
+      "EQ": 278.7625140090107,
+      "ratio": 49.51089364796455
+    },
+    {
+      "lo": 9.0,
+      "hi": 11.0,
+      "Q": 7800.1805328430755,
+      "EQ": 196.28791491198484,
+      "ratio": 39.73846549004641
+    },
+    {
+      "lo": 11.0,
+      "hi": 13.0,
+      "Q": 2601.688205471585,
+      "EQ": 233.06919930194124,
+      "ratio": 11.1627285512793
+    },
+    {
+      "lo": 13.0,
+      "hi": 15.0,
+      "Q": 6704.797124545431,
+      "EQ": 345.6494102191647,
+      "ratio": 19.397681368222628
+    },
+    {
+      "lo": 15.0,
+      "hi": 17.0,
+      "Q": 10401.727397877845,
+      "EQ": 365.11380411295335,
+      "ratio": 28.489000636798483
+    },
+    {
+      "lo": 17.0,
+      "hi": 19.0,
+      "Q": 13541.226848994065,
+      "EQ": 510.7586542299367,
+      "ratio": 26.51198709380651
+    },
+    {
+      "lo": 19.0,
+      "hi": 21.0,
+      "Q": 15069.816911956443,
+      "EQ": 746.8852823545099,
+      "ratio": 20.17688294037576
+    },
+    {
+      "lo": 21.0,
+      "hi": 23.0,
+      "Q": 13454.192088837439,
+      "EQ": 754.961621029224,
+      "ratio": 17.82102786959635
+    },
+    {
+      "lo": 23.0,
+      "hi": 25.0,
+      "Q": 21650.048542978224,
+      "EQ": 1366.1394658139147,
+      "ratio": 15.847612256834713
+    }
+  ],
+  "score_recomputed": {
+    "score_max": 4.285286172227198e-07,
+    "weighted_residual_norm": 0.3483941662902074
+  },
+  "original_score": 4.285286172227198e-07,
+  "covariance": "same-record M3 endpoint, Ws=0.5 Hz; full raw 4x4 spectral matrices; proper complex convention",
+  "weights": "identity",
+  "interpretation": "conditional linearized IV projection; not exact chi-square when PSD estimated, instruments depend on fit, or model misspecified"
+}

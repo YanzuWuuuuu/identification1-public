@@ -1,0 +1,111 @@
+"""Build traceable report from frozen choices; does not change any choice."""
+import json,csv,hashlib
+from pathlib import Path
+import numpy as np
+from scipy.io import savemat
+from run_validation import OUT,CFG,energy,idx
+
+def db(v):return 20*np.log10(max(float(v),1e-30))
+def readcsv(path):
+    with open(path,encoding='utf-8-sig') as f:return list(csv.DictReader(f))
+def strict(r):
+    return (max(float(r['gain_u']),float(r['gain_y']))<=1.05+1e-6
+       and all(float(r[f'{s}_{a}_{b}'])<=1.05+1e-6 for s in ['u','y'] for a,b in CFG['guards'])
+       and all(float(r[f'nn_{a}_{b}'])<=.10+1e-6 for a,b in CFG['targets']))
+
+if __name__=='__main__':
+    manifest=json.loads((OUT/'manifest.json').read_text(encoding='utf-8'))
+    assert CFG==manifest['config'], 'Configuration changed since executed run.'
+    choices=json.loads((OUT/'selected_training_only.json').read_text(encoding='utf-8'))
+    rows=readcsv(OUT/'heldout_metrics.csv');train=readcsv(OUT/'candidate_training_metrics.csv')
+    z0={r['source']:r for r in rows if r['position']=='z0'}
+    arrays=dict(np.load(OUT/'selected_results.npz'))
+    savemat(OUT/'selected_arrays.mat',arrays)
+    f=arrays['f'];m=idx(f,[25,80]);P=arrays['Pstatic'];N=arrays['Pnom']
+    nominal_ratio={s:np.sqrt(energy(P[m,:3,3] if s=='u' else P[m,3,:3],f[m])/
+                           energy(N[m,:3,3] if s=='u' else N[m,3,:3],f[m])) for s in ['u','y']}
+    lines=['# 新紧固数据：因果动态分块解耦验证结果',
+           '', '日期：2026-10-17。数据：新扫频 z=0；只在已保存数据上离线设计和检查，没有加载硬件控制器。',
+           '本轮实际执行 FIR 优化、训练可行性筛选、同记录留出检查及固定校准器的跨位置评估。没有把模型自身预测当成实验效果。',
+           '', '## 1. 对照条件', '',
+           '- 对象为拧紧片簧后的新数据，输入倍率已修正，FRF不再重复换算。单位为记录输出/修正后记录输入。',
+           '- 5000 Hz；训练索引5001:154323，检查154324:303646。后半曾在此前开发中查看，因此属于留出开发检查，不是独立盲测。',
+           '- 所有方案共用训练25–80 Hz得到的强静态零空间方向、相同单位端口尺度。',
+           '- 主频带25–80 Hz；保护3–25、80–170 Hz串扰RMS，最多增加5%；保护260–310、320–380、450–800 Hz的NN复频响，预算10%。',
+           '- 40/100 FIR抽头，每侧新增纯延迟0/2/5拍（0/0.4/1 ms），每种数据入口6个候选。N输入的物理四电机向量范数及N输出的四传感器组合范数≤1.05；不等同于整个4×4变换的最大奇异值≤1.05。',
+           '- 交替凸子问题最多4轮；不声称双侧非凸问题已获全局最优。候选只按真实训练FRF的可行性和两向残余最大值选择。',
+           '- 端口增益设计网格设1.0495，给密网格留余量。数值求解阶段有2e-4容差；下文保护判定按实际上限加1e-6作最终核查。',
+           '', '## 2. 只用训练数据冻结的方案', '',
+           '|入口|选择|抽头数|每侧新增延迟|', '|---|---|---:|---:|']
+    for src,ch in choices.items():
+        lines.append(f"|{src}|{ch['name']}|{ch['taps']}|{ch['delay_samples']/5:.1f} ms|")
+    lines+=['', 'SRIVC入口采用现有自由加性SRIVC基线模型，其时延沿用既有值；并非本轮重新辨识模型或重估硬件时延。',
+            '若显示static_fallback，表示六个动态候选未满足训练选择条件，实际采用零动态修正；不能称为SRIVC动态解耦成功。',
+            '', '## 3. z=0 留出数据的主频带结果', '',
+            '下表相对于强静态基线，RMS比越小越好；变化dB为20log10(比值)，负值表示下降。', '',
+            '|方案|N→逻辑 RMS比|变化dB|逻辑→N RMS比|变化dB|全部保护条件通过|',
+            '|---|---:|---:|---:|---:|---|', '|强静态|1.0000|0|1.0000|0|基准|']
+    for src,r in z0.items():
+        lines.append(f"|{src}|{float(r['u_25_80']):.4f}|{db(r['u_25_80']):.2f}|{float(r['y_25_80']):.4f}|{db(r['y_25_80']):.2f}|{'是' if strict(r) else '否'}|")
+    lines+=['', f"强静态本身相对原几何矩阵的变化：N→逻辑 {db(nominal_ratio['u']):.2f} dB，逻辑→N {db(nominal_ratio['y']):.2f} dB。动态附加收益必须与强静态比较，不能把静态已取得的收益全部归给FIR。",
+            '', '## 4. 保留与代价', '',
+            'NN误差以静态NN响应加上两侧参考支路显式延迟为参考，不把实际响应相位移回。2L·Ts是目标参考的延迟，不代表修正后响应的群时延处处恒定。这里只是目标频带积分意义下的复响应保留，不是每个频点都小于10%，也不等同于逐阶机械振型的独立保留率。', '',
+            '|方案|260–310Hz复误差|320–380Hz复误差|450–800Hz复误差|输入端口最大增益|输出端口最大增益|',
+            '|---|---:|---:|---:|---:|---:|']
+    for src,r in z0.items():
+        vals=[float(r[f'nn_{a}_{b}'])*100 for a,b in CFG['targets']]
+        lines.append(f"|{src}|{vals[0]:.2f}%|{vals[1]:.2f}%|{vals[2]:.2f}%|{float(r['gain_u']):.6f}|{float(r['gain_y']):.6f}|")
+    lines+=['', '|方案|3–25Hz N→逻辑比|3–25Hz 逻辑→N比|80–170Hz N→逻辑比|80–170Hz 逻辑→N比|',
+            '|---|---:|---:|---:|---:|']
+    for src,r in z0.items():
+        lines.append('|'+src+'|'+'|'.join(f"{float(r[k]):.4f}" for k in ['u_3_25','y_3_25','u_80_170','y_80_170'])+'|')
+    lines+=['', '端口最大增益是在0–2500 Hz的4097点密网格上的数值检查，不是连续频率H∞范数的严格证书。欧氏端口增益不是实测噪声RMS：没有独立的四路噪声谱，不能宣称实际噪声增加量已测到。FIR稳定、幅相匹配和上述保护检查也不等于改变反馈后已保证闭环稳定。',
+            '', '## 5. SRIVC模型设计为什么可能失败', '',
+            '训练频带25–80 Hz内，SRIVC相对训练FRF的物理4×4整体复RMS差异为3.97%，但b（N→逻辑）为112.69%，c（逻辑→N）为95.84%。计算细节和各频带结果见weak_block_model_error.md/csv。FRF仍是估计，不是无噪真值。', '',
+            '下面只列训练诊断：每个SRIVC候选在模型内部与实际训练FRF上的残余。不使用检查数据来选择或改造这些失败候选。', '',
+            '|候选|模型N→逻辑比|实测训练N→逻辑比|模型逻辑→N比|实测训练逻辑→N比|训练保护通过|',
+            '|---|---:|---:|---:|---:|---|']
+    for path in sorted(OUT/(r['name']+'.npz') for r in train if r['source']=='srivc'):
+        sm=json.loads(str(np.load(path)['summary']));de=sm['design'];tr=sm['train']
+        lines.append(f"|{sm['name']}|{de['u_25_80']:.4f}|{tr['u_25_80']:.4f}|{de['y_25_80']:.4f}|{tr['y_25_80']:.4f}|{'是' if strict(tr) else '否'}|")
+    lines+=['', '模型内部的大幅改善若不能迁移到训练FRF，首先说明当前模型在相消所依赖的弱方向上不够准确；不能由此否定所有SRIVC或所有动态解耦方法。已有物理通道总体拟合约4%，也不保证弱块精度。',
+            '冻结选择后又检查了分半重复性：25–80 Hz两半FRF的b/c差异为36.95%/15.65%，模型对检查FRF的b/c差异为112.25%/95.86%。参考弱块本身不稳定，但模型差异更大；这不是置信区间或显著性检验，细节见repeatability_diagnostic.md。',
+            '', '## 6. 固定z=0方案的跨位置检查', '',
+            '所有位置均使用同一z=0静态矩阵和同一动态滤波器，没有针对检查位置重拟合。比较基准是在该位置应用同一z=0静态矩阵。', '',
+            '|位置|入口|N→逻辑比|逻辑→N比|保护条件通过|', '|---|---|---:|---:|---|']
+    for r in rows:
+        lines.append(f"|{r['position']}|{r['source']}|{float(r['u_25_80']):.4f}|{float(r['y_25_80']):.4f}|{'是' if strict(r) else '否'}|")
+    lines+=['', '## 7. 数学诊断与结论边界', '',
+            '理想逐频消元检查见 diagnostic_limits.md。25–80 Hz理论上只需很小的端口增益变化，但在共振区全带消交叉会大幅改变d−cA⁻¹b；这说明频带限制与目标保护必要，不是任意动态解耦都不可能。',
+            '本轮只能评价所选FIR族、延迟预算和约束下的离线效果。现有FRF来自总输入/输出的闭环记录，尚未由外生参考建立严格无偏保证。',
+            '保护窗口并未覆盖全部3–800 Hz；170–260、380–450 Hz等窗口外没有NN保留约束，不应宣称全频带目标保持。图中另给出的3–800 Hz无权网格NN误差为40.82%，其权重/频带与上表不同。',
+            '训练解的三个NN误差均接近10%约束边界，缺少应对FRF差异的余量。z=0检查略超限，跨位置更明显（z=+1 mm的260–310 Hz误差约25%）。下一版应预先加入不确定性余量或多位置设计；本轮没有根据检查结果回调系数。',
+            '', '## 8. 文件与复现', '',
+            '- run_validation.py：主程序；run_parallel_srivc40.py、run_parallel_srivc100.py、run_parallel_srivc100_d5.py处理不同候选以减少等待，未读取检查数据。',
+            '- manifest.json、run_log.txt及parallel日志：配置、环境、代码和数据哈希、实际运行记录。',
+            '- candidate_training_metrics.csv、selected_training_only.json：训练筛选和冻结结果。',
+            '- heldout_metrics.csv：全部位置留出指标；selected_results.npz：绘图原数组。',
+            '- dynamic_fir_coefficients.mat、load_dynamic_fir_trial.m：已冻结系数和MATLAB加载接口；不可直接视作通过硬件反馈验证的控制器。',
+            '- full_magnitude / full_phase / cross_and_target：完整幅相与关键交叉/NN图，PNG及PDF。',
+            '- verify_fir_export.m、implementation_checks.csv：Python设计与MATLAB滤波器的频域及时间序列实现核查。',
+            '', '现有模型、论文和原始实验文件均未覆盖。']
+    non=z0['nonparam']
+    verdict=(f"**结论：z=0记录内留出数据上，非参数FRF路线的两向串扰RMS分别降低"
+             f"{(1-float(non['u_25_80']))*100:.1f}%和{(1-float(non['y_25_80']))*100:.1f}%；"
+             f"{'所有预设保护检查通过' if strict(non) else '未通过全部预设保护检查'}。"
+             "当前SRIVC模型路线没有可接受的动态候选，回退静态。不能据此宣称已实现宽频带、跨位置的双向无干扰。**")
+    lines[5:5]=['',verdict,'']
+    if (OUT/'implementation_checks.csv').exists():
+        checks=readcsv(OUT/'implementation_checks.csv')
+        maximum=max(float(v) for r in checks for k,v in r.items() if k!='source')
+        lines+=['',f'MATLAB实现核查已通过：FIR频响、时域filter/lsim、纯延迟和完整YPU乘积的最大核对误差为{maximum:.3g}，两套导出FIR稳定。此项验证实现一致性，不是硬件性能试验。']
+    (OUT/'动态解耦验证结果.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+    summary=dict(evaluation_summary='Offline constrained FIR evaluated on same-record held-out data.',
+                 claim_update='supported_limited' if strict(non) and max(float(non['u_25_80']),float(non['y_25_80']))<1 else 'inconclusive_constraints',
+                 baseline_relation='Compared with fixed strong training-derived static calibration.',
+                 failure_mode='SRIVC weak-direction mismatch; finite causal design/target tradeoff.',
+                 next_action='Use weak-block validation and reference-based data before hardware claims.',
+                 evidence_level='auxiliary/dev; no hardware closed-loop test',z0=z0,strict_pass={k:strict(v) for k,v in z0.items()},
+                 nominal_static_changes_dB={k:db(v) for k,v in nominal_ratio.items()})
+    (OUT/'evaluation_summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+    print(json.dumps(summary,indent=2))

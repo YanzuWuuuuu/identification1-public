@@ -1,0 +1,73 @@
+[
+  {
+    "controller": "lowgain",
+    "last_downward_crossings_hz": [
+      20.386124604241203,
+      15.824839323395706,
+      15.42022522077566
+    ],
+    "all_downward_crossings_hz": [
+      [
+        19.482629663685586,
+        19.68372685114663,
+        20.386124604241203
+      ],
+      [
+        15.824839323395706
+      ],
+      [
+        11.277378001346378,
+        15.42022522077566
+      ]
+    ],
+    "lower_hz": 15.42022522077566,
+    "upper_hz": 20.386124604241203,
+    "convention": "three nonzero singular values of K G_C; last descending unity crossing in 3-90 Hz; not per-axis eigenloop margins or closed-loop -3dB bandwidth"
+  },
+  {
+    "controller": "nominal",
+    "last_downward_crossings_hz": [
+      34.813807855917965,
+      29.67872822688842,
+      28.138395814302964
+    ],
+    "all_downward_crossings_hz": [
+      [
+        34.813807855917965
+      ],
+      [
+        29.67872822688842
+      ],
+      [
+        16.049275748907483,
+        28.138395814302964
+      ]
+    ],
+    "lower_hz": 28.138395814302964,
+    "upper_hz": 34.813807855917965,
+    "convention": "three nonzero singular values of K G_C; last descending unity crossing in 3-90 Hz; not per-axis eigenloop margins or closed-loop -3dB bandwidth"
+  },
+  {
+    "controller": "highgain",
+    "last_downward_crossings_hz": [
+      46.3509983698827,
+      41.73804015903187,
+      34.89849274431798
+    ],
+    "all_downward_crossings_hz": [
+      [
+        46.3509983698827
+      ],
+      [
+        40.08414677401711,
+        41.73804015903187
+      ],
+      [
+        34.89849274431798
+      ]
+    ],
+    "lower_hz": 34.89849274431798,
+    "upper_hz": 46.3509983698827,
+    "convention": "three nonzero singular values of K G_C; last descending unity crossing in 3-90 Hz; not per-axis eigenloop margins or closed-loop -3dB bandwidth"
+  }
+]

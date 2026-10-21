@@ -1,0 +1,112 @@
+[
+  {
+    "name": "main_damping_mode2",
+    "figure_size_inches": [
+      7.4,
+      4.1
+    ],
+    "dpi": 300,
+    "axes": 1,
+    "png_bytes": 120240
+  },
+  {
+    "name": "main_paired_prediction",
+    "figure_size_inches": [
+      7.4,
+      4.1
+    ],
+    "dpi": 300,
+    "axes": 1,
+    "png_bytes": 171714
+  },
+  {
+    "name": "A_lowgain_noise_ratios",
+    "figure_size_inches": [
+      8.4,
+      7.2
+    ],
+    "dpi": 300,
+    "axes": 6,
+    "png_bytes": 681896
+  },
+  {
+    "name": "A_nominal_noise_ratios",
+    "figure_size_inches": [
+      8.4,
+      7.2
+    ],
+    "dpi": 300,
+    "axes": 6,
+    "png_bytes": 698308
+  },
+  {
+    "name": "A_highgain_noise_ratios",
+    "figure_size_inches": [
+      8.4,
+      7.2
+    ],
+    "dpi": 300,
+    "axes": 6,
+    "png_bytes": 691337
+  },
+  {
+    "name": "C_lowgain_pppp_noise_ratios",
+    "figure_size_inches": [
+      8.4,
+      7.2
+    ],
+    "dpi": 300,
+    "axes": 6,
+    "png_bytes": 731254
+  },
+  {
+    "name": "C_nominal_pppp_noise_ratios",
+    "figure_size_inches": [
+      8.4,
+      7.2
+    ],
+    "dpi": 300,
+    "axes": 6,
+    "png_bytes": 713632
+  },
+  {
+    "name": "C_highgain_pppp_noise_ratios",
+    "figure_size_inches": [
+      8.4,
+      7.2
+    ],
+    "dpi": 300,
+    "axes": 6,
+    "png_bytes": 718943
+  },
+  {
+    "name": "residual_frequency_bands",
+    "figure_size_inches": [
+      10.4,
+      5.9
+    ],
+    "dpi": 300,
+    "axes": 6,
+    "png_bytes": 505563
+  },
+  {
+    "name": "lowgain_crossrecord_diagnostic",
+    "figure_size_inches": [
+      10.5,
+      3.4
+    ],
+    "dpi": 300,
+    "axes": 3,
+    "png_bytes": 438351
+  },
+  {
+    "name": "excitation_scaling_check",
+    "figure_size_inches": [
+      8.5,
+      3.6
+    ],
+    "dpi": 300,
+    "axes": 2,
+    "png_bytes": 204231
+  }
+]

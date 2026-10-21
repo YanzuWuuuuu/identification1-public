@@ -1,0 +1,54 @@
+[
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\followup_lowfreq\\closeout\\figures\\background_failure_diagnostic.png",
+    "size": [
+      3184,
+      1174
+    ],
+    "dpi": [
+      299.9994,
+      299.9994
+    ],
+    "pdf_exists": true,
+    "visual_check": "Labels readable; no clipping or legend overlap; error bars and failed-endpoint labels checked."
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\followup_lowfreq\\closeout\\figures\\curvature_scale_and_component_sensitivity.png",
+    "size": [
+      3034,
+      1234
+    ],
+    "dpi": [
+      299.9994,
+      299.9994
+    ],
+    "pdf_exists": true,
+    "visual_check": "Labels readable; no clipping or legend overlap; error bars and failed-endpoint labels checked."
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\followup_lowfreq\\closeout\\figures\\frequency_band_sensitivity.png",
+    "size": [
+      2854,
+      1984
+    ],
+    "dpi": [
+      299.9994,
+      299.9994
+    ],
+    "pdf_exists": true,
+    "visual_check": "Labels readable; no clipping or legend overlap; error bars and failed-endpoint labels checked."
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\followup_lowfreq\\closeout\\figures\\main_paired_prediction.png",
+    "size": [
+      3274,
+      1264
+    ],
+    "dpi": [
+      299.9994,
+      299.9994
+    ],
+    "pdf_exists": true,
+    "visual_check": "Labels readable; no clipping or legend overlap; error bars and failed-endpoint labels checked."
+  }
+]

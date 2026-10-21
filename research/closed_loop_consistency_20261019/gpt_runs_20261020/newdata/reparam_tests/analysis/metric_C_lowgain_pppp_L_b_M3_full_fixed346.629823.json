@@ -1,0 +1,33 @@
+{
+  "id": "C_lowgain_pppp",
+  "window": "L",
+  "model": "b",
+  "method": "M3",
+  "success": true,
+  "omit": null,
+  "qe": {
+    "all": {
+      "Q": 1990029.8965016417,
+      "EQ": 48684.41798952661,
+      "ratio": 40.87611557623536
+    },
+    "negative_expected_entries": 0
+  },
+  "covariance_source": "profiled model (a), joint delays",
+  "delay_residual_fraction": [
+    0.5473812610355457,
+    0.6439793964488639,
+    0.6694999718267659,
+    0.4544603583026323,
+    0.6116268024304875,
+    0.32634717773366123
+  ],
+  "delay_conditional_singular_values": [
+    0.8338548582125729,
+    0.8081701397368665,
+    0.7688684477658664,
+    0.7347765361929787,
+    0.6704680498121629,
+    0.5694378056665792
+  ]
+}

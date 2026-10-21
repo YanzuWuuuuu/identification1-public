@@ -1,0 +1,5 @@
+nonparam_n40_d0 sweep 1 design u/y 0.89944 0.76138 gain 1.05009 1.05026
+nonparam_n40_d0 sweep 2 design u/y 0.89928 0.76022 gain 1.05008 1.05026
+nonparam_n40_d0 sweep 3 design u/y 0.89925 0.76007 gain 1.05007 1.05026
+nonparam_n40_d0 sweep 4 design u/y 0.89925 0.76004 gain 1.05007 1.05026
+SAVED nonparam_n40_d0 train u/y 0.8992490915564166 0.760044355365864 feasible False

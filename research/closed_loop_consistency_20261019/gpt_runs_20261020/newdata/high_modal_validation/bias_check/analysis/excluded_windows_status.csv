@@ -1,0 +1,11 @@
+﻿window,method,n,failed,bound,strict_fail,used_for_conclusions
+H100,M1,6,0,0,0,False
+H100,M2,6,0,0,0,False
+H100,M3,6,0,0,0,False
+H100,M3w,6,6,4,6,False
+H100,M5n,6,0,5,6,False
+H700,M1,6,6,3,6,False
+H700,M2,6,6,3,6,False
+H700,M3,6,6,3,6,False
+H700,M3w,6,6,6,6,False
+H700,M5n,6,6,6,6,False

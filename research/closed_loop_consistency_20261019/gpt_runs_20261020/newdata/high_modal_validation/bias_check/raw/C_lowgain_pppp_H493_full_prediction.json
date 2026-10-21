@@ -1,0 +1,110 @@
+{
+  "id": "C_lowgain_pppp",
+  "window": "H493",
+  "omit": null,
+  "success": true,
+  "P": 7,
+  "N": 210000,
+  "nb": 74,
+  "report_components": [
+    0
+  ],
+  "base_eligible": true,
+  "fits": {
+    "M1": {
+      "id": "C_lowgain_pppp",
+      "window": "H493",
+      "method": "M1",
+      "frequency_hz": [
+        493.51362781977184
+      ],
+      "damping_percent": [
+        0.35976760164664234
+      ],
+      "original_converged": true,
+      "original_strict": false,
+      "converged": true,
+      "strict_score_pass": true,
+      "near_bound": false,
+      "score": 5.533498678628371e-09,
+      "original_score": 1.7988803669667102e-06,
+      "extra_iterations": 2,
+      "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\high_modal_validation\\diagnostics\\C_lowgain_pppp_H493_M1.json"
+    },
+    "M3": {
+      "id": "C_lowgain_pppp",
+      "window": "H493",
+      "method": "M3",
+      "frequency_hz": [
+        493.5135040335585
+      ],
+      "damping_percent": [
+        0.3592559548108595
+      ],
+      "original_converged": true,
+      "original_strict": false,
+      "converged": true,
+      "strict_score_pass": true,
+      "near_bound": false,
+      "score": 3.903615192070556e-09,
+      "original_score": 1.3614044281368464e-06,
+      "extra_iterations": 2,
+      "source": "C:\\Users\\Administrator\\Desktop\\my_article\\identifiation1\\research\\closed_loop_consistency_20261019\\gpt_runs_20261020\\newdata\\high_modal_validation\\diagnostics\\C_lowgain_pppp_H493_M3.json"
+    }
+  },
+  "observed": [
+    2.5082639558014846e-05,
+    0.14241847043349018
+  ],
+  "pred_M": [
+    -2.47038586433832e-06,
+    0.0023396915405665872
+  ],
+  "pred_MminusC": [
+    -2.4703077278259148e-06,
+    0.0023388951000188805
+  ],
+  "difference_M": [
+    2.7553025422353166e-05,
+    0.14007877889292358
+  ],
+  "difference_MminusC": [
+    2.7552947285840762e-05,
+    0.1400795753334713
+  ],
+  "frequency_hz": [
+    493.5135040335585
+  ],
+  "damping_percent": [
+    0.3592559548108595
+  ],
+  "reference_log_sd": [
+    4.884860866407547e-06,
+    0.0013417194894835345
+  ],
+  "frequency_u_hz": [
+    0.002410744802897193
+  ],
+  "damping_u_pp": [
+    0.0004820207162827461
+  ],
+  "minimum_neighbors": 18,
+  "maximum_neighbors": 18,
+  "covariance_condition_median": 31.082971235429433,
+  "numerical_M": {
+    "condition": 451.29472196138585,
+    "rank_1e12": 74,
+    "dimension": 74
+  },
+  "numerical_MminusC": {
+    "condition": 451.2938726826242,
+    "rank_1e12": 74,
+    "dimension": 74
+  },
+  "numerical_A3": {
+    "condition": 472.3828920703672,
+    "rank_1e12": 74,
+    "dimension": 74
+  },
+  "seconds": 0.9673680999985663
+}

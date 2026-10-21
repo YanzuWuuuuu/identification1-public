@@ -1,0 +1,255 @@
+{
+  "counts": [
+    {
+      "formula": "M",
+      "parameter": "f",
+      "n": 24,
+      "eligible": 24,
+      "nearzero": 24,
+      "formal_pass": 4,
+      "raw_pass": 4,
+      "max_abs_prediction": 0.00015623929160858897,
+      "max_abs_observation": 0.005738236260858015
+    },
+    {
+      "formula": "M",
+      "parameter": "zeta",
+      "n": 24,
+      "eligible": 24,
+      "nearzero": 20,
+      "formal_pass": 4,
+      "raw_pass": 4,
+      "max_abs_prediction": 0.06940321784665753,
+      "max_abs_observation": 0.37157676785701566
+    },
+    {
+      "formula": "MminusC",
+      "parameter": "f",
+      "n": 24,
+      "eligible": 24,
+      "nearzero": 24,
+      "formal_pass": 4,
+      "raw_pass": 4,
+      "max_abs_prediction": 0.00015641483331500813,
+      "max_abs_observation": 0.005738236260858015
+    },
+    {
+      "formula": "MminusC",
+      "parameter": "zeta",
+      "n": 24,
+      "eligible": 24,
+      "nearzero": 20,
+      "formal_pass": 4,
+      "raw_pass": 4,
+      "max_abs_prediction": 0.06935927958657828,
+      "max_abs_observation": 0.37157676785701566
+    }
+  ],
+  "bandwidth": [
+    {
+      "controller": "lowgain",
+      "last_downward_crossings_hz": [
+        20.386124604241203,
+        15.824839323395706,
+        15.42022522077566
+      ],
+      "all_downward_crossings_hz": [
+        [
+          19.482629663685586,
+          19.68372685114663,
+          20.386124604241203
+        ],
+        [
+          15.824839323395706
+        ],
+        [
+          11.277378001346378,
+          15.42022522077566
+        ]
+      ],
+      "lower_hz": 15.42022522077566,
+      "upper_hz": 20.386124604241203,
+      "convention": "three nonzero singular values of K G_C; last descending unity crossing in 3-90 Hz; not per-axis eigenloop margins or closed-loop -3dB bandwidth"
+    },
+    {
+      "controller": "nominal",
+      "last_downward_crossings_hz": [
+        34.813807855917965,
+        29.67872822688842,
+        28.138395814302964
+      ],
+      "all_downward_crossings_hz": [
+        [
+          34.813807855917965
+        ],
+        [
+          29.67872822688842
+        ],
+        [
+          16.049275748907483,
+          28.138395814302964
+        ]
+      ],
+      "lower_hz": 28.138395814302964,
+      "upper_hz": 34.813807855917965,
+      "convention": "three nonzero singular values of K G_C; last descending unity crossing in 3-90 Hz; not per-axis eigenloop margins or closed-loop -3dB bandwidth"
+    },
+    {
+      "controller": "highgain",
+      "last_downward_crossings_hz": [
+        46.3509983698827,
+        41.73804015903187,
+        34.89849274431798
+      ],
+      "all_downward_crossings_hz": [
+        [
+          46.3509983698827
+        ],
+        [
+          40.08414677401711,
+          41.73804015903187
+        ],
+        [
+          34.89849274431798
+        ]
+      ],
+      "lower_hz": 34.89849274431798,
+      "upper_hz": 46.3509983698827,
+      "convention": "three nonzero singular values of K G_C; last descending unity crossing in 3-90 Hz; not per-axis eigenloop margins or closed-loop -3dB bandwidth"
+    }
+  ],
+  "reproducibility": [
+    {
+      "window": "H300",
+      "component": 2,
+      "frequency_hz": 282.25891178728136,
+      "parameter": "f",
+      "unit": "Hz",
+      "controller_pairs": 3,
+      "degrees_of_freedom": 3,
+      "replication_SD": 0.04833186277952717,
+      "mean_CminusA": -0.028650000562114048,
+      "centered_pair_difference_SD_over_sqrt2": 0.053743246463641495,
+      "conditional_same_record_u_RMS": 0.003317525602396361,
+      "conditional_B_u_RMS": 0.000828488597226733,
+      "replication_over_same_record": 14.568648014235498,
+      "replication_over_B": 58.337390449684314
+    },
+    {
+      "window": "H300",
+      "component": 2,
+      "frequency_hz": 282.25891178728136,
+      "parameter": "zeta",
+      "unit": "damping percentage point",
+      "controller_pairs": 3,
+      "degrees_of_freedom": 3,
+      "replication_SD": 0.010919749280773577,
+      "mean_CminusA": 0.01135216402667553,
+      "centered_pair_difference_SD_over_sqrt2": 0.00906684429479315,
+      "conditional_same_record_u_RMS": 0.0011545184758265322,
+      "conditional_B_u_RMS": 0.00028768442394174094,
+      "replication_over_same_record": 9.458271573311992,
+      "replication_over_B": 37.95738792929901
+    },
+    {
+      "window": "H300",
+      "component": 3,
+      "frequency_hz": 333.4432032656573,
+      "parameter": "f",
+      "unit": "Hz",
+      "controller_pairs": 3,
+      "degrees_of_freedom": 3,
+      "replication_SD": 0.06347219632585117,
+      "mean_CminusA": -0.02374966971876802,
+      "centered_pair_difference_SD_over_sqrt2": 0.07496695572602749,
+      "conditional_same_record_u_RMS": 0.010654836449294684,
+      "conditional_B_u_RMS": 0.011901801482903955,
+      "replication_over_same_record": 5.9571253512814675,
+      "replication_over_B": 5.332990675153188
+    },
+    {
+      "window": "H300",
+      "component": 3,
+      "frequency_hz": 333.4432032656573,
+      "parameter": "zeta",
+      "unit": "damping percentage point",
+      "controller_pairs": 3,
+      "degrees_of_freedom": 3,
+      "replication_SD": 0.00601215971839812,
+      "mean_CminusA": -0.006493727853334537,
+      "centered_pair_difference_SD_over_sqrt2": 0.004753180055963992,
+      "conditional_same_record_u_RMS": 0.003102142092284041,
+      "conditional_B_u_RMS": 0.003439035871931333,
+      "replication_over_same_record": 1.9380671611890914,
+      "replication_over_B": 1.7482108190461365
+    },
+    {
+      "window": "H300",
+      "component": 4,
+      "frequency_hz": 358.66596864303483,
+      "parameter": "f",
+      "unit": "Hz",
+      "controller_pairs": 3,
+      "degrees_of_freedom": 3,
+      "replication_SD": 0.026010189722525216,
+      "mean_CminusA": -0.014716370295692135,
+      "centered_pair_difference_SD_over_sqrt2": 0.02919531277607224,
+      "conditional_same_record_u_RMS": 0.002272434612685552,
+      "conditional_B_u_RMS": 0.00035170489287521007,
+      "replication_over_same_record": 11.44595737863124,
+      "replication_over_B": 73.95458593109197
+    },
+    {
+      "window": "H300",
+      "component": 4,
+      "frequency_hz": 358.66596864303483,
+      "parameter": "zeta",
+      "unit": "damping percentage point",
+      "controller_pairs": 3,
+      "degrees_of_freedom": 3,
+      "replication_SD": 0.00106975108643576,
+      "mean_CminusA": -0.0013399671438709866,
+      "centered_pair_difference_SD_over_sqrt2": 0.0006082081226072263,
+      "conditional_same_record_u_RMS": 0.0006279922412364543,
+      "conditional_B_u_RMS": 9.756439602500613e-05,
+      "replication_over_same_record": 1.7034463424731596,
+      "replication_over_B": 10.964564226498966
+    },
+    {
+      "window": "H493",
+      "component": 1,
+      "frequency_hz": 493.53348844145694,
+      "parameter": "f",
+      "unit": "Hz",
+      "controller_pairs": 3,
+      "degrees_of_freedom": 3,
+      "replication_SD": 0.03707132296102045,
+      "mean_CminusA": -0.03174682223925629,
+      "centered_pair_difference_SD_over_sqrt2": 0.036132103971429894,
+      "conditional_same_record_u_RMS": 0.0019660771350478025,
+      "conditional_B_u_RMS": 0.0005544843278754979,
+      "replication_over_same_record": 18.85547738701468,
+      "replication_over_B": 66.85729622523132
+    },
+    {
+      "window": "H493",
+      "component": 1,
+      "frequency_hz": 493.53348844145694,
+      "parameter": "zeta",
+      "unit": "damping percentage point",
+      "controller_pairs": 3,
+      "degrees_of_freedom": 3,
+      "replication_SD": 0.0012888594771850238,
+      "mean_CminusA": -0.001772163101559569,
+      "centered_pair_difference_SD_over_sqrt2": 0.00036921075823648014,
+      "conditional_same_record_u_RMS": 0.00039657765652462406,
+      "conditional_B_u_RMS": 0.00011221041156402976,
+      "replication_over_same_record": 3.2499548473805575,
+      "replication_over_B": 11.4860952671007
+    }
+  ],
+  "cases": 12,
+  "folds": 82,
+  "prediction_failures": 0,
+  "unqualified_folds": 0
+}

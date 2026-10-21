@@ -1,0 +1,54 @@
+{
+  "evaluation_summary": "Offline constrained FIR evaluated on same-record held-out data.",
+  "claim_update": "inconclusive_constraints",
+  "baseline_relation": "Compared with fixed strong training-derived static calibration.",
+  "failure_mode": "SRIVC weak-direction mismatch; finite causal design/target tradeoff.",
+  "next_action": "Use weak-block validation and reference-based data before hardware claims.",
+  "evidence_level": "auxiliary/dev; no hardware closed-loop test",
+  "z0": {
+    "nonparam": {
+      "position": "z0",
+      "source": "nonparam",
+      "u_25_80": "0.8871410701789217",
+      "y_25_80": "0.6082443311729607",
+      "u_3_25": "1.0080214682632218",
+      "y_3_25": "0.7282197235403307",
+      "u_80_170": "1.0472470182069904",
+      "y_80_170": "0.8629643421067553",
+      "nn_260_310": "0.10408614399316335",
+      "nn_320_380": "0.09552632729211662",
+      "nn_450_800": "0.10078975563856696",
+      "gain_u": "1.0495958116310096",
+      "gain_y": "1.0496695310249633",
+      "score_max": "0.8871410701789217",
+      "score_sum": "1.1569804448022447",
+      "feasible": "False"
+    },
+    "srivc": {
+      "position": "z0",
+      "source": "srivc",
+      "u_25_80": "1.0",
+      "y_25_80": "1.0",
+      "u_3_25": "1.0",
+      "y_3_25": "1.0",
+      "u_80_170": "1.0",
+      "y_80_170": "1.0",
+      "nn_260_310": "0.0",
+      "nn_320_380": "0.0",
+      "nn_450_800": "0.0",
+      "gain_u": "1.0",
+      "gain_y": "0.9999999999999998",
+      "score_max": "1.0",
+      "score_sum": "2.0",
+      "feasible": "True"
+    }
+  },
+  "strict_pass": {
+    "nonparam": false,
+    "srivc": true
+  },
+  "nominal_static_changes_dB": {
+    "u": -5.52067887733382,
+    "y": -11.171640340398671
+  }
+}

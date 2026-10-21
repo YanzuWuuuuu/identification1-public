@@ -1,0 +1,15 @@
+srivc_n40_d0 sweep 1 design u/y 0.27558 0.62496 gain 1.04965 1.04976
+srivc_n40_d0 sweep 2 design u/y 0.27431 0.62405 gain 1.04965 1.04976
+srivc_n40_d0 sweep 3 design u/y 0.27361 0.62384 gain 1.04965 1.04976
+srivc_n40_d0 sweep 4 design u/y 0.27309 0.62374 gain 1.04965 1.04976
+SAVED srivc_n40_d0 train u/y 1.1348681569607688 0.9725434445749578 feasible False
+srivc_n40_d2 sweep 1 design u/y 0.2702 0.53848 gain 1.0496 1.0498
+srivc_n40_d2 sweep 2 design u/y 0.26769 0.53693 gain 1.0496 1.0498
+srivc_n40_d2 sweep 3 design u/y 0.26628 0.53599 gain 1.04963 1.04979
+srivc_n40_d2 sweep 4 design u/y 0.26537 0.53552 gain 1.04963 1.04978
+SAVED srivc_n40_d2 train u/y 1.1348198689860014 0.962309206824228 feasible False
+srivc_n40_d5 sweep 1 design u/y 0.26273 0.4124 gain 1.0496 1.04979
+srivc_n40_d5 sweep 2 design u/y 0.2618 0.41152 gain 1.04954 1.04976
+srivc_n40_d5 sweep 3 design u/y 0.26135 0.41135 gain 1.04968 1.04976
+srivc_n40_d5 sweep 4 design u/y 0.26107 0.41125 gain 1.04968 1.04976
+SAVED srivc_n40_d5 train u/y 1.1353087246473554 0.938373604366624 feasible False

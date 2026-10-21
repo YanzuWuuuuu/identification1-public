@@ -1,0 +1,25 @@
+﻿controller,lo_hz,hi_hz,FRF_norm_maximum_hz,interpretation
+lowgain,110,155,131.83333333333334,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+lowgain,270,300,281.6666666666667,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+lowgain,325,350,348.5,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+lowgain,350,380,359.0,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+lowgain,480,510,493.8333333333333,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+lowgain,650,700,685.8333333333334,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+lowgain,700,730,706.8333333333334,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+lowgain,760,800,783.6666666666666,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+nominal,110,155,132.0,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+nominal,270,300,281.3333333333333,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+nominal,325,350,334.5,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+nominal,350,380,358.6666666666667,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+nominal,480,510,493.6666666666667,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+nominal,650,700,679.8333333333334,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+nominal,700,730,702.0,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+nominal,760,800,782.8333333333334,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+highgain,110,155,132.16666666666666,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+highgain,270,300,282.1666666666667,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+highgain,325,350,332.5,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+highgain,350,380,358.3333333333333,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+highgain,480,510,493.6666666666667,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+highgain,650,700,680.8333333333334,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+highgain,700,730,706.1666666666666,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment
+highgain,760,800,774.5,window maximum of raw matrix FRF; not an estimated natural frequency or mode assignment

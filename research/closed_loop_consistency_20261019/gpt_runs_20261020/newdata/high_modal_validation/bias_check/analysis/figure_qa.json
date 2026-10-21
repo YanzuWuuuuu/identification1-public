@@ -1,0 +1,29 @@
+{
+  "backend": "Python/matplotlib",
+  "visual_review": "Main and close-up legends separated from titles; no clipped labels; both prediction formulas retain all points and 1SE; signed symlog axis explicitly labelled; high-frequency close-up uses linear vertical axes.",
+  "source_data": [
+    "analysis/high_frequency_tests.csv",
+    "analysis/low_frequency_all_modes.csv",
+    "analysis/reproducibility.csv"
+  ],
+  "replicates": "6 records, 6-8 periods each; 82 leave-one-period folds over two windows; repeat SD uses 3 independent controller pairs under exchangeability assumption",
+  "draft_not_final_journal_sizing": true,
+  "pdf_text_checks": {
+    "high_frequency_closeup.pdf": {
+      "pages": 1,
+      "extractable_text_chars": 595
+    },
+    "paired_damping_frequency_M.pdf": {
+      "pages": 1,
+      "extractable_text_chars": 492
+    },
+    "paired_damping_frequency_MminusC.pdf": {
+      "pages": 1,
+      "extractable_text_chars": 497
+    },
+    "reproducibility_vs_noise.pdf": {
+      "pages": 1,
+      "extractable_text_chars": 333
+    }
+  }
+}

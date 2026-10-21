@@ -1,0 +1,21 @@
+{
+  "model": "d",
+  "solver": {
+    "success": true,
+    "status": "profile_hybrid_root",
+    "score": 4.0616609758364326e-13,
+    "iterations": 0,
+    "inner_failures": 0,
+    "profile_calls": 67,
+    "seconds": 29.03876880000462,
+    "near_bound": false,
+    "history": [],
+    "hybrid": {
+      "message": "The solution converged.",
+      "evaluations": 65,
+      "success": true
+    }
+  },
+  "max_parameter_difference": 6.67021993194794e-13,
+  "prior_seconds": 78.46445470000617
+}

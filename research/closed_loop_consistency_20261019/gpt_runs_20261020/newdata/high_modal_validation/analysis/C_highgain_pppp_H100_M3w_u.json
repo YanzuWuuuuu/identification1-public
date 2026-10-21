@@ -1,0 +1,25 @@
+{
+  "id": "C_highgain_pppp",
+  "window": "H100",
+  "method": "M3w",
+  "frequency_u_hz": [
+    0.00044856200562008345,
+    0.018403031627665586
+  ],
+  "damping_u_pp": [
+    0.00034393796499972444,
+    0.005694960624146824
+  ],
+  "local_numerical_conditions": false,
+  "scaled_rank": 116,
+  "dimension": 116,
+  "scaled_condition": 2236.746430906341,
+  "log_modal_sd": [
+    3.3936542542050485e-06,
+    0.00010224903159182482,
+    0.0004644745959954866,
+    0.0003795714459655758
+  ],
+  "scope": "B noise at z=0; full transient nuisance block; local correct-model sandwich; not model/operating-condition uncertainty",
+  "estimated_weight_frozen": true
+}

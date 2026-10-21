@@ -1,0 +1,5 @@
+srivc_n100_d5 sweep 1 design u/y 0.07207 0.20304 gain 1.04977 1.04964
+srivc_n100_d5 sweep 2 design u/y 0.07168 0.20216 gain 1.04976 1.04964
+srivc_n100_d5 sweep 3 design u/y 0.07158 0.20187 gain 1.04978 1.04964
+srivc_n100_d5 sweep 4 design u/y 0.07155 0.20181 gain 1.04979 1.04964
+SAVED srivc_n100_d5 train u/y 1.1300404710403447 0.9087400553088503 feasible False

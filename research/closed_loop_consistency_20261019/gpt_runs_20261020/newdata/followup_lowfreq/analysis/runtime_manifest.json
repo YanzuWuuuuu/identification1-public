@@ -1,0 +1,17 @@
+{
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "matplotlib": "3.11.2",
+  "code_sha256": {
+    "code\\common.py": "faab0cb7e95e17f356e380571c895974093211b7945e6d428cba5f1f44f2442b",
+    "code\\figures.py": "cec41c51b86d66f7235753313a542ee027fe7bb5001cfea0c993ee67e7c5d637",
+    "code\\jackknife.py": "9d61c31e9e8b1bfae65bc6041b92cd01b098e2596471b92cad120b57743b4883",
+    "code\\noise_bias.py": "e597ec0db6152c8dd428f5a06a23becf0be50e39ae3a4666619392647c02070c",
+    "code\\report.py": "d529773cf218379599294f60999a087979d38d0c0f9be0e130998c2172644c27",
+    "code\\residual_checks.py": "72f269c8d130c1dd104e04bba8f4432aabf1177239fdbdcde488a4e137f9a534",
+    "code\\summarize.py": "f8dbe1fcfc7067e363c821929269539884ee963e48ceb068615738a545ec4adc",
+    "code\\verify.py": "d55bfdb25e1d2346c1ef67f5f3bf00b05a616ea0f6ced030224926330def1041"
+  },
+  "report_characters": 17360
+}

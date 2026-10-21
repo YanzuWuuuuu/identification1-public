@@ -1,0 +1,33 @@
+{
+  "id": "A_lowgain",
+  "window": "L",
+  "model": "b",
+  "method": "M3",
+  "success": true,
+  "omit": null,
+  "qe": {
+    "all": {
+      "Q": 4808892.8392680995,
+      "EQ": 172787.47179473256,
+      "ratio": 27.831258767307798
+    },
+    "negative_expected_entries": 0
+  },
+  "covariance_source": "original fixed-delay model (a); joint-delay parent failed",
+  "delay_residual_fraction": [
+    0.5184628793134984,
+    0.6144783859327285,
+    0.6519301169479604,
+    0.5087631745137581,
+    0.6104492169804843,
+    0.31965715731916894
+  ],
+  "delay_conditional_singular_values": [
+    0.8247353766302579,
+    0.7957796920114977,
+    0.7652726583067985,
+    0.7173296910831073,
+    0.7016548410578913,
+    0.5637051783360842
+  ]
+}

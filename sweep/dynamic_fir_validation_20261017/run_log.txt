@@ -1,0 +1,73 @@
+nonparam_n40_d0 sweep 1 design u/y 0.89948 0.76235 gain 1.04959 1.04976
+nonparam_n40_d0 sweep 2 design u/y 0.89932 0.7612 gain 1.04958 1.04976
+nonparam_n40_d0 sweep 3 design u/y 0.8993 0.76104 gain 1.04957 1.04976
+nonparam_n40_d0 sweep 4 design u/y 0.89929 0.76102 gain 1.04957 1.04976
+SAVED nonparam_n40_d0 train u/y 0.8992922412946324 0.7610211963057937 feasible True
+nonparam_n40_d2 sweep 1 design u/y 0.89682 0.71245 gain 1.04963 1.04977
+nonparam_n40_d2 sweep 2 design u/y 0.89662 0.71167 gain 1.04959 1.04977
+nonparam_n40_d2 sweep 3 design u/y 0.89661 0.71137 gain 1.04952 1.04977
+nonparam_n40_d2 sweep 4 design u/y 0.8966 0.71133 gain 1.04956 1.04978
+SAVED nonparam_n40_d2 train u/y 0.8966019040505415 0.7113316976099335 feasible True
+nonparam_n40_d5 sweep 1 design u/y 0.8965 0.65228 gain 1.04959 1.04977
+nonparam_n40_d5 sweep 2 design u/y 0.89641 0.65154 gain 1.0496 1.0497
+nonparam_n40_d5 sweep 3 design u/y 0.89639 0.65144 gain 1.0496 1.0497
+nonparam_n40_d5 sweep 4 design u/y 0.89638 0.65142 gain 1.0496 1.0497
+SAVED nonparam_n40_d5 train u/y 0.8963829485177318 0.6514245455363749 feasible True
+nonparam_n100_d0 sweep 1 design u/y 0.87259 0.67341 gain 1.04959 1.04965
+nonparam_n100_d0 sweep 2 design u/y 0.87254 0.67294 gain 1.04966 1.04964
+nonparam_n100_d0 sweep 3 design u/y 0.87253 0.67293 gain 1.04965 1.04965
+nonparam_n100_d0 sweep 4 design u/y 0.87253 0.67292 gain 1.04965 1.04965
+SAVED nonparam_n100_d0 train u/y 0.8725276967640024 0.6729238194671391 feasible True
+nonparam_n100_d2 sweep 1 design u/y 0.8707 0.64269 gain 1.04965 1.0497
+nonparam_n100_d2 sweep 2 design u/y 0.87066 0.64227 gain 1.04957 1.0497
+nonparam_n100_d2 sweep 3 design u/y 0.87064 0.642 gain 1.04964 1.0497
+nonparam_n100_d2 sweep 4 design u/y 0.87064 0.64197 gain 1.04964 1.04971
+SAVED nonparam_n100_d2 train u/y 0.8706407809448639 0.6419651833871928 feasible True
+nonparam_n100_d5 sweep 1 design u/y 0.86991 0.61587 gain 1.04965 1.04967
+nonparam_n100_d5 sweep 2 design u/y 0.8699 0.61566 gain 1.04968 1.04967
+nonparam_n100_d5 sweep 3 design u/y 0.8699 0.61559 gain 1.04961 1.04967
+nonparam_n100_d5 sweep 4 design u/y 0.8699 0.61557 gain 1.0496 1.04967
+SAVED nonparam_n100_d5 train u/y 0.8698953572985582 0.615565302895469 feasible True
+srivc_n100_d2 sweep 1 design u/y 0.08022 0.33331 gain 1.04969 1.04964
+srivc_n100_d2 sweep 2 design u/y 0.07987 0.33238 gain 1.04969 1.04964
+srivc_n100_d2 sweep 3 design u/y 0.07974 0.33197 gain 1.04971 1.04963
+srivc_n100_d2 sweep 4 design u/y 0.0797 0.33181 gain 1.04972 1.04963
+SAVED srivc_n100_d2 train u/y 1.1292999386106832 0.9086657637628637 feasible False
+HELDOUT z0 [
+  {
+    "position": "z0",
+    "source": "nonparam",
+    "u_25_80": 0.8871410701789217,
+    "y_25_80": 0.6082443311729607,
+    "u_3_25": 1.0080214682632218,
+    "y_3_25": 0.7282197235403307,
+    "u_80_170": 1.0472470182069904,
+    "y_80_170": 0.8629643421067553,
+    "nn_260_310": 0.10408614399316335,
+    "nn_320_380": 0.09552632729211662,
+    "nn_450_800": 0.10078975563856696,
+    "gain_u": 1.0495958116310096,
+    "gain_y": 1.0496695310249633,
+    "score_max": 0.8871410701789217,
+    "score_sum": 1.1569804448022447,
+    "feasible": false
+  },
+  {
+    "position": "z0",
+    "source": "srivc",
+    "u_25_80": 1.0,
+    "y_25_80": 1.0,
+    "u_3_25": 1.0,
+    "y_3_25": 1.0,
+    "u_80_170": 1.0,
+    "y_80_170": 1.0,
+    "nn_260_310": 0.0,
+    "nn_320_380": 0.0,
+    "nn_450_800": 0.0,
+    "gain_u": 1.0,
+    "gain_y": 0.9999999999999998,
+    "score_max": 1.0,
+    "score_sum": 2.0,
+    "feasible": true
+  }
+]

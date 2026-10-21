@@ -1,0 +1,37 @@
+{
+  "id": "C_lowgain_pppp",
+  "window": "H700",
+  "method": "M3w",
+  "frequency_u_hz": [
+    0.030175103899949894,
+    0.006059362216066056,
+    0.005513177449160968,
+    0.0006599796385242886,
+    0.0651761646823202
+  ],
+  "damping_u_pp": [
+    0.004710308131224833,
+    0.0008979136186047609,
+    0.0008117426703417517,
+    9.349945648518202e-05,
+    0.0066673100433360145
+  ],
+  "local_numerical_conditions": false,
+  "scaled_rank": 242,
+  "dimension": 242,
+  "scaled_condition": 53623.359958985544,
+  "log_modal_sd": [
+    4.470385770546766e-05,
+    8.922288800974428e-06,
+    8.099561292569245e-06,
+    9.343771288390479e-07,
+    8.339557852993657e-05,
+    0.0037933956039478372,
+    0.003629583788865121,
+    0.0029913829819226264,
+    0.0004421667705040697,
+    0.002962682827954457
+  ],
+  "scope": "B noise at z=0; full transient nuisance block; local correct-model sandwich; not model/operating-condition uncertainty",
+  "estimated_weight_frozen": true
+}

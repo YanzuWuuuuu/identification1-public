@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "table_rows": {
+    "modal_parameters.csv": 360,
+    "controller_pairs.csv": 360,
+    "independent_repeats.csv": 180,
+    "FRF_validation.csv": 60,
+    "summary.csv": 20,
+    "polish_diagnostic.csv": 61,
+    "amplitude_diagnostic.csv": 20
+  },
+  "primary_count": 120,
+  "solver_failures": 41,
+  "near_bounds": 33,
+  "strict_score_failures": 79,
+  "program_exceptions": 0,
+  "figures_verified": 41,
+  "baseline_copies_equal": true,
+  "numerical_validation": {
+    "output_vs_old_relative": 3.341532410631154e-16,
+    "jac_vs_old_forward_difference_relative": 5.583489119130331e-12,
+    "transfer_vs_old_relative": 1.711896646466496e-16,
+    "scaled_moment_matrix_relative": 4.2941736699975245e-16,
+    "scaled_moment_gradient_relative": 6.695370940963234e-16,
+    "directional_derivative_relative": 1.374532750556886e-07,
+    "transfer_derivative_relative": 1.3675823427673717e-07,
+    "noiseless_max_log_modal_error": 3.402211845582315e-11,
+    "noiseless_converged": true
+  }
+}

@@ -1,0 +1,211 @@
+[
+  {
+    "id": "A_highgain",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ]
+  },
+  {
+    "id": "A_lowgain",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ]
+  },
+  {
+    "id": "A_nominal",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ]
+  },
+  {
+    "id": "C_highgain_pppp",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ]
+  },
+  {
+    "id": "C_lowgain_pppp",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ]
+  },
+  {
+    "id": "C_nominal_pppp",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w",
+      "M5n"
+    ]
+  },
+  {
+    "id": "C_highgain_pmmp",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "C_highgain_pmpm",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "C_highgain_ppmm",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "C_lowgain_pmmp",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "C_lowgain_pmpm",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "C_lowgain_ppmm",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "C_nominal_pmmp",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "C_nominal_pmpm",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "C_nominal_ppmm",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "D_nominal_0p6",
+    "methods": [
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "D_nominal_0p8",
+    "methods": [
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "D_nominal_1p0",
+    "methods": [
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "D_nominal_1p2",
+    "methods": [
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "E_nominal_0p5",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "E_nominal_1p0",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "E_nominal_m0p5",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  },
+  {
+    "id": "E_nominal_m1p0",
+    "methods": [
+      "M1",
+      "M2",
+      "M3",
+      "M3w"
+    ]
+  }
+]

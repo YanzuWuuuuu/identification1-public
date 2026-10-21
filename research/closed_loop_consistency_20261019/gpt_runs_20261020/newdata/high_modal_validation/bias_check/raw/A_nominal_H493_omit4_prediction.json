@@ -1,0 +1,120 @@
+{
+  "id": "A_nominal",
+  "window": "H493",
+  "omit": 4,
+  "success": true,
+  "P": 6,
+  "N": 180000,
+  "nb": 74,
+  "report_components": [
+    0
+  ],
+  "base_eligible": true,
+  "fits": {
+    "M1": {
+      "id": "A_nominal",
+      "window": "H493",
+      "omit": 4,
+      "method": "M1",
+      "converged": true,
+      "initial_ranks": [
+        18,
+        18,
+        18,
+        18
+      ],
+      "score": 2.27804155405593e-09,
+      "strict_score_pass": true,
+      "polish_iterations": 1,
+      "frequency_hz": [
+        493.6155293953175
+      ],
+      "damping_percent": [
+        0.36355667350982995
+      ],
+      "near_bound": false,
+      "iterations": 6,
+      "seconds": 0.12122870000166586
+    },
+    "M3": {
+      "id": "A_nominal",
+      "window": "H493",
+      "omit": 4,
+      "method": "M3",
+      "converged": true,
+      "initial_ranks": [
+        18,
+        18,
+        18,
+        18
+      ],
+      "score": 2.3714080411537273e-09,
+      "strict_score_pass": true,
+      "polish_iterations": 1,
+      "frequency_hz": [
+        493.6158163907037
+      ],
+      "damping_percent": [
+        0.36337338692552995
+      ],
+      "near_bound": false,
+      "iterations": 6,
+      "seconds": 0.039784599997801706
+    }
+  },
+  "observed": [
+    -5.8141448606607426e-05,
+    0.050440288390617885
+  ],
+  "pred_M": [
+    1.7624919912523634e-06,
+    0.0014664201468177938
+  ],
+  "pred_MminusC": [
+    1.7625538017978916e-06,
+    0.0014662513323093413
+  ],
+  "difference_M": [
+    -5.990394059785979e-05,
+    0.04897386824380009
+  ],
+  "difference_MminusC": [
+    -5.990400240840532e-05,
+    0.048974037058308544
+  ],
+  "frequency_hz": [
+    493.6158163907037
+  ],
+  "damping_percent": [
+    0.36337338692552995
+  ],
+  "reference_log_sd": [
+    2.9602225134259808e-06,
+    0.0008155515227400682
+  ],
+  "frequency_u_hz": [
+    0.0014612126526629063
+  ],
+  "damping_u_pp": [
+    0.00029634971903033197
+  ],
+  "minimum_neighbors": 15,
+  "maximum_neighbors": 16,
+  "covariance_condition_median": 17.579599409611713,
+  "numerical_M": {
+    "condition": 523.0002180661661,
+    "rank_1e12": 74,
+    "dimension": 74
+  },
+  "numerical_MminusC": {
+    "condition": 522.9993450467514,
+    "rank_1e12": 74,
+    "dimension": 74
+  },
+  "numerical_A3": {
+    "condition": 530.1191268407483,
+    "rank_1e12": 74,
+    "dimension": 74
+  },
+  "seconds": 1.0337919000012334
+}

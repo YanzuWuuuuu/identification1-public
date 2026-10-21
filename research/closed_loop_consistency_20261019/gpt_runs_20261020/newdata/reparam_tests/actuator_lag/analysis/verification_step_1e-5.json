@@ -1,0 +1,46 @@
+[
+  {
+    "kind": "a",
+    "parameter_count": 285,
+    "derivative_relative_errors": [
+      1.0354136250788942e-05,
+      2.3128965041055356e-07,
+      4.661650663798027e-07,
+      5.434741541814513e-06,
+      1.2767772237476998e-07,
+      8.91680127344396e-07
+    ],
+    "zero_lag_limit_relative_error": 4.965186231997684e-14,
+    "moment_matrix_relative_error": 6.517923778864515e-16,
+    "moment_vector_relative_error": 2.4436762586781407e-10,
+    "instrument_norm_relative_error": 0.0,
+    "profile_inner_success": true,
+    "profile_inner_iterations": 7,
+    "profile_linear_score": 1.5419559020425353e-14,
+    "full_score": 0.03706390225868447,
+    "seconds": 0.35338989999581827,
+    "passed": false
+  },
+  {
+    "kind": "c",
+    "parameter_count": 205,
+    "derivative_relative_errors": [
+      8.16661595736275e-06,
+      2.132873023991906e-06,
+      1.2505613980231162e-05,
+      1.213284644610053e-06,
+      1.586363296371426e-05,
+      8.506131594875845e-07
+    ],
+    "zero_lag_limit_relative_error": 4.965023883036456e-14,
+    "moment_matrix_relative_error": 5.368931221002195e-16,
+    "moment_vector_relative_error": 2.5045756387324225e-12,
+    "instrument_norm_relative_error": 0.0,
+    "profile_inner_success": true,
+    "profile_inner_iterations": 9,
+    "profile_linear_score": 7.635594265232765e-14,
+    "full_score": 0.8013254980957006,
+    "seconds": 0.298494100003154,
+    "passed": false
+  }
+]

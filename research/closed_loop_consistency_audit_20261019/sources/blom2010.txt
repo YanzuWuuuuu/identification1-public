@@ -1,0 +1,535 @@
+49th IEEE Conference on Decision and Control
+December 15-17, 2010
+Hilton Atlanta Hotel, Atlanta, GA, USA
+
+
+
+ Multivariable Frequency Domain Identification using IV-based Linear
+                            Regression
+                                          Rogier S. Blom and Paul M. J. Van den Hof
+
+
+    Abstract— Identification of output error models from fre-            the resulting linear regression steps. While in the approach
+quency domain data generally results in a non-convex op-                 by Bayard only scalar frequency weighting can be applied,
+timization problem. A well-known method to approach the                  the approach by Verboven et al. [3] further extends and
+output error minimum by iterative linear regression steps was
+formulated by Sanathanan and Koerner. A disadvantage of                  improves the method of Bayard for multivariable frequency
+this approach is that in general convergence of the iterations           dependent weighting, with applications in modal analysis.
+only implies optimality under restrictive conditions. In the             The approach by de Callafon et al. [4] uses a more flexible
+literature, an alternative iterative linear regression procedure         model representation by definition of model sets in left and
+is available, which ensures optimality upon convergence, also            right polynomial matrix fraction description (MFD). Multi-
+in case of undermodeling. This algorithm is known for time-
+domain identification as the Simplified Refined Instrumental             variable frequency dependent weighting can be incorporated,
+Variable method (SRIV), and was recently formulated for                  where solutions for both input/output weighting and element-
+frequency domain identification of SISO output error models.             wise weighting are formulated. Also Gaikwad and Rivera [5]
+Here we generalize this formulation to MIMO identification of            give an extension of the approach by Bayard for models in
+models in matrix fraction description. The effectiveness of the          MFD and specifically utilize the possibility to perform pre
+approach is demonstrated by its application to estimation of a
+parametric model of the multivariable dynamics of a spindle              and post weighting to identify a control-relevant model. Also
+with Active Magnetic Bearings.                                           non-iterative methods exist that estimate state-space models
+                                                                         from FRF data using subspace algorithms [6], although these
+                       I. I NTRODUCTION                                  algorithms do not guarantee a cost criterion is minimized.
+   Identification of multivariable parametric models from fre-              An important and well-known limitation of the algorithm
+quency response function (FRF) data is applied in numerous               proposed by Sanathanan and Koerner is that in general
+application areas. Frequently, the emphasis is on identifica-            convergence of the iterations does not imply that the re-
+tion of a parametric model of the plant dynamics. When the               sulting parameter estimate minimizes the OE cost criterion,
+objective is to find a model in a fractional representation with         inevitably leading to a bias in the estimated model.
+a parametrized numerator that minimizes a quadratic output                  In the literature, an alternative iterative linear regression
+error (OE) criterion, in general a nonconvex optimization                procedure is available, that is based on an Instrumental
+problem is obtained. Gradient-based optimization can be                  Variable (IV) approach. This algorithm is known for time-
+employed to solve such problems, however the computational               domain identification of OE models as the Simplified Refined
+complexity has stimulated many authors to look for simpler               Instrumental Variable method (SRIV) [7], [8], and was
+alternatives.                                                            recently formulated for frequency domain identification of
+   One approach is to replace the nonconvex optimization by              SISO OE models [9]. This method has the property that upon
+a sequence of linear regression steps. A classical method to             convergence of the iterations a stationary point of the cost
+achieve this when estimating SISO models from FRF data                   function is reached, also in the case the system is not in
+is due to Sanathanan and Koerner [1]. This method forms                  the model set. In this paper, we generalize this formulation
+the basis for several MIMO identification methods. These                 to MIMO identification of discrete-time and continuous-
+MIMO methods differ in the model structure that is used                  time models in matrix fraction description. Iterative linear
+to parametrize the multivariable system and the ability to               regression algorithms are derived for the case pre and post,
+incorporate frequency dependent weighting to improve the                 or element-wise multivariable frequency weighting of the OE
+estimate. In the approach by Bayard [2] a model repre-                   is applied.
+sentation with a matrix numerator polynomial and a scalar                   After introducing the identification setting in section II
+denominator polynomial is used. Here particular attention                and discussing the model sets in section III, we give the
+is given to the computational aspects given the sparsity of              linear regression algorithms for identification of OE models
+                                                                         in matrix fraction description (section IV). The algorithms
+   This work was supported by MicroNed and the Delft Center for Mecha-   have been applied for identification of the dynamics of an
+tronics and Microsystems                                                 Active Magnetic Bearing spindle, of which the results are
+   R.S. Blom is with Precision and Microsystems Engineering and the
+Delft Center for System and Control, Faculty of 3mE, Delft Univer-       discussed in section V.
+sity of Technology, Mekelweg 2, 2628 CD, Delft, The Netherlands
+r.s.blom@tudelft.nl                                                                     II. I DENTIFICATION SETTING
+   P.M.J. Van den Hof is with the Delft Center for System and Control,
+Faculty of 3mE, Delft University of Technology, Mekelweg 2, 2628 CD,      The central objective in this paper is to find an LTI
+Delft, The Netherlands p.m.j.vandenhof@tudelft.nl                        model P of a multivariable system with m inputs and p
+
+978-1-4244-7744-9/10/$26.00 ©2010 IEEE                              1148
+outputs using measured data. For this, the set of N noisy               IV. A N IV- BASED ITERATIVE METHOD TO SOLVE A
+multivariable frequency response function observations G is               MULTIVARIABLE OE IDENTIFICATION PROBLEM
+available, which is defined as                                      A. A criterion for optimality
+        G := {G(ωk )|G(ωk ) ∈ Cp×m , k = 1 . . . N }.        (1)       The identification problem that was posed in section II,
+                                                                    results in a nonconvex optimization problem. In this section
+Here the model P is parametrized by either a left or right
+                                                                    we give an iterative linear regression algorithm to solve this
+polynomial MFD depending on the real valued parameter
+                                                                    optimization problem for both selected model sets, having
+vector θ. Further details on the parametrization are discussed
+                                                                    the property that convergence implies (local) optimality. This
+in the next section. To describe the discrepancy between the
+                                                                    algorithm is a MIMO extension of the frequency domain
+data G and the model P (θ), we use the output error
+                                                                    formulation of the SRIV method as given by Van den Hof
+             E(ωk , θ) = G(ωk ) − P (ξ(ωk ), θ).             (2)    and Douma in [9]. We first give the result for the unweighted
+Here ξ(ωk ) is used to denote the frequency dependency of P ,       OE cost function. In section IV-D we will extend this for the
+where ξ(ωk ) = iωk or ξ(ωk ) = eiωk when P represents a             weighted OE cost functions.
+continuous-time or discrete-time system respectively. With             Similar as with the SRIV method, the starting notion is
+                                                                                                                 ∂
+this, the aim is to solve the identification problem θ̂ =           that for all θ̂ that locally minimize V (θ), ∂θ V (θ) θ=θ̂ = 0.
+arg minθ V (θ) with cost function                                   From the definition of V (θ) in (3), it follows that
+                                                                                          N
+                            N                                               ∂          ∂ X                 H
+                  V (θ) =
+                            X                2
+                                  kE(ωk , θ)kF   .           (3)               V (θ) =      vec [E(ωk , θ)] vec [E(ωk , θ)]
+                                                                            ∂θ         ∂θ
+                                                                                             k=1
+                            k=1
+                                                                                 N         n                      o
+Application of frequency dependent weighting of the OE
+                                                                                 X                         H
+                                                                             =         −2Re vec [E(ωk , θ)] Mk (θ)
+can be used to obtain estimates with lower variance when                         k=1
+the frequency response data have varying covariance, or
+                                                                    where (·)H denotes the complex conjugate transpose,
+to estimate control-relevant models. Cost functions with
+                                                                    vec(·) the vectorization operator, and Mk (θ)                   =
+weighted errors can be obtained by substituting for E(ωk , θ)        ∂                                                 ∂
+in (3) either the input/output weighted OE                          ∂θ vec[P (ξ(ωk ), θ)]. Hence, for all θ̂ for which ∂θ V ( θ̂) = 0,
+                                                                    the following equality holds:
+ Ei/o (ωk , θ) = Wo (ωk )[G(ωk ) − P (ξ(ωk ), θ)]Wi (ωk ), (4)                  N       n                         o
+                                                                                X
+with Wo (ωk ) ∈ Rp×p and Wi (ωk ) ∈ Rm×m , or the Schur-                            Re MkH (θ̂)vec[E(ωk , θ̂)] = 0.                (6)
+weighted OE                                                                       k=1
+                                                                    B. Iterative procedure for models in L-MFD
+      Es (ωk , θ) = Ws (ωk ). ∗ [G(ωk ) − P (ξ(ωk ), θ)],    (5)
+                                                                       In this section we will use (6) to arrive at an iterative
+with Ws (ωk ) ∈ Rp×m , and where .∗ is used to denote the           linear regression algorithm to estimate θ̂ for models in L-
+Schur matrix product (i.e. element-wise multiplication).            MFD. For that, we will rewrite (6) in a regression format.
+                  III. M ODEL STRUCTURE                             Let us therefore introduce the notation
+                                                                                                                      
+A. Definition of the model set                                              Θ = Ana −1 . . . A0 Bnb . . . B0
+   The MIMO model is represented in a left or right matrix                                     θ = vec(Θ).                        (7)
+fraction description:
+                                                                    We give the following two propositions:
+           P (ξ, θ) = B(ξ, θ)A−1 (ξ, θ) (R-MFD)                       Proposition 4.1: With E(ξ(ωk ), θ) as defined in (2),
+           P (ξ, θ) = A−1 (ξ, θ)B(ξ, θ) (L-MFD)                     where the model is represented in L-MFD, and with θ as
+                                                                    defined in (7), the following identity holds
+with B(ξ, θ) = Bnb ξ nb + Bnb −1 ξ nb −1 + · · · + B0 and
+A(ξ, θ) = ξ na +Ana −1 ξ na −1 +· · ·+A0 , where Bi ∈ Rp×m ,                       vec [E(ωk , θ)] = Yk (θ) − Xk (θ)θ             (8)
+i = 0 . . . nb and Ai ∈ Rm×m (for models in R-MFD), or              with
+Ai ∈ Rp×p (for models in L-MFD), for i = 0 . . . na − 1.
+                                                                           Yk (θ) = I ⊗ A−1 (ξ(ωk ), θ) vec[ξ(ωk )na G(ωk )]
+                                                                                                      
+The parameter vector θ is constructed by accumulating all
+                                                                           Xk (θ) = ΩT (ωk ) ⊗ A−1 (ξ(ωk ), θ)
+                                                                                                              
+elements of the matrices Ai , i = 0 . . . na − 1 and Bi , i =
+0 . . . nb . As will become clear in the sequel, it is convenient   where ⊗ is the Kronecker product, and
+to choose an ordering of these elements that depends on
+                                                                                          −ξ(ωk )na −1 G(ωk )
+                                                                                                                    
+the choice for a left or right matrix fraction description of
+                                                                                                   ..               
+the model set. To avoid unnecessary notational complexity,                                          .               
+                                                                                                                    
+it is assumed here that the order of the polynomials of all                              −ξ(ωk )0 G(ωk )            
+elements of A are na and those of B are all nb . However, the                  Ω(ωk ) =                             .
+                                                                                        
+                                                                                            ξ(ωk )nb Im×m           
+                                                                                                                     
+approach presented in this paper is equally suited for model                                        ..              
+sets where the matrix fractions have elements with varying
+                                                                                                     .              
+polynomial orders. We will return to this in section IV-F.                                         ξ(ωk )0 Im×m
+
+                                                                1149
+                                                                                                                                              
+     Proof: For the given model parametrization, and using                                         Re{X1 (θ)}                       Re{Y1 (θ)}
+the given definition of Ω(ωk ), observe that we can express
+                                                                                       
+                                                                                                  Im{X1 (θ)}   
+                                                                                                                
+                                                                                                                            
+                                                                                                                                   Im{Y1 (θ)}   
+                                                                                                                                                 
+                                                                               X(θ) :=                ..                               ..
+E(ξ(ωk ), θ) as                                                                                                  , Y(θ) := 
+                                                                                                                                              
+                                                                                                       .                              .       
+                                                                                                                                                 
+                                                                                        Re{XN (θ)}                          Re{YN (θ)}
+  E(ξ(ωk ), θ) = G(ωk ) − A−1 (ξ(ωk ), θ)B(ξ(ωk ), θ)
+                                                                                                                                                
+                                                                                         Im{XN (θ)}                           Im{YN (θ)}
+       = A−1 (ξ(ωk ), θ) [A(ξ(ωk ), θ)G(ωk ) − B(ξ(ωk ), θ)]
+                                                                               it follows that the solution of (6) is characterized by
+       = A−1 (ξ(ωk ), θ) [ξ(ωk )na G(ωk ) − ΘΩ(ωk )] .
+                                                                                                     MT (θ̂)(Y(θ̂) − X(θ̂)θ̂) = 0.           (12)
+To proceed, we need the following two identities:
+                                                                               From this, a natural iterative identification algorithm follows:
+                                                                                           MT (θ̂j−1 )(Y(θ̂j−1 ) − X(θ̂j−1 )θ̂j ) = 0        (13)
+    vec(AB) = (I ⊗ A)vec(B) = (B T ⊗ I)vec(A)                           (9a)
+                                                                               with solution
+                   (A ⊗ B)(C ⊗ D) = AB ⊗ DB.                            (9b)           h                     i−1
+                                                                                  θ̂j = MT (θ̂j−1 )X(θ̂j−1 )     MT (θ̂j−1 )Y(θ̂j−1 )        (14)
+Using (9a) we can write
+                                                                               When this algorithm converges, necessarily V 0 (θ̂) = 0,
+  vec [E(ωk , θ)] = I ⊗ A−1 (ξ(ωk ), θ) ·
+                                      
+                                                                               ensuring that θ̂ is a stationary point of the cost function.
+                                 · vec [ξ(ωk )na G(ωk ) − ΘΩ(ωk )]             Observe that (14) has the structure of an IV estimator. Also,
+                                                                               note that replacing M by X would give the Sanathanan-
+which by applying (9a) and subsequently (9b), we can rewrite
+                                                                               Koerner iteration for the given model set.
+to
+                                                                               C. Iterative procedure for models in R-MFD
+   vec [E(ωk , θ)] = I ⊗ A−1 (ξ(ωk ), θ) ·
+                                        
+                                                                                  Analogous to the analysis in the previous section, we will
+        · vec[ξ(ωk )na G(ωk )] − (ΩT (ωk ) ⊗ I)vec(Θ)
+                                                      
+                                                                               now use equation (6) to derive an iterative linear regression
+         = I ⊗ A−1 (ξ(ωk ), θ) vec[ξ(ωk )na G(ωk )]+
+                                                                             algorithm for systems in R-MFD . To that end, we introduce
+                                                                               a different notation for Θ, i.e.
+                          − ΩT (ωk ) ⊗ A−1 (ξ(ωk ), θ) θ
+                                                       
+                                                                                      ΘT = ATna −1 . . . AT0 BnTb . . . B0T
+                                                                                                                                    
+which is the claimed result.
+                                                                                                             θ = vec(Θ).                     (15)
+  Proposition 4.2: For models parametrized in L-MFD,
+                                                                               With this, we give the following two propositions. The proofs
+               Mk (θ) = Φk (θ)T ⊗ A−1 (ξ(ωk ), θ)                       (10)   of these are similar to those of the corresponding propositions
+with                                                                           for the L-MFD case, and are omited for reasons of space.
+                                                                                  Proposition 4.3: With E(ξ(ωk ), θ) as defined in (2),
+                      −ξ(ωk )na −1 P (ξ(ωk ), θ)
+                                                
+                                                                               where the model is represented in R-MFD, and with θ as
+                                 ..             
+                                                                               in defined (15), the following identity holds
+                    
+                                  .             
+                                                 
+                     −ξ(ωk )0 P (ξ(ωk ), θ)                                                      vec [E(ωk , θ)] = Yk (θ) − Xk (θ)θ        (16)
+           Φk (θ) =                             .
+                         ξ(ωk )nb Im×m          
+                    
+                                ..
+                                                 
+                                                                              with
+                                  .
+                                                                                     Yk (θ) = A−T (ξ(ωk ), θ) ⊗ I vec (ξ(ωk )na G(ωk ))
+                                                                                                              
+                                               0
+                            ξ(ωk ) Im×m
+                                                                                     Xk (θ) = A−T (ξ(ωk ), θ) ⊗ Ω(ωk )
+                                                                                                                      
+     Proof: See appendix VIII-A.
+With the results in equations (8) and (10), we can recast (6)                  where
+into
+                                                                                                    −ξ(ωk )na −1 G(ωk ) . . .
+                                                                                                                         −ξ(ωk )0 G(ωk )
+                                                                                               
+          N       n                          o                                     Ω(ωk ) =
+         X
+             Re MkH (θ̂)(Yk (θ̂) − Xk (θ̂)θ̂) = 0                                                    ξ(ωk )nb Ip×p . . . ξ(ωk )0 Ip×p .
+                                                                                                                                      
+                                                        (11)
+           k=1                                                                     Proposition 4.4: For models parametrized in R-MFD,
+or equivalently                                                                                Mk (θ) = A−T (ξ(ωk ), θ) ⊗ Φk (θ)             (17)
+  N
+  X                                                                          with
+          Re{MkT (θ̂)}           Im{MkT (θ̂)}          ·
+  k=1
+                                                                                    Φk (θ) =
+                                                                                     −ξ(ωk )na −1 P (ξ(ωk ), θ) . . . −ξ(ωk )0 P (ξ(ωk ), θ)
+                                                                             
+                   Re{Yk (θ̂)}                 Re{Xk (θ̂)}
+          ·                            −                    θ̂ = 0.
+                                                                                                       ξ(ωk )nb Ip×p . . . ξ(ωk )0 Ip×p .
+                                                                                                                                          
+                   Im{Yk (θ̂)}                 Im{Xk (θ̂)}
+                                                                               With (16) and (17), we can rewrite (6) also for models in R-
+With the notation
+                                                                               MFD to (11), albeit with different definitions of the matrices
+                                                                               Yk , Xk and Mk . Hence, by applying these definitions, a
+ MT (θ) := Re{M1T (θ)}                 Im{M1T (θ)}
+             
+                                                              ...
+                                       T                       T
+                                                                              similar iterative algorithm can be followed as the one derived
+                           ...     Re{MN (θ)}              Im{MN (θ)}          for systems in L-MFD in the previous section.
+
+                                                                            1150
+D. Minimization of weighted OE cost criteria                              For this, let the model set be defined by P (ξ, θ) =
+   The algorithms in the previous sections were derived for            B(ξ, θ)A−1 (ξ, θ), where B(ξ, θ) is as defined before, and
+the cost function based on the unweighted error. Here we               A(ξ, θ) = I · a(ξ, θ) with a(ξ, θ) a scalar polynomial.
+will show how these results can be generalized for the case            Estimation of the parameters in this represention can be
+input/output weighting or Schur weighting is applied.                  reformulated to estimation of the parameters in a represen-
+   1) Input-output weighting: Observe that with the in-                tation that matches the fully parametrized matrix fraction
+put/output weighted error Ei/o (ωk , θ) as defined in (4),             representation of section III. For this we will show that
+setting the first derivative of the cost function to zero yields       there exists Gv (ωk ), Bv (ξ, θ) and Av (ξ, θ), with Bv (ξ, θ)
+the equality                                                           and Av (ξ, θ) fully parametrized, such that
+   N
+   X       n                                       o                                   kE(ωk , θ)k2F = kEv (ωk , θ)k2F                (20)
+             H
+         Re Mi/o,k (θ)vec [Wo (ωk )E(ωk , θ)Wi (ω)] = 0
+   k=1
+                                                                       where Ev (ωk , θ) = Gv (ωk ) − Bv (ξ(ωk ), θ)A−1
+                                                                                                                     v (ξ(ωk ), θ).
+                                                               (18)    Indeed note that for models with a common denominator,
+                                                                       we can write
+                     ∂
+where Mi/o,k (θ) = ∂θ  vec[Wo (ωk )P (ξ(ωk ), θ)Wi (ωk )]. Us-
+ing the identity vec(ABC) = (C T ⊗ A)vec(B), we derive                    kE(ωk , θ)k2F
+that                                                                                                                              2
+                                                                           = vec[G(ωk )] − vec[B(ξ(ωk ), θ)] · a−1 (ξ(ωk ), θ) .
+  vec[Wo (ωk )E(ωk , θ)Wi (ωk )]                                       With this it follows that if Gv (ωk ) = vec[G(ωk )], Bv (ξ, θ) =
+                       = [WiT (ωk ) ⊗ Wo (ωk )]vec[E(ωk , θ)]          Bv,nb ξ nb +· · ·+Bv,0 , where Bv,i ∈ Rp·m×1 , i = 0 . . . nb and
+                                                                       Bv,i = vec(Bi ), and Av (ξ, θ) = a(ξ, θ), identity (20) will
+and                                                                    hold. Once having obtained estimates B̂v,i , we can directly
+                    ∂                                                  construct estimates B̂i using the identity Bv,i = vec(Bi ).
+   Mi/o,k (θ) =       [W T (ωk ) ⊗ Wo (ωk )]vec[P (ξ(ωk ), θ)]
+                   ∂θ i
+                                                                       F. Extension for model sets with non-full parametrization
+                 = [WiT (ωk ) ⊗ Wo (ωk )]Mk (θ).
+                                                                          Until now, it was assumed that polynomial matrices
+By substituting these identities in (18), and using the ex-            A(ξ, θ) and B(ξ, θ) are fully parametrized. However, it is
+pressions derived for vec[E(ωk , θ)] and Mk (ωk , θ), iterative        straightforward to deal with model descriptions for non-full
+algorithms to minimize the input/output weighted cost can              parametrizations. Observe that following the approach in the
+be obtained in the same fashion as derived above.                      previous sections for a non-full parameterization would result
+   2) Schur weighting: Similarly as for input/output weight-           in a parameter vector θ with one or more zero elements.
+ing, note that with the Schur-weighted error Es (ωk , θ) as            Deletion of these elements from θ, as well as deletion of
+                ∂
+defined in (5), ∂θ V (θ) = 0 implies                                   the corresponding columns from the matrices Mk and Xk ,
+      N                                                                yields the desired result.
+      X        H
+            Re Ms,k (θ)vec [Ws (ωk ). ∗ E(ωk , θ)] = 0         (19)
+                                                                                                V. R ESULTS
+      k=1
+                      ∂
+                                                                          The algorithm has been applied for estimation of a
+where Ms,k (θ) =      ∂θ vec[Ws (ωk ).   ∗ P (ξ(ωk ), θ)]. We derive   parametric model of a micro-milling spindle with Active
+that                                                                   Magnetic Bearings (more details on the application and the
+                                                                       setting can be found in e.g. [10], [11]). The radial dynamics
+  vec[Ws (ωk ).∗E(ωk , θ)] = vec[Ws (ωk )].∗vec[E(ωk , θ)]
+                                                                       of an AMB spindle constitute a 4 × 4 MIMO system, where
+and                                                                    the inputs represent the currents through the electromagnetic
+                      ∂                                                coils and the outputs the displacement of the rotor shaft at
+        Ms,k (θ) =      vec[Ws (ωk )]. ∗ vec[P (ξ(ωk ), θ)]            the location of the bearings. Here the objective is to find an
+                     ∂θ
+                                                                       accurate model of the resonant behavior of the spindle.
+                     = vec[Ws (ωk )]. ∗ Mk (θ).
+                                                                          Noisy FRF data at a frequency grid consisting of N =
+Again, substitution of these identities in (19), in conjuc-            312 points ranging from 1.2 to 4.4 kHz was available. A
+tion with the derived expressions for vec[E(ωk , θ)] and               model set in R-MFD with na = 5 and nb = 4 was selected,
+Mk (ωk , θ), allows to derive iterative algorithms that mini-          resulting in a total number of 128 parameters to be estimated.
+mize the Schur weighted cost upon convergence.                         Schur weighting was applied, where for Ws (ωk ) the inverse
+                                                                       of the estimate of the standard deviation of the FRF was
+E. Estimation of common denominator models                             used. The iterations were initiated by a least squares estimate.
+   The algorithm that is described in this paper, ensures that         After 7 iterations the algorithm converged, with final cost
+converging iterations imply an optimal estimate of the param-          of 2.94. For comparison, also a model was estimated using
+eters in a matrix fraction representation is obtained. Here we         SK iterations. These converged after 27 iterations, yielding a
+will demonstrate that this property can also be obtained for           final cost of 4.50. We note that during the SK iterations, some
+model representations with a common denominator.                       of the intermediate estimates had a lower cost than the final
+
+                                                                   1151
+estimate (the minimum obtained cost was 4.29). In contrast       Using the identity vec(ABC) = (C T ⊗ A)vec(B), we infer
+to this, the final estimate obtained with the IV-based method        ∂                                          ∂A(θ)
+had the least cost. These results confirm that the IV-based             vec[A−1 (θ)] = −[A−T (θ) ⊗ A−1 (θ)]vec[       ],
+                                                                    ∂θi                                          ∂θi
+method outperforms the method of Sanathanan and Koerner.
+   In figure 1 the results with the IV-based method are          implying
+depicted. The frequency reponse of the estimated model               d                                    d
+shows very high correspondence to the dataset. The dynamics            vec[A−1 (θ)] = −[A−T (θ) ⊗ A−1 (θ)] vec[A(θ)].
+                                                                    dθ                                    dθ
+including the ill-damped resonances are estimated correctly.     This proofs the claim.
+Moreover, the applied weighting effectively avoids modeling
+errors due to large variance errors in the FRF data. Here such   A. Proof of proposition 4.2
+                                                                                                                  T      T
+                                                                                                                             
+variance errors are particularly present around the harmonics       We will first introduce the notation θT = θA         θB
+of the rotational frequency of the spindle (80, 000 rpm).        where θA only contains the parameters used to define A(ξ, θ)
+                                                                 and θB those to define B(ξ, θ). For brevity, we will drop the
+                    VI. C ONCLUSIONS                             dependency of P , B and A on ξ(ωk ) from here on. Observe
+   Iterative linear regression algorithms are given for es-      that with this, we can write
+timation of OE models in left or right matrix fraction
+                                                                         Mk (θ) = ∂θ∂A vec[P (θ)] ∂θ∂B vec[P (θ)]
+                                                                                                                    
+description from frequency response data. These algorithms
+are extensions of the SISO IV-based linear regression al-        Using the identities (9a) and (9b), we rewrite this to
+gorithm, which has the property that convergence implies                     
+a stationary point of the cost function is reached. This                                    ∂
+                                                                   Mk (θ) = B T (θ) ⊗ I          vec[A−1 (θ)]
+                                                                              
+property, in combination with the freedom in the definition                                  ∂θA
+                                                                                                                     
+of the model set and the possibility to incorporate pre, post                                 −1
+                                                                                                      ∂
+                                                                                         I ⊗ A (θ)        vec[B(θ)] . (22)
+or element-wise multivariable frequency weighting, makes                                              ∂θB
+this an attractive approach for MIMO frequency domain
+identification of OE models. It is not claimed that the method   We will derive expressions for ∂θ∂A vec[A−1 (θ)] and
+                                                                  ∂
+discussed here can outperform gradient-based optimization        ∂θB vec[B(θ)]. Application of lemma 8.1 yields
+methods. However, it appears to be a favorable alternative           ∂                                        ∂
+                                                                         vec[A−1 (θ)] = −A−T (θ) ⊗ A−1 (θ)
+                                                                                         
+for the classically applied SK-iterations. Application of the                                                       vec[A(θ)]
+                                                                    ∂θA                                        ∂θA
+approach to estimation of a model of a spindle with Active
+                                                                    = −A−T (θ) ⊗ A−1 (θ) ·
+                                                                                            
+Magnetic Bearings demonstrates this.
+                                                                       · Ipp×pp ξ(ωk )na −1 . . . Ipp×pp ξ(ωk )0
+                                                                                                                 
+                VII. ACKNOWLEDGEMENT                                = −A−T (θ) ⊗ A−1 (θ) ·
+                                                                                            
+
+   The authors thankfully acknowledge Prof. R.A. de Calla-                ·
+                                                                            
+                                                                              Ip×p ξ(ωk )na −1 . . . Ip×p ξ(ωk )0 ⊗ Ip×p .
+                                                                                                                         
+fon of the Department of Mechanical and Aerospace En-
+gineering, University of California, San Diego, U.S.A. for       Furthermore, we derive that
+making available the LTSFIT toolbox, allowing implemen-            ∂
+                                                                      vec[B(θ] = Imp×mp ξ(ωk )nb . . . Imp×mp ξ(ωk )0
+                                                                                                                     
+tation of the algorithm described in this paper.                  ∂θB 
+                                                                     = Im×m ξ(ωk )nb . . . Im×m ξ(ωk )0 ⊗ Ip×p .
+                                                                                                          
+                       VIII. P ROOFS
+   In this appendix we give the proof of proposition 4.2. We     With this, we express the first element of Mk (θ) in (22) as
+will first give the following lemma.
+                                                                    −B T (θ) ⊗ I −A−T (θ) ⊗ A−1 (θ) ·
+                                                                                                      
+   Lemma 8.1: Suppose A(θ) is a complex square matrix,
+                                                                           Ip×p (ξ(ωk )na −1 . . . Ip×p ξ(ωk )0 ⊗ Ip×p
+                                                                                                                       
+depending on the complex vector θ, which takes values in              ·
+an open subset V ⊆ Cl . Furthermore, suppose that A(θ) is          = −P T (θ)ξ(ωk )na −1 . . .
+                                                                      
+invertible and analytical for all θ ∈ V . Then for θ ∈ V                                . . . −P T (θ)ξ(ωk )0 ⊗ A−1 (θ),
+                                                                                                              
+
+    d                                         d
+       vec[A−1 (θ)] = [−A−T (θ) ⊗ A−1 (θ)] vec[A(θ)].            and the second element of Mk (θ) in (22) as
+    dθ                                       dθ
+                                                         (21)
+                                                                    I ⊗ A−1 (θ) ·
+                                                                               
+     Proof: Let θi be the ith element of θ. Using the product
+                                                                           Im×m ξ(ωk )nb . . . Im×m ξ(ωk )0 ⊗ Ip×p
+                                                                                                                 
+rule for matrix differentation, we derive that                        ·
+                                                                    = Im×m ξ(ωk )nb . . . Im×m ξ(ωk )0 ⊗ A−1 (θ).
+                                                                                                            
+ ∂                     ∂A(θ) −1          ∂A−1 (θ)
+    (A(θ) · A−1 (θ)) =      A (θ) + A(θ)          =0
+∂θi                     ∂θi                ∂θi                   Combining
+                                                                          these results,
+                                                                                          and using the identity
+from which immediately follows that                                A1 ⊗ B A2 ⊗ B = A1 A2 ⊗ B, we infer
+
+           ∂A−1 (θ)            ∂A(θ) −1                                           Mk (θ) = Φk (θ)T ⊗ A−1 (θ),             (23)
+                    = −A−1 (θ)      A (θ).
+             ∂θi                ∂θi                              which proves the claim.
+
+                                                             1152
+                       60
+
+                       40
+
+                       20
+
+                        0
+
+                 −20
+
+
+
+
+                       60
+
+                       40
+
+                       20
+
+                        0
+      Magnitude [dB]
+
+
+
+
+                 −20
+
+
+
+
+                       60
+
+                       40
+
+                       20
+
+                        0
+
+                 −20
+
+
+
+
+                       60
+
+                       40
+
+                       20
+
+                        0
+
+                 −20
+
+
+
+                            1200           4400 1200                           4400 1200                         4400 1200                          4400
+                                                                       Frequency[Hz]
+Fig. 1. Results with the AMB spindle system: amplitude plot of the FRF data G(ωk ) (blue), the Schur weighting Ws (ωk ) (black dash-dotted) and the
+estimated model P (ξ(ωk ), θ̂) (red).
+
+
+
+
+                                   R EFERENCES                                           system identification from frequency response data,” IEEE Trans.
+                                                                                         Autom. Control, vol. 41, no. 7, pp. 960–979, 1996.
+                                                                                   [7]   P. Young, “Some observations on instrumental variable methods of
+ [1] S. G. Sanathanan and J. Koerner, “Transfer function synthesis as a                  time-series analysis.” Int. J. Control, vol. 23, no. 5, pp. 593–612, 1976.
+     ratio of two complex polynomials,” IEEE Trans. Autom. Control, pp.            [8]   P. Young, H. Garnier, and M. Gilson, Identification of Continuous-
+     56–58, 1963.                                                                        time Models from Sampled Data. London, UK: Springer, 2008, ch.
+ [2] D. S. Bayard, “High-order multivariable transfer function curve fit-                Refined instrumental variable identification of continuous-time hybrid
+     ting: Algorithms, sparse matrix methods and experimental results,”                  Box-Jenkins models, pp. 91–131.
+     Automatica, vol. 30, no. 9, pp. 1439–1444, 1994.                              [9]   P. M. J. Van den Hof and S. G. Douma, “An IV-based iterative linear
+ [3] P. Verboven, P. Guillaume, and B. Cauberghe, “Multivariable                         regression algorithm with optimal output error properties,” DCSC
+     frequency–response curve fitting with application to modal parameter                Technical report nr. 09-018, http:// www.dcsc.tudelft.nl/ ∼pvandenhof/
+     estimation,” Automatica, vol. 41, no. 10, pp. 1773–1782, 2005.                      Reportfiles/ StM2OE Report.pdf , Delft University of Technology, 2008.
+ [4] R. A. de Callafon, D. de Roover, and P. M. J. Van den Hof,                   [10]   R. S. Blom, A. M. Hoogstrate, P. M. J. Van den Hof, and H. H.
+     “Multivariable least squares frequency domain identification using                  Langen, “Indirect force measurement of micro-milling with an active
+     polynomial matrix fraction descriptions,” Proc. 35th IEEE Conference                magnetic bearing spindle,” Proc. 10th CIRP international workshop
+     on Decision and Control, Kobe, Japan, vol. 2, pp. 2030–2035, 1996.                  on Modeling of Machining Operations, Reggio Calabria, Italy, August
+ [5] S. Gaikwad and D. Rivera, “Multivariable frequency-response curve                   27-28, pp. 525–532, 2007.
+     fitting with application to control-relevant parameter estimation,” Au-      [11]   R. S. Blom and P. M. J. Van den Hof, “Estimating cutting forces in
+     tomatica, vol. 33, no. 6, pp. 1169–1174, 1997.                                      micromilling by input estimation from closed-loop data,” Proc. 17th
+ [6] T. McKelvey, H. Akcay, and L. Ljung, “Subspace-based multivariable                  IFAC WC, Seoul, Korea, July 6–11, pp. 468–473, 2008.
+
+                                                                          1153
+

@@ -1,0 +1,214 @@
+{
+  "reconstruction": {
+    "f": 0.0,
+    "U": 0.0,
+    "Y": 0.0,
+    "D": 0.0,
+    "K": 0.0
+  },
+  "chunk_vs_dense": {
+    "M0": 1.8263903407367912e-16,
+    "M": 1.8263871595480254e-16,
+    "b": 2.7885399875105334e-15,
+    "C": 5.938138166064618e-12,
+    "delta_M": 9.856759936021198e-15,
+    "delta_MminusC": 6.87802209721437e-10
+  },
+  "local_spectrum_prefix_vs_direct": 1.2391688979340588e-14,
+  "curvature_step_2e4_vs_1e4_relative": 0.00018857399222082323,
+  "selected_endpoints": [
+    {
+      "id": "A_lowgain",
+      "window": "H300",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 9.516706658439593e-07,
+      "score": 5.713014518460856e-09
+    },
+    {
+      "id": "A_lowgain",
+      "window": "H300",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 1.1343286339995818e-06,
+      "score": 6.347208884768171e-09
+    },
+    {
+      "id": "A_nominal",
+      "window": "H300",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 9.23449534070557e-07,
+      "score": 6.923856962520193e-09
+    },
+    {
+      "id": "A_nominal",
+      "window": "H300",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 1.0260155137011422e-06,
+      "score": 7.695203602009143e-09
+    },
+    {
+      "id": "A_highgain",
+      "window": "H300",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 1.1323346113248092e-06,
+      "score": 8.109363793054355e-09
+    },
+    {
+      "id": "A_highgain",
+      "window": "H300",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 9.748138182130471e-07,
+      "score": 9.751956229935893e-09
+    },
+    {
+      "id": "C_lowgain_pppp",
+      "window": "H300",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 9.927755166994599e-07,
+      "score": 5.80715636809572e-09
+    },
+    {
+      "id": "C_lowgain_pppp",
+      "window": "H300",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 9.990154119950018e-07,
+      "score": 5.935804657418007e-09
+    },
+    {
+      "id": "C_nominal_pppp",
+      "window": "H300",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 8.479982647749911e-07,
+      "score": 7.743369082330769e-09
+    },
+    {
+      "id": "C_nominal_pppp",
+      "window": "H300",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 1.157220745938644e-06,
+      "score": 9.870012226893927e-09
+    },
+    {
+      "id": "C_highgain_pppp",
+      "window": "H300",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 9.84432996791926e-07,
+      "score": 9.694946952615139e-09
+    },
+    {
+      "id": "C_highgain_pppp",
+      "window": "H300",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 1.3738987442987394e-06,
+      "score": 8.149532739157476e-09
+    },
+    {
+      "id": "A_lowgain",
+      "window": "H493",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 2.1748831985190876e-06,
+      "score": 6.836147860440259e-09
+    },
+    {
+      "id": "A_lowgain",
+      "window": "H493",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 2.041244935349581e-06,
+      "score": 6.2382328033016045e-09
+    },
+    {
+      "id": "A_nominal",
+      "window": "H493",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 7.579466246165505e-08,
+      "score": 2.45373399714324e-09
+    },
+    {
+      "id": "A_nominal",
+      "window": "H493",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 7.947516372609161e-08,
+      "score": 2.5600456576894825e-09
+    },
+    {
+      "id": "A_highgain",
+      "window": "H493",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 1.6621522555783254e-06,
+      "score": 4.588219651405472e-09
+    },
+    {
+      "id": "A_highgain",
+      "window": "H493",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 9.57429312668555e-08,
+      "score": 5.281644290547839e-09
+    },
+    {
+      "id": "C_lowgain_pppp",
+      "window": "H493",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 1.7988803669667102e-06,
+      "score": 5.533498678628371e-09
+    },
+    {
+      "id": "C_lowgain_pppp",
+      "window": "H493",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 1.3614044281368464e-06,
+      "score": 3.903615192070556e-09
+    },
+    {
+      "id": "C_nominal_pppp",
+      "window": "H493",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 1.000882788053328e-07,
+      "score": 4.191404250151786e-09
+    },
+    {
+      "id": "C_nominal_pppp",
+      "window": "H493",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 7.93321702816532e-08,
+      "score": 3.2345823640289287e-09
+    },
+    {
+      "id": "C_highgain_pppp",
+      "window": "H493",
+      "method": "M1",
+      "eligible": true,
+      "original_score": 1.4392410379577141e-05,
+      "score": 2.040491550226116e-09
+    },
+    {
+      "id": "C_highgain_pppp",
+      "window": "H493",
+      "method": "M3",
+      "eligible": true,
+      "original_score": 1.469833322673527e-05,
+      "score": 1.922222565363635e-09
+    }
+  ],
+  "passed": true
+}

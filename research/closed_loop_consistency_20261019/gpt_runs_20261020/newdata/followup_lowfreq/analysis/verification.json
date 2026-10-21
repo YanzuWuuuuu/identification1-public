@@ -1,0 +1,175 @@
+{
+  "time": "2026-10-20T12:47:05.265264",
+  "protected_files_checked": 1877,
+  "changed": [],
+  "missing": [],
+  "all_protected_unchanged": true,
+  "copied_model_checks": [
+    {
+      "name": "realfit_extended.py",
+      "byte_identical": true
+    },
+    {
+      "name": "realfit_original_copy.py",
+      "byte_identical": true
+    },
+    {
+      "name": "weighted_core.py",
+      "byte_identical": true
+    },
+    {
+      "name": "tau_seconds.npy",
+      "byte_identical": true
+    }
+  ],
+  "numerical_checks": {
+    "source_spectra_max_error": 0.0,
+    "original_B_prediction_max_abs_percent_error": 7.007727731433988e-12,
+    "residual_trace_identity_max_relative_error": 9.978996110405658e-14,
+    "projector_annihilation_max_relative_error": 1.2145768322132031e-11,
+    "bootstrap_mean_max_absolute_MC_SE": 1.799988365398077,
+    "recomputed_score_max_absolute_error": 0.0,
+    "residual_real_dimension": [
+      1064
+    ],
+    "model_parameter_count": 158
+  },
+  "fits": 82,
+  "original_rule_failures": 0,
+  "stricter_score_failures": 22,
+  "figures": [
+    {
+      "file": "A_highgain_noise_ratios.png",
+      "size": [
+        2554,
+        2194
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "A_lowgain_noise_ratios.png",
+      "size": [
+        2554,
+        2194
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "A_nominal_noise_ratios.png",
+      "size": [
+        2554,
+        2194
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "C_highgain_pppp_noise_ratios.png",
+      "size": [
+        2554,
+        2194
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "C_lowgain_pppp_noise_ratios.png",
+      "size": [
+        2554,
+        2194
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "C_nominal_pppp_noise_ratios.png",
+      "size": [
+        2554,
+        2194
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "excitation_scaling_check.png",
+      "size": [
+        2584,
+        1114
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "lowgain_crossrecord_diagnostic.png",
+      "size": [
+        3184,
+        1054
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "main_damping_mode2.png",
+      "size": [
+        2254,
+        1264
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "main_paired_prediction.png",
+      "size": [
+        2254,
+        1264
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    },
+    {
+      "file": "residual_frequency_bands.png",
+      "size": [
+        3154,
+        1804
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ],
+      "pdf_exists": true
+    }
+  ],
+  "visual_review": "Inspected main paired plot, noise-ratio six-panel plot and residual-band plot: no clipping/overlap obscuring data; all plot data preserved."
+}

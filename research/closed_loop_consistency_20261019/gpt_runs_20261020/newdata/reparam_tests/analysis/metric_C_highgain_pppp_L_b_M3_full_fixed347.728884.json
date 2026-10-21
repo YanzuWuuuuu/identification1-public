@@ -1,0 +1,33 @@
+{
+  "id": "C_highgain_pppp",
+  "window": "L",
+  "model": "b",
+  "method": "M3",
+  "success": true,
+  "omit": null,
+  "qe": {
+    "all": {
+      "Q": 530798.541021444,
+      "EQ": 12391.60609162529,
+      "ratio": 42.8353303919318
+    },
+    "negative_expected_entries": 0
+  },
+  "covariance_source": "profiled model (a), joint delays",
+  "delay_residual_fraction": [
+    0.6271359700588222,
+    0.6262067127060066,
+    0.6260604907128751,
+    0.7823350053049712,
+    0.5970939152845502,
+    0.5018515520023378
+  ],
+  "delay_conditional_singular_values": [
+    0.9113027477529341,
+    0.7982567332997244,
+    0.7947363599961024,
+    0.7849374314010615,
+    0.7651017812077598,
+    0.6781472900687078
+  ]
+}

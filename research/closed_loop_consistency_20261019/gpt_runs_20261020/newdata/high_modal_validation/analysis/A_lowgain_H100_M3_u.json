@@ -1,0 +1,25 @@
+{
+  "id": "A_lowgain",
+  "window": "H100",
+  "method": "M3",
+  "frequency_u_hz": [
+    0.0008212026559472388,
+    0.0013558689349252447
+  ],
+  "damping_u_pp": [
+    0.000630413518159737,
+    0.0010065414378863918
+  ],
+  "local_numerical_conditions": true,
+  "scaled_rank": 116,
+  "dimension": 116,
+  "scaled_condition": 1569.6518471850193,
+  "log_modal_sd": [
+    6.210440775873325e-06,
+    1.0102101731953225e-05,
+    0.0008741980070858328,
+    0.0008787123289881289
+  ],
+  "scope": "B noise at z=0; full transient nuisance block; local correct-model sandwich; not model/operating-condition uncertainty",
+  "estimated_weight_frozen": false
+}

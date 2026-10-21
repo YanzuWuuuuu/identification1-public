@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-20",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "numpy": "2.4.6",
+  "raw_files": 27,
+  "unique_records": 26,
+  "main_fits": 94,
+  "failures": [
+    {
+      "id": "D_nominal_0p6",
+      "method": "M3"
+    },
+    {
+      "id": "E_nominal_m1p0",
+      "method": "M1"
+    },
+    {
+      "id": "E_nominal_m1p0",
+      "method": "M3"
+    },
+    {
+      "id": "E_nominal_m1p0",
+      "method": "M3w"
+    }
+  ],
+  "strict_score_failures": 26,
+  "methods": [
+    "M1",
+    "M2",
+    "M3",
+    "M3w",
+    "M5n"
+  ],
+  "model_parameters": 158,
+  "band_hz": [
+    3,
+    25
+  ],
+  "fs": 5000.0,
+  "P0": 30000,
+  "bootstrap_FRF": 1000,
+  "bootstrap_SML_each": 99,
+  "claim_update": "partial support for second-mode damping bias; full predeclared invariance and uncertainty coverage not met",
+  "next_action": "diagnose operating-condition dependence and effective resonance input SNR before claiming experimental consistency",
+  "original_integrity": {
+    "unchanged": true,
+    "raw_records": 27,
+    "baseline_sources": 5,
+    "changed": []
+  }
+}

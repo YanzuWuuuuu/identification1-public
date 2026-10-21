@@ -1,0 +1,13 @@
+﻿record,model,saved,valid,state,score,near_bound,cutoff_near_bound,iterations,inner_failures,profile_calls,seconds,exception,parameter_count,linear_count,nonlinear_count,grid_total,grid_inner_success
+A_lowgain,a,True,False,无效：profile_hybrid_failed,7.608997445999079e-05,False,False,55,0,704,125.50091919999977,,285,264,21,41,41
+A_lowgain,c,True,True,有效：profile_hybrid_root,8.077521039897255e-13,False,False,55,0,359,54.678613099997165,,205,184,21,41,41
+A_nominal,a,True,False,无效：profile_hybrid_failed,0.0001096757158042828,False,False,34,0,678,117.46469760000036,,285,264,21,41,41
+A_nominal,c,True,True,有效：profile_hybrid_root,5.375908920525224e-13,False,False,55,0,432,68.46321650000027,,205,184,21,41,41
+A_highgain,a,True,True,有效：profile_hybrid_failed,1.4057484279950395e-07,False,False,35,0,336,63.42152939999505,,285,264,21,41,41
+A_highgain,c,True,True,有效：profile_hybrid_root,1.5904803964681395e-12,False,False,55,0,153,26.160696999999345,,205,184,21,41,41
+C_lowgain_pppp,a,True,True,有效：profile_hybrid_failed,2.447000000238241e-07,False,False,55,0,700,122.64921839999442,,285,264,21,41,41
+C_lowgain_pppp,c,True,True,有效：profile_hybrid_root,6.668293056101646e-13,False,False,55,0,416,63.69243660000211,,205,184,21,41,41
+C_nominal_pppp,a,True,False,无效：profile_hybrid_failed,9.138801542469387e-05,False,False,34,0,672,112.03492660000484,,285,264,21,41,41
+C_nominal_pppp,c,True,True,有效：profile_hybrid_root,5.120976009810407e-13,False,False,55,0,481,76.76704750000499,,205,184,21,41,41
+C_highgain_pppp,a,True,True,有效：profile_hybrid_failed,2.3067776303380562e-07,False,False,35,0,149,27.578835100001015,,285,264,21,41,41
+C_highgain_pppp,c,True,True,有效：profile_hybrid_root,8.60372042805011e-13,False,False,55,0,215,32.50726610000129,,205,184,21,41,41
