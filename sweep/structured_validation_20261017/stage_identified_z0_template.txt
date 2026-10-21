@@ -1,0 +1,243 @@
+%% z=0 实测辨识对象：四电机 -> 四传感器（自包含参数文件）
+% 直接运行本文件，变量写入当前工作区；无需任何 MAT/CSV 或其他脚本。
+% MATLAB + Control System Toolbox。为连续时间 Simulink 仿真准备。
+%
+% 约定：列=电机1..4，行=传感器1..4；逻辑顺序=[Rx,Ry,Z,N]。
+% u_phys = Tu * u_virtual;  y_virtual = Ty * y_phys.
+% Tu/Ty 是不同端口的映射，不互为逆矩阵，也不保证全频带解耦。
+%
+% 这是 z=0 小信号增量模型 Delta u -> Delta y，包含低频支承弹簧分量。
+% 不另加 M/s^2，否则会重复刚体/支承动力学。所有辨识的常数直通项D保留。
+% 3--800 Hz建模，25--800 Hz为主要评价频带；频带外不是经过验证的对象。
+% 100--170 Hz等拟合分量的机械归属未全部确认，不能全称为板模态。
+%
+% 信号尺度：u_corrected = SaturationU_recorded / ((10/6)/12.9)。
+% 输出保留原 y_sensor 的记录尺度，不额外乘1e6或修改符号。
+% 电机指令到N的标定没有确认，不能把本模型输入擅自当作牛顿。
+%
+% Simulink连续实现（输入输出均为4列向量）：
+% u_virtual -> Gain(Tu, Matrix(K*u)) -> Demux(4)
+% -> 各电机一个 Transport Delay(tau_input(k)) -> Mux(4)
+% -> State-Space(A,B,C,D,Initial conditions=x0)
+% -> Demux(4) -> 各传感器一个 Transport Delay(tau_output(j)) -> Mux(4)
+% -> Gain(Ty, Matrix(K*u)) -> y_virtual.
+% 时延为0的支路可直连。State-Space块本身只放无时延A/B/C/D！
+% 若用支持含时延对象的LTI System块直接填G，则不要再串联上述对象时延。
+% 只观察物理通道时，省略两端Tu/Ty。
+%
+% 源数据：sweep/srivc_retest_20261016/model_z0.mat
+% 结构候选：sweep/structured_validation_20261017/trial_z0.mat（严格复核版）
+% 本文件内已嵌入实际数值；上面路径只用于追溯，不参与运行。
+% 导出日期：2026-10-17。
+
+%% 1. 只需改这两个选项
+model_choice = 'srivc';       % 'srivc' 或 'structured'
+decoupling_choice = 'band_static'; % 'geometric' / 'band_static' / 'structured'
+%
+% srivc：自由分子加性SRIVC；z0检查4x4误差4.09%，NN误差43.36%。
+%   该基线时延沿用前期估计，未在新记录中重新更新；是含既定时延的条件拟合。
+% structured：共同支承空间+高频复秩一、七个有效时延重新更新；
+%   检查4x4误差4.33%，NN误差43.86%。固定SRIVC极点的结构细化，不是全联合SRIVC。
+%   低频只是共同空间的必要结构松弛，不是严格三自由度机械参数模型。
+%
+% band_static：由25--80Hz训练FRF求静态方向，当前该频带对照优于结构候选。
+%   保留几何矩阵前三个逻辑端口缩放，仅更新第4个输入/输出方向。
+% structured：使用结构模型提取的静态方向；geometric：原几何方向。
+% 这些方向都是估计值，不是已证实宽频精确刚体零空间。
+
+%% 2. 工况和信号接口
+z_operating_mm = 0;
+Fs_ident = 5000;
+Ts_ident = 1/Fs_ident;
+fit_band_Hz = [3 800];
+primary_check_band_Hz = [25 800];
+input_record_multiplier = (10/6)/12.9;
+u0_recorded = __U0_RAW__;
+u0_corrected = __U0_CORRECTED__;
+y0_recorded = __Y0__;
+% 上述为记录均值，供设置增量接口参考，不是独立测得的静态平衡参数。
+% 默认仿真输入是Delta u_corrected，输出是Delta y_recorded，初态为零。
+% 若仿真绝对信号：在输入端减u0_corrected，输出端加y0_recorded。
+
+%% 3. 两套完整加性模态模型（各自分子与时延成套，禁止混搭）
+% P0(s)=D + sum_m [C0_m + (s/wn_m)*C1_m] /
+%                         [1 + 2*zeta_m*(s/wn_m) + (s/wn_m)^2].
+% 每个flat表的一行是一个4x4矩阵按MATLAB列优先展开：
+% [y1u1,y2u1,y3u1,y4u1,y1u2,...,y4u4]。
+% 两个模型极点相同；第15分量约263Hz为宽背景拟合项，不是新确认的物理模态。
+modal_frequency_Hz = __FREQUENCIES__;
+modal_damping_ratio = __DAMPING__;
+
+srivc_parameters.C0_flat = __BASE_C0__;
+srivc_parameters.C1_flat = __BASE_C1__;
+srivc_parameters.D = __BASE_D__;
+srivc_parameters.tau_io_seconds = __BASE_DELAY__;
+srivc_parameters.delay_status = 'Inherited earlier effective channel delays, fixed in this SRIVC fit';
+
+structured_parameters.C0_flat = __STRUCT_C0__;
+structured_parameters.C1_flat = __STRUCT_C1__;
+structured_parameters.D = __STRUCT_D__;
+structured_parameters.tau_io_seconds = __STRUCT_DELAY__;
+structured_parameters.delay_status = 'Seven additive effective channel-delay parameters updated with fixed SRIVC poles';
+
+switch lower(model_choice)
+    case 'srivc'
+        plant_parameters = srivc_parameters;
+    case 'structured'
+        plant_parameters = structured_parameters;
+    otherwise
+        error('model_choice must be srivc or structured.');
+end
+wn = 2*pi*modal_frequency_Hz;
+n_modes = numel(wn);
+C0_modal = reshape(plant_parameters.C0_flat.',4,4,n_modes);
+C1_modal = reshape(plant_parameters.C1_flat.',4,4,n_modes);
+D = plant_parameters.D;
+
+%% 4. 连续实状态空间：不拼高阶传递函数多项式，不作Pade近似
+% 每阶每输入用一个归一化二阶滤波器，故本实现为15*4*2=120状态。
+% 这不是宣称机械对象有120个自由度；是一般MIMO分子的一种精确数值实现。
+% 每阶x=[x_position(4);x_velocity_scaled(4)]，传递分别为1/A与(s/wn)/A。
+n_states = 8*n_modes;
+A = zeros(n_states); B = zeros(n_states,4); C = zeros(4,n_states);
+for plant_mode = 1:n_modes
+    plant_ix = (plant_mode-1)*8+(1:8);
+    A(plant_ix,plant_ix) = wn(plant_mode)*[zeros(4),eye(4); ...
+        -eye(4),-2*modal_damping_ratio(plant_mode)*eye(4)];
+    B(plant_ix,:) = wn(plant_mode)*[zeros(4);eye(4)];
+    C(:,plant_ix) = [C0_modal(:,:,plant_mode),C1_modal(:,:,plant_mode)];
+end
+x0 = zeros(n_states,1);
+G0 = ss(A,B,C,D);
+G0.TimeUnit = 'seconds';
+G0.InputName = {'Motor1';'Motor2';'Motor3';'Motor4'};
+G0.OutputName = {'Sensor1';'Sensor2';'Sensor3';'Sensor4'};
+G0.Name = ['Stage_z0_' model_choice '_no_delay'];
+
+%% 5. 输入和输出侧有效纯时延的精确实现（数值均为秒）
+% G_jk(s)=exp(-s*tau_output(j))*G0_jk(s)*exp(-s*tau_input(k)).
+tau_io = plant_parameters.tau_io_seconds; % 4x4：行传感器，列电机
+tau_output = tau_io(:,1)-min(tau_io(:,1));
+tau_input = min(tau_io,[],1).';
+% 规范选取min(tau_output)=0，保证这里的两侧时延均非负。
+% 只能由现有辨识确定通道总时延及相对关系；这个分配不是硬件两侧绝对时延的唯一测量。
+assert(all(tau_input>=0) && all(tau_output>=0));
+assert(norm(tau_io-(tau_output+tau_input.'),'fro')<1e-12);
+G = G0;
+G.InputDelay = tau_input;
+G.OutputDelay = tau_output;
+G.Name = ['Stage_z0_' model_choice '_with_exact_delays'];
+G_physical = G;
+% 供直接使用原始SaturationU记录尺度的备选模型，只在这个接口用它：
+G_recorded_input = G*(eye(4)/input_record_multiplier);
+% 不要在已除过倍率的输入上再用G_recorded_input，否则重复换算。
+
+%% 6. 输入、输出解耦矩阵（保持原逻辑轴缩放）
+% 标称几何/质量来自matlab/0，不拿这些数值替代实测辨识动力学。
+B_r_geometry = __B_GEOMETRY__; % 标称逻辑力映射3x4，顺序Rx,Ry,Z
+C_r_geometry = __C_GEOMETRY__; % 标称位移几何映射4x3
+M_r_nominal = __M_NOMINAL__; % 标称diag(Jrx,Jry,mz)，只用于可选质量平衡缩放
+Tu_geometric = __TU_GEOMETRIC__; % u_phys=Tu_geometric*u_virtual
+Ty_geometric = __TY_GEOMETRIC__; % y_virtual=Ty_geometric*y_phys
+
+Nu_geometric = Tu_geometric(:,4); Ny_geometric = Ty_geometric(4,:);
+Nu_band_static = __NU_BAND__;
+Ny_band_static = __NY_BAND__;
+Nu_structured = __NU_STRUCT__;
+Ny_structured = __NY_STRUCT__;
+
+Tu_band_static = [Tu_geometric(:,1:3),Nu_band_static];
+Ty_band_static = [Ty_geometric(1:3,:);Ny_band_static];
+Tu_structured = [Tu_geometric(:,1:3),Nu_structured];
+Ty_structured = [Ty_geometric(1:3,:);Ny_structured];
+switch lower(decoupling_choice)
+    case 'geometric'
+        Tu = Tu_geometric; Ty = Ty_geometric;
+    case 'band_static'
+        Tu = Tu_band_static; Ty = Ty_band_static;
+    case 'structured'
+        Tu = Tu_structured; Ty = Ty_structured;
+    otherwise
+        error('decoupling_choice must be geometric, band_static or structured.');
+end
+Tu_logical = Tu(:,1:3);  % 4x3，逻辑输入[Rx,Ry,Z] -> 电机
+Ty_logical = Ty(1:3,:);  % 3x4，传感器 -> 逻辑输出[Rx,Ry,Z]
+Nu = Tu(:,4);           % 4x1，单独的零空间输入分配列
+Ny = Ty(4,:);           % 1x4，单独的零空间输出观测行
+Tu_inverse = Tu\eye(4); % 物理输入 -> 当前虚拟输入坐标
+Ty_inverse = Ty\eye(4); % 当前虚拟输出坐标 -> 物理输出
+% 可选：用户此前使用的sqrt(质量/惯量)平衡版本。输入输出须成套选用。
+sqrt_M_r = diag(sqrt(diag(M_r_nominal)));
+Tu_massbalanced = Tu*blkdiag(sqrt_M_r,1);
+Ty_massbalanced = blkdiag(sqrt_M_r,1)*Ty;
+
+%% 7. 已组合好的传函，可bode/freqresp/lsim，或用于支持时延的LTI块
+G_virtual_static = Ty*G*Tu;  % 4x4，顺序[Rx,Ry,Z,N]
+G_virtual_static.InputName = {'Rx_in';'Ry_in';'Z_in';'N_in'};
+G_virtual_static.OutputName = {'Rx_out';'Ry_out';'Z_out';'N_out'};
+G_logical = G_virtual_static(1:3,1:3);
+G_NN = G_virtual_static(4,4);
+G_N_to_logical = G_virtual_static(1:3,4);
+G_logical_to_N = G_virtual_static(4,1:3);
+G_virtual_no_delay = Ty*G0*Tu;
+% 等效“静态矩阵已并入”的无时延状态空间，仅供无对象时延的单块检查。
+% 因各路时延不同，下面A_virtual等不能替代实际的 Tu -> 输入时延 -> G0 -> 输出时延 -> Ty 顺序。
+A_virtual = A; B_virtual = B*Tu; C_virtual = Ty*C; D_virtual = Ty*D*Tu;
+
+%% 8. 可选的因果时延对齐补偿，不默认加入第7节静态结果
+tau_comp_input = max(tau_input)-tau_input;
+tau_comp_output = max(tau_output)-tau_output;
+Q_input_delay = ss(eye(4)); Q_input_delay.InputDelay = tau_comp_input;
+Q_output_delay = ss(eye(4)); Q_output_delay.OutputDelay = tau_comp_output;
+G_virtual_aligned = Ty*Q_output_delay*G*Q_input_delay*Tu;
+tau_common_aligned = max(tau_input)+max(tau_output);
+% 这些补偿均只增加时延，不使用不可实现的时间超前。
+% Simulink中Q_input_delay位于Tu之后、对象输入之前；Q_output_delay位于对象输出之后、Ty之前。
+% 与所选模型成套时，理论上各物理路径对齐到tau_common_aligned。
+% 此理想模型恒等式不等于实测有效：上一轮实测未发现动态补偿优于仅静态校准。
+
+%% 9. 模型自身核对与仿真配置建议
+assert(all(modal_frequency_Hz>0) && all(modal_damping_ratio>0));
+assert(all(isfinite([A(:);B(:);C(:);D(:)])));
+assert(rank(Tu)==4 && rank(Ty)==4,'Full coordinate matrices must be invertible.');
+assert(abs(norm(Nu)-1)<1e-12 && abs(norm(Ny)-1)<1e-12);
+model_checks.max_real_pole = max(real(eig(A)));
+model_checks.delay_additivity_error_s = norm(tau_io-(tau_output+tau_input.'),'fro');
+model_checks.Tu_condition = cond(Tu);
+model_checks.Ty_condition = cond(Ty);
+model_checks.input_coordinate_roundtrip = norm(Tu_inverse*Tu-eye(4),'fro');
+model_checks.output_coordinate_roundtrip = norm(Ty_inverse*Ty-eye(4),'fro');
+model_checks.nominal_geometry_output_inverse = norm(Ty_geometric(1:3,:)*C_r_geometry-eye(3),'fro');
+model_checks.nominal_geometry_input_inverse = norm(B_r_geometry*Tu_geometric(:,1:3)-eye(3),'fro');
+assert(model_checks.max_real_pole<0);
+% 独立比较模态公式与状态空间在频率点的响应，防止导出符号/归一化错误。
+plant_test_frequency = logspace(log10(3),log10(800),160).';
+plant_formula = complex(zeros(4,4,numel(plant_test_frequency)));
+for plant_k = 1:numel(plant_test_frequency)
+    plant_s = 2i*pi*plant_test_frequency(plant_k);
+    plant_value = D;
+    for plant_mode = 1:n_modes
+        plant_q = plant_s/wn(plant_mode);
+        plant_value = plant_value+(C0_modal(:,:,plant_mode)+plant_q*C1_modal(:,:,plant_mode))/ ...
+            (1+2*modal_damping_ratio(plant_mode)*plant_q+plant_q^2);
+    end
+    plant_formula(:,:,plant_k) = plant_value.*exp(-plant_s*tau_io);
+end
+plant_ss_response = freqresp(G,2*pi*plant_test_frequency);
+model_checks.modal_to_ss_relative_error = norm(plant_ss_response(:)-plant_formula(:))/norm(plant_formula(:));
+assert(model_checks.modal_to_ss_relative_error<1e-9);
+% 先用连续求解器，建议MaxStep不大于2e-5 s；数据采样周期仍为Ts_ident=2e-4 s。
+% 连续求解器步长不是数据采样率。离散实现需另处理分数时延，不能把tau/Ts直接取整。
+sim_max_step_s = 2e-5;
+sim_relative_tolerance = 1e-6;
+sim_absolute_tolerance = 1e-9;
+mode_table = table((1:n_modes).',modal_frequency_Hz,modal_damping_ratio, ...
+    'VariableNames',{'component','frequency_Hz','damping_ratio'});
+fprintf('Loaded z=0 model: %s; static map: %s; %d states, 4 inputs, 4 outputs.\n', ...
+    model_choice,decoupling_choice,n_states);
+fprintf('Input delay [us]: %s\n',mat2str(tau_input.'*1e6,7));
+fprintf('Output delay [us]: %s\n',mat2str(tau_output.'*1e6,7));
+fprintf('Delay split is a gauge, not separately measured hardware delays.\n');
+fprintf('State-Space block: A,B,C,D,x0; full input/output gains: Tu,Ty; null directions: Nu,Ny.\n');
+fprintf('Modal-to-state-space relative check: %.3g\n',model_checks.modal_to_ss_relative_error);
+disp(mode_table);

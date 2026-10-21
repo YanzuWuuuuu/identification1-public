@@ -1,0 +1,3 @@
+stage,training_weighted_error_pct,exitflag,firstorderopt,iterations,active_parameters
+fixed,17.7756876432395,3,0.000196940968631867,22,235
+delay,14.2541484299182,3,1.0924617128518e-05,13,242
